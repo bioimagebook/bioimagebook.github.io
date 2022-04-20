@@ -1,0 +1,1668 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Noise &#8212; Introduction to Bioimage Analysis</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Microscopes &amp; detectors" href="../4-microscope_types/microscope_types.html" />
+    <link rel="prev" title="Blur &amp; the PSF" href="../2-formation_spatial/formation_spatial.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../README.html">
+   Introduction to Bioimage Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Front matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Before we begin
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/preface/preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/reading/reading.html">
+   How to read this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducing images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">
+   Images &amp; pixels
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">
+     ImageJ: Images &amp; pixels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">
+     Python: Images &amp; pixels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">
+   Measurements &amp; histograms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">
+     ImageJ: Measurements &amp; histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/python.html">
+     Python: Measurements &amp; histograms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">
+   Types &amp; bit-depths
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">
+     ImageJ: Types &amp; bit-depths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">
+     Python: Types &amp; bit-depths
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/4-colors/colors.html">
+   Channels &amp; colors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/imagej.html">
+     ImageJ: Channels &amp; colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/python.html">
+     Python: Channels &amp; colors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">
+   Pixel size &amp; dimensions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">
+     ImageJ:  Pixel size &amp; dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">
+     Python:  Pixel size &amp; dimensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/6-files/files.html">
+   Files &amp; file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/imagej.html">
+     ImageJ: Files &amp; file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/python.html">
+     Python: Files &amp; file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Processing &amp; analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../2-processing/1-processing_and_analysis/processing_and_analysis.html">
+   Image processing &amp; analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html">
+   Point operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/2-point_operations/imagej.html">
+     ImageJ: Point operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html">
+   Thresholding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/3-thresholding/imagej.html">
+     ImageJ: Thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/4-filters/filters.html">
+   Filters
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/4-filters/imagej.html">
+     ImageJ: Filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/5-morph/morph.html">
+   Morphological operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/5-morph/imagej.html">
+     ImageJ: Morphological operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/6-transforms/transforms.html">
+   Image transforms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/6-transforms/imagej.html">
+     ImageJ: Image transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/7-multidimensional_processing/multidimensional_processing.html">
+   Multidimensional processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/7-multidimensional_processing/imagej.html">
+     ImageJ: Multidimensional processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fluorescence microscopy
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-formation_overview/formation_overview.html">
+   From photons to pixels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-formation_spatial/formation_spatial.html">
+   Blur &amp; the PSF
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Noise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-microscope_types/microscope_types.html">
+   Microscopes &amp; detectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
+   Beyond this book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/python/python.html">
+   Python Primer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
+   ImageJ: Writing macros
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
+     Difference of Gaussians
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
+     Simulating image formation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/chapters/3-fluorescence/3-formation_noise/formation_noise.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/chapters/3-fluorescence/3-formation_noise/formation_noise.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/petebankhead/jupyter-book/main?urlpath=tree/chapters/3-fluorescence/3-formation_noise/formation_noise.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#background">
+     Background
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gaussian-noise">
+   Gaussian noise
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#signal-to-noise-ratio-snr">
+     Signal-to-Noise Ratio (SNR)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-averaging-noisy-images">
+     Adding &amp; averaging noisy images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-averaging-within-an-image">
+     Adding &amp; averaging within an image
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#poisson-noise">
+   Poisson noise
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#signal-dependent-noise">
+     Signal-dependent noise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-snr-for-poisson-noise">
+     The SNR for Poisson noise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#poisson-noise-detection">
+     Poisson noise &amp; detection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combining-noise-sources">
+   Combining noise sources
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-photons">
+   Finding photons
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Noise</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#background">
+     Background
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gaussian-noise">
+   Gaussian noise
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#signal-to-noise-ratio-snr">
+     Signal-to-Noise Ratio (SNR)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-averaging-noisy-images">
+     Adding &amp; averaging noisy images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-averaging-within-an-image">
+     Adding &amp; averaging within an image
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#poisson-noise">
+   Poisson noise
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#signal-dependent-noise">
+     Signal-dependent noise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-snr-for-poisson-noise">
+     The SNR for Poisson noise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#poisson-noise-detection">
+     Poisson noise &amp; detection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combining-noise-sources">
+   Combining noise sources
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-photons">
+   Finding photons
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="noise">
+<span id="chap-formation-noise"></span><h1>Noise<a class="headerlink" href="#noise" title="Permalink to this headline">¶</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Chapter outline</p>
+<ul class="simple">
+<li><p>There are two main types of noise in fluorescence microscopy: <strong>photon noise &amp; read noise</strong></p></li>
+<li><p><strong>Photon noise</strong> is <em>signal-dependent</em>, varying throughout an image</p></li>
+<li><p><strong>Read noise</strong> is <em>signal-independent</em>, and depends upon the detector</p></li>
+<li><p><strong>Detecting more photons</strong> reduces the impact of both noise types</p></li>
+</ul>
+</div>
+<div class="cell tag_hide-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>We could reasonably expect that a noise-free microscopy image should look pleasantly smooth, not least because the convolution with the PSF has a blurring effect that softens any sharp transitions.
+Yet in practice raw fluorescence microscopy images are not smooth.
+They are always, to a greater or lesser extent, corrupted by noise.
+This appears as a random ‘graininess’ throughout the image, which is often strong enough to obscure details.</p>
+<p>This chapter considers the nature of the noisiness, where it comes from, and what can be done about it.
+Before starting, it may be helpful to know the one major lesson of this chapter for the working microscopist is simply:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>If you want to reduce noise, you need to detect more photons</strong></p>
+</div>
+<p>This general guidance applies in the overwhelming majority of cases when a good quality microscope is functioning properly.
+Nevertheless, it may be helpful to know a bit more detail about why – and what you might do if detecting more photons is not feasible.</p>
+<div class="section" id="background">
+<span id="sec-noise-background"></span><h3>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Visualize an image with/without noise.</span>
+<span class="sd">The point is that noise comprises random positive/negative values,</span>
+<span class="sd">usually with a predictable distribution.</span>
+
+<span class="sd">(Of course, in the simulation we can make sure that&#39;s the case...</span>
+<span class="sd">but real-world investigations support the basis of these simulations)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Load image &amp; normalize between 0 and 1</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="c1"># Adjust the intensities a bit.</span>
+<span class="c1"># This allows us to balance the brightness signal and the background,</span>
+<span class="c1"># which helps because for very low signals Poisson noise looks weirder -</span>
+<span class="c1"># and right now we don&#39;t want to be distracted by odd-looking histograms.</span>
+<span class="c1"># We&#39;ll cover that later.</span>
+<span class="n">background</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">max_signal</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">background</span> <span class="o">+</span> <span class="n">im</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_signal</span> <span class="o">-</span> <span class="n">background</span><span class="p">)</span>
+
+<span class="c1"># Blur (to simulate point spread function)</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+
+<span class="c1"># Add Poisson noise (for realism)</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">im_noisy</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+
+<span class="c1"># Compute the difference between the noisy image &amp; ideal image</span>
+<span class="n">im_diff</span> <span class="o">=</span> <span class="n">im_noisy</span> <span class="o">-</span> <span class="n">im</span>
+
+<span class="c1"># Show images</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">))</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Noisy image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Noise-free (blurred) image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_diff</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Result of (A) - (B)&#39;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_diff</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(D) Histogram of (A) - (B)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="c1"># plt.tight_layout()</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_demo&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-noise-demo">
+<div class="cell_output docutils container">
+<img alt="../../../_images/formation_noise_4_0.png" src="../../../_images/formation_noise_4_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 141 </span><span class="caption-text">Illustration of the difference between a noisy image that we can record (A), and the noise-free image we would prefer (B). The ‘noise’ itself is what would be left over if we subtracted one from the other (C). The histogram in (D) resembles a normal (i.e. Gaussian) distribution and shows that the noise consists of positive and negative values, with a mean of 0.</span><a class="headerlink" href="#fig-noise-demo" title="Permalink to this image">¶</a></p>
+</div>
+<p>In general, we can assume that noise in fluorescence microscopy images has the following three characteristics, illustrated in <a class="reference internal" href="#fig-noise-demo"><span class="std std-numref">Fig. 141</span></a>:</p>
+<ol class="simple">
+<li><p><strong>Noise is random</strong> – For any pixel, the noise is a random positive or negative number added to the ‘true value’ the pixel should have.</p></li>
+<li><p><strong>Noise is independent at each pixel</strong> – The value of the noise at any pixel does not depend upon where the pixel is, or what the noise is at any other pixel.</p></li>
+<li><p><strong>Noise follows a particular distribution</strong> – Each noise value can be seen as a <em>random variable</em> drawn from a particular distribution.
+If we have enough noise values, their histogram would resemble a plot of the distribution <a class="footnote-reference brackets" href="#fn-1" id="id1">1</a>.</p></li>
+</ol>
+<p>There are many different possible noise distributions, but we only need to consider the <strong>Poisson</strong> and <strong>Gaussian</strong> cases.
+No matter which of these we have, the most interesting distribution parameter for us is the <strong>standard deviation</strong>.
+Assuming everything else stays the same, if the standard deviation of the noise is higher then the image looks worse (<a class="reference internal" href="#fig-gaussian-hists"><span class="std std-numref">Fig. 142</span></a>).</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Demonstrate that noise with a higher standard deviation makes an image</span>
+<span class="sd">look worse, if all else stays the same (i.e. lower signal-to-noise ratio).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Load image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># Add noise with different standard deivations</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="n">im_noise_5</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span>
+<span class="n">im_noise_10</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="n">im_noise_20</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">20</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_noise_5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Std. dev. 5&#39;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_noise_10</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Std. dev. 10&#39;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_noise_20</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Std. dev. 20&#39;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+
+<span class="c1"># Easier to show histograms with same settings in a loop</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="mi">234</span>
+<span class="k">for</span> <span class="n">im_noise</span> <span class="ow">in</span> <span class="p">[</span><span class="n">im_noise_5</span><span class="p">,</span> <span class="n">im_noise_10</span><span class="p">,</span> <span class="n">im_noise_20</span><span class="p">]:</span>
+    <span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noise</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">110</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3000</span><span class="p">])</span>
+    <span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_gaussian_hists&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-gaussian-hists">
+<div class="cell_output docutils container">
+<img alt="../../../_images/formation_noise_6_0.png" src="../../../_images/formation_noise_6_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 142 </span><span class="caption-text">Gaussian noise with different standard deviations added to an image. Noise with a higher standard deviation has a worse effect when added to an image. Its impact can be seen in the histogram, as the distribution of foreground and background pixels overlap more – which is problematic for things like <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html#chap-thresholding"><span class="std std-ref">thresholding</span></a>.</span><a class="headerlink" href="#fig-gaussian-hists" title="Permalink to this image">¶</a></p>
+</div>
+<p>The reason we will consider two distributions is that there are two main types of noise for us to worry about:</p>
+<ol class="simple">
+<li><p><strong>Photon noise</strong>, from the emission (and detection) of the light itself.
+This follows a Poisson distribution, for which <em>the standard deviation changes with the local image brightness</em>.</p></li>
+<li><p><strong>Read noise</strong>, arising from inaccuracies in quantifying numbers of detected photons.
+This follows a Gaussian distribution, for which <em>the standard deviation stays the same throughout the image</em>.</p></li>
+</ol>
+<p>Therefore the noise in the image is really the result of adding two <a class="footnote-reference brackets" href="#fn-2" id="id2">2</a> separate random components together.
+In other words, to get the value of any pixel <span class="math notranslate nohighlight">\(P\)</span> you need to calculate the sum of the ‘true’ (noise-free) value <span class="math notranslate nohighlight">\(T\)</span>, a random photon noise value <span class="math notranslate nohighlight">\(N_p\)</span>, and a random read noise value <span class="math notranslate nohighlight">\(N_r\)</span>, i.e.</p>
+<div class="math notranslate nohighlight">
+\[P = T + N_p + N_r\]</div>
+<p>In this case, we have <span class="math notranslate nohighlight">\(P\)</span> in the image but we want <span class="math notranslate nohighlight">\(T\)</span>.
+Unfortunately, we don’t know precisely what the random values <span class="math notranslate nohighlight">\(N_p\)</span> and <span class="math notranslate nohighlight">\(N_r\)</span> are.</p>
+<p>Finally, some useful maths:</p>
+<ul class="simple">
+<li><p>Suppose we add two random noisy values together. Both are independent and drawn from distributions (Gaussian or Poisson) with standard deviations <span class="math notranslate nohighlight">\(\sigma_1\)</span> and <span class="math notranslate nohighlight">\(\sigma_2\)</span>.
+The result is a third random value, drawn from a distribution with a standard deviation <span class="math notranslate nohighlight">\(\sqrt{\sigma_1 + \sigma_2}\)</span>.</p></li>
+<li><p>If we multiply a noisy value from a distribution with a standard deviation <span class="math notranslate nohighlight">\(\sigma_1\)</span> by <span class="math notranslate nohighlight">\(k\)</span>, the result is noise from a distribution with a standard deviation <span class="math notranslate nohighlight">\(k\sigma_1\)</span>.</p></li>
+</ul>
+<p>These are all my most important noise facts, upon which the rest of this chapter is built.
+We will begin with Gaussian noise because it’s easier to work with, found in many applications, and widely studied in the image processing literature.
+However, in <em>most</em> fluorescence images photon noise is the more important factor.
+Fortunately, there’s a close relationship between the Gaussian and Poisson noise – and it’s even possible to convert the latter to behave like the former.</p>
+</div>
+</div>
+<div class="section" id="gaussian-noise">
+<h2>Gaussian noise<a class="headerlink" href="#gaussian-noise" title="Permalink to this headline">¶</a></h2>
+<p>Gaussian noise is a common problem in fluorescence images acquired using a CCD camera (see <a class="reference internal" href="../4-microscope_types/microscope_types.html#chap-microscope-types"><span class="std std-ref">Microscopes &amp; detectors</span></a>).
+It arises at the stage of quantifying the number of photons detected for each pixel. Quantifying photons is hard to do with complete precision, and the result is likely to be wrong by at least a few photons.
+This error is the read noise.</p>
+<p>Read noise typically follows a Gaussian distribution and has a mean of zero: this implies there is an equal likelihood of over or underestimating the number of photons.
+Furthermore, according to the properties of Gaussian distributions, we should expect around ~68% of measurements to be ±1 standard deviation from the true, read-noise-free value.
+If a detector has a low read noise standard deviation, this is then a good thing: it means the error should be small.</p>
+<div class="section" id="signal-to-noise-ratio-snr">
+<h3>Signal-to-Noise Ratio (SNR)<a class="headerlink" href="#signal-to-noise-ratio-snr" title="Permalink to this headline">¶</a></h3>
+<p>Read noise is said to be <strong>signal independent</strong>: its standard deviation is constant, and does not depend upon how many photons are being quantified.
+However, the extent to which read noise is a problem probably <em>does</em> depend upon the number of photons.
+For example, if we have detected 20 photons, a noise standard deviation of 10 photons is huge; if we have detected 10 000 photons, it’s likely not so important.</p>
+<p>A better way to assess the noisiness of an image is then the ratio of the interesting component of each pixel (called the <strong>signal</strong>, which is here what we would ideally detect in terms of photons) to the noise standard deviation, which is known as the <strong>Signal-to-Noise Ratio</strong> <a class="footnote-reference brackets" href="#fn-3" id="id3">3</a>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-snr">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eqn-snr" title="Permalink to this equation">¶</a></span>\[\textrm{SNR} = \frac{\textrm{Signal}}{\textrm{Noise standard deviation}}\]</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="733de61b-0684-4320-973c-420c9ac28b38" name="8751e06c-d4c8-4257-bc2b-fa75bf87749e" type="radio">
+</input><label class="tabbed-label" for="733de61b-0684-4320-973c-420c9ac28b38">
+Question</label><div class="tabbed-content docutils">
+<p>Calculate the SNR in the following cases:</p>
+<ul class="simple">
+<li><p>We detect an average of 10 photons, read noise standard deviation 1 photon</p></li>
+<li><p>We detect an average of 100 photons, read noise standard deviation 10 photons</p></li>
+<li><p>We detect an average of 1000 photons, read noise standard deviation 10 photons</p></li>
+</ul>
+<p>For the purposes of this question, you should assume that read noise is the only noise present (ignore photon noise).</p>
+</div>
+<input id="ab1b7610-b30a-4dc8-8f8f-ab0480eb0785" name="8751e06c-d4c8-4257-bc2b-fa75bf87749e" type="radio">
+</input><label class="tabbed-label" for="ab1b7610-b30a-4dc8-8f8f-ab0480eb0785">
+Solution</label><div class="tabbed-content docutils">
+<ul class="simple">
+<li><p>We detect an average of 10 photons, read noise std. dev. 1 photon: <em>SNR = 10</em></p></li>
+<li><p>We detect an average of 100 photons, read noise std. dev. 10 photons: <em>SNR = 10</em></p></li>
+<li><p>We detect an average of 1000 photons, read noise std. dev. 10 photons: <em>SNR = 100</em></p></li>
+</ul>
+<p>The noise causes us a similar degree of uncertainty in the first two cases.
+In the third case, the noise is likely to be less problematic: higher SNRs are good.</p>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exploring noise</p>
+<p>I find the best way to learn about noise is by creating simulation images, and exploring their properties through making and testing predictions.</p>
+<p>The figures in this chapter are generated using such simulations in Python.
+If you want to do something similar in ImageJ, you can add Gaussian noise with a fixed standard deviation to any image using <span class="menuselection">Process ‣ Noise ‣ Add Specified Noise…</span>.</p>
+<p>If needed, you can create an empty 32-bit image with <span class="menuselection">File ‣ New ‣ Image…</span> add noise to get an image containing nothing but noise.</p>
+</div>
+</div>
+<div class="section" id="adding-averaging-noisy-images">
+<h3>Adding &amp; averaging noisy images<a class="headerlink" href="#adding-averaging-noisy-images" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#sec-noise-background"><span class="std std-ref">At the beginning of this chapter</span></a>, I stated how to calculate the new standard deviation of the noise whenever two noisy pixels are added together:</p>
+<ul class="simple">
+<li><p>Square the original noise standard deviation to get the variance for each pixel</p></li>
+<li><p>Add the variances</p></li>
+<li><p>Take the square root of the result</p></li>
+</ul>
+<p>Suppose that we have two (independent) images with the same Gaussian noise standard deviation, let’s say 5.
+Applying this calculation, if we add the images together then the noise standard deviation of the resulting image is</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{5^2 + 5^2} = \sqrt{50} \approx 7.07
+\]</div>
+<p>The noise standard deviation of the resulting image is higher.</p>
+<p>We might expect that the sum of two noisy image is therefore <em>worse</em>: we have increased the noise.
+<em>However</em>, we need to remember that the signal is also higher: in fact, it has been doubled (because we added two similar images).</p>
+<p>If we want an output image with similar signal to the originals, we should <em>average</em> the corresponding pixel values instead of adding.
+In this case, averaging is the same as adding, except that we divide by two.
+When we do this, the noise standard deviation is also halved and becomes approximately 3.54 – i.e. it is <em>lower</em> than in either of the original two images.</p>
+<p>This matters, because it implies that if we were to average two independent noisy images of the same scene with similar SNRs, we would get a result that contains <em>less</em> noise, i.e. a higher SNR.</p>
+<p>But you shouldn’t just take my word for it.
+We can check that it really works by using a simulation.
+<a class="reference internal" href="#fig-fig-noise-sum"><span class="std std-numref">Fig. 143</span></a> demonstrates this, and has a very practical implication: noise reduction by averaging images creates a better peak separation in the histogram.
+This means it should usually give us an image that is more amenable to thresholding.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Splitting one image to form two.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Load image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># Create two independeny noisy images</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">im_noisy1</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">im_noisy2</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Average the images</span>
+<span class="n">im_sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">im_noisy1</span> <span class="o">+</span> <span class="n">im_noisy2</span><span class="p">)</span>
+<span class="n">im_averaged</span> <span class="o">=</span> <span class="n">im_sum</span> <span class="o">/</span> <span class="mf">2.0</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Show the images and histograms</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy1</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) First noisy image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">241</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy2</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Second noisy image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">242</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_sum</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Sum of (A) and (B)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">243</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_averaged</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Average (A) and (B)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">244</span><span class="p">)</span>
+
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noisy1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">245</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noisy2</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">246</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_sum</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">247</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_averaged</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">248</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_sum&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-fig-noise-sum">
+<div class="cell_output docutils container">
+<img alt="../../../_images/formation_noise_9_0.png" src="../../../_images/formation_noise_9_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 143 </span><span class="caption-text">Adding and averaging two independent images with Gaussian noise.
+Both adding and averaging give an image with an improved SNR, as can be seen in the improved separation between the histogram peaks.</span><a class="headerlink" href="#fig-fig-noise-sum" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="adding-averaging-within-an-image">
+<h3>Adding &amp; averaging within an image<a class="headerlink" href="#adding-averaging-within-an-image" title="Permalink to this headline">¶</a></h3>
+<p>All this means that <em>if</em> can acquire the same image multiple times, then averaging our different images would give a result with reduced noise.</p>
+<p>Of course, we don’t usually have multiple independent images of everything we might want to analyze.
+Instead, we just have one image.
+However, we can explore the idea by splitting a single image into two – provided we are willing to sacrifice some spatial resolution.</p>
+<p>If we take the pixels from every second column of the image, we can extract these and combine them to form another image that looks like a squished version of the original.
+We can do the same process for all the columns we skipped – thereby giving us two squished images, one from the even-numbered columns and one from the odd-numbered columns.</p>
+<p>You can see in Figure <a class="reference internal" href="#fig-fig-noise-split"><span class="std std-numref">Fig. 144</span></a> that our squished images do look almost identical, because adjacent pixels usually do have very similar values – apart from the differences caused by noise.
+If we average these images together, these differences average out and we have another similar-looking image – but with reduced noise.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Splitting one image to form two.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Load image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># Add noise</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">im_noisy</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">20</span>
+
+<span class="c1"># Split left and right images</span>
+<span class="n">im_left</span> <span class="o">=</span> <span class="n">im_noisy</span><span class="p">[:,</span> <span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">im_right</span> <span class="o">=</span> <span class="n">im_noisy</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Average the images</span>
+<span class="n">im_averaged</span> <span class="o">=</span> <span class="p">(</span><span class="n">im_left</span> <span class="o">+</span> <span class="n">im_right</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+
+<span class="c1"># fig = create_figure(figsize=(8, 3))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+                        <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:[</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">1</span><span class="p">]},</span>
+                        <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span>
+                        <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+
+<span class="c1"># Pad images for display</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_left</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Odd columns&quot;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_right</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Even columns&quot;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_averaged</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Average of odd &amp; even columns&quot;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_left</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_right</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_averaged</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_split&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-fig-noise-split">
+<div class="cell_output docutils container">
+<img alt="../../../_images/formation_noise_11_0.png" src="../../../_images/formation_noise_11_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 144 </span><span class="caption-text">Creating two images from one by taking even and odd-numbered columns. If we then average our two images, noise is reduced. The difference is subtle, but can be seen in the better separation of the peaks in the histogram.</span><a class="headerlink" href="#fig-fig-noise-split" title="Permalink to this image">¶</a></p>
+</div>
+<p>Of course, this trick has an obvious downside: the squishing is undesirable.
+Fortunately, we can avoid it simply by averaging adjacent columns but not splitting them into separate image.
+Then we can do the same with adjacent rows.
+And perhaps even adjacent diagonals, if we wish.</p>
+<p>This is <em>precisely</em> the idea underlying our use of a <a class="reference internal" href="../../2-processing/4-filters/filters.html#chap-filters"><span class="std std-ref">3×3 mean filter to reduce noise</span></a>: we don’t have independent images to average, so we average within an image instead (<a class="reference internal" href="#fig-noise-filt-averaging"><span class="std std-numref">Fig. 145</span></a>).</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Show the effect of averaging pixels.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Load image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># If we have fewer pixels, the differences will be easier to see</span>
+<span class="c1"># im = im[::2, ::2]</span>
+
+<span class="c1"># Add noise</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">im_noisy</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">20</span>
+
+<span class="c1"># Compute the average of 2 adjacent pixels</span>
+<span class="n">kernel_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="mf">2.0</span>
+<span class="n">im_noisy_2</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">kernel_2</span><span class="p">)</span>
+
+<span class="c1"># Compute the average of 9 adjacent pixels</span>
+<span class="n">kernel_9</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="mf">9.0</span>
+<span class="n">im_noisy_9</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">kernel_9</span><span class="p">)</span>
+
+<span class="c1"># Compute same display settings to use for all images</span>
+<span class="n">im_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="mi">98</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># fig = create_figure(figsize=(8, 6))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">row</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>
+<span class="n">line_args</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="p">],</span> <span class="s1">&#39;w--&#39;</span><span class="p">)</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="mi">331</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Original image&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">im_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy_2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Averaging 2 adjacent pixels&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">im_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy_9</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Averaging 9 adjacent pixels&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">im_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">show_plot</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">show_plot</span><span class="p">(</span><span class="n">im_noisy_2</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">show_plot</span><span class="p">(</span><span class="n">im_noisy_9</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">120</span><span class="p">])</span>
+<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noisy_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">120</span><span class="p">])</span>
+<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noisy_9</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">120</span><span class="p">])</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filt_averaging&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-noise-filt-averaging">
+<div class="cell_output docutils container">
+<img alt="../../../_images/formation_noise_13_0.png" src="../../../_images/formation_noise_13_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 145 </span><span class="caption-text">Noise reduction by averaging adjacent pixels. Even though the overall appearance of the image has not changed much, the histograms indicate a much bigger separation of the foreground and background – meaning that thresholds are more likely to work well. In (C), the result is equivalent to applying a 3×3 mean filter.</span><a class="headerlink" href="#fig-noise-filt-averaging" title="Permalink to this image">¶</a></p>
+</div>
+<p>Hopefully this discussion helps build your intuition as to <em>why</em> filters are able to reduce Gaussian noise.
+In the next section, we’ll see how many of the same ideas apply to Poisson noise as well.</p>
+</div>
+</div>
+<div class="section" id="poisson-noise">
+<h2>Poisson noise<a class="headerlink" href="#poisson-noise" title="Permalink to this headline">¶</a></h2>
+<p>In 1898, Ladislaus Bortkiewicz published a book entitled <em>The Law of Small Numbers</em>.
+Among other things, it included a now-famous analysis of the number of soldiers in different corps of the Prussian cavalry who were killed by being kicked by a horse, measured over a 20-year period. Specifically, he showed that these numbers follows a <strong>Poisson distribution</strong>.</p>
+<p>This distribution, introduced by Siméon Denis Poisson in 1838, gives the probability of an event happening a certain number of times, given that we know (1) the average rate at which it occurs, and (2) that all of its occurrences are independent.
+However, the usefulness of the Poisson distribution extends far beyond gruesome military analysis to many, quite different applications – including the probability of photon emission, which is itself inherently random.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Show Probability mass function for the Poisson distribution.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/Poisson.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Siméon Denis Poisson (1781–1840)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">121</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plot_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Poisson distribution&#39;</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]:</span>
+    <span class="n">poisson</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+    <span class="n">show_plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="o">**</span><span class="n">plot_params</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;λ=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># show_image(&#39;images/maths_pmf_poisson.png&#39;, title=&#39;Poisson distribution&#39;, pos=122)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_poisson&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-poisson">
+<div class="cell_output docutils container">
+<img alt="../../../_images/formation_noise_15_0.png" src="../../../_images/formation_noise_15_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 146 </span><span class="caption-text">Siméon Denis Poisson and his distribution. (A) Poisson is said to have been extremely clumsy and uncoordinated with his hands. This contributed to him giving up an apprenticeship as a surgeon and entering mathematics, where the problem was less debilitating – although apparently this meant his diagrams tended not to very well drawn (see <a class="reference external" href="http://www-history.mcs.st-andrews.ac.uk/history/Biographies/Poisson.html">http://www-history.mcs.st-andrews.ac.uk/history/Biographies/Poisson.html</a>). (B) The ‘Probability Mass Function’ of the Poisson distribution for several different values of λ. This allows one to see for any ‘true signal’ λ the probability of actually counting any actual value k. Although it’s more likely that one will count exactly k = λ than any other possible k, as λ increases the probability of getting precisely this value becomes smaller and smaller.</span><a class="headerlink" href="#fig-poisson" title="Permalink to this image">¶</a></p>
+</div>
+<p>Suppose that, on average, a single photon will be emitted from some part of a fluorescing sample within a particular time interval.
+The randomness entails that we cannot say for sure what will happen on any one occasion when we look; sometimes one photon will be emitted, sometimes none, sometimes two, occasionally even more.
+What we are really interested in, therefore, is not precisely <em>how many</em> photons are emitted, which varies every time we look, but rather the <em>rate</em> at which they would be emitted under fixed conditions, which is a constant.
+The difference between the number of photons actually emitted and the true rate of emission is the <strong>photon noise</strong>.
+The trouble is that keeping the conditions fixed might not be possible: leaving us with the problem of trying to figure out rates from single, noisy measurements.</p>
+<div class="section" id="signal-dependent-noise">
+<h3>Signal-dependent noise<a class="headerlink" href="#signal-dependent-noise" title="Permalink to this headline">¶</a></h3>
+<p>Clearly, since it’s a rate that we want, we could get that with more accuracy if we averaged many observations: just like with Gaussian noise, averaging reduces photon noise.
+Therefore, we can expect smoothing filters to work similarly for both noise types – and they do.</p>
+<p>The primary distinction between the noise types, however, is that Poisson noise is <strong>signal-dependent</strong>, and <em>does</em> change according to the number of emitted (or detected) photons.
+Fortunately, the relationship is simple: if the rate of photon emission is <span class="math notranslate nohighlight">\(\lambda\)</span>, the noise variance is also <span class="math notranslate nohighlight">\(\lambda\)</span>, and the noise standard deviation is <span class="math notranslate nohighlight">\(\sqrt{\lambda}\)</span>.</p>
+<p>This is not really as unexpected as it might first seem (see <a class="reference internal" href="#fig-fishing"><span class="std std-numref">Fig. 147</span></a>).
+It can even be observed from a very close inspection of <a class="reference internal" href="#fig-noise-neuron"><span class="std std-numref">Fig. 148</span></a>, in which the increased variability in the neuron causes its ghostly appearance even in an image that ought to consist (almost) exclusively of noise.</p>
+<div class="figure align-center" id="fig-fishing">
+<a class="reference internal image-reference" href="../../../_images/fishing.jpg"><img alt="../../../_images/fishing.jpg" src="../../../_images/fishing.jpg" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 147 </span><span class="caption-text"><strong>‘The standard deviation of photon noise is equal to the square root of the expected value.’</strong> To understand this better, it may help to imagine a fisherman, fishing many times at the same location and under the same conditions. If he catches 10 fish on average, it would be quite reasonable to catch 7 or 13 on any one day – while 20 would be exceptional. If, however, he caught 100 on average, then it would be unexceptional if he caught 90 or 110 on a particular day, although catching only 10 would be strange (and presumably disappointing). Intuitively, the range of values that would be considered likely is related to the expected value. If nothing else, this imperfect analogy may at least help remember the name of the distribution that photon noise follows.</span><a class="headerlink" href="#fig-fishing" title="Permalink to this image">¶</a></p>
+</div>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Rat_Hippocampal_Neuron.zip&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)[</span><span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span><span class="n">c</span><span class="o">+</span><span class="n">s</span><span class="p">]</span>
+
+<span class="n">im2</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">im_diff</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im2</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Original image)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Gaussian filtered image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_diff</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Result of (A) - (B)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_neuron&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-noise-neuron">
+<div class="cell_output docutils container">
+<img alt="../../../_images/formation_noise_17_0.png" src="../../../_images/formation_noise_17_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 148 </span><span class="caption-text">A demonstration that Poisson noise changes throughout an image. (A) Part of a fluorescence microscopy image. (B) A Gaussian filtered version of (A) using a very small filter (<span class="math notranslate nohighlight">\(\sigma\)</span>=0.25).
+Gaussian filtering reduces the noise in an image by replacing each pixel with a weighted average of neighboring pixels (see <a class="reference internal" href="../../2-processing/4-filters/filters.html#chap-filters"><span class="std std-ref">Filters</span></a>). (C) The difference between the original and filtered image contains the noise that the filtering removed. The brighter areas in the original image are still visible in this ‘noise image’ as regions of increased variability. This is partly an effect of Poisson noise having made the noise standard deviation larger in the brighter parts of the acquired image.</span><a class="headerlink" href="#fig-noise-neuron" title="Permalink to this image">¶</a></p>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="4e63a045-2657-45ec-8acc-eb2eddfedb3a" name="797b6b50-b523-464e-a424-46c999077d2d" type="radio">
+</input><label class="tabbed-label" for="4e63a045-2657-45ec-8acc-eb2eddfedb3a">
+Question</label><div class="tabbed-content docutils">
+<p>The formula for the probability mass function of the Poisson distribution is:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-poisson">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eqn-poisson" title="Permalink to this equation">¶</a></span>\[\mathcal{P}(\lambda) \sim \frac{e^{-\lambda}\lambda^{k}}{k!}\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> is the mean rate of occurrence of the event (i.e.
+the noise-free photon emission rate we want)</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span> is an actual number of occurrences for which we want to compute the probability</p></li>
+<li><p><span class="math notranslate nohighlight">\(k!\)</span> is the <em>factorial</em> of <span class="math notranslate nohighlight">\(k\)</span> (i.e. <span class="math notranslate nohighlight">\(k \times (k-1) \times (k-2) \times ... \times 1\)</span>)</p></li>
+</ul>
+<p>So if you know that the rate of photon emission is 0.5, for example, you can put <span class="math notranslate nohighlight">\(\lambda = 0.5\)</span> into the equation and determine the probability of getting any particular (integer) value of <span class="math notranslate nohighlight">\(k\)</span> photons.
+Applying this, the probability of not detecting any photons (<span class="math notranslate nohighlight">\(k = 0\)</span>) is 0.6065, while the probability of detecting a single photon (<span class="math notranslate nohighlight">\(k = 1\)</span>) is <span class="math notranslate nohighlight">\(0.3033\)</span>.</p>
+<p>What we know for sure is that we can’t possibly detect 0.5 photons: we’ll get an integer value, not ‘part of a photon’.</p>
+<p>Assuming the mean rate of photon emission is 1, use Equation <a class="reference internal" href="#equation-eqn-poisson">(4)</a> to calculate the probability of actually detecting 5 (which, at 5 times the true rate, would be an extremely inaccurate result).
+How common do you suppose it is to find pixels that are so noisy in the background region of a dark image?</p>
+</div>
+<input id="4af0a9ae-158f-40e2-b1ad-67e3cae0730b" name="797b6b50-b523-464e-a424-46c999077d2d" type="radio">
+</input><label class="tabbed-label" for="4af0a9ae-158f-40e2-b1ad-67e3cae0730b">
+Solution</label><div class="tabbed-content docutils">
+<p>The probability of detecting 5 photons is approximately 0.0031.</p>
+<div class="math notranslate nohighlight">
+\[\frac{e^{-1}}{5!} = \frac{1}{120e} = 0.0031\]</div>
+<p>Although this is a very low probability, images contain so many pixels that one should expect to see such noisy values often.
+For example, in a rather dark and dull 512×512 pixel image in which the average photon emission rate is 1, we would expect 800 pixels to have a value of 5 – and two pixels even to have a value of 8.
+The presence of isolated bright or dark pixels therefore usually tells us very little indeed, and it is only by processing the image more carefully and looking at surrounding values that we can (sometimes) discount the possibility these are simply the result of noise.</p>
+</div>
+</div>
+</div>
+<div class="section" id="the-snr-for-poisson-noise">
+<h3>The SNR for Poisson noise<a class="headerlink" href="#the-snr-for-poisson-noise" title="Permalink to this headline">¶</a></h3>
+<p>If the standard deviation of noise was the only thing that mattered, this would suggest that we are better not detecting much light: then the photon noise standard deviation is lower.
+But the SNR is a much more reliable guide.
+For noise that follows a Poisson distribution this is particularly easy to calculate.
+Substituting into the formula for the SNR (Equation <a class="reference internal" href="#equation-eqn-snr">(3)</a>):</p>
+<div class="math notranslate nohighlight">
+\[\textrm{SNR}_{Poiss} = \frac{\lambda}{\sqrt{\lambda}} = \sqrt{\lambda}\]</div>
+<p>Therefore <strong>the SNR of photon noise is equal to the square root of the signal</strong>!</p>
+<p>This means that as the average number of emitted (and thus detected) photons increases, so too does the SNR. More photons → a better SNR, directly leading to the assertion</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you want to reduce photon noise, you need to detect more photons</p>
+</div>
+<p>We can visualize this using a simulation that displays how an image and its histogram change over time as more photons are detected.</p>
+<video autoplay loop playsinline controls muted>
+  <source src="../../../_static/videos/photon_noise.mp4" type="video/mp4">
+</video>
+<p>This is really just the same as the insight that averaging reduces noise.
+Averaging and summing have the same effect, differing only by a constant scale factor.</p>
+<div class="info admonition">
+<p class="admonition-title">Why relativity matters: a simple example</p>
+<p>The SNR increases with the number of photons, even though the noise standard deviation increases too, because it’s really <em>relative</em> differences in the brightness in parts of the image that we are interested in.
+Absolute numbers usually are of very little importance – which is fortunate, since not all photons are detected.</p>
+<p>Yet if you remain unconvinced that the noise standard deviation can get bigger while the situation gets better, the following specific example might help.
+Suppose the true signal for a pixel is 4 photons.
+Assuming the actual measured value is within one noise standard deviation of the proper result (which it will be, about 68% of the time), one expects it to be in the range 2–6.
+The true signal at another pixel is twice as strong – 8 photons – and, by the same argument, one expects to measure a value in the range 5–11.
+<em>The ranges for both pixels overlap!</em> With photon counts this low, even if one pixel has twice the value of another, we often cannot discern with confidence that the <em>true</em>, noise-free value for both pixels would be different at all.</p>
+<p>On the other hand, suppose the true signal for the first pixel is 100 photons, so we measure something in the range of 90–110.
+The second pixel, still twice as bright, gives a measurement in the range 186–214. These ranges are larger, but crucially they are not even close to overlapping, so it’s very easy to tell the pixels apart.
+Thus the noise standard deviation alone is not a very good measure of how noisy an image is.
+The SNR is much more informative: the simple rule is that higher is better.
+Or, if that still does not feel right, you can turn it upside down and consider the noise-to-signal ratio (the <em>relative noise</em>), in which case lower is better (<a class="reference internal" href="#fig-snr-plot"><span class="std std-numref">Fig. 149</span></a>).</p>
+<div class="figure align-center" id="fig-snr-plot">
+<div class="cell_output docutils container">
+<img alt="../../../_images/formation_noise_19_0.png" src="../../../_images/formation_noise_19_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 149 </span><span class="caption-text">For Poisson noise, the standard deviation increases with the square root of the signal. So does the SNR, with the result that plots (A) and (B) look identical. This improvement in SNR despite the growing noise occurs because the signal is increasing faster than the noise, and so the noise is relatively smaller. Plotting the relative noise (1/SNR) shows this effect (C).</span><a class="headerlink" href="#fig-snr-plot" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="poisson-noise-detection">
+<h3>Poisson noise &amp; detection<a class="headerlink" href="#poisson-noise-detection" title="Permalink to this headline">¶</a></h3>
+<p>So why should you care that photon noise is signal-dependent?</p>
+<p>One reason is that it can make features of identical sizes and brightnesses easier or harder to detect in an image purely because of the local background.
+This is illustrated in <a class="reference internal" href="#fig-poisson-ramp"><span class="std std-numref">Fig. 150</span></a>.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create a ramp image with increasing intensity</span>
+<span class="n">max_val</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">height</span> <span class="o">=</span> <span class="n">width</span> <span class="o">//</span> <span class="mi">5</span>
+<span class="n">spot_spacing</span> <span class="o">=</span> <span class="n">width</span> <span class="o">//</span> <span class="mi">10</span>
+<span class="n">spot_rel_intensity</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">spot_abs_intensity</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_val</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">spot_rel_intensity</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_val</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+<span class="n">im_ramp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">width</span><span class="p">)),</span> <span class="n">height</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Create Gaussian spots, each with maximum intensity of 1</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">row</span> <span class="o">=</span> <span class="n">height</span> <span class="o">//</span> <span class="mi">2</span>
+<span class="n">im_spots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">im_ramp</span><span class="p">)</span>
+<span class="n">im_spots</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">spot_spacing</span><span class="p">::</span><span class="n">spot_spacing</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">im_spots</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<span class="n">im_spots</span> <span class="o">=</span> <span class="n">im_spots</span> <span class="o">/</span> <span class="n">im_spots</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="c1"># Add spots to ramp with same absolute or relative intensity</span>
+<span class="n">im_ramp_abs</span> <span class="o">=</span> <span class="n">im_ramp</span> <span class="o">+</span> <span class="n">im_spots</span> <span class="o">*</span> <span class="n">spot_abs_intensity</span>
+<span class="n">im_ramp_rel</span> <span class="o">=</span> <span class="n">im_ramp</span> <span class="o">+</span> <span class="n">im_ramp</span> <span class="o">*</span> <span class="n">im_spots</span> <span class="o">*</span> <span class="n">spot_rel_intensity</span>
+
+<span class="c1"># Add poisson noise to each ramp</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">im_ramp_abs_noise</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">im_ramp_abs</span><span class="p">)</span>
+<span class="n">im_ramp_rel_noise</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">im_ramp_rel</span><span class="p">)</span>
+
+<span class="n">plot_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Mean photons&#39;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Detected photons&#39;</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">im_ramp_rel_noise</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span>
+    <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_ramp_abs</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Spots with the same absolute brightness&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">421</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">im_ramp_abs</span><span class="p">[</span><span class="n">row</span><span class="p">,:],</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">423</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_ramp_abs_noise</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">425</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">im_ramp_abs_noise</span><span class="p">[</span><span class="n">row</span><span class="p">,:],</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">427</span><span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_ramp_rel</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Spots with the same relative brightness&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">422</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">im_ramp_rel</span><span class="p">[</span><span class="n">row</span><span class="p">,:],</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">424</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_ramp_rel_noise</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">426</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">im_ramp_rel_noise</span><span class="p">[</span><span class="n">row</span><span class="p">,:],</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">428</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_poisson_ramp&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-poisson-ramp">
+<div class="cell_output docutils container">
+<img alt="../../../_images/formation_noise_22_0.png" src="../../../_images/formation_noise_22_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 150 </span><span class="caption-text">The signal-dependence of Poisson noise affects how visible (and therefore detectable) structures are in an image. (A) Nine spots of the same <em>absolute</em> brightness are added to an image with a linearly increasing background <em>(top)</em> and Poisson noise is added <em>(bottom)</em>. Because the noise variability becomes higher as the background increases, the spots in the darkest part of the image can be clearly seen in the profile but it’s more difficult to discern spots in the brighter part. (B) Spots of the same brightness <em>relative</em> to the background are added, along with Poisson noise. Because the noise is now relatively lower as the brightness increases, only the spots in the brightest part of the image can be seen, while those in the darker part are buried within the noise.</span><a class="headerlink" href="#fig-poisson-ramp" title="Permalink to this image">¶</a></p>
+</div>
+<p>In general, if we want to see a fluorescence increase of a fixed number of photons, this is easier to do if the background is very dark.
+But if the fluorescence increase is defined <em>relative</em> to the background, it will be much easier to identify if the background is high.
+Either way, when attempting to determine the number of any small structures in an image, for example, we need to remember that the numbers we will be able to detect will be affected by the background nearby.
+Therefore results obtained from bright and dark regions might not be directly comparable.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="4ba83cce-f688-4fb4-bd01-890f0c026720" name="58cb7910-8d23-4722-9079-0a2d9b37b779" type="radio">
+</input><label class="tabbed-label" for="4ba83cce-f688-4fb4-bd01-890f0c026720">
+Practical</label><div class="tabbed-content docutils">
+<p>Open the images <em>mystery_noise_1.tif</em> and <em>mystery_noise_2.tif</em>.
+Both are noisy, but in one the noise follows a Gaussian distribution (like read noise) and in the other it follows a Poisson distribution (like photon noise).
+Which is which?</p>
+</div>
+<input id="0493a9ca-a799-405c-89c4-17b9f2e23123" name="58cb7910-8d23-4722-9079-0a2d9b37b779" type="radio">
+</input><label class="tabbed-label" for="0493a9ca-a799-405c-89c4-17b9f2e23123">
+Solution</label><div class="tabbed-content docutils">
+<p>The noise in <em>mystery_noise_1.tif</em> is Gaussian; the noise in <em>mystery_noise_2.tif</em> follows a Poisson distribution.
+Since there are reasonably flat regions within the cell and background, I would test this by drawing a ROI within each and measuring the standard deviations.
+Where these are similar, the noise is Gaussian; if there is a big difference, the noise is likely to be Poisson.</p>
+<p>If no flat regions were available, I would try applying a gradient filter with the coefficients <code class="docutils literal notranslate"><span class="pre">-1</span> <span class="pre">1</span> <span class="pre">0</span></code>, and inspecting the results. Alternatively, I might try plotting a fluorescence profile or subtracting a very slightly smoothed version of each image.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="combining-noise-sources">
+<h2>Combining noise sources<a class="headerlink" href="#combining-noise-sources" title="Permalink to this headline">¶</a></h2>
+<p>Combining our noise sources then, we can imagine an actual pixel value as being the sum of three values: the true rate of photon emission, the photon noise component, and the read noise component <a class="footnote-reference brackets" href="#fn-5" id="id4">4</a>.
+The first of these is what we want, while the latter two are random numbers that may be positive or negative.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">steps</span><span class="p">,</span> <span class="n">steps</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">steps_poisson</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span>
+<span class="n">noise_gaussian</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">steps</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">8</span>
+<span class="n">steps_gaussian</span> <span class="o">=</span> <span class="n">steps</span> <span class="o">+</span> <span class="n">noise_gaussian</span>
+<span class="n">steps_both</span> <span class="o">=</span> <span class="n">steps_poisson</span> <span class="o">+</span> <span class="n">noise_gaussian</span>
+
+<span class="n">ylim</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">320</span><span class="p">]</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;A noise-free signal&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="n">ylim</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">steps_poisson</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Photon noise&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="n">ylim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">steps_gaussian</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Read noise&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="n">ylim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">steps_both</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Photon + Read noise&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="n">ylim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_steps&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-noise-steps">
+<div class="cell_output docutils container">
+<img alt="../../../_images/formation_noise_24_0.png" src="../../../_images/formation_noise_24_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 151 </span><span class="caption-text">An illustration of how photon noise differs from read noise. When both are added to a signal (here, a series of steps in which the value doubles at each higher step), the relative importance of each depends upon the value of the signal. At low signal levels this doubling is very difficult to discern amidst either type of noise, and even more so when both noise components are present.</span><a class="headerlink" href="#fig-noise-steps" title="Permalink to this image">¶</a></p>
+</div>
+<p>This is illustrated in <a class="reference internal" href="#fig-noise-steps"><span class="std std-numref">Fig. 151</span></a> using a simple 1D signal consisting of a series of steps.
+Random values are added to this to simulate photon and read noise.
+Whenever the signal is very low (indicating few photons), the variability in the photon noise is very low – but high <em>relative</em> to the signal (B)!
+This variability increases when the signal increases.
+However, in the read noise case (C), the variability is similar everywhere.
+When both noise types are combined in (D), the read noise dominates completely when there are few photons, but has very little impact whenever the signal increases.
+Photon noise has already made detecting relative differences in brightness difficult when there are few photons; with read noise, it can become hopeless.</p>
+<p>Therefore overcoming read noise is critical for low-light imaging, and the choice of detector is extremely important (see <a class="reference internal" href="../4-microscope_types/microscope_types.html#chap-microscope-types"><span class="std std-ref">Microscopes &amp; detectors</span></a>).
+But, where possible, detecting more photons is an <em>extremely</em> good thing anyway, since it helps to overcome <em>both</em> types of noise.</p>
+<div class="info admonition">
+<p class="admonition-title">Other noise sources</p>
+<p>Photon and read noise are the main sources of noise that need to be considered when designing and carrying out an experiment.
+One other source often mentioned in the literature is <em>dark noise</em>, which can be thought of as arising when a wayward electron causes the detector to register a photon even when there was not actually one there.
+In very low-light images, this lead to spurious bright pixels.
+However, dark noise is less likely to cause problems if many true photons are detected, and many detectors reduce its occurrence by cooling the sensor.</p>
+<p>If the equipment is functioning properly, other noise sources could probably not be distinguished from these three.
+Nevertheless, brave souls who wish to know more may find a concise, highly informative, list of more than 40 sources of imprecision in <em>The 39 steps: a cautionary tale of quantitative 3-D fluorescence microscopy</em> by James Pawley (available online from various sources).</p>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="e29138f0-00ea-44e2-a9d0-730ef5a6dc03" name="129acda5-30c6-47b9-9024-fa3b219ddded" type="radio">
+</input><label class="tabbed-label" for="e29138f0-00ea-44e2-a9d0-730ef5a6dc03">
+Question</label><div class="tabbed-content docutils">
+<p>Suppose you have an image that does not contain much light, but has some isolated bright pixels.</p>
+<p>Which kind of filter could you use to remove them? And is it safe to assume they are due to dark noise or something similar, or might the pixels correspond to actual bright structures?</p>
+</div>
+<input id="160fab54-e520-4f37-a966-52a3a36fdaa3" name="129acda5-30c6-47b9-9024-fa3b219ddded" type="radio">
+</input><label class="tabbed-label" for="160fab54-e520-4f37-a966-52a3a36fdaa3">
+Solution</label><div class="tabbed-content docutils">
+<p>A median filter is a popular choice for removing isolated bright pixels, although when using ImageJ I sometimes prefer <span class="menuselection">Process ‣ Noise ‣ Remove Outliers…</span> because this only puts the median-filtered output in the image if the original value was really extreme (according to some user-defined threshold).
+This then preserves the independence of the noise at all other pixels – so it still behaves reliably and predictably like Poisson + Gaussian noise.
+We can reduce the remaining noise with a Gaussian filter if necessary.</p>
+<p>Assuming that the size of a pixel is smaller than the PSF (which is usually the case in microscopy), it’s a good idea to remove these outliers.
+They <em>cannot</em> be real structures, because any real structure would have to extend over a region at least as large as the PSF.
+However if the pixel size is very large, then we may not be able to rule out that the ‘outliers’ are caused by some real, bright structures.</p>
+</div>
+</div>
+</div>
+<div class="section" id="finding-photons">
+<h2>Finding photons<a class="headerlink" href="#finding-photons" title="Permalink to this headline">¶</a></h2>
+<p>There are various places from which the extra photons required to overcome noise might come.
+One is to simply acquire images more slowly, spending more time detecting light.
+If this is too harsh on the sample, it may be possible to record multiple images quickly.
+If there is little movement between exposures, these images could be added or averaged to get a similar effect (<a class="reference internal" href="#fig-noise-averaging"><span class="std std-numref">Fig. 152</span></a>).</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Show impact of adding images with Poisson noise.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="c1"># Create a stack of 1000 images with Poisson noise</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">noisy_images</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">rng</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">im</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)])</span>
+
+<span class="c1"># Display in a similar way</span>
+<span class="n">im_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">clip_percentile</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">noisy_images</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;1 image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">noisy_images</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">10</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;10 images&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">im_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">noisy_images</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">100</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;100 images&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">im_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">noisy_images</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">1000</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;1000 images&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">im_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_averaging&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-noise-averaging">
+<div class="cell_output docutils container">
+<img alt="../../../_images/formation_noise_26_0.png" src="../../../_images/formation_noise_26_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 152 </span><span class="caption-text">The effect of adding (or averaging) multiple noisy images, each independent with a similar SNR.</span><a class="headerlink" href="#fig-noise-averaging" title="Permalink to this image">¶</a></p>
+</div>
+<p>An alternative would be to increase the pixel size, so that each pixel incorporates photons from larger regions – although clearly this comes at a cost in spatial information.
+One way to do this is though <a class="reference internal" href="../4-microscope_types/microscope_types.html#sec-detectors-binning"><span class="std std-ref">binning</span></a>.</p>
+<p>However, noise cannot be completely eliminated during acquisition.
+Understanding its behavior, and especially how <a class="reference internal" href="../../2-processing/4-filters/filters.html#chap-filters"><span class="std std-ref">filters</span></a> can reduce it, can help us cope with it during analysis.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">bin2x2</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply 2x2 binning to the pixels of a 2D image.</span>
+<span class="sd">    Note that if the dimensions are not even numbers then the final row/column</span>
+<span class="sd">    of pixels may have to be trimmed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">r</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">im</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">r</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">r</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">im</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">r</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Simulate larger bins by progressively applying 2x2 binning</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/nyquist_shannon.png&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">im2</span> <span class="o">=</span> <span class="n">bin2x2</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<span class="n">im4</span> <span class="o">=</span> <span class="n">bin2x2</span><span class="p">(</span><span class="n">im2</span><span class="p">)</span>
+<span class="n">im8</span> <span class="o">=</span> <span class="n">bin2x2</span><span class="p">(</span><span class="n">im4</span><span class="p">)</span>
+<span class="n">im16</span> <span class="o">=</span> <span class="n">bin2x2</span><span class="p">(</span><span class="n">im8</span><span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im8</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;64 x 64 pixels&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;128 x 128 pixels&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;512 x 512 pixels&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_nyquist_shannon&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-nyquist-sampling-choosing-a-pixel-size admonition">
+<p class="admonition-title">Nyquist sampling &amp; choosing a pixel size</p>
+<p>Small pixels are needed to see detail, but also reduce the number of photons per pixel and thereby increase noise.
+However, <a class="reference internal" href="../2-formation_spatial/formation_spatial.html#chap-formation-spatial"><span class="std std-ref">Blur &amp; the PSF</span></a> has already argued that ultimately it’s not pixel size, but rather the PSF that limits spatial resolution – which suggests that there is a minimum pixel size below which nothing is gained, and the only result is that more noise is added.</p>
+<p>This size can be determined based upon knowledge of the PSF and the <strong>Nyquist-Shannon sampling theorem</strong> (<a class="reference internal" href="#fig-nyquist-shannon"><span class="std std-numref">Fig. 153</span></a>).
+Images acquired with this pixel size are said to be <strong>Nyquist sampled</strong>.</p>
+<p>The easiest way I know to determine the corresponding pixel size for a given experiment is to use the online calculator provided by <em>Scientific Volume Imaging</em> at <a class="reference external" href="http://www.svi.nl/NyquistCalculator">http://www.svi.nl/NyquistCalculator</a>.
+You may need larger pixels to reduce noise or see a wider field of view, but you do not get anything extra by using smaller pixels.</p>
+<div class="figure align-center" id="fig-nyquist-shannon">
+<div class="cell_output docutils container">
+<img alt="../../../_images/formation_noise_28_0.png" src="../../../_images/formation_noise_28_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 153 </span><span class="caption-text">Harry Nyquist (1889-1975) and Claude Shannon (1916-2001), sampled using different pixel sizes.
+Their work is used when determining the pixel sizes needed to maximize the available information when acquiring images, which depends upon the size of the PSF.</span><a class="headerlink" href="#fig-nyquist-shannon" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="fn-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Specifically its probability density or mass function – which for a Gaussian distribution is the familiar bell curve.</p>
+</dd>
+<dt class="label" id="fn-2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Actually more.
+But the two mentioned here are usually by far the most significant, and it does not matter to our model at all if they contain various other sub-components.
+The important fact remains that there is some noise that varies throughout the image, and some that does not.</p>
+</dd>
+<dt class="label" id="fn-3"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>This is one definition of SNR.
+Many other definitions appear in the literature, leading to different values.
+The fact that any interesting image will vary in brightness in different places means that the SNR is not necessarily the same at all pixels – therefore computing it in practice involves coming up with some summary measurement for the whole image.
+This can be approached differently, but the general principle is always to compare how much noise we have relative to interesting things: where higher is better.</p>
+</dd>
+<dt class="label" id="fn-5"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>For a fuller picture, gain and offset also need to be taken into consideration, see <a class="reference internal" href="../4-microscope_types/microscope_types.html#chap-microscope-types"><span class="std std-ref">Microscopes &amp; detectors</span></a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "petebankhead/jupyter-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/3-fluorescence/3-formation_noise"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../2-formation_spatial/formation_spatial.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Blur &amp; the PSF</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../4-microscope_types/microscope_types.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Microscopes &amp; detectors</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pete Bankhead<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

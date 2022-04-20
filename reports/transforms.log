@@ -1,0 +1,55 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+im = load_image('Blobs.gif')
+bw = im < im.mean()
+
+from scipy.ndimage import distance_transform_edt
+
+im_dist = distance_transform_edt(bw)
+
+fig = create_figure(figsize=(8, 6))
+show_image(bw, title='(A) Binary image', pos=231)
+show_image(im_dist, title='(B) Distance map of (A)', pos=232)
+show_image(im_dist > 5, title='(C) Thresholded (B) > 5', pos=233)
+
+im_dist_inv = distance_transform_edt(~bw)
+show_image(~bw, title='(D) Binary image (inverted)', pos=234)
+show_image(im_dist_inv, title='(E) Distance map of (D)', pos=235)
+show_image(im_dist_inv < 5, title='(F) Thresholded (E) < 5', pos=236)
+
+plt.tight_layout()
+glue_fig('fig_morph_distance', fig)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+Input [0;32mIn [3][0m, in [0;36m<cell line: 1>[0;34m()[0m
+[0;32m----> 1[0m im [38;5;241m=[39m [43mload_image[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mBlobs.gif[39;49m[38;5;124;43m'[39;49m[43m)[49m
+[1;32m      2[0m bw [38;5;241m=[39m im [38;5;241m<[39m im[38;5;241m.[39mmean()
+[1;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mndimage[39;00m [38;5;28;01mimport[39;00m distance_transform_edt
+
+File [0;32m~/work/bioimage-book.github.io/bioimage-book.github.io/chapters/2-processing/6-transforms/../../../helpers/__init__.py:248[0m, in [0;36mload_image[0;34m(name, volume, metadata, **kwargs)[0m
+[1;32m    246[0m         [38;5;28mprint[39m(err)
+[1;32m    247[0m         [38;5;28mprint[39m([38;5;124m'[39m[38;5;124mError reading image [39m[38;5;124m'[39m, sys[38;5;241m.[39mexc_info()[[38;5;241m0[39m])
+[0;32m--> 248[0m [38;5;28;01mraise[39;00m [38;5;167;01mFileNotFoundError[39;00m(name)
+
+[0;31mFileNotFoundError[0m: Blobs.gif
+FileNotFoundError: Blobs.gif
+

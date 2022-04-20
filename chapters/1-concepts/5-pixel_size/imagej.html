@@ -1,0 +1,1101 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ImageJ: Pixel size &amp; dimensions &#8212; Introduction to Bioimage Analysis</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Python: Pixel size &amp; dimensions" href="python.html" />
+    <link rel="prev" title="Pixel size &amp; dimensions" href="pixel_size.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../README.html">
+   Introduction to Bioimage Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Front matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Before we begin
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/preface/preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/reading/reading.html">
+   How to read this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducing images
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html">
+   Images &amp; pixels
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1-images_and_pixels/imagej.html">
+     ImageJ: Images &amp; pixels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1-images_and_pixels/python.html">
+     Python: Images &amp; pixels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../2-measurements/measurements.html">
+   Measurements &amp; histograms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2-measurements/imagej.html">
+     ImageJ: Measurements &amp; histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2-measurements/python.html">
+     Python: Measurements &amp; histograms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3-bit_depths/bit_depths.html">
+   Types &amp; bit-depths
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-bit_depths/imagej.html">
+     ImageJ: Types &amp; bit-depths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-bit_depths/python.html">
+     Python: Types &amp; bit-depths
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../4-colors/colors.html">
+   Channels &amp; colors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4-colors/imagej.html">
+     ImageJ: Channels &amp; colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4-colors/python.html">
+     Python: Channels &amp; colors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="pixel_size.html">
+   Pixel size &amp; dimensions
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     ImageJ:  Pixel size &amp; dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="python.html">
+     Python:  Pixel size &amp; dimensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../6-files/files.html">
+   Files &amp; file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6-files/imagej.html">
+     ImageJ: Files &amp; file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6-files/python.html">
+     Python: Files &amp; file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Processing &amp; analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../2-processing/1-processing_and_analysis/processing_and_analysis.html">
+   Image processing &amp; analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html">
+   Point operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/2-point_operations/imagej.html">
+     ImageJ: Point operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html">
+   Thresholding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/3-thresholding/imagej.html">
+     ImageJ: Thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/4-filters/filters.html">
+   Filters
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/4-filters/imagej.html">
+     ImageJ: Filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/5-morph/morph.html">
+   Morphological operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/5-morph/imagej.html">
+     ImageJ: Morphological operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/6-transforms/transforms.html">
+   Image transforms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/6-transforms/imagej.html">
+     ImageJ: Image transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/7-multidimensional_processing/multidimensional_processing.html">
+   Multidimensional processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/7-multidimensional_processing/imagej.html">
+     ImageJ: Multidimensional processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fluorescence microscopy
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
+   From photons to pixels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
+   Blur &amp; the PSF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
+   Noise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
+   Microscopes &amp; detectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
+   Beyond this book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/python/python.html">
+   Python Primer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
+   ImageJ: Writing macros
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
+     Difference of Gaussians
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
+     Simulating image formation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/chapters/1-concepts/5-pixel_size/imagej.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/chapters/1-concepts/5-pixel_size/imagej.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/petebankhead/jupyter-book/main?urlpath=tree/chapters/1-concepts/5-pixel_size/imagej.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pixel-sizes-properties">
+   Pixel sizes &amp; Properties
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pixel-sizes-measurements">
+     Pixel sizes &amp; measurements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-the-pixel-size">
+     Setting the pixel size
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showing-a-scale-bar">
+     Showing a scale bar
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stacks-hyperstacks">
+   Stacks &amp; Hyperstacks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#navigating-dimensions">
+     Navigating dimensions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#correcting-dimensions">
+     Correcting dimensions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plots-and-profiles">
+     Plots and profiles
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displaying-dimensions">
+   Displaying dimensions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#z-projections">
+     Z-projections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#orthogonal-views">
+     Orthogonal views
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reslicing">
+       Reslicing
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>ImageJ:  Pixel size & dimensions</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pixel-sizes-properties">
+   Pixel sizes &amp; Properties
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pixel-sizes-measurements">
+     Pixel sizes &amp; measurements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-the-pixel-size">
+     Setting the pixel size
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showing-a-scale-bar">
+     Showing a scale bar
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stacks-hyperstacks">
+   Stacks &amp; Hyperstacks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#navigating-dimensions">
+     Navigating dimensions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#correcting-dimensions">
+     Correcting dimensions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plots-and-profiles">
+     Plots and profiles
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displaying-dimensions">
+   Displaying dimensions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#z-projections">
+     Z-projections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#orthogonal-views">
+     Orthogonal views
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reslicing">
+       Reslicing
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="imagej-pixel-size-dimensions">
+<h1>ImageJ:  Pixel size &amp; dimensions<a class="headerlink" href="#imagej-pixel-size-dimensions" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="c1"># Default import</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This section will explore pixel sizes and dimensions in ImageJ.
+Along the way, we will see how to generate scale bars and fix images where the pixel size or dimensions are incorrect – at least whenever we know what the correct values are.</p>
+</div>
+<div class="section" id="pixel-sizes-properties">
+<h2>Pixel sizes &amp; Properties<a class="headerlink" href="#pixel-sizes-properties" title="Permalink to this headline">¶</a></h2>
+<p>You can see the pixel size for an image in ImageJ under <span class="menuselection">Image ‣ Properties…</span>.
+These are provided separately as values for <span class="guilabel">Pixel width</span> and <span class="guilabel">Pixel height</span>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>A <strong>voxel</strong> is the 3D analogue of a pixel; a ‘volume pixel’.</p>
+</div>
+<p>There is also an additional value, <span class="guilabel">Voxel depth</span>, which is only relevant for <em>z</em>-stacks; this gives the spacing between <em>z</em>-slices.</p>
+<div class="figure align-center" id="fig-properties-confocal">
+<a class="reference internal image-reference" href="../../../_images/confocal-properties.png"><img alt="../../../_images/confocal-properties.png" src="../../../_images/confocal-properties.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 42 </span><span class="caption-text">Image properties for the <em>Confocal Series</em> sample, which include the pixel size.</span><a class="headerlink" href="#fig-properties-confocal" title="Permalink to this image">¶</a></p>
+</div>
+<p>If the pixel size information is unavailable, the pixel sizes are given as 1 pixel: not terribly informative.
+Otherwise, the pixel sizes are given in the units displayed nearby in the properties dialog.</p>
+<div class="figure align-center" id="fig-properties-fluorescent">
+<a class="reference internal image-reference" href="../../../_images/fluorescent-properties.png"><img alt="../../../_images/fluorescent-properties.png" src="../../../_images/fluorescent-properties.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 43 </span><span class="caption-text">Image properties for the <em>Fluorescent Cells</em> sample, which do not include useful pixel size information.</span><a class="headerlink" href="#fig-properties-fluorescent" title="Permalink to this image">¶</a></p>
+</div>
+<p>The pixel width and height are <em>usually</em> the same.
+The voxel depth (where relevant) is often different.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="2ccf6886-ec95-4b54-9d27-83bfd379d186" name="dab460cd-6d37-4420-806b-8ad1acdca5ba" type="radio">
+</input><label class="tabbed-label" for="2ccf6886-ec95-4b54-9d27-83bfd379d186">
+Practical</label><div class="tabbed-content docutils">
+<p>One way to check if the pixel size information is set for an image is to use <span class="menuselection">Image ‣ Properties…</span></p>
+<p>How else can you check this, even more easily?</p>
+<p><strong>Tip:</strong> The answer should already be visible in <a class="reference internal" href="#fig-properties-confocal"><span class="std std-numref">Fig. 42</span></a> and <a class="reference internal" href="#fig-properties-fluorescent"><span class="std std-numref">Fig. 43</span></a>.</p>
+</div>
+<input id="30f67b1c-de64-4424-a8a5-e7c0d7cb45bb" name="dab460cd-6d37-4420-806b-8ad1acdca5ba" type="radio">
+</input><label class="tabbed-label" for="30f67b1c-de64-4424-a8a5-e7c0d7cb45bb">
+Solution</label><div class="tabbed-content docutils">
+<p>The size of the image is given at the top of each image window.
+If the pixel size information is available, this is given in calibrated units.
+Otherwise, it is given only in pixels.</p>
+</div>
+</div>
+<div class="section" id="pixel-sizes-measurements">
+<h3>Pixel sizes &amp; measurements<a class="headerlink" href="#pixel-sizes-measurements" title="Permalink to this headline">¶</a></h3>
+<p>As <a class="reference internal" href="../2-measurements/imagej.html#sec-imagej-measure-calibration"><span class="std std-ref">described before</span></a>, the pixel size influences measurements in ImageJ – but the units don’t appear anywhere in the <em>Results table</em>.
+Furthermore, once a measurement is added to the <em>Results table</em> it is fixed: it won’t automatically update if the pixel sizes are changed later.</p>
+<p>For that reason, you need to be careful to check pixel sizes <em>before</em> making any measurements and make sure it’s clear to you which units have been used.</p>
+<div class="figure align-center" id="fig-imagej-pixel-size-measure">
+<a class="reference internal image-reference" href="../../../_images/imagej-pixel-size-measure.png"><img alt="../../../_images/imagej-pixel-size-measure.png" src="../../../_images/imagej-pixel-size-measure.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 44 </span><span class="caption-text">The same ROI (here, a 100 x 100 pixel square) can appear to have a different area if it is measured on images that have different pixel sizes.
+The measurement is converted before being added to the <em>Results table</em>, but the units are not included.</span><a class="headerlink" href="#fig-imagej-pixel-size-measure" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="setting-the-pixel-size">
+<h3>Setting the pixel size<a class="headerlink" href="#setting-the-pixel-size" title="Permalink to this headline">¶</a></h3>
+<p>If the pixel size information is missing, but you know what it should be, you can simply enter the required width and height values in the <em>Properties…</em> dialog box.</p>
+<div class="tip admonition">
+<p class="admonition-title">Typing µm</p>
+<p>Depending upon your computer, typing µm for the units might be tricky.
+Fortunately, typing <em>um</em> works as well – ImageJ automatically converts <em>um → µm</em>.</p>
+</div>
+<p>If you don’t know what the pixel size should be, but you <em>do</em> know the length of some structure in your image, then you can</p>
+<ul class="simple">
+<li><p>Draw a line along the known structure with the line tool <img alt="../../../_images/line.png" src="../../../_images/line.png" /></p></li>
+<li><p>Run <span class="menuselection">Analyze ‣ Set Scale…</span>.</p></li>
+</ul>
+<p>This will automatically populate the <span class="guilabel">Distance in pixels</span> based upon the length of the line.
+You can then input the known physical length and units, then click <span class="guilabel">OK</span>.
+You should check <span class="menuselection">Image ‣ Properties…</span> to confirm that the values have been updated sensibly.</p>
+<div class="figure align-center" id="fig-pixels-set-scale">
+<a class="reference internal image-reference" href="../../../_images/pixels-set-scale-ruler.png"><img alt="../../../_images/pixels-set-scale-ruler.png" src="../../../_images/pixels-set-scale-ruler.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">Setting the pixel size in an image by inserting the length of a known structure.</span><a class="headerlink" href="#fig-pixels-set-scale" title="Permalink to this image">¶</a></p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Using <em>Set Scale…</em></p>
+<p>Ideally, <span class="menuselection">Analyze ‣ Set Scale…</span> would be used with a calibration slide to establish the pixel sizes reliably.
+The values can then be transferred to other images acquired with the same settings using <span class="menuselection">Image ‣ Properties…</span> (or a <a class="reference internal" href="../../appendices/macros/macro_intro.html#chap-macro-intro"><span class="std std-ref">macro</span></a>).</p>
+<p>Beware that, if you have drawn a line as described above, the <span class="guilabel">Distance in pixels</span> value is initialized from that line – so <em>don’t</em> change that.
+Rather, <em>do</em> change the <span class="guilabel">Known distance</span> and <span class="guilabel">Unit of length</span> values according to the physical length indicated by the line.</p>
+<p>If the <span class="guilabel">Unit of length</span> should be <em>µm</em> but your keyboard lacks a <em>µ</em>, you can type <em>um</em> instead.</p>
+</div>
+</div>
+<div class="section" id="showing-a-scale-bar">
+<h3>Showing a scale bar<a class="headerlink" href="#showing-a-scale-bar" title="Permalink to this headline">¶</a></h3>
+<p>It’s generally good practice to include a scalebar in any figures.
+This is only really meaningful if the pixel sizes are set correctly within the image properties.</p>
+<p>You can create a scalebar using <span class="menuselection">Analyze ‣ Tools ‣ Scale Bar…</span>.</p>
+<div class="figure align-center" id="fig-scale-bar">
+<a class="reference internal image-reference" href="../../../_images/scale-bar.png"><img alt="../../../_images/scale-bar.png" src="../../../_images/scale-bar.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">Setting a scale bar as an overlay.</span><a class="headerlink" href="#fig-scale-bar" title="Permalink to this image">¶</a></p>
+</div>
+<p>There are several options that can be used to adjust the appearance of the scalebar.
+One of the most important is the <span class="guilabel">Overlay</span> option, because this determines whether the scalebar is ‘burned in’ to the image (i.e. the pixel values are modified) or if it’s instead added as a (text) ROI as part of the image overlay.</p>
+<p>My advice is to always add the scalebar as an overlay.
+That means you can remove it again, or adjust its appearance.
+The only disadvantage is that, if you save the image immediately, it might not appear in other software.
+The solution is to <a class="reference internal" href="../4-colors/imagej.html#sec-imagej-flatten"><span class="std std-ref">generate an RGB image</span></a> that includes the overlay as a final step before saving, by using <span class="menuselection">Image ‣ Overlay ‣ Flatten</span>.</p>
+</div>
+</div>
+<div class="section" id="stacks-hyperstacks">
+<h2>Stacks &amp; Hyperstacks<a class="headerlink" href="#stacks-hyperstacks" title="Permalink to this headline">¶</a></h2>
+<p>2D images have been around since the beginning.
+Then ImageJ supported <strong>stacks</strong>, which allowed an extra dimension that could either include different time points or <em>z</em>-slices – but not both.
+Nowadays, <strong>hyperstacks</strong> are the more flexible derivative of stacks, and can (currently) store up to 5 dimensions without getting them confused.</p>
+<div class="info admonition">
+<p class="admonition-title">Hyperstack flexibility</p>
+<p>A hyperstack can contain 0–5 dimensions, while a stack can only contain 0–3.
+So why worry about stacks at all?</p>
+<p>The main reason comes from ImageJ’s evolution over time.
+Some commands – perhaps originating in the pre-hyperstack era -– were written only for 2D or 3D data.
+Trying to apply them to 4D or 5D images may then cause an error, or it may simply produce strange results.</p>
+<p>In practice, this is unlikely to be an issue nowadays.
+Hyperstacks have been around for so long now that all major commands that work on stacks should also handle hyperstacks properly.
+Nevertheless, it helps to have a historical perspective to understand why both terms still exist in ImageJ’s interface.</p>
+<p>It may also help if you encounter some very old plugin that was written for stacks but that doesn’t handle hyperstacks properly.</p>
+</div>
+<div class="section" id="navigating-dimensions">
+<h3>Navigating dimensions<a class="headerlink" href="#navigating-dimensions" title="Permalink to this headline">¶</a></h3>
+<p>With a stack or hyperstack, only a single 2D <strong>slice</strong> is ‘active’ at any one time.
+A (hyper)stack image window can have up to 3 sliders, used to navigate the <strong>channels</strong>, <strong>z</strong> and <strong>time</strong> dimensions and select the active slice.
+In the case of multichannel images (where there is a ‘channel’ dimension), any changes to lookup tables are made for all the slices on the currently-active channel.</p>
+<div class="figure align-center" id="fig-imagej-dimensions-mitosis">
+<a class="reference internal image-reference" href="../../../_images/imagej-dimensions-mitosis.png"><img alt="../../../_images/imagej-dimensions-mitosis.png" src="../../../_images/imagej-dimensions-mitosis.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 47 </span><span class="caption-text">A 5D image viewed in ImageJ.</span><a class="headerlink" href="#fig-imagej-dimensions-mitosis" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="correcting-dimensions">
+<h3>Correcting dimensions<a class="headerlink" href="#correcting-dimensions" title="Permalink to this headline">¶</a></h3>
+<p>Like the pixel size, the dimensions of an image can found under <span class="menuselection">Image ‣ Properties…</span>.</p>
+<p>Sometimes the dimensions can be incorrect.
+This might happen, for example, if different <em>z</em>-slices were wrongly interpreted as time points when a file was opened, or the presence of multiple channels was not spotted.
+Misinterpreting the dimensions can not only affect the display of the image, but also some processing and measurements.</p>
+<p>It’s also possible to change the dimensions through <span class="menuselection">Image ‣ Properties…</span>, but I find that can sometimes be unreliable because of the old stack/hyperstack distinction (i.e. it doesn’t convert a stack to a hyperstack, and therefore doesn’t display all the sliders that are needed).
+A better option is to use <span class="menuselection">Image ‣ Hyperstack ‣ Stack to Hyperstack…</span> to fix dimensions.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="55e9e7a9-894e-4c55-bccd-9b8c0da3c5f9" name="67753e2b-847c-4f15-9017-ff2686a2c512" type="radio">
+</input><label class="tabbed-label" for="55e9e7a9-894e-4c55-bccd-9b8c0da3c5f9">
+Practical</label><div class="tabbed-content docutils">
+<p>Something terrible has befallen the file <em>lost_dimensions.tif</em>, so that it’s displayed as a 3D stack, when in reality it should have more dimensions.</p>
+<p>By inspecting the file, identify how many channels, <em>z</em>-slices and time points it originally contained, and set these using <span class="menuselection">Image ‣ Hyperstack ‣ Stack to Hyperstack…</span> so that it displays properly.
+What are the correct dimensions?</p>
+</div>
+<input id="f961075d-b8ad-468c-ac30-39dc870a2942" name="67753e2b-847c-4f15-9017-ff2686a2c512" type="radio">
+</input><label class="tabbed-label" for="f961075d-b8ad-468c-ac30-39dc870a2942">
+Solution</label><div class="tabbed-content docutils">
+<p><em>lost_dimensions.tif</em> should contain 2 channels, 3 <em>z</em>-slices and 16 time points.</p>
+<p>The dimensions are in the default order (<em>xyczt</em>).</p>
+</div>
+</div>
+</div>
+<div class="section" id="plots-and-profiles">
+<h3>Plots and profiles<a class="headerlink" href="#plots-and-profiles" title="Permalink to this headline">¶</a></h3>
+<p>More dimensions can make data harder to visualize and interpret.
+Reducing dimensions can help.</p>
+<p><span class="menuselection">Analyze ‣ Plot Profile</span> can be used to generate a 1D plot of pixel values along a line within the image.
+To use it, you can first draw a line ROI <img alt="../../../_images/line.png" src="../../../_images/line.png" />.
+By default, pixel values occurring along the line will be displayed in the plot, however it’s possible to average multiple pixels perpendicular to line if needed.
+To do this, double-click on the line tool and adjust the <span class="guilabel">Line width</span> value.</p>
+<p>It’s also possible to apply <span class="menuselection">Analyze ‣ Plot Profile</span> <kbd class="kbd docutils literal notranslate">K</kbd> to a rectangle <img alt="../../../_images/rectangle.png" src="../../../_images/rectangle.png" />, in which case it will average pixels vertically (default) or horizontally (if the <kbd class="kbd docutils literal notranslate">Alt</kbd> key is pressed).</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<a class="reference internal image-reference" href="../../../_images/imagej-dimensions-z-profile.png"><img alt="../../../_images/imagej-dimensions-z-profile.png" src="../../../_images/imagej-dimensions-z-profile.png" style="width: 60%;" /></a>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<a class="reference internal image-reference" href="../../../_images/imagej-dimensions-t-profile.png"><img alt="../../../_images/imagej-dimensions-t-profile.png" src="../../../_images/imagej-dimensions-t-profile.png" style="width: 60%;" /></a>
+</div>
+<p>Another option if you have a stack or hyperstack is to use <span class="menuselection">Image ‣ Stacks ‣ Plot Z-axis Profile</span> to generate a profile across the slices.
+This essentially plots the mean value within any ROI (or across the whole image) for every slice in the stack.
+Perhaps unexpectedly, the same command is able to generate a profile across time points as well; when necessary, a dialog is shown to choose the dimension.</p>
+<p>In all cases, profile plots contain a <span class="guilabel">Live</span> button.
+This means the plot data updates as any changes are made to the image, including ROIs being generated and moved around.</p>
+<div class="figure align-center" id="fig-imagej-dimensions-profiles">
+<img alt="../../../_images/imagej-dimensions-profiles.png" src="../../../_images/imagej-dimensions-profiles.png" />
+<p class="caption"><span class="caption-number">Fig. 48 </span><span class="caption-text">Three different profile plots, based on a rectangle.
+<em>(Top)</em> A regular profile plot from the active 2D slice, using <span class="menuselection">Analyze ‣ Plot Profile</span>.
+<em>(Bottom)</em> Profiles generated by <span class="menuselection">Image ‣ Stacks ‣ Plot Z-axis Profile</span> along the z-axis <em>(left)</em> and across time points <em>(right)</em>.</span><a class="headerlink" href="#fig-imagej-dimensions-profiles" title="Permalink to this image">¶</a></p>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="d95b3372-28c2-4b98-b048-054297f8d9b5" name="7f819b79-bc98-44a8-aa4d-36a23181c213" type="radio">
+</input><label class="tabbed-label" for="d95b3372-28c2-4b98-b048-054297f8d9b5">
+Practical</label><div class="tabbed-content docutils">
+<p>Create a profile plot from any image, by drawing a line ROI and pressing <kbd class="kbd docutils literal notranslate">K</kbd>.</p>
+<p>As far as ImageJ is concerned, the profile plot itself is an image – albeit a strange one.
+This means you can use <span class="menuselection">Image ‣ Properties…</span> to check the pixel size <em>of the profile plot</em>.</p>
+<p>What do you notice about the pixel sizes?</p>
+</div>
+<input id="1209611b-5fb6-4242-a046-dcb679223df8" name="7f819b79-bc98-44a8-aa4d-36a23181c213" type="radio">
+</input><label class="tabbed-label" for="1209611b-5fb6-4242-a046-dcb679223df8">
+Solution</label><div class="tabbed-content docutils">
+<p>You will probably see that the pixel width and height are different.
+In fact, the pixel width depends upon the scaling of the x-axis and the pixel height depends upon the scaling of the y-axis.</p>
+<p>This can be quite useful, because it means you can make measurements within the profile plot itself.</p>
+<p>If you want to measure a distance along the x or y axis, you can use the line tool <img alt="../../../_images/line.png" src="../../../_images/line.png" /> while pressing <kbd class="kbd docutils literal notranslate">Shift</kbd>.
+This forces the line to be perfectly horizontal or perfectly vertical; without <kbd class="kbd docutils literal notranslate">Shift</kbd> it would be easy to draw a line at a slight diagonal that could give incorrect results.</p>
+<img alt="../../../_images/imagej-dimensions-profiles-plot.png" class="align-center" src="../../../_images/imagej-dimensions-profiles-plot.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="displaying-dimensions">
+<h2>Displaying dimensions<a class="headerlink" href="#displaying-dimensions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="z-projections">
+<h3>Z-projections<a class="headerlink" href="#z-projections" title="Permalink to this headline">¶</a></h3>
+<p>The command to generate a <a class="reference internal" href="pixel_size.html#sec-dims-z-project"><span class="std std-ref"><em>z</em>-projection</span></a> in ImageJ is <span class="menuselection">Image ‣ Stacks ‣ Z Project…</span>.
+This supports several different projection types, as shown in <a class="reference internal" href="#fig-visualize-fiji-projection"><span class="std std-numref">Fig. 49</span></a>.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/z-project-sum.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Sum projection&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/z-project-max.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Max projection&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/z-project-min.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Min projection&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_dimensions*z*project&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-visualize-fiji-projection">
+<div class="cell_output docutils container">
+<img alt="../../../_images/imagej_3_02.png" src="../../../_images/imagej_3_02.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 49 </span><span class="caption-text">Three projections of a <em>z</em>-stack. Sum projections often look similar to maximum projections, but less sharp.</span><a class="headerlink" href="#fig-visualize-fiji-projection" title="Permalink to this image">¶</a></p>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="95122103-c4c2-4c4c-9756-7a8026019a0f" name="2acc8674-8f6d-4815-b768-9077bb0f6cb1" type="radio">
+</input><label class="tabbed-label" for="95122103-c4c2-4c4c-9756-7a8026019a0f">
+Question</label><div class="tabbed-content docutils">
+<p>Imagine computing a sum and a maximum projection of a 10-slice stack containing a large, in-focus nucleus.
+How might each of these projections be affected if your stack contained:</p>
+<ul class="simple">
+<li><p>4 additional, out-of-focus slices (with non-zero pixel values)</p></li>
+<li><p>several very bright, isolated, randomly distributed outlier pixels – with values twice what they should be (due to noise)</p></li>
+</ul>
+</div>
+<input id="b3f9bc52-cf84-4821-81e0-1a01b95f044d" name="2acc8674-8f6d-4815-b768-9077bb0f6cb1" type="radio">
+</input><label class="tabbed-label" for="b3f9bc52-cf84-4821-81e0-1a01b95f044d">
+Solution</label><div class="tabbed-content docutils">
+<p>Additional, out-of-focus planes will have an effect upon sum projections: increasing all the resulting pixel values.
+However, the extra planes would have minimal effects upon maximum projections, since they are unlikely to contain higher values than the in-focus planes.</p>
+<p>Maximum projections will, however, be very affected by bright outliers: these will almost certainly appear in the result with their values unchanged.
+Such outliers would also influence a sum projection, but less drastically because each pixel would contain the sum of 9 reasonable values and only 1 large value (unless, by bad luck or a dubious detector, many outliers happen to overlap at the same <em>xy</em> coordinate).</p>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<a class="reference internal image-reference" href="../../../_images/pixels-max-max-mitosis.png"><img alt="../../../_images/pixels-max-max-mitosis.png" src="../../../_images/pixels-max-max-mitosis.png" style="width: 60%;" /></a>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="10233342-e625-4914-abc7-c211467e2c59" name="762a8995-c1e8-4143-b2d3-cf06136e9452" type="radio">
+</input><label class="tabbed-label" for="10233342-e625-4914-abc7-c211467e2c59">
+Practical</label><div class="tabbed-content docutils">
+<p>What happens if you calculate a maximum projection <em>twice</em> for the 5D image <span class="menuselection">File ‣ Open samples ‣ Mitosis</span>?</p>
+<p>By this I mean you run <span class="menuselection">Image ‣ Stacks ‣ Z Project…</span> on the original image, and then again on the output of the first projection.</p>
+</div>
+<input id="2de15018-beef-4a20-a4df-75a02f4bf5ba" name="762a8995-c1e8-4143-b2d3-cf06136e9452" type="radio">
+</input><label class="tabbed-label" for="2de15018-beef-4a20-a4df-75a02f4bf5ba">
+Solution</label><div class="tabbed-content docutils">
+<p>You should end up with a maximum <em>z</em>-projecton followed by a time projection!</p>
+<p>If there is a time dimension but no <em>z</em> dimension, <span class="menuselection">Image ‣ Stacks ‣ Z Project…</span> will use time instead.</p>
+<p>If there <em>is</em> a <em>z</em> dimension but you want a time projection anyway, you could try careful use of <span class="menuselection">Image ‣ Hyperstack ‣ Re-order Hyperstacks…</span> or <span class="menuselection">Image ‣ Hyperstack ‣ Stack to Hyperstack…</span> to temporarily switch the dimension names and trick ImageJ into doing what you want.</p>
+</div>
+</div>
+</div>
+<div class="section" id="orthogonal-views">
+<h3>Orthogonal views<a class="headerlink" href="#orthogonal-views" title="Permalink to this headline">¶</a></h3>
+<p>The command <span class="menuselection">Image ‣ Stacks ‣ Orthogonal Views</span> makes it possible to generate interactive <a class="reference internal" href="pixel_size.html#sec-dims-orthogonal"><span class="std std-ref">orthogonal slices</span></a> from an image stack.
+This opens up 2 extra windows, so that when you click at any point on the original <em>xy</em> view, you are shown cross-sections through that point from each direction.</p>
+<div class="figure align-center" id="fig-orthogonal-views">
+<a class="reference internal image-reference" href="../../../_images/orthogonal-views.png"><img alt="../../../_images/orthogonal-views.png" src="../../../_images/orthogonal-views.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 50 </span><span class="caption-text">Orthogonal views in ImageJ.</span><a class="headerlink" href="#fig-orthogonal-views" title="Permalink to this image">¶</a></p>
+</div>
+<p>Note that when viewing the orthogonal slices, clicks on the image are intercepted.
+This makes it difficult to interact with the image normally or create new ROIs.
+If you close any of the additional views then the command is deactivated, and you can go back to working with the image as before.</p>
+<div class="section" id="reslicing">
+<h4>Reslicing<a class="headerlink" href="#reslicing" title="Permalink to this headline">¶</a></h4>
+<p>If you look closely at the orthogonal slices, you will see that they are RGB images – even if the original stack is not RGB.
+They are also locked to using the LUT and brightness/contrast settings that were active when the command was first run.</p>
+<p>This makes them a useful visualization trick, but they do not provide a rotated version of the data for analysis.</p>
+<p>If you instead want to rotate the entire stack so that you can browse through what are effectively <em>xz</em> or <em>yz</em> slices and do whatever you want to them, the command you need is <span class="menuselection">Image ‣ Stacks ‣ Reslice…</span>.</p>
+<div class="figure align-center" id="fig-reslicing">
+<a class="reference internal image-reference" href="../../../_images/reslicing.png"><img alt="../../../_images/reslicing.png" src="../../../_images/reslicing.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 51 </span><span class="caption-text">Reslicing an image.</span><a class="headerlink" href="#fig-reslicing" title="Permalink to this image">¶</a></p>
+</div>
+<p>After reslicing, you can then use <span class="menuselection">Image ‣ Stacks ‣ Z Project…</span> to effectively generate orthogonal <em>z</em>-projections.</p>
+<div class="tip admonition">
+<p class="admonition-title">Reslicing and interpolation</p>
+<p>Interpolation effectively means making up plausible new pixel values to fill in the gaps ‘between’ known pixels.
+In this case, interpolation handles the fact that the pixel width, pixel height and voxel depth (<em>z</em>-spacing) are seldom identical.</p>
+<p>With that in mind, if you need to reslice an image then I recommend trying it both with and without <span class="guilabel">Avoid pixel interpolation</span> selected, checking the pixel size under <span class="menuselection">Image ‣ Properties…</span> in both cases.
+Seeing what actually happens is likely to be more informative than trying to make sense of any explanation I could try to give.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "petebankhead/jupyter-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/1-concepts/5-pixel_size"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="pixel_size.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Pixel size &amp; dimensions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="python.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python:  Pixel size &amp; dimensions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pete Bankhead<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

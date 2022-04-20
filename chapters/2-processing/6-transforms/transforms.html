@@ -1,0 +1,1146 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image transforms &#8212; Introduction to Bioimage Analysis</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ImageJ: Image transforms" href="imagej.html" />
+    <link rel="prev" title="ImageJ: Morphological operations" href="../5-morph/imagej.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../README.html">
+   Introduction to Bioimage Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Front matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Before we begin
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/preface/preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/reading/reading.html">
+   How to read this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducing images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">
+   Images &amp; pixels
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">
+     ImageJ: Images &amp; pixels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">
+     Python: Images &amp; pixels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">
+   Measurements &amp; histograms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">
+     ImageJ: Measurements &amp; histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/python.html">
+     Python: Measurements &amp; histograms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">
+   Types &amp; bit-depths
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">
+     ImageJ: Types &amp; bit-depths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">
+     Python: Types &amp; bit-depths
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/4-colors/colors.html">
+   Channels &amp; colors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/imagej.html">
+     ImageJ: Channels &amp; colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/python.html">
+     Python: Channels &amp; colors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">
+   Pixel size &amp; dimensions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">
+     ImageJ:  Pixel size &amp; dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">
+     Python:  Pixel size &amp; dimensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/6-files/files.html">
+   Files &amp; file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/imagej.html">
+     ImageJ: Files &amp; file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/python.html">
+     Python: Files &amp; file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Processing &amp; analysis
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">
+   Image processing &amp; analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../2-point_operations/point_operations.html">
+   Point operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2-point_operations/imagej.html">
+     ImageJ: Point operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3-thresholding/thresholding.html">
+   Thresholding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-thresholding/imagej.html">
+     ImageJ: Thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../4-filters/filters.html">
+   Filters
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4-filters/imagej.html">
+     ImageJ: Filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../5-morph/morph.html">
+   Morphological operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5-morph/imagej.html">
+     ImageJ: Morphological operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Image transforms
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="imagej.html">
+     ImageJ: Image transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../7-multidimensional_processing/multidimensional_processing.html">
+   Multidimensional processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7-multidimensional_processing/imagej.html">
+     ImageJ: Multidimensional processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fluorescence microscopy
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
+   From photons to pixels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
+   Blur &amp; the PSF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
+   Noise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
+   Microscopes &amp; detectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
+   Beyond this book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/python/python.html">
+   Python Primer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
+   ImageJ: Writing macros
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
+     Difference of Gaussians
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
+     Simulating image formation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/chapters/2-processing/6-transforms/transforms.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/chapters/2-processing/6-transforms/transforms.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/petebankhead/jupyter-book/main?urlpath=tree/chapters/2-processing/6-transforms/transforms.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-distance-transform">
+   The distance transform
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-watershed-transform">
+   The watershed transform
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combining-transforms">
+   Combining transforms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#splitting-round-objects">
+     Splitting round objects
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#partitioning-images-with-voronoi">
+     Partitioning images with Voronoi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expanding-without-overlaps">
+     Expanding without overlaps
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Image transforms</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-distance-transform">
+   The distance transform
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-watershed-transform">
+   The watershed transform
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combining-transforms">
+   Combining transforms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#splitting-round-objects">
+     Splitting round objects
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#partitioning-images-with-voronoi">
+     Partitioning images with Voronoi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expanding-without-overlaps">
+     Expanding without overlaps
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="image-transforms">
+<span id="chap-transforms"></span><h1>Image transforms<a class="headerlink" href="#image-transforms" title="Permalink to this headline">¶</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Chapter outline</p>
+<ul class="simple">
+<li><p>The <strong>watershed transform</strong> can be used to split structures using intensity values</p></li>
+<li><p>The <strong>distance transform</strong> calculates the distance between foreground and background pixels in a binary image</p></li>
+<li><p>The <strong>distance &amp; watershed transforms</strong> can be combined to separate round structures</p></li>
+</ul>
+</div>
+<div class="cell tag_hide-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>An <strong>image transform</strong> converts an image into some other form, in which the pixel values can have a (sometimes very) different interpretation.</p>
+<p>There are lots of ways to transform an image.
+We will focus on two that are especially useful for bioimage segmentation and analysis: the distance transform and the watershed transform.
+We will briefly introduce both, before then showing how they can be used in combination.</p>
+</div>
+<div class="section" id="the-distance-transform">
+<h2>The distance transform<a class="headerlink" href="#the-distance-transform" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>distance transform</strong> (sometimes called the <strong>Euclidean distance transform</strong>) replaces each pixel of a binary image with the distance to the closest background pixel.
+If the pixel itself is already part of the background then this is zero.
+The result is an image called a <strong>distance map</strong>.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
+
+<span class="c1"># Create a small image</span>
+<span class="n">bw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">bw</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">bw</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">dilation</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">morph</span><span class="o">.</span><span class="n">disk</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># Compute the distance transform</span>
+<span class="n">im_dist</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Binary image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Distance transform&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">122</span><span class="p">)</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="n">im_dist</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span> <span class="k">if</span> <span class="n">z</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s1">&#39;k&#39;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_distance_detail&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-morph-distance-detail">
+<div class="cell_output docutils container">
+<img alt="../../../_images/transforms_4_0.png" src="../../../_images/transforms_4_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 116 </span><span class="caption-text">A binary image and its corresponding distance map, including pixel values as an overlay.</span><a class="headerlink" href="#fig-morph-distance-detail" title="Permalink to this image">¶</a></p>
+</div>
+<p>A natural question when considering the distance transform is: <em>why</em>?</p>
+<p>Although its importance may not be initially obvious, we will see that creative uses of the distance transform can help solve some other problems rather elegantly.</p>
+<p>For example, eroding or dilating binary images by a large amount can be very slow, because we have to use large maximum or minimum filters.
+However, erosion and dilation can be computed from a distance map very efficiently simply by applying a global threshold.
+This can be much faster in practice.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Blobs.gif&#39;</span><span class="p">)</span>
+<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span>
+
+<span class="n">im_dist</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Binary image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Distance map of (A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Thresholded (B) &gt; 5&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+
+<span class="n">im_dist_inv</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="o">~</span><span class="n">bw</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="o">~</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(D) Binary image (inverted)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist_inv</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(E) Distance map of (D)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist_inv</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(F) Thresholded (E) &lt; 5&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_distance&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-morph-distance">
+<p class="caption"><span class="caption-number">Fig. 117 </span><span class="caption-text">Implementing erosion (C) and dilation (F) of binary images by thresholding distance maps.</span><a class="headerlink" href="#fig-morph-distance" title="Permalink to this image">¶</a></p>
+</div>
+<p>But the distance map contains useful information that we can use in other ways.</p>
+<p>For example, we can also use distance maps to estimate the <strong>local thickness</strong> of a structure.
+An application of this would be to assess blood vessel diameters.
+If we have a binary image representing a vessel, we can generate both a distance map and a thinned binary image.
+The distance map values corresponding to foreground pixels in the thinned image provide a local estimate of the vessel radius at that pixel, because the distance map gives the distance to the nearest background pixel – and thinned pixels occur at the vessel center.</p>
+<p>However, the distance transform can become even more useful if we combine it with other transforms.</p>
+</div>
+<div class="section" id="the-watershed-transform">
+<h2>The watershed transform<a class="headerlink" href="#the-watershed-transform" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>watershed transform</strong> is an example of a <strong>region growing</strong> method: beginning from some <strong>seed regions</strong>, the seeds are progressively expanded into larger regions until all the pixels of the image have been processed.
+This provides an alternative to straightforward thresholding, which can be <em>extremely</em> useful when need to partition an image into many different objects.</p>
+<p>To understand how the watershed transform works, picture the image as an uneven landscape in which the value of each pixel corresponds to a height.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+
+<span class="k">def</span> <span class="nf">load_watershed_image</span><span class="p">():</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">128</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="mi">75</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">128</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span><span class="n">c</span><span class="o">+</span><span class="n">s</span><span class="p">]</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">im</span>
+
+<span class="c1"># Visualize an image as a surface plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_watershed_image</span><span class="p">()</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original image&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zticklabels</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Surface plot&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="o">-</span><span class="n">im</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zticklabels</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Inverted surface plot&#39;</span><span class="p">)</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_transform_surface&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-transform-surface">
+<p class="caption"><span class="caption-number">Fig. 118 </span><span class="caption-text">Visualizing an image as a landscape, using surface plots. Higher pixel values are generally viewed as peaks, although can easily switched to become valleys by inverting the image before plotting. This may be useful when providing input to the watershed transform.</span><a class="headerlink" href="#fig-transform-surface" title="Permalink to this image">¶</a></p>
+</div>
+<p>Now imagine water falling evenly upon this surface and slowly flooding it.
+The water gathers first in the deepest parts; that is, in the places where pixels have values lower than all their neighbors.
+These define the <strong>seeds</strong> of the watershed transform; we can think of them as separate water basins.</p>
+<p>As the water level rises across the image, occasionally it will reach a ridge between two basins – and, in reality, water could spill from one basin into the other.
+However, in the watershed transform this is not permitted; rather a dam is constructed at such ridges.
+The water then continues to rise, with dams being built as needed, until in the end every pixel is either part of a basin or a ridge, and there are exactly the same number of basins afterwards as there were at first.</p>
+<p>The operation of the watershed transform is illustrated in the video below and example output shown in <a class="reference internal" href="#fig-transform-surface-watershed"><span class="std std-numref">Fig. 119</span></a>.</p>
+<video autoplay loop playsinline controls muted>
+  <source src="../../../_static/videos/watershed.mp4" type="video/mp4">
+</video>
+<!-- <div class=video-container>
+<iframe width="1042" height="586" src="https://www.youtube.com/embed/yywoAgJzje8?loop=1&playlist=yywoAgJzje8&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div> --><div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
+<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_triangle</span>
+<span class="kn">from</span> <span class="nn">skimage.morphology.extrema</span> <span class="kn">import</span> <span class="n">local_minima</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_watershed_image</span><span class="p">()</span>
+<span class="n">bw_mask</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+
+<span class="c1"># lab_seeds, n = ndimage.label(morph.h_maxima(im, im.std()/3.0))</span>
+<span class="n">lab_seeds</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">local_minima</span><span class="p">(</span><span class="o">-</span><span class="n">im</span><span class="p">))</span>
+<span class="n">lab_watershed</span> <span class="o">=</span> <span class="n">watershed</span><span class="p">(</span><span class="o">-</span><span class="n">im</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">watershed_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">lab_watershed_masked</span> <span class="o">=</span> <span class="n">watershed</span><span class="p">(</span><span class="o">-</span><span class="n">im</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">bw_mask</span><span class="p">,</span> <span class="n">watershed_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">im2</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="n">im2</span> <span class="o">=</span> <span class="n">im2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="mf">99.75</span><span class="p">)</span>
+<span class="n">im2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab_seeds</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">im2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Image with seeds&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab_watershed</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">im2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Full watershed segmentation&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw_mask</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Binary image (triangle threshold)&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab_watershed_masked</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">im2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Masked watershed segmentation&#39;</span><span class="p">)</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_transform_surface_watershed&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-transform-surface-watershed">
+<p class="caption"><span class="caption-number">Fig. 119 </span><span class="caption-text">Applying the watershed transform to an image. Here, we passed the inverted image to the watershed transform because we want to identify bright spots rather than dark ones. The full watershed transform will expand the seeds to create a labeled image including all pixels, but we can optionally mask the expansion to prevent it filling the background. Here, we defined the mask by applying a global threshold using the triangle method. Note that the masked watershed segmentation is able to split some spots that were merged using the global threshold alone.</span><a class="headerlink" href="#fig-transform-surface-watershed" title="Permalink to this image">¶</a></p>
+</div>
+<p>Crucially, as the seeds are expanded during the watershed transform, regions are not allowed to overlap.
+Furthermore, once a pixel has been assigned to a region then it cannot be moved to become part of any other region.</p>
+<p>Using the ‘rain falling on a surface’ analogy, the seeds would be <strong>regional minima</strong> in an image, i.e. pixels with values that are lower than all neighboring pixels.
+This is where the water would gather first.</p>
+<p>In practice, we often need to have more control over the seeds rather than accepting all regional minima (to see why too many local minima could be a problem, observe that <a class="reference internal" href="#fig-transform-surface-watershed"><span class="std std-numref">Fig. 119</span></a> contains more regions that we probably would want).
+This variation is called the <strong>seeded watershed transform</strong>: the idea is the same, but we simply provide the seeds explicitly in the form of a labeled image, and the regions grow from these.
+We can generate seeds using other processing steps, such as by identifying <a class="reference internal" href="../5-morph/morph.html#sec-h-extrema"><span class="std std-ref">H-minima</span></a>.</p>
+</div>
+<div class="section" id="combining-transforms">
+<h2>Combining transforms<a class="headerlink" href="#combining-transforms" title="Permalink to this headline">¶</a></h2>
+<p>The watershed transform can be applied to any image, but it has some particularly interesting applications when it is applied to an image that is a distance map.</p>
+<div class="section" id="splitting-round-objects">
+<h3>Splitting round objects<a class="headerlink" href="#splitting-round-objects" title="Permalink to this headline">¶</a></h3>
+<p>A distance map has regional maxima whenever a foreground pixel is further from the background than any of its neighbors.</p>
+<p>This tends to occur towards the center of objects: particularly round objects that don’t contain any holes.
+Importantly, regional maxima can still be present even if the ‘round objects’ are connected to one another in the binary image used to generate the distance map originally.</p>
+<p>This means that by applying a watershed transform to a distance map, we are able to split ‘roundish’ structures in binary images.
+The process is as follows:</p>
+<ul class="simple">
+<li><p>Compute the distance map of the image</p></li>
+<li><p>Invert the distance map (e.g. multiply by -1), so that peaks become valleys</p></li>
+<li><p>Apply the watershed transform, starting from the regional minima of the inverted distance map</p></li>
+</ul>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">disk</span><span class="p">,</span> <span class="n">dilation</span>
+<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
+
+<span class="n">bw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">75</span><span class="p">,</span> <span class="mi">99</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">bw</span><span class="p">[</span><span class="mi">37</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">bw</span><span class="p">[</span><span class="mi">37</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">strel</span> <span class="o">=</span> <span class="n">disk</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+
+<span class="n">bw</span> <span class="o">=</span> <span class="n">dilation</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">strel</span><span class="p">)</span>
+<span class="n">im_dist</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+<span class="n">lab</span> <span class="o">=</span> <span class="n">watershed</span><span class="p">(</span><span class="o">-</span><span class="n">im_dist</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">bw</span><span class="p">,</span> <span class="n">watershed_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Binary image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Distance map of (A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">lab</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Watershed split of (B)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_distance_split_small&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-morph-distance-split-small">
+<p class="caption"><span class="caption-number">Fig. 120 </span><span class="caption-text">Splitting round objects using the distance and watershed transforms.</span><a class="headerlink" href="#fig-morph-distance-split-small" title="Permalink to this image">¶</a></p>
+</div>
+<p>The objects to be split do not have to be perfectly round.
+The only requirement is that there are clearly distinct regional maxima in the distance transform – or, alternatively, we can define suitable seeds using other processing steps.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
+<span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Blobs.gif&#39;</span><span class="p">)</span>
+<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="n">im_dist</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+<span class="n">im_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">im_dist</span><span class="p">)</span>
+
+<span class="c1"># Defining the seeds is quite tricky, because there can be lots of tiny maxima</span>
+<span class="c1"># Here, we use H-maxima to find only the larger maxima.</span>
+<span class="c1"># We then still need to dilate them slightly to ensure maxima within the same</span>
+<span class="c1"># blob are connected, to avoid having too many seeds.</span>
+<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">extrema</span>
+<span class="c1"># bw_maxima = im_dist == ndimage.maximum_filter(im_dist, size=(5, 5))</span>
+<span class="n">bw_maxima</span> <span class="o">=</span> <span class="n">extrema</span><span class="o">.</span><span class="n">h_maxima</span><span class="p">(</span><span class="n">im_dist</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">bw_maxima</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_dilation</span><span class="p">(</span><span class="n">bw_maxima</span><span class="p">)</span>
+<span class="n">bw_maxima</span> <span class="o">=</span> <span class="n">bw_maxima</span> <span class="o">&amp;</span> <span class="n">bw</span>           <span class="c1"># Make sure we didn&#39;t dilate beyond the original binary mask</span>
+<span class="n">lab_seeds</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">bw_maxima</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Binary image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Distance map from&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab_seeds</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Seed labels from (B)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
+
+<span class="n">lab2</span> <span class="o">=</span> <span class="n">watershed</span><span class="p">(</span><span class="o">-</span><span class="n">im_dist</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="n">lab_seeds</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">bw</span><span class="p">,</span> <span class="n">watershed_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(E) Watershed from (C, A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_distance_split&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-morph-distance-split">
+<p class="caption"><span class="caption-number">Fig. 121 </span><span class="caption-text">Splitting merged blobs based on ‘roundness’ using the distance and watershed transforms.
+Because there are many small regional maxima in the distance transform, here we define seeds using H-maxima followed by a 3×3 dilation to avoid excessive splitting.</span><a class="headerlink" href="#fig-morph-distance-split" title="Permalink to this image">¶</a></p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Watershed lines</p>
+<p>When applying a watershed transform, it is often possible to specify whether the separations between regions are assigned one of the region labels, or are left as background pixels.</p>
+<p>Here, we have shown the separations as background pixels.
+This is consistent with how ImageJ’s default watershed command works, and also makes the splits clearer in the figures shown here.
+In Python code using scikit-image, that means we are using the <code class="docutils literal notranslate"><span class="pre">watershed_lines=True</span></code> option.</p>
+</div>
+</div>
+<div class="section" id="partitioning-images-with-voronoi">
+<h3>Partitioning images with Voronoi<a class="headerlink" href="#partitioning-images-with-voronoi" title="Permalink to this headline">¶</a></h3>
+<p>Calculating the distance transform of an <em>inverted</em> binary image gives a distance map in which each pixel gives the distance to the closest foreground object.</p>
+<p>If we apply a watershed transform to this distance map, using the objects in the binary image as seeds, we effectively partition the image into different regions according to the closest object in the binary image.</p>
+<p>This is sometimes called the <strong>Voronoi transform</strong> of the image.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
+<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
+<span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Blobs.gif&#39;</span><span class="p">)</span>
+<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">lab</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+
+<span class="n">im_dist_inv</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="o">~</span><span class="n">bw</span><span class="p">)</span>
+<span class="n">bw_dilated</span> <span class="o">=</span> <span class="p">(</span><span class="n">im_dist_inv</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Binary image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Seed labels from (A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist_inv</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Distance map from (A, inverted)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
+<span class="n">lab2</span> <span class="o">=</span> <span class="n">watershed</span><span class="p">(</span><span class="n">im_dist_inv</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">watershed_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(D) Watershed from (B, C)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_voronoi_expand&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-morph-voronoi-expand">
+<p class="caption"><span class="caption-number">Fig. 122 </span><span class="caption-text">Expanding blobs to compute the Voronoi transform of a labeled image, partitioning it into different regions according to the closest seed object.</span><a class="headerlink" href="#fig-morph-voronoi-expand" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="expanding-without-overlaps">
+<h3>Expanding without overlaps<a class="headerlink" href="#expanding-without-overlaps" title="Permalink to this headline">¶</a></h3>
+<p>Building upon the Vononoi idea in the last section, we can expand the objects themselves in such a way that they don’t overlap.</p>
+<div class="margin figure align-default" id="id1">
+<img alt="../../../_images/qupath_cells.png" src="../../../_images/qupath_cells.png" />
+<p class="caption"><span class="caption-number">Fig. 123 </span><span class="caption-text">QuPath’s cell detection, based upon nucleus detection + watershed expansion.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>Our goal is to dilate each object in the image by 10 pixels, but without merging.
+If seed objects are closer than 20 pixels apart, they each expand the same amount – until they meet in the middle.
+This technique may be used to approximate a cell boundary based upon detected nuclei by expansion using a fixed distance.</p>
+<p>Firstly, we look at what <em>won’t</em> work.
+We can’t simply dilate a labeled image with a maximum filter, because there’s nothing to prevent regions merging into one another.
+When seeds are close together, the higher label will ‘win’ the expansion race in every case, dominating the output.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
+<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
+<span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Blobs.gif&#39;</span><span class="p">)</span>
+<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">lab</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+<span class="n">lab_dilated</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">dilation</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">disk</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Seed labels from (A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab_dilated</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Seeds expanded by dilation&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Overlay of (A) and (B)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab_dilated</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Overlay of (A) and (B)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_bad_expand&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-morph-bad-expand">
+<p class="caption"><span class="caption-number">Fig. 124 </span><span class="caption-text">Expanding blobs using a maximum filter only. This approach is too simple; it results in overlapping labels and a lot of confusion.</span><a class="headerlink" href="#fig-morph-bad-expand" title="Permalink to this image">¶</a></p>
+</div>
+<p>Instead, we need to build upon the Voronoi approach shown in <a class="reference internal" href="#fig-morph-voronoi-expand"><span class="std std-numref">Fig. 122</span></a>.
+The only difference we need to incorporate is that we prevent the watershed expansion from growing beyond 10 pixels.</p>
+<p>Fortunately, this criterion is easy to set: our distance map already gives us the distance to every seed object.
+We can threshold that to define a binary mask that indicates where regions should no longer expand.
+If we update our watershed output to have background pixels at the same locations where our binary mask has background pixels, we have achieved a constrained expansion of 10 pixels without overlap.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
+<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
+<span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Blobs.gif&#39;</span><span class="p">)</span>
+<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">lab</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+
+<span class="n">im_dist_inv</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="o">~</span><span class="n">bw</span><span class="p">)</span>
+<span class="n">bw_dilated</span> <span class="o">=</span> <span class="p">(</span><span class="n">im_dist_inv</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Binary image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Seed labels from (A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist_inv</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Distance map from (A, inverted)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw_dilated</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(D) Thresholded (C) &lt; 10&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+
+<span class="n">lab2</span> <span class="o">=</span> <span class="n">watershed</span><span class="p">(</span><span class="n">im_dist_inv</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">bw_dilated</span><span class="p">,</span> <span class="n">watershed_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(E) Masked watershed from (B, C, D)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+<span class="n">lab2</span><span class="p">[</span><span class="o">~</span><span class="n">bw_dilated</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(F) Expanded seeds&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(F) Expanded seeds&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_distance_expand&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-morph-distance-expand">
+<p class="caption"><span class="caption-number">Fig. 125 </span><span class="caption-text">Using distance and watershed transforms to expand regions by a fixed distance, without overlap. The final output (F) is obtained using information from all images (A) - (E).</span><a class="headerlink" href="#fig-morph-distance-expand" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "petebankhead/jupyter-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/2-processing/6-transforms"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../5-morph/imagej.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ImageJ: Morphological operations</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="imagej.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ImageJ: Image transforms</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pete Bankhead<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

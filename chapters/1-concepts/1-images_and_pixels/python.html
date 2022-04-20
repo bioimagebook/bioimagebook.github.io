@@ -1,0 +1,1167 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python: Images &amp; pixels &#8212; Introduction to Bioimage Analysis</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Measurements &amp; histograms" href="../2-measurements/measurements.html" />
+    <link rel="prev" title="ImageJ: Images &amp; pixels" href="imagej.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../README.html">
+   Introduction to Bioimage Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Front matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Before we begin
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/preface/preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/reading/reading.html">
+   How to read this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducing images
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="images_and_pixels.html">
+   Images &amp; pixels
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="imagej.html">
+     ImageJ: Images &amp; pixels
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Python: Images &amp; pixels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../2-measurements/measurements.html">
+   Measurements &amp; histograms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2-measurements/imagej.html">
+     ImageJ: Measurements &amp; histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2-measurements/python.html">
+     Python: Measurements &amp; histograms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3-bit_depths/bit_depths.html">
+   Types &amp; bit-depths
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-bit_depths/imagej.html">
+     ImageJ: Types &amp; bit-depths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-bit_depths/python.html">
+     Python: Types &amp; bit-depths
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../4-colors/colors.html">
+   Channels &amp; colors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4-colors/imagej.html">
+     ImageJ: Channels &amp; colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4-colors/python.html">
+     Python: Channels &amp; colors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../5-pixel_size/pixel_size.html">
+   Pixel size &amp; dimensions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5-pixel_size/imagej.html">
+     ImageJ:  Pixel size &amp; dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5-pixel_size/python.html">
+     Python:  Pixel size &amp; dimensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../6-files/files.html">
+   Files &amp; file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6-files/imagej.html">
+     ImageJ: Files &amp; file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6-files/python.html">
+     Python: Files &amp; file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Processing &amp; analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../2-processing/1-processing_and_analysis/processing_and_analysis.html">
+   Image processing &amp; analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html">
+   Point operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/2-point_operations/imagej.html">
+     ImageJ: Point operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html">
+   Thresholding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/3-thresholding/imagej.html">
+     ImageJ: Thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/4-filters/filters.html">
+   Filters
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/4-filters/imagej.html">
+     ImageJ: Filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/5-morph/morph.html">
+   Morphological operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/5-morph/imagej.html">
+     ImageJ: Morphological operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/6-transforms/transforms.html">
+   Image transforms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/6-transforms/imagej.html">
+     ImageJ: Image transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/7-multidimensional_processing/multidimensional_processing.html">
+   Multidimensional processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/7-multidimensional_processing/imagej.html">
+     ImageJ: Multidimensional processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fluorescence microscopy
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
+   From photons to pixels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
+   Blur &amp; the PSF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
+   Noise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
+   Microscopes &amp; detectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
+   Beyond this book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/python/python.html">
+   Python Primer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
+   ImageJ: Writing macros
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
+     Difference of Gaussians
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
+     Simulating image formation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/chapters/1-concepts/1-images_and_pixels/python.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/chapters/1-concepts/1-images_and_pixels/python.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/petebankhead/jupyter-book/main?urlpath=tree/chapters/1-concepts/1-images_and_pixels/python.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-show-an-image-using-python-a-name-show-image-in-python">
+   Read &amp; show an image using Python
+   <a name="show-image-in-python">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changing-lookup-tables">
+     Changing lookup tables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#further-customizing-image-display">
+     Further customizing image display
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#writing-functions">
+     Writing functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#helper-functions-in-this-book">
+     Helper functions in this book
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Python: Images & pixels</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-show-an-image-using-python-a-name-show-image-in-python">
+   Read &amp; show an image using Python
+   <a name="show-image-in-python">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changing-lookup-tables">
+     Changing lookup tables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#further-customizing-image-display">
+     Further customizing image display
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#writing-functions">
+     Writing functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#helper-functions-in-this-book">
+     Helper functions in this book
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="python-images-pixels">
+<h1>Python: Images &amp; pixels<a class="headerlink" href="#python-images-pixels" title="Permalink to this headline">¶</a></h1>
+<p>The goal of these sections is to provide an interactive illustration of image analysis concepts through the popular <a class="reference external" href="https://www.python.org">Python</a> programming language.</p>
+<div class="tip admonition">
+<p class="admonition-title">Feel free to skip this!</p>
+<p>If you’re more interested in concepts and/or ImageJ, I would recommend skipping the Python chapters at the beginning - you don’t need them to follow the rest of the book.</p>
+</div>
+<p>However, if you <em>are</em> interested, I hope these sections can help provide an alternative view of image analysis.</p>
+<p>Even if you’ve never coded before, working through the examples will hopefully give you both a deeper understanding of image processing and some useful programming skills.</p>
+<p>This page will introduce reading and displaying images.
+Later Python chapters in the handbook will build on these foundations.</p>
+<div class="tip admonition">
+<p class="admonition-title">Make it interactive!</p>
+<p>Before continuing, you should <a class="reference internal" href="../../0-preamble/reading/reading.html#sec-live-notebooks"><span class="std std-ref">make the notebook interactive</span></a> so that you can run the code yourself - and explore what happens if you make changes.</p>
+</div>
+<div class="admonition-python-overview admonition">
+<p class="admonition-title">Python overview</p>
+<p>If you want a quick introduction to Python, check out the <a class="reference internal" href="../../appendices/python/python.html"><span class="doc std std-doc">Python Primer</span></a> section.</p>
+</div>
+<div class="section" id="read-show-an-image-using-python-a-name-show-image-in-python">
+<h2>Read &amp; show an image using Python <a name="show-image-in-python" /><a class="headerlink" href="#read-show-an-image-using-python-a-name-show-image-in-python" title="Permalink to this headline">¶</a></h2>
+<p>Let’s begin by loading an image in Python, and then showing it using <a class="reference external" href="https://matplotlib.org">matplotlib</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Read and display an image in Python.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># In Python, we need to import things before we can use them</span>
+<span class="c1"># (And, often, google to find out what we ought to be importing, </span>
+<span class="c1"># then copy &amp; paste the same import statements a lot)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">imageio</span> <span class="kn">import</span> <span class="n">imread</span>
+
+<span class="c1"># Read an image - we need to know the full path to wherever it is</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../../images/spooked.png&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create a plot of the image using the default brightness/contrast min/max and colormap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+
+<span class="c1"># Actually show the plot (if we don&#39;t do this explicitly, it might display anyway - but not always)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/python_4_0.png" src="../../../_images/python_4_0.png" />
+</div>
+</div>
+<div class="section" id="changing-lookup-tables">
+<h3>Changing lookup tables<a class="headerlink" href="#changing-lookup-tables" title="Permalink to this headline">¶</a></h3>
+<p>The key method here is <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code>.
+We can pass additional parameters to customize the display in many ways.</p>
+<p>To see what is possible, I usually start to type the name and then press <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">Tab</kbd></kbd> to prompt some documentation to appear.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+</pre></div>
+</div>
+<p>Alternatively, you can run either of the following lines</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>?plt.imshow
+help(plt.imshow)
+</pre></div>
+</div>
+<p>to display some help text.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function imshow in module matplotlib.pyplot:
+
+imshow(X, cmap=None, norm=None, *, aspect=None, interpolation=None, alpha=None, vmin=None, vmax=None, origin=None, extent=None, interpolation_stage=None, filternorm=True, filterrad=4.0, resample=None, url=None, data=None, **kwargs)
+    Display data as an image, i.e., on a 2D regular raster.
+    
+    The input may either be actual RGB(A) data, or 2D scalar data, which
+    will be rendered as a pseudocolor image. For displaying a grayscale
+    image set up the colormapping using the parameters
+    ``cmap=&#39;gray&#39;, vmin=0, vmax=255``.
+    
+    The number of pixels used to render an image is set by the Axes size
+    and the *dpi* of the figure. This can lead to aliasing artifacts when
+    the image is resampled because the displayed image size will usually
+    not match the size of *X* (see
+    :doc:`/gallery/images_contours_and_fields/image_antialiasing`).
+    The resampling can be controlled via the *interpolation* parameter
+    and/or :rc:`image.interpolation`.
+    
+    Parameters
+    ----------
+    X : array-like or PIL image
+        The image data. Supported array shapes are:
+    
+        - (M, N): an image with scalar data. The values are mapped to
+          colors using normalization and a colormap. See parameters *norm*,
+          *cmap*, *vmin*, *vmax*.
+        - (M, N, 3): an image with RGB values (0-1 float or 0-255 int).
+        - (M, N, 4): an image with RGBA values (0-1 float or 0-255 int),
+          i.e. including transparency.
+    
+        The first two dimensions (M, N) define the rows and columns of
+        the image.
+    
+        Out-of-range RGB(A) values are clipped.
+    
+    cmap : str or `~matplotlib.colors.Colormap`, default: :rc:`image.cmap`
+        The Colormap instance or registered colormap name used to map
+        scalar data to colors. This parameter is ignored for RGB(A) data.
+    
+    norm : `~matplotlib.colors.Normalize`, optional
+        The `.Normalize` instance used to scale scalar data to the [0, 1]
+        range before mapping to colors using *cmap*. By default, a linear
+        scaling mapping the lowest value to 0 and the highest to 1 is used.
+        This parameter is ignored for RGB(A) data.
+    
+    aspect : {&#39;equal&#39;, &#39;auto&#39;} or float, default: :rc:`image.aspect`
+        The aspect ratio of the Axes.  This parameter is particularly
+        relevant for images since it determines whether data pixels are
+        square.
+    
+        This parameter is a shortcut for explicitly calling
+        `.Axes.set_aspect`. See there for further details.
+    
+        - &#39;equal&#39;: Ensures an aspect ratio of 1. Pixels will be square
+          (unless pixel sizes are explicitly made non-square in data
+          coordinates using *extent*).
+        - &#39;auto&#39;: The Axes is kept fixed and the aspect is adjusted so
+          that the data fit in the Axes. In general, this will result in
+          non-square pixels.
+    
+    interpolation : str, default: :rc:`image.interpolation`
+        The interpolation method used.
+    
+        Supported values are &#39;none&#39;, &#39;antialiased&#39;, &#39;nearest&#39;, &#39;bilinear&#39;,
+        &#39;bicubic&#39;, &#39;spline16&#39;, &#39;spline36&#39;, &#39;hanning&#39;, &#39;hamming&#39;, &#39;hermite&#39;,
+        &#39;kaiser&#39;, &#39;quadric&#39;, &#39;catrom&#39;, &#39;gaussian&#39;, &#39;bessel&#39;, &#39;mitchell&#39;,
+        &#39;sinc&#39;, &#39;lanczos&#39;, &#39;blackman&#39;.
+    
+        If *interpolation* is &#39;none&#39;, then no interpolation is performed
+        on the Agg, ps, pdf and svg backends. Other backends will fall back
+        to &#39;nearest&#39;. Note that most SVG renderers perform interpolation at
+        rendering and that the default interpolation method they implement
+        may differ.
+    
+        If *interpolation* is the default &#39;antialiased&#39;, then &#39;nearest&#39;
+        interpolation is used if the image is upsampled by more than a
+        factor of three (i.e. the number of display pixels is at least
+        three times the size of the data array).  If the upsampling rate is
+        smaller than 3, or the image is downsampled, then &#39;hanning&#39;
+        interpolation is used to act as an anti-aliasing filter, unless the
+        image happens to be upsampled by exactly a factor of two or one.
+    
+        See
+        :doc:`/gallery/images_contours_and_fields/interpolation_methods`
+        for an overview of the supported interpolation methods, and
+        :doc:`/gallery/images_contours_and_fields/image_antialiasing` for
+        a discussion of image antialiasing.
+    
+        Some interpolation methods require an additional radius parameter,
+        which can be set by *filterrad*. Additionally, the antigrain image
+        resize filter is controlled by the parameter *filternorm*.
+    
+    interpolation_stage : {&#39;data&#39;, &#39;rgba&#39;}, default: &#39;data&#39;
+        If &#39;data&#39;, interpolation
+        is carried out on the data provided by the user.  If &#39;rgba&#39;, the
+        interpolation is carried out after the colormapping has been
+        applied (visual interpolation).
+    
+    alpha : float or array-like, optional
+        The alpha blending value, between 0 (transparent) and 1 (opaque).
+        If *alpha* is an array, the alpha blending values are applied pixel
+        by pixel, and *alpha* must have the same shape as *X*.
+    
+    vmin, vmax : float, optional
+        When using scalar data and no explicit *norm*, *vmin* and *vmax*
+        define the data range that the colormap covers. By default,
+        the colormap covers the complete value range of the supplied
+        data. It is an error to use *vmin*/*vmax* when *norm* is given.
+        When using RGB(A) data, parameters *vmin*/*vmax* are ignored.
+    
+    origin : {&#39;upper&#39;, &#39;lower&#39;}, default: :rc:`image.origin`
+        Place the [0, 0] index of the array in the upper left or lower
+        left corner of the Axes. The convention (the default) &#39;upper&#39; is
+        typically used for matrices and images.
+    
+        Note that the vertical axis points upward for &#39;lower&#39;
+        but downward for &#39;upper&#39;.
+    
+        See the :doc:`/tutorials/intermediate/imshow_extent` tutorial for
+        examples and a more detailed description.
+    
+    extent : floats (left, right, bottom, top), optional
+        The bounding box in data coordinates that the image will fill.
+        The image is stretched individually along x and y to fill the box.
+    
+        The default extent is determined by the following conditions.
+        Pixels have unit size in data coordinates. Their centers are on
+        integer coordinates, and their center coordinates range from 0 to
+        columns-1 horizontally and from 0 to rows-1 vertically.
+    
+        Note that the direction of the vertical axis and thus the default
+        values for top and bottom depend on *origin*:
+    
+        - For ``origin == &#39;upper&#39;`` the default is
+          ``(-0.5, numcols-0.5, numrows-0.5, -0.5)``.
+        - For ``origin == &#39;lower&#39;`` the default is
+          ``(-0.5, numcols-0.5, -0.5, numrows-0.5)``.
+    
+        See the :doc:`/tutorials/intermediate/imshow_extent` tutorial for
+        examples and a more detailed description.
+    
+    filternorm : bool, default: True
+        A parameter for the antigrain image resize filter (see the
+        antigrain documentation).  If *filternorm* is set, the filter
+        normalizes integer values and corrects the rounding errors. It
+        doesn&#39;t do anything with the source floating point values, it
+        corrects only integers according to the rule of 1.0 which means
+        that any sum of pixel weights must be equal to 1.0.  So, the
+        filter function must produce a graph of the proper shape.
+    
+    filterrad : float &gt; 0, default: 4.0
+        The filter radius for filters that have a radius parameter, i.e.
+        when interpolation is one of: &#39;sinc&#39;, &#39;lanczos&#39; or &#39;blackman&#39;.
+    
+    resample : bool, default: :rc:`image.resample`
+        When *True*, use a full resampling method.  When *False*, only
+        resample when the output image is larger than the input image.
+    
+    url : str, optional
+        Set the url of the created `.AxesImage`. See `.Artist.set_url`.
+    
+    Returns
+    -------
+    `~matplotlib.image.AxesImage`
+    
+    Other Parameters
+    ----------------
+    data : indexable object, optional
+        If given, all parameters also accept a string ``s``, which is
+        interpreted as ``data[s]`` (unless this raises an exception).
+    
+    **kwargs : `~matplotlib.artist.Artist` properties
+        These parameters are passed on to the constructor of the
+        `.AxesImage` artist.
+    
+    See Also
+    --------
+    matshow : Plot a matrix or an array as an image.
+    
+    Notes
+    -----
+    Unless *extent* is used, pixel centers will be located at integer
+    coordinates. In other words: the origin will coincide with the center
+    of pixel (0, 0).
+    
+    There are two common representations for RGB images with an alpha
+    channel:
+    
+    -   Straight (unassociated) alpha: R, G, and B channels represent the
+        color of the pixel, disregarding its opacity.
+    -   Premultiplied (associated) alpha: R, G, and B channels represent
+        the color of the pixel, adjusted for its opacity by multiplication.
+    
+    `~matplotlib.pyplot.imshow` expects RGB images adopting the straight
+    (unassociated) alpha representation.
+</pre></div>
+</div>
+</div>
+</div>
+<p>This can sometimes reveal an overwhelming amount of information, and it can take a bit of time to figure out how to identify the key bits.</p>
+<p>The important plotting options for our purposes are</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cmap</span></code> to change the colormap (LUT)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmin</span></code> to change the pixel value corresponding to the first color in the colormap</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmax</span></code> to change the pixel value corresponding to the last color in the colormap</p></li>
+</ul>
+<p>The last two options control the brightness/contrast.</p>
+<p>Try running the following code cells to see the effect, and try out other changes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Display an image with different brightness/contrast.</span>
+<span class="sd">(Be sure to run the cells above before this one!)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Display the image with a grayscale colormap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/python_8_0.png" src="../../../_images/python_8_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an X-ray by adding &#39;_r&#39; to &#39;reverse&#39; the colormap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/python_9_0.png" src="../../../_images/python_9_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the image with a grayscale colormap and modified brightness/contrast</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/python_10_0.png" src="../../../_images/python_10_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the image with a grayscale colormap and modified brightness/contrast</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/python_11_0.png" src="../../../_images/python_11_0.png" />
+</div>
+</div>
+<p>There are many more colormaps available in matplotlib – for details, see <a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display with a &#39;perceptually uniform colormap&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/python_13_0.png" src="../../../_images/python_13_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display with a colormap that is, frankly, not very helpful here</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hsv&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/python_14_0.png" src="../../../_images/python_14_0.png" />
+</div>
+</div>
+<p>As you can see, the image may look <em>very</em> different depending upon the colormap and min/max values used.</p>
+<p>However, it’s crucial that <em>we haven’t modified the original image data itself</em>.</p>
+<p>To check this, try showing the image as we did initially - to make sure it looks the same.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the image as before</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/python_16_0.png" src="../../../_images/python_16_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="further-customizing-image-display">
+<h3>Further customizing image display<a class="headerlink" href="#further-customizing-image-display" title="Permalink to this headline">¶</a></h3>
+<p>Lots more can be done to customize appearance.</p>
+<p>In order to standardize things throughout this book, I normally turn off the outer axis (numbers around the boundary), set an image title, and use a grayscale lookup table.</p>
+<p>The code to do this is shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load and display an image with a title &amp; no visible axis</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../../images/spooked.png&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Some kind of title&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/python_18_0.png" src="../../../_images/python_18_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="writing-functions">
+<h3>Writing functions<a class="headerlink" href="#writing-functions" title="Permalink to this headline">¶</a></h3>
+<p>If you use the same customizations frequently, it helps to <strong>define a function</strong> that applies them.
+Then you don’t need to copy and paste the same lines of code frequently; rather, you just call the function instead.</p>
+<blockquote>
+<div><p>The function definition starts with <code class="docutils literal notranslate"><span class="pre">def</span></code>. It is followed by</p>
+<ul class="simple">
+<li><p>The function name</p></li>
+<li><p>Parameters (within parentheses), sometimes with default values</p></li>
+<li><p>A colon</p></li>
+<li><p>The main code that implements the function - this needs to be indented (something Python is <em>very</em> fussy about)</p></li>
+</ul>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Call imshow and turn the axis off, optionally setting a title and colormap.</span>
+<span class="sd">    The default colormap is &#39;gray&#39;, and there is no default title.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># Show image &amp; turn off axis</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="c1"># Show a title if we have one</span>
+    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+        
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="c1"># Now I just need to call my function rather than customize every plot</span>
+<span class="n">my_imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Here is my new title&#39;</span><span class="p">)</span>
+<span class="n">my_imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Now I have inverted the colormap&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/python_20_0.png" src="../../../_images/python_20_0.png" />
+<img alt="../../../_images/python_20_1.png" src="../../../_images/python_20_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="helper-functions-in-this-book">
+<h3>Helper functions in this book<a class="headerlink" href="#helper-functions-in-this-book" title="Permalink to this headline">¶</a></h3>
+<p>I’ve written several helper functions to standardize image display throughout this handbook.
+They aren’t part of any wider Python library, but we can use them here to make our scripts shorter and focus on the more important concepts.</p>
+<p>To use these helper functions, we need to import them once per Jupyter notebook.
+Then we can use the methods such as <code class="docutils literal notranslate"><span class="pre">load_image</span></code> and <code class="docutils literal notranslate"><span class="pre">show_image</span></code> (along with companions like <code class="docutils literal notranslate"><span class="pre">show_histogram</span></code>) to display images.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Default imports (they are already included at the top of the page)</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Easier way to load and display an image, which we&#39;ll use from now on</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;sunny_cell.tif&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;A new title&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/python_23_0.png" src="../../../_images/python_23_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "petebankhead/jupyter-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/1-concepts/1-images_and_pixels"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="imagej.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ImageJ: Images &amp; pixels</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../2-measurements/measurements.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Measurements &amp; histograms</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pete Bankhead<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

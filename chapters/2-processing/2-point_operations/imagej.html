@@ -1,0 +1,903 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ImageJ: Point operations &#8212; Introduction to Bioimage Analysis</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Thresholding" href="../3-thresholding/thresholding.html" />
+    <link rel="prev" title="Point operations" href="point_operations.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../README.html">
+   Introduction to Bioimage Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Front matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Before we begin
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/preface/preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/reading/reading.html">
+   How to read this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducing images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">
+   Images &amp; pixels
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">
+     ImageJ: Images &amp; pixels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">
+     Python: Images &amp; pixels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">
+   Measurements &amp; histograms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">
+     ImageJ: Measurements &amp; histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/python.html">
+     Python: Measurements &amp; histograms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">
+   Types &amp; bit-depths
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">
+     ImageJ: Types &amp; bit-depths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">
+     Python: Types &amp; bit-depths
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/4-colors/colors.html">
+   Channels &amp; colors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/imagej.html">
+     ImageJ: Channels &amp; colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/python.html">
+     Python: Channels &amp; colors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">
+   Pixel size &amp; dimensions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">
+     ImageJ:  Pixel size &amp; dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">
+     Python:  Pixel size &amp; dimensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/6-files/files.html">
+   Files &amp; file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/imagej.html">
+     ImageJ: Files &amp; file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/python.html">
+     Python: Files &amp; file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Processing &amp; analysis
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">
+   Image processing &amp; analysis
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="point_operations.html">
+   Point operations
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     ImageJ: Point operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3-thresholding/thresholding.html">
+   Thresholding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-thresholding/imagej.html">
+     ImageJ: Thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../4-filters/filters.html">
+   Filters
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4-filters/imagej.html">
+     ImageJ: Filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../5-morph/morph.html">
+   Morphological operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5-morph/imagej.html">
+     ImageJ: Morphological operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../6-transforms/transforms.html">
+   Image transforms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6-transforms/imagej.html">
+     ImageJ: Image transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../7-multidimensional_processing/multidimensional_processing.html">
+   Multidimensional processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7-multidimensional_processing/imagej.html">
+     ImageJ: Multidimensional processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fluorescence microscopy
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
+   From photons to pixels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
+   Blur &amp; the PSF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
+   Noise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
+   Microscopes &amp; detectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
+   Beyond this book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/python/python.html">
+   Python Primer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
+   ImageJ: Writing macros
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
+     Difference of Gaussians
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
+     Simulating image formation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/chapters/2-processing/2-point_operations/imagej.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/chapters/2-processing/2-point_operations/imagej.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/petebankhead/jupyter-book/main?urlpath=tree/chapters/2-processing/2-point_operations/imagej.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#before-we-begin">
+   Before we begin
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#duplicating-images">
+     Duplicating images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#converting-to-32-bit">
+     Converting to 32-bit
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#point-operations-for-single-images">
+   Point operations for single images
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image-inversion">
+     Image inversion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-image-calculator">
+   The Image Calculator
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>ImageJ: Point operations</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#before-we-begin">
+   Before we begin
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#duplicating-images">
+     Duplicating images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#converting-to-32-bit">
+     Converting to 32-bit
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#point-operations-for-single-images">
+   Point operations for single images
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image-inversion">
+     Image inversion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-image-calculator">
+   The Image Calculator
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="imagej-point-operations">
+<h1>ImageJ: Point operations<a class="headerlink" href="#imagej-point-operations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This section introduces image processing with ImageJ.
+It shows where to find the main point operations, including some tips (and warnings) about their use, along with a few exercises to try them out.</p>
+</div>
+<div class="section" id="before-we-begin">
+<h2>Before we begin<a class="headerlink" href="#before-we-begin" title="Permalink to this headline">¶</a></h2>
+<p>Before we embark on processing pixels, there are a couple of things we need to know how to do in preparation.</p>
+<div class="section" id="duplicating-images">
+<h3>Duplicating images<a class="headerlink" href="#duplicating-images" title="Permalink to this headline">¶</a></h3>
+<p>One of the most important ImageJ shortcuts to learn is <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">D</kbd></kbd> to <strong>duplicate the image</strong>.
+This applies the command <span class="menuselection">Image ‣ Duplicate…</span>.</p>
+<p>Being able to quickly duplicate an image matters for two main reasons:</p>
+<ol class="simple">
+<li><p>We often want to process duplicates of an image in different ways, and then combine or compare the results.</p></li>
+<li><p>Mistakes happen, and <span class="menuselection">Edit ‣ Undo</span> is rather limited; it can undo <em>some</em> processing steps applied to a single image slice, but not always… and it can’t undo operations applied to image stacks</p></li>
+</ol>
+<p>When working with an image in ImageJ, I almost always have at least one duplicate lingering around for when when things inevitably go wrong.</p>
+<p>But <span class="menuselection">Image ‣ Duplicate…</span> has an extra, hidden bonus: it’s supports extracting just a part of the image.
+This is controlled both by any ROI and by selecting subsets of channels, z-slices or time points where relevant.
+I frequently use duplication as a way to extract the channel from an image, as a more convenient alternative to <span class="menuselection">Image ‣ Color ‣ Split Channels</span>.</p>
+<a class="reference internal image-reference" href="../../../_images/imagej-points-duplicate.png"><img alt="../../../_images/imagej-points-duplicate.png" class="align-center" src="../../../_images/imagej-points-duplicate.png" style="width: 60%;" /></a>
+<div class="admonition-why-can-t-imagej-s-undo-undo-much admonition">
+<p class="admonition-title">Why can’t ImageJ’s ‘Undo’ undo much?</p>
+<p>Implementing ‘undo’ in software is quite tricky.
+Especially in flexible software that enables the user to do a lot of different things.</p>
+<p>When it comes to image processing, undo effectively requires the software to quietly duplicate the pixel values of an image before any processing step, so that they can be recovered later if needed.
+For a small image, that can work fine.
+But for big images (say, 1 GB or more), duplicating that much data could <em>significantly</em> slow down the software and potentially result in lots of out-of-memory errors.</p>
+<p>ImageJ provides some very limited undo support for 2D slices, but it’s best not to rely on it.
+In general, it’s left up to the user to decide when duplicating is necessary.
+If you suspect you might regret a processing step, then it’s best to always duplicate the image beforehand with <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">D</kbd></kbd>.</p>
+</div>
+</div>
+<div class="section" id="converting-to-32-bit">
+<h3>Converting to 32-bit<a class="headerlink" href="#converting-to-32-bit" title="Permalink to this headline">¶</a></h3>
+<p>The second thing I often do when processing an image in ImageJ is to <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html#sec-bits-type"><span class="std std-ref">convert it to 32-bit floating point</span></a>, using <span class="menuselection">Image ‣ Type ‣ 32-bit</span>.</p>
+<p>This isn’t <em>always</em> essential, but we will soon see examples where the type of the image makes a difference to the result.
+So you should always at least consider converting.</p>
+</div>
+</div>
+<div class="section" id="point-operations-for-single-images">
+<h2>Point operations for single images<a class="headerlink" href="#point-operations-for-single-images" title="Permalink to this headline">¶</a></h2>
+<p>Many point operations for single images are found in the <span class="menuselection">Process ‣ Math ‣</span> submenu.
+At the top of the list come the arithmetic operations: <span class="menuselection">Add…</span>, <span class="menuselection">Subtract…</span>, <span class="menuselection">Multiply…</span> and <span class="menuselection">Divide…</span>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<img alt="../../../_images/spooked.png" src="../../../_images/spooked.png" />
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="f8ce0bdb-814f-4741-9987-22c973768b6f" name="1e79ba2c-7e3b-4247-a492-49dd8fa77b54" type="radio">
+</input><label class="tabbed-label" for="f8ce0bdb-814f-4741-9987-22c973768b6f">
+Practical</label><div class="tabbed-content docutils">
+<p>Open the image <em>Spooked_16-bit.tif</em>, and apply <em>only</em> the following steps:</p>
+<ul class="simple">
+<li><p>Measure the mean pixel value of the image</p></li>
+<li><p>Subtract 600 from all pixel values</p></li>
+<li><p>Add 600 to all pixel values</p></li>
+<li><p>Measure the mean pixel value of the image</p></li>
+</ul>
+<p><em>Mathematically</em>, you should get the same mean measurements.
+Can you explain the result?</p>
+<p><a class="reference external" href="https://ij.imjoy.io?open=https://github.com/bioimage-book/practical-data/blob/main/images/Spooked_16-bit.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
+</div>
+<input id="68488592-a91c-4b71-ba98-608c7bc9ad90" name="1e79ba2c-7e3b-4247-a492-49dd8fa77b54" type="radio">
+</input><label class="tabbed-label" for="68488592-a91c-4b71-ba98-608c7bc9ad90">
+Solution</label><div class="tabbed-content docutils">
+<p>Firstly, the commands you need to run are:</p>
+<ul class="simple">
+<li><p><span class="menuselection">Analyze ‣ Measure</span>, or press <kbd class="kbd docutils literal notranslate">M</kbd></p></li>
+<li><p><span class="menuselection">Process ‣ Math ‣ Subtract…</span> with the value 600</p></li>
+<li><p><span class="menuselection">Process ‣ Math ‣ Add…</span> with the value 600</p></li>
+<li><p><span class="menuselection">Analyze ‣ Measure</span>, or press <kbd class="kbd docutils literal notranslate">M</kbd></p></li>
+</ul>
+<p>When I do this, I get the following results table:</p>
+<img alt="../../../_images/points-spooked-subtraction.png" class="align-center" src="../../../_images/points-spooked-subtraction.png" />
+<p>The reason the mean values differ is because we have a 16-bit image.
+After subtraction, any values that were less than 600 become clipped to zero.
+All these become 600 after the addition, pushing up the overall mean.</p>
+<p>If you didn’t see this effect, then I would guess you had the foresight to run <span class="menuselection">Image ‣ Type ‣ 32-bit</span>.
+If you do this, the mean values match after all.</p>
+</div>
+</div>
+<p>The <span class="menuselection">Process ‣ Math ‣ Log…</span> and <span class="menuselection">Process ‣ Math ‣ Gamma…</span> commands implement the log and gamma transforms respectively.
+The gamma transform is more common, since it contains an adjustable gamma parameter that can be used to tune the effect.</p>
+<div class="warning admonition">
+<p class="admonition-title">Beware of the bit-depth with nonlinear transforms!</p>
+<p>When applying gamma or log transforms to 8-bit or 16-bit images, ImageJ applies some additional (linear) rescaling to the result so that the output falls within the range supported by the image.</p>
+<p>This rescaling isn’t needed for 32-bit images.
+This means that if you apply either command to a 32-bit image then it can seem that the image disappears.
+You’ll need to follow up by using <span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> to reset the LUT display range to see the output properly.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<img alt="../../../_images/spooked-gamma.png" src="../../../_images/spooked-gamma.png" />
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="0d473599-788d-4503-92f1-b56df2ade9ac" name="7bf94f2c-af43-48ee-9a35-cc8ad99830f1" type="radio">
+</input><label class="tabbed-label" for="0d473599-788d-4503-92f1-b56df2ade9ac">
+Practical</label><div class="tabbed-content docutils">
+<p>Explore the use of <span class="menuselection">Process ‣ Math ‣ Gamma…</span> for enhancing the contrast of <em>Spooked_16-bit.tif</em>.</p>
+<p>If you want to see both the human and the ghost, should the gamma value be less than 1, equal to 1, or greater than 1?</p>
+<p><strong>Tip:</strong> To get a feeling for how the values are changing, create a histogram of the image first and press the <span class="guilabel">Live</span> button on the histogram.
+Then run the gamma command, turn on the <span class="guilabel">Preview</span> option and adjust the slider.
+You should now see a live update of how changing the gamma affects the pixel values.</p>
+<p><a class="reference external" href="https://ij.imjoy.io?open=https://github.com/bioimage-book/practical-data/blob/main/images/Spooked_16-bit.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
+</div>
+<input id="636d920b-ab88-4aa6-874b-ef8052e44fb5" name="7bf94f2c-af43-48ee-9a35-cc8ad99830f1" type="radio">
+</input><label class="tabbed-label" for="636d920b-ab88-4aa6-874b-ef8052e44fb5">
+Solution</label><div class="tabbed-content docutils">
+<p>The gamma needs to be less than 1.</p>
+<p>When the gamma is equal to 1, it isn’t doing anything at all.
+When it is greater than 1, it’s applying a non-linear adjustment – but not one that really helps in this case.</p>
+</div>
+</div>
+<div class="section" id="image-inversion">
+<h3>Image inversion<a class="headerlink" href="#image-inversion" title="Permalink to this headline">¶</a></h3>
+<p>The <span class="menuselection">Edit ‣ Invert</span> command implements image inversion.</p>
+<div class="danger admonition">
+<p class="admonition-title">Inverting images or inverting LUTs?</p>
+<p><span class="menuselection">Edit ‣ Invert</span> should not be confused with the <span class="menuselection">Image ‣ Lookup Tables ‣ Invert LUT</span> command, which inverts the LUT but <em>does nothing to the pixel values!</em></p>
+<p>Moreover, whether the LUT is inverted can be saved inside the file – and so you could potentially open an image and find its LUT was inverted before you even started to do anything, and thereby misjudge whether structures are really brighter or darker than everything else.</p>
+<p><span class="menuselection">File ‣ Open samples ‣ Blobs</span> is an example of this.
+It took a long time before I realized that the pixel values inside the blobs are higher than the background, because of the sneaky inverted LUT.
+As is often the case, the signs of an inverted LUT are evident in the text at the top of an image window.</p>
+<a class="reference internal image-reference" href="../../../_images/points-blobs-inverting.png"><img alt="../../../_images/points-blobs-inverting.png" class="align-center" src="../../../_images/points-blobs-inverting.png" style="width: 50%;" /></a>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="f7e971d0-c318-4c21-80a2-60ec82629089" name="45a8eeb3-c7f7-4a49-9b1e-ee7c5fec2c03" type="radio">
+</input><label class="tabbed-label" for="f7e971d0-c318-4c21-80a2-60ec82629089">
+Practical</label><div class="tabbed-content docutils">
+<p><span class="menuselection">Edit ‣ Invert</span> works differently when applied to different image types.
+Like in the 8-bit case, pixel values are always subtracted from some ‘maximum’.</p>
+<p>How this maximum is determined for 16 and 32-bit images in ImageJ?</p>
+<p><strong>Note:</strong> the methods used for 16 and 32-bit images are different from one another!</p>
+</div>
+<input id="015d2e8d-2099-4bd4-bc2e-7c1d74dd340c" name="45a8eeb3-c7f7-4a49-9b1e-ee7c5fec2c03" type="radio">
+</input><label class="tabbed-label" for="015d2e8d-2099-4bd4-bc2e-7c1d74dd340c">
+Answer</label><div class="tabbed-content docutils">
+<p>When I first wrote this question, to invert a 16-bit image pixel were subtracted from <em>the maximum value within the original image</em>.
+This is also true for stacks: the maximum value in the entire stack is found.</p>
+<p>Since ImageJ v1.53k, the maximum value of 65535 is used… unless you happen to have a different <span class="guilabel">Unsigned 6-bit range</span> value specified via the <span class="guilabel">Set</span> button via the <em>Brightness &amp; Contrast</em> dialog.
+I only know about this sneaky alternative option through the <a class="reference external" href="https://imagej.nih.gov/ij/notes.html">ImageJ release notes</a>.</p>
+<p>For 32-bit image inversion, the pixels are subtracted from the <em>display maximum</em>, i.e. whatever maximum is set in the <span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> dialog box.
+Consequently, <em>inverting a 32-bit image can give different results each time it is applied if the contrast settings are not kept the same!</em></p>
+<p>I personally dislike this unpredictable weirdness.
+I would happily apply <span class="menuselection">Edit ‣ Invert</span> to an 8-bit image.
+For anything else, I’d generally rather convert to 32-bit and multiply by -1 – so that I know the results should be repeatable, regardless of brightess &amp; contrast settings.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-image-calculator">
+<h2>The Image Calculator<a class="headerlink" href="#the-image-calculator" title="Permalink to this headline">¶</a></h2>
+<p><span class="menuselection">Process ‣ Math ‣ Image Calculator…</span> is used to combine two images in various ways.
+It is one of ImageJ’s most indispensable commands.</p>
+<div class="figure align-center" id="id1">
+<img alt="../../../_images/points-image-calculator.png" src="../../../_images/points-image-calculator.png" />
+<p class="caption"><span class="caption-number">Fig. 61 </span><span class="caption-text">The <em>Image Calculator…</em> dialog</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>But beware of the bit-depth and type!
+If any of the original images are 8 or 16-bit, then the result might require clipping or rounding, in which case selecting the option to create a <span class="guilabel">32-bit (float) result</span> may be necessary to get the expected output.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="a537ed10-0abb-4f15-b8c4-ebcd09dfcd94" name="d4b2cb1c-f9cc-481f-ac87-a2bbd31df790" type="radio">
+</input><label class="tabbed-label" for="a537ed10-0abb-4f15-b8c4-ebcd09dfcd94">
+Practical</label><div class="tabbed-content docutils">
+<p><span class="menuselection">Process ‣ Math ‣ Image Calculator…</span> finally makes it possible for us to check whether the pixel values of two images are all identical – without relying on summary measurements or histograms.</p>
+<p>Use it to determine which two of the images <em>Same_1.tif</em>, <em>Same_2.tif</em> and <em>Same_3.tif</em> are identical in terms of pixel values.</p>
+</div>
+<input id="9c77c7a8-883a-4200-a389-5c9e777b3790" name="d4b2cb1c-f9cc-481f-ac87-a2bbd31df790" type="radio">
+</input><label class="tabbed-label" for="9c77c7a8-883a-4200-a389-5c9e777b3790">
+Answer</label><div class="tabbed-content docutils">
+<p>My preferred way to check this is to subtract the images from one another, making sure that the result is 32-bit (in case there are negative values). Doing this should reveal something hidden in the image <em>Same_2.tif</em>.
+Note that the contrast settings differ between <em>Same_1.tif</em> and <em>Same_3.tif</em>, so they may <em>look</em> different.</p>
+<p>(Note that the calculator’s <span class="guilabel">Difference</span> or <span class="guilabel">Divide</span> commands could also be used.
+<span class="guilabel">XOR</span> would work as well, but its output is harder to interpret since it involves comparing individual bits used to store each pixel value and gives an output where all matching bits are 0 and all non-matching bits are 1.
+When converted back into actual decimal values and then to colors for us to look at, this can appear strange.
+But at least if the resulting image is not completely black then we know that the original input images were not identical.)</p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "petebankhead/jupyter-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/2-processing/2-point_operations"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="point_operations.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Point operations</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../3-thresholding/thresholding.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Thresholding</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pete Bankhead<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,1015 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Difference of Gaussians &#8212; Introduction to Bioimage Analysis</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Simulating image formation" href="macro_simulating.html" />
+    <link rel="prev" title="ImageJ: Writing macros" href="macro_intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../README.html">
+   Introduction to Bioimage Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Front matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Before we begin
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/preface/preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/reading/reading.html">
+   How to read this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducing images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">
+   Images &amp; pixels
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">
+     ImageJ: Images &amp; pixels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">
+     Python: Images &amp; pixels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">
+   Measurements &amp; histograms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">
+     ImageJ: Measurements &amp; histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/python.html">
+     Python: Measurements &amp; histograms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">
+   Types &amp; bit-depths
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">
+     ImageJ: Types &amp; bit-depths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">
+     Python: Types &amp; bit-depths
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/4-colors/colors.html">
+   Channels &amp; colors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/imagej.html">
+     ImageJ: Channels &amp; colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/python.html">
+     Python: Channels &amp; colors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">
+   Pixel size &amp; dimensions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">
+     ImageJ:  Pixel size &amp; dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">
+     Python:  Pixel size &amp; dimensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/6-files/files.html">
+   Files &amp; file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/imagej.html">
+     ImageJ: Files &amp; file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/python.html">
+     Python: Files &amp; file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Processing &amp; analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../2-processing/1-processing_and_analysis/processing_and_analysis.html">
+   Image processing &amp; analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html">
+   Point operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/2-point_operations/imagej.html">
+     ImageJ: Point operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html">
+   Thresholding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/3-thresholding/imagej.html">
+     ImageJ: Thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/4-filters/filters.html">
+   Filters
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/4-filters/imagej.html">
+     ImageJ: Filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/5-morph/morph.html">
+   Morphological operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/5-morph/imagej.html">
+     ImageJ: Morphological operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/6-transforms/transforms.html">
+   Image transforms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/6-transforms/imagej.html">
+     ImageJ: Image transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/7-multidimensional_processing/multidimensional_processing.html">
+   Multidimensional processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/7-multidimensional_processing/imagej.html">
+     ImageJ: Multidimensional processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fluorescence microscopy
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
+   From photons to pixels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
+   Blur &amp; the PSF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
+   Noise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
+   Microscopes &amp; detectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../next_steps/next_steps.html">
+   Beyond this book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../python/python.html">
+   Python Primer
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="macro_intro.html">
+   ImageJ: Writing macros
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Difference of Gaussians
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="macro_simulating.html">
+     Simulating image formation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/chapters/appendices/macros/macro_dog.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/chapters/appendices/macros/macro_dog.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/petebankhead/jupyter-book/main?urlpath=tree/chapters/appendices/macros/macro_dog.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recording-a-macro">
+   Recording a macro
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cleaning-up-the-code">
+   Cleaning up the code
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#understanding-the-code">
+     Understanding the code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#removing-title-dependancies">
+     Removing title dependancies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-comments">
+     Adding comments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#customizing-sigma-values">
+     Customizing sigma values
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-interactivity">
+     Adding interactivity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-the-macro">
+   Installing the macro
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#suggested-improvements">
+   Suggested improvements
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Difference of Gaussians</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recording-a-macro">
+   Recording a macro
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cleaning-up-the-code">
+   Cleaning up the code
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#understanding-the-code">
+     Understanding the code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#removing-title-dependancies">
+     Removing title dependancies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-comments">
+     Adding comments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#customizing-sigma-values">
+     Customizing sigma values
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-interactivity">
+     Adding interactivity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-the-macro">
+   Installing the macro
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#suggested-improvements">
+   Suggested improvements
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="difference-of-gaussians">
+<span id="chap-macro-dog"></span><h1>Difference of Gaussians<a class="headerlink" href="#difference-of-gaussians" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../../2-processing/4-filters/filters.html#sec-filters-dog"><span class="std std-ref">Difference of Gaussians (DoG) filtering</span></a> is a very useful technique for enhancing the appearance of small spots and edges in an image.
+It’s quite straightforward, but time consuming to apply manually very often – and you might need to experiment with different filter sizes to get good results.
+This makes it an excellent candidate for a macro.</p>
+</div>
+<div class="section" id="recording-a-macro">
+<h2>Recording a macro<a class="headerlink" href="#recording-a-macro" title="Permalink to this headline">¶</a></h2>
+<div class="margin figure align-default" id="id4">
+<img alt="../../../_images/macros_spots_orig.png" src="../../../_images/macros_spots_orig.png" />
+<p class="caption"><span class="caption-number">Fig. 160 </span><span class="caption-text">Example input image</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="margin figure align-default" id="id5">
+<img alt="../../../_images/macros_spots_dog.png" src="../../../_images/macros_spots_dog.png" />
+<p class="caption"><span class="caption-number">Fig. 161 </span><span class="caption-text">Result of DoG filter</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<p>Rather than diving into writing the code, the fastest way to get started is to have ImageJ do most of the hard work itself.
+Then you only need to fix up the result.
+The procedure is as follows:</p>
+<ul class="simple">
+<li><p>Open up an example (2D, non-color) image to use, ideally one including small spot-like or otherwise round objects.
+I have used <span class="menuselection">File ‣ Open samples ‣ HeLa Cells</span>, after extracting the red channel only.</p></li>
+<li><p>Start the <em>Macro Recorder</em> by choosing <span class="menuselection">Plugins ‣ Macros ‣ Record</span>. Make sure that <span class="guilabel">Record: Macro</span> appears at the top of this window (see the drop-down list).
+Every subsequent click you make that has a corresponding macro command will result in the command being added to the window.</p></li>
+<li><p>Convert your image to 32-bit. This will reduce inaccuracies due to rounding whenever the filtering is applied.</p></li>
+<li><p>Duplicate the image.</p></li>
+<li><p>Apply <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur…</span> to one of the images (it doesn’t matter if it’s the original or the duplicate), using a small sigma (e.g. 1) for noise suppression.</p></li>
+<li><p>Apply <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur…</span> to the other image, using a larger sigma (e.g. 2).</p></li>
+<li><p>Run <span class="menuselection">Process ‣ Image Calculator…</span> and subtract the second filtered image from the first.
+This produces the ‘difference of Gaussians’ filtered image, in which small features should appear prominently and the background is removed.</p>
+<ul>
+<li><p>Be careful to choose the correct image titles and subtraction operation in the <em>Image Calculator</em>!</p></li>
+</ul>
+</li>
+<li><p>Press the <span class="guilabel">Create</span> button on the macro recorder. This should cause a text file containing the recorded macro to be opened in Fiji’s
+<span class="menuselection">Script Editor</span> (which you can find under <span class="menuselection">File ‣ New ‣ Script…</span>).</p></li>
+<li><p>Save the text file. The file name should end with the extension <code class="docutils literal notranslate"><span class="pre">.ijm</span></code> (for ‘ImageJ Macro’), and include an underscore character somewhere within it.</p></li>
+</ul>
+<p><strong>Now you have a macro!</strong></p>
+<p>You <em>could</em> try it out by pressing the tempting <span class="guilabel">Run</span> button, but this isn’t guaranteed to work (yet).
+Our macro remains quite brittle: it depends upon exact image names and might become easily confused.
+We will fix this soon.</p>
+<p>As an alternative,</p>
+<ul class="simple">
+<li><p>Close Fiji completely (to ensure nothing remains from this session)</p></li>
+<li><p>Reopen Fiji</p></li>
+<li><p>Open the original image you used</p></li>
+<li><p>Open the macro (you can just drag it onto the ImageJ toolbar)</p></li>
+</ul>
+<p>Now the <span class="guilabel">Run</span> button will hopefully give you the same result as when you applied the commands manually.
+If not, keep reading anyway and the following steps should fix it.</p>
+</div>
+<div class="section" id="cleaning-up-the-code">
+<h2>Cleaning up the code<a class="headerlink" href="#cleaning-up-the-code" title="Permalink to this headline">¶</a></h2>
+<p>Now reopen your macro in the <em>Script Editor</em>.
+It should look something like mine:</p>
+<a class="reference internal image-reference" href="../../../_images/macros_dog_editor.png"><img alt="../../../_images/macros_dog_editor.png" class="align-center" src="../../../_images/macros_dog_editor.png" style="width: 70%;" /></a>
+<p>For easier copy-and-paste, the content is below:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span>
+<span class="c1">//run(&quot;Brightness/Contrast...&quot;);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Enhance Contrast&quot;</span><span class="p">,</span> <span class="s">&quot;saturated=0.35&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span> <span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span> <span class="s">&quot;sigma=1&quot;</span><span class="p">);</span>
+<span class="n">selectWindow</span><span class="p">(</span><span class="s">&quot;C1-hela-cells.tif&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span> <span class="s">&quot;sigma=2&quot;</span><span class="p">);</span>
+<span class="n">imageCalculator</span><span class="p">(</span><span class="s">&quot;Subtract create&quot;</span><span class="p">,</span> <span class="s">&quot;C1-hela-cells-1.tif&quot;</span><span class="p">,</span><span class="s">&quot;C1-hela-cells.tif&quot;</span><span class="p">);</span>
+<span class="n">selectWindow</span><span class="p">(</span><span class="s">&quot;Result of C1-hela-cells-1.tif&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Your code is probably not identical, and may well be better.
+One problem with automatically generated macros is that they contain (almost) <em>everything</em> – often including a lot of errant clicking, or other non-essential steps.
+For example, I changed the contrast of an image, but this was only to look at it – and it does not need to be included in the macro.</p>
+<p>After deleting the unnecessary lines, I get:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span> <span class="s">&quot;title=C1-hela-cells-1.tif&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span> <span class="s">&quot;sigma=1&quot;</span><span class="p">);</span>
+<span class="n">selectWindow</span><span class="p">(</span><span class="s">&quot;C1-hela-cells.tif&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span> <span class="s">&quot;sigma=2&quot;</span><span class="p">);</span>
+<span class="n">imageCalculator</span><span class="p">(</span><span class="s">&quot;Subtract create&quot;</span><span class="p">,</span> <span class="s">&quot;C1-hela-cells-1.tif&quot;</span><span class="p">,</span><span class="s">&quot;C1-hela-cells.tif&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="understanding-the-code">
+<h3>Understanding the code<a class="headerlink" href="#understanding-the-code" title="Permalink to this headline">¶</a></h3>
+<p>You can most likely work out what the macro is doing, if not necessarily the terminology, just by looking at it.
+Taking the first line, <code class="docutils literal notranslate"><span class="pre">run</span></code> is a **function_ that tells ImageJ to execute a command, while <code class="docutils literal notranslate"><span class="pre">32-bit</span></code> is a piece of text (called a <strong>string</strong>) that tells it which command.
+Functions always tell ImageJ to do something or give you information, and can be recognized because they are normally followed by parentheses.
+Strings are recognizable both because they are inside double inverted commas and the script editor shows them in a different color.
+Notice also that each line needs to end with a semicolon so that the macro interpreter knows the line is over.</p>
+<p>Functions can require different numbers of pieces of information to do their work.
+At a minimum, <code class="docutils literal notranslate"><span class="pre">run</span></code> needs to know the name of the command and the image to which it should be applied – which here is taken to be whichever image is currently active, i.e. the one that was selected most recently.
+But if the command being used by <code class="docutils literal notranslate"><span class="pre">run</span></code> requires extra information of its own, then this is included as an extra string. Therefore</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span> <span class="s">&quot;title=C1-hela-cells-1.tif&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>informs the <span class="menuselection">Duplicate</span> command that the image it creates should be called <em>C1-hela-cells-1.tif</em>, and</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span> <span class="s">&quot;sigma=1&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>ensures that <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur…</span> is executed with a sigma value of 1.</p>
+<p><code class="docutils literal notranslate"><span class="pre">selectWindow</span></code> is another function, added to the macro whenever you click on a particular window to activate it, and which requires the name of the image window to make active.
+From this you can see that my example file name was <em>C1-hela-cells.tif</em>.
+Without this line, the duplicated image would be filtered twice – and the original not at all.</p>
+<p>Finally, the <span class="menuselection">Image Calculator</span> command is special enough to get its own function in the macro language, <code class="docutils literal notranslate"><span class="pre">imageCalculator</span></code>.
+The first string it is given tells it both what sort of calculation to do, and that it should <code class="docutils literal notranslate"><span class="pre">create</span></code> a new image for the result – rather than replacing one of the existing images.
+The next two strings give it the titles of the images needed for the calculation.</p>
+</div>
+<div class="section" id="removing-title-dependancies">
+<h3>Removing title dependancies<a class="headerlink" href="#removing-title-dependancies" title="Permalink to this headline">¶</a></h3>
+<p>The fact that the original image title appears in the above macro is a problem: if you try to run it on another image, you are likely to find that it does not work because <code class="docutils literal notranslate"><span class="pre">selectWindow</span></code> cannot find what it’s looking for.
+So the next step is to remove this title dependency so that the macro can be applied to any (2D) image.</p>
+<p>There are two ways to go about this.
+One is to insert a line that tells the macro the title of the image being processed at the start, e.g.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">titleOrig</span> <span class="o">=</span> <span class="n">getTitle</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">getTitle()</span></code> is an example of a function that asks for information.
+The result is then stored as a <strong>variable</strong>, so that any time we type <code class="docutils literal notranslate"><span class="pre">titleOrig</span></code> later this will be replaced by the string corresponding to the original title <a class="footnote-reference brackets" href="#fn-6" id="id1">1</a>.
+Then we just find anywhere the title appears and replace the text with our new variable name, i.e.
+in this case by writing</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">selectWindow</span><span class="p">(</span><span class="n">titleOrig</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If we do this, the window we want will <em>probably</em> be activated as required.
+However, there is a subtle potential problem.
+It’s possible that we have two images open at the same time with identical titles – in which case it’s not clear which window should be selected, and so the results could be unpredictable.
+A safer approach is to get a reference to the <strong>image ID</strong> rather than its title.
+The ID is a number that should be unique for each image, which is useful for ImageJ internally but which we do not normally care about unless we are programming.
+Using IDs, the updated macro code then becomes:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">idOrig</span> <span class="o">=</span> <span class="n">getImageID</span><span class="p">();</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span> <span class="s">&quot;title=[My duplicated image]&quot;</span><span class="p">);</span>
+<span class="n">idDuplicate</span> <span class="o">=</span> <span class="n">getImageID</span><span class="p">();</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span> <span class="s">&quot;sigma=1&quot;</span><span class="p">);</span>
+<span class="n">selectImage</span><span class="p">(</span><span class="n">idOrig</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span> <span class="s">&quot;sigma=2&quot;</span><span class="p">);</span>
+<span class="n">imageCalculator</span><span class="p">(</span><span class="s">&quot;Subtract create&quot;</span><span class="p">,</span> <span class="n">idDuplicate</span><span class="p">,</span> <span class="n">idOrig</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>We had to change <code class="docutils literal notranslate"><span class="pre">selectWindow</span></code> to <code class="docutils literal notranslate"><span class="pre">selectImage</span></code> for the IDs to work.
+I also changed the title of the duplicated image to something more meaninglessly general – which required square brackets, because it includes spaces that would otherwise mess things up <a class="footnote-reference brackets" href="#fn-7" id="id2">2</a>.
+Also, because the duplicated image will be active immediately after it was created, I ask ImageJ for its ID at that point. This lets me then pass the two IDs (rather than titles) to the
+<code class="docutils literal notranslate"><span class="pre">imageCalculator</span></code> command when necessary.</p>
+</div>
+<div class="section" id="adding-comments">
+<h3>Adding comments<a class="headerlink" href="#adding-comments" title="Permalink to this headline">¶</a></h3>
+<p>Whenever macros become more complicated, it can be hard to remember exactly what all the parts do and why.
+It’s then a <em>very</em> good idea to add in some extra notes and explanations.
+This is done by prefixing a line with <code class="docutils literal notranslate"><span class="pre">//</span></code>, after which we can write whatever we like because the macro interpreter will ignore it.
+These extra notes are called <strong>comments</strong>, and I will add them from now on.</p>
+</div>
+<div class="section" id="customizing-sigma-values">
+<h3>Customizing sigma values<a class="headerlink" href="#customizing-sigma-values" title="Permalink to this headline">¶</a></h3>
+<p>By changing the size of the Gaussian filters, the macro can be tailored to detecting structures of different sizes.
+It would be relatively easy to find the <code class="docutils literal notranslate"><span class="pre">Gaussian</span> <span class="pre">Blur</span></code> lines and change the sigma values accordingly here, but adjusting settings like this in longer, more complex macros can be awkward.
+In such cases, it’s helpful to extract the settings you might wish to change and include them at the start of the macro.</p>
+<p>To do this here, insert the following lines at the very beginning:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Store the Gaussian sigma values - </span>
+<span class="c1">// sigma1 should be less than sigma2</span>
+<span class="n">sigma1</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+<span class="n">sigma2</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Then, update the later commands to:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span> <span class="s">&quot;sigma=&quot;</span><span class="o">+</span><span class="n">sigma1</span><span class="p">);</span>
+<span class="n">selectImage</span><span class="p">(</span><span class="n">idOrig</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span> <span class="s">&quot;sigma=&quot;</span><span class="o">+</span><span class="n">sigma2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This creates two new variables, which represent the sigma values to use. Now any time you want to change <code class="docutils literal notranslate"><span class="pre">sigma1</span></code> or <code class="docutils literal notranslate"><span class="pre">sigma2</span></code> you do not need to hunt through the macro for the correct lines: you can just update the lines at the top <a class="footnote-reference brackets" href="#fn-8" id="id3">3</a>.</p>
+</div>
+<div class="section" id="adding-interactivity">
+<h3>Adding interactivity<a class="headerlink" href="#adding-interactivity" title="Permalink to this headline">¶</a></h3>
+<p>Usually I would stop at this point.
+Still, you might wish to share your macro with someone lacking your macro modification skills, in which case it would be useful to give this person a dialog box into which they could type the Gaussian sigma values that they wanted.
+An easy way to do this is to remove the sigma value information from the <code class="docutils literal notranslate"><span class="pre">run</span></code> command lines, giving</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="margin figure align-default">
+<img alt="../../../_images/macros_gaussian_prompt.png" src="../../../_images/macros_gaussian_prompt.png" />
+</div>
+<p>Since <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur</span> will not then know what size of filters to use, it will ask.
+The disadvantage of this is that the user is prompted to enter sigma values at two different times as the macro runs, which is slightly more annoying than necessary.</p>
+<p>The alternative is to create a dialog box that asks for all the required settings in one go.
+To do this, update the beginning of your macro to include something like the following:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Dialog</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;Choose DoG filters&quot;</span><span class="p">);</span>
+<span class="n">Dialog</span><span class="p">.</span><span class="na">addNumber</span><span class="p">(</span><span class="s">&quot;Gaussian sigma 1&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">Dialog</span><span class="p">.</span><span class="na">addNumber</span><span class="p">(</span><span class="s">&quot;Gaussian sigma 2&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">Dialog</span><span class="p">.</span><span class="na">show</span><span class="p">();</span>
+<span class="n">sigma1</span> <span class="o">=</span> <span class="n">Dialog</span><span class="p">.</span><span class="na">getNumber</span><span class="p">();</span>
+<span class="n">sigma2</span> <span class="o">=</span> <span class="n">Dialog</span><span class="p">.</span><span class="na">getNumber</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="margin figure align-default">
+<img alt="../../../_images/macros_custom_prompt.png" src="../../../_images/macros_custom_prompt.png" />
+</div>
+<p>The first line generates a dialog box with the title you specify.
+Each of the next two lines state that the required user input should be a number with the specified prompts and default values.
+The other lines simply show the dialog box and then read out whatever the user typed and puts it into variables.
+This is documented in ImageJ’s <a class="reference external" href="https://imagej.nih.gov/ij/developer/macro/functions.html">list of built-in macro functions</a>.</p>
+<p>You can download the complete example macro <a class="reference external" href="https://gist.github.com/petebankhead/53c0651dd1ad4f455622fc8eeefdc21e">here</a>.</p>
+</div>
+</div>
+<div class="section" id="installing-the-macro">
+<h2>Installing the macro<a class="headerlink" href="#installing-the-macro" title="Permalink to this headline">¶</a></h2>
+<p>If you’d like the macro to appear as an entry in ImageJ’s menus, you have a couple of options.</p>
+<p>One is the tempting <span class="menuselection">Plugins ‣ Macros ‣ Install…</span>.
+This works, but whenever I tested it I found that it only retains the macro until ImageJ is restarted.</p>
+<p>More usefully, <span class="menuselection">Plugins ‣ Install…</span> will prompt you to first select the file containing your macro, and then to save it within the <em>Plugins</em> directory of ImageJ itself.
+As long as the macro file you choose has an underscore in its name, it should appear as its own entry towards the bottom of the <span class="menuselection">Plugins</span> menu – and be retained even when ImageJ is relaunched.</p>
+</div>
+<div class="section" id="suggested-improvements">
+<h2>Suggested improvements<a class="headerlink" href="#suggested-improvements" title="Permalink to this headline">¶</a></h2>
+<p>You should now have a macro that does something vaguely useful, and which will work on most 2D images.
+It could nevertheless still be enhanced in many ways.
+For example,</p>
+<ul class="simple">
+<li><p>You could close any unwanted images (e.g. the original and its duplicate) by selecting their IDs, and then inserting <code class="docutils literal notranslate"><span class="pre">close();</span></code> commands afterwards.</p></li>
+<li><p>You could make the macro work on entire image stacks. If you want it to process each plane separately, this involves only inserting the words
+<code class="docutils literal notranslate"><span class="pre">stack</span></code> and <code class="docutils literal notranslate"><span class="pre">duplicate</span></code> in several places – by recording a new macro in the same way, but using a stack as your example image, you can see where to do this.
+If you want the filtering to be applied in 3D, you can use the <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur 3D…</span> command instead of <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur…</span></p></li>
+<li><p>You could create a log of which images you have processed, possibly including the settings used.
+The log is output by including a <code class="docutils literal notranslate"><span class="pre">log(text);</span></code> line, where <code class="docutils literal notranslate"><span class="pre">text</span></code> is some string you have created, e.g. <code class="docutils literal notranslate"><span class="pre">text</span> <span class="pre">=</span> <span class="pre">Image</span> <span class="pre">name:</span>&#160; <span class="pre">+</span> <span class="pre">getTitle()</span></code>.</p></li>
+<li><p>More impressively, you could turn the macro into a full spot-detector by thresholding the DoG filtered image, and then running the <span class="menuselection">Analyze ‣ Analyze Particles…</span> command.
+If you want to measure original spot intensities, you should remember to go to <span class="menuselection">Analyze ‣ Set Measurements…</span> to make sure the measurements are redirected to the original image – which you should possibly have duplicated at the beginning.
+Without the duplication, the original image will have been Gaussian filtered by the time your macro reaches the measurement stage.</p></li>
+</ul>
+<p>In any case, the process of developing a macro is usually the same:</p>
+<ol class="simple">
+<li><p>Record a macro that does basically the right thing</p></li>
+<li><p>Remove all the superfluous lines (contrast adjustment, errant clicking etc.)</p></li>
+<li><p>Replace the image titles with image ID references</p></li>
+<li><p>Add comments to describe what the macro is doing</p></li>
+<li><p>Track down bugs and make improvements</p></li>
+</ol>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="fn-6"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>There is nothing special about <code class="docutils literal notranslate"><span class="pre">titleOrig</span></code> – this text can be changed to any variable name you like, so long as it’s one word and does not contain special characters.</p>
+</dd>
+<dt class="label" id="fn-7"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>In ImageJ’s macro language, spaces in the string telling a command what to do are used to indicate that a separate piece of information is being given.
+So titles or file names that require spaces need to be put inside square brackets.</p>
+</dd>
+<dt class="label" id="fn-8"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Note that <code class="docutils literal notranslate"><span class="pre">+</span></code> is used to join multiple strings into one, converting numbers into strings as needed.
+Therefore in this case the lines <code class="docutils literal notranslate"><span class="pre">sigma=+2</span></code> and <code class="docutils literal notranslate"><span class="pre">sigma=+sigma2</span></code> would each give us the same result: one longer string with the extra part appended at the end, i.e.<code class="docutils literal notranslate"><span class="pre">sigma=2</span></code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "petebankhead/jupyter-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/appendices/macros"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="macro_intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ImageJ: Writing macros</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="macro_simulating.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Simulating image formation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pete Bankhead<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

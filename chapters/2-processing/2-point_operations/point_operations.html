@@ -1,0 +1,1049 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Point operations &#8212; Introduction to Bioimage Analysis</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ImageJ: Point operations" href="imagej.html" />
+    <link rel="prev" title="Image processing &amp; analysis" href="../1-processing_and_analysis/processing_and_analysis.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../README.html">
+   Introduction to Bioimage Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Front matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Before we begin
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/preface/preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/reading/reading.html">
+   How to read this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducing images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">
+   Images &amp; pixels
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">
+     ImageJ: Images &amp; pixels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">
+     Python: Images &amp; pixels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">
+   Measurements &amp; histograms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">
+     ImageJ: Measurements &amp; histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/python.html">
+     Python: Measurements &amp; histograms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">
+   Types &amp; bit-depths
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">
+     ImageJ: Types &amp; bit-depths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">
+     Python: Types &amp; bit-depths
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/4-colors/colors.html">
+   Channels &amp; colors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/imagej.html">
+     ImageJ: Channels &amp; colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/python.html">
+     Python: Channels &amp; colors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">
+   Pixel size &amp; dimensions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">
+     ImageJ:  Pixel size &amp; dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">
+     Python:  Pixel size &amp; dimensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/6-files/files.html">
+   Files &amp; file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/imagej.html">
+     ImageJ: Files &amp; file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/python.html">
+     Python: Files &amp; file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Processing &amp; analysis
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">
+   Image processing &amp; analysis
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Point operations
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="imagej.html">
+     ImageJ: Point operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3-thresholding/thresholding.html">
+   Thresholding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-thresholding/imagej.html">
+     ImageJ: Thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../4-filters/filters.html">
+   Filters
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4-filters/imagej.html">
+     ImageJ: Filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../5-morph/morph.html">
+   Morphological operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5-morph/imagej.html">
+     ImageJ: Morphological operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../6-transforms/transforms.html">
+   Image transforms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6-transforms/imagej.html">
+     ImageJ: Image transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../7-multidimensional_processing/multidimensional_processing.html">
+   Multidimensional processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7-multidimensional_processing/imagej.html">
+     ImageJ: Multidimensional processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fluorescence microscopy
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
+   From photons to pixels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
+   Blur &amp; the PSF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
+   Noise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
+   Microscopes &amp; detectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
+   Beyond this book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/python/python.html">
+   Python Primer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
+   ImageJ: Writing macros
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
+     Difference of Gaussians
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
+     Simulating image formation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/chapters/2-processing/2-point_operations/point_operations.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/chapters/2-processing/2-point_operations/point_operations.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/petebankhead/jupyter-book/main?urlpath=tree/chapters/2-processing/2-point_operations/point_operations.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#point-operations-for-single-images">
+   Point operations for single images
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arithmetic">
+     Arithmetic
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image-inversion">
+     Image inversion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nonlinear-contrast-enhancement">
+     Nonlinear contrast enhancement
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#point-operations-multiple-images">
+   Point operations &amp; multiple images
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Point operations</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#point-operations-for-single-images">
+   Point operations for single images
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arithmetic">
+     Arithmetic
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image-inversion">
+     Image inversion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nonlinear-contrast-enhancement">
+     Nonlinear contrast enhancement
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#point-operations-multiple-images">
+   Point operations &amp; multiple images
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="point-operations">
+<span id="chap-point-operations"></span><h1>Point operations<a class="headerlink" href="#point-operations" title="Permalink to this headline">¶</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Chapter outline</p>
+<ul class="simple">
+<li><p><strong>Point operations</strong> are mathematical operations applied to individual pixel values</p></li>
+<li><p>Point operations can be performed using a <strong>single image</strong>, an <strong>image and a constant</strong>, or <strong>two images of the same size</strong></p></li>
+<li><p>Some <strong>nonlinear</strong> point operations change the relationships between pixels in a way that can be useful to enhance contrast – but should be used with caution</p></li>
+</ul>
+</div>
+<div class="cell tag_hide-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>A step used to process an image in some way can be called an <strong>operation</strong>.</p>
+<p>The simplest operations are <strong>point operations</strong>, which act on individual pixels.
+Point operations change each pixel in a way that depends upon its own value, but not upon where it is in the image nor upon the values of other pixels.
+This is in contrast to <strong>neighborhood operations</strong>, which calculate new pixel values based upon the values of pixels nearby.</p>
+<p>While not immediately very glamorous, point operations often have indispensable roles in more interesting contexts – and so it’s essential to know how they are used, and what complications to look out for.</p>
+<div class="warning admonition">
+<p class="admonition-title">Isn’t modifying pixels bad?</p>
+<p>Part I stressed repeatedly that modifying pixels is a bad thing.
+Since image processing is all about changing pixel values, it’s time to add a bit more nuance:</p>
+<p><strong>Modifying pixel values is bad – unless you have a good reason</strong>.</p>
+<p>A ‘good reason’ is something you can justify based upon the image data.
+Something you could confidently include in a journal article describing how you analyzed your image, and convince a reviewer was sensible.</p>
+<p>You should also make sure to apply the processing to a <strong>duplicate</strong> of the image, and keep the original file.
+That way you can always return to the original data if you need to.</p>
+</div>
+</div>
+<div class="section" id="point-operations-for-single-images">
+<h2>Point operations for single images<a class="headerlink" href="#point-operations-for-single-images" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="arithmetic">
+<h3>Arithmetic<a class="headerlink" href="#arithmetic" title="Permalink to this headline">¶</a></h3>
+<p>Pixel values are just numbers.
+When we have numbers, we can do arithmetic.</p>
+<p>It should therefore come as no surprise that we can take our pixel values and change them by adding, subtracting, multiplying or dividing by some other value.
+These are the simplest point operations.</p>
+<p>We encountered this idea earlier when we saw that multiplying our pixel values could <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html#sec-images-luts"><span class="std std-ref">increase the brightness</span></a>.
+I argued that this was a <em>very bad thing</em> because it changes our data.
+Our better alternative was to change the LUT instead.</p>
+<p>Nevertheless, there are sometimes ‘good reasons’ to apply arithmetic to pixel values – better than simply brightening the appearance.
+Examples include:</p>
+<ul class="simple">
+<li><p>Subtracting a constant offset added by a microscope before quantifying intensities</p>
+<ul>
+<li><p>See <a class="reference internal" href="../../appendices/macros/macro_simulating.html#chap-macro-simulating"><span class="std std-ref">Simulating image formation</span></a></p></li>
+</ul>
+</li>
+<li><p>Dividing by a constant so that you can convert bit-depth without clipping</p>
+<ul>
+<li><p>See <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html#chap-bit-depths"><span class="std std-ref">Types &amp; bit-depths</span></a></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>However</strong>, we need to keep in mind that we’re not dealing with abtract maths but rather bits and bytes.
+Which makes the next question particularly important.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="b8b15bd2-5985-40fb-bf28-7850a2482e0d" name="f42a26e1-c252-403b-ab9f-e44ca87222ba" type="radio">
+</input><label class="tabbed-label" for="b8b15bd2-5985-40fb-bf28-7850a2482e0d">
+Question</label><div class="tabbed-content docutils">
+<p>Suppose you add a constant to every pixel in the image.
+Why might subtracting the same constant from the result not give you back the image you started with?</p>
+</div>
+<input id="09302810-741e-4ec5-9895-eca9634041cd" name="f42a26e1-c252-403b-ab9f-e44ca87222ba" type="radio">
+</input><label class="tabbed-label" for="09302810-741e-4ec5-9895-eca9634041cd">
+Answer</label><div class="tabbed-content docutils">
+<p>If you add a constant that pushes pixel values outside the range supported by the bit-depth (e.g. 0–255 for 8-bit), then the result cannot fit in the image.
+It’s likely to be clipped to the closest possible value instead.
+Subtracting the constant again does not restore the original value.</p>
+<p>For example: 200 <em>(original value)</em> + 100 <em>(constant)</em> → 255 <em>(closest valid value)</em>. <br/>
+But then 255 - 100 → 155.</p>
+</div>
+</div>
+<p>Based upon this, an important tip for image processing is:</p>
+<div class="tip admonition">
+<p class="admonition-title">Convert integer images to floating point before manipulating pixels</p>
+<p>A 32-bit (or even 64-bit) floating point image is much less likely to suffer errors due to clipping and rounding.
+Therefore the first step of any image processing is often to convert the image to a floating point format.</p>
+<p>See <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html#chap-bit-depths"><span class="std std-ref">Types &amp; bit-depths</span></a> for details.</p>
+</div>
+</div>
+<div class="section" id="image-inversion">
+<span id="sec-points-inversion"></span><h3>Image inversion<a class="headerlink" href="#image-inversion" title="Permalink to this headline">¶</a></h3>
+<p>Inverting an image effectively involves ‘flipping’ the intensities: making the higher values lower, and the lower values higher.</p>
+<p>In the case of 8-bit images, inverted pixel values can be easily computed simply by subtracting the original values from the maximum possible – i.e. from 255.</p>
+<p>Why is inversion useful?</p>
+<p>Suppose you have a good strategy designed to detect bright structures, but it doesn’t work for you because your images contain dark structures.
+If you invert your images first, then the structures become bright – and your detection strategy might now succeed.</p>
+<div class="figure align-center" id="fig-image-inversion" style="width: 85%">
+<div class="cell_output docutils container">
+<img alt="../../../_images/point_operations_3_0.png" src="../../../_images/point_operations_3_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 57 </span><span class="caption-text">The effect of image and LUT inversion. Note that each histogram appears to be a mirror image of the other. Also, the image is clipped (sorry).</span><a class="headerlink" href="#fig-image-inversion" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition-defining-the-maximum-when-inverting-an-image admonition">
+<p class="admonition-title">Defining the ‘maximum’ when inverting an image</p>
+<p>Inverting an 8-bit (unsigned integer) image generally means subtracting all pixel values from 255, because 255 is the maximum supported by the image type and bit-depth.</p>
+<p>The ‘maximum’ is not always defined in this way.
+For a 32-bit or 64-bit image (either integer or floating point), the maximum possible value is <em>huge</em>, and using that would result in exceedingly large pixel values.
+Therefore the ‘maximum’ is usually defined in some other way rather than based on the image type, such as by taking the maximum pixel value found within the image.</p>
+<p>Because I don’t like letting the software decide what maximum to use, I often cheat: I multiply the pixels by -1 (ensuring the image is floating point).
+This retains the key properties of image inversion: it flips the high and low values, while retaining all the relative diffences between values.</p>
+</div>
+</div>
+<div class="section" id="nonlinear-contrast-enhancement">
+<h3>Nonlinear contrast enhancement<a class="headerlink" href="#nonlinear-contrast-enhancement" title="Permalink to this headline">¶</a></h3>
+<p>With arithmetic operations we change the pixel values, usefully or otherwise, but (assuming we have not clipped our image in the process) we have done so in a <strong>linear</strong> way.
+At most it would take another multiplication and/or addition to get us back to where we were.
+Because a similar relationship between pixel values exists, we could also adjust the brightness and contrast LUT so that it does not <em>look</em> like we have done anything at all.</p>
+<p><strong>Nonlinear</strong> point operations differ in that they affect relative values differently depending upon what they were in the first place.
+These are particularly useful for contrast enhancement.</p>
+<p>When we changed the brightness and contrast in <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html#sec-images-luts"><span class="std std-ref">Lookup tables</span></a>, we were making linear adjustments.
+For a grayscale LUT, this meant we chose the pixel value to display as black and the pixel value to display as white, with each value in between mapped to a shade of gray along a straight line (<a class="reference internal" href="#fig-nonlinear-contrast"><span class="std std-numref">Fig. 58</span></a>A).</p>
+<p>We could optionally use a nonlinear mapping values between values and shades of gray, but most software doesn’t make it straightforward to change LUTs in sufficiently complicated ways.
+An easier approach is to duplicate the image and apply any non-linear adjustments to the pixel values themselves, and then map them to shades of gray in the usual (linear) way.</p>
+<p>Common nonlinear transforms are to take the logarithm of the pixel value (<a class="reference internal" href="#fig-nonlinear-contrast"><span class="std std-numref">Fig. 58</span></a>B), or replace each value <span class="math notranslate nohighlight">\(p\)</span> with <span class="math notranslate nohighlight">\(p^\gamma\)</span> where <span class="math notranslate nohighlight">\(\gamma\)</span> is the <em>gamma</em> parameter that can be adjusted depending upon the desired outcome (<a class="reference internal" href="#fig-nonlinear-contrast"><span class="std std-numref">Fig. 58</span></a>B-D).</p>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Visualizing non-linear transforms and their impact on a ramp profile plot.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># See ImageJ implementation at</span>
+<span class="c1"># https://github.com/imagej/imagej1/blob/a0d335d1df4e4c0b4fc12c71ecfbb889d4c62e62/ij/process/ImageProcessor.java#L953</span>
+
+<span class="c1"># Create a linear ramp of pixel values from 0-255</span>
+<span class="c1"># This simulates an 8-bit ramp image </span>
+<span class="c1"># (although we&#39;ll do the calculations in 32-bit)</span>
+<span class="n">ramp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">plot_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Original value&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;New value&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Show main plot (linear ramp)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">ramp</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">lut</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Original&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">241</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">ramp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">245</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+
+<span class="c1"># Apply log transform</span>
+<span class="n">ramp_log</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">ramp</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span><span class="o">*</span><span class="mi">255</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">ramp_log</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">lut</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Log&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">242</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">ramp_log</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">246</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+
+<span class="c1"># Apply gamma transform (gamma = 0.5)</span>
+<span class="n">ramp_gamma05</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">ramp</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="mi">255</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">ramp_gamma05</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">lut</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Gamma 0.5&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">243</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">ramp_gamma05</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">247</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+
+<span class="c1"># Apply gamma transform (gamma = 2.0)</span>
+<span class="n">ramp_gamma2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">ramp</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">255</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">ramp_gamma2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">lut</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(D) Gamma 2.0&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">244</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">ramp_gamma2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">248</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+
+<span class="c1"># plt.subplots_adjust(wspace=0.4)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s2">&quot;fig_points_gamma_ramp&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-nonlinear-contrast">
+<div class="cell_output docutils container">
+<img alt="../../../_images/point_operations_5_0.png" src="../../../_images/point_operations_5_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 58 </span><span class="caption-text">Nonlinear transforms applied to a simple ‘ramp’ image, consisting of linearly increasing pixel values.
+Replacing each pixel with its log or gamma-adjusted value has the effect of compressing either the lower or higher intensities closer together to free up more gray levels for the others. Note that, here we assume an 8-bit input image and have incorporated some necessary rescaling for an 8-bit output (based on the approach used by ImageJ).</span><a class="headerlink" href="#fig-nonlinear-contrast" title="Permalink to this image">¶</a></p>
+</div>
+<p>If all this sounds a dubious and awkward, be assured that it is: nonlinear transforms are best avoided whenever possible.</p>
+<p>However, there is once scenario when they can really help: displaying an image with a <strong>high dynamic range</strong>, i.e. a big difference between the largest and smallest pixel values.</p>
+<p><a class="reference internal" href="#fig-point-gamma-spooked"><span class="std std-numref">Fig. 59</span></a> shows this in action.
+Here, the pixel values associated with the main character are all quite high.
+However, the values associated with the ghostly figure are all very low.
+There are no linear contrast settings with a standard grayscale LUT that make it possible to see both figures with any detail simultaneously.
+However, log or gamma transforms make this possible.</p>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Comparing transforms for an image with a high dynamic range.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># See ImageJ implementation at</span>
+<span class="c1"># https://github.com/imagej/imagej1/blob/a0d335d1df4e4c0b4fc12c71ecfbb889d4c62e62/ij/process/ImageProcessor.java#L953</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;spooked.png&#39;</span><span class="p">)</span>
+
+<span class="c1"># Show original image</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Original image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
+
+<span class="c1"># Set display range (linear contrast adjustment)</span>
+<span class="c1"># (This has to be extremely stark to show the background details)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Linear contrast&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
+
+<span class="c1"># Apply gamma transform</span>
+<span class="n">im_gamma05</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">im</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span><span class="o">*</span><span class="mi">255</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_gamma05</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Gamma adjusted&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
+
+<span class="c1"># Apply log transform</span>
+<span class="n">im_log</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span><span class="o">*</span><span class="mi">255</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_log</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Log transform&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s2">&quot;fig_points_gamma&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-point-gamma-spooked">
+<div class="cell_output docutils container">
+<img alt="../../../_images/point_operations_7_0.png" src="../../../_images/point_operations_7_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 59 </span><span class="caption-text">The application of nonlinear contrast enhancement to an image with a wide range of values.
+<em>(Top row)</em> In the original image, it’s not possible to see details in both the foreground and background simultaneously.
+<em>(Bottom row)</em> Two examples of nonlinear techniques that make details visible throughout the image.</span><a class="headerlink" href="#fig-point-gamma-spooked" title="Permalink to this image">¶</a></p>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Avoid image manipulation!</p>
+<p>When creating figures for publication, changing the contrast in some linear manner is normally considered fine (assuming that it has not been done mischievously to make some inconvenient, research-undermining details impossible to discern).</p>
+<p><strong>But if any nonlinear operations are used, these should always be noted in the figure legend!</strong></p>
+<p>This is because, although nonlinear operations can be very helpful when used with care, they can also easily mislead – exaggerating or underplaying differences in brightness.</p>
+</div>
+</div>
+</div>
+<div class="section" id="point-operations-multiple-images">
+<h2>Point operations &amp; multiple images<a class="headerlink" href="#point-operations-multiple-images" title="Permalink to this headline">¶</a></h2>
+<p>Instead of applying arithmetic using an image and a constant, we could also use two images of the same size.
+These can readily be added, subtracted, multiplied or divided by applying the operations to the corresponding pixels.</p>
+<p>This is a technique that is used <em>all the time</em> in image processing.
+Applications include:</p>
+<ul class="simple">
+<li><p>subtracting varying backgrounds</p></li>
+<li><p>computing intensity ratios</p></li>
+<li><p>masking out regions</p></li>
+<li><p><strong>and much more…</strong></p></li>
+</ul>
+<p>We will combine images in this way throughout the rest of the handbook.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="f8034bd2-1ca1-4e50-b401-a5a1da2ae32b" name="45ac32da-28d4-47ef-b0c3-f3ae962a2c32" type="radio">
+</input><label class="tabbed-label" for="f8034bd2-1ca1-4e50-b401-a5a1da2ae32b">
+Question</label><div class="tabbed-content docutils">
+<p>In the two 32-bit images shown here, white pixels have values of one and black pixels have values of zero (gray pixels have values somewhere in between).</p>
+<div class="figure align-center">
+<div class="cell_output docutils container">
+<img alt="../../../_images/point_operations_9_0.png" src="../../../_images/point_operations_9_0.png" />
+</div>
+</div>
+<p>What would be the result of multiplying the images together?
+And what would be the result of dividing the left image by the right image?</p>
+</div>
+<input id="922fcd2b-b8d3-417a-9e22-10252216ac07" name="45ac32da-28d4-47ef-b0c3-f3ae962a2c32" type="radio">
+</input><label class="tabbed-label" for="922fcd2b-b8d3-417a-9e22-10252216ac07">
+Answer</label><div class="tabbed-content docutils">
+<p>Multiplying the images effectively results in everything outside the white region in the right image being removed from the left image (i.e. set to zero).</p>
+<div class="figure align-center">
+<div class="cell_output docutils container">
+<img alt="../../../_images/point_operations_9_1.png" src="../../../_images/point_operations_9_1.png" />
+</div>
+</div>
+<p>Dividing has a similar effect, except that instead of becoming zero the masked-out pixels will take one of three results, depending upon the original pixel’s value in the left image:</p>
+<ul class="simple">
+<li><p>if it was <em>positive</em>, the result is <span class="math notranslate nohighlight">\(+\infty\)</span> (shown here as yellow)</p></li>
+<li><p>if it was <em>negative</em>, the result is <span class="math notranslate nohighlight">\(-\infty\)</span></p></li>
+<li><p>if it was zero, the result is <code class="docutils literal notranslate"><span class="pre">NaN</span></code> (‘not a number’ -– indicating 0/0 is undefined; shown here as red)</p></li>
+</ul>
+<p>These are special values that can be contained in floating point images, but not images with integer types.</p>
+</div>
+</div>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Adding noise to an image.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Load a sample image, normalize between 0 and 5</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mi">5</span>
+
+<span class="c1"># Create a random number generator - always good to seed this, </span>
+<span class="c1"># to keep the randomness predictable each time we run the code...</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Create a normally-distributed random value for every pixel</span>
+<span class="c1"># Mean = 0, Std. dev. 1</span>
+<span class="n">im_noise</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># The image we can acquire has the noise added</span>
+<span class="n">im_possible</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">im_noise</span>
+
+<span class="c1"># Show images</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Ideal image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_noise</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Random noise&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_possible</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Acquired image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s2">&quot;fig_points_noise_added&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="info admonition">
+<p class="admonition-title">Adding noise</p>
+<p>Fluorescence images are invariably noisy.
+The noise appears as a graininess throughout the image, which can be seen as arising from a random noise value (positive or negative) being added to every pixel.</p>
+<p>This is equivalent to adding a separate ‘noise image’ to the non-existent cleaner image that we would prefer to have recorded.
+If we knew the pixels in the noise image then we could simply subtract it to get the clean result – but, in practice, their randomness means that we do not.</p>
+<div class="figure align-center" id="fig-points-noise-added">
+<div class="cell_output docutils container">
+<img alt="../../../_images/point_operations_11_0.png" src="../../../_images/point_operations_11_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 60 </span><span class="caption-text">Simulating imperfect image acquisition by adding noise to an ‘ideal’ image.</span><a class="headerlink" href="#fig-points-noise-added" title="Permalink to this image">¶</a></p>
+</div>
+<p>Despite the fact that noise is undesirable, adding noise images can be extremely useful when developing and validating image analysis methods.</p>
+<p>We can use it to create simulations in which the noise behaves statistically just like real noise, and add it to clean images.
+Using these simulations we can figure out things like how processing steps or changes during acquisition will affect or reduce the noise, or how sensitive our measurement strategies are to changes in image quality (see <a class="reference internal" href="../4-filters/filters.html#chap-filters"><span class="std std-ref">Filters</span></a>, <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html#chap-formation-noise"><span class="std std-ref">Noise</span></a> and <a class="reference internal" href="../../appendices/macros/macro_simulating.html#chap-macro-simulating"><span class="std std-ref">Simulating image formation</span></a>).</p>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "petebankhead/jupyter-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/2-processing/2-point_operations"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../1-processing_and_analysis/processing_and_analysis.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Image processing &amp; analysis</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="imagej.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ImageJ: Point operations</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pete Bankhead<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

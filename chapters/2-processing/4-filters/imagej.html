@@ -1,0 +1,939 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ImageJ: Filters &#8212; Introduction to Bioimage Analysis</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Morphological operations" href="../5-morph/morph.html" />
+    <link rel="prev" title="Filters" href="filters.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../README.html">
+   Introduction to Bioimage Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Front matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Before we begin
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/preface/preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/reading/reading.html">
+   How to read this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducing images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">
+   Images &amp; pixels
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">
+     ImageJ: Images &amp; pixels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">
+     Python: Images &amp; pixels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">
+   Measurements &amp; histograms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">
+     ImageJ: Measurements &amp; histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/python.html">
+     Python: Measurements &amp; histograms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">
+   Types &amp; bit-depths
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">
+     ImageJ: Types &amp; bit-depths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">
+     Python: Types &amp; bit-depths
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/4-colors/colors.html">
+   Channels &amp; colors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/imagej.html">
+     ImageJ: Channels &amp; colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/python.html">
+     Python: Channels &amp; colors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">
+   Pixel size &amp; dimensions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">
+     ImageJ:  Pixel size &amp; dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">
+     Python:  Pixel size &amp; dimensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/6-files/files.html">
+   Files &amp; file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/imagej.html">
+     ImageJ: Files &amp; file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/python.html">
+     Python: Files &amp; file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Processing &amp; analysis
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">
+   Image processing &amp; analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../2-point_operations/point_operations.html">
+   Point operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2-point_operations/imagej.html">
+     ImageJ: Point operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3-thresholding/thresholding.html">
+   Thresholding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-thresholding/imagej.html">
+     ImageJ: Thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="filters.html">
+   Filters
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     ImageJ: Filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../5-morph/morph.html">
+   Morphological operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5-morph/imagej.html">
+     ImageJ: Morphological operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../6-transforms/transforms.html">
+   Image transforms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6-transforms/imagej.html">
+     ImageJ: Image transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../7-multidimensional_processing/multidimensional_processing.html">
+   Multidimensional processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7-multidimensional_processing/imagej.html">
+     ImageJ: Multidimensional processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fluorescence microscopy
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
+   From photons to pixels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
+   Blur &amp; the PSF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
+   Noise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
+   Microscopes &amp; detectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
+   Beyond this book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/python/python.html">
+   Python Primer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
+   ImageJ: Writing macros
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
+     Difference of Gaussians
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
+     Simulating image formation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/chapters/2-processing/4-filters/imagej.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/chapters/2-processing/4-filters/imagej.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/petebankhead/jupyter-book/main?urlpath=tree/chapters/2-processing/4-filters/imagej.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-filters">
+   Linear filters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-filters">
+     Mean filters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaussian-filters">
+     Gaussian filters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#custom-linear-filters">
+     Custom linear filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nonlinear-filters">
+   Nonlinear filters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rank-filters">
+     Rank filters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#removing-outliers">
+     Removing outliers
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>ImageJ: Filters</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-filters">
+   Linear filters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-filters">
+     Mean filters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaussian-filters">
+     Gaussian filters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#custom-linear-filters">
+     Custom linear filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nonlinear-filters">
+   Nonlinear filters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rank-filters">
+     Rank filters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#removing-outliers">
+     Removing outliers
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="imagej-filters">
+<h1>ImageJ: Filters<a class="headerlink" href="#imagej-filters" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Most of the filters we’ve considered are available through the <span class="menuselection">Process ‣ Filters</span> submenu.
+This section adds a little more information about their implementation in ImageJ, and asks a few questions.</p>
+</div>
+<div class="section" id="linear-filters">
+<h2>Linear filters<a class="headerlink" href="#linear-filters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mean-filters">
+<h3>Mean filters<a class="headerlink" href="#mean-filters" title="Permalink to this headline">¶</a></h3>
+<p>The easiest way to apply a 3×3 mean filter in ImageJ is through the <span class="menuselection">Process ‣ Smooth</span> command.
+The fact that the shortcut is <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">S</kbd></kbd> can almost make this <em>too</em> easy, as I find myself accidentally smoothing when I really wanted to save my image.
+Take care.</p>
+<p>To apply larger mean filters, the command is <span class="menuselection">Process ‣ Filters ‣ Mean…</span>.
+It uses approximately circular neighborhoods, and the neighborhood size is adjusted by choosing a <span class="guilabel">Radius</span> value.
+The <span class="menuselection">Process ‣ Filters ‣ Show Circular Masks</span> command displays the neighborhoods used for different values of <span class="guilabel">Radius</span>.
+If you happen to choose <em>Radius = 1</em>, you get a 3×3 filter – and the same results as using <span class="menuselection">Smooth</span>.</p>
+<a class="reference internal image-reference" href="../../../_images/imagej-filters-masks.png"><img alt="../../../_images/imagej-filters-masks.png" class="align-center" src="../../../_images/imagej-filters-masks.png" style="width: 35%;" /></a>
+</div>
+<div class="section" id="gaussian-filters">
+<h3>Gaussian filters<a class="headerlink" href="#gaussian-filters" title="Permalink to this headline">¶</a></h3>
+<p><span class="menuselection">Process ‣ Filters ‣ Gaussian Blur…</span> is the command that implements a Gaussian filter.</p>
+<p>In the event that you want a Gaussian filter that isn’t isotropic (i.e. has a different size along different dimensions), <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur 3D…</span> can be used.</p>
+<p>Although not <em>really</em> recommended, unsharp masking is available through <span class="menuselection">Process ‣ Filters ‣ Unsharp mask…</span>.</p>
+<div class="admonition-difference-of-gaussians admonition">
+<p class="admonition-title">Difference of Gaussians</p>
+<p>There’s currently no direct command in ImageJ to implement difference of Gaussians filtering, rather the steps need to be pieced together with image duplication and subtraction.
+However <a class="reference internal" href="../../appendices/macros/macro_dog.html#chap-macro-dog"><span class="std std-ref">Difference of Gaussians</span></a> describes how to generate a macro for DoG filtering.</p>
+</div>
+</div>
+<div class="section" id="custom-linear-filters">
+<h3>Custom linear filters<a class="headerlink" href="#custom-linear-filters" title="Permalink to this headline">¶</a></h3>
+<p><span class="menuselection">Process ‣ Filters ‣ Convolve…</span> makes it possible to define any custom linear filter by entering the values of the desired coefficients, separated by spaces and arranged in rows and columns.
+If you <span class="guilabel">Normalize Kernel</span> is selected, then the coefficients are scaled so that they add to 1, by dividing by the sum of all the coefficients – unless the sum is 0, in which case requesting normalizion does nothing.</p>
+<a class="reference internal image-reference" href="../../../_images/imagej-filters-convolve-custom.png"><img alt="../../../_images/imagej-filters-convolve-custom.png" class="align-center" src="../../../_images/imagej-filters-convolve-custom.png" style="width: 80%;" /></a>
+<div class="tabbed-set docutils">
+<input checked="checked" id="7be9f84e-4fdc-443d-bf11-05dd1baba8da" name="cd94d885-f546-4479-b023-965f61ce3c2c" type="radio">
+</input><label class="tabbed-label" for="7be9f84e-4fdc-443d-bf11-05dd1baba8da">
+Question</label><div class="tabbed-content docutils">
+<p>When defining an <em>n_×_n</em> filter kernel with <span class="menuselection">Convolve…</span>, ImageJ insists that <strong>n</strong> is an odd number. Why?</p>
+</div>
+<input id="5658a731-20c0-45ca-b7fc-cc67c6fe2d78" name="cd94d885-f546-4479-b023-965f61ce3c2c" type="radio">
+</input><label class="tabbed-label" for="5658a731-20c0-45ca-b7fc-cc67c6fe2d78">
+Solution</label><div class="tabbed-content docutils">
+<p>If <em>n</em> is an odd number, the filter has a clear central pixel.
+This makes it possible to center the filter kernel on a pixel on the image.</p>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<a class="reference internal image-reference" href="../../../_images/imagej-filters-convolve-1.png"><img alt="../../../_images/imagej-filters-convolve-1.png" class="align-center" src="../../../_images/imagej-filters-convolve-1.png" style="width: 80%;" /></a>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="67b308df-b21c-4407-ab07-741a25175df1" name="aa246031-7b3f-4600-86c9-ff53f9784402" type="radio">
+</input><label class="tabbed-label" for="67b308df-b21c-4407-ab07-741a25175df1">
+Question</label><div class="tabbed-content docutils">
+<p>Predict what happens when you convolve an image using a filter that consists of a single coefficient with a value -1 in the following cases:</p>
+<ol class="simple">
+<li><p><span class="guilabel">Normalize Kernel</span> is checked</p></li>
+<li><p>You have a 32-bit image, <span class="guilabel">Normalize Kernel</span> is unchecked</p></li>
+<li><p>You have an 8-bit image, <span class="guilabel">Normalize Kernel</span> is unchecked</p></li>
+</ol>
+</div>
+<input id="a6188b47-d0ac-4f22-bdf3-b30d8f5c8b1f" name="aa246031-7b3f-4600-86c9-ff53f9784402" type="radio">
+</input><label class="tabbed-label" for="a6188b47-d0ac-4f22-bdf3-b30d8f5c8b1f">
+Solution</label><div class="tabbed-content docutils">
+<p>The results of convolving with a single -1 coefficient in different circumstances:</p>
+<ol class="simple">
+<li><p><em><span class="guilabel">Normalize Kernel</span> is checked</em>: Nothing at all happens. The normalization makes the filter just a single 1… and convolving with a single 1 leaves the image unchanged.</p></li>
+<li><p><em>You have a 32-bit image (<span class="guilabel">Normalize Kernel</span> unchecked)</em>: The pixel values become negative, and the image looks inverted.</p></li>
+<li><p><em>You have an 8-bit image (<span class="guilabel">Normalize Kernel</span> unchecked)</em>: The pixel values would become negative, but then cannot be stored in an 8-bit unsigned integer form. Therefore, all pixels simply become clipped to zero.</p></li>
+</ol>
+</div>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="9bac7178-52a3-40ac-958d-a30e8dd77c05" name="6d9e1822-3757-4cce-a40d-0c03a78a0050" type="radio">
+</input><label class="tabbed-label" for="9bac7178-52a3-40ac-958d-a30e8dd77c05">
+Practical</label><div class="tabbed-content docutils">
+<p>Using any image, work out which of the methods for dealing with boundaries shown in <a class="reference internal" href="filters.html#fig-filter-boundaries"><span class="std std-numref">Fig. 85</span></a> is used by ImageJ’s <span class="menuselection">Convolve…</span> command.</p>
+<p><strong>Note:</strong> This requires a bit of creativity.
+It will certainly help to use an image with some variation at the image boundary.
+I used <span class="menuselection">File ‣ Open Samples ‣ Blobs</span>.</p>
+</div>
+<input id="8ca44b6c-b3f3-43e1-8efe-289bf318ba8c" name="6d9e1822-3757-4cce-a40d-0c03a78a0050" type="radio">
+</input><label class="tabbed-label" for="8ca44b6c-b3f3-43e1-8efe-289bf318ba8c">
+Solution</label><div class="tabbed-content docutils">
+<p>Replication of boundary pixels is the default method used by <span class="menuselection">Process ‣ Filters ‣ Convolve…</span> in ImageJ (although other filtering plugins by different authors might use different methods).</p>
+<p>My approach to test this involved using <span class="menuselection">Convolve…</span> with a filter that consisting of a 1 followed by a lot of zeros (e.g. <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0...</span></code>).
+This basically shifts the image to the right, bringing whatever is outside the image boundary into view.</p>
+<a class="reference internal image-reference" href="../../../_images/imagej-filters-convolve-padding.png"><img alt="../../../_images/imagej-filters-convolve-padding.png" class="align-center" src="../../../_images/imagej-filters-convolve-padding.png" style="width: 80%;" /></a>
+</div>
+</div>
+<div class="margin figure align-center" id="id1">
+<a class="reference internal image-reference" href="../../../_images/imagej-happy-edges.png"><img alt="../../../_images/imagej-happy-edges.png" src="../../../_images/imagej-happy-edges.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 99 </span><span class="caption-text">Gradient magnitude</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="7d7000ff-b6ec-4bc1-bea8-fccff6061c95" name="b2d20d23-1386-4254-8b05-fa4a6e1bea2c" type="radio">
+</input><label class="tabbed-label" for="7d7000ff-b6ec-4bc1-bea8-fccff6061c95">
+Practical</label><div class="tabbed-content docutils">
+<p>Practice using the commands we’ve met so far by determining the <strong>gradient magnitude</strong> of an image, as described <a class="reference internal" href="filters.html#sec-filters-gradient"><span class="std std-ref">here</span></a>.</p>
+<p>You will need to use</p>
+<ul class="simple">
+<li><p><span class="menuselection">Image ‣ Duplicate…</span></p></li>
+<li><p><span class="menuselection">Process ‣ Filters ‣ Convolve…</span></p></li>
+<li><p><span class="menuselection">Process ‣ Image Calculator…</span></p></li>
+<li><p>Several commands in the <span class="menuselection">Process ‣ Math</span> submenu</p></li>
+<li><p>Something else we’ve used before… possibly</p></li>
+</ul>
+<p>If you need a sample image, you can use <span class="menuselection">File ‣ Open samples ‣ Blobs (25K)</span>.
+<em>(Be sure to pay attention to the bit-depth!)</em></p>
+</div>
+<input id="ceb76c08-bebd-4e24-89cb-9849ad263f2b" name="b2d20d23-1386-4254-8b05-fa4a6e1bea2c" type="radio">
+</input><label class="tabbed-label" for="ceb76c08-bebd-4e24-89cb-9849ad263f2b">
+Solution</label><div class="tabbed-content docutils">
+<p>The process to calculate the gradient magnitude is:</p>
+<ol class="simple">
+<li><p>Convert the image to 32-bit (if it isn’t already 32-bit)</p></li>
+<li><p>Duplicate the image</p></li>
+<li><p>Convolve one copy of the image with the horizontal gradient filter, and one with the vertical (i.e. coefficients <code class="docutils literal notranslate"><span class="pre">-1</span> <span class="pre">0</span> <span class="pre">1</span></code> arranged as a row or column)</p></li>
+<li><p>Compute the square of both images (<span class="menuselection">Process ‣ Math ‣ Square</span>)</p></li>
+<li><p>Use the image calculator to add the images together</p></li>
+<li><p>Compute the square root of the resulting image (<span class="menuselection">Process ‣ Math ‣ Square Root</span>)</p></li>
+</ol>
+<p>Here’s a macro that implements these steps:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span>
+
+<span class="n">id1</span> <span class="o">=</span> <span class="n">getImageID</span><span class="p">()</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span> <span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="n">id2</span> <span class="o">=</span> <span class="n">getImageID</span><span class="p">();</span>
+
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Convolve...&quot;</span><span class="p">,</span> <span class="s">&quot;text1=[-1 0 1\n] normalize&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Square&quot;</span><span class="p">);</span>
+
+<span class="n">selectImage</span><span class="p">(</span><span class="n">id1</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Convolve...&quot;</span><span class="p">,</span> <span class="s">&quot;text1=-1\n0\n1\n normalize&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Square&quot;</span><span class="p">);</span>
+
+<span class="n">imageCalculator</span><span class="p">(</span><span class="s">&quot;Add create&quot;</span><span class="p">,</span> <span class="n">id1</span><span class="p">,</span> <span class="n">id2</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Square Root&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The convolution results in negative values, which is why the 32-bit conversion is needed.</p>
+<p><strong>Note:</strong> This is (almost) what is done by the command <span class="menuselection">Process ‣ Find Edges</span>, except the gradient filters are slightly different.</p>
+</div>
+</div>
+<div class="margin figure align-center" id="id2">
+<a class="reference internal image-reference" href="../../../_images/imagej-filters-lut-edges.png"><img alt="../../../_images/imagej-filters-lut-edges.png" src="../../../_images/imagej-filters-lut-edges.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 100 </span><span class="caption-text">The ‘Edges’ LUT</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="850dcc76-3351-4a03-8cd0-9422a82e966b" name="71f1fd3b-2ea4-4158-b590-d6ea8ba89f9e" type="radio">
+</input><label class="tabbed-label" for="850dcc76-3351-4a03-8cd0-9422a82e966b">
+Practical</label><div class="tabbed-content docutils">
+<p>ImageJ has a LUT called <strong>edges</strong> under <span class="menuselection">Image ‣ Lookup Tables ‣ Edges</span>.
+Applied to <span class="menuselection">File ‣ Open samples ‣ Blobs (25K)</span>, it does a rather good job of highlighting edges – without actually changing the pixels at all.</p>
+<p>How does it work?
+Does it apply a filter?</p>
+</div>
+<input id="586219c1-bb70-437c-a894-9fe7595ba438" name="71f1fd3b-2ea4-4158-b590-d6ea8ba89f9e" type="radio">
+</input><label class="tabbed-label" for="586219c1-bb70-437c-a894-9fe7595ba438">
+Solution</label><div class="tabbed-content docutils">
+<p>The <span class="menuselection">edges</span> LUT shows most low and high pixel values as black – and uses lighter shades of gray only for a small range of values in between (see <span class="menuselection">Image ‣ Color ‣ Edit LUT…</span>).
+In any image with a good separation of background and foreground pixels, but which still has a somewhat smooth transition between them, this means everything but the edges can appear black.</p>
+<p>All this is achieved by a LUT: no pixels were harmed, there was no filtering applied.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="nonlinear-filters">
+<h2>Nonlinear filters<a class="headerlink" href="#nonlinear-filters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rank-filters">
+<h3>Rank filters<a class="headerlink" href="#rank-filters" title="Permalink to this headline">¶</a></h3>
+<p>The main rank filters are to be found exactly where you might expect them:</p>
+<ul class="simple">
+<li><p><span class="menuselection">Process ‣ Filters ‣ Median…</span></p></li>
+<li><p><span class="menuselection">Process ‣ Filters ‣ Minimum…</span></p></li>
+<li><p><span class="menuselection">Process ‣ Filters ‣ Maximum…</span></p></li>
+</ul>
+<p>ImageJ uses circular neighborhoods with its built-in rank filters, similar to how mean filters are implemented.
+We will meet these filters again in <a class="reference internal" href="../5-morph/morph.html#chap-morph"><span class="std std-ref">Morphological operations</span></a>.</p>
+</div>
+<div class="section" id="removing-outliers">
+<h3>Removing outliers<a class="headerlink" href="#removing-outliers" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="filters.html#fig-processing-filters-speckled"><span class="std std-numref">Fig. 87</span></a> shows that median filtering is much better than mean filtering for removing outliers.
+We might encounter this if something in the microscope is not quite functioning as expected or if dark noise is a problem, but otherwise we expect the noise in fluorescence microscopy images to produce few really extreme values (see <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html#chap-formation-noise"><span class="std std-ref">Noise</span></a>).</p>
+<p>Nevertheless, <span class="menuselection">Process ‣ Noise ‣ Remove Outliers…</span> provides an alternative if isolated bright values are present.
+This is a nonlinear filter that inserts median values <em>only whenever a pixel is found that is further away from the local median than some adjustable threshold</em>.</p>
+<p>It’s therefore like a more selective median filter that will only modify the image at pixels where it is considered really necessary.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "petebankhead/jupyter-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/2-processing/4-filters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="filters.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Filters</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../5-morph/morph.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Morphological operations</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pete Bankhead<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

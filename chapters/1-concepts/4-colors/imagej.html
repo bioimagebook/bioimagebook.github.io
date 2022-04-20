@@ -1,0 +1,1053 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ImageJ: Channels &amp; colors &#8212; Introduction to Bioimage Analysis</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Python: Channels &amp; colors" href="python.html" />
+    <link rel="prev" title="Channels &amp; colors" href="colors.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../README.html">
+   Introduction to Bioimage Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Front matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Before we begin
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/preface/preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/reading/reading.html">
+   How to read this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducing images
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html">
+   Images &amp; pixels
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1-images_and_pixels/imagej.html">
+     ImageJ: Images &amp; pixels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1-images_and_pixels/python.html">
+     Python: Images &amp; pixels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../2-measurements/measurements.html">
+   Measurements &amp; histograms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2-measurements/imagej.html">
+     ImageJ: Measurements &amp; histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2-measurements/python.html">
+     Python: Measurements &amp; histograms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3-bit_depths/bit_depths.html">
+   Types &amp; bit-depths
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-bit_depths/imagej.html">
+     ImageJ: Types &amp; bit-depths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-bit_depths/python.html">
+     Python: Types &amp; bit-depths
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="colors.html">
+   Channels &amp; colors
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     ImageJ: Channels &amp; colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="python.html">
+     Python: Channels &amp; colors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../5-pixel_size/pixel_size.html">
+   Pixel size &amp; dimensions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5-pixel_size/imagej.html">
+     ImageJ:  Pixel size &amp; dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5-pixel_size/python.html">
+     Python:  Pixel size &amp; dimensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../6-files/files.html">
+   Files &amp; file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6-files/imagej.html">
+     ImageJ: Files &amp; file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6-files/python.html">
+     Python: Files &amp; file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Processing &amp; analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../2-processing/1-processing_and_analysis/processing_and_analysis.html">
+   Image processing &amp; analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html">
+   Point operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/2-point_operations/imagej.html">
+     ImageJ: Point operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html">
+   Thresholding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/3-thresholding/imagej.html">
+     ImageJ: Thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/4-filters/filters.html">
+   Filters
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/4-filters/imagej.html">
+     ImageJ: Filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/5-morph/morph.html">
+   Morphological operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/5-morph/imagej.html">
+     ImageJ: Morphological operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/6-transforms/transforms.html">
+   Image transforms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/6-transforms/imagej.html">
+     ImageJ: Image transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/7-multidimensional_processing/multidimensional_processing.html">
+   Multidimensional processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/7-multidimensional_processing/imagej.html">
+     ImageJ: Multidimensional processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fluorescence microscopy
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
+   From photons to pixels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
+   Blur &amp; the PSF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
+   Noise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
+   Microscopes &amp; detectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
+   Beyond this book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/python/python.html">
+   Python Primer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
+   ImageJ: Writing macros
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
+     Difference of Gaussians
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
+     Simulating image formation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/chapters/1-concepts/4-colors/imagej.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/chapters/1-concepts/4-colors/imagej.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/petebankhead/jupyter-book/main?urlpath=tree/chapters/1-concepts/4-colors/imagej.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rgb-vs-multichannel">
+   RGB vs. Multichannel
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-channels">
+   Working with channels
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#converting-to-rgb">
+   Converting to RGB
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>ImageJ: Channels & colors</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rgb-vs-multichannel">
+   RGB vs. Multichannel
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-channels">
+   Working with channels
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#converting-to-rgb">
+   Converting to RGB
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="imagej-channels-colors">
+<span id="chap-imagej-colors"></span><h1>ImageJ: Channels &amp; colors<a class="headerlink" href="#imagej-channels-colors" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>ImageJ has good support for both RGB and multichannel images, but the behavior is not always obvious.
+This section explains the ideas, including common areas of confusion.</p>
+</div>
+<div class="section" id="rgb-vs-multichannel">
+<h2>RGB vs. Multichannel<a class="headerlink" href="#rgb-vs-multichannel" title="Permalink to this headline">¶</a></h2>
+<p>ImageJ treats RGB as a special image type, even though it is still <a class="reference internal" href="../3-bit_depths/imagej.html#chap-bit-depths-imagej"><span class="std std-ref">8-bit unsigned integer</span></a>.
+There are several ways to recognize that an image has the type ‘RGB’:</p>
+<ul class="simple">
+<li><p>The text <em>RGB</em> appears at the top of the image window</p></li>
+<li><p><span class="menuselection">Image ‣ Type ‣ RGB Color</span> is selected</p></li>
+<li><p>When moving the cursor over the image, there are <em>three</em> values shown in the status bar (e.g. <em>value=127,127,127</em>) instead of one</p></li>
+</ul>
+<p>Multichannel images that <em>aren’t</em> RGB are recognizable because they have an extra slider at the bottom, with a small <span class="guilabel">C</span> label, which is used to switch the ‘active’ channel.
+The <span class="menuselection">Image ‣ Type ‣ </span> will be <span class="menuselection">8-bit</span>, <span class="menuselection">16-bit</span> or <span class="menuselection">32-bit</span>.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/neuron-composite.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/neuron-rgb.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_color_neuron&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-color-neuron">
+<div class="cell_output docutils container">
+<img alt="../../../_images/imagej_3_01.png" src="../../../_images/imagej_3_01.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">A multichannel image (left) and RGB image (right).
+The colors used to display the image are identical, but other aspects of the image window indicate that the images themselves are quite different.</span><a class="headerlink" href="#fig-color-neuron" title="Permalink to this image">¶</a></p>
+</div>
+<p>The distinction is really important when it comes to measurements and histograms, because the behavior between RGB and multichannel images is subtly different:</p>
+<ul class="simple">
+<li><p><strong>Multichannel images:</strong></p>
+<ul>
+<li><p><span class="menuselection">Analyze ‣ Measure</span> uses the active channel only, based on the <span class="guilabel">C</span> slider</p></li>
+<li><p><span class="menuselection">Analyze ‣ Histogram</span> uses either uses the active channel only or all channels, after prompting the user to choose</p></li>
+<li><p><span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> can be used to adjust the brightness &amp; contrast for the active channel</p></li>
+<li><p>It is possible to change LUTs independently for each channel</p></li>
+</ul>
+</li>
+<li><p><strong>RGB images:</strong></p>
+<ul>
+<li><p><span class="menuselection">Analyze ‣ Measure</span> converts the image to have a single 8-bit channel before making measurements</p></li>
+<li><p><span class="menuselection">Analyze ‣ Histogram</span> creates a histogram after converting the image as above, but also provides an <span class="guilabel">RGB</span> button to also view separate histograms for the red, green and blue channels</p></li>
+<li><p><span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> can only be used to adjust the brightness &amp; contrast for all channels simultaneously</p></li>
+<li><p>It is <em>not</em> possible to change LUTs per channel</p></li>
+</ul>
+</li>
+</ul>
+<p>When it comes to measuring an RGB image, the enigmatic statement above that ImageJ ‘converts the image’ is explained (in more detail than you might want) <a class="reference internal" href="#sec-colors-converts"><span class="std std-ref">at the end</span></a>.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="985a4141-2818-4126-a869-5f2fc277e017" name="d0c8fc65-9970-4521-a239-79edc5d0167f" type="radio">
+</input><label class="tabbed-label" for="985a4141-2818-4126-a869-5f2fc277e017">
+Practical</label><div class="tabbed-content docutils">
+<p>Explore several of the images under <span class="menuselection">File ‣ Open Samples ‣</span> and identify which are treated by ImageJ as RGB, which as multichannel, and which have just a single channel.
+There is only one correct answer per image.</p>
+<p><strong>Note 1:</strong> Here, ‘RGB’ means that ImageJ treats the image has having the special ‘RGB’ image type.
+It’s possible for a multichannel image to have three channels with red, green and blue LUTs, but Imagej doesn’t consider it to be RGB.
+You should therefore use the rules given above to distinguish images RGB from multichannel.</p>
+<p><strong>Note 2:</strong> At the time I write this, the sample images don’t work for me properly in Fiji – but they do work in ImageJ.
+Hopefully the Fiji bug will be fixed before you read this.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Image</p></th>
+<th class="text-align:center head"><p>RGB</p></th>
+<th class="text-align:center head"><p>Multichannel</p></th>
+<th class="text-align:center head"><p>Single channel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="menuselection">Leaf</span></p></td>
+<td class="text-align:center"><p>?</p></td>
+<td class="text-align:center"><p>?</p></td>
+<td class="text-align:center"><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="menuselection">Fluorescent Cells</span></p></td>
+<td class="text-align:center"><p>?</p></td>
+<td class="text-align:center"><p>?</p></td>
+<td class="text-align:center"><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="menuselection">Cardio (RGB Dicom)</span></p></td>
+<td class="text-align:center"><p>?</p></td>
+<td class="text-align:center"><p>?</p></td>
+<td class="text-align:center"><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="menuselection">HeLa Cells (48-bit RGB)</span></p></td>
+<td class="text-align:center"><p>?</p></td>
+<td class="text-align:center"><p>?</p></td>
+<td class="text-align:center"><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="menuselection">Fly Brain</span></p></td>
+<td class="text-align:center"><p>?</p></td>
+<td class="text-align:center"><p>?</p></td>
+<td class="text-align:center"><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="menuselection">Image with Overlay</span></p></td>
+<td class="text-align:center"><p>?</p></td>
+<td class="text-align:center"><p>?</p></td>
+<td class="text-align:center"><p>?</p></td>
+</tr>
+</tbody>
+</table>
+<p><a class="reference external" href="https://ij.imjoy.io"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
+</div>
+<input id="38f014d7-8443-4dd4-a304-ff6167412c05" name="d0c8fc65-9970-4521-a239-79edc5d0167f" type="radio">
+</input><label class="tabbed-label" for="38f014d7-8443-4dd4-a304-ff6167412c05">
+Solution</label><div class="tabbed-content docutils">
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Image</p></th>
+<th class="text-align:center head"><p>RGB</p></th>
+<th class="text-align:center head"><p>Multichannel</p></th>
+<th class="text-align:center head"><p>Single channel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="menuselection">Leaf</span></p></td>
+<td class="text-align:center"><p>X</p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="menuselection">Fluorescent Cells</span></p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p>X</p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="menuselection">Cardio (RGB Dicom)</span></p></td>
+<td class="text-align:center"><p>X</p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="menuselection">HeLa Cells (48-bit RGB)</span></p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p>X</p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="menuselection">Fly Brain</span></p></td>
+<td class="text-align:center"><p>X</p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="menuselection">Image with Overlay</span></p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p>X</p></td>
+</tr>
+</tbody>
+</table>
+<p>There are several awkward images:</p>
+<ul class="simple">
+<li><p><span class="menuselection">HeLa Cells (48-bit RGB)</span> is <em>not</em> treated as having the RGB type… and ImageJ doesn’t have a ‘48-bit’ type either! Here, 48-bit RGB means that we actually have three 16-bit channels with red, green and blue LUTs. For ImageJ, that’s not really an RGB image, it’s a multichannel image. Don’t expect too much consistency in naming: always check the types!</p></li>
+<li><p><span class="menuselection">Fly Brain</span> has a slider, but it doesn’t have a <span class="guilabel">C</span> label. This is because the slider isn’t for channels, but rather for <em>z</em>-slices. We will meet <em>z</em>-slices in the <a class="reference internal" href="../5-pixel_size/pixel_size.html#chap-dimensions"><span class="std std-ref">next chapter</span></a>.</p></li>
+<li><p><span class="menuselection">Image with Overlay</span> looks colorful, but the colors all come from the <a class="reference internal" href="../2-measurements/imagej.html#sec-imagej-overlay"><span class="std std-ref">overlay</span></a> – not from the image being RGB. Admittedly, the name helps here.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="working-with-channels">
+<h2>Working with channels<a class="headerlink" href="#working-with-channels" title="Permalink to this headline">¶</a></h2>
+<p>There are several useful commands for working with color channels under <span class="menuselection">Image ‣ Color ‣ </span>.
+Some of these, such as <span class="menuselection">Image ‣ Color ‣ Split channels</span> and <span class="menuselection">Image ‣ Color ‣ Merge channels</span> are quite intuitive, and work for both RGB and multichannel images.</p>
+<p>One of the most useful commands that requires some explanation is <span class="menuselection">Image ‣ Color ‣ Channels Tool…</span> <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">Z</kbd></kbd>.
+If you run the <span class="menuselection">Channels Tool…</span> command for an RGB image and try to do anything, ImageJ will ask</p>
+<img alt="../../../_images/channels-tool-composite.png" class="align-center" src="../../../_images/channels-tool-composite.png" />
+<p>Agreeing to the prompt will convert the RGB image to a multichannel image.</p>
+<p>The question might be a little bit confusing because ‘composite’ and ‘multichannel’ do not quite mean the same thing, although they are sometimes used interchangeably with ImageJ.
+To be more precise, a ‘composite image’ in this context is a multichannel image that is displayed using a particular <strong>display mode</strong>.</p>
+<p>ImageJ has three main modes for displaying multichannel images, accessible from the drop-down menu of the <em>Channels Tool</em> dialog:</p>
+<ul class="simple">
+<li><p><span class="guilabel">Composite</span> – Merge some or all the channels together for display. Currently, this works with up to 7 or 8 channels (depending on software version; an extra one was added recently). Individual channels can be turned on and off.</p></li>
+<li><p><span class="guilabel">Color</span> – View the ‘active’ channel only, using its original color LUT. You can switch the channel with the slider below the image.</p></li>
+<li><p><span class="guilabel">Grayscale</span> – Similar to <span class="guilabel">Color</span>, except always using a grayscale LUT.</p></li>
+</ul>
+<p>Whenever a channel is active, the LUT can be changed using options in the <em>Channels Tool</em> dialog – or the <span class="menuselection">Image ‣ Lookup Tables ‣ </span> submenu as usual.
+Similarly, <span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> works on the active channel to update the LUT.</p>
+<div class="cell tag_remove-output tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_all.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Composite image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_red.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Red channel&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_green.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Green channel&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_blue.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Blue channel&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_color_composite&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-fiji-composite">
+<div class="cell_output docutils container">
+<img alt="../../../_images/imagej_5_02.png" src="../../../_images/imagej_5_02.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">ImageJ multichannel image sample <em>Fluorescent Cells</em>. Using the <span class="menuselection">Image ‣ Color ‣ Channels Tool…</span> and the slider at the bottom of the window, you can view the channels individually or simultaneously.</span><a class="headerlink" href="#fig-fiji-composite" title="Permalink to this image">¶</a></p>
+</div>
+<p>The way in which <span class="guilabel">Composite</span> mode works is that an RGB image is effectively created for each channel based on its LUT, and the red, green and blue values are <em>added</em> together to get the final output color (clipping at 255 if needed).</p>
+<p>This isn’t the only way to generate a composite image, and it doesn’t work well for all LUTs – particular LUTs that map low pixel values to bright colors or white.</p>
+<p>Therefore, since ImageJ 1.53o some additional composite modes were added to the <span class="menuselection">Channels Tool…</span>, and refined over the next few releases after a long (and occasionally testy) discussion on <a class="reference external" href="http://image.sc">image.sc</a>.
+At the time of writing, the available modes are:</p>
+<ul class="simple">
+<li><p><span class="guilabel">Composite Max</span> – Similar to <span class="guilabel">Composite</span>, except use the <em>maximum</em> of the red, green and blue values across all channels (not the sum)</p></li>
+<li><p><span class="guilabel">Composite Min</span> – Similar to <span class="guilabel">Composite Max</span>, except use the <em>minimum</em> of the red, green and blue values across all channels (not the maximum)</p></li>
+<li><p><span class="guilabel">Composite Invert</span> – Similar to <span class="guilabel">Composite</span>, except <em>subtract</em> the red, green and blue LUT values instead of adding them</p></li>
+</ul>
+<p>Both <span class="guilabel">Composite Min</span> and <span class="guilabel">Composite Invert</span> are useful for LUTs with light backgrounds, therefore if you select one of these options ImageJ may flip a LUT to have a light background if needed.</p>
+<div class="cell tag_remove-output tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_neuron_default.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Composite&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_neuron_max.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Composite Max&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_neuron_min.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Composite Min&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_neuron_invert.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Composite Invert&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_color_composite_new&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-fiji-composite-new">
+<div class="cell_output docutils container">
+<img alt="../../../_images/imagej_8_0.png" src="../../../_images/imagej_8_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">Visualizing the new composite modes.</span><a class="headerlink" href="#fig-fiji-composite-new" title="Permalink to this image">¶</a></p>
+</div>
+<div class="danger admonition">
+<p class="admonition-title">Be careful with composites!</p>
+<p>Any new visualization modes have the potential to cause confusion or to be abused.
+Although the new composite modes can be useful, I advise caution.</p>
+<p>The original <span class="guilabel">Composite</span> mode is really well established, and is the default.
+If you use any of the ‘new’ composite modes in a figure for publication, you should clearly specify which.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<img alt="../../../_images/fluorescent_cells_orig_crop.jpg" src="../../../_images/fluorescent_cells_orig_crop.jpg" />
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<img alt="../../../_images/fluorescent_cells_cb_crop.jpg" src="../../../_images/fluorescent_cells_cb_crop.jpg" />
+</div>
+<div class="info admonition">
+<p class="admonition-title">Choosing channel colors</p>
+<p>By changing the LUTs, channels can be assigned any color you like. Although red/green images are widespread, especially for colocalization, they are particularly unhelpful for colorblindness.
+More accessible images can be created by switching the LUTs of at least one channel to something more suitable (e.g.
+Red → Magenta) – although displaying both channels separately is better still.</p>
+<p>You can also test the effects of different colors using the Fiji command <span class="menuselection">Image ‣ Color ‣ Simulate Color Blindness</span> (note that this may require converting the image to RGB first).</p>
+<p>More information about generating figures with suitable colors is available at <a class="reference external" href="https://www.nature.com/articles/nmeth.1618">https://www.nature.com/articles/nmeth.1618</a>.</p>
+</div>
+</div>
+<div class="section" id="converting-to-rgb">
+<span id="sec-imagej-flatten"></span><h2>Converting to RGB<a class="headerlink" href="#converting-to-rgb" title="Permalink to this headline">¶</a></h2>
+<p>As described in <a class="reference internal" href="colors.html#chap-colors"><span class="std std-ref">Channels &amp; colors</span></a>, one of the most important uses of RGB images is to create a compatible image for display in different software.
+We will see more about how to save such images in <a class="reference internal" href="../6-files/files.html#chap-files"><span class="std std-ref">Files &amp; file formats</span></a>.</p>
+<p>It should be possible to convert any image to RGB using <span class="menuselection">Image ‣ Type ‣ RGB Color</span>.
+However, my preferred way to create an RGB image for display is usually <span class="menuselection">Image ‣ Overlay ‣ Flatten</span> <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">F</kbd></kbd>.
+This not only converts the image, but also incorporates any ROIs or overlays into the RGB version.
+Flattening is similar to taking a screenshot of the image as it currently appears, except unaffected by the current zoom level or field of view.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="354ac437-f43f-4db9-80bb-dd91cfe15790" name="c2b4fe8e-4561-44f1-a101-3058388329c5" type="radio">
+</input><label class="tabbed-label" for="354ac437-f43f-4db9-80bb-dd91cfe15790">
+Question</label><div class="tabbed-content docutils">
+<p>ImageJ has two different copying commands, <span class="menuselection">Edit ‣ Copy</span> and <span class="menuselection">Edit ‣ Copy to System</span>.
+Why?</p>
+<p><strong>Note:</strong> When investigating this, you should explore <span class="menuselection">Edit ‣ Paste</span>, alongside two commands in the <span class="menuselection">File ‣ New ‣</span> submenu.
+Be on the lookout for any conversions.</p>
+</div>
+<input id="8f9308ba-5e55-46c9-971a-2d1b45c0f0d7" name="c2b4fe8e-4561-44f1-a101-3058388329c5" type="radio">
+</input><label class="tabbed-label" for="8f9308ba-5e55-46c9-971a-2d1b45c0f0d7">
+Solution</label><div class="tabbed-content docutils">
+<p><span class="menuselection">Edit ‣ Copy</span> allows you to copy part of an individual image slice (i.e. a 2D part of a particular color channel) and paste it into another image while exactly preserving the original image type and pixel values.
+You can also use <span class="menuselection">File ‣ New ‣ Internal Clipboard</span> to get the copied region (but <span class="menuselection">Image ‣ Duplicate…</span> is usually a better option).
+However, this image type might well not be compatible with other software, therefore images copied in this way cannot be accessed outside ImageJ.</p>
+<p><span class="menuselection">Edit ‣ Copy to System</span> is needed if you want to copy an image to the system clipboard so that it can be pasted into other software.
+However, be warned that this converts the image to RGB in the process.
+If therefore preserves the image appearance, but not necessarily the pixel values.</p>
+</div>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="76e2eebf-3ce4-4dac-b499-6188d9928a55" name="f6e03cc9-6056-4f8b-8553-99e4fe002680" type="radio">
+</input><label class="tabbed-label" for="76e2eebf-3ce4-4dac-b499-6188d9928a55">
+Practical</label><div class="tabbed-content docutils">
+<p>You can test the compatibility of composite and RGB images by opening <span class="menuselection">File ‣ Open Samples ‣ HeLa Cells</span> image, and saving it using <span class="menuselection">File ‣ Save As ‣ Tiff…</span> both before and after running <span class="menuselection">Image ‣ Type ‣ RGB Color</span> to convert the original 16-bit composite data to RGB.</p>
+<p>Try then opening both saved images in other software (e.g. Microsoft PowerPoint®) and compare their appearance.</p>
+</div>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="b906e4ad-94fa-4cb6-ac38-58ca462a65ee" name="4afb3675-ab87-4dc0-98f6-7b79c6377fc5" type="radio">
+</input><label class="tabbed-label" for="b906e4ad-94fa-4cb6-ac38-58ca462a65ee">
+Practical</label><div class="tabbed-content docutils">
+<p>Think of at least 2 ways in which converting a composite image to RGB can lose information.</p>
+<p>You can explore this by comparing the images <em>Neuron_composite.tif</em> and
+<em>Neuron_RGB.tif</em>.
+The <span class="menuselection">Image ‣ Color ‣ Split Channels</span> command should help.</p>
+</div>
+<input id="9375e370-084f-4529-b8c2-5abecaf23d2d" name="4afb3675-ab87-4dc0-98f6-7b79c6377fc5" type="radio">
+</input><label class="tabbed-label" for="9375e370-084f-4529-b8c2-5abecaf23d2d">
+Solution</label><div class="tabbed-content docutils">
+<p>One way that converting an image to RGB can lose information is if the original data is 16-bit before conversion and 8-bit afterwards, causing rounding and/or clipping to occur (see <a class="reference internal" href="../3-bit_depths/bit_depths.html#chap-bit-depths"><span class="std std-ref">Types &amp; bit-depths</span></a>).</p>
+<p>Another is that during conversion the channels have been forced to be purely red, green and blue.
+But perhaps they were not originally so, and separate channels have been merged into the same ones.
+If you had started with more than three channels, this will definitely have occurred, but even if you had fewer channels you can have problems (like in the <em>Neuron_composite.tif</em> and <em>Neuron_RGB.tif</em> examples).</p>
+<p>The trouble with <em>only</em> having an RGB image is that it is no longer possible to know for sure what the original data looked like, to be able to figure out whether anything has been lost.
+For example, perhaps you have managed to generate a magnificent image consisting of turquoise, yellow and dazzling pink channels.
+Each pixel is displayed on screen as a combination of those colors.
+However, precisely the same color for any pixel can also be represented – rather more simply – as a mixture of red, green and blue.
+So no matter what channels and colors you began with, the final result after merging can be replicated using red, green and blue channels.
+But if you <em>only</em> have the RGB version, you might never be able to extract the original 3 channels again.
+Their colors could be so mixed together that the original pixel values would be irretrievably lost.</p>
+<p>And so the good things about RGB images are that they look identical to the original image you had before conversion, and other software (e.g. webbrowsers or PowerPoint®) can understand them effortlessly.
+But the <em>potentially very bad</em> thing about RGB images is that creating them requires conversion, and after this it might very well be <em>impossible</em> to regain the original pixel values.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="admonition-how-rgb-images-are-converted-how-i-find-out-what-i-can-t-remember admonition" id="sec-colors-converts">
+<p class="admonition-title">How RGB images are converted / How I find out what I can’t remember</p>
+<p>When describing how <span class="menuselection">Analyze ‣ Measure</span> handles RGB image, I said that it converts the image first.</p>
+<p>‘Converts the image’ is a fairly vague statement for a very good reason: I only have a vague awareness of how it works, because I’ve never needed to know it.
+RGB images aren’t good for quantification anyway, so I don’t often have any reason to measure pixel values within them.</p>
+<p>I admit this to give reassurance that there’s a good chance you don’t need to know it either.
+So if you find the rest of this box confusing, don’t worry.</p>
+<p><strong>However,</strong> it also gives an opportunity to make a bigger point: there are too many intricacies within ImageJ to remember all of them.
+And that’s fine.
+I believe that a far more important skill is knowing how to investigate what is happening.</p>
+<p>And so here is how I set about understanding what ‘converts the image’ means.</p>
+<p>Firstly, I created an RGB image with 50x50 pixels known values for red (0), green (100) and blue (200).</p>
+<img alt="../../../_images/blue.png" class="align-center" src="../../../_images/blue.png" />
+<p><strong>If</strong> the conversion is simply averaging the red, green and blue values then I would expect the result of running <span class="menuselection">Analyze ‣ Measure</span> to be 100 (since that is the mean of 0, 100 and 200).
+When I tested it, I found that was the case.
+I tried some other values, and they all behaved the same way: it appears that conversion is simply averaging the channels.</p>
+<p>I then hypothesised that I should get the same thing if I use <span class="menuselection">Image ‣ Type ‣ 8-bit</span>.
+So I tried that out, and again it matched expectations.</p>
+<p>So I concluded that <span class="menuselection">Analyze ‣ Measure</span> was quietly calling <span class="menuselection">Image ‣ Type ‣ 8-bit</span> on a copy of the image, and then measuring <em>that</em>.</p>
+<p>Or maybe it’s calling <span class="menuselection">Image ‣ Type ‣ 32-bit</span> instead?</p>
+<p>I needed a new image that would show the effects of rounding, so I added 1 to the blue channel, making its values 201.</p>
+<img alt="../../../_images/blue2.png" class="align-center" src="../../../_images/blue2.png" />
+<p>I then tried <span class="menuselection">Image ‣ Type ‣ 32-bit</span>, which gave the expected average of 100.33.
+But <span class="menuselection">Image ‣ Type ‣ 8-bit</span> still gave 100 per pixel – because it is limited to integers.
+And <span class="menuselection">Analyze ‣ Measure</span> also gave me 100 – which suggest that it converts the RGB images to 8-bit, not floating point, when making its measurements.</p>
+<p>Finally, I remembered that ImageJ sometimes sneaks in extra options.
+So I opened <span class="menuselection">Edit ‣ Options ‣ Conversions…</span> and found a checkbox for <span class="menuselection">Weighted RGB conversion</span>.
+If I selected it, and repeated the steps above I got quite different answers – because it no longer converts using a straight ‘average of the 3 channels’.
+Rather, each channel is weighted: 0.30 x Red + 0.59 x Green + 0.11 x Blue.</p>
+<p>Pondering the weights took me down a googling rabbit hole to see these are (somewhat) standard weight values for grayscale image conversion used across different software.
+But, more importantly, I saw that the <span class="menuselection">Weighted RGB conversion</span> option affected <em>both</em> measurement and conversion – supporting my suspicion that they are connected.</p>
+<p>Confused?
+Me too.</p>
+<p><strong>But</strong> my main point is that mortals like me can’t predict what software is going to do.
+Even if we think we know, there’s a chance some sneaky option somewhere is changing the behavior.</p>
+<p>What we <em>can</em> do is foster a critical mind.
+We can learn enough about the software to know how to test what it is doing.</p>
+<p>And that, at least, is how I learned to use ImageJ and came to write this book.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "petebankhead/jupyter-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/1-concepts/4-colors"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="colors.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Channels &amp; colors</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="python.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python: Channels &amp; colors</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pete Bankhead<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

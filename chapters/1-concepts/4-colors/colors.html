@@ -1,0 +1,2960 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Channels &amp; colors &#8212; Introduction to Bioimage Analysis</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ImageJ: Channels &amp; colors" href="imagej.html" />
+    <link rel="prev" title="Python: Types &amp; bit-depths" href="../3-bit_depths/python.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../README.html">
+   Introduction to Bioimage Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Front matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Before we begin
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/preface/preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/reading/reading.html">
+   How to read this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducing images
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html">
+   Images &amp; pixels
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1-images_and_pixels/imagej.html">
+     ImageJ: Images &amp; pixels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1-images_and_pixels/python.html">
+     Python: Images &amp; pixels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../2-measurements/measurements.html">
+   Measurements &amp; histograms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2-measurements/imagej.html">
+     ImageJ: Measurements &amp; histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2-measurements/python.html">
+     Python: Measurements &amp; histograms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3-bit_depths/bit_depths.html">
+   Types &amp; bit-depths
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-bit_depths/imagej.html">
+     ImageJ: Types &amp; bit-depths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-bit_depths/python.html">
+     Python: Types &amp; bit-depths
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Channels &amp; colors
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="imagej.html">
+     ImageJ: Channels &amp; colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="python.html">
+     Python: Channels &amp; colors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../5-pixel_size/pixel_size.html">
+   Pixel size &amp; dimensions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5-pixel_size/imagej.html">
+     ImageJ:  Pixel size &amp; dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5-pixel_size/python.html">
+     Python:  Pixel size &amp; dimensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../6-files/files.html">
+   Files &amp; file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6-files/imagej.html">
+     ImageJ: Files &amp; file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6-files/python.html">
+     Python: Files &amp; file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Processing &amp; analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../2-processing/1-processing_and_analysis/processing_and_analysis.html">
+   Image processing &amp; analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html">
+   Point operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/2-point_operations/imagej.html">
+     ImageJ: Point operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html">
+   Thresholding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/3-thresholding/imagej.html">
+     ImageJ: Thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/4-filters/filters.html">
+   Filters
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/4-filters/imagej.html">
+     ImageJ: Filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/5-morph/morph.html">
+   Morphological operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/5-morph/imagej.html">
+     ImageJ: Morphological operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/6-transforms/transforms.html">
+   Image transforms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/6-transforms/imagej.html">
+     ImageJ: Image transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/7-multidimensional_processing/multidimensional_processing.html">
+   Multidimensional processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/7-multidimensional_processing/imagej.html">
+     ImageJ: Multidimensional processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fluorescence microscopy
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
+   From photons to pixels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
+   Blur &amp; the PSF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
+   Noise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
+   Microscopes &amp; detectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
+   Beyond this book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/python/python.html">
+   Python Primer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
+   ImageJ: Writing macros
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
+     Difference of Gaussians
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
+     Simulating image formation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/chapters/1-concepts/4-colors/colors.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/chapters/1-concepts/4-colors/colors.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/petebankhead/jupyter-book/main?urlpath=tree/chapters/1-concepts/4-colors/colors.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mixing-red-green-blue">
+   Mixing red, green &amp; blue
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rgb-images">
+   RGB images
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-risk-of-rgb">
+     The risk of RGB
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-role-of-rgb">
+     The role of RGB
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#using-rgb-images-for-display">
+       Using RGB images for display
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#when-rgb-is-all-you-ve-got">
+       When RGB is all you’ve got
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multichannel-images">
+   Multichannel images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary-of-color-images">
+   Summary of color images
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Channels & colors</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mixing-red-green-blue">
+   Mixing red, green &amp; blue
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rgb-images">
+   RGB images
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-risk-of-rgb">
+     The risk of RGB
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-role-of-rgb">
+     The role of RGB
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#using-rgb-images-for-display">
+       Using RGB images for display
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#when-rgb-is-all-you-ve-got">
+       When RGB is all you’ve got
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multichannel-images">
+   Multichannel images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary-of-color-images">
+   Summary of color images
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="channels-colors">
+<span id="chap-colors"></span><h1>Channels &amp; colors<a class="headerlink" href="#channels-colors" title="Permalink to this headline">¶</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Chapter outline </p>
+<ul class="simple">
+<li><p>Images with multiple <strong>color channels</strong> may display differently in different software</p></li>
+<li><p><strong>RGB images</strong> are a special case, and generally look consistent across different software</p></li>
+<li><p>In ImageJ, multichannel images that are not RGB may be referred to as <strong>composite images</strong></p></li>
+<li><p><strong>Converting images to RGB often loses information!</strong></p></li>
+</ul>
+</div>
+<div class="cell tag_hide-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>One way to introduce color into images is to use a suitable LUT, as described in <a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html#chap-pixels"><span class="std std-ref">Images &amp; pixels</span></a>.
+Then the fact that different colors could be involved in the display of such images was really only incidental: at each location in the image there was still only one channel, one pixel and one value.</p>
+<p>There are images for which color plays a more important role.
+We will consider two types:</p>
+<ol class="simple">
+<li><p><strong>RGB images</strong> – which are widely used for display, but are <em>usually</em> not very good for quantitative analysis</p></li>
+<li><p><strong>Multichannel / composite images</strong> – which are often better for analysis, but need to be converted to RGB for display</p></li>
+</ol>
+<p>Since they often <em>look</em> the same, but behave very differently, knowing which kind of color image you have is important for any scientific work.</p>
+</div>
+<div class="section" id="mixing-red-green-blue">
+<h2>Mixing red, green &amp; blue<a class="headerlink" href="#mixing-red-green-blue" title="Permalink to this headline">¶</a></h2>
+<p>We previously discussed how image LUTs provide a way to map pixel values to colors that can be displayed on screen.
+Now that we’ve looked at image types and bit-depths, we can expand a bit more on how that works in practice.</p>
+<p>In general, each color is represented using three 8-bit unsigned integers: one for <strong>r</strong>ed, one for <strong>g</strong>reen, one for <strong>b</strong>lue.
+Each integer value defines how much of each primary color should be mixed together to create the final color used to display the pixel.</p>
+<p>In the case of a grayscale LUT, the red, green and blue values are all the same:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">LinearSegmentedColormap</span>
+
+<span class="k">def</span> <span class="nf">colormap_style</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Style each row of the LUT.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="c1">#f&quot;font-weight: bold&quot;,</span>
+            <span class="sa">f</span><span class="s2">&quot;color: rgba(</span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;Red&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, 0, 0)&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;color: rgba(0, </span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;Green&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, 0)&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;color: rgba(0, 0, </span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;Blue&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;background-color: rgba(</span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;Red&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;Green&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;Blue&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">show_colormap</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">n_colors</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">caption</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Display colormap in a pandas dataframe.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Select a colormap &amp; convert it to 8-bit</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">color_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">n_colors</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">cmap</span><span class="p">(</span><span class="n">ind</span><span class="p">)[:</span><span class="mi">3</span><span class="p">])</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">color_inds</span><span class="p">])</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">(</span><span class="n">colors</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+
+    <span class="c1"># Create a table to display the colormap</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Red&#39;</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="s1">&#39;Blue&#39;</span><span class="p">))</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="s2">&quot;th&quot;</span><span class="p">,</span>
+        <span class="n">props</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;text-align&#39;</span><span class="p">,</span> <span class="s1">&#39;center&#39;</span><span class="p">)])</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;8em&#39;</span><span class="p">,</span> <span class="s1">&#39;font-size&#39;</span><span class="p">:</span><span class="s1">&#39;80%&#39;</span><span class="p">,</span> <span class="s1">&#39;text-align&#39;</span><span class="p">:</span><span class="s1">&#39;center&#39;</span><span class="p">})</span>\
+            <span class="o">.</span><span class="n">set_table_styles</span><span class="p">([</span><span class="n">d</span><span class="p">])</span>\
+            <span class="o">.</span><span class="n">hide</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>\
+            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">colormap_style</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">caption</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="n">caption</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="c1"># Create standard red, green &amp; blue colormaps</span>
+<span class="n">cm_reds</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="s1">&#39;reds&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)])</span>
+<span class="n">cm</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="s1">&#39;reds&#39;</span><span class="p">,</span> <span class="n">cm_reds</span><span class="p">)</span>
+<span class="n">cm_greens</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="s1">&#39;greens&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)])</span>
+<span class="n">cm</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="s1">&#39;greens&#39;</span><span class="p">,</span> <span class="n">cm_greens</span><span class="p">)</span>
+<span class="n">cm_blues</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="s1">&#39;blues&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span>
+<span class="n">cm</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="s1">&#39;blues&#39;</span><span class="p">,</span> <span class="n">cm_blues</span><span class="p">)</span>
+
+<span class="c1"># Create additional colormaps</span>
+<span class="n">cm_cyans</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="s1">&#39;cyans&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span>
+<span class="n">cm</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="s1">&#39;cyans&#39;</span><span class="p">,</span> <span class="n">cm_cyans</span><span class="p">)</span>
+<span class="n">cm_yellows</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="s1">&#39;yellows&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)])</span>
+<span class="n">cm</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="s1">&#39;yellows&#39;</span><span class="p">,</span> <span class="n">cm_yellows</span><span class="p">)</span>
+<span class="n">cm_magentas</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="s1">&#39;magentas&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span>
+<span class="n">cm</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="s1">&#39;magentas&#39;</span><span class="p">,</span> <span class="n">cm_magentas</span><span class="p">)</span>
+
+
+<span class="n">show_colormap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;Grayscale LUT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_78ec2 th {
+  text-align: center;
+}
+#T_78ec2_row0_col0, #T_78ec2_row0_col1, #T_78ec2_row0_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 0);
+}
+#T_78ec2_row0_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(0, 0, 0);
+}
+#T_78ec2_row1_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(17, 0, 0);
+}
+#T_78ec2_row1_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 17, 0);
+}
+#T_78ec2_row1_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 17);
+}
+#T_78ec2_row1_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(17, 17, 17);
+}
+#T_78ec2_row2_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(34, 0, 0);
+}
+#T_78ec2_row2_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 34, 0);
+}
+#T_78ec2_row2_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 34);
+}
+#T_78ec2_row2_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(34, 34, 34);
+}
+#T_78ec2_row3_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(51, 0, 0);
+}
+#T_78ec2_row3_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 51, 0);
+}
+#T_78ec2_row3_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 51);
+}
+#T_78ec2_row3_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(51, 51, 51);
+}
+#T_78ec2_row4_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(68, 0, 0);
+}
+#T_78ec2_row4_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 68, 0);
+}
+#T_78ec2_row4_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 68);
+}
+#T_78ec2_row4_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(68, 68, 68);
+}
+#T_78ec2_row5_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(85, 0, 0);
+}
+#T_78ec2_row5_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 85, 0);
+}
+#T_78ec2_row5_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 85);
+}
+#T_78ec2_row5_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(85, 85, 85);
+}
+#T_78ec2_row6_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(102, 0, 0);
+}
+#T_78ec2_row6_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 102, 0);
+}
+#T_78ec2_row6_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 102);
+}
+#T_78ec2_row6_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(102, 102, 102);
+}
+#T_78ec2_row7_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(119, 0, 0);
+}
+#T_78ec2_row7_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 119, 0);
+}
+#T_78ec2_row7_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 119);
+}
+#T_78ec2_row7_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(119, 119, 119);
+}
+#T_78ec2_row8_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(136, 0, 0);
+}
+#T_78ec2_row8_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 136, 0);
+}
+#T_78ec2_row8_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 136);
+}
+#T_78ec2_row8_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(136, 136, 136);
+}
+#T_78ec2_row9_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(153, 0, 0);
+}
+#T_78ec2_row9_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 153, 0);
+}
+#T_78ec2_row9_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 153);
+}
+#T_78ec2_row9_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(153, 153, 153);
+}
+#T_78ec2_row10_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(170, 0, 0);
+}
+#T_78ec2_row10_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 170, 0);
+}
+#T_78ec2_row10_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 170);
+}
+#T_78ec2_row10_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(170, 170, 170);
+}
+#T_78ec2_row11_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(187, 0, 0);
+}
+#T_78ec2_row11_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 187, 0);
+}
+#T_78ec2_row11_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 187);
+}
+#T_78ec2_row11_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(187, 187, 187);
+}
+#T_78ec2_row12_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(204, 0, 0);
+}
+#T_78ec2_row12_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 204, 0);
+}
+#T_78ec2_row12_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 204);
+}
+#T_78ec2_row12_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(204, 204, 204);
+}
+#T_78ec2_row13_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(221, 0, 0);
+}
+#T_78ec2_row13_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 221, 0);
+}
+#T_78ec2_row13_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 221);
+}
+#T_78ec2_row13_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(221, 221, 221);
+}
+#T_78ec2_row14_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(238, 0, 0);
+}
+#T_78ec2_row14_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 238, 0);
+}
+#T_78ec2_row14_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 238);
+}
+#T_78ec2_row14_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(238, 238, 238);
+}
+#T_78ec2_row15_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(255, 0, 0);
+}
+#T_78ec2_row15_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 255, 0);
+}
+#T_78ec2_row15_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 255);
+}
+#T_78ec2_row15_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(255, 255, 255);
+}
+</style>
+<table id="T_78ec2">
+  <caption>Grayscale LUT</caption>
+  <thead>
+    <tr>
+      <th id="T_78ec2_level0_col0" class="col_heading level0 col0" >Red</th>
+      <th id="T_78ec2_level0_col1" class="col_heading level0 col1" >Green</th>
+      <th id="T_78ec2_level0_col2" class="col_heading level0 col2" >Blue</th>
+      <th id="T_78ec2_level0_col3" class="col_heading level0 col3" >Color</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_78ec2_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_78ec2_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_78ec2_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_78ec2_row0_col3" class="data row0 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row1_col0" class="data row1 col0" >17</td>
+      <td id="T_78ec2_row1_col1" class="data row1 col1" >17</td>
+      <td id="T_78ec2_row1_col2" class="data row1 col2" >17</td>
+      <td id="T_78ec2_row1_col3" class="data row1 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row2_col0" class="data row2 col0" >34</td>
+      <td id="T_78ec2_row2_col1" class="data row2 col1" >34</td>
+      <td id="T_78ec2_row2_col2" class="data row2 col2" >34</td>
+      <td id="T_78ec2_row2_col3" class="data row2 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row3_col0" class="data row3 col0" >51</td>
+      <td id="T_78ec2_row3_col1" class="data row3 col1" >51</td>
+      <td id="T_78ec2_row3_col2" class="data row3 col2" >51</td>
+      <td id="T_78ec2_row3_col3" class="data row3 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row4_col0" class="data row4 col0" >68</td>
+      <td id="T_78ec2_row4_col1" class="data row4 col1" >68</td>
+      <td id="T_78ec2_row4_col2" class="data row4 col2" >68</td>
+      <td id="T_78ec2_row4_col3" class="data row4 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row5_col0" class="data row5 col0" >85</td>
+      <td id="T_78ec2_row5_col1" class="data row5 col1" >85</td>
+      <td id="T_78ec2_row5_col2" class="data row5 col2" >85</td>
+      <td id="T_78ec2_row5_col3" class="data row5 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row6_col0" class="data row6 col0" >102</td>
+      <td id="T_78ec2_row6_col1" class="data row6 col1" >102</td>
+      <td id="T_78ec2_row6_col2" class="data row6 col2" >102</td>
+      <td id="T_78ec2_row6_col3" class="data row6 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row7_col0" class="data row7 col0" >119</td>
+      <td id="T_78ec2_row7_col1" class="data row7 col1" >119</td>
+      <td id="T_78ec2_row7_col2" class="data row7 col2" >119</td>
+      <td id="T_78ec2_row7_col3" class="data row7 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row8_col0" class="data row8 col0" >136</td>
+      <td id="T_78ec2_row8_col1" class="data row8 col1" >136</td>
+      <td id="T_78ec2_row8_col2" class="data row8 col2" >136</td>
+      <td id="T_78ec2_row8_col3" class="data row8 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row9_col0" class="data row9 col0" >153</td>
+      <td id="T_78ec2_row9_col1" class="data row9 col1" >153</td>
+      <td id="T_78ec2_row9_col2" class="data row9 col2" >153</td>
+      <td id="T_78ec2_row9_col3" class="data row9 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row10_col0" class="data row10 col0" >170</td>
+      <td id="T_78ec2_row10_col1" class="data row10 col1" >170</td>
+      <td id="T_78ec2_row10_col2" class="data row10 col2" >170</td>
+      <td id="T_78ec2_row10_col3" class="data row10 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row11_col0" class="data row11 col0" >187</td>
+      <td id="T_78ec2_row11_col1" class="data row11 col1" >187</td>
+      <td id="T_78ec2_row11_col2" class="data row11 col2" >187</td>
+      <td id="T_78ec2_row11_col3" class="data row11 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row12_col0" class="data row12 col0" >204</td>
+      <td id="T_78ec2_row12_col1" class="data row12 col1" >204</td>
+      <td id="T_78ec2_row12_col2" class="data row12 col2" >204</td>
+      <td id="T_78ec2_row12_col3" class="data row12 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row13_col0" class="data row13 col0" >221</td>
+      <td id="T_78ec2_row13_col1" class="data row13 col1" >221</td>
+      <td id="T_78ec2_row13_col2" class="data row13 col2" >221</td>
+      <td id="T_78ec2_row13_col3" class="data row13 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row14_col0" class="data row14 col0" >238</td>
+      <td id="T_78ec2_row14_col1" class="data row14 col1" >238</td>
+      <td id="T_78ec2_row14_col2" class="data row14 col2" >238</td>
+      <td id="T_78ec2_row14_col3" class="data row14 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_78ec2_row15_col0" class="data row15 col0" >255</td>
+      <td id="T_78ec2_row15_col1" class="data row15 col1" >255</td>
+      <td id="T_78ec2_row15_col2" class="data row15 col2" >255</td>
+      <td id="T_78ec2_row15_col3" class="data row15 col3" ></td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Other LUTs may include only one color, with the others set to zero:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_colormap</span><span class="p">(</span><span class="s1">&#39;reds&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;Red LUT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_7575c th {
+  text-align: center;
+}
+#T_7575c_row0_col0, #T_7575c_row0_col1, #T_7575c_row0_col2, #T_7575c_row1_col1, #T_7575c_row1_col2, #T_7575c_row2_col1, #T_7575c_row2_col2, #T_7575c_row3_col1, #T_7575c_row3_col2, #T_7575c_row4_col1, #T_7575c_row4_col2, #T_7575c_row5_col1, #T_7575c_row5_col2, #T_7575c_row6_col1, #T_7575c_row6_col2, #T_7575c_row7_col1, #T_7575c_row7_col2, #T_7575c_row8_col1, #T_7575c_row8_col2, #T_7575c_row9_col1, #T_7575c_row9_col2, #T_7575c_row10_col1, #T_7575c_row10_col2, #T_7575c_row11_col1, #T_7575c_row11_col2, #T_7575c_row12_col1, #T_7575c_row12_col2, #T_7575c_row13_col1, #T_7575c_row13_col2, #T_7575c_row14_col1, #T_7575c_row14_col2, #T_7575c_row15_col1, #T_7575c_row15_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 0);
+}
+#T_7575c_row0_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(0, 0, 0);
+}
+#T_7575c_row1_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(17, 0, 0);
+}
+#T_7575c_row1_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(17, 0, 0);
+}
+#T_7575c_row2_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(34, 0, 0);
+}
+#T_7575c_row2_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(34, 0, 0);
+}
+#T_7575c_row3_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(51, 0, 0);
+}
+#T_7575c_row3_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(51, 0, 0);
+}
+#T_7575c_row4_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(68, 0, 0);
+}
+#T_7575c_row4_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(68, 0, 0);
+}
+#T_7575c_row5_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(85, 0, 0);
+}
+#T_7575c_row5_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(85, 0, 0);
+}
+#T_7575c_row6_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(102, 0, 0);
+}
+#T_7575c_row6_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(102, 0, 0);
+}
+#T_7575c_row7_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(119, 0, 0);
+}
+#T_7575c_row7_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(119, 0, 0);
+}
+#T_7575c_row8_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(136, 0, 0);
+}
+#T_7575c_row8_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(136, 0, 0);
+}
+#T_7575c_row9_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(153, 0, 0);
+}
+#T_7575c_row9_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(153, 0, 0);
+}
+#T_7575c_row10_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(170, 0, 0);
+}
+#T_7575c_row10_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(170, 0, 0);
+}
+#T_7575c_row11_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(187, 0, 0);
+}
+#T_7575c_row11_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(187, 0, 0);
+}
+#T_7575c_row12_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(204, 0, 0);
+}
+#T_7575c_row12_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(204, 0, 0);
+}
+#T_7575c_row13_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(221, 0, 0);
+}
+#T_7575c_row13_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(221, 0, 0);
+}
+#T_7575c_row14_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(238, 0, 0);
+}
+#T_7575c_row14_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(238, 0, 0);
+}
+#T_7575c_row15_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(255, 0, 0);
+}
+#T_7575c_row15_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(255, 0, 0);
+}
+</style>
+<table id="T_7575c">
+  <caption>Red LUT</caption>
+  <thead>
+    <tr>
+      <th id="T_7575c_level0_col0" class="col_heading level0 col0" >Red</th>
+      <th id="T_7575c_level0_col1" class="col_heading level0 col1" >Green</th>
+      <th id="T_7575c_level0_col2" class="col_heading level0 col2" >Blue</th>
+      <th id="T_7575c_level0_col3" class="col_heading level0 col3" >Color</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_7575c_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_7575c_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_7575c_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_7575c_row0_col3" class="data row0 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row1_col0" class="data row1 col0" >17</td>
+      <td id="T_7575c_row1_col1" class="data row1 col1" >0</td>
+      <td id="T_7575c_row1_col2" class="data row1 col2" >0</td>
+      <td id="T_7575c_row1_col3" class="data row1 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row2_col0" class="data row2 col0" >34</td>
+      <td id="T_7575c_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_7575c_row2_col2" class="data row2 col2" >0</td>
+      <td id="T_7575c_row2_col3" class="data row2 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row3_col0" class="data row3 col0" >51</td>
+      <td id="T_7575c_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_7575c_row3_col2" class="data row3 col2" >0</td>
+      <td id="T_7575c_row3_col3" class="data row3 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row4_col0" class="data row4 col0" >68</td>
+      <td id="T_7575c_row4_col1" class="data row4 col1" >0</td>
+      <td id="T_7575c_row4_col2" class="data row4 col2" >0</td>
+      <td id="T_7575c_row4_col3" class="data row4 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row5_col0" class="data row5 col0" >85</td>
+      <td id="T_7575c_row5_col1" class="data row5 col1" >0</td>
+      <td id="T_7575c_row5_col2" class="data row5 col2" >0</td>
+      <td id="T_7575c_row5_col3" class="data row5 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row6_col0" class="data row6 col0" >102</td>
+      <td id="T_7575c_row6_col1" class="data row6 col1" >0</td>
+      <td id="T_7575c_row6_col2" class="data row6 col2" >0</td>
+      <td id="T_7575c_row6_col3" class="data row6 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row7_col0" class="data row7 col0" >119</td>
+      <td id="T_7575c_row7_col1" class="data row7 col1" >0</td>
+      <td id="T_7575c_row7_col2" class="data row7 col2" >0</td>
+      <td id="T_7575c_row7_col3" class="data row7 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row8_col0" class="data row8 col0" >136</td>
+      <td id="T_7575c_row8_col1" class="data row8 col1" >0</td>
+      <td id="T_7575c_row8_col2" class="data row8 col2" >0</td>
+      <td id="T_7575c_row8_col3" class="data row8 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row9_col0" class="data row9 col0" >153</td>
+      <td id="T_7575c_row9_col1" class="data row9 col1" >0</td>
+      <td id="T_7575c_row9_col2" class="data row9 col2" >0</td>
+      <td id="T_7575c_row9_col3" class="data row9 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row10_col0" class="data row10 col0" >170</td>
+      <td id="T_7575c_row10_col1" class="data row10 col1" >0</td>
+      <td id="T_7575c_row10_col2" class="data row10 col2" >0</td>
+      <td id="T_7575c_row10_col3" class="data row10 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row11_col0" class="data row11 col0" >187</td>
+      <td id="T_7575c_row11_col1" class="data row11 col1" >0</td>
+      <td id="T_7575c_row11_col2" class="data row11 col2" >0</td>
+      <td id="T_7575c_row11_col3" class="data row11 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row12_col0" class="data row12 col0" >204</td>
+      <td id="T_7575c_row12_col1" class="data row12 col1" >0</td>
+      <td id="T_7575c_row12_col2" class="data row12 col2" >0</td>
+      <td id="T_7575c_row12_col3" class="data row12 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row13_col0" class="data row13 col0" >221</td>
+      <td id="T_7575c_row13_col1" class="data row13 col1" >0</td>
+      <td id="T_7575c_row13_col2" class="data row13 col2" >0</td>
+      <td id="T_7575c_row13_col3" class="data row13 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row14_col0" class="data row14 col0" >238</td>
+      <td id="T_7575c_row14_col1" class="data row14 col1" >0</td>
+      <td id="T_7575c_row14_col2" class="data row14 col2" >0</td>
+      <td id="T_7575c_row14_col3" class="data row14 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_7575c_row15_col0" class="data row15 col0" >255</td>
+      <td id="T_7575c_row15_col1" class="data row15 col1" >0</td>
+      <td id="T_7575c_row15_col2" class="data row15 col2" >0</td>
+      <td id="T_7575c_row15_col3" class="data row15 col3" ></td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>However for most LUTs the red, green and blue values differ:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_colormap</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;Viridis LUT&#39;</span><span class="p">)</span>
+<span class="c1"># show_colormap(&#39;inferno&#39;, 16, &#39;Inferno LUT&#39;)</span>
+<span class="n">show_colormap</span><span class="p">(</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;Coolwarm LUT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_f5687 th {
+  text-align: center;
+}
+#T_f5687_row0_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(68, 0, 0);
+}
+#T_f5687_row0_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 1, 0);
+}
+#T_f5687_row0_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 84);
+}
+#T_f5687_row0_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(68, 1, 84);
+}
+#T_f5687_row1_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(72, 0, 0);
+}
+#T_f5687_row1_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 25, 0);
+}
+#T_f5687_row1_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 107);
+}
+#T_f5687_row1_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(72, 25, 107);
+}
+#T_f5687_row2_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(70, 0, 0);
+}
+#T_f5687_row2_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 47, 0);
+}
+#T_f5687_row2_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 124);
+}
+#T_f5687_row2_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(70, 47, 124);
+}
+#T_f5687_row3_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(64, 0, 0);
+}
+#T_f5687_row3_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 67, 0);
+}
+#T_f5687_row3_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 135);
+}
+#T_f5687_row3_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(64, 67, 135);
+}
+#T_f5687_row4_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(56, 0, 0);
+}
+#T_f5687_row4_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 86, 0);
+}
+#T_f5687_row4_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 139);
+}
+#T_f5687_row4_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(56, 86, 139);
+}
+#T_f5687_row5_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(48, 0, 0);
+}
+#T_f5687_row5_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 103, 0);
+}
+#T_f5687_row5_col2, #T_f5687_row7_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 141);
+}
+#T_f5687_row5_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(48, 103, 141);
+}
+#T_f5687_row6_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(41, 0, 0);
+}
+#T_f5687_row6_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 120, 0);
+}
+#T_f5687_row6_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 142);
+}
+#T_f5687_row6_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(41, 120, 142);
+}
+#T_f5687_row7_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(35, 0, 0);
+}
+#T_f5687_row7_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 136, 0);
+}
+#T_f5687_row7_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(35, 136, 141);
+}
+#T_f5687_row8_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(30, 0, 0);
+}
+#T_f5687_row8_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 152, 0);
+}
+#T_f5687_row8_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 138);
+}
+#T_f5687_row8_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(30, 152, 138);
+}
+#T_f5687_row9_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(34, 0, 0);
+}
+#T_f5687_row9_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 167, 0);
+}
+#T_f5687_row9_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 132);
+}
+#T_f5687_row9_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(34, 167, 132);
+}
+#T_f5687_row10_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(53, 0, 0);
+}
+#T_f5687_row10_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 183, 0);
+}
+#T_f5687_row10_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 120);
+}
+#T_f5687_row10_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(53, 183, 120);
+}
+#T_f5687_row11_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(83, 0, 0);
+}
+#T_f5687_row11_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 197, 0);
+}
+#T_f5687_row11_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 103);
+}
+#T_f5687_row11_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(83, 197, 103);
+}
+#T_f5687_row12_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(121, 0, 0);
+}
+#T_f5687_row12_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 209, 0);
+}
+#T_f5687_row12_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 81);
+}
+#T_f5687_row12_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(121, 209, 81);
+}
+#T_f5687_row13_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(165, 0, 0);
+}
+#T_f5687_row13_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 218, 0);
+}
+#T_f5687_row13_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 53);
+}
+#T_f5687_row13_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(165, 218, 53);
+}
+#T_f5687_row14_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(210, 0, 0);
+}
+#T_f5687_row14_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 225, 0);
+}
+#T_f5687_row14_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 27);
+}
+#T_f5687_row14_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(210, 225, 27);
+}
+#T_f5687_row15_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(253, 0, 0);
+}
+#T_f5687_row15_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 231, 0);
+}
+#T_f5687_row15_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 36);
+}
+#T_f5687_row15_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(253, 231, 36);
+}
+</style>
+<table id="T_f5687">
+  <caption>Viridis LUT</caption>
+  <thead>
+    <tr>
+      <th id="T_f5687_level0_col0" class="col_heading level0 col0" >Red</th>
+      <th id="T_f5687_level0_col1" class="col_heading level0 col1" >Green</th>
+      <th id="T_f5687_level0_col2" class="col_heading level0 col2" >Blue</th>
+      <th id="T_f5687_level0_col3" class="col_heading level0 col3" >Color</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_f5687_row0_col0" class="data row0 col0" >68</td>
+      <td id="T_f5687_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_f5687_row0_col2" class="data row0 col2" >84</td>
+      <td id="T_f5687_row0_col3" class="data row0 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row1_col0" class="data row1 col0" >72</td>
+      <td id="T_f5687_row1_col1" class="data row1 col1" >25</td>
+      <td id="T_f5687_row1_col2" class="data row1 col2" >107</td>
+      <td id="T_f5687_row1_col3" class="data row1 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row2_col0" class="data row2 col0" >70</td>
+      <td id="T_f5687_row2_col1" class="data row2 col1" >47</td>
+      <td id="T_f5687_row2_col2" class="data row2 col2" >124</td>
+      <td id="T_f5687_row2_col3" class="data row2 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row3_col0" class="data row3 col0" >64</td>
+      <td id="T_f5687_row3_col1" class="data row3 col1" >67</td>
+      <td id="T_f5687_row3_col2" class="data row3 col2" >135</td>
+      <td id="T_f5687_row3_col3" class="data row3 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row4_col0" class="data row4 col0" >56</td>
+      <td id="T_f5687_row4_col1" class="data row4 col1" >86</td>
+      <td id="T_f5687_row4_col2" class="data row4 col2" >139</td>
+      <td id="T_f5687_row4_col3" class="data row4 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row5_col0" class="data row5 col0" >48</td>
+      <td id="T_f5687_row5_col1" class="data row5 col1" >103</td>
+      <td id="T_f5687_row5_col2" class="data row5 col2" >141</td>
+      <td id="T_f5687_row5_col3" class="data row5 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row6_col0" class="data row6 col0" >41</td>
+      <td id="T_f5687_row6_col1" class="data row6 col1" >120</td>
+      <td id="T_f5687_row6_col2" class="data row6 col2" >142</td>
+      <td id="T_f5687_row6_col3" class="data row6 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row7_col0" class="data row7 col0" >35</td>
+      <td id="T_f5687_row7_col1" class="data row7 col1" >136</td>
+      <td id="T_f5687_row7_col2" class="data row7 col2" >141</td>
+      <td id="T_f5687_row7_col3" class="data row7 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row8_col0" class="data row8 col0" >30</td>
+      <td id="T_f5687_row8_col1" class="data row8 col1" >152</td>
+      <td id="T_f5687_row8_col2" class="data row8 col2" >138</td>
+      <td id="T_f5687_row8_col3" class="data row8 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row9_col0" class="data row9 col0" >34</td>
+      <td id="T_f5687_row9_col1" class="data row9 col1" >167</td>
+      <td id="T_f5687_row9_col2" class="data row9 col2" >132</td>
+      <td id="T_f5687_row9_col3" class="data row9 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row10_col0" class="data row10 col0" >53</td>
+      <td id="T_f5687_row10_col1" class="data row10 col1" >183</td>
+      <td id="T_f5687_row10_col2" class="data row10 col2" >120</td>
+      <td id="T_f5687_row10_col3" class="data row10 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row11_col0" class="data row11 col0" >83</td>
+      <td id="T_f5687_row11_col1" class="data row11 col1" >197</td>
+      <td id="T_f5687_row11_col2" class="data row11 col2" >103</td>
+      <td id="T_f5687_row11_col3" class="data row11 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row12_col0" class="data row12 col0" >121</td>
+      <td id="T_f5687_row12_col1" class="data row12 col1" >209</td>
+      <td id="T_f5687_row12_col2" class="data row12 col2" >81</td>
+      <td id="T_f5687_row12_col3" class="data row12 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row13_col0" class="data row13 col0" >165</td>
+      <td id="T_f5687_row13_col1" class="data row13 col1" >218</td>
+      <td id="T_f5687_row13_col2" class="data row13 col2" >53</td>
+      <td id="T_f5687_row13_col3" class="data row13 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row14_col0" class="data row14 col0" >210</td>
+      <td id="T_f5687_row14_col1" class="data row14 col1" >225</td>
+      <td id="T_f5687_row14_col2" class="data row14 col2" >27</td>
+      <td id="T_f5687_row14_col3" class="data row14 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_f5687_row15_col0" class="data row15 col0" >253</td>
+      <td id="T_f5687_row15_col1" class="data row15 col1" >231</td>
+      <td id="T_f5687_row15_col2" class="data row15 col2" >36</td>
+      <td id="T_f5687_row15_col3" class="data row15 col3" ></td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="output text_html"><style type="text/css">
+#T_8db79 th {
+  text-align: center;
+}
+#T_8db79_row0_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(58, 0, 0);
+}
+#T_8db79_row0_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 76, 0);
+}
+#T_8db79_row0_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 192);
+}
+#T_8db79_row0_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(58, 76, 192);
+}
+#T_8db79_row1_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(78, 0, 0);
+}
+#T_8db79_row1_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 105, 0);
+}
+#T_8db79_row1_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 216);
+}
+#T_8db79_row1_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(78, 105, 216);
+}
+#T_8db79_row2_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(100, 0, 0);
+}
+#T_8db79_row2_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 133, 0);
+}
+#T_8db79_row2_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 235);
+}
+#T_8db79_row2_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(100, 133, 235);
+}
+#T_8db79_row3_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(123, 0, 0);
+}
+#T_8db79_row3_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 158, 0);
+}
+#T_8db79_row3_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 248);
+}
+#T_8db79_row3_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(123, 158, 248);
+}
+#T_8db79_row4_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(146, 0, 0);
+}
+#T_8db79_row4_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 180, 0);
+}
+#T_8db79_row4_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 254);
+}
+#T_8db79_row4_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(146, 180, 254);
+}
+#T_8db79_row5_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(170, 0, 0);
+}
+#T_8db79_row5_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 198, 0);
+}
+#T_8db79_row5_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 253);
+}
+#T_8db79_row5_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(170, 198, 253);
+}
+#T_8db79_row6_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(192, 0, 0);
+}
+#T_8db79_row6_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 211, 0);
+}
+#T_8db79_row6_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 245);
+}
+#T_8db79_row6_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(192, 211, 245);
+}
+#T_8db79_row7_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(211, 0, 0);
+}
+#T_8db79_row7_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 219, 0);
+}
+#T_8db79_row7_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 230);
+}
+#T_8db79_row7_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(211, 219, 230);
+}
+#T_8db79_row8_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(229, 0, 0);
+}
+#T_8db79_row8_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 216, 0);
+}
+#T_8db79_row8_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 208);
+}
+#T_8db79_row8_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(229, 216, 208);
+}
+#T_8db79_row9_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(241, 0, 0);
+}
+#T_8db79_row9_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 202, 0);
+}
+#T_8db79_row9_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 182);
+}
+#T_8db79_row9_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(241, 202, 182);
+}
+#T_8db79_row10_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(246, 0, 0);
+}
+#T_8db79_row10_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 183, 0);
+}
+#T_8db79_row10_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 156);
+}
+#T_8db79_row10_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(246, 183, 156);
+}
+#T_8db79_row11_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(245, 0, 0);
+}
+#T_8db79_row11_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 160, 0);
+}
+#T_8db79_row11_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 129);
+}
+#T_8db79_row11_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(245, 160, 129);
+}
+#T_8db79_row12_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(237, 0, 0);
+}
+#T_8db79_row12_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 132, 0);
+}
+#T_8db79_row12_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 103);
+}
+#T_8db79_row12_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(237, 132, 103);
+}
+#T_8db79_row13_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(223, 0, 0);
+}
+#T_8db79_row13_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 100, 0);
+}
+#T_8db79_row13_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 79);
+}
+#T_8db79_row13_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(223, 100, 79);
+}
+#T_8db79_row14_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(204, 0, 0);
+}
+#T_8db79_row14_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 63, 0);
+}
+#T_8db79_row14_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 57);
+}
+#T_8db79_row14_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(204, 63, 57);
+}
+#T_8db79_row15_col0 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(179, 0, 0);
+}
+#T_8db79_row15_col1 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 3, 0);
+}
+#T_8db79_row15_col2 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  color: rgba(0, 0, 38);
+}
+#T_8db79_row15_col3 {
+  width: 8em;
+  font-size: 80%;
+  text-align: center;
+  background-color: rgba(179, 3, 38);
+}
+</style>
+<table id="T_8db79">
+  <caption>Coolwarm LUT</caption>
+  <thead>
+    <tr>
+      <th id="T_8db79_level0_col0" class="col_heading level0 col0" >Red</th>
+      <th id="T_8db79_level0_col1" class="col_heading level0 col1" >Green</th>
+      <th id="T_8db79_level0_col2" class="col_heading level0 col2" >Blue</th>
+      <th id="T_8db79_level0_col3" class="col_heading level0 col3" >Color</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_8db79_row0_col0" class="data row0 col0" >58</td>
+      <td id="T_8db79_row0_col1" class="data row0 col1" >76</td>
+      <td id="T_8db79_row0_col2" class="data row0 col2" >192</td>
+      <td id="T_8db79_row0_col3" class="data row0 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row1_col0" class="data row1 col0" >78</td>
+      <td id="T_8db79_row1_col1" class="data row1 col1" >105</td>
+      <td id="T_8db79_row1_col2" class="data row1 col2" >216</td>
+      <td id="T_8db79_row1_col3" class="data row1 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row2_col0" class="data row2 col0" >100</td>
+      <td id="T_8db79_row2_col1" class="data row2 col1" >133</td>
+      <td id="T_8db79_row2_col2" class="data row2 col2" >235</td>
+      <td id="T_8db79_row2_col3" class="data row2 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row3_col0" class="data row3 col0" >123</td>
+      <td id="T_8db79_row3_col1" class="data row3 col1" >158</td>
+      <td id="T_8db79_row3_col2" class="data row3 col2" >248</td>
+      <td id="T_8db79_row3_col3" class="data row3 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row4_col0" class="data row4 col0" >146</td>
+      <td id="T_8db79_row4_col1" class="data row4 col1" >180</td>
+      <td id="T_8db79_row4_col2" class="data row4 col2" >254</td>
+      <td id="T_8db79_row4_col3" class="data row4 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row5_col0" class="data row5 col0" >170</td>
+      <td id="T_8db79_row5_col1" class="data row5 col1" >198</td>
+      <td id="T_8db79_row5_col2" class="data row5 col2" >253</td>
+      <td id="T_8db79_row5_col3" class="data row5 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row6_col0" class="data row6 col0" >192</td>
+      <td id="T_8db79_row6_col1" class="data row6 col1" >211</td>
+      <td id="T_8db79_row6_col2" class="data row6 col2" >245</td>
+      <td id="T_8db79_row6_col3" class="data row6 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row7_col0" class="data row7 col0" >211</td>
+      <td id="T_8db79_row7_col1" class="data row7 col1" >219</td>
+      <td id="T_8db79_row7_col2" class="data row7 col2" >230</td>
+      <td id="T_8db79_row7_col3" class="data row7 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row8_col0" class="data row8 col0" >229</td>
+      <td id="T_8db79_row8_col1" class="data row8 col1" >216</td>
+      <td id="T_8db79_row8_col2" class="data row8 col2" >208</td>
+      <td id="T_8db79_row8_col3" class="data row8 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row9_col0" class="data row9 col0" >241</td>
+      <td id="T_8db79_row9_col1" class="data row9 col1" >202</td>
+      <td id="T_8db79_row9_col2" class="data row9 col2" >182</td>
+      <td id="T_8db79_row9_col3" class="data row9 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row10_col0" class="data row10 col0" >246</td>
+      <td id="T_8db79_row10_col1" class="data row10 col1" >183</td>
+      <td id="T_8db79_row10_col2" class="data row10 col2" >156</td>
+      <td id="T_8db79_row10_col3" class="data row10 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row11_col0" class="data row11 col0" >245</td>
+      <td id="T_8db79_row11_col1" class="data row11 col1" >160</td>
+      <td id="T_8db79_row11_col2" class="data row11 col2" >129</td>
+      <td id="T_8db79_row11_col3" class="data row11 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row12_col0" class="data row12 col0" >237</td>
+      <td id="T_8db79_row12_col1" class="data row12 col1" >132</td>
+      <td id="T_8db79_row12_col2" class="data row12 col2" >103</td>
+      <td id="T_8db79_row12_col3" class="data row12 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row13_col0" class="data row13 col0" >223</td>
+      <td id="T_8db79_row13_col1" class="data row13 col1" >100</td>
+      <td id="T_8db79_row13_col2" class="data row13 col2" >79</td>
+      <td id="T_8db79_row13_col3" class="data row13 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row14_col0" class="data row14 col0" >204</td>
+      <td id="T_8db79_row14_col1" class="data row14 col1" >63</td>
+      <td id="T_8db79_row14_col2" class="data row14 col2" >57</td>
+      <td id="T_8db79_row14_col3" class="data row14 col3" ></td>
+    </tr>
+    <tr>
+      <td id="T_8db79_row15_col0" class="data row15 col0" >179</td>
+      <td id="T_8db79_row15_col1" class="data row15 col1" >3</td>
+      <td id="T_8db79_row15_col2" class="data row15 col2" >38</td>
+      <td id="T_8db79_row15_col3" class="data row15 col3" ></td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Because each of the red, green and blue values can be in the range 0-255, mixing them together can generate (theoretically at least) up to 256 x 256 x 256 = 16,777,216 different colors, i.e. a <em>lot</em>.</p>
+<p>When it comes to display, this method of representing color using 8-bit RGB values should easily give us many more colors than we could ever hope to distinguish by eye.
+We don’t need a higher bit-depth for display.</p>
+</div>
+<div class="section" id="rgb-images">
+<h2>RGB images<a class="headerlink" href="#rgb-images" title="Permalink to this headline">¶</a></h2>
+<p>Until now we have considered images where each pixel has a single value, and there is an LUT associated with the image to map these values to colors.</p>
+<p>Now that we know how colors are represented, we can consider another option.</p>
+<p>Instead of storing a single value per pixel, we can store the RGB values that represent the color used to display the pixel instead.
+Each pixel then has three values (for red, green and blue), not just a single value.</p>
+<p>When an image is stored in this way it’s called an <strong>RGB image</strong>.</p>
+<p>We can easily create an RGB image from any combination of image + LUT: just replace each pixel value in the original image with the associated RGB values that we find in the LUT.
+Now each pixel has three values instead of one, but the end result <em>looks</em> exactly the same.</p>
+<div class="section" id="the-risk-of-rgb">
+<h3>The risk of RGB<a class="headerlink" href="#the-risk-of-rgb" title="Permalink to this headline">¶</a></h3>
+<p>The problem with converting an image to RGB is that, in general, <em>we can’t go back!</em>
+In fact, the unwitting <em>overuse</em> of RGB images is one of the most common sources of data-destroying errors in some branches of scientific imaging.</p>
+<div class="danger admonition">
+<p class="admonition-title">Beware converting to RGB!</p>
+<p>Converting an image to RGB is another way lose our raw data.</p>
+</div>
+<p><a class="reference internal" href="#fig-colors-im-grays-rgb"><span class="std std-numref">Fig. 25</span></a> shows this in action.
+In the ‘least destructive’ case, the image has a grayscale LUT.
+This means that the red, green and blue values are identical to one another – but <em>not</em> necessarily identical to the pixel values of the original image.
+We have converted the data to 8-bit and used the LUT to determine how much to scale during the conversion.</p>
+<p>In general, it’s not possible to recover the original pixel values from the RGB image: we probably don’t know exactly what rescaling was applied, and we have lost information to clipping and rounding.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show an image with a colormap, and its histogram (unchanged by the colormap)</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;sunny_cell.tif&#39;</span><span class="p">)</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">color_map</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">121</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">color_map</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">122</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Original image with LUT&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_colors_im_grays&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+
+<span class="c1"># Convert to 8-bit RGB by applying the colormap (some rescaling needed to handle type/bit-depth)</span>
+<span class="n">im_rgb</span> <span class="o">=</span> <span class="n">color_map</span><span class="p">((</span><span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">))[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">im_rgb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im_rgb</span> <span class="o">*</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="c1"># Show RGB image and histograms - very different from the originals</span>
+<span class="c1"># (There isn&#39;t enough room to add counts, so we remove the yticks)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">241</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">color_map</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Image converted to RGB&#39;</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">245</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">242</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;reds&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;RGB Red channel&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">243</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;greens&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;RGB Green channel&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">244</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;blues&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;RGB Blue channel&#39;</span><span class="p">)</span>
+
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">246</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">247</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">248</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_colors_im_grays_rgb&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-colors-im-grays-colormap" style="width: 60%">
+<div class="cell_output docutils container">
+<img alt="../../../_images/colors_12_0.png" src="../../../_images/colors_12_0.png" />
+</div>
+</div>
+<div class="figure align-center" id="fig-colors-im-grays-rgb">
+<div class="cell_output docutils container">
+<img alt="../../../_images/colors_12_1.png" src="../../../_images/colors_12_1.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Converting a grayscale image to RGB can lose information. We can separate out the red, green and blue values from the RGB image and visualize each as separate images to explore the information they contain. Even though the RGB image looks unchanged from the original, and all three color channels have similar histograms to the original, the bit-depth has been reduced and image statistics modified.
+There is also a big histogram peak that indicates substantial clipping.</span><a class="headerlink" href="#fig-colors-im-grays-rgb" title="Permalink to this image">¶</a></p>
+</div>
+<p>The impact of converting an image with any other LUT to RGB is even more dramatic, as shown in <a class="reference internal" href="#fig-colors-im-rgb"><span class="std std-numref">Fig. 26</span></a>.
+Here, the red, green and blue values are different and the histograms for each color are very different.
+Again, it would not be possible to recover the original pixel values from the RGB image.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show an image with a colormap, and its histogram (unchanged by the colormap)</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;sunny_cell.tif&#39;</span><span class="p">)</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">color_map</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">121</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">color_map</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">122</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Original image with LUT&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_colors_im_colormap&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+
+<span class="c1"># Convert to 8-bit RGB by applying the colormap (some rescaling needed to handle type/bit-depth)</span>
+<span class="n">im_rgb</span> <span class="o">=</span> <span class="n">color_map</span><span class="p">((</span><span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">))[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">im_rgb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im_rgb</span> <span class="o">*</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="c1"># Show RGB image and histograms - very different from the originals</span>
+<span class="c1"># (There isn&#39;t enough room to add counts, so we remove the yticks)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">241</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">color_map</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Image converted to RGB&#39;</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">245</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">242</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;reds&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;RGB Red channel&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">243</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;greens&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;RGB Green channel&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">244</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;blues&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;RGB Blue channel&#39;</span><span class="p">)</span>
+
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">246</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">247</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">248</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_colors_im_rgb&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-colors-im-colormap" style="width: 60%">
+<div class="cell_output docutils container">
+<img alt="../../../_images/colors_15_0.png" src="../../../_images/colors_15_0.png" />
+</div>
+</div>
+<div class="figure align-center" id="fig-colors-im-rgb">
+<div class="cell_output docutils container">
+<img alt="../../../_images/colors_15_1.png" src="../../../_images/colors_15_1.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">Converting an to RGB can lose information in a particularly dramatic way if the LUT is not grayscale. The histograms for each channel may now look completely different.</span><a class="headerlink" href="#fig-colors-im-rgb" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="the-role-of-rgb">
+<h3>The role of RGB<a class="headerlink" href="#the-role-of-rgb" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="using-rgb-images-for-display">
+<h4>Using RGB images for display<a class="headerlink" href="#using-rgb-images-for-display" title="Permalink to this headline">¶</a></h4>
+<p>So what’s the point of having RGB images, if they are so risky?</p>
+<p>One of the biggest reasons to use RGB images in science is for presentation.
+While specialist image analysis software applications, such as ImageJ, are typically designed to handle a range of exotic image types and bit-depths, the same is not true for non-scientific software.</p>
+<p>If want want an image to dispay exactly the same in ImageJ as in a PowerPoint® presentation or a figure in a publication, for example, we’ll probably want to convert it to RGB.
+If we don’t, the image might display very strangely on other software – or even not open at all.</p>
+<div class="danger admonition">
+<p class="admonition-title">‘Why is my image just black?’</p>
+<p>Over the years, I have encountered a remarkable number of cases where a researcher has saved their fluorescence microscopy images <em>only</em> in an RGB format.</p>
+<p>Their justification was that they tried saving the images in different way at the microscope, but <em>‘it didn’t work – the images were all black’</em>.</p>
+<p>The explanation is almost invariably that their images were really 16-bit or 32-bit, but they tried to open them in software that doesn’t handle 16-bit images very well (e.g. they just double-clicked the file to open it in the default image viewer).
+All they saw as a black, seemingly-empty image.</p>
+<p>Whenever they tried exporting from the microscope’s acquisition software in different ways, they found an option that gave a viewable image – and stuck with that.</p>
+<p>The problem with this is that it usually meant that <em>they didn’t save their raw data at all!</em>
+They <em>only</em> saved an RGB copy, with all the rescaling and LUT magic applied, which is wholly unsuitable for analysis.</p>
+<p>The solution is to view images in ImageJ, or similar scientific software.
+This usually reveals that the image is not ‘all black’ after all.
+Rather, one only needs to adjust the brightness and contrast (using the LUT) to see the raw data in all its glory.</p>
+</div>
+</div>
+<div class="section" id="when-rgb-is-all-you-ve-got">
+<h4>When RGB is all you’ve got<a class="headerlink" href="#when-rgb-is-all-you-ve-got" title="Permalink to this headline">¶</a></h4>
+<p>All the previous comments about <em>‘don’t convert to RGB before analysis’</em> as based on the assumption that your raw data isn’t already RGB.
+This is usually the case with microscopy and medical imaging whenever accurate quantification is important.</p>
+<p>Nevertheless, it’s not <em>always</em> the case.</p>
+<p>A common example is brightfield imaging for histology or pathology.
+Here, the camera is often RGB and an RGB image is really as close to the raw data as we are likely to get.</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../../../_images/cmu-1-small-region.jpg"><img alt="../../../_images/cmu-1-small-region.jpg" src="../../../_images/cmu-1-small-region.jpg" style="width: 229.60000000000002px; height: 307.20000000000005px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">Example RGB histology image, from <a class="reference external" href="http://openslide.org">http://openslide.org</a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>Crucially, the analysis of brightfield images in histology usually aims to replicate (and sometimes improve upon) the visual assessment that a pathologist might make looking down a microscope.
+It’s often based on detecting, classifying and counting cells, measuring stained areas, or recognizing the presence of particular patterns – but <em>not</em> accurately quantifying staining intensity.</p>
+</div>
+</div>
+</div>
+<div class="section" id="multichannel-images">
+<h2>Multichannel images<a class="headerlink" href="#multichannel-images" title="Permalink to this headline">¶</a></h2>
+<p>So far, we have focussed on 2D images with a <strong>single channel</strong> – that is, a single value for every pixel at every <em>x,y</em> coordinate in the image.</p>
+<p>Such images can be converted to 8-bit RGB using a LUT.
+If we do this, then we get an image with <strong>three channels</strong>, where each channel is displayed using red, green and blue LUTs – with the colors blended together for display.
+But we shouldn’t do that conversion prior to analysis in case we lose our raw data.</p>
+<p>Now, we turn to consider <strong>multichannel images</strong> that aren’t RGB images.
+Rather, the raw data itself has multiple channels.</p>
+<p>In fluorescence microscopy, it’s common to acquire multichannel images in which pixel values for each channel are determined from light that has been filtered according to its wavelength.
+We <em>might</em> choose to visualize these channels as red, green and blue, but we don’t have to.</p>
+<p>In principle, any LUT might be applied to each channel, but it makes sense to choose LUTs that somehow relate to the wavelength (i.e. color) of light detected for the corresponding channels.
+Channels can then be overlaid on top of one another, and their colors further merged for display (e.g. high values in both green and red channels are shown as yellow).</p>
+<p>The important feature of these images is that the actual channel information is always retained, and so the original pixel values remain available.
+This means we can still extract channels or adjust their LUTs as needed.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;FluorescentCells.zip&#39;</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="p">[:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">im_merged_rgb</span> <span class="o">=</span> <span class="n">create_rgb</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_merged_rgb</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Merged channels&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;reds&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Channel 1&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;greens&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Channel 2&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;blues&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Channel 3&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_colors_composite_rgb&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+
+<span class="n">im_merged</span> <span class="o">=</span> <span class="n">create_rgb</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;cyan&#39;</span><span class="p">))</span>    
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_merged</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Merged channels&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magentas&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Channel 1&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;yellows&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Channel 2&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;cyans&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Channel 3&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_colors_composite_non_rgb&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_merged</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;RGB of merged channels&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_merged</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;reds&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Red&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_merged</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;greens&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_merged</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;blues&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_colors_composite_rgb_split&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-colors-composite-rgb">
+<div class="cell_output docutils container">
+<img alt="../../../_images/colors_20_0.png" src="../../../_images/colors_20_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Multichannel image using red, green and blue LUTs.
+Although this looks a lot like an RGB image, each channel still contains the raw data (which might be 16-bit or 32-bit).
+The original pixel values can be extracted if needed, and different LUTs used.</span><a class="headerlink" href="#fig-colors-composite-rgb" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="fig-colors-composite-non-rgb">
+<div class="cell_output docutils container">
+<img alt="../../../_images/colors_20_1.png" src="../../../_images/colors_20_1.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Multichannel image from <a class="reference internal" href="#fig-colors-composite-rgb"><span class="std std-numref">Fig. 28</span></a> using different LUTs.
+Again, no information is lost: we can access the original pixel values, and update the LUTs if needed.</span><a class="headerlink" href="#fig-colors-composite-non-rgb" title="Permalink to this image">¶</a></p>
+</div>
+<p>Just like with a single channel image, we can create an RGB image that allows us to visualize our multichannel image – using the LUTs to figure out which RGB values are needed to represent the color of each pixel.</p>
+<p>Then, againf just like with the single channel image, this is problematic if we don’t keep the raw data – because we can never recover the original values from the RGB representation.</p>
+<div class="figure align-center" id="fig-colors-composite-rgb-split">
+<div class="cell_output docutils container">
+<img alt="../../../_images/colors_20_2.png" src="../../../_images/colors_20_2.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">We can create an RGB image from <a class="reference internal" href="#fig-colors-composite-non-rgb"><span class="std std-numref">Fig. 29</span></a>, but then we have three channels locked to red, green and blue – which have converted the original channels to 8-bit, and mixed up information due to the LUT colors used. We can no longer recover the original pixel values after converting to RGB.</span><a class="headerlink" href="#fig-colors-composite-rgb-split" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="summary-of-color-images">
+<h2>Summary of color images<a class="headerlink" href="#summary-of-color-images" title="Permalink to this headline">¶</a></h2>
+<p>The main message here can be distilled into two rules:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ol class="simple">
+<li><p><strong>Always use the original image for analysis</strong></p>
+<ul class="simple">
+<li><p>If the raw data isn’t RGB, then don’t convert it before analysis!</p></li>
+</ul>
+</li>
+<li><p><strong>Create an RGB copy of your image for display</strong></p>
+<ul class="simple">
+<li><p>Keep the RGB copy separate, so you always retain it <em>and</em> the raw image</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<p>RGB images aren’t <em>bad</em> – we almost always need them for display, and for <em>some</em> imaging applications (e.g. brightfield histology) they are the best raw data we can get.
+But we need to be cautious if our raw data isn’t RGB, and avoid converting to RGB too early.</p>
+<p>In the end, it’s normal to keep at least two versions of each dataset: one in the original (possibly multichannel) format, and one as RGB for display.
+This RGB image is normally created as the <em>final</em> step, after applying any processing or LUT adjustments to the original data.</p>
+<div class="admonition-other-color-spaces admonition">
+<p class="admonition-title">Other color spaces</p>
+<p>Color is a big topic, and there is a lot more that could be said about different color spaces and transformations.
+However, these are mostly relevant when working with data that is originally RGB.</p>
+<p>For example, we could convert an RGB image to an <em>HSB</em> representation, where HSB stands for <em>Hue</em>, <em>Saturation</em> and <em>Brightness</em>.
+This is useful to separate hue from brightness, e.g. to help identify all red pixels regardless of whether they are bright or dark.</p>
+<p>Alternatively, we could convert an RGB image to <em>CMYK</em>, which stands for <em>Cyan</em>, <em>Magenta</em>, <em>Yellow</em> and <em>blacK</em> – which may be a better fit for printers than monitors.</p>
+<p>But I personally haven’t found such transforms very relevant to the areas of bioimage analysis in which I have worked.
+I have tried to focus here on the main need-to-know topics that impact analyzing scientific images.
+With this in mind, I think that understanding RGB (and its limitations) is crucial – while other transforms can be picked up later if they are needed.</p>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "petebankhead/jupyter-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/1-concepts/4-colors"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../3-bit_depths/python.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Python: Types &amp; bit-depths</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="imagej.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ImageJ: Channels &amp; colors</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pete Bankhead<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

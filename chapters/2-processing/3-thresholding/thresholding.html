@@ -1,0 +1,1855 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thresholding &#8212; Introduction to Bioimage Analysis</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ImageJ: Thresholding" href="imagej.html" />
+    <link rel="prev" title="ImageJ: Point operations" href="../2-point_operations/imagej.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../README.html">
+   Introduction to Bioimage Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Front matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Before we begin
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/preface/preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/reading/reading.html">
+   How to read this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducing images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">
+   Images &amp; pixels
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">
+     ImageJ: Images &amp; pixels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">
+     Python: Images &amp; pixels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">
+   Measurements &amp; histograms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">
+     ImageJ: Measurements &amp; histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/2-measurements/python.html">
+     Python: Measurements &amp; histograms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">
+   Types &amp; bit-depths
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">
+     ImageJ: Types &amp; bit-depths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">
+     Python: Types &amp; bit-depths
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/4-colors/colors.html">
+   Channels &amp; colors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/imagej.html">
+     ImageJ: Channels &amp; colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/4-colors/python.html">
+     Python: Channels &amp; colors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">
+   Pixel size &amp; dimensions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">
+     ImageJ:  Pixel size &amp; dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">
+     Python:  Pixel size &amp; dimensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../1-concepts/6-files/files.html">
+   Files &amp; file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/imagej.html">
+     ImageJ: Files &amp; file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1-concepts/6-files/python.html">
+     Python: Files &amp; file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Processing &amp; analysis
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">
+   Image processing &amp; analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../2-point_operations/point_operations.html">
+   Point operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2-point_operations/imagej.html">
+     ImageJ: Point operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Thresholding
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="imagej.html">
+     ImageJ: Thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../4-filters/filters.html">
+   Filters
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4-filters/imagej.html">
+     ImageJ: Filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../5-morph/morph.html">
+   Morphological operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5-morph/imagej.html">
+     ImageJ: Morphological operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../6-transforms/transforms.html">
+   Image transforms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6-transforms/imagej.html">
+     ImageJ: Image transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../7-multidimensional_processing/multidimensional_processing.html">
+   Multidimensional processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7-multidimensional_processing/imagej.html">
+     ImageJ: Multidimensional processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fluorescence microscopy
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
+   From photons to pixels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
+   Blur &amp; the PSF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
+   Noise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
+   Microscopes &amp; detectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
+   Beyond this book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/python/python.html">
+   Python Primer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
+   ImageJ: Writing macros
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
+     Difference of Gaussians
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
+     Simulating image formation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/chapters/2-processing/3-thresholding/thresholding.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/chapters/2-processing/3-thresholding/thresholding.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/petebankhead/jupyter-book/main?urlpath=tree/chapters/2-processing/3-thresholding/thresholding.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#binary-labeled-images">
+   Binary &amp; labeled images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#global-thresholding">
+   Global thresholding
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#thresholding-using-histograms">
+     Thresholding using histograms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-importance-of-the-threshold-choice">
+     The importance of the threshold choice
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#automated-thresholds">
+   Automated thresholds
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#otsu-s-method">
+     Otsu’s method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#minimum-method">
+     Minimum method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangle-method">
+     Triangle method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-method">
+     Mean method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-standard-deviation">
+     Mean &amp; Standard deviation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#median-median-absolute-deviation">
+     Median &amp; Median Absolute Deviation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#thresholding-difficult-data">
+   Thresholding difficult data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#thresholding-noisy-data">
+     Thresholding noisy data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-thresholding">
+     Local thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Thresholding</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#binary-labeled-images">
+   Binary &amp; labeled images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#global-thresholding">
+   Global thresholding
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#thresholding-using-histograms">
+     Thresholding using histograms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-importance-of-the-threshold-choice">
+     The importance of the threshold choice
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#automated-thresholds">
+   Automated thresholds
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#otsu-s-method">
+     Otsu’s method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#minimum-method">
+     Minimum method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangle-method">
+     Triangle method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-method">
+     Mean method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-standard-deviation">
+     Mean &amp; Standard deviation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#median-median-absolute-deviation">
+     Median &amp; Median Absolute Deviation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#thresholding-difficult-data">
+   Thresholding difficult data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#thresholding-noisy-data">
+     Thresholding noisy data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-thresholding">
+     Local thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="thresholding">
+<span id="chap-thresholding"></span><h1>Thresholding<a class="headerlink" href="#thresholding" title="Permalink to this headline">¶</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Chapter outline </p>
+<ul class="simple">
+<li><p><strong>Image segmentation</strong> is the process of detecting <strong>objects</strong> in an image</p></li>
+<li><p><strong>Global thresholding</strong> identifies pixel values above or below a particular threshold</p></li>
+<li><p>The choice of threshold can introduce <strong>bias</strong></p></li>
+<li><p><strong>Automated thresholding methods</strong> can often determine a good threshold based upon the <strong>image histogram</strong> and <strong>statistics</strong> – but only if certain assumptions are met</p></li>
+<li><p>Thresholding is more powerful when combined with <strong>filtering &amp; subtraction</strong></p></li>
+</ul>
+</div>
+<div class="cell tag_hide-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Before we can measure anything in an image, we first need to detect it.</p>
+<p>Sometimes, ‘detection’ might involve <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html#chap-rois"><span class="std std-ref">manually drawing regions of interest (ROIs)</span></a>.
+However, this laborious process does not scale very well.
+It can also be rather subjective.</p>
+<p>In this chapter, we will begin to explore alternative ways to identify <strong>objects</strong> within images.
+An ‘object’ is something we want to detect; depending upon the application, an object might be a nucleus, a cell, a vessel, a person, a bird, a car, a helicopter… more or less anything we might find in an image.</p>
+<p>This process of detecting objects is called <strong>image segmentation</strong>.
+If we can automate image segmentation, this is not only likely to be much faster than manually annotating regions but should also give more reproducible results.</p>
+</div>
+<div class="section" id="binary-labeled-images">
+<span id="sec-binary-labeled"></span><h2>Binary &amp; labeled images<a class="headerlink" href="#binary-labeled-images" title="Permalink to this headline">¶</a></h2>
+<p>Image objects are commonly represented using <strong>binary images</strong>.</p>
+<p>Each pixel in a binary image can have one of two values.
+Usually, these values are 0 and 1.
+In some software (including ImageJ) a binary image has the values 0 and 255, but this doesn’t really make any difference to how it is used: the key point for our purposes is that one of the values represents the foreground (i.e. pixels that are part of an object), and the other value represents the background.</p>
+<p>For the rest of this chapter, we will assume that our binary images use 0 for the background (shown as black) and 1 for the foreground (shown as white).</p>
+<p>This is important: if we can generate a binary image in which are our objects of interest are in the foreground, we can then use this binary image to help us make measurements of those objects.</p>
+<p>One way to do this involves identifying individual objects in the binary image by labeling <strong>connected components</strong>.
+A connected component is really just a connected group of foreground pixels, which together represent a distinct object.
+By labeling connected components, we get a <strong>labeled image</strong> in which the pixels belonging to each object have a unique integer value.
+All the pixels with the same value belong either to the background (if the value is 0) or to the same object.</p>
+<p>If required, we can then trace the boundaries of each labeled object to create <strong>regions of interest (ROIs)</strong>, such as those used to make measurement in ImageJ and other software.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Show binary image, ROIs and labelled image.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_otsu</span><span class="p">,</span> <span class="n">threshold_triangle</span>
+<span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
+<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">mark_boundaries</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="mi">255</span> <span class="o">-</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
+<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">threshold_otsu</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<span class="n">lab</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original blobs&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Binary image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Labeled image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">mark_boundaries</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;thick&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Original + ROIs&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_blobs_binary_label&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-blobs-binary-label">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_4_0.png" src="../../../_images/thresholding_4_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 62 </span><span class="caption-text">Examples of a grayscale (Blobs.gif), binary and labelled image.
+In (C), each label has been assigned a unique color for display.
+In (D), ROIs have been generated from (C) and superimposed on top of (A).
+It is common to use a LUT for labeled images that assigns a different color to each pixel value.</span><a class="headerlink" href="#fig-blobs-binary-label" title="Permalink to this image">¶</a></p>
+</div>
+<p>For that reason, a lot of image analysis workflows involve binary images along the way.
+Most of this chapter will explore the most common way of generating a binary image: <strong>thresholding</strong>.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Compare 4-connectivity and 8-connectivity</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
+
+<span class="n">bw</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s2">&quot;images/connectivity_binary.png&quot;</span><span class="p">)</span>
+
+<span class="n">lab4</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+<span class="n">lab8</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab4</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;4-connectivity&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab8</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;8-connectivity&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">212</span><span class="p">)</span>
+<span class="c1"># plt.tight_layout()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholding_connectivity&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="figure align-center" style="width: 60%">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_6_0.png" src="../../../_images/thresholding_6_0.png" />
+</div>
+</div>
+</div>
+<div class="info admonition" id="sec-thresholds-connectivity">
+<p class="admonition-title">Connectivity</p>
+<p>Identifying multiple objects in a binary image involves separating distinct groups of pixels that are considered ‘connected’ to one another, and then creating a ROI or label for each group.
+Connectivity in this sense can be defined in different ways.
+For example, if two pixels have the same value and are immediately beside one another (above, below, to the left or right, or diagonally adjacent) then they are said to be <em>8-connected</em>, because there are 8 different neighboring locations involved.
+Pixels are <em>4-connected</em> if they are horizontally or vertically adjacent, but <em>not</em> only diagonally.</p>
+<p>The choice of connectivity can make a big difference in the number and sizes of objects found, as the example on the right shows (distinct objects are shown in different colors).</p>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="fe6df54f-dbae-448a-a5bf-151188967a53" name="24634d75-8a62-49d1-b550-fb7712022113" type="radio">
+</input><label class="tabbed-label" for="fe6df54f-dbae-448a-a5bf-151188967a53">
+Question</label><div class="tabbed-content docutils">
+<p>What do you suppose <em>6-connectivity</em> and <em>26-connectivity</em> refer to?</p>
+</div>
+<input id="dee95991-5db9-4509-bf79-1745e0b78d05" name="24634d75-8a62-49d1-b550-fb7712022113" type="radio">
+</input><label class="tabbed-label" for="dee95991-5db9-4509-bf79-1745e0b78d05">
+Solution</label><div class="tabbed-content docutils">
+<p>6-connectivity is similar to 4-connectivity, but in 3D.
+If all 3D diagonals are considered, we end up with each pixel having 26 neighbors.</p>
+</div>
+</div>
+</div>
+<div class="section" id="global-thresholding">
+<h2>Global thresholding<a class="headerlink" href="#global-thresholding" title="Permalink to this headline">¶</a></h2>
+<p>The easiest way to segment an image is by applying a <strong>global threshold</strong>.
+This identifies pixels that are above or below a fixed threshold value, giving a binary image as the output.</p>
+<p>Global thresholding can be thought of as a <a class="reference internal" href="../2-point_operations/point_operations.html#chap-point-operations"><span class="std std-ref">point operation</span></a> because the output is based solely on the value of each pixel, and not its location or its neighbors.
+For a global threshold to work, the pixels inside objects need to have higher or lower values than the other pixels.
+We will look at image processing tricks to overcome this limitation later, but for now we will focus on examples where we want to detect objects have values that are clearly distinct from the background – and so global thresholding could potentially work.</p>
+<div class="section" id="thresholding-using-histograms">
+<h3>Thresholding using histograms<a class="headerlink" href="#thresholding-using-histograms" title="Permalink to this headline">¶</a></h3>
+<p>It’s possible to tell quite a lot about an image just by looking at its histogram.</p>
+<p>Take the following example:</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert_to_uint8</span><span class="p">(</span><span class="n">im</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">im</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>    
+
+<span class="k">def</span> <span class="nf">load_nuclei</span><span class="p">(</span><span class="n">to_uint8</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">noise_sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">do_square</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">do_square</span><span class="p">:</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="mi">10</span><span class="p">:</span><span class="mi">330</span><span class="p">,</span> <span class="mi">210</span><span class="p">:</span><span class="mi">530</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="mi">80</span><span class="p">:</span><span class="mi">280</span><span class="p">,</span> <span class="mi">210</span><span class="p">:</span><span class="mi">530</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">noise_sigma</span><span class="p">:</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">noise_sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">to_uint8</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">convert_to_uint8</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">im</span>
+
+<span class="c1"># Load image &amp; show histogram</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_nuclei</span><span class="p">()</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">))</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_nuclei_histogram_only&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-nuclei-histogram-only" style="width: 50%">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_11_0.png" src="../../../_images/thresholding_11_0.png" />
+</div>
+</div>
+<p>Even without seeing the image, we can make some educated guesses about its contents.</p>
+<p>Firstly, there is a large peak to the left and a much shallower peak to the right.
+This suggests that there are at least two distinct regions in the image.
+Since the background of an image tends to contain many pixes with similar values, I would guess that we might have an image with a dark background.</p>
+<p>In any case, a threshold around 20-25 looks like it would be a good choice to separate the regions… whatever they may be.</p>
+<p>If we then look at the image, we can see that we have in fact got a fluorescence image depicting two nuclei.
+Applying a threshold of 20 does achieve a good separation of the nuclei from the background: a successful segmentation.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load image &amp; set threshold</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_nuclei</span><span class="p">()</span>
+<span class="n">thresh</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="c1"># Show results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Image&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="n">im</span> <span class="o">&lt;=</span> <span class="n">thresh</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Histogram&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="n">im</span> <span class="o">&gt;</span> <span class="n">thresh</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Threshold&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">thresh</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">3400</span><span class="p">),</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span> <span class="o">&gt;</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Thresholded&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_nuclei_histogram&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-nuclei-histogram">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_13_0.png" src="../../../_images/thresholding_13_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 63 </span><span class="caption-text">A simple fluorescence image containing two nuclei. We could determine a potentially useful threshold based only on looking at the histogram.</span><a class="headerlink" href="#fig-thresholds-nuclei-histogram" title="Permalink to this image">¶</a></p>
+</div>
+<p>Admittedly, that was a particularly easy example.
+We should try a slightly harder one.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_leaf</span><span class="p">():</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;leaf.jpg&#39;</span><span class="p">)[</span><span class="mi">80</span><span class="p">:,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">im</span>
+
+<span class="c1"># Load image &amp; show histogram</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_leaf</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">))</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_leaf_histogram_only&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-leaf-histogram-only" style="width: 40%">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_16_0.png" src="../../../_images/thresholding_16_0.png" />
+</div>
+</div>
+<p>We still have a large peak, but this time it is towards the right.
+So I would guess a light background rather than a dark one.</p>
+<p>But the problem is that we seem to have <em>two</em> shallower peaks to the left.
+That suggests at least three different classes of pixels in the image.</p>
+<p>From visual inspection, we might suppose a threshold of 140 would make sense.
+Or perhaps around 220.
+It isn’t clear.</p>
+<p>This time, we <em>do</em> need to look at the image to decide.
+Even then, there is no unambiguously ‘correct’ threshold.
+Rather, the one we choose depends upon whether our goal is to identify the entire leaf or rather just the darkest region.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load image &amp; set threshold</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_leaf</span><span class="p">()</span>
+<span class="n">thresh1</span> <span class="o">=</span> <span class="mi">140</span>
+<span class="n">thresh2</span> <span class="o">=</span> <span class="mi">220</span>
+
+<span class="c1"># Show results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Image&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="n">im</span> <span class="o">&lt;=</span> <span class="n">thresh1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Histogram&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">im</span><span class="p">[(</span><span class="n">im</span> <span class="o">&gt;</span> <span class="n">thresh1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">im</span> <span class="o">&lt;=</span> <span class="n">thresh2</span><span class="p">)]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="n">im</span> <span class="o">&gt;</span> <span class="n">thresh2</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Thresholds&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">thresh1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">10000</span><span class="p">),</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Thresholds&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">thresh2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">10000</span><span class="p">),</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span> <span class="o">&lt;</span> <span class="n">thresh1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Thresholded </span><span class="si">{</span><span class="n">thresh1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span> <span class="o">&lt;</span> <span class="n">thresh2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(D) Thresholded </span><span class="si">{</span><span class="n">thresh2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_leaf_histogram&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-leaf-histogram">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_18_0.png" src="../../../_images/thresholding_18_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 64 </span><span class="caption-text">An image where evaluating the histogram suggests two candidate thresholds.
+The ‘correct’ threshold depends upon the desired outcome. Note that here we identify pixels <em>below</em> the threshold value, rather than above, because the background is ligher.</span><a class="headerlink" href="#fig-thresholds-leaf-histogram" title="Permalink to this image">¶</a></p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Histograms can help us choose thresholds</p>
+<p>Histograms can be really useful when choosing threshold values – but we need to also incorporate knowledge of <em>why</em> we are thresholding.</p>
+</div>
+</div>
+<div class="section" id="the-importance-of-the-threshold-choice">
+<h3>The importance of the threshold choice<a class="headerlink" href="#the-importance-of-the-threshold-choice" title="Permalink to this headline">¶</a></h3>
+<p>We’ve seen that histograms can help us identify suitable thresholds, but they don’t absolve us of the need to think.
+This is particularly evident when objects are not very distinct.
+The exact choice of threshold can then be crucial.</p>
+<p><a class="reference internal" href="#fig-thresholds-manual"><span class="std std-numref">Fig. 65</span></a> shows an example where the goal is to detect the bright spots (lysosomes).
+No single global threshold can give us perfect results, but at first glance many different thresholds can appear to give <em>somewhat</em> sensible results.
+The histogram gives, at best, a vague hint where a good threshold may lurk.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+
+<span class="c1"># Load image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="mi">50</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">450</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="c1"># im = im - ndimage.median_filter(im, size=25)</span>
+<span class="n">im</span> <span class="o">-=</span> <span class="n">im</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">im</span> <span class="o">=</span> <span class="p">(</span><span class="n">im</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="c1"># Define thresholds</span>
+<span class="n">thresholds</span> <span class="o">=</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+
+<span class="c1"># Show results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Image&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="mi">234</span>
+<span class="n">labeled_images</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">thresholds</span><span class="p">:</span>
+    <span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">t</span>
+    <span class="n">lab</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+    <span class="n">hist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">mean_area</span> <span class="o">=</span> <span class="n">hist</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">median_area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">hist</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Threshold: </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="se">\n</span><span class="s2">Num spots: </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="se">\n</span><span class="s2">Mean area: </span><span class="si">{</span><span class="n">mean_area</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">px²</span><span class="se">\n</span><span class="s2">Median area: </span><span class="si">{</span><span class="n">median_area</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">px²&quot;</span>
+    <span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+    <span class="c1"># Store image for later</span>
+    <span class="n">labeled_images</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">title</span><span class="p">,</span> <span class="n">lab</span><span class="p">))</span>
+    <span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_manual&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+
+<span class="c1"># Create a second figure with boundaries</span>
+<span class="c1"># Create a clipped image for display using mark_boundaries</span>
+<span class="n">im2</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">im2</span> <span class="o">=</span> <span class="n">im2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="mf">99.5</span><span class="p">)</span>
+<span class="n">im2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig2</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="mi">131</span>
+<span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="n">lab</span> <span class="ow">in</span> <span class="n">labeled_images</span><span class="p">:</span>
+    <span class="n">show_image</span><span class="p">(</span><span class="n">mark_boundaries</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;thick&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+    <span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_manual_overlays&#39;</span><span class="p">,</span> <span class="n">fig2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-manual">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_21_1.png" src="../../../_images/thresholding_21_1.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 65 </span><span class="caption-text">Applying different manually-chosen thresholds to the same image can give quite different results.</span><a class="headerlink" href="#fig-thresholds-manual" title="Permalink to this image">¶</a></p>
+</div>
+<p>I would like to convey three main messages from <a class="reference internal" href="#fig-thresholds-manual"><span class="std std-numref">Fig. 65</span></a>:</p>
+<ul class="simple">
+<li><p>The <strong>choice of threshold is crucial</strong>, influencing the numbers <em>and</em> areas of spots</p>
+<ul>
+<li><p>A <strong>threshold that is too low</strong> tends to <strong>make structures bigger &amp; merge some together</strong></p></li>
+<li><p>A <strong>threshold that is too high</strong> tends to <strong>make structures smaller &amp; miss some</strong></p></li>
+</ul>
+</li>
+<li><p>Choosing a threshold manually gives a <strong>huge opportunity to introduce bias</strong></p></li>
+<li><p>We should <strong>consider our errors when selecting output metrics</strong>. For example, if we needed to estimate the size of a spot from any of these results then the median is likely to be preferable, because it is less impacted by artificially large spots caused by merging.</p></li>
+</ul>
+<p>A fourth point I would like to make is that <strong>visualization matters too</strong>.
+Looking only at the binary images, it is difficult to really evaluate <em>any</em> of the results.
+It helps enormously to overlay the detected regions on top of the original image (<a class="reference internal" href="#fig-thresholds-manual-overlays"><span class="std std-numref">Fig. 66</span></a>).
+From this we can see much more clearly that none of the results are terribly good: every threshold we tried misses some spots and merges others.</p>
+<div class="figure align-center" id="fig-thresholds-manual-overlays">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_21_3.png" src="../../../_images/thresholding_21_3.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 66 </span><span class="caption-text">The binary images of <a class="reference internal" href="#fig-thresholds-manual"><span class="std std-numref">Fig. 65</span></a> viewed as overlays instead.</span><a class="headerlink" href="#fig-thresholds-manual-overlays" title="Permalink to this image">¶</a></p>
+</div>
+<div class="danger admonition">
+<p class="admonition-title">Beware summary plots!</p>
+<p>I sometimes sit in lab meetings where people discuss their image analysis results without showing a single image.
+I don’t approve of this at all.</p>
+<p>It’s easy to generate summary data with image analysis.
+In fact, it’s disturbingly easy to generate vastly different – even conflicting – summary data by analyzing the same images in different ways.
+But, most worryingly of all, one can often concoct a biologically-plausible-sounding story around almost any results.</p>
+<p>It’s crucial to visualize <em>what</em> is being detected and measured in each image, not just a spreadsheet or plot of the results.
+This is especially important when applying batch processing to many images at once.
+It’s tempting to check a few images and then trust the summary spreadsheet for the next 10,000, but I think there is no substitute for visualizing all (or at least a large proportion) of the images themselves.</p>
+<p><strong>For that reason, I would argue that devising an efficient visualization strategy is every bit as important as devising an analysis strategy.</strong></p>
+<p>Image overlays are often a good way to do this: for each image you analyze, create an RGB copy that outlines everything that was detected and measured.
+Ideally, this would have brightness and contrast settings defined in such a way that you can see at a glance when something has gone wrong.
+You might only look at each image for a fraction of a second through <em>Windows Explorer</em> or <em>Mac Finder</em>, but that can be enough to spot issues that would otherwise be missed.</p>
+</div>
+<p>In <a class="reference internal" href="#sec-thresholding-difficult"><span class="std std-ref">the last section</span></a> we’ll see how applying preprocessing steps to the image can allow us to reduce the proportion of spots that are merged or missed.
+But first we’ll consider how to automate the threshold choice.</p>
+</div>
+</div>
+<div class="section" id="automated-thresholds">
+<h2>Automated thresholds<a class="headerlink" href="#automated-thresholds" title="Permalink to this headline">¶</a></h2>
+<p>We don’t want to choose thresholds manually if we can avoid it, because it affords so much room for bias.
+On the other hand, there’s no always-applicable strategy to determine a threshold automatically; images vary too much.</p>
+<p>Nevertheless, there are some widely-used techniques capable of determining reasonable thresholds for many images based upon the histogram.
+Each one is based upon some underlying assumptions about the histogram shape or image statistics.
+If these assumptions are met, the method often performs well; if not, it may perform well <em>sometimes</em> and disastrously at other times.</p>
+<p>In this section, we’ll look at several of the most common automated thresholding methods using three images.
+Each image exhibits a different kind of histogram that is commonly found in bioimages:</p>
+<ul class="simple">
+<li><p><strong>Bimodal:</strong> with two distinct peaks, corresponding to foreground and background</p></li>
+<li><p><strong>Unimodal:</strong> mostly background noise, with some interesting signal at one end</p></li>
+<li><p><strong>Dominant background:</strong> one large background peak, with a long tail of foreground pixels</p></li>
+</ul>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_spots</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="n">n_spots</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">spot_intensity</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">to_uint8</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_spots</span><span class="p">)</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_spots</span><span class="p">)</span>
+    <span class="n">im</span><span class="p">[</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">spot_sigma</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="n">spot_intensity</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">to_uint8</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">convert_to_uint8</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">im</span>
+    
+<span class="k">def</span> <span class="nf">load_cell</span><span class="p">(</span><span class="n">noise_sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">to_uint8</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)[:,</span> <span class="mi">5</span><span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">noise_sigma</span><span class="p">:</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">noise_sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">to_uint8</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">convert_to_uint8</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">im</span>
+
+<span class="k">def</span> <span class="nf">create_threshold_images</span><span class="p">():</span>
+    <span class="n">im_cell</span> <span class="o">=</span> <span class="n">load_cell</span><span class="p">(</span><span class="n">noise_sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">im_spots</span> <span class="o">=</span> <span class="n">create_spots</span><span class="p">()</span>
+    <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">load_nuclei</span><span class="p">(</span><span class="n">do_square</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span>
+    
+<span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
+    
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Cell (Bimodal histogram)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Spots (Unimodal histogram)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Nuclei (Dominant background histogram)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_histogram_types&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-histogram-types">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_25_0.png" src="../../../_images/thresholding_25_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 67 </span><span class="caption-text">Images with three different types of histogram.</span><a class="headerlink" href="#fig-thresholds-histogram-types" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="otsu-s-method">
+<span id="sec-thresholds-otsu"></span><h3>Otsu’s method<a class="headerlink" href="#otsu-s-method" title="Permalink to this headline">¶</a></h3>
+<p>By its nature, global thresholding assumes that there are two classes of pixel in the image – those that belong to interesting objects, and those that do not – and pixels in each class have different intensity values <a class="footnote-reference brackets" href="#fn-2" id="id1">1</a>.
+In principle, if we could identify the pixels for each of the two classes, we could calculate statistics such as the mean and variance (i.e. standard deviation squared) for them both separately.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Nobuyuki Otsu (1979). “A threshold selection method from gray-level histograms”. <em>IEEE Trans. Sys. Man. Cyber.</em> 9 (1): 62–66. <a class="reference external" href="https://doi.org/10.1109/TSMC.1979.4310076">https://doi.org/10.1109/TSMC.1979.4310076</a></p>
+</div>
+<p><strong>Otsu’s method</strong>, introduced in 1979, has become an extremely popular approach to determining a threshold.
+It’s commonly described, somewhat intimidatingly, as <em>‘minimizing the intra-class intensity variance’</em>.
+In essence, calculating a threshold using Otsu’s method involves adding the variance of the background pixels to the variance of the foreground pixels, for all possible thresholds.
+The threshold that is selected is the one for which the sum of the variances is smallest.</p>
+<p>We can think of this as trying to keep the distributions of foreground and background pixels ‘compact’: two peaks that spread as little as possible.</p>
+<p>Otsu’s method performs very well on data with a bimodal histogram, with a deep valley in between.
+Unfortunately, a lot of microscopy images don’t have clearly bimodal histograms, and so the method may not be such a good choice.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
+    
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">thresh_cell</span> <span class="o">=</span> <span class="n">threshold_otsu</span><span class="p">(</span><span class="n">im_cell</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Otsu&#39;s method (threshold = </span><span class="si">{</span><span class="n">thresh_cell</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span> <span class="o">&gt;</span> <span class="n">thresh_cell</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+
+<span class="n">thresh_spots</span> <span class="o">=</span> <span class="n">threshold_otsu</span><span class="p">(</span><span class="n">im_spots</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Otsu&#39;s method (threshold = </span><span class="si">{</span><span class="n">thresh_spots</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_spots</span> <span class="o">&gt;</span> <span class="n">thresh_spots</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+
+<span class="n">thresh_nuclei</span> <span class="o">=</span> <span class="n">threshold_otsu</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Otsu&#39;s method (threshold = </span><span class="si">{</span><span class="n">thresh_nuclei</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_nuclei</span> <span class="o">&gt;</span> <span class="n">thresh_nuclei</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_method_otsu&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-method-otsu">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_28_0.png" src="../../../_images/thresholding_28_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 68 </span><span class="caption-text">Thresholding using Otsu’s method. This performs best on the cell image with a bimodal histogram. For the spots image, there is no separation between peaks to find; as a result, approximately half the pixels are identified as foreground. The method also performs quite poorly for the nucleus image, despite this previously being identified as an ‘easier’ image for thresholding.</span><a class="headerlink" href="#fig-thresholds-method-otsu" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="minimum-method">
+<h3>Minimum method<a class="headerlink" href="#minimum-method" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Minimum method</strong> provides an alternative threshold that also assumes a bimodal histogram.</p>
+<p>The starting point is the image histogram.
+As can be seen in <a class="reference internal" href="#fig-thresholds-histogram-types"><span class="std std-numref">Fig. 67</span></a>, the counts tend to be somewhat ‘noisy’ with lots of tiny spurious peaks.
+The Minimum method operates by smoothing the histogram, replacing each count value with the average of itself and the neighboring counts.
+By repeating this process, eventually the spurious peaks are removed until (hopefully) precisely two peaks remain.
+The threshold is then the location of the deepest point in the valley between those peaks.</p>
+<p>The result of this process is illustrated in <a class="reference internal" href="#fig-thresholds-method-minimum"><span class="std std-numref">Fig. 69</span></a>.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_minimum_threshold</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">pos</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">find_local_maxima_idx</span><span class="p">(</span><span class="n">hist</span><span class="p">):</span>
+        <span class="c1"># This code is taken from scikit-image because it is not publicly accessible</span>
+        <span class="c1"># https://github.com/scikit-image/scikit-image/blob/v0.19.0/skimage/filters/thresholding.py#L821</span>
+        
+        <span class="c1"># We can&#39;t use scipy.signal.argrelmax</span>
+        <span class="c1"># as it fails on plateaus</span>
+        <span class="n">maximum_idxs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="n">direction</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hist</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">direction</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">hist</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">hist</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                    <span class="n">direction</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+                    <span class="n">maximum_idxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">hist</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">hist</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                    <span class="n">direction</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">maximum_idxs</span>
+        
+    <span class="c1"># Create a histogram with bin centers</span>
+    <span class="n">hist</span><span class="p">,</span> <span class="n">bin_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+    <span class="n">hist</span> <span class="o">=</span> <span class="n">hist</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">centers</span> <span class="o">=</span> <span class="p">(</span><span class="n">bin_edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mf">2.0</span>
+    <span class="n">smooth_hist</span> <span class="o">=</span> <span class="n">hist</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="c1"># Smooth histogram until there are &lt;=2 peaks</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iters</span><span class="p">):</span>
+        <span class="n">smooth_hist</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">uniform_filter1d</span><span class="p">(</span><span class="n">smooth_hist</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">max_inds</span> <span class="o">=</span> <span class="n">find_local_maxima_idx</span><span class="p">(</span><span class="n">smooth_hist</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">max_inds</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">break</span>
+    
+    <span class="c1"># Check this worked</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">max_inds</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unable to find 2 maxima in smoothed histogram!&#39;</span><span class="p">)</span>
+        
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">centers</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">hist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">centers</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">smooth_hist</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">smooth_hist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="n">max_inds</span><span class="p">],</span> <span class="n">smooth_hist</span><span class="p">[</span><span class="n">max_inds</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="n">thresh</span><span class="p">],</span> <span class="n">smooth_hist</span><span class="p">[</span><span class="n">thresh</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    
+    
+    
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_minimum</span>
+
+<span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
+    
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">))</span>
+<span class="n">thresh_cell</span> <span class="o">=</span> <span class="n">threshold_minimum</span><span class="p">(</span><span class="n">im_cell</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Minimum method (threshold = </span><span class="si">{</span><span class="n">thresh_cell</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">331</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span> <span class="o">&gt;</span> <span class="n">thresh_cell</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">334</span><span class="p">)</span>
+<span class="n">plot_minimum_threshold</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh_cell</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">337</span><span class="p">)</span>
+
+<span class="n">thresh_spots</span> <span class="o">=</span> <span class="n">threshold_minimum</span><span class="p">(</span><span class="n">im_spots</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Minimum method (threshold = </span><span class="si">{</span><span class="n">thresh_spots</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">332</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_spots</span> <span class="o">&gt;</span> <span class="n">thresh_spots</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">335</span><span class="p">)</span>
+<span class="n">plot_minimum_threshold</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh_spots</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">338</span><span class="p">)</span>
+
+<span class="n">thresh_nuclei</span> <span class="o">=</span> <span class="n">threshold_minimum</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Minimum method (threshold = </span><span class="si">{</span><span class="n">thresh_nuclei</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">333</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_nuclei</span> <span class="o">&gt;</span> <span class="n">thresh_nuclei</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">336</span><span class="p">)</span>
+<span class="n">plot_minimum_threshold</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh_nuclei</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">339</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_method_minimum&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-method-minimum">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_31_0.png" src="../../../_images/thresholding_31_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 69 </span><span class="caption-text">Thresholding using the Minimum method. The smoothed histograms used in the calculation are shown in red, with the original histograms shown (faintly) in gray. A line connecting the two final peaks is also included, and the threshold marked with a dot. <br/>
+This works well on the cells image and quite well on the nuclei image. However it fails badly on the spots image, where almost everything is detected as foreground. This is a case where the method converges (due to the image being noisy, so having lots of small peaks in the histogram) even though we might prefer it had not.</span><a class="headerlink" href="#fig-thresholds-method-minimum" title="Permalink to this image">¶</a></p>
+</div>
+<p>One ‘feature’ of the Minimum method is that <em>it is not guaranteed to converge</em>.
+It is entirely possible that no amount of smoothing will result in a histogram with 2 peaks: perhaps there is only 1 peak, or none at all if all pixels are just a constant value.</p>
+<p>This could potentially be an advantage: it may be better to return no threshold than to return a really bad one.
+However, in most real images we cannot count on the method not converging: it often <em>does</em> converge, even if it does not necessarily converge to any desirable value.</p>
+</div>
+<div class="section" id="triangle-method">
+<span id="sec-thresholds-triangle"></span><h3>Triangle method<a class="headerlink" href="#triangle-method" title="Permalink to this headline">¶</a></h3>
+<p>The ‘triangle method’ is a popular approach to determining a threshold that works especially well in images where there is one dominant background peak, and the ideal threshold should be at the base of that peak.</p>
+<p>The general idea is that a a line is drawn from the peak of the histogram to the last bin that contains any pixels.
+Then a perpendicular line is plotted to the histogram itself, and the distance to the histogram maximized.
+The direction of the line depends upon whether the peak is toward the left or the right of the histogram; all counts on the other side are ignored.</p>
+<p>The width and height of the histogram are normalized to deal with the fact that pixel values and intensity counts are in completely different units, and therefore in completely different scales.</p>
+<p>The explanation is confusing, but hopefully <a class="reference internal" href="#fig-thresholds-method-triangle"><span class="std std-ref">Thresholding using the Triangle method. Because all example histograms have a dominant peak, this performs quite well in all cases – although tends to detect more foreground pixels in the cell image than other methods (because the threshold is at the base of the peak rather than between the two modes). 
+The histograms depict the triangles that give the method its name.
+They have been normalized and truncated to include only the relevant part.</span></a> depicts it more clearly – and provides an intuition for when and why it might be appropriate.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_triangle</span>
+
+<span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
+
+<span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot_triangle_threshold</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">pos</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+
+    <span class="c1"># Create a histogram, identify peak and normalize counts between 0 and 1</span>
+    <span class="c1"># Note: here we assume the peak is always to the left and we threshold to the right!</span>
+    <span class="c1"># The proper triangle threshold flips sometimes</span>
+    <span class="n">hist</span><span class="p">,</span> <span class="n">bin_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+    <span class="n">peak_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span>
+    <span class="n">peak_height</span> <span class="o">=</span> <span class="n">hist</span><span class="p">[</span><span class="n">peak_ind</span><span class="p">]</span>
+    <span class="n">hist</span> <span class="o">=</span> <span class="n">hist</span> <span class="o">/</span> <span class="n">peak_height</span>
+    
+    <span class="c1"># Identify bin centers</span>
+    <span class="c1"># Find last bin with non-zero count</span>
+    <span class="n">centers</span> <span class="o">=</span> <span class="p">(</span><span class="n">bin_edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mf">2.0</span>
+    <span class="n">ind_low</span><span class="p">,</span> <span class="n">ind_high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">hist</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">][[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span>    
+    
+    <span class="c1"># Shift bin centers according to peak (simplified plotting)</span>
+    <span class="n">centers</span> <span class="o">=</span> <span class="n">centers</span> <span class="o">-</span> <span class="n">centers</span><span class="p">[</span><span class="n">peak_ind</span><span class="p">]</span>
+    
+    <span class="c1"># Compute &#39;width&#39; of the triangle (base length)</span>
+    <span class="c1"># Normalize centers so width becomes 1</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="n">ind_high</span><span class="p">]</span> <span class="o">-</span> <span class="n">centers</span><span class="p">[</span><span class="n">peak_ind</span><span class="p">])</span>
+    <span class="n">centers</span> <span class="o">=</span> <span class="n">centers</span> <span class="o">/</span> <span class="n">width</span>
+    
+    <span class="c1"># Plot histogram with new values</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">centers</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">hist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">))</span>
+    
+    <span class="c1"># Plot from peak to base</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">centers</span><span class="p">[</span><span class="n">peak_ind</span><span class="p">]</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">hist</span><span class="p">[</span><span class="n">peak_ind</span><span class="p">]</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">centers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">y2</span> <span class="o">=</span> <span class="n">hist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span> <span class="p">[</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">])</span>
+    
+    <span class="c1"># Plot from threshold to peak line</span>
+    <span class="n">x3</span> <span class="o">=</span> <span class="n">centers</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">thresh</span><span class="p">)]</span>
+    <span class="n">y3</span> <span class="o">=</span> <span class="n">hist</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">thresh</span><span class="p">)]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">x4</span> <span class="o">=</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="n">y4</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="c1"># Find intersection</span>
+    <span class="c1"># Thank you, wikipedia</span>
+    <span class="c1"># https://en.wikipedia.org/wiki/Line–line_intersection#Given_two_points_on_each_line</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y3</span> <span class="o">-</span> <span class="n">y4</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x3</span> <span class="o">-</span> <span class="n">x4</span><span class="p">)</span>
+    <span class="n">px</span> <span class="o">=</span> <span class="p">((</span><span class="n">x1</span><span class="o">*</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x3</span> <span class="o">-</span> <span class="n">x4</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x3</span><span class="o">*</span><span class="n">y4</span> <span class="o">-</span> <span class="n">y3</span><span class="o">*</span><span class="n">x4</span><span class="p">))</span><span class="o">/</span><span class="n">D</span>
+    <span class="n">py</span> <span class="o">=</span> <span class="p">((</span><span class="n">x1</span><span class="o">*</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y3</span> <span class="o">-</span> <span class="n">y4</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x3</span><span class="o">*</span><span class="n">y4</span> <span class="o">-</span> <span class="n">y3</span><span class="o">*</span><span class="n">x4</span><span class="p">))</span><span class="o">/</span><span class="n">D</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x3</span><span class="p">,</span> <span class="n">px</span><span class="p">],</span> <span class="p">[</span><span class="n">y3</span><span class="p">,</span> <span class="n">py</span><span class="p">])</span>
+    
+    <span class="c1"># Setup display</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">thresh_cell</span> <span class="o">=</span> <span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im_cell</span><span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Triangle method (threshold = </span><span class="si">{</span><span class="n">thresh_cell</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">331</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span> <span class="o">&gt;</span> <span class="n">thresh_cell</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">334</span><span class="p">)</span>
+<span class="n">plot_triangle_threshold</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh_cell</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">337</span><span class="p">)</span>
+
+<span class="n">thresh_spots</span> <span class="o">=</span> <span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im_spots</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Triangle method (threshold = </span><span class="si">{</span><span class="n">thresh_spots</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">332</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_spots</span> <span class="o">&gt;</span> <span class="n">thresh_spots</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">335</span><span class="p">)</span>
+<span class="n">plot_triangle_threshold</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh_spots</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">338</span><span class="p">)</span>
+
+<span class="n">thresh_nuclei</span> <span class="o">=</span> <span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Triangle method (threshold = </span><span class="si">{</span><span class="n">thresh_nuclei</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">333</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_nuclei</span> <span class="o">&gt;</span> <span class="n">thresh_nuclei</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">336</span><span class="p">)</span>
+<span class="n">plot_triangle_threshold</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh_nuclei</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">339</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_method_triangle&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-method-triangle">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_34_0.png" src="../../../_images/thresholding_34_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 70 </span><span class="caption-text">Thresholding using the Triangle method. Because all example histograms have a dominant peak, this performs quite well in all cases – although tends to detect more foreground pixels in the cell image than other methods (because the threshold is at the base of the peak rather than between the two modes). <br/>
+The histograms depict the triangles that give the method its name.
+They have been normalized and truncated to include only the relevant part.</span><a class="headerlink" href="#fig-thresholds-method-triangle" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="mean-method">
+<h3>Mean method<a class="headerlink" href="#mean-method" title="Permalink to this headline">¶</a></h3>
+<p>An alternative simple approach is to skip the histogram altogether, and just use the mean of all pixel values.</p>
+<p>This can actually give quite good reasons on many real-world images – although this may be more through luck than design.
+It’s not a method I typically use myself.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">threshold_mean</span><span class="p">(</span><span class="n">im</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
+    
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">thresh_cell</span> <span class="o">=</span> <span class="n">threshold_mean</span><span class="p">(</span><span class="n">im_cell</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mean method (threshold = </span><span class="si">{</span><span class="n">thresh_cell</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span> <span class="o">&gt;</span> <span class="n">thresh_cell</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+
+<span class="n">thresh_spots</span> <span class="o">=</span> <span class="n">threshold_mean</span><span class="p">(</span><span class="n">im_spots</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mean method (threshold = </span><span class="si">{</span><span class="n">thresh_spots</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_spots</span> <span class="o">&gt;</span> <span class="n">thresh_spots</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+
+<span class="n">thresh_nuclei</span> <span class="o">=</span> <span class="n">threshold_mean</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mean method (threshold = </span><span class="si">{</span><span class="n">thresh_nuclei</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_nuclei</span> <span class="o">&gt;</span> <span class="n">thresh_nuclei</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_method_mean&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-method-mean">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_37_0.png" src="../../../_images/thresholding_37_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 71 </span><span class="caption-text">Thresholding using the Mean method.</span><a class="headerlink" href="#fig-thresholds-method-mean" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="mean-standard-deviation">
+<h3>Mean &amp; Standard deviation<a class="headerlink" href="#mean-standard-deviation" title="Permalink to this headline">¶</a></h3>
+<p>We can add a bit more to the <em>Mean method</em> by incorporating the standard deviation, scaled by a constant.
+The threshold becomes <em>mean + k x standard.deviation</em>, where we can adjust <em>k</em> based upon our attitude towards sensitivity vs. specificity.</p>
+<p>The main advantage of this approach is that it should not fail catastropically in cases where we have an image that is mostly just noise (assuming <em>k</em> is large enough), unlike methods that require a bimodal histogram.
+However the disadvantage is that it is not robust: the threshold can be pulled higher or lower by outliers, or by foreground values being very different from background values.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">threshold_mean_std</span><span class="p">(</span><span class="n">im</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="n">k</span> <span class="o">*</span> <span class="n">im</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
+    
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">thresh_cell</span> <span class="o">=</span> <span class="n">threshold_mean_std</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mean &amp; std. method (threshold = </span><span class="si">{</span><span class="n">thresh_cell</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span> <span class="o">&gt;</span> <span class="n">thresh_cell</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+
+<span class="n">thresh_spots</span> <span class="o">=</span> <span class="n">threshold_mean_std</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mean &amp; std. method (threshold = </span><span class="si">{</span><span class="n">thresh_spots</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_spots</span> <span class="o">&gt;</span> <span class="n">thresh_spots</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+
+<span class="n">thresh_nuclei</span> <span class="o">=</span> <span class="n">threshold_mean_std</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mean &amp; std. method (threshold = </span><span class="si">{</span><span class="n">thresh_nuclei</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_nuclei</span> <span class="o">&gt;</span> <span class="n">thresh_nuclei</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_method_mean_std&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-method-mean-std">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_40_0.png" src="../../../_images/thresholding_40_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 72 </span><span class="caption-text">Thresholding using the Mean + k x std.dev. method, with k = 3.</span><a class="headerlink" href="#fig-thresholds-method-mean-std" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="median-median-absolute-deviation">
+<h3>Median &amp; Median Absolute Deviation<a class="headerlink" href="#median-median-absolute-deviation" title="Permalink to this headline">¶</a></h3>
+<p>A more robust alternative to using the mean and standard deviation is to use the <strong>median and median absolute deviation (MAD)</strong> to determine a threshold.</p>
+<p>If the pixel values of an image were to be sorted, the <strong>median</strong> is the value that would be in the middle.
+The <strong>MAD</strong> is calculated as follows:</p>
+<ol class="simple">
+<li><p>Subtract the median from all pixels</p></li>
+<li><p>Compute the absolute value of the result of (1) (i.e. flip the sign of negative values, so that all are positive)</p></li>
+<li><p>Compute the median of the result of (2)</p></li>
+</ol>
+<p>An intriguingly useful property of the MAD is that it can be scaled by 1.482 to resemble a (more robust) standard deviation.
+The <a class="reference external" href="https://en.wikipedia.org/wiki/Median_absolute_deviation">Wikipedia article</a> explains this in more detail.</p>
+<p>Typically, we would use the <em>median + k x MAD x 1.482</em>, where we can adjust <em>k</em> as if it was used to scale a standard deviation.
+This is helpful because standard deviations are easier for (most of) us to tune.</p>
+<p>Using the MAD to define a threshold remains fairly uncommon, but I personally like the method a lot when working with very noisy fluorescence images.
+The three main requirements for this method to work are:</p>
+<ul class="simple">
+<li><p>Most of the image should be background, and noisy (a completely constant background will give a MAD of 0, and a bad threshold)</p></li>
+<li><p>The noise should (more or less) follow a normal distribution</p></li>
+<li><p>The image shouldn’t be too large, because calculating the median exactly is slow</p></li>
+</ul>
+<p>The last point is not always an issue: we can calculate the median much more quickly if we use a histogram, although we may lose some precision due to the binning required when building the histogram.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">threshold_mad</span><span class="p">(</span><span class="n">im</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">med</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+    <span class="n">mad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">-</span> <span class="n">med</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">med</span> <span class="o">+</span> <span class="n">mad</span> <span class="o">*</span> <span class="n">k</span> <span class="o">*</span> <span class="mf">1.4826</span>
+
+<span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
+    
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">thresh_cell</span> <span class="o">=</span> <span class="n">threshold_mad</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Median &amp; MAD method (threshold = </span><span class="si">{</span><span class="n">thresh_cell</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span> <span class="o">&gt;</span> <span class="n">thresh_cell</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+
+<span class="n">thresh_spots</span> <span class="o">=</span> <span class="n">threshold_mad</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Median &amp; MAD method (threshold = </span><span class="si">{</span><span class="n">thresh_spots</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_spots</span> <span class="o">&gt;</span> <span class="n">thresh_spots</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+
+<span class="n">thresh_nuclei</span> <span class="o">=</span> <span class="n">threshold_mad</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_nuclei</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Median &amp; MAD method (threshold = </span><span class="si">{</span><span class="n">thresh_nuclei</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_nuclei</span> <span class="o">&gt;</span> <span class="n">thresh_nuclei</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_method_mad&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-method-mad">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_43_0.png" src="../../../_images/thresholding_43_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 73 </span><span class="caption-text">Thresholding using the MAD method, with <em>k = 3</em>. This is a strong candiate to be my preferred method for the ‘spots’ image, because it is effective when looking for small signals buried in noise.</span><a class="headerlink" href="#fig-thresholds-method-mad" title="Permalink to this image">¶</a></p>
+</div>
+<div class="danger admonition">
+<p class="admonition-title">Clipping confounds automated thresholds</p>
+<p>If the data is <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html#chap-bit-depths"><span class="std std-ref">clipped</span></a>, then the statistics of the pixel values and shape of the image histogram are changed.
+This means that the theory underlying why an automated threshold should work might well no longer apply.</p>
+<p><em>This is another reason why clipping should always be avoided!</em></p>
+</div>
+<div class="admonition-are-automated-thresholds-less-biased admonition">
+<p class="admonition-title">Are automated thresholds less biased?</p>
+<p>I sometimes see the use of automated thresholding methods justified because they are <em>‘less biased than manual thresholds’</em>.</p>
+<p>I am unconvinced.</p>
+<p>I <em>do</em> agree that automated thresholds are strongly preferable to subjectively picking a threshold by eye – but only if they can be shown to work reliably for a particular dataset.
+A bad automated threshold can easily introduce a systematic bias that is much worse than manually setting a threshold for each image.</p>
+</div>
+</div>
+</div>
+<div class="section" id="thresholding-difficult-data">
+<span id="sec-thresholding-difficult"></span><h2>Thresholding difficult data<a class="headerlink" href="#thresholding-difficult-data" title="Permalink to this headline">¶</a></h2>
+<p>Applying global thresholds is all well and good in easy images for which a threshold clearly exists, but in practice things are rarely so straightforward – and often no threshold, manual or automatic, produces useable results.
+This section anticipates the next chapter on filters by showing that, with some extra processing, thresholding can be redeemed even if it initially seems to perform badly.</p>
+<div class="section" id="thresholding-noisy-data">
+<h3>Thresholding noisy data<a class="headerlink" href="#thresholding-noisy-data" title="Permalink to this headline">¶</a></h3>
+<p>Noise is one problem that affects thresholds, especially in live cell imaging.</p>
+<p>The top half of <a class="reference internal" href="#fig-thresholds-noisy"><span class="std std-numref">Fig. 74</span></a> reproduces the nuclei from <a class="reference internal" href="#fig-thresholds-nuclei-histogram"><span class="std std-numref">Fig. 63</span></a> but with extra noise added to simulate less than ideal imaging conditions.
+Although the nuclei are still clearly visible in the image (A), the two classes of pixels (which were previously easy to separate) have now been merged together in the histogram (B).
+The triangle threshold method, which had performed well before, now gives less attractive results (C), because the noise has caused the ranges of background and nuclei pixels to overlap.</p>
+<p><em>However,</em> if we apply a Gaussian filter to smooth the image, a lot of the the random noise is reduced (see <a class="reference internal" href="../4-filters/filters.html#chap-filters"><span class="std std-ref">Filters</span></a>).
+This results in a histogram dramatically more similar to that in the original, (almost) noise-free image, and the threshold is again quite successful (F).</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter</span>
+
+<span class="c1"># Read image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_nuclei</span><span class="p">(</span><span class="n">to_uint8</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># Add noise (and a constant to avoid clipping)</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">im_noisy</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="mi">500</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">300</span>
+
+<span class="c1"># Apply triangle threshold</span>
+<span class="n">bw_noisy_triangle</span> <span class="o">=</span> <span class="n">im_noisy</span> <span class="o">&gt;</span> <span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">)</span>
+
+<span class="c1"># Filter to reduce noise, then threshold again</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">im_filtered</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+
+<span class="c1"># Apply triangle threshold</span>
+<span class="n">bw_filtered_triangle</span> <span class="o">=</span> <span class="n">im_filtered</span> <span class="o">&gt;</span> <span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im_filtered</span><span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Noisy image&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noisy</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Histogram of (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2500</span><span class="p">])</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw_noisy_triangle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Threshold applied to (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_filtered</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Gaussian filtered image&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_filtered</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(E) Histogram of (D)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2500</span><span class="p">])</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw_filtered_triangle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(F) Threshold applied to (D)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_noisy&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-noisy">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_47_0.png" src="../../../_images/thresholding_47_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 74 </span><span class="caption-text">Noise can affect thresholding. After the addition of simulated noise to the image in <a class="reference internal" href="#fig-thresholds-nuclei-histogram"><span class="std std-numref">Fig. 63</span></a>, the distinction between nuclei and non-nuclei pixels is much harder to identify in the histogram (B). Any threshold would result in a large number of incorrectly-identified pixels. However, applying a Gaussian filter (here, <span class="math notranslate nohighlight">\(\sigma = 2\)</span>) to reduce noise can dramatically improve the situation (E). Thresholds in (C) and (F) were computed using the triangle method.</span><a class="headerlink" href="#fig-thresholds-noisy" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="local-thresholding">
+<h3>Local thresholding<a class="headerlink" href="#local-thresholding" title="Permalink to this headline">¶</a></h3>
+<p>Another common problem is that the structures that should be detected appear on top of a background that itself varies in brightness.
+This was the reason no threshold performed very well in <a class="reference internal" href="#fig-thresholds-manual"><span class="std std-numref">Fig. 65</span></a>.</p>
+<p>Ideally, we would like to apply a threshold that varies relative to the local background.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>W. Niblack, An introduction to Digital Image Processing, Prentice-Hall, 1986.</p>
+</div>
+<p>There are a variety of <strong>local thresholding</strong> methods available, many of which are variations on the <strong>Niblack method</strong>.
+This calculates the mean and standard deviation of pixels <em>in a local window around each pixel</em>, for example a square of 25 x 25 pixels.</p>
+<p>A separate threshold is then generated for every pixel,defined as <em>local_mean - k x local_std.dev</em>.
+Note the sign: <em>-k</em> is used, because the original definition was focussed on recognizing dark text on a light background, but <em>k</em> itself can be a negative number if needed.</p>
+<p>An example is shown in <a class="reference internal" href="#fig-thresholds-local-niblack"><span class="std std-numref">Fig. 75</span></a>.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_niblack</span>
+<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">disk</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+
+<span class="c1"># Load image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="mi">50</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">450</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="c1"># im = im - ndimage.median_filter(im, size=25)</span>
+<span class="n">im</span> <span class="o">-=</span> <span class="n">im</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">im</span> <span class="o">=</span> <span class="p">(</span><span class="n">im</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="c1"># Apply triangle threshold</span>
+<span class="n">bw_triangle</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">threshold_niblack</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="c1"># Show, using an alternative colormap to boost contrast</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Histogram of (A)&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw_triangle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Triangle threshold applied to (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_local_niblack&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-local-niblack">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_49_0.png" src="../../../_images/thresholding_49_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 75 </span><span class="caption-text">Local thresholding to detect spots using Niblack’s method.</span><a class="headerlink" href="#fig-thresholds-local-niblack" title="Permalink to this image">¶</a></p>
+</div>
+<p>To be honest, I don’t tend to use this approach for bioimages.
+I find the window size and <em>k</em> parameters difficult to tune, and it suffers the problem of the mean and standard deviation not being robust.</p>
+<p>However, local thresholding becomes more interesting and powerful if we take matters into our own hands by thinking about the problem from a slightly different angle.</p>
+<p>Suppose we had a second image that contained values equal to the thresholds want to apply at each pixel.
+If we simply <em>subtract</em> this second image from the first, we can then apply a global threshold of 0 to detect what we want.</p>
+<p>Alternatively, we could subtract an image with values that aren’t exactly equal to the local thresholds, but similar enough to effectively flatten out the background so that a global threshold can be applied.
+This then provides us access to all global automated thresholding methods, and an intuition of how the histograms ought to look for the methods to be appropriate.
+<a class="reference internal" href="#fig-thresholds-local"><span class="std std-numref">Fig. 76</span></a> shows this in action.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_triangle</span><span class="p">,</span> <span class="n">median</span>
+<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">disk</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+
+<span class="c1"># Load image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="mi">50</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">450</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="c1"># im = im - ndimage.median_filter(im, size=25)</span>
+<span class="n">im</span> <span class="o">-=</span> <span class="n">im</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">im</span> <span class="o">=</span> <span class="p">(</span><span class="n">im</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="c1"># Apply triangle threshold</span>
+<span class="n">bw_triangle</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+
+<span class="c1"># Apply large median filter</span>
+<span class="n">im_median</span> <span class="o">=</span> <span class="n">median</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">selem</span><span class="o">=</span><span class="n">disk</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Subtract median-filtered image and now try triangle threshold again</span>
+<span class="n">im_diff</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">-</span> <span class="n">im_median</span>
+<span class="n">bw_diff</span> <span class="o">=</span> <span class="n">im_diff</span> <span class="o">&gt;</span> <span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im_diff</span><span class="p">)</span>
+
+<span class="c1"># Show, using an alternative colormap to boost contrast</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Histogram of (A)&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw_triangle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Triangle threshold applied to (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+
+<span class="c1"># show_image(im_median, title=&quot;(D) Median filtered image&quot;, clip_percentile=0.5, cmap=cmap, pos=234)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_diff</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) &#39;Background&#39; subtracted image&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_diff</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(E) Histogram of (A)&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw_diff</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(F) Triangle threshold applied to (D)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_local&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-thresholds-local">
+<div class="cell_output docutils container">
+<img alt="../../../_images/thresholding_51_1.png" src="../../../_images/thresholding_51_1.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 76 </span><span class="caption-text">Thresholding to detect structures appearing on a varying background. No global threshold may be sufficiently selective <em>(top row)</em>. However, if a ‘background image’ can be created, (here using a large median filter), and then subtracted, a single threshold can give much better results <em>(bottom row)</em>. This is equivalent to applying a varying threshold to the original image.</span><a class="headerlink" href="#fig-thresholds-local" title="Permalink to this image">¶</a></p>
+</div>
+<p>The difficult part is creating the second image.
+Filters are the key, and the subject of the <a class="reference internal" href="../4-filters/filters.html#chap-filters"><span class="std std-ref">next chapter</span></a>.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="fn-2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Of course there may be multiple classes for different kinds of objects, and perhaps multiple thresholds would make more sense. There is a variation of Otsu’s method for identifying multiple thresholds.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "petebankhead/jupyter-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/2-processing/3-thresholding"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../2-point_operations/imagej.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ImageJ: Point operations</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="imagej.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ImageJ: Thresholding</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pete Bankhead<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,1223 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Files &amp; file formats &#8212; Introduction to Bioimage Analysis</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ImageJ: Files &amp; file formats" href="imagej.html" />
+    <link rel="prev" title="Python: Pixel size &amp; dimensions" href="../5-pixel_size/python.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../README.html">
+   Introduction to Bioimage Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Front matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Before we begin
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/preface/preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../0-preamble/reading/reading.html">
+   How to read this book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducing images
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html">
+   Images &amp; pixels
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1-images_and_pixels/imagej.html">
+     ImageJ: Images &amp; pixels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1-images_and_pixels/python.html">
+     Python: Images &amp; pixels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../2-measurements/measurements.html">
+   Measurements &amp; histograms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2-measurements/imagej.html">
+     ImageJ: Measurements &amp; histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2-measurements/python.html">
+     Python: Measurements &amp; histograms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3-bit_depths/bit_depths.html">
+   Types &amp; bit-depths
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-bit_depths/imagej.html">
+     ImageJ: Types &amp; bit-depths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3-bit_depths/python.html">
+     Python: Types &amp; bit-depths
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../4-colors/colors.html">
+   Channels &amp; colors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4-colors/imagej.html">
+     ImageJ: Channels &amp; colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4-colors/python.html">
+     Python: Channels &amp; colors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../5-pixel_size/pixel_size.html">
+   Pixel size &amp; dimensions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5-pixel_size/imagej.html">
+     ImageJ:  Pixel size &amp; dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5-pixel_size/python.html">
+     Python:  Pixel size &amp; dimensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Files &amp; file formats
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="imagej.html">
+     ImageJ: Files &amp; file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="python.html">
+     Python: Files &amp; file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Processing &amp; analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../2-processing/1-processing_and_analysis/processing_and_analysis.html">
+   Image processing &amp; analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html">
+   Point operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/2-point_operations/imagej.html">
+     ImageJ: Point operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html">
+   Thresholding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/3-thresholding/imagej.html">
+     ImageJ: Thresholding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/4-filters/filters.html">
+   Filters
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/4-filters/imagej.html">
+     ImageJ: Filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/5-morph/morph.html">
+   Morphological operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/5-morph/imagej.html">
+     ImageJ: Morphological operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/6-transforms/transforms.html">
+   Image transforms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/6-transforms/imagej.html">
+     ImageJ: Image transforms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../2-processing/7-multidimensional_processing/multidimensional_processing.html">
+   Multidimensional processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../2-processing/7-multidimensional_processing/imagej.html">
+     ImageJ: Multidimensional processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fluorescence microscopy
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
+   From photons to pixels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
+   Blur &amp; the PSF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
+   Noise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
+   Microscopes &amp; detectors
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
+   Beyond this book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../appendices/python/python.html">
+   Python Primer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
+   ImageJ: Writing macros
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
+     Difference of Gaussians
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
+     Simulating image formation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/chapters/1-concepts/6-files/files.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/chapters/1-concepts/6-files/files.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/petebankhead/jupyter-book/main?urlpath=tree/chapters/1-concepts/6-files/files.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-file-contents">
+   Image file contents
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pixel-values-compression">
+     Pixel values &amp; compression
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#core-metadata">
+     Core metadata
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-metadata">
+     Additional metadata
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choosing-file-formats">
+   Choosing file formats
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#during-acquisition">
+     During acquisition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#during-analysis">
+     During analysis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-display">
+     For display
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pyramidal-images">
+   Pyramidal images
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Files & file formats</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-file-contents">
+   Image file contents
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pixel-values-compression">
+     Pixel values &amp; compression
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#core-metadata">
+     Core metadata
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-metadata">
+     Additional metadata
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choosing-file-formats">
+   Choosing file formats
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#during-acquisition">
+     During acquisition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#during-analysis">
+     During analysis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-display">
+     For display
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pyramidal-images">
+   Pyramidal images
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="files-file-formats">
+<span id="chap-files"></span><h1>Files &amp; file formats<a class="headerlink" href="#files-file-formats" title="Permalink to this headline">¶</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Chapter outline </p>
+<ul class="simple">
+<li><p>Image files consist of <strong>pixel values</strong> and <strong>metadata</strong></p></li>
+<li><p>Some file formats are suitable for <strong>data to analyze</strong>, others for <strong>data only to display</strong></p></li>
+<li><p>Metadata essential for analysis can be lost by saving in a <strong>non-scientific file format</strong></p></li>
+<li><p><strong>Compression</strong> can be either <strong>lossless</strong> or <strong>lossy</strong> – with different results</p></li>
+<li><p>Original pixel values can be lost through <strong>lossy compression</strong>, <strong>conversion to RGB</strong>, or by <strong>removing dimensions</strong></p></li>
+</ul>
+</div>
+<div class="cell tag_hide-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>One of the surest ways to lose information when working with images is by making bad file format choices.</p>
+<p>There is a vast array of file formats used to store images – but not all formats support all the bit-depths, types and dimensions needed for scientific imaging.
+Some formats tend to lose metadata, and some compromise pixel values through compression.</p>
+<p>To avoid getting bogged down in file format intricacies, I want to give you the main messages of this chapter up-front:</p>
+<div class="tip admonition">
+<p class="admonition-title">Working with image formats</p>
+<ul class="simple">
+<li><p>Always keep your original image files, in their original format</p></li>
+<li><p>During analysis:</p>
+<ul>
+<li><p>Use software designed for scientific data (i.e. not a general photo editor)</p></li>
+<li><p>If you need to save images, use the default file format for the software (e.g. TIFF for ImageJ)</p></li>
+<li><p><strong>Check everything!</strong> Make sure you can reopen the image after saving, and any pixel values, pixel size information and dimensions are retained exactly.</p></li>
+</ul>
+</li>
+<li><p>Use general-purpose file formats (e.g. PNG, JPEG) for figures, presentations or websites – but not later analysis</p></li>
+<li><p>Use TIFF cautiously, because it can be used both as a scientific format suitable for analysis and a general-purpose format suitable only for display</p>
+<ul>
+<li><p>OME-TIFF is often a better alternative to TIFF, since it standardizes how the metadata is stored</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>To help put this into practice, <a class="reference internal" href="#table-file-formats"><span class="std std-numref">Table 1</span></a> lists some of the most important image formats you need to know about when saving images yourself.</p>
+<table class="table" id="table-file-formats">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Some of the most useful file formats for bioimage analysis &amp; display</span><a class="headerlink" href="#table-file-formats" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Format</p></th>
+<th class="head"><p>Extensions</p></th>
+<th class="head"><p>Main use</p></th>
+<th class="head"><p>Compression</p></th>
+<th class="head"><p>Comment</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TIFF</p></td>
+<td><p>.tif, .tiff</p></td>
+<td><p>Analysis, display (print)</p></td>
+<td><p>None, lossless, lossy</p></td>
+<td><p>Very general image format</p></td>
+</tr>
+<tr class="row-odd"><td><p>OME-TIFF</p></td>
+<td><p>.ome.tif, .ome.tiff</p></td>
+<td><p>Analysis, Display (print)</p></td>
+<td><p>None, lossless, lossy</p></td>
+<td><p>TIFF, with standardized metadata for microscopy</p></td>
+</tr>
+<tr class="row-even"><td><p>Zarr</p></td>
+<td><p>.zarr</p></td>
+<td><p>Analysis</p></td>
+<td><p>None, lossless, lossy</p></td>
+<td><p>Emerging format, great for big datasets – but limited support currently</p></td>
+</tr>
+<tr class="row-odd"><td><p>PNG</p></td>
+<td><p>.png</p></td>
+<td><p>Display (web, print)</p></td>
+<td><p>Lossless</p></td>
+<td><p>Small(ish) file sizes without compression artefacts</p></td>
+</tr>
+<tr class="row-even"><td><p>JPEG</p></td>
+<td><p>.jpg, .jpeg</p></td>
+<td><p>Display (web)</p></td>
+<td><p>Lossy (usually)</p></td>
+<td><p>Small file sizes, but visible artefacts</p></td>
+</tr>
+</tbody>
+</table>
+<p>The rest of this chapter explains the key ideas.
+Despite already having the conclusions, I hope you might persist with reading the rest anyway.
+Understanding more about file formats can help enormously when it comes to choosing how to save images for different purposes, and diagnosing problems when the wrong formats have been used.</p>
+</div>
+<div class="section" id="image-file-contents">
+<h2>Image file contents<a class="headerlink" href="#image-file-contents" title="Permalink to this headline">¶</a></h2>
+<p>An image file stored on computer contains two main things:</p>
+<ol class="simple">
+<li><p><strong>Pixel values</strong> – the ‘raw numbers’ of the image</p></li>
+<li><p><strong>Metadata</strong> – additional information, such as dimensions, image type, bit-depth, pixel sizes and microscope settings (‘data about data’)</p></li>
+</ol>
+<p>The pixel values are clearly important.
+But some pieces of the metadata are essential for the image data to be interpretable at all.
+And if metadata such as the pixel size is incorrect or missing, measurements can also be wrong.
+Therefore files must be saved in formats that preserve both the pixel values and metadata accurately if they are to be suitable for analysis later.</p>
+<div class="section" id="pixel-values-compression">
+<span id="sec-files-compression"></span><h3>Pixel values &amp; compression<a class="headerlink" href="#pixel-values-compression" title="Permalink to this headline">¶</a></h3>
+<p>Pixel values are represented using bytes.
+As described in <a class="reference internal" href="../3-bit_depths/bit_depths.html#chap-bit-depths"><span class="std std-ref">Types &amp; bit-depths</span></a>, an 8-bit image uses 1 byte per pixel, a 16-bit image uses 2 bytes per pixel and a 32-bit image uses 4 bytes per pixel.</p>
+<p>However, the way these bytes are stored in the image file can depending upon whether compression is used.
+There are three main options:</p>
+<ul class="simple">
+<li><p><strong>No compression</strong>.
+The bytes representing the pixels are stored directly in the file.
+This means that the pixel values are preserved exactly, but the file can be quite large.</p>
+<ul>
+<li><p><em>Examples: TIFF (Uncompressed), ICS/IDS</em></p></li>
+</ul>
+</li>
+<li><p><strong>Lossless compression</strong>.
+The bytes representing the pixels are stored using a compression algorithm that (usually) results in less storage space being required, while making it possible to reconstruct the original values exactly by decompression.
+Compared to uncompressed data, the file size using lossless compression is generally smaller but reading or writing the file takes longer.</p>
+<ul>
+<li><p><em>Examples: TIFF (LZW compressed), PNG, BMP, JPEG2000 (lossless)</em></p></li>
+</ul>
+</li>
+<li><p><strong>Lossy compression</strong>.
+The bytes representing the pixels are stored using a compression algorithm that does <em>not</em> have to be able to reconstruct the original values exactly.
+This can result in dramatically smaller file sizes, but at a loss of information in the image – and often visual artefacts.</p>
+<ul>
+<li><p><em>Examples: TIFF (JPEG compressed), JPEG, GIF, JPEG2000 (lossy)</em></p></li>
+</ul>
+</li>
+</ul>
+<p>Probably the most famous file format that uses lossy compression is JPEG.</p>
+<p>The basic idea of JPEG compression is that an image is split into 8x8 pixel blocks, and an approximation of the original values is stored rather than the exact values themselves.
+Technically, this approximation involves the ‘discrete cosine transform’; for our purposes, it’s enough to know that JPEG artefacts tend to look 8x8 pixel squares, each containing wavy patterns, which are most evident when zooming in and/or cranking up the brightness and contrast to an extreme level (<a class="reference internal" href="#fig-files-lossy"><span class="std std-numref">Fig. 52</span></a>).</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;spooked.png&#39;</span><span class="p">)</span>
+
+<span class="c1"># Re-save as a JPEG; we do need to set the JPEG compression quite low to make the artefacts obvious</span>
+<span class="kn">from</span> <span class="nn">imageio</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imwrite</span>
+<span class="n">bytes_jpg</span> <span class="o">=</span> <span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;&lt;bytes&gt;&quot;</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;pillow&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;JPEG&quot;</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">im_jpg</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">bytes_jpg</span><span class="p">)</span>
+
+<span class="c1"># Re-save as a PNG</span>
+<span class="n">bytes_png</span> <span class="o">=</span> <span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;&lt;bytes&gt;&quot;</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;PNG&quot;</span><span class="p">)</span>
+<span class="n">im_png</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">bytes_png</span><span class="p">)</span>
+
+<span class="c1"># Re-save as an uncompressed TIFF</span>
+<span class="n">bytes_tif</span> <span class="o">=</span> <span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;&lt;bytes&gt;&quot;</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;TIFF&quot;</span><span class="p">)</span>
+<span class="n">im_tif</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">bytes_tif</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">add_rectangle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add rectangle to highlight selected region.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
+    <span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">axes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+
+<span class="c1"># Show image &amp; details</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_tif</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;(A) TIFF uncompressed (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">bytes_tif</span><span class="p">)</span><span class="o">/</span><span class="mf">1024.0</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> KB)&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_png</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;(B) PNG compressed (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">bytes_png</span><span class="p">)</span><span class="o">/</span><span class="mf">1024.0</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> KB)&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_jpg</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;(C) JPEG compressed (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">bytes_jpg</span><span class="p">)</span><span class="o">/</span><span class="mf">1024.0</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> KB)&#39;</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">w</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">38</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_tif</span><span class="p">[</span><span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span><span class="n">c</span><span class="o">+</span><span class="n">w</span><span class="p">],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_png</span><span class="p">[</span><span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span><span class="n">c</span><span class="o">+</span><span class="n">w</span><span class="p">],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_jpg</span><span class="p">[</span><span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span><span class="n">c</span><span class="o">+</span><span class="n">w</span><span class="p">],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+
+<span class="c1"># Add rectangle to highlight detail area</span>
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">:</span>
+    <span class="n">add_rectangle</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_files_lossy&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-files-lossy">
+<div class="cell_output docutils container">
+<img alt="../../../_images/files_5_0.png" src="../../../_images/files_5_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 52 </span><span class="caption-text">Examples of images saved with (A) no compression, (B) lossless compression, and (C) lossy JPEG compression. The pixel values of (A) and (B) are identical. Image (C) looks similar, but zooming in on a detailed region reveals characteristic JPEG artefacts.</span><a class="headerlink" href="#fig-files-lossy" title="Permalink to this image">¶</a></p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Compression quality</p>
+<p>Lossy compression can often be varied with a ‘compression quality’ setting.
+For a JPEG with a high quality setting, the 8x8 artefacts are likely to be much less obvious than they appear in <a class="reference internal" href="#fig-files-lossy"><span class="std std-numref">Fig. 52</span></a> – although the pixel values are still modified.
+Therefore it’s a good idea to also use <a class="reference internal" href="../2-measurements/measurements.html#chap-histograms"><span class="std std-ref">statistics &amp; histograms</span></a> to check for pixel changes.</p>
+</div>
+<p>Based upon the importance of preserving pixel values, the easy rule is that:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Lossy compression is bad for analysis!</strong></p>
+</div>
+<p>If in doubt, don’t use lossy compression when working with scientific images.</p>
+<p>The choice between ‘no compression’ and ‘lossless compression’ is a matter of preference, depending upon whether it’s more important to you to save disk space or to open images quickly.
+Compatibility is also a consideration if you want to open the images in different software: not all compression types are supported by all software.
+So best check this before saving a lot of images in a format you might not be able to read elsewhere.</p>
+<div class="admonition-how-do-i-know-if-a-file-has-been-compressed admonition">
+<p class="admonition-title">How do I know if a file has been compressed?</p>
+<p>An easy way to identify if an image has been lossily compressed is to look at the file extension, and check if it matches a format that uses lossy compression (e.g. <em>.jpeg</em>).
+Easy, but not <em>always</em> successful.</p>
+<p>One reason is that some file formats support both lossless and lossy compression.
+For example, both JPEG and JPEG2000 (<em>not</em> the same thing!) are generally used with lossy compression but they both <em>could</em> be used for lossless compression as well.
+Unless you’ve proof to the contrary, if you see a file with extension <em>.jpg</em>, <em>.jpeg</em>, <em>.jp2</em> then it’s best to assume lossy compression has been used.</p>
+<p>TIFF images are particularly tricky.
+A TIFF image could contain uncompressed data, or data compressed using a variety of different methods – both lossless and lossy, including JPEG.
+To determine if a TIFF image has used lossy compression, more detective work may be needed (e.g. zooming in and hunting for artefacts, comparing pixel statistics with the original data file, or using software to check for metadata).</p>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="e3c19fc3-abd7-4c97-8f07-b60b2b65d9af" name="ba877945-12e7-4958-b98a-562308dd6d7f" type="radio">
+</input><label class="tabbed-label" for="e3c19fc3-abd7-4c97-8f07-b60b2b65d9af">
+Question</label><div class="tabbed-content docutils">
+<p>It takes approximately 1 MB to store (1,000,000 bytes) an 8-bit uncompressed image with 1,000,000 pixels.</p>
+<p>How much memory does it take to store a 16-bit image with the same number of pixels?</p>
+<p><em>You can ignore the tiny bit of extra space needed to store any associated metadata.</em></p>
+</div>
+<input id="b9ef6ede-94a1-4feb-a128-1474eb0b5480" name="ba877945-12e7-4958-b98a-562308dd6d7f" type="radio">
+</input><label class="tabbed-label" for="b9ef6ede-94a1-4feb-a128-1474eb0b5480">
+Solution</label><div class="tabbed-content docutils">
+<p>2 MB.</p>
+<p>8 bits corresponds to 1 byte, so 16 bits correspond to 2 bytes.
+We multiply the number of bytes per pixel by the number of pixels to get the minimum size required to store the uncompressed image.</p>
+</div>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="14bd2ec0-dab9-4133-82c4-a2491a1a295a" name="49882ae4-19af-464e-a6e2-0390c1200d41" type="radio">
+</input><label class="tabbed-label" for="14bd2ec0-dab9-4133-82c4-a2491a1a295a">
+Question</label><div class="tabbed-content docutils">
+<p>Suppose you have an original image in TIFF format (no compression).
+First, you save it as JPEG (lossy compression) to reduce the file size, then close it and throw away the TIFF.</p>
+<p>Upon hearing JPEG is bad, you reopen the image and save it as TIFF  once more (no compression), throwing away the JPEG.
+How does your final TIFF image look, and what is its file size?</p>
+</div>
+<input id="92e6ed45-e17a-4f0d-a138-694328f14a19" name="49882ae4-19af-464e-a6e2-0390c1200d41" type="radio">
+</input><label class="tabbed-label" for="92e6ed45-e17a-4f0d-a138-694328f14a19">
+Solution</label><div class="tabbed-content docutils">
+<p>The final image will look exactly like the JPEG version, <em>but with the same file size as the original TIFF!</em>
+As such, it has ‘the worst of both worlds’.</p>
+</div>
+</div>
+</div>
+<div class="section" id="core-metadata">
+<h3>Core metadata<a class="headerlink" href="#core-metadata" title="Permalink to this headline">¶</a></h3>
+<p>Pixel values are represented as a <a class="reference internal" href="../3-bit_depths/bit_depths.html#chap-bit-depths"><span class="std std-ref">stream of bits: ones and zeros</span></a>.
+A few core pieces of metadata <em>must</em> be stored alongside these bits to interpret them as an image, such as the dimensions, bit-depth and type.
+If this information is missing – or wrong – then the image usually either cannot be read, or looks strange in some way (<a class="reference internal" href="#fig-files-core-metadata"><span class="std std-numref">Fig. 53</span></a>).</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">im</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span>
+
+<span class="c1"># Store the &#39;true&#39; shape &amp; byte array for the pixel values</span>
+<span class="n">shape</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">raw_bytes</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+<span class="n">raw_dtype</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">dtype</span>
+
+<span class="c1"># Generate new images from the raw byte arrays... some right, some wrong</span>
+<span class="n">im_correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_bytes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">raw_dtype</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">im_wrong_shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_bytes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">raw_dtype</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">im_wrong_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_bytes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">im_wrong_bits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_bytes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="n">s</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">])</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_correct</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Correct metadata&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_wrong_shape</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Wrong shape</span><span class="se">\n</span><span class="s1">(Width &amp; height swapped)&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_wrong_type</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Wrong type</span><span class="se">\n</span><span class="s1">(</span><span class="si">{</span><span class="n">im_wrong_type</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s1">, not </span><span class="si">{</span><span class="n">raw_dtype</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_wrong_bits</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Wrong type &amp; bit-depth</span><span class="se">\n</span><span class="s1">(</span><span class="si">{</span><span class="n">im_wrong_bits</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s1">, not </span><span class="si">{</span><span class="n">raw_dtype</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_files_core_metadata&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="fig-files-core-metadata">
+<div class="cell_output docutils container">
+<img alt="../../../_images/files_10_0.png" src="../../../_images/files_10_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 53 </span><span class="caption-text">Some examples of core metadata being read correctly or incorrectly.</span><a class="headerlink" href="#fig-files-core-metadata" title="Permalink to this image">¶</a></p>
+</div>
+<p><em>Most</em> of the time, we don’t need to care about this because all image file formats store this core information, and software used to open the image <em>usually</em> interprets this correctly.</p>
+<p>But it isn’t unheard of for some fancy new format to store the core metadata in a way that cannot be properly read and interpreted by other software.
+If you try to open your images and find they look very odd, you should be aware that there might be a metadata problem – and you might need to contact the developer of the software to figure out what has gone wrong.</p>
+<p>More commonly, the choice of file format impacts what type of image can be stored.
+For example, PNG or JPEG images are limited to 2D integer data, optionally with 1, 3 or 4 channels; they do not support (for example) 32-bit floating point images, z-stacks or time series.
+Saving a 5D floating point image as a JPEG or PNG therefore inherently involves converting the image type and discarding information.</p>
+</div>
+<div class="section" id="additional-metadata">
+<h3>Additional metadata<a class="headerlink" href="#additional-metadata" title="Permalink to this headline">¶</a></h3>
+<p>The most important piece of ‘non-core’ metadata is the <a class="reference internal" href="../5-pixel_size/pixel_size.html#chap-pixel-size"><span class="std std-ref">pixel size</span></a>.
+Unlike core metadata, it is <em>not</em> necessary for a file format to preserve the pixel size for an image to be opened and appear ‘correct’.</p>
+<p>This is a problem because if the pixel size is incorrect or missing, it remains possible to make length, area or volume measurements within an image – but these measurements are likely to be wrong.</p>
+<p>In microscopy, the pixel size is typically represented as a value in µm/pixel.
+Saving in some file formats (e.g. JPEG and PNG) tends to lose pixel size information.
+Others (e.g. TIFF) <em>might</em> preserve the pixel size, <em>might</em> lose it, or <em>might</em> convert it to something else entirely.</p>
+<p>This should sound odd, scary and outrageous.
+Losing pixel size information is one thing, but why would any sneaky software just change the value to something else??!?</p>
+<p>To explain this, we need to remember that most images aren’t intended for analysis.
+Most are intended only for display.
+And, for display, size can have a different meaning.</p>
+<p>Many researchers already encounter this when it comes to publishing papers.
+Journals often require that figures are submitted at a sufficiently high resolution for printing, with the resolution defined in terms of <strong>dots per inch (<em>dpi</em>)</strong>.
+For example, an image might be requested that is at least 300 dpi; if it should be printed at a size of 2 x 2 inches, then it should be at least 600 x 600 pixels.</p>
+<p>For an image with a dpi of 300, one <em>could</em> argue that a single pixel has a size of 1/300 inches.
+In this case, size is related to display.
+It doesn’t matter what the image depicts – it could be a cell, a person, a building, a galaxy – or tell us anything about its scale.
+In this case, the pixel size is only telling us how the image ought to be displayed.</p>
+<p>When it comes to TIFF images, the pixel size for science or the pixel size for display (i.e. dpi) might be stored <em>in exactly the same part of the file</em>.
+Therefore what this value actually means depends entirely upon which software wrote the image, and whether it was more concerned with analysis or display.</p>
+<p>For that reason:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Always sanity-check pixel size values!</strong></p>
+</div>
+<p>How to do that will depend upon which software you are using: each may display pixel size information in a different place.
+But one universal rule is to use whatever knowledge you have about whatever is in your images.</p>
+<p>For example, suppose you have an image of cells.
+A quick internet search can reveal a typical diameter of a nucleus (perhaps 5-20 µm).
+Therefore you could spend a few minutes measuring some nucleus diameters to see if they are close to this value.
+If so, it does not prove the pixel size is correct but it does give some added confidence; if the value is far from what is expected, then it is a warning that the pixel size is wrong.</p>
+</div>
+</div>
+<div class="section" id="choosing-file-formats">
+<h2>Choosing file formats<a class="headerlink" href="#choosing-file-formats" title="Permalink to this headline">¶</a></h2>
+<p>The right choice of file format depends upon when you are saving the image, and what you will want to do with it.
+Three main scenarios are described below.</p>
+<div class="section" id="during-acquisition">
+<h3>During acquisition<a class="headerlink" href="#during-acquisition" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Examples formats for specific microscopes include <em>.lif</em> (Leica), <em>.czi</em> (Zeiss), <em>.nd2</em> (Nikon), <em>.vsi</em> (Olympus)… with many more.</p>
+</div>
+<p>The general rule is to</p>
+<div class="tip admonition">
+<p class="admonition-title">Saving images during acquisition</p>
+<p>Use the default file format for your microscope and acquisition software</p>
+</div>
+<p>The rationale is that the manufacturer’s format ought to preserve all the information and metadata.
+Often, the acquisition software supports saving the data in some other way – but that can be risky.
+There’s a strong chance that at least some metadata could be lost.
+Sometimes, the alternative export might do even worse things – such as convert the data to RGB.</p>
+<p>The disadvantage of this is that microscopy formats are usually uncommon in the rest of the world, which means your images might be hard to open in other software.</p>
+<p><strong>Fortunately, there is a magnificent open-source project to help with this: <a class="reference external" href="https://www.openmicroscopy.org/bio-formats/"><strong>Bio-Formats</strong></a>.</strong></p>
+<p>Bio-Formats enables a <a class="reference external" href="https://docs.openmicroscopy.org/bio-formats/latest/supported-formats.html">wide range of different formats</a> to be read by many different software applications.
+It’s already available within Fiji and QuPath by default, or can be installed as a plugin for ImageJ.
+Although it’s written in Java, Bio-Formats can also be used within some Python applications.</p>
+<p><em>If</em> you are unlucky enough that the native format for your microscope isn’t supported by Bio-Formats, you might need to export it in a different format for use elsewhere.
+But if you do this, it’s best to retain a copy of the original data anyway – so you can always refer to it using the original acquisition software to check what (if anything) might have been lost in the export.</p>
+</div>
+<div class="section" id="during-analysis">
+<h3>During analysis<a class="headerlink" href="#during-analysis" title="Permalink to this headline">¶</a></h3>
+<p>If you want to save an image during analysis, the rule is</p>
+<div class="tip admonition">
+<p class="admonition-title">Saving images during analysis</p>
+<p>Use the default file format for the analysis software you’re using – or OME-TIFF</p>
+</div>
+<p>Like the rule for acquisition, the idea is that this will generally preserve as much metadata as possible.</p>
+<p>For ImageJ, the default format is an uncompressed TIFF image.
+This supports 8-bit, 16-bit and 32-bit images with up to 5 dimensions, squeezing the key metadata required by ImageJ (e.g. pixel size) into one of the TIFF fields.
+All of this information should then be available if you open the image again in ImageJ or Fiji – although it is not <em>necessarily</em> preserved if you open the TIFF in other software, which may not know how to interpret ImageJ’s metadata.
+So if this is important to you, you’ll need to check.</p>
+<p><em>However</em>, this might not be the best choice if you want to continue working with your image in different software.
+In that case, it might take some exploration to see which formats enable metadata to be saved in a way that your preferred software applications recognize.</p>
+<p>If you’re using software that incorporates Bio-Formats, the best option is likely to be OME-TIFF.
+Bio-Formats can read and write OME-TIFF images, which has a very well-defined standard for storing metadata (developed by the group behind Bio-Formats itself).
+This opens up more possibilities, such as writing TIFFs that include either lossless or lossy compression.
+OME-TIFF can also contain a lot more metadata than an ImageJ TIFF can, including things like stage position, laser power etc.</p>
+</div>
+<div class="section" id="for-display">
+<h3>For display<a class="headerlink" href="#for-display" title="Permalink to this headline">¶</a></h3>
+<p>When it comes to displaying images, we usually only need a format that can support RGB images.
+Since we won’t use the image for further analysis, we don’t need to preserve the pixel size and don’t <em>necessarily</em> have to avoid compression artefacts.
+My personal preferred formats for different scenarios are:</p>
+<ul class="simple">
+<li><p><strong>Journal figure: TIFF.</strong> <br /> Often the journal requests this anyway. Even if I’m not convinced it always makes sense.</p></li>
+<li><p><strong>Presentation: PNG.</strong> <br /> File size is not usually a problem, and PNG provides some compression without introducing artefacts.</p></li>
+<li><p><strong>Website: JPEG or PNG</strong>, <br />JPEG (usually) because smaller file sizes mean the website can load quicker (and eat less data).
+But PNG for images that contain few colors, including most ‘artificial’ images such as drawings, dialog boxes or logos.
+JPEG artifacts can look especially ugly in such cases, while PNG can compress them very well.</p></li>
+</ul>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/vb_scientist_orig.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Vector image or bitmap?&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/vb_scientist_vector_labelled.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Enlargement of vector image)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/vb_scientist_bitmap_labelled.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Enlargement of bitmap)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_files_vector_bitmap&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-creating-figures-for-publication admonition">
+<p class="admonition-title">Creating figures for publication</p>
+<p>Preparing figures for publication can be a bewildering process.
+To begin with, it’s necessary to make another distinction between image types, one of which has not been discussed here so far:</p>
+<ul class="simple">
+<li><p><strong>Bitmaps</strong>. These are composed of individual pixels: e.g. photographs, or all the microscopy images we are concerned with here.</p></li>
+<li><p><strong>Vector images</strong>. These are composed of lines, curves, shapes or text.  The instructions needed to draw the image (i.e. coordinates, equations, fonts) are stored rather than pixels, and then the image is recreated from these instructions when necessary.</p></li>
+</ul>
+<p>Every other part of this handbook concentrates on bitmap images.
+Vector images are quite different.</p>
+<p>If you scale a 2D bitmap image by doubling its width and height, then it will contain four times as many pixels.
+Guesses need to be made about how to fill in the extra information properly (which is the problem of <strong>interpolation</strong>), and the result generally looks less sharp than the original.
+But if you double the size of a vector image, it’s just a matter of updating the maths needed to draw the image accordingly, and the result looks just as sharp as the original.</p>
+<p>Vector images are therefore best for things like diagrams, histograms, plots and charts, because they can be resized freely and still look good.
+Also, they often have tiny file sizes because only a few instructions to redraw the image need to be kept, whereas a huge number of pixels might be required to store sufficiently nice, sharp text in a bitmap.
+But bitmaps are needed for images formed from detecting light, which cannot be reduced to a few simple equations and instructions.</p>
+<p>Finally, some versatile file formats, such as PDF or EPS, can store both kinds of image: perhaps a bitmap with some text annotations on top.
+If you are including text or diagrams, these formats are generally best.
+But if you only have bitmaps without annotations of any kind, then TIFF is probably the most common file format for creating figures.</p>
+<div class="figure align-center" id="fig-vector-bitmap">
+<div class="cell_output docutils container">
+<img alt="../../../_images/files_14_0.png" src="../../../_images/files_14_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 54 </span><span class="caption-text">When viewed from afar, it may be difficult to know whether an image is a vector or a bitmap (A) because they can sometimes look identical (although a photograph or micrograph will always be a bitmap). However, when enlarged a vector image will remain sharp (B), whereas a bitmap will not (C).</span><a class="headerlink" href="#fig-vector-bitmap" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pyramidal-images">
+<span id="sec-files-pyramidal"></span><h2>Pyramidal images<a class="headerlink" href="#pyramidal-images" title="Permalink to this headline">¶</a></h2>
+<p>Finally, we end with a few words on <strong>pyramidal images</strong>: a type of image that is becoming increasingly common.</p>
+<p>Modern bioimages can be <em>huge</em>.
+It’s not uncommon for a single image to contain many gigabytes of pixel data, making it infeasible to open the full image in one go.</p>
+<p>However, for visualization or analysis we often don’t <em>need</em> all the pixels at once.
+For example, when viewing an image we only really need to access the pixels that are visible on screen at any moment – at the magnification at which they are being viewed.</p>
+<p>Pyramidal image files help overcome this by using two tricks:</p>
+<ul class="simple">
+<li><p>They store the image as separate chunks (often called ‘tiles’, if they are 2D)</p></li>
+<li><p>They store the same image at different resolutions in the same file</p></li>
+</ul>
+<div class="figure align-center" id="fig-files-pyramidal">
+<img alt="../../../_images/pyramid_small.png" src="../../../_images/pyramid_small.png" />
+<p class="caption"><span class="caption-number">Fig. 55 </span><span class="caption-text">Schematic diagram of a pyramidal image. The image itself (left) is broken into chunks and stored at multiple resolutions. The chunks needed to display the current field of view (top right) are highlighted in yellow.
+The original whole slide image here is from the <a class="reference external" href="https://camelyon16.grand-challenge.org">CAMELYON</a> grand challenge.</span><a class="headerlink" href="#fig-files-pyramidal" title="Permalink to this image">¶</a></p>
+</div>
+<p>Software designed to handle pyramidal images can then dip into the image file and read <strong>only the part of the image that is needed at the time</strong>.
+This is often only a tiny proportion of the entire dataset.</p>
+<p>Pyramidal images are especially common for pathology, although they are starting to be used more for other applications.
+<a class="reference external" href="https://qupath.github.io">QuPath</a> is open source software that is designed specifically to handle pyramidal images efficiently (and happens to also be the software that I wrote and maintain, because I wasn’t able to do the analysis with other open source tools at the time).
+Although QuPath can do a lot of things on its own, it can also be used <a class="reference external" href="https://qupath.readthedocs.io/en/stable/docs/advanced/imagej.html">with ImageJ</a>.</p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "petebankhead/jupyter-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/1-concepts/6-files"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../5-pixel_size/python.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Python:  Pixel size &amp; dimensions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="imagej.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ImageJ: Files &amp; file formats</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pete Bankhead<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
