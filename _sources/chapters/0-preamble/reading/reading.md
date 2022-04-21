@@ -85,7 +85,7 @@ Good! This is my answer.
 :align: right
 ```
 
-This text exists as [Jupyter notebooks](https://jupyter.org) -- which can be made interactive with the help of [Binder](http://mybinder.org).
+This text exists as [Jupyter notebooks](https://jupyter.org) -- which can be made interactive with the help of [Binder](https://mybinder.org).
 
 You can activate a 'Live' version by clicking on the rocket icon on the top right, and choosing {guilabel}`Binder` or {guilabel}`Live code`.
 
