@@ -258,7 +258,7 @@ For the purposes of this question, you should assume that read noise is the only
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 
 * We detect an average of 10 photons, read noise std. dev. 1 photon: _SNR = 10_
@@ -653,7 +653,7 @@ How common do you suppose it is to find pixels that are so noisy in the backgrou
 ````
 
 
-````{tabbed} Solution
+````{tabbed} Answer
 
 The probability of detecting 5 photons is approximately 0.0031.
 
@@ -834,9 +834,12 @@ Therefore results obtained from bright and dark regions might not be directly co
 ```{tabbed} Practical
 :new-group:
 
-Open the images *mystery_noise_1.tif* and *mystery_noise_2.tif*.
+Open the images *mystery_noise_1.tif* and *mystery_noise_2.tif* in ImageJ.
+
 Both are noisy, but in one the noise follows a Gaussian distribution (like read noise) and in the other it follows a Poisson distribution (like photon noise).
 Which is which?
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-data/blob/main/images/mystery_noise_1.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/mystery_noise_2.tif)
 ```
 
 
@@ -927,7 +930,7 @@ Which kind of filter could you use to remove them? And is it safe to assume they
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 A median filter is a popular choice for removing isolated bright pixels, although when using ImageJ I sometimes prefer {menuselection}`Process --> Noise --> Remove Outliers...` because this only puts the median-filtered output in the image if the original value was really extreme (according to some user-defined threshold).
 This then preserves the independence of the noise at all other pixels -- so it still behaves reliably and predictably like Poisson + Gaussian noise.

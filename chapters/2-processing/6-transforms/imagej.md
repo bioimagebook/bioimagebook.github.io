@@ -235,7 +235,7 @@ How would you go about finding these regions using ImageJ and the distance trans
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 This is the approach I was thinking of:
 1. Run {menuselection}`Edit --> Invert`

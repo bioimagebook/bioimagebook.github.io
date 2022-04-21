@@ -188,7 +188,7 @@ In other words, would you expect more or less light in the focal plane than in o
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 In a widefield image, every plane we can record contains in-focus light along with _all_ the detectable light from _all_ other planes added together.
 Therefore we should expect approximately _the same total amount of light_ within each plane of a *z*-stack – just differently distributed.
@@ -384,7 +384,7 @@ According to Equation {eq}`eqn-res_lateral`, the equation for the Airy disk size
 And how must they be changed (increased or decreased) for the images to have less blur?
 ```
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 If the wavelength $\lambda$ is _lower_ or the objective NA is _higher_, $r_{airy}$ decreases and we have less blur.
 ```
@@ -396,7 +396,7 @@ Does the NA have more influence on blur in the *xy* plane, or along the *z* axis
 ```
 
 
-````{tabbed} Solution
+````{tabbed} Answer
 
 Because of the squaring, the NA has a much greater influence on blur along the *z* axis than in *xy*.
 This can be seen clearly in {numref}`fig-psf_na`.
@@ -468,7 +468,7 @@ What is the main implication of this observation, in terms of how separated stru
 ```
 
 
-````{tabbed} Solution
+````{tabbed} Answer
 
 The ratio is
 
@@ -573,7 +573,7 @@ _Note:_ This is a particularly important question! Think of both the size and br
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 Because even an infinitesimally small point cannot appear smaller than the Airy disk in the recorded image, _potentially all 3 of these structures look the same!_ There may be _some_ increase in size visible with the 200 nm structure (because it is larger than a single point, this makes it like many different, slightly-shifted-but-mostly-overlapping Airy disks added together), but it will certainly not appear 10 or 100 times larger than the others.
 

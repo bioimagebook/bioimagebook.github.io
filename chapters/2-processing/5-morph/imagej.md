@@ -113,7 +113,7 @@ How?
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 To outline the objects in a binary image, you can simply calculate the difference between the original image and an eroded (or dilated, if you want the pixels just beyond the objects) duplicate of the image.
 ```

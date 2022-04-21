@@ -68,7 +68,7 @@ Why might this be chosen instead of 0?
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 If the percentage of saturated pixels is 0, then the minimum and maximum pixel values throughout the image will be given the first and last LUT colors respectively, with all other colors devoted to values in between.
 This is sensitive to outliers, and often results in images that have poor contrast.
@@ -214,6 +214,8 @@ An example is shown below for the green structure in the {menuselection}`Confoca
 
 How would you create such a ROI, and be confident that it is large enough for all slices?
 
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?run=https://gist.github.com/petebankhead/55b02288a529512fee0f321fee0da693)
+
 ```{glue:figure} fig_multidimensional_widest
 ```
 
@@ -253,7 +255,7 @@ in µm<sup>3</sup>? Give some thought to how accurate your method will be.
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 You could treat each pixel as a rectangular cuboid, with a volume equal to _pixel width_×_pixel height_×_voxel depth_ (as given in {menuselection}`Image --> Properties...`).
 Then multiply this by the number of pixels within the object.
