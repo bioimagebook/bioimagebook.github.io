@@ -163,7 +163,7 @@ The choice of connectivity can make a big difference in the number and sizes of 
 What do you suppose _6-connectivity_ and _26-connectivity_ refer to?
 ```
 
-```{tabbed} Answer 
+```{tabbed} Answer
 6-connectivity is similar to 4-connectivity, but in 3D.
 If all 3D diagonals are considered, we end up with each pixel having 26 neighbors.
 ```
@@ -716,7 +716,7 @@ The direction of the line depends upon whether the peak is toward the left or th
 
 The width and height of the histogram are normalized to deal with the fact that pixel values and intensity counts are in completely different units, and therefore in completely different scales.
 
-The explanation is confusing, but hopefully {ref}`fig-thresholds_method_triangle` depicts it more clearly -- and provides an intuition for when and why it might be appropriate.
+The explanation is confusing, but hopefully {numref}`fig-thresholds_method_triangle` depicts it more clearly -- and provides an intuition for when and why it might be appropriate.
 
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
