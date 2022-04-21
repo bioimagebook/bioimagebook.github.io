@@ -17,7 +17,7 @@ kernelspec:
 :::{admonition} Practical data
 :class: important
 
-**Download the images used in the practical exercises [here](https://github.com/bioimage-book/practical-data/archive/refs/heads/main.zip).**
+**Download the images used in the practical exercises [here](https://github.com/bioimagebook/practical-data/archive/refs/heads/main.zip).**
 :::
 
 

@@ -15,11 +15,11 @@ kernelspec:
 (chap_colors)=
 # Channels & colors
 
-:::{admonition} Chapter outline 
+:::{admonition} Chapter outline
 :class: tip
 
-* Images with multiple **color channels** may display differently in different software 
-* **RGB images** are a special case, and generally look consistent across different software 
+* Images with multiple **color channels** may display differently in different software
+* **RGB images** are a special case, and generally look consistent across different software
 * In ImageJ, multichannel images that are not RGB may be referred to as **composite images**
 * **Converting images to RGB often loses information!**
 :::
@@ -43,7 +43,7 @@ from scipy import ndimage
 ## Introduction
 
 One way to introduce color into images is to use a suitable LUT, as described in {ref}`chap_pixels`.
-Then the fact that different colors could be involved in the display of such images was really only incidental: at each location in the image there was still only one channel, one pixel and one value. 
+Then the fact that different colors could be involved in the display of such images was really only incidental: at each location in the image there was still only one channel, one pixel and one value.
 
 There are images for which color plays a more important role.
 We will consider two types:
@@ -371,7 +371,7 @@ Here, the camera is often RGB and an RGB image is really as close to the raw dat
 scale: 40%
 align: center
 ---
-Example RGB histology image, from http://openslide.org
+Example RGB histology image, from https://openslide.org
 ```
 
 Crucially, the analysis of brightfield images in histology usually aims to replicate (and sometimes improve upon) the visual assessment that a pathologist might make looking down a microscope.
@@ -379,7 +379,7 @@ It's often based on detecting, classifying and counting cells, measuring stained
 
 +++
 
-## Multichannel images 
+## Multichannel images
 
 So far, we have focussed on 2D images with a **single channel** -- that is, a single value for every pixel at every *x,y* coordinate in the image.
 
@@ -394,7 +394,7 @@ In fluorescence microscopy, it's common to acquire multichannel images in which 
 We *might* choose to visualize these channels as red, green and blue, but we don't have to.
 
 In principle, any LUT might be applied to each channel, but it makes sense to choose LUTs that somehow relate to the wavelength (i.e. color) of light detected for the corresponding channels.
-Channels can then be overlaid on top of one another, and their colors further merged for display (e.g. high values in both green and red channels are shown as yellow). 
+Channels can then be overlaid on top of one another, and their colors further merged for display (e.g. high values in both green and red channels are shown as yellow).
 
 The important feature of these images is that the actual channel information is always retained, and so the original pixel values remain available.
 This means we can still extract channels or adjust their LUTs as needed.
@@ -464,7 +464,7 @@ We can create an RGB image from {numref}`fig-colors_composite_non_rgb`, but then
 
 +++
 
-## Summary of color images 
+## Summary of color images
 
 The main message here can be distilled into two rules:
 

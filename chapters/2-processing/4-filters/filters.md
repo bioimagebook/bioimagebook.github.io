@@ -13,14 +13,14 @@ kernelspec:
 ---
 
 (chap_filters)=
-# Filters 
+# Filters
 
-:::{admonition} Chapter outline 
+:::{admonition} Chapter outline
 :class: tip
 
 * **Filtering** can make segmentation much easier by **enhancing features** and **reducing noise**
-* **Linear filters** replace each pixel by a weighted sum of surrounding pixels 
-* **Nonlinear filters** replace each pixel with the result of another computation using surrounding pixels 
+* **Linear filters** replace each pixel by a weighted sum of surrounding pixels
+* **Nonlinear filters** replace each pixel with the result of another computation using surrounding pixels
 * **Gaussian filters** are linear filters with particularly useful properties, making them a good choice for many applications
 :::
 
@@ -40,32 +40,32 @@ import numpy as np
 from scipy import ndimage
 ```
 
-## Introduction 
+## Introduction
 
 Filters are phenomenally useful.
 Almost all interesting image analysis involves filtering in some way at some stage.
 In fact, the analysis of a difficult image can sometimes become (almost) trivial once a suitable filter has been applied to it.
-It's therefore no surprise that much of the image processing literature is devoted to the topic of designing and testing filters. 
+It's therefore no surprise that much of the image processing literature is devoted to the topic of designing and testing filters.
 
 The basic idea of filtering here is that each pixel in an image is assigned a new value depending upon the values of other pixels within some defined region (the pixel's **neighborhood**).
 Different filters work by applying different calculations to the neighborhood to get their output.
-Although the plethora of available filters can be intimidating at first, knowing only a few of the most useful filters is already a huge advantage. 
+Although the plethora of available filters can be intimidating at first, knowing only a few of the most useful filters is already a huge advantage.
 
 This chapter begins by introducing several extremely common **linear** and **nonlinear filters** for image processing.
-It ends by considering in detail some techniques based on one particularly important linear filter. 
+It ends by considering in detail some techniques based on one particularly important linear filter.
 
 (sec_filters_linear)=
 ## Linear filters
 
 Linear filters replace each pixel with a **linear combination** ('sum of products') of other pixels.
-Therefore the only mathematical background they require is the ability to add and multiply. 
+Therefore the only mathematical background they require is the ability to add and multiply.
 
 A linear filter is defined using a **filter kernel**, which is like a tiny image in which the pixels are called **filter coefficients**.
 To filter an image, we center the kernel over each pixel of the input image.
 We then multiply each filter coefficient by the input image pixel that it overlaps, summing the result to give our filtered pixel value.
 Some examples should make this clearer.
 
-### Mean filters 
+### Mean filters
 
 Arguably the simplest linear filter is the **mean filter**.
 Each pixel value is simply replaced by the average (mean) of itself and its neighbors within a defined area.
@@ -82,7 +82,7 @@ The process of filtering with a 3×3 mean filter kernel is demonstrated below:
 
 One of the main uses of a 3×3 mean filter is to reduce some common types of image noise, including Gaussian noise and Poisson noise.
 
-We'll discuss the subject of noise in much more detail in a later chapter, {ref}`chap_formation_noise`, and demonstrate *why* a mean filter works to reduce it. 
+We'll discuss the subject of noise in much more detail in a later chapter, {ref}`chap_formation_noise`, and demonstrate *why* a mean filter works to reduce it.
 At this point, all we need to know about noise is that it acts like a random (positive or negative) error added to each pixel value, which obscures detail, messes with the histogram, and makes the image look grainy.
 
 {numref}`fig-filt_reduce_noise` provides an illustration of how effectively the 3×3 filter can reduce Gaussian noise in an image.
@@ -138,12 +138,12 @@ name: fig-filt_reduce_noise
 ---
 Filters can be used to reduce noise.
 Applying a  3×3 mean filter makes the image smoother, as is particularly evident in the fluorescence plot made through the image center.
-Computing the difference between images shows what the filter removed, which was mostly random noise (with a little bit of image detail as well). 
-``` 
+Computing the difference between images shows what the filter removed, which was mostly random noise (with a little bit of image detail as well).
+```
 
-Our simple 3×3 mean filter could be easily modified in at least two ways: 
+Our simple 3×3 mean filter could be easily modified in at least two ways:
 
-1.  Its size could be increased. For example, instead of using just the pixels immediately adjacent to the one we are interested in, a 5×5 mean filter replaces each pixel by the average of a square containing 25 pixels, still centered on the main pixel of interest. 
+1.  Its size could be increased. For example, instead of using just the pixels immediately adjacent to the one we are interested in, a 5×5 mean filter replaces each pixel by the average of a square containing 25 pixels, still centered on the main pixel of interest.
 2.  The average of the pixels in some other shape of region could be computed, not just an _n×n_ square.
 
 Both of these adjustments can be achieved by changing the size of the filter kernel and its coefficients.
@@ -215,7 +215,7 @@ name: fig-filter_shapes
 The kernels used with several mean filters.
 Note that there's no clearly 'right' way to approximate a circle within a pixel grid, and as a result different software can create circular filters that are slightly different.
 Here, \(B) and (C) match the 'circular' filters used by ImageJ's {menuselection}`Process --> Filters --> Mean...` command.
-``` 
+```
 
 
 :::{admonition} Different names for (almost) the same thing
@@ -231,7 +231,7 @@ Take your pick.
 It's worth knowing the equivalence to avoid being confused by the literature.
 In particular, 'convolve' is used often enough as a synonym for 'filter' (with a linear filter) that it's important to remember.
 
-::: 
+:::
 
 [^fn_conv]: I feel obliged to admit that there *is* a subtle difference between convolution and correlation: the kernel is rotated 180° for convolution.
     This is something we almost never need to care about for two reasons:
@@ -292,7 +292,7 @@ for title, kernel in kernels.items():
     # Show images & plots
     show_image(im_filtered, title=title, pos=(2, n, count))
     plt.plot(*line_args)
-    
+
     show_plot(im_filtered[row, :], xlabel='x', pos=(2, n, n+count))
     plt.ylim([-20, 80])
     if count > 1:
@@ -309,23 +309,23 @@ glue_fig('fig_mean_filter_sizes', fig)
 align: center
 name: fig-mean_filter_sizes
 ---
-Smoothing an image using circular mean filters with different radii. 
-``` 
+Smoothing an image using circular mean filters with different radii.
+```
 
 
-```{tabbed} Question 
-:new-group: 
+```{tabbed} Question
+:new-group:
 
 In ImageJ, creating a mean filter with *Radius = 6* results in a circular filter that replaces each pixel with the mean of 121 pixels.
-Using a square 
+Using a square
 11×11 filter would also replace each pixel with the mean of 121 pixels.
 
-Can you think of any advantages in using the circular filter rather than the square filter? 
+Can you think of any advantages in using the circular filter rather than the square filter?
 
-``` 
+```
 
 
-```{tabbed} Solution 
+```{tabbed} Answer
 
 Circles are more 'compact'.
 Every point on the perimeter of a circle is the same distance from the center.
@@ -335,17 +335,17 @@ For a square filter, pixels that are further away in diagonal directions than ho
 If a pixel is further away, it's more likely to have a very different value because it is part of some other structure.
 Averaging across structures can blur them into one another, so is best avoided.
 
-``` 
+```
 
 (sec_filters_gradient)=
-### Gradient filters 
+### Gradient filters
 
 Linear filters can do much more than simply compute local averages.
 We only need to define a new filter kernel with different coefficients.
 
 Often, we want to detect structures in an image that are distinguishable from the background because of their edges.
 Being able to detect the edges could therefore be useful.
-Because an edge is usually characterized by a relatively sharp transition in pixel values -- i.e. by a steep increase or decrease in the profile across the image -- **gradient filters** can be used to help. 
+Because an edge is usually characterized by a relatively sharp transition in pixel values -- i.e. by a steep increase or decrease in the profile across the image -- **gradient filters** can be used to help.
 
 A very simple gradient filter has the coefficients *-1, 0, 1*.
 Applied to an image, this replaces every pixel with the difference between the pixel to the right and the pixel to the left.
@@ -379,8 +379,8 @@ glue_fig('fig_processing_filters_gradient', fig)
 align: center
 name: fig-processing_filters_gradient
 ---
-Using gradient filters and the gradient magnitude for edge enhancement. 
-``` 
+Using gradient filters and the gradient magnitude for edge enhancement.
+```
 
 Having two gradient images with positive and negative values can be somewhat hard to work with.
 We can combine filtering with [point operations](chap_point_operations) to generate a single image representing the __gradient magnitude__ [^fn_3].
@@ -396,27 +396,27 @@ The process of calculating the gradient magnitude is:
 
 
 
-```{tabbed} Question 
-:new-group: 
+```{tabbed} Question
+:new-group:
 
 Suppose the mean pixel value of an image is 100.
-What will the mean value be after applying a horizontal gradient filter? 
-``` 
+What will the mean value be after applying a horizontal gradient filter?
+```
 
 
-```{tabbed} Solution 
+```{tabbed} Solution
 
 After applying a gradient filter, the image mean will be 0: every pixel is added once and subtracted once when calculating the result.
 
 (Note that the mean value of a *gradient magnitude* image will be ≥ 0, because all pixels have either positive values or are equal to zero.)
-``` 
+```
 
 
 ````{margin}
 ```{image} images/filter_corner.png
 ````
 
-### Filtering at image boundaries 
+### Filtering at image boundaries
 
 If a filter consists of more than one coefficient, the neighborhood will extend beyond the image boundaries when filtering some pixels nearby.
 We need to handle this somehow.
@@ -464,24 +464,24 @@ align: center
 name: fig-filter_boundaries
 ---
 Methods for determining suitable values for pixels beyond image boundaries when filtering.
-``` 
+```
 
 Different software can handle boundaries in different ways.
 Often, if you are using an image processing library to code your own filtering operation you will be able to specify the boundary operation.
 
 
-## Nonlinear filters 
+## Nonlinear filters
 
 Linear filters involve taking neighborhoods of pixels, scaling them by the filter coefficients, and adding the results to get new pixel values.
 **Nonlinear filters** also make use of neighborhoods of pixels, but can use any other type of calculation to obtain the output.
-Here we'll consider one especially important family of nonlinear filters. 
+Here we'll consider one especially important family of nonlinear filters.
 
 (sec_filters_rank)=
-### Rank filters 
+### Rank filters
 
 **Rank filters** effectively sort the values of all the neighboring pixels in ascending order, and then choose the output based upon this ordered list.
 
-Perhaps the most common example is the **median filter**, in which the pixel value at the center of the list is used for the filtered output. 
+Perhaps the most common example is the **median filter**, in which the pixel value at the center of the list is used for the filtered output.
 
 ```{figure} images/rank_results.png
 ---
@@ -489,9 +489,9 @@ align: center
 name: fig-rank_results
 ---
 Results of different 3×3 rank filters when processing a single neighborhood in an image.
-The output of a 
+The output of a
 3×3 mean filter in this case would also be 15.
-``` 
+```
 
 The result of applying a median filter is often similar to that of applying a mean filter, but has the major advantage of removing isolated extreme values completely, _without allowing them to have an impact upon surrounding pixels_.
 This is in contrast to a mean filter, which cannot ignore extreme pixels but rather will smooth them out into occupying larger regions ({numref}`fig-processing_filters_speckled`).
@@ -522,11 +522,11 @@ def add_inset(ax, im, loc=[50, 50, 160, 160], edge_color='black', **kwargs):
     axins.set_xticks([])
     axins.set_yticks([])
     ax.indicate_inset_zoom(axins, edgecolor=edge_color)
-    
+
 
 im = load_image('fixed_cells.png')
 
-# Add salt-and-pepper noise by creating uniformly distributed noise, 
+# Add salt-and-pepper noise by creating uniformly distributed noise,
 # then thresholding to choose which pixels should become black and white
 threshold = 0.05
 rng = np.random.default_rng(100)
@@ -559,7 +559,7 @@ name: fig-processing_filters_speckled
 Applying 3×3 mean and median filters to an image containing isolated extreme values (known as _salt and pepper noise_).
 A mean filter reduces the intensity of the extreme values but spreads out their influence.
 A small median filter is capable of removing the outliers completely, with a minimal effect upon the rest of the image.
-``` 
+```
 
 
 Other rank filters include the **minimum** and **maximum filters**, which replace each pixel value with the minimum or maximum value in the surrounding neighborhood respectively ({numref}`fig-processing_filters_rank`).
@@ -595,7 +595,7 @@ glue_fig('fig_processing_filters_rank', fig)
 align: center
 name: fig-processing_filters_rank
 ---
-The result of applying 3×3 rank filters. The original noise-free image is shown below in {numref}`fig-processing_filters`A. 
+The result of applying 3×3 rank filters. The original noise-free image is shown below in {numref}`fig-processing_filters`A.
 ```
 
 ```{code-cell} ipython3
@@ -617,29 +617,29 @@ show_image(im_max - im_min)
 glue_fig('fig_filters_max_minus_min', fig)
 ```
 
-```{tabbed} Question 
-:new-group: 
+```{tabbed} Question
+:new-group:
 
 What would happen if you subtract a minimum filtered image (e.g.
-{numref}`fig-processing_filters_rank`C) from a maximum filtered image (Figure {numref}`fig-processing_filters_rank`B)? 
-``` 
+{numref}`fig-processing_filters_rank`C) from a maximum filtered image (Figure {numref}`fig-processing_filters_rank`B)?
+```
 
 
-````{tabbed} Solution 
+````{tabbed} Answer
 
-Subtracting a minimum from a maximum filtered image would be another way to accent the edges: 
+Subtracting a minimum from a maximum filtered image would be another way to accent the edges:
 
 ```{glue:figure} fig_filters_max_minus_min
 :align: center
 ```
-```` 
+````
 
 
 
 (sec_filters_gaussian)=
-## Gaussian filters 
+## Gaussian filters
 
-### Filters from Gaussian functions 
+### Filters from Gaussian functions
 
 We conclude this chapter with one fantastically important linear filter, and some variants based upon it.
 
@@ -687,7 +687,7 @@ name: fig-filt_smoothing
 Comparing a mean and Gaussian filter.
 The mean filter can introduce patterns and maxima where previously there were none.
 For example, the brightest region in (B) is one such maximum – _but the values of all pixels in the same region in (A) were zero!_ By contrast, the Gaussian filter produces a smoother, more visually pleasing result, somewhat less prone to this effect \(C).
-``` 
+```
 
 The coefficients of a Gaussian filter are determined from a Gaussian function ({numref}`fig-gaussian_2d`)
 
@@ -709,7 +709,7 @@ Create a surface plot of a 2D Gaussian function.
 
 from matplotlib import cm
 from matplotlib.colors import LightSource
-    
+
 n = 50
 x = np.arange(-n, n+1, 1)
 y = np.arange(-n, n+1, 1)
@@ -744,8 +744,8 @@ align: center
 name: fig-gaussian_2d
 figwidth: 70%
 ---
-Surface plot of a 2D Gaussian function. 
-```` 
+Surface plot of a 2D Gaussian function.
+````
 
 
 A comparison of several filters is shown in {numref}`fig-processing_filters`.
@@ -796,15 +796,15 @@ align: center
 name: fig-processing_filters
 ---
 The effects of various filters upon a noisy image of a fixed cell.
-``` 
+```
 
 
 (chap_filters_gaussian_size)=
-### Filters of varying sizes 
+### Filters of varying sizes
 
 Gaussian filters have useful properties that make them generally preferable to mean filters, some of which will be mentioned in {ref}`chap_formation_spatial` (others require a trip into Fourier space, beyond the scope of this book).
 Therefore if you're not sure which filter to use for smoothing, Gaussian is likely to be a safer choice than mean -- particularly if the filter is large.
-Nevertheless, your decisions are not at an end since the precise size of the filter still needs to be chosen. 
+Nevertheless, your decisions are not at an end since the precise size of the filter still needs to be chosen.
 
 A small filter will mostly suppress noise, because noise masquerades as tiny random fluctuations at individual pixels.
 As the filter size increases, Gaussian filtering starts to suppress larger structures occupying multiple pixels -- reducing their intensities and increasing their sizes, until eventually they would be smoothed into surrounding regions ({numref}`fig-gaussian_effects`).
@@ -844,7 +844,7 @@ for count, sigma in enumerate(sigmas):
     # Show images & plots
     show_image(im_filtered, title=title, pos=(2, n, count+1))
     plt.plot(*line_args)
-    
+
     show_plot(im_filtered[row, :], xlabel='x', pos=(2, n, n+count+1))
     plt.ylim([0, 2200])
     plt.grid(True, axis='y', alpha=0.5)
@@ -874,7 +874,7 @@ align: center
 name: fig-gaussian_effects
 ---
 The effect of Gaussian filtering on the size and intensity of structures.
-``` 
+```
 
 
 {numref}`fig-edge_sigma` shows an example of when this is useful.
@@ -921,14 +921,14 @@ align: center
 name: fig-edge_sigma
 ---
 Applying Gaussian filters before computing the gradient magnitude changes the scale at which edges are enhanced.
-``` 
+```
 
 
 (sec_filters_dog)=
-### Difference of Gaussians filtering 
+### Difference of Gaussians filtering
 
 So Gaussian filters can be chosen to suppress small structures.
-But what if we also wish to suppress large structures -- so that we can concentrate on detecting or measuring structures with sizes inside a particular range? 
+But what if we also wish to suppress large structures -- so that we can concentrate on detecting or measuring structures with sizes inside a particular range?
 
 We already have the pieces necessary to construct one solution.
 
@@ -971,7 +971,7 @@ glue_fig('fig_dog_red_hela', fig)
 align: center
 name: fig-dog_red_hela
 ---
-Difference of Gaussian filtering of the same image at various scales. 
+Difference of Gaussian filtering of the same image at various scales.
 ```
 
 ```{code-cell} ipython3
@@ -979,16 +979,16 @@ Difference of Gaussian filtering of the same image at various scales.
 
 def gaussian_kernel(shape, sigma: float):
     """
-    Create an image with a single 1 in the middle, 
+    Create an image with a single 1 in the middle,
     the apply a Gaussian filter to get the coefficients.
     """
     filt = np.zeros(shape)
     filt[shape[0]//2, shape[1]//2] = 1.0
     return ndimage.gaussian_filter(filt, sigma)
-    
+
 
 from matplotlib import cm
-    
+
 n = 25
 x = np.arange(-n, n+1, 1)
 y = np.arange(-n, n+1, 1)
@@ -1029,7 +1029,7 @@ for a in ax:
 glue_fig('fig_dog_plots', fig)
 ```
 
-::::{admonition} DoG filters 
+::::{admonition} DoG filters
 :class: info
 
 In fact, to get the result of DoG filtering it's not necessary to filter the image twice and subtract the results.
@@ -1042,11 +1042,11 @@ name: fig-dog_plots
 ---
 Surface plots of two Gaussian filters with small and large $\sigma$, and the result of subtracting the latter from the former.
 The sum of the coefficients for (A) and (B) is one in each case, while the coefficients of (C) add to zero.
-``` 
+```
 
 ::::
 
-### Laplacian of Gaussian filtering 
+### Laplacian of Gaussian filtering
 
 One minor complication with DoG filtering is the need to select two different values of $\sigma$.
 A similar operation, which requires only a single $\sigma$ and a single filter, is **Laplacian of Gaussian (LoG) filtering**.
@@ -1062,7 +1062,7 @@ fig = create_figure(figsize=(8, 4))
 
 def log_kernel(shape, sigma: float):
     """
-    Create an image with a single 1 in the middle, 
+    Create an image with a single 1 in the middle,
     the apply a Gaussian filter to get the coefficients.
     """
     filt = np.zeros(shape)
@@ -1097,7 +1097,7 @@ glue_fig('fig_log_plots', fig)
 align: center
 name: fig-log_plots
 ---
-Surface plot of a LoG filter. This closely resembles {numref}`fig-dog_plots`, but inverted so that the negative values are found in the filter center. 
+Surface plot of a LoG filter. This closely resembles {numref}`fig-dog_plots`, but inverted so that the negative values are found in the filter center.
 ```
 
 ```{code-cell} ipython3
@@ -1128,10 +1128,10 @@ name: fig-dog_on_log
 Application of DoG and LoG filtering to an image.
 Both methods enhance the appearance of spot-like structures, and (to a lesser extent) edges, and result in an image containing both positive and negative values with an overall mean of zero.
 In the case of LoG filtering, inversion is involved: darker points become bright after filtering.
-``` 
+```
 
 
-### Unsharp masking 
+### Unsharp masking
 
 Finally, a related technique widely-used to enhance the visibility of details in images -- although certainly _not_ advisable for quantitative analysis -- is **unsharp masking**.
 
@@ -1169,7 +1169,7 @@ name: fig-unsharp_masking
 ---
 The application of unsharp masking to a blurred image.
 First a Gaussian-smoothed version of the image ($\sigma = 1$) is subtracted from the original, scaled ($weight = 0.7$) and added back to the original.
-``` 
+```
 
 Unsharp masking can improve the visual appearance of an image, but it's important to remember that it modifies the image content in a way that might well be considered suspicious in scientific circles.
 Therefore, if you apply unsharp masking to any image you intend to share with the world you should have a good justification and certainly admit what you have done.

@@ -258,7 +258,7 @@ For the purposes of this question, you should assume that read noise is the only
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 
 * We detect an average of 10 photons, read noise std. dev. 1 photon: _SNR = 10_
@@ -564,7 +564,7 @@ glue_fig('fig_noise_poisson', fig)
 align: center
 name: fig-poisson
 ---
-Siméon Denis Poisson and his distribution. (A) Poisson is said to have been extremely clumsy and uncoordinated with his hands. This contributed to him giving up an apprenticeship as a surgeon and entering mathematics, where the problem was less debilitating -- although apparently this meant his diagrams tended not to very well drawn (see http://www-history.mcs.st-andrews.ac.uk/history/Biographies/Poisson.html). (B) The 'Probability Mass Function' of the Poisson distribution for several different values of λ. This allows one to see for any 'true signal' λ the probability of actually counting any actual value k. Although it's more likely that one will count exactly k = λ than any other possible k, as λ increases the probability of getting precisely this value becomes smaller and smaller.
+Siméon Denis Poisson and his distribution. (A) Poisson is said to have been extremely clumsy and uncoordinated with his hands. This contributed to him giving up an apprenticeship as a surgeon and entering mathematics, where the problem was less debilitating -- although apparently this meant his diagrams tended not to very well drawn (see https://mathshistory.st-andrews.ac.uk/Biographies/Poisson/). (B) The 'Probability Mass Function' of the Poisson distribution for several different values of λ. This allows one to see for any 'true signal' λ the probability of actually counting any actual value k. Although it's more likely that one will count exactly k = λ than any other possible k, as λ increases the probability of getting precisely this value becomes smaller and smaller.
 ```
 
 
@@ -653,7 +653,7 @@ How common do you suppose it is to find pixels that are so noisy in the backgrou
 ````
 
 
-````{tabbed} Solution
+````{tabbed} Answer
 
 The probability of detecting 5 photons is approximately 0.0031.
 
@@ -834,9 +834,12 @@ Therefore results obtained from bright and dark regions might not be directly co
 ```{tabbed} Practical
 :new-group:
 
-Open the images *mystery_noise_1.tif* and *mystery_noise_2.tif*.
+Open the images *mystery_noise_1.tif* and *mystery_noise_2.tif* in ImageJ.
+
 Both are noisy, but in one the noise follows a Gaussian distribution (like read noise) and in the other it follows a Poisson distribution (like photon noise).
 Which is which?
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-data/blob/main/images/mystery_noise_1.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/mystery_noise_2.tif)
 ```
 
 
@@ -927,7 +930,7 @@ Which kind of filter could you use to remove them? And is it safe to assume they
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 A median filter is a popular choice for removing isolated bright pixels, although when using ImageJ I sometimes prefer {menuselection}`Process --> Noise --> Remove Outliers...` because this only puts the median-filtered output in the image if the original value was really extreme (according to some user-defined threshold).
 This then preserves the independence of the noise at all other pixels -- so it still behaves reliably and predictably like Poisson + Gaussian noise.
@@ -1025,7 +1028,7 @@ However, {ref}`chap_formation_spatial` has already argued that ultimately it's n
 This size can be determined based upon knowledge of the PSF and the **Nyquist-Shannon sampling theorem** ({numref}`fig-nyquist_shannon`).
 Images acquired with this pixel size are said to be **Nyquist sampled**.
 
-The easiest way I know to determine the corresponding pixel size for a given experiment is to use the online calculator provided by *Scientific Volume Imaging* at http://www.svi.nl/NyquistCalculator.
+The easiest way I know to determine the corresponding pixel size for a given experiment is to use the online calculator provided by *Scientific Volume Imaging* at https://svi.nl/NyquistCalculator.
 You may need larger pixels to reduce noise or see a wider field of view, but you do not get anything extra by using smaller pixels.
 
 ```{glue:figure} fig_noise_nyquist_shannon

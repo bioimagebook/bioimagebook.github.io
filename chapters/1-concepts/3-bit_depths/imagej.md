@@ -233,6 +233,8 @@ Make sure that the {guilabel}`Scale When Converting` option is turned on (it sho
 Then using a suitable 8-bit sample image, e.g. {menuselection}`File --> Open Samples --> Boats`, explore the effects of brightness/contrast settings when increasing or decreasing bit-depths.
 
 Can you destroy the image by simply 1) increasing the bit-depth, and the then 2) decreasing the bit-depth to its original value?
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/6f9f451fdc0116197501ae504a57d5e7)
 ```
 
 ```{tabbed} Solution

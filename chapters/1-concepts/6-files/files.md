@@ -13,17 +13,17 @@ kernelspec:
 ---
 
 (chap_files)=
-# Files & file formats 
+# Files & file formats
 
 
-:::{admonition} Chapter outline 
+:::{admonition} Chapter outline
 :class: tip
 
 * Image files consist of **pixel values** and **metadata**
-* Some file formats are suitable for **data to analyze**, others for **data only to display** 
+* Some file formats are suitable for **data to analyze**, others for **data only to display**
 * Metadata essential for analysis can be lost by saving in a **non-scientific file format**
 * **Compression** can be either **lossless** or **lossy** -- with different results
-* Original pixel values can be lost through **lossy compression**, **conversion to RGB**, or by **removing dimensions** 
+* Original pixel values can be lost through **lossy compression**, **conversion to RGB**, or by **removing dimensions**
 :::
 
 ```{code-cell} ipython3
@@ -110,7 +110,7 @@ Understanding more about file formats can help enormously when it comes to choos
 
 ## Image file contents
 
-An image file stored on computer contains two main things: 
+An image file stored on computer contains two main things:
 
 1. **Pixel values** -- the 'raw numbers' of the image
 2. **Metadata** -- additional information, such as dimensions, image type, bit-depth, pixel sizes and microscope settings ('data about data')
@@ -232,7 +232,7 @@ So best check this before saving a lot of images in a format you might not be ab
 
 :::{admonition} How do I know if a file has been compressed?
 An easy way to identify if an image has been lossily compressed is to look at the file extension, and check if it matches a format that uses lossy compression (e.g. *.jpeg*).
-Easy, but not *always* successful. 
+Easy, but not *always* successful.
 
 One reason is that some file formats support both lossless and lossy compression.
 For example, both JPEG and JPEG2000 (*not* the same thing!) are generally used with lossy compression but they both *could* be used for lossless compression as well.
@@ -245,17 +245,17 @@ To determine if a TIFF image has used lossy compression, more detective work may
 
 +++
 
-```{tabbed} Question 
-:new-group: 
+```{tabbed} Question
+:new-group:
 
 It takes approximately 1 MB to store (1,000,000 bytes) an 8-bit uncompressed image with 1,000,000 pixels.
 
 How much memory does it take to store a 16-bit image with the same number of pixels?
 
 *You can ignore the tiny bit of extra space needed to store any associated metadata.*
-``` 
+```
 
-```{tabbed} Solution 
+```{tabbed} Answer
 
 2 MB.
 
@@ -265,22 +265,22 @@ We multiply the number of bytes per pixel by the number of pixels to get the min
 
 +++
 
-```{tabbed} Question 
-:new-group: 
+```{tabbed} Question
+:new-group:
 
 Suppose you have an original image in TIFF format (no compression).
 First, you save it as JPEG (lossy compression) to reduce the file size, then close it and throw away the TIFF.
 
 Upon hearing JPEG is bad, you reopen the image and save it as TIFF  once more (no compression), throwing away the JPEG.
-How does your final TIFF image look, and what is its file size? 
-``` 
+How does your final TIFF image look, and what is its file size?
+```
 
 
-```{tabbed} Solution 
+```{tabbed} Answer
 
 The final image will look exactly like the JPEG version, *but with the same file size as the original TIFF!*
-As such, it has 'the worst of both worlds'. 
-``` 
+As such, it has 'the worst of both worlds'.
+```
 
 +++
 
@@ -352,7 +352,7 @@ Losing pixel size information is one thing, but why would any sneaky software ju
 
 To explain this, we need to remember that most images aren't intended for analysis.
 Most are intended only for display.
-And, for display, size can have a different meaning. 
+And, for display, size can have a different meaning.
 
 Many researchers already encounter this when it comes to publishing papers.
 Journals often require that figures are submitted at a sufficiently high resolution for printing, with the resolution defined in terms of **dots per inch (*dpi*)**.
@@ -465,25 +465,25 @@ glue_fig('fig_files_vector_bitmap', fig)
 ````{admonition} Creating figures for publication
 
 Preparing figures for publication can be a bewildering process.
-To begin with, it's necessary to make another distinction between image types, one of which has not been discussed here so far: 
+To begin with, it's necessary to make another distinction between image types, one of which has not been discussed here so far:
 
 * **Bitmaps**. These are composed of individual pixels: e.g. photographs, or all the microscopy images we are concerned with here.
-* **Vector images**. These are composed of lines, curves, shapes or text.  The instructions needed to draw the image (i.e. coordinates, equations, fonts) are stored rather than pixels, and then the image is recreated from these instructions when necessary. 
+* **Vector images**. These are composed of lines, curves, shapes or text.  The instructions needed to draw the image (i.e. coordinates, equations, fonts) are stored rather than pixels, and then the image is recreated from these instructions when necessary.
 
 Every other part of this handbook concentrates on bitmap images.
 Vector images are quite different.
 
 If you scale a 2D bitmap image by doubling its width and height, then it will contain four times as many pixels.
 Guesses need to be made about how to fill in the extra information properly (which is the problem of **interpolation**), and the result generally looks less sharp than the original.
-But if you double the size of a vector image, it's just a matter of updating the maths needed to draw the image accordingly, and the result looks just as sharp as the original. 
+But if you double the size of a vector image, it's just a matter of updating the maths needed to draw the image accordingly, and the result looks just as sharp as the original.
 
 Vector images are therefore best for things like diagrams, histograms, plots and charts, because they can be resized freely and still look good.
 Also, they often have tiny file sizes because only a few instructions to redraw the image need to be kept, whereas a huge number of pixels might be required to store sufficiently nice, sharp text in a bitmap.
-But bitmaps are needed for images formed from detecting light, which cannot be reduced to a few simple equations and instructions. 
+But bitmaps are needed for images formed from detecting light, which cannot be reduced to a few simple equations and instructions.
 
 Finally, some versatile file formats, such as PDF or EPS, can store both kinds of image: perhaps a bitmap with some text annotations on top.
 If you are including text or diagrams, these formats are generally best.
-But if you only have bitmaps without annotations of any kind, then TIFF is probably the most common file format for creating figures. 
+But if you only have bitmaps without annotations of any kind, then TIFF is probably the most common file format for creating figures.
 
 ```{glue:figure} fig_files_vector_bitmap
 ---
@@ -491,8 +491,8 @@ align: center
 name: fig-vector_bitmap
 ---
 
-When viewed from afar, it may be difficult to know whether an image is a vector or a bitmap (A) because they can sometimes look identical (although a photograph or micrograph will always be a bitmap). However, when enlarged a vector image will remain sharp (B), whereas a bitmap will not (C). 
-``` 
+When viewed from afar, it may be difficult to know whether an image is a vector or a bitmap (A) because they can sometimes look identical (although a photograph or micrograph will always be a bitmap). However, when enlarged a vector image will remain sharp (B), whereas a bitmap will not (C).
+```
 
 ````
 

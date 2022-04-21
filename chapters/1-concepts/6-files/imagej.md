@@ -190,7 +190,9 @@ If this happens, you might want to try [QuPath](sec_files_pyramidal) instead.
 To get a feel for the importance of metadata, you can try opening an image in which it is completely absent.
 This is quite tricky, and requires some detective work (or some luck).
 
-Try to open the file *Besenfreunde.ids* using Fiji -- it depicts an odd, and as yet unexplained, scene that I passed on my way to work soon after arriving in Heidelberg. This file __only__ contains pixel values, and no metadata. It can still be read using the {menuselection}`File --> Import --> Raw...` command, but to do so you will need to figure out the necessary metadata and input the appropriate values.
+Try to open the file *Besenfreunde.ids* using Fiji -- it depicts an odd, and as yet unexplained, scene that I passed on my way to work soon after arriving in Heidelberg.
+This file __only__ contains pixel values, and no metadata.
+It can still be read using the {menuselection}`File --> Import --> Raw...` command, but to do so you will need to figure out the necessary metadata and input the appropriate values.
 
 The following points may help:
 

@@ -88,7 +88,7 @@ When defining an _n_×_n_ filter kernel with {menuselection}`Convolve...`, Image
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 If *n* is an odd number, the filter has a clear central pixel.
 This makes it possible to center the filter kernel on a pixel on the image.
@@ -111,7 +111,7 @@ Predict what happens when you convolve an image using a filter that consists of 
 3.  You have an 8-bit image, {guilabel}`Normalize Kernel` is unchecked
 ```
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 The results of convolving with a single -1 coefficient in different circumstances:
 1.  _{guilabel}`Normalize Kernel` is checked_: Nothing at all happens. The normalization makes the filter just a single 1... and convolving with a single 1 leaves the image unchanged.
@@ -128,6 +128,8 @@ Using any image, work out which of the methods for dealing with boundaries shown
 **Note:** This requires a bit of creativity.
 It will certainly help to use an image with some variation at the image boundary.
 I used {menuselection}`File --> Open Samples --> Blobs`.
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?run=https://gist.github.com/petebankhead/cbbb6f210d173c8488247799efc3b970)
 
 ````
 
@@ -168,6 +170,8 @@ You will need to use
 
 If you need a sample image, you can use {menuselection}`File --> Open samples --> Blobs (25K)`.
 _(Be sure to pay attention to the bit-depth!)_
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?run=https://gist.github.com/petebankhead/cbbb6f210d173c8488247799efc3b970)
 ```
 
 ````{tabbed} Solution
@@ -222,6 +226,8 @@ Applied to {menuselection}`File --> Open samples --> Blobs (25K)`, it does a rat
 
 How does it work?
 Does it apply a filter?
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?run=https://gist.github.com/petebankhead/cbbb6f210d173c8488247799efc3b970)
 ```
 
 
