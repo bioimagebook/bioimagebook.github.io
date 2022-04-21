@@ -53,6 +53,8 @@ We'll explore how to customize the regions being measured and exactly what measu
 However only two contain *identical* pixel values.
 
 Which two images contain the same values?
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_1.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_2.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_3.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_4.tif)
 ```
 
 ```{tabbed} Solution
@@ -78,6 +80,8 @@ Which of the following three images have the same pixel values as *disguise_matc
 * *disguised_1.tif*
 * *disguised_2.tif*
 * *disguised_3.tif*
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/disguise_matching.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/disguised_1.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/disguised_2.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/disguised_3.tif)
 ```
 
 ```{tabbed} Solution
@@ -349,7 +353,7 @@ Which combine operation do you need to achieve this?
 **Tip:** Remember {menuselection}`Edit --> Selection --> Create Mask` will let you see which pixels are inside and which pixels are outside the ROI.
 
 
-[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimage-book/practical-data/blob/main/images/happy_cell.tif)
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/happy_cell.tif)
 ```
 
 ```{tabbed} Solution
@@ -434,6 +438,8 @@ The images should initially look the same, but in one the text is an overlay, wh
 Which is which? Try to think of several ways to investigate this.
 
 **Tip:** Zooming in may help. So might searching the menus for overlay-related commands (aided by {kbd}`L`).
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_1.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_2.tif)
 ```
 
 ```{tabbed} Solution
@@ -460,6 +466,8 @@ If the annotation remains visible on top of where you drew, it must be on an ove
 Using the cyclist image containing the overlay from the previous practical, rearrange the annotations so that they are each positioned next to different cyclists.
 
 You could do this by deleting the overlay and starting again, but there are other, faster possibilities (using a technique mentioned before, or the {menuselection}`Image --> Overlay --> To ROI Manager` command).
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_1.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_2.tif)
 ```
 
 

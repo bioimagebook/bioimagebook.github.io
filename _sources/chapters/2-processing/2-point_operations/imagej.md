@@ -93,7 +93,7 @@ Open the image *Spooked_16-bit.tif*, and apply *only* the following steps:
 *Mathematically*, you should get the same mean measurements.
 Can you explain the result?
 
-[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?open=https://github.com/bioimage-book/practical-data/blob/main/images/Spooked_16-bit.tif)
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-data/blob/main/images/Spooked_16-bit.tif)
 
 ```
 
@@ -145,7 +145,7 @@ If you want to see both the human and the ghost, should the gamma value be less 
 Then run the gamma command, turn on the {guilabel}`Preview` option and adjust the slider.
 You should now see a live update of how changing the gamma affects the pixel values.
 
-[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?open=https://github.com/bioimage-book/practical-data/blob/main/images/Spooked_16-bit.tif)
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-data/blob/main/images/Spooked_16-bit.tif)
 
 ```
 
@@ -185,9 +185,11 @@ Like in the 8-bit case, pixel values are always subtracted from some 'maximum'.
 How this maximum is determined for 16 and 32-bit images in ImageJ?
 
 **Note:** the methods used for 16 and 32-bit images are different from one another!
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Spooked_16-bit.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/happy_cell.tif)
 ```
 
-```{tabbed} Answer
+```{tabbed} Solution
 When I first wrote this question, to invert a 16-bit image pixel were subtracted from *the maximum value within the original image*.
 This is also true for stacks: the maximum value in the entire stack is found.
 
@@ -225,6 +227,8 @@ If any of the original images are 8 or 16-bit, then the result might require cli
 {menuselection}`Process --> Math --> Image Calculator...` finally makes it possible for us to check whether the pixel values of two images are all identical -- without relying on summary measurements or histograms.
 
 Use it to determine which two of the images *Same_1.tif*, *Same_2.tif* and *Same_3.tif* are identical in terms of pixel values.
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Same_1.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/Same_2.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/Same_3.tif)
 ```
 
 ```{tabbed} Answer

@@ -708,7 +708,7 @@ const thebe_selector_output = ".output, .cell_output"
   <div class="tex2jax_ignore mathjax_ignore section" id="microscopes-detectors">
 <span id="chap-microscope-types"></span><h1>Microscopes &amp; detectors<a class="headerlink" href="#microscopes-detectors" title="Permalink to this headline">¶</a></h1>
 <div class="tip admonition">
-<p class="admonition-title">Chapter outline </p>
+<p class="admonition-title">Chapter outline</p>
 <ul class="simple">
 <li><p>The <strong>choice of microscope</strong> influences the <strong>blur</strong>, <strong>noise</strong> &amp; <strong>temporal resolution</strong> of images</p></li>
 <li><p>An <strong>ideal detector</strong> would have a high <strong>Quantum Efficiency</strong> &amp; <strong>low read noise</strong></p></li>
@@ -807,14 +807,14 @@ Also, because single pixels are recorded separately, the image can (potentially)
 Images usually contain thousands to millions of pixels, and so only a tiny fraction of the time required to record an image is spent detecting photons for any one pixel in a LSCM image – unlike in the widefield case, where photons can be detected for all pixels over the entire image acquisition time. This can cause LSCM image acquisition to be comparatively slow, noisy (in terms of few detected photons) or both.
 Spatial information is therefore gained at a cost in noise and/or temporal resolution.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="1c6894d8-2306-407c-bba1-5786b71bfabb" name="64e46c02-5dda-403a-812d-2b06e768ca2f" type="radio">
-</input><label class="tabbed-label" for="1c6894d8-2306-407c-bba1-5786b71bfabb">
+<input checked="checked" id="d933f24e-1d38-424e-88d4-da0b711a7640" name="f3ff50c3-3e69-4b12-a2c2-d27626e8a099" type="radio">
+</input><label class="tabbed-label" for="d933f24e-1d38-424e-88d4-da0b711a7640">
 Question</label><div class="tabbed-content docutils">
 <p>Why is it often recommended that the pinhole in LSCM be set to have the same size as one Airy disk? And why is it sometimes better not to strictly follow this recommendation?</p>
 </div>
-<input id="f5f99419-5f6e-4f26-aaa8-941ab407d90d" name="64e46c02-5dda-403a-812d-2b06e768ca2f" type="radio">
-</input><label class="tabbed-label" for="f5f99419-5f6e-4f26-aaa8-941ab407d90d">
-Solution</label><div class="tabbed-content docutils">
+<input id="6bce9b02-1a04-4ffa-89be-9756b3ef9b0f" name="f3ff50c3-3e69-4b12-a2c2-d27626e8a099" type="radio">
+</input><label class="tabbed-label" for="6bce9b02-1a04-4ffa-89be-9756b3ef9b0f">
+Answer</label><div class="tabbed-content docutils">
 <p>As described in <a class="reference internal" href="../2-formation_spatial/formation_spatial.html#chap-formation-spatial"><span class="std std-ref">Blur &amp; the PSF</span></a>, the vast majority of the light from the in-focus plane falls within the Airy disk.
 Using a pinhole smaller than this can result in so little light being detected that the image becomes too noisy to be useful.
 On the other hand, increasing the size of the pinhole will result in some more of the remaining light located in the outer rings of the Airy pattern, but <em>most</em> extra photons will come from out-of-focus planes.
@@ -841,7 +841,7 @@ Also, the pinhole sizes cannot be adjusted to fine-tune the balance between nois
 The main idea of <strong>multiphoton microscopy</strong> is that fluorophore excitation requires the <em>simultaneous absorption of multiple photons</em>, rather than only a single photon.
 The excitation light has a longer wavelength than would otherwise be required to cause molecular excitation with a single photon, but the energies of the multiple photons combine to cause the excitation.</p>
 <p>The benefit of this is that the multiphoton excitation only occurs at the focal region of the excitation – elsewhere within the ‘specimen PSF’ the light intensities are insufficient to produce the ‘multiphoton effect’ and raise the fluorophores into an excited state.
-This means that the region of the specimen emitting photons at any one time is much smaller than when using single photon excitation (as in LSCM), and also less damage is being caused to the sample.
+This means that the region of the specimen emitting photons at any one time is much smaller than when using single photon excitation (as in LSCM), and also less damage is being caused to the sample outside of the sample plane.
 Furthermore, multiphoton microscopy is able to penetrate deeper into a specimen – up to several hundred µm.</p>
 </div>
 <div class="section" id="total-internal-reflection-fluorescence">
@@ -878,7 +878,7 @@ The charge of the electrons reaching the end of the process can then be quantifi
 The QE is a measure of the proportion of photons striking the detector which then produce electrons, and values for a conventional PMT may be as low as 10–15%: the majority of the photons reaching the PMT are simply wasted.
 Thus photon noise can be a major issue, especially if there is a low amount of light available to detect in the first place.</p>
 <div class="info admonition">
-<p class="admonition-title">Converting electrons to pixels </p>
+<p class="admonition-title">Converting electrons to pixels</p>
 <p>It’s important to keep in mind that the final pixel values are not <em>equal</em> to numbers of detected photons – nor even numbers of counted electrons.
 They are rather proportional, often with an offset added.</p>
 <p>It’s essential to estimate this offset (perhaps from a background region or an image acquired without using any excitation light) and subtract it if you need to compare pixel values in different images, in addition to using identical acquisition settings.</p>
@@ -931,7 +931,7 @@ Larger bins may also be used, with a correspondingly more dramatic impact upon i
 <span class="k">def</span> <span class="nf">bin2x2</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Apply 2x2 binning to the pixels of a 2D image.</span>
-<span class="sd">    Note that if the dimensions are not even numbers then the final row/column </span>
+<span class="sd">    Note that if the dimensions are not even numbers then the final row/column</span>
 <span class="sd">    of pixels may have to be trimmed.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
@@ -1010,15 +1010,15 @@ For the EMCCD, the electrons are shifted through a ‘gain register’ prior to 
 See <a class="reference internal" href="#fig-ccd"><span class="std std-numref">Fig. 156</span></a> for additional labels; the sense register has been omitted for simplicity.</span><a class="headerlink" href="#fig-ccd-types" title="Permalink to this image">¶</a></p>
 </div>
 <div class="tabbed-set docutils">
-<input checked="checked" id="867f4b37-23a8-4acc-a376-adcf5cb50cd1" name="3d707d98-454c-4884-97b7-559cdc55e998" type="radio">
-</input><label class="tabbed-label" for="867f4b37-23a8-4acc-a376-adcf5cb50cd1">
+<input checked="checked" id="aa4ac6e7-e26a-445e-b39e-4c2eddd0a996" name="0851be80-f64c-40ce-abd5-f9d26787f2c2" type="radio">
+</input><label class="tabbed-label" for="aa4ac6e7-e26a-445e-b39e-4c2eddd0a996">
 Question</label><div class="tabbed-content docutils">
 <p>From a practical point of view, an EMCCD is rather like having a CCD with no read noise, but with half the QE.
 Under what circumstances (i.e. high or low numbers of photons) is an EMCCD preferable to a CCD?</p>
 </div>
-<input id="05d1da47-0550-4aff-ba19-6dbc2d6a1956" name="3d707d98-454c-4884-97b7-559cdc55e998" type="radio">
-</input><label class="tabbed-label" for="05d1da47-0550-4aff-ba19-6dbc2d6a1956">
-Solution</label><div class="tabbed-content docutils">
+<input id="154cbd11-a3ed-4a0e-82c8-dc790616f602" name="0851be80-f64c-40ce-abd5-f9d26787f2c2" type="radio">
+</input><label class="tabbed-label" for="154cbd11-a3ed-4a0e-82c8-dc790616f602">
+Answer</label><div class="tabbed-content docutils">
 <p>The gain register of EMCCDs offers benefits primarily when few photons are available (i.e. when read-noise is the main problem, such as in SDCM).
 CCDs are preferable when many photons are available (e.g. in widefield).</p>
 <p>If you are skeptical about this, consider an image in which your read noise standard deviation is 10 electrons and you detect on average 9 electrons (originally photons).
@@ -1031,14 +1031,14 @@ The read noise of 10 is comparatively insignificant, and there is nothing to gai
 </div>
 </div>
 <div class="tabbed-set docutils">
-<input checked="checked" id="fac2017d-cdac-475b-8d22-180638566e93" name="fe2d527c-aa87-4356-a347-4eff3458caf3" type="radio">
-</input><label class="tabbed-label" for="fac2017d-cdac-475b-8d22-180638566e93">
+<input checked="checked" id="81b00b66-6536-40a3-b7ac-6602d766e1cb" name="4ebeb484-4f62-4222-a216-2f0df5432db0" type="radio">
+</input><label class="tabbed-label" for="81b00b66-6536-40a3-b7ac-6602d766e1cb">
 Question</label><div class="tabbed-content docutils">
 <p>Based upon the above descriptions, which detectors seem most appropriate (generally!) for (a) widefield microscopy, (b) SDCM and (c) LSCM?</p>
 </div>
-<input id="06651639-81e8-4348-8576-d8d3772557b8" name="fe2d527c-aa87-4356-a347-4eff3458caf3" type="radio">
-</input><label class="tabbed-label" for="06651639-81e8-4348-8576-d8d3772557b8">
-Solution</label><div class="tabbed-content docutils">
+<input id="ce928fb9-bc3f-4d6c-ab29-682b835aba96" name="4ebeb484-4f62-4222-a216-2f0df5432db0" type="radio">
+</input><label class="tabbed-label" for="ce928fb9-bc3f-4d6c-ab29-682b835aba96">
+Answer</label><div class="tabbed-content docutils">
 <p>The following are reasonable rules of thumb:</p>
 <ul class="simple">
 <li><p><em>Widefield microscopy:</em> A CCD is suitable because of its ability to record many pixels simultaneously.
@@ -1050,17 +1050,17 @@ This is because SDCM usually gives lower photon counts (certainly lower than in 
 </div>
 </div>
 <div class="tabbed-set docutils">
-<input checked="checked" id="69509ce5-108d-423b-b2e6-11fa6613e17f" name="a93afedc-efb5-4a94-acd5-4b4ed014d58f" type="radio">
-</input><label class="tabbed-label" for="69509ce5-108d-423b-b2e6-11fa6613e17f">
+<input checked="checked" id="8d057a27-bf75-49dd-823d-d463f5bbe92c" name="510e3b81-727d-4e75-af12-9471f6ca10cd" type="radio">
+</input><label class="tabbed-label" for="8d057a27-bf75-49dd-823d-d463f5bbe92c">
 Question</label><div class="tabbed-content docutils">
 <p>Previously we explored how CCDs can use 2×2 binning to combine the electrons corresponding to multiple pixels together into a single pixel, which is then ‘less noisy’.
 A similar effect can be achieved by just acquiring an image without binning and applying a 2×2 filter, in which all the coefficients have values of one.
 Both techniques result in images that have roughly four times as many photons contributing to each pixel, and thus a better SNR.</p>
 <p>Think of one major advantage and one disadvantage of using filtering <em>after</em> acquisition, rather than binning <em>during</em> acquisition.</p>
 </div>
-<input id="889ca288-eff9-4d60-80dc-f29a848f6d96" name="a93afedc-efb5-4a94-acd5-4b4ed014d58f" type="radio">
-</input><label class="tabbed-label" for="889ca288-eff9-4d60-80dc-f29a848f6d96">
-Solution</label><div class="tabbed-content docutils">
+<input id="6798d181-1e2b-4159-9f3e-f297e6434199" name="510e3b81-727d-4e75-af12-9471f6ca10cd" type="radio">
+</input><label class="tabbed-label" for="6798d181-1e2b-4159-9f3e-f297e6434199">
+Answer</label><div class="tabbed-content docutils">
 <p>A 2×2 binned image contains 1/4 the number of pixels of the original image.
 This represents a considerable loss of spatial information, and you would get a different result if you were to start binning at the first or second row or column, since different pixels would be combined in each case.
 On the other hand, filtering has the advantage of giving you an image that is exactly the same size as the original.

@@ -68,7 +68,7 @@ Why might this be chosen instead of 0?
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 If the percentage of saturated pixels is 0, then the minimum and maximum pixel values throughout the image will be given the first and last LUT colors respectively, with all other colors devoted to values in between.
 This is sensitive to outliers, and often results in images that have poor contrast.
@@ -176,7 +176,7 @@ In such a case, using the stack histogram might cause fewer pixels to exceed the
 On the other hand, if images were previously normalized somehow to compensate for bleaching [^fn_1], then the stack threshold might be preferable again.
 It's tricky.
 
-[^fn_1]: See http://imagej.net/Bleach_Correction
+[^fn_1]: See https://imagej.net/Bleach_Correction
 
 
 There is one other implementation issue that needs attention.
@@ -213,6 +213,8 @@ Suppose you have a cell, nucleus or some other large 3D structure in a __z__-sta
 An example is shown below for the green structure in the {menuselection}`Confocal Series` sample image.
 
 How would you create such a ROI, and be confident that it is large enough for all slices?
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?run=https://gist.github.com/petebankhead/55b02288a529512fee0f321fee0da693)
 
 ```{glue:figure} fig_multidimensional_widest
 ```
@@ -253,7 +255,7 @@ in µm<sup>3</sup>? Give some thought to how accurate your method will be.
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 You could treat each pixel as a rectangular cuboid, with a volume equal to _pixel width_×_pixel height_×_voxel depth_ (as given in {menuselection}`Image --> Properties...`).
 Then multiply this by the number of pixels within the object.
@@ -284,7 +286,7 @@ In addition to various measurements, it provides labelled images as output, eith
 
 [^fn_3]: See See S Bolte and F P Cordelières.
 “A guided tour into subcellular colocalization analysis in light microscopy.” In: Journal of Microscopy 224.Pt 3 (Dec. 2006), pp. 213–32.
-url: http://www.ncbi.nlm.nih.gov/pubmed/1721005
+url: https://pubmed.ncbi.nlm.nih.gov/17210054/
 
 :::{admonition} Find Connected Regions
 :class: info
@@ -297,7 +299,8 @@ If the main thing you want is the labelled image without many more results, it m
 :::{admonition} Additional 3D tools
 :class: info
 
-For working with 3D data, it may be very useful to download the '3D ImageJ Suite' from http://imagejdocu.tudor.lu/doku.php?id=plugin:stacks:3d_ij_suite:start. This not only includes a range of fast filters and commands for segmentation, but also a 3D version of the ROI Manager.
+For working with 3D data, it may be very useful to download the '3D ImageJ Suite' from https://imagej.net/plugins/3d-imagej-suite/.
+his not only includes a range of fast filters and commands for segmentation, but also a 3D version of the ROI Manager.
 
-While created for bone image analysis, _BoneJ_ (http://bonej.org/) also includes some components that are useful for general applications – including a fast http://bonej.org/particles[3D Particle Analyser] (another alternative to the 3D Objects Counter) and a tool to http://bonej.org/utilities[interpolate ROIs across image slices].
+While created for bone image analysis, _BoneJ_ (https://bonej.org) also includes some components that are useful for general applications –- including a fast [3D Particle Analyser](https://bonej.org/particles) (another alternative to the 3D Objects Counter) and a tool to [interpolate ROIs across image slices](https://bonej.org/utilities).
 :::

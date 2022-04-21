@@ -13,9 +13,9 @@ kernelspec:
 ---
 
 (chap_thresholding)=
-# Thresholding 
+# Thresholding
 
-:::{admonition} Chapter outline 
+:::{admonition} Chapter outline
 :class: tip
 
 * **Image segmentation** is the process of detecting **objects** in an image
@@ -41,7 +41,7 @@ import numpy as np
 from scipy import ndimage
 ```
 
-## Introduction 
+## Introduction
 
 Before we can measure anything in an image, we first need to detect it.
 
@@ -146,31 +146,31 @@ glue_fig('fig_thresholding_connectivity', fig)
 ````
 
 (sec_thresholds_connectivity)=
-:::{admonition} Connectivity 
+:::{admonition} Connectivity
 :class: info
 
 Identifying multiple objects in a binary image involves separating distinct groups of pixels that are considered 'connected' to one another, and then creating a ROI or label for each group.
 Connectivity in this sense can be defined in different ways.
 For example, if two pixels have the same value and are immediately beside one another (above, below, to the left or right, or diagonally adjacent) then they are said to be _8-connected_, because there are 8 different neighboring locations involved.
-Pixels are _4-connected_ if they are horizontally or vertically adjacent, but _not_ only diagonally. 
+Pixels are _4-connected_ if they are horizontally or vertically adjacent, but _not_ only diagonally.
 
 The choice of connectivity can make a big difference in the number and sizes of objects found, as the example on the right shows (distinct objects are shown in different colors).
-::: 
+:::
 
-```{tabbed} Question 
-:new-group: 
+```{tabbed} Question
+:new-group:
 
-What do you suppose _6-connectivity_ and _26-connectivity_ refer to? 
-``` 
+What do you suppose _6-connectivity_ and _26-connectivity_ refer to?
+```
 
-```{tabbed} Solution 
+```{tabbed} Answer 
 6-connectivity is similar to 4-connectivity, but in 3D.
-If all 3D diagonals are considered, we end up with each pixel having 26 neighbors. 
+If all 3D diagonals are considered, we end up with each pixel having 26 neighbors.
 ```
 
 +++
 
-## Global thresholding 
+## Global thresholding
 
 The easiest way to segment an image is by applying a **global threshold**.
 This identifies pixels that are above or below a fixed threshold value, giving a binary image as the output.
@@ -303,7 +303,7 @@ From visual inspection, we might suppose a threshold of 140 would make sense.
 Or perhaps around 220.
 It isn't clear.
 
-This time, we *do* need to look at the image to decide. 
+This time, we *do* need to look at the image to decide.
 Even then, there is no unambiguously 'correct' threshold.
 Rather, the one we choose depends upon whether our goal is to identify the entire leaf or rather just the darkest region.
 
@@ -503,7 +503,7 @@ def create_spots(shape=(400, 400), n_spots=10, spot_sigma=4, spot_intensity=5, s
         return convert_to_uint8(im)
     else:
         return im
-    
+
 def load_cell(noise_sigma=None, seed=2048, to_uint8=True):
     im = load_image('happy_cell.tif')[:, 5:-5]
     if noise_sigma:
@@ -519,9 +519,9 @@ def create_threshold_images():
     im_spots = create_spots()
     im_nuclei = load_nuclei(do_square=True)
     return im_cell, im_spots, im_nuclei
-    
+
 im_cell, im_spots, im_nuclei = create_threshold_images()
-    
+
 fig = create_figure(figsize=(8, 5))
 show_image(im_cell, title='Cell (Bimodal histogram)', pos=231)
 show_histogram(im_cell, bins=np.arange(0, 256), pos=234)
@@ -572,7 +572,7 @@ Unfortunately, a lot of microscopy images don't have clearly bimodal histograms,
 :tags: [hide-cell, remove-output]
 
 im_cell, im_spots, im_nuclei = create_threshold_images()
-    
+
 fig = create_figure(figsize=(8, 5))
 thresh_cell = threshold_otsu(im_cell)
 show_image(im_cell, title=f"Otsu's method (threshold = {thresh_cell:.1f})", pos=231)
@@ -618,11 +618,11 @@ The result of this process is illustrated in {numref}`fig-thresholds_method_mini
 def plot_minimum_threshold(im, bins, thresh, pos=None, max_iters=100):
     if pos:
         plt.subplot(pos)
-        
+
     def find_local_maxima_idx(hist):
         # This code is taken from scikit-image because it is not publicly accessible
         # https://github.com/scikit-image/scikit-image/blob/v0.19.0/skimage/filters/thresholding.py#L821
-        
+
         # We can't use scipy.signal.argrelmax
         # as it fails on plateaus
         maximum_idxs = list()
@@ -638,35 +638,35 @@ def plot_minimum_threshold(im, bins, thresh, pos=None, max_iters=100):
                     direction = 1
 
         return maximum_idxs
-        
+
     # Create a histogram with bin centers
     hist, bin_edges = np.histogram(im.ravel(), bins=bins)
     hist = hist.astype(np.float64)
     centers = (bin_edges[1:] + bin_edges[:-1])/2.0
     smooth_hist = hist.copy()
-    
+
     # Smooth histogram until there are <=2 peaks
     for ii in range(max_iters):
         smooth_hist = ndimage.uniform_filter1d(smooth_hist, 3)
         max_inds = find_local_maxima_idx(smooth_hist)
         if len(max_inds) < 3:
             break
-    
+
     # Check this worked
     if len(max_inds) != 2:
         raise RuntimeError('Unable to find 2 maxima in smoothed histogram!')
-        
+
     plt.hist(centers, bins=len(hist), weights=hist, color=(0.1, 0.1, 0.2, 0.1))
     plt.hist(centers, bins=len(smooth_hist), weights=smooth_hist, color=(0.6, 0.2, 0.2, 0.4))
     plt.plot(centers[max_inds], smooth_hist[max_inds], color=(0.2, 0.2, 0.6, 0.4))
     plt.plot(centers[thresh], smooth_hist[thresh], marker='.')
-    
-    
-    
+
+
+
 from skimage.filters import threshold_minimum
 
 im_cell, im_spots, im_nuclei = create_threshold_images()
-    
+
 fig = create_figure(figsize=(8, 7.5))
 thresh_cell = threshold_minimum(im_cell)
 show_image(im_cell, title=f"Minimum method (threshold = {thresh_cell:.1f})", pos=331)
@@ -738,30 +738,30 @@ def plot_triangle_threshold(im, bins, thresh, pos=None):
     peak_ind = np.argmax(hist)
     peak_height = hist[peak_ind]
     hist = hist / peak_height
-    
+
     # Identify bin centers
     # Find last bin with non-zero count
     centers = (bin_edges[1:] + bin_edges[:-1])/2.0
     ind_low, ind_high = np.where(hist > 0)[0][[0, -1]]    
-    
+
     # Shift bin centers according to peak (simplified plotting)
     centers = centers - centers[peak_ind]
-    
+
     # Compute 'width' of the triangle (base length)
     # Normalize centers so width becomes 1
     width = (centers[ind_high] - centers[peak_ind])
     centers = centers / width
-    
+
     # Plot histogram with new values
     plt.hist(centers, bins=len(hist), weights=hist, color=(0.1, 0.1, 0.2, 0.6))
-    
+
     # Plot from peak to base
     x1 = centers[peak_ind]
     y1 = hist[peak_ind]
     x2 = centers[-1]
     y2 = hist[-1]
     plt.plot([x1, x2], [y1, y2])
-    
+
     # Plot from threshold to peak line
     x3 = centers[int(thresh)]
     y3 = hist[int(thresh)]
@@ -775,7 +775,7 @@ def plot_triangle_threshold(im, bins, thresh, pos=None):
     px = ((x1*y2 - y1*x2)*(x3 - x4) - (x1 - x2)*(x3*y4 - y3*x4))/D
     py = ((x1*y2 - y1*x2)*(y3 - y4) - (y1 - y2)*(x3*y4 - y3*x4))/D
     plt.plot([x3, px], [y3, py])
-    
+
     # Setup display
     plt.xlim([0, 1])
     plt.ylim([0, 1])
@@ -831,7 +831,7 @@ def threshold_mean(im: np.ndarray):
     return im.mean()
 
 im_cell, im_spots, im_nuclei = create_threshold_images()
-    
+
 fig = create_figure(figsize=(8, 5))
 thresh_cell = threshold_mean(im_cell)
 show_image(im_cell, title=f"Mean method (threshold = {thresh_cell:.1f})", pos=231)
@@ -874,7 +874,7 @@ def threshold_mean_std(im: np.ndarray, k=4):
     return im.mean() + k * im.std()
 
 im_cell, im_spots, im_nuclei = create_threshold_images()
-    
+
 fig = create_figure(figsize=(8, 5))
 k = 3
 thresh_cell = threshold_mean_std(im_cell, k=k)
@@ -938,7 +938,7 @@ def threshold_mad(im: np.ndarray, k=4):
     return med + mad * k * 1.4826
 
 im_cell, im_spots, im_nuclei = create_threshold_images()
-    
+
 fig = create_figure(figsize=(8, 5))
 k = 3
 thresh_cell = threshold_mad(im_cell, k=k)
@@ -990,12 +990,12 @@ A bad automated threshold can easily introduce a systematic bias that is much wo
 +++
 
 (sec_thresholding_difficult)=
-## Thresholding difficult data 
+## Thresholding difficult data
 
 Applying global thresholds is all well and good in easy images for which a threshold clearly exists, but in practice things are rarely so straightforward – and often no threshold, manual or automatic, produces useable results.
-This section anticipates the next chapter on filters by showing that, with some extra processing, thresholding can be redeemed even if it initially seems to perform badly. 
+This section anticipates the next chapter on filters by showing that, with some extra processing, thresholding can be redeemed even if it initially seems to perform badly.
 
-### Thresholding noisy data 
+### Thresholding noisy data
 
 Noise is one problem that affects thresholds, especially in live cell imaging.
 
@@ -1051,10 +1051,10 @@ align: center
 name: fig-thresholds_noisy
 ---
 Noise can affect thresholding. After the addition of simulated noise to the image in {numref}`fig-thresholds_nuclei_histogram`, the distinction between nuclei and non-nuclei pixels is much harder to identify in the histogram (B). Any threshold would result in a large number of incorrectly-identified pixels. However, applying a Gaussian filter (here, $\sigma = 2$) to reduce noise can dramatically improve the situation (E). Thresholds in \(C) and (F) were computed using the triangle method.
-``` 
+```
 
 
-### Local thresholding 
+### Local thresholding
 
 Another common problem is that the structures that should be detected appear on top of a background that itself varies in brightness.
 This was the reason no threshold performed very well in {numref}`fig-thresholds_manual`.
@@ -1062,7 +1062,7 @@ This was the reason no threshold performed very well in {numref}`fig-thresholds_
 Ideally, we would like to apply a threshold that varies relative to the local background.
 
 ```{margin}
-W. Niblack, An introduction to Digital Image Processing, Prentice-Hall, 1986. 
+W. Niblack, An introduction to Digital Image Processing, Prentice-Hall, 1986.
 ```
 
 There are a variety of **local thresholding** methods available, many of which are variations on the **Niblack method**.
@@ -1109,7 +1109,7 @@ align: center
 name: fig-thresholds_local_niblack
 ---
 Local thresholding to detect spots using Niblack's method.
-``` 
+```
 
 To be honest, I don't tend to use this approach for bioimages.
 I find the window size and *k* parameters difficult to tune, and it suffers the problem of the mean and standard deviation not being robust.
@@ -1171,7 +1171,7 @@ align: center
 name: fig-thresholds_local
 ---
 Thresholding to detect structures appearing on a varying background. No global threshold may be sufficiently selective _(top row)_. However, if a 'background image' can be created, (here using a large median filter), and then subtracted, a single threshold can give much better results _(bottom row)_. This is equivalent to applying a varying threshold to the original image.
-``` 
+```
 
 The difficult part is creating the second image.
 Filters are the key, and the subject of the [next chapter](chap_filters).

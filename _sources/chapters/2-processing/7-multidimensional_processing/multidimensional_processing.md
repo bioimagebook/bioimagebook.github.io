@@ -15,7 +15,7 @@ kernelspec:
 (chap_multidimensional_processing)=
 # Multidimensional processing
 
-:::{admonition} Chapter outline 
+:::{admonition} Chapter outline
 :class: tip
 
 * Many processing operations can be extended **beyond 2 dimensions**
@@ -38,10 +38,10 @@ import numpy as np
 from scipy import ndimage
 ```
 
-## Introduction 
+## Introduction
 
 So far, in terms of image processing we have concentrated only on 2D images.
-Most of the operations we have considered can also be applied to 3D data -- and sometimes data with more dimensions, in cases where this is meaningful. 
+Most of the operations we have considered can also be applied to 3D data -- and sometimes data with more dimensions, in cases where this is meaningful.
 
 This very short overview of multidimensional processing describes a few of the issues to consider when extending analysis beyond two dimensions, and gives some pointers towards specialist tools.
 
@@ -89,7 +89,7 @@ Thresholds are typically determined using the image histogram.
 This is computed from all pixels in the image -- the number of dimensions does not really matter.
 
 The main consideration for thresholding in 3D is whether the other *z*-slices could introduce any kind of sneaky bias.
-One occasion when that could happen is if the images are acquired with different numbers of slices, e.g. some containing more out-of-focus planes than others ({numref}`fig-multi_thresholds`). 
+One occasion when that could happen is if the images are acquired with different numbers of slices, e.g. some containing more out-of-focus planes than others ({numref}`fig-multi_thresholds`).
 These extra planes *could* impact the histogram and image statistics, and therefore any automated thresholds.
 An image with many out-of-focus slices might be thresholded differently from an image with few slices.
 
@@ -117,7 +117,7 @@ def show_orthogonal(im, axes, loc=None, projection=None, colors=None, show_slice
     Show orthogonal slices or projections.
     """
     from mpl_toolkits.axes_grid1 import make_axes_locatable
-    
+
     n_channels = im.shape[-1] if im.ndim > 3 else 1
     if colors is None:
         if n_channels == 1:
@@ -128,16 +128,16 @@ def show_orthogonal(im, axes, loc=None, projection=None, colors=None, show_slice
             colors = ('red', 'green', 'blue')
         else:
             raise ValueException('Colors must be specified if the number of channels is > 3!')
-    
+
     if axes is None:
         fig = create_figure()
         ax = fig.gca()
     else:
         ax = axes
-        
+
     if loc is None and projection is None:
         loc = tuple(s//2 for s in im.shape)
-    
+
     # Create axes for orthogonal views
     divider = make_axes_locatable(ax)
     ax_xz = divider.append_axes("bottom", size="50%", pad=0.1, sharex=ax)
@@ -153,8 +153,8 @@ def show_orthogonal(im, axes, loc=None, projection=None, colors=None, show_slice
         imxz = im[:, loc[1],...]
         imyz = np.moveaxis(im[:, :, loc[2],:], 0, 1)
 
-        
-    show_image(create_rgb(imyz, colors), 
+
+    show_image(create_rgb(imyz, colors),
                    axes=ax_yz, vmin=0, vmax=1)
     if show_slices:
         ax_yz.plot([loc[0], loc[0]], [0, im.shape[2]-1], 'w--', linewidth=1)
@@ -164,7 +164,7 @@ def show_orthogonal(im, axes, loc=None, projection=None, colors=None, show_slice
     ax_yz.set_yticks([])
     ax_yz.set_axis_on()
 
-    show_image(create_rgb(imxy, colors), 
+    show_image(create_rgb(imxy, colors),
                    axes=ax,
                    vmin=0, vmax=1)
     if show_slices:
@@ -183,9 +183,9 @@ def show_orthogonal(im, axes, loc=None, projection=None, colors=None, show_slice
     ax_xz.set_ylabel('z', rotation=0, va='center', ha='right')
     ax_xz.set_yticks([])
     ax_xz.set_axis_on()
-    
+
     plt.tight_layout()
-    
+
     if title:
         ax.set_title(title)
 
@@ -232,7 +232,7 @@ Thresholding a z-stack can be influenced by the number of out-of-focus slices. H
 
 `````{div} question
 
-````{tabbed} Practical
+````{tabbed} Question
 How would you expect {numref}`fig-multi_thresholds` to differ if the [triangle method](sec_thresholds_triangle) was used to determine the threshold, rather than [Otsu's method](sec_thresholds_otsu)?
 ````
 
@@ -256,7 +256,7 @@ align: center
 **Linear filters** can be easily extended to *nD* by defining a filter kernel with the desired number of dimensions.
 However, this can dramatically increase the computational requirements and so we need to begin considering performance.
 
-For example, suppose we have a 3×3 filter. 
+For example, suppose we have a 3×3 filter.
 Following the algorithm for linear filtering [described previously](sec_filters_linear), we would have to perform 9 multiplications and additions to determine the value for *every* pixel in the output image.
 If our image is 1000×1000 pixels in size, that suggests 9,000,000 multiplications and additions.
 This seems quite a lot, but modern computers are fast so we're unlikely to notice it.
@@ -308,7 +308,7 @@ im_v = ndimage.gaussian_filter1d(im, sigma, axis=0)
 show_image(im_v, title="(C) Vertically smoothed (A)", pos=233)
 
 # Admission... the docs for gaussian_filter state that it's implemented separably -
-# so this doesn't really demonstrate that 2D filtering is the same 
+# so this doesn't really demonstrate that 2D filtering is the same
 # (except inasmuch as ndimage treats them equivalently)
 im_gauss = ndimage.gaussian_filter(im, sigma)
 show_image(im_gauss, title="(D) 2D Gaussian filtered (A)", pos=234)

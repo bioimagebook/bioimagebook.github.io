@@ -744,7 +744,7 @@ const thebe_selector_output = ".output, .cell_output"
   <div class="tex2jax_ignore mathjax_ignore section" id="thresholding">
 <span id="chap-thresholding"></span><h1>Thresholding<a class="headerlink" href="#thresholding" title="Permalink to this headline">¶</a></h1>
 <div class="tip admonition">
-<p class="admonition-title">Chapter outline </p>
+<p class="admonition-title">Chapter outline</p>
 <ul class="simple">
 <li><p><strong>Image segmentation</strong> is the process of detecting <strong>objects</strong> in an image</p></li>
 <li><p><strong>Global thresholding</strong> identifies pixel values above or below a particular threshold</p></li>
@@ -869,14 +869,14 @@ Pixels are <em>4-connected</em> if they are horizontally or vertically adjacent,
 <p>The choice of connectivity can make a big difference in the number and sizes of objects found, as the example on the right shows (distinct objects are shown in different colors).</p>
 </div>
 <div class="tabbed-set docutils">
-<input checked="checked" id="91a81af4-4953-4d8a-ab44-c0f29cf7097c" name="44279131-0886-49cf-a93e-8abfcf91a9cf" type="radio">
-</input><label class="tabbed-label" for="91a81af4-4953-4d8a-ab44-c0f29cf7097c">
+<input checked="checked" id="2276b2dc-5b38-43af-acb2-819c47bc21f1" name="5f8790d5-c3c1-4e60-bc58-cc1880353175" type="radio">
+</input><label class="tabbed-label" for="2276b2dc-5b38-43af-acb2-819c47bc21f1">
 Question</label><div class="tabbed-content docutils">
 <p>What do you suppose <em>6-connectivity</em> and <em>26-connectivity</em> refer to?</p>
 </div>
-<input id="b614418d-61f0-4d7e-9230-fb3c1a599a88" name="44279131-0886-49cf-a93e-8abfcf91a9cf" type="radio">
-</input><label class="tabbed-label" for="b614418d-61f0-4d7e-9230-fb3c1a599a88">
-Solution</label><div class="tabbed-content docutils">
+<input id="530ad96a-3d96-4961-8655-5486f7627057" name="5f8790d5-c3c1-4e60-bc58-cc1880353175" type="radio">
+</input><label class="tabbed-label" for="530ad96a-3d96-4961-8655-5486f7627057">
+Answer</label><div class="tabbed-content docutils">
 <p>6-connectivity is similar to 4-connectivity, but in 3D.
 If all 3D diagonals are considered, we end up with each pixel having 26 neighbors.</p>
 </div>
@@ -1171,7 +1171,7 @@ Each image exhibits a different kind of histogram that is commonly found in bioi
         <span class="k">return</span> <span class="n">convert_to_uint8</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">im</span>
-    
+
 <span class="k">def</span> <span class="nf">load_cell</span><span class="p">(</span><span class="n">noise_sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">to_uint8</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)[:,</span> <span class="mi">5</span><span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">noise_sigma</span><span class="p">:</span>
@@ -1187,9 +1187,9 @@ Each image exhibits a different kind of histogram that is commonly found in bioi
     <span class="n">im_spots</span> <span class="o">=</span> <span class="n">create_spots</span><span class="p">()</span>
     <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">load_nuclei</span><span class="p">(</span><span class="n">do_square</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span>
-    
+
 <span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
-    
+
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Cell (Bimodal histogram)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
 <span class="n">show_histogram</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
@@ -1230,7 +1230,7 @@ Unfortunately, a lot of microscopy images don’t have clearly bimodal histogram
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
-    
+
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">thresh_cell</span> <span class="o">=</span> <span class="n">threshold_otsu</span><span class="p">(</span><span class="n">im_cell</span><span class="p">)</span>
 <span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Otsu&#39;s method (threshold = </span><span class="si">{</span><span class="n">thresh_cell</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
@@ -1271,11 +1271,11 @@ The threshold is then the location of the deepest point in the valley between th
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_minimum_threshold</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">pos</span><span class="p">:</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
-        
+
     <span class="k">def</span> <span class="nf">find_local_maxima_idx</span><span class="p">(</span><span class="n">hist</span><span class="p">):</span>
         <span class="c1"># This code is taken from scikit-image because it is not publicly accessible</span>
         <span class="c1"># https://github.com/scikit-image/scikit-image/blob/v0.19.0/skimage/filters/thresholding.py#L821</span>
-        
+
         <span class="c1"># We can&#39;t use scipy.signal.argrelmax</span>
         <span class="c1"># as it fails on plateaus</span>
         <span class="n">maximum_idxs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
@@ -1291,35 +1291,35 @@ The threshold is then the location of the deepest point in the valley between th
                     <span class="n">direction</span> <span class="o">=</span> <span class="mi">1</span>
 
         <span class="k">return</span> <span class="n">maximum_idxs</span>
-        
+
     <span class="c1"># Create a histogram with bin centers</span>
     <span class="n">hist</span><span class="p">,</span> <span class="n">bin_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
     <span class="n">hist</span> <span class="o">=</span> <span class="n">hist</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="n">centers</span> <span class="o">=</span> <span class="p">(</span><span class="n">bin_edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mf">2.0</span>
     <span class="n">smooth_hist</span> <span class="o">=</span> <span class="n">hist</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    
+
     <span class="c1"># Smooth histogram until there are &lt;=2 peaks</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iters</span><span class="p">):</span>
         <span class="n">smooth_hist</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">uniform_filter1d</span><span class="p">(</span><span class="n">smooth_hist</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
         <span class="n">max_inds</span> <span class="o">=</span> <span class="n">find_local_maxima_idx</span><span class="p">(</span><span class="n">smooth_hist</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">max_inds</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
             <span class="k">break</span>
-    
+
     <span class="c1"># Check this worked</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">max_inds</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unable to find 2 maxima in smoothed histogram!&#39;</span><span class="p">)</span>
-        
+
     <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">centers</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">hist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">centers</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">smooth_hist</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">smooth_hist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="n">max_inds</span><span class="p">],</span> <span class="n">smooth_hist</span><span class="p">[</span><span class="n">max_inds</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="n">thresh</span><span class="p">],</span> <span class="n">smooth_hist</span><span class="p">[</span><span class="n">thresh</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-    
-    
-    
+
+
+
 <span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_minimum</span>
 
 <span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
-    
+
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">))</span>
 <span class="n">thresh_cell</span> <span class="o">=</span> <span class="n">threshold_minimum</span><span class="p">(</span><span class="n">im_cell</span><span class="p">)</span>
 <span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Minimum method (threshold = </span><span class="si">{</span><span class="n">thresh_cell</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">331</span><span class="p">)</span>
@@ -1383,30 +1383,30 @@ They have been normalized and truncated to include only the relevant part.</span
     <span class="n">peak_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span>
     <span class="n">peak_height</span> <span class="o">=</span> <span class="n">hist</span><span class="p">[</span><span class="n">peak_ind</span><span class="p">]</span>
     <span class="n">hist</span> <span class="o">=</span> <span class="n">hist</span> <span class="o">/</span> <span class="n">peak_height</span>
-    
+
     <span class="c1"># Identify bin centers</span>
     <span class="c1"># Find last bin with non-zero count</span>
     <span class="n">centers</span> <span class="o">=</span> <span class="p">(</span><span class="n">bin_edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mf">2.0</span>
     <span class="n">ind_low</span><span class="p">,</span> <span class="n">ind_high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">hist</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">][[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span>    
-    
+
     <span class="c1"># Shift bin centers according to peak (simplified plotting)</span>
     <span class="n">centers</span> <span class="o">=</span> <span class="n">centers</span> <span class="o">-</span> <span class="n">centers</span><span class="p">[</span><span class="n">peak_ind</span><span class="p">]</span>
-    
+
     <span class="c1"># Compute &#39;width&#39; of the triangle (base length)</span>
     <span class="c1"># Normalize centers so width becomes 1</span>
     <span class="n">width</span> <span class="o">=</span> <span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="n">ind_high</span><span class="p">]</span> <span class="o">-</span> <span class="n">centers</span><span class="p">[</span><span class="n">peak_ind</span><span class="p">])</span>
     <span class="n">centers</span> <span class="o">=</span> <span class="n">centers</span> <span class="o">/</span> <span class="n">width</span>
-    
+
     <span class="c1"># Plot histogram with new values</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">centers</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">hist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">))</span>
-    
+
     <span class="c1"># Plot from peak to base</span>
     <span class="n">x1</span> <span class="o">=</span> <span class="n">centers</span><span class="p">[</span><span class="n">peak_ind</span><span class="p">]</span>
     <span class="n">y1</span> <span class="o">=</span> <span class="n">hist</span><span class="p">[</span><span class="n">peak_ind</span><span class="p">]</span>
     <span class="n">x2</span> <span class="o">=</span> <span class="n">centers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">y2</span> <span class="o">=</span> <span class="n">hist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span> <span class="p">[</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">])</span>
-    
+
     <span class="c1"># Plot from threshold to peak line</span>
     <span class="n">x3</span> <span class="o">=</span> <span class="n">centers</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">thresh</span><span class="p">)]</span>
     <span class="n">y3</span> <span class="o">=</span> <span class="n">hist</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">thresh</span><span class="p">)]</span>
@@ -1420,7 +1420,7 @@ They have been normalized and truncated to include only the relevant part.</span
     <span class="n">px</span> <span class="o">=</span> <span class="p">((</span><span class="n">x1</span><span class="o">*</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x3</span> <span class="o">-</span> <span class="n">x4</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x3</span><span class="o">*</span><span class="n">y4</span> <span class="o">-</span> <span class="n">y3</span><span class="o">*</span><span class="n">x4</span><span class="p">))</span><span class="o">/</span><span class="n">D</span>
     <span class="n">py</span> <span class="o">=</span> <span class="p">((</span><span class="n">x1</span><span class="o">*</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y3</span> <span class="o">-</span> <span class="n">y4</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x3</span><span class="o">*</span><span class="n">y4</span> <span class="o">-</span> <span class="n">y3</span><span class="o">*</span><span class="n">x4</span><span class="p">))</span><span class="o">/</span><span class="n">D</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x3</span><span class="p">,</span> <span class="n">px</span><span class="p">],</span> <span class="p">[</span><span class="n">y3</span><span class="p">,</span> <span class="n">py</span><span class="p">])</span>
-    
+
     <span class="c1"># Setup display</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
@@ -1472,7 +1472,7 @@ It’s not a method I typically use myself.</p>
     <span class="k">return</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
 <span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
-    
+
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">thresh_cell</span> <span class="o">=</span> <span class="n">threshold_mean</span><span class="p">(</span><span class="n">im_cell</span><span class="p">)</span>
 <span class="n">show_image</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mean method (threshold = </span><span class="si">{</span><span class="n">thresh_cell</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
@@ -1511,7 +1511,7 @@ However the disadvantage is that it is not robust: the threshold can be pulled h
     <span class="k">return</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="n">k</span> <span class="o">*</span> <span class="n">im</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 
 <span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
-    
+
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">thresh_cell</span> <span class="o">=</span> <span class="n">threshold_mean_std</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
@@ -1569,7 +1569,7 @@ The three main requirements for this method to work are:</p>
     <span class="k">return</span> <span class="n">med</span> <span class="o">+</span> <span class="n">mad</span> <span class="o">*</span> <span class="n">k</span> <span class="o">*</span> <span class="mf">1.4826</span>
 
 <span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
-    
+
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">thresh_cell</span> <span class="o">=</span> <span class="n">threshold_mad</span><span class="p">(</span><span class="n">im_cell</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>

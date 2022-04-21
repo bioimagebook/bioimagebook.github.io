@@ -264,7 +264,7 @@ Be on the lookout for any conversions.
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 {menuselection}`Edit --> Copy` allows you to copy part of an individual image slice (i.e. a 2D part of a particular color channel) and paste it into another image while exactly preserving the original image type and pixel values.
 You can also use {menuselection}`File --> New --> Internal Clipboard` to get the copied region (but {menuselection}`Image --> Duplicate...` is usually a better option).
@@ -284,6 +284,8 @@ If therefore preserves the image appearance, but not necessarily the pixel value
 You can test the compatibility of composite and RGB images by opening {menuselection}`File --> Open Samples --> HeLa Cells` image, and saving it using {menuselection}`File --> Save As --> Tiff...` both before and after running {menuselection}`Image --> Type --> RGB Color` to convert the original 16-bit composite data to RGB.
 
 Try then opening both saved images in other software (e.g. Microsoft PowerPoint&reg;) and compare their appearance.
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9)
 ```
 
 
@@ -292,9 +294,11 @@ Try then opening both saved images in other software (e.g. Microsoft PowerPoint&
 
 Think of at least 2 ways in which converting a composite image to RGB can lose information.
 
-You can explore this by comparing the images *Neuron_composite.tif* and
-*Neuron_RGB.tif*.
+You can explore this by comparing the images *Neuron-composite.tif* and
+*Neuron-RGB.tif*.
 The {menuselection}`Image --> Color --> Split Channels` command should help.
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Neuron-composite.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/Neuron-RGB.tif)
 ```
 
 

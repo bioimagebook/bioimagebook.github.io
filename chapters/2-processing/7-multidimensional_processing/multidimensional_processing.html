@@ -656,7 +656,7 @@ const thebe_selector_output = ".output, .cell_output"
   <div class="tex2jax_ignore mathjax_ignore section" id="multidimensional-processing">
 <span id="chap-multidimensional-processing"></span><h1>Multidimensional processing<a class="headerlink" href="#multidimensional-processing" title="Permalink to this headline">¶</a></h1>
 <div class="tip admonition">
-<p class="admonition-title">Chapter outline </p>
+<p class="admonition-title">Chapter outline</p>
 <ul class="simple">
 <li><p>Many processing operations can be extended <strong>beyond 2 dimensions</strong></p></li>
 <li><p>Adding extra dimensions can greatly increase the <strong>computational requirements</strong></p></li>
@@ -739,7 +739,7 @@ This should generally make the images more comparable.</p>
 <span class="sd">    Show orthogonal slices or projections.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
-    
+
     <span class="n">n_channels</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">im</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="k">else</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">colors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">n_channels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -750,16 +750,16 @@ This should generally make the images more comparable.</p>
             <span class="n">colors</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ValueException</span><span class="p">(</span><span class="s1">&#39;Colors must be specified if the number of channels is &gt; 3!&#39;</span><span class="p">)</span>
-    
+
     <span class="k">if</span> <span class="n">axes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">()</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span>
-        
+
     <span class="k">if</span> <span class="n">loc</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">projection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">loc</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">s</span><span class="o">//</span><span class="mi">2</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-    
+
     <span class="c1"># Create axes for orthogonal views</span>
     <span class="n">divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
     <span class="n">ax_xz</span> <span class="o">=</span> <span class="n">divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
@@ -775,8 +775,8 @@ This should generally make the images more comparable.</p>
         <span class="n">imxz</span> <span class="o">=</span> <span class="n">im</span><span class="p">[:,</span> <span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="o">...</span><span class="p">]</span>
         <span class="n">imyz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">im</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">],:],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-        
-    <span class="n">show_image</span><span class="p">(</span><span class="n">create_rgb</span><span class="p">(</span><span class="n">imyz</span><span class="p">,</span> <span class="n">colors</span><span class="p">),</span> 
+
+    <span class="n">show_image</span><span class="p">(</span><span class="n">create_rgb</span><span class="p">(</span><span class="n">imyz</span><span class="p">,</span> <span class="n">colors</span><span class="p">),</span>
                    <span class="n">axes</span><span class="o">=</span><span class="n">ax_yz</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">show_slices</span><span class="p">:</span>
         <span class="n">ax_yz</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;w--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -786,7 +786,7 @@ This should generally make the images more comparable.</p>
     <span class="n">ax_yz</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
     <span class="n">ax_yz</span><span class="o">.</span><span class="n">set_axis_on</span><span class="p">()</span>
 
-    <span class="n">show_image</span><span class="p">(</span><span class="n">create_rgb</span><span class="p">(</span><span class="n">imxy</span><span class="p">,</span> <span class="n">colors</span><span class="p">),</span> 
+    <span class="n">show_image</span><span class="p">(</span><span class="n">create_rgb</span><span class="p">(</span><span class="n">imxy</span><span class="p">,</span> <span class="n">colors</span><span class="p">),</span>
                    <span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
                    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">show_slices</span><span class="p">:</span>
@@ -805,9 +805,9 @@ This should generally make the images more comparable.</p>
     <span class="n">ax_xz</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
     <span class="n">ax_xz</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
     <span class="n">ax_xz</span><span class="o">.</span><span class="n">set_axis_on</span><span class="p">()</span>
-    
+
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    
+
     <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 
@@ -851,13 +851,13 @@ This should generally make the images more comparable.</p>
 </div>
 <div class="question docutils">
 <div class="tabbed-set docutils">
-<input checked="checked" id="e6d60197-a538-4c71-bed3-c8f845e66a31" name="e1ece874-afa3-45cd-bb7a-fd2caac94d06" type="radio">
-</input><label class="tabbed-label" for="e6d60197-a538-4c71-bed3-c8f845e66a31">
-Practical</label><div class="tabbed-content docutils">
+<input checked="checked" id="11cffff4-9eab-43f4-8935-3911b20c3ea6" name="730de5de-51ee-4c4d-8e88-440c594fc338" type="radio">
+</input><label class="tabbed-label" for="11cffff4-9eab-43f4-8935-3911b20c3ea6">
+Question</label><div class="tabbed-content docutils">
 <p>How would you expect <a class="reference internal" href="#fig-multi-thresholds"><span class="std std-numref">Fig. 128</span></a> to differ if the <a class="reference internal" href="../3-thresholding/thresholding.html#sec-thresholds-triangle"><span class="std std-ref">triangle method</span></a> was used to determine the threshold, rather than <a class="reference internal" href="../3-thresholding/thresholding.html#sec-thresholds-otsu"><span class="std std-ref">Otsu’s method</span></a>?</p>
 </div>
-<input id="4856dd0e-c40f-45c0-ac9f-8cc492c0ce30" name="e1ece874-afa3-45cd-bb7a-fd2caac94d06" type="radio">
-</input><label class="tabbed-label" for="4856dd0e-c40f-45c0-ac9f-8cc492c0ce30">
+<input id="e100da16-eaf9-4ce5-a28d-cc67f75892d5" name="730de5de-51ee-4c4d-8e88-440c594fc338" type="radio">
+</input><label class="tabbed-label" for="e100da16-eaf9-4ce5-a28d-cc67f75892d5">
 Answer</label><div class="tabbed-content docutils">
 <p>Here, the triangle method performs well.
 It sets the threshold appropriately at the foot of the background peak in both cases.</p>
@@ -918,7 +918,7 @@ Some small differences may arise through the handling of <a class="reference int
 <span class="n">show_image</span><span class="p">(</span><span class="n">im_v</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Vertically smoothed (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
 
 <span class="c1"># Admission... the docs for gaussian_filter state that it&#39;s implemented separably -</span>
-<span class="c1"># so this doesn&#39;t really demonstrate that 2D filtering is the same </span>
+<span class="c1"># so this doesn&#39;t really demonstrate that 2D filtering is the same</span>
 <span class="c1"># (except inasmuch as ndimage treats them equivalently)</span>
 <span class="n">im_gauss</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
 <span class="n">show_image</span><span class="p">(</span><span class="n">im_gauss</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) 2D Gaussian filtered (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>

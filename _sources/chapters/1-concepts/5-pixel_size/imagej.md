@@ -70,7 +70,7 @@ The pixel width and height are *usually* the same.
 The voxel depth (where relevant) is often different.
 
 
-```{tabbed} Practical
+```{tabbed} Question
 :new-group:
 
 One way to check if the pixel size information is set for an image is to use {menuselection}`Image --> Properties...`
@@ -80,7 +80,7 @@ How else can you check this, even more easily?
 **Tip:** The answer should already be visible in {numref}`fig-properties_confocal` and {numref}`fig-properties_fluorescent`.
 ```
 
-```{tabbed} Solution
+```{tabbed} Answer
 The size of the image is given at the top of each image window.
 If the pixel size information is available, this is given in calibrated units.
 Otherwise, it is given only in pixels.
@@ -231,6 +231,8 @@ Something terrible has befallen the file *lost_dimensions.tif*, so that it's dis
 
 By inspecting the file, identify how many channels, *z*-slices and time points it originally contained, and set these using {menuselection}`Image --> Hyperstack --> Stack to Hyperstack...` so that it displays properly.
 What are the correct dimensions?
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/lost_dimensions.tif)
 ```
 
 
@@ -290,6 +292,8 @@ As far as ImageJ is concerned, the profile plot itself is an image -- albeit a s
 This means you can use {menuselection}`Image --> Properties...` to check the pixel size *of the profile plot*.
 
 What do you notice about the pixel sizes?
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9)
 ````
 
 ````{tabbed} Solution
@@ -347,7 +351,7 @@ How might each of these projections be affected if your stack contained:
 ```
 
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 Additional, out-of-focus planes will have an effect upon sum projections: increasing all the resulting pixel values.
 However, the extra planes would have minimal effects upon maximum projections, since they are unlikely to contain higher values than the in-focus planes.
@@ -370,6 +374,8 @@ Such outliers would also influence a sum projection, but less drastically becaus
 What happens if you calculate a maximum projection *twice* for the 5D image {menuselection}`File --> Open samples --> Mitosis`?
 
 By this I mean you run {menuselection}`Image --> Stacks --> Z Project...` on the original image, and then again on the output of the first projection.
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/9dbe7657bb476ea457f14229e93c5862)
 
 ````
 

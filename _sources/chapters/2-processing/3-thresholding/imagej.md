@@ -82,7 +82,7 @@ Applying this to ImageJ's famous *blobs.gif* reveals that not all methods work e
 
 :::{admonition} Automated threshold methods
 :class: tip
-The various automated thresholds are described at http://imagej.net/Auto_Threshold, often with references to the original published papers upon which they are based.
+The various automated thresholds are described at https://imagej.net/Auto_Threshold, often with references to the original published papers upon which they are based.
 :::
 
 +++
@@ -199,6 +199,8 @@ Work out what kind of connectivity is used by
 **Note:** You can investigate this by applying the commands/tools to a binary image that has some diagonally connected pixels.
 One way to do this is by thresholding a suitable image, another is to use the *Brush tool* <img src="../../../images/imagej/icons/brush.png" /> to draw your own pixels in the binary image.
 
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/)
+
 ````
 
 ````{tabbed} Solution
@@ -226,7 +228,7 @@ The dialog again provides the option to try all of them.
 ```
 
 Using automated local filters is complicated by the fact that window sizes and parameters need to be tuned.
-What these mean in each case is described at http://imagej.net/Auto_Local_Threshold
+What these mean in each case is described at https://imagej.net/Auto_Local_Threshold
 
 Currently, ImageJ's local thresholding also requires that the image is converted to 8-bit.
 This should be done with some caution, since it can involve surreptitiously incorporating the [brightness & contrast settings](sec_bit_depths_converting) into the thresholding.
@@ -239,6 +241,8 @@ For these reasons, I tend to avoid local thresholding.
 :new-group:
 
 Explore several automated methods of thresholding the different channels of {menuselection}`File --> Open samples --> HeLa Cells`, using both local and global automated thresholds, to draw your own conclusions about which methods you might prefer for different images.
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9)
 ```
 
 +++
@@ -268,6 +272,8 @@ You have to be extra cautious when using an image containing NaNs, since some co
 
 Create an image including NaN pixels, then measure some ROIs drawn on it.
 Are area measurements affected by whether NaNs are present or not?
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/)
 ```
 
 
@@ -284,7 +290,7 @@ If you measure a region containing NaNs only, the area is 0.
 Through experiment or guesswork, what do you suppose happens to NaNs with a 32-bit image is converted to 8-bit or 16-bit?
 ```
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 Since NaN is not an integer, it cannot be stored in an 8-bit or 16-bit unsigned integer image.
 Instead, all NaNs simply become zero.
@@ -332,6 +338,7 @@ Keep {menuselection}`Image --> Adjust --> Brightness/Contrast...` open as you ex
 :figwidth: 25%
 ```
 
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/c5d2075777c458c70c69a1f2c8b37391)
 ````
 
 ````{tabbed} Solution
@@ -363,7 +370,7 @@ How could you (manually) reduce the impact of any problems you find?
 
 **Note:** {menuselection}`Analyze --> Histogram` lets you investigate the image histogram with different numbers of bins -- but any changes you make here will not be reflected in the histogram actually used for thresholding.
 
-[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?open=https://github.com/bioimage-book/practical-data/blob/main/images/cell_outlier.tif)
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-data/blob/main/images/cell_outlier.tif)
 
 ```
 

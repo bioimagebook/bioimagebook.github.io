@@ -511,7 +511,7 @@ Can you think of a way to fill *only holes smaller than 1000 px²*, using area o
 You'll need at least one operation described in previous chapter.
 ```
 
-```{tabbed} Solution
+```{tabbed} Answer
 
 One way to fill holes below a fixed size:
 

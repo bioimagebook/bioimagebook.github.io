@@ -714,15 +714,15 @@ Optimizing the display for a single slice does not necessarily mean the rest of 
 You can also specify the percentage of pixels that should be saturated (clipped) <em>for display</em>, i.e. those that should be shown with the first or last colors in the LUT.
 So long as <span class="guilabel">Normalize</span> and <span class="guilabel">Equalize histogram</span> are not selected, the pixel values shouldn’t be changed.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="59192c7a-6d2f-49ad-87b7-c801a51f50eb" name="11e9a3e1-d82e-4809-9481-a87a3511fc4e" type="radio">
-</input><label class="tabbed-label" for="59192c7a-6d2f-49ad-87b7-c801a51f50eb">
+<input checked="checked" id="7101e1f5-a80a-4bd5-ab01-687222e43a3b" name="079d678c-f5b6-4998-970e-b9c39f77d561" type="radio">
+</input><label class="tabbed-label" for="7101e1f5-a80a-4bd5-ab01-687222e43a3b">
 Question</label><div class="tabbed-content docutils">
 <p>By default, the percentage of saturated pixels in <span class="menuselection">Enhance Contrast…</span> is set to 0.4.
 Why might this be chosen instead of 0?</p>
 </div>
-<input id="7a474a99-4b35-4e88-b43d-d6d7947901ce" name="11e9a3e1-d82e-4809-9481-a87a3511fc4e" type="radio">
-</input><label class="tabbed-label" for="7a474a99-4b35-4e88-b43d-d6d7947901ce">
-Solution</label><div class="tabbed-content docutils">
+<input id="cc5a8a50-e217-4610-a461-cf634a7d7020" name="079d678c-f5b6-4998-970e-b9c39f77d561" type="radio">
+</input><label class="tabbed-label" for="cc5a8a50-e217-4610-a461-cf634a7d7020">
+Answer</label><div class="tabbed-content docutils">
 <p>If the percentage of saturated pixels is 0, then the minimum and maximum pixel values throughout the image will be given the first and last LUT colors respectively, with all other colors devoted to values in between.
 This is sensitive to outliers, and often results in images that have poor contrast.
 It’s usually better to accept some small amount of visual saturation, in order to give more LUT colors to the pixel values between the extremes.</p>
@@ -769,8 +769,8 @@ Elsewhere (e.g. <span class="menuselection">Gaussian Blur 3D…</span>) the unit
 <p>When thresholding an image with more than 2 dimensions using the <span class="menuselection">Threshold…</span> command, it is necessary to choose whether the threshold should be determined from the histogram of the entire stack, or from the currently-visible 2D slice only.
 If the latter, you will also be asked whether the same threshold should be used for every slice, or if it should be calculated anew for each slice based upon the slice histogram. In some circumstances, these choices can have a very large impact upon the result.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="036d9f4f-d883-4f36-a640-9802742896e5" name="0fbd5996-2e94-4d5f-9303-416f55b2c16e" type="radio">
-</input><label class="tabbed-label" for="036d9f4f-d883-4f36-a640-9802742896e5">
+<input checked="checked" id="4f125c4d-118d-4854-8618-79183a986400" name="b195d3a4-a031-4b09-82d0-4f1c19a8bffe" type="radio">
+</input><label class="tabbed-label" for="4f125c4d-118d-4854-8618-79183a986400">
 Question</label><div class="tabbed-content docutils">
 <p>When you threshold a stack, you have an option to choose <span class="guilabel">Stack Histogram</span>. Then, when you choose <span class="guilabel">Apply</span> you are asked if you want to <span class="guilabel">Calculate Threshold for Each Image</span>.
 What difference do you expect these two options to make, and what combinations would you use for:</p>
@@ -783,8 +783,8 @@ What difference do you expect these two options to make, and what combinations w
 You will have to split the channels for this because ImageJ currently refuses to threshold multichannel images with extra dimensions (which helps avoid some confusion).
 <span class="guilabel">Dark Background</span> should always be selected here.</p>
 </div>
-<input id="175368c4-5b96-4c3c-a6ff-e625d4f5f29b" name="0fbd5996-2e94-4d5f-9303-416f55b2c16e" type="radio">
-</input><label class="tabbed-label" for="175368c4-5b96-4c3c-a6ff-e625d4f5f29b">
+<input id="627add5a-19fe-4bfd-99f6-9d9f437bd1e8" name="b195d3a4-a031-4b09-82d0-4f1c19a8bffe" type="radio">
+</input><label class="tabbed-label" for="627add5a-19fe-4bfd-99f6-9d9f437bd1e8">
 Solution</label><div class="tabbed-content docutils">
 <p>If <span class="guilabel">Stack Histogram</span> is checked, the thresholds are computed from a histogram of all the pixels in the entire image stack; otherwise, the histogram of only the currently-displayed image slice is used.</p>
 <p>BUT! If <span class="guilabel">Calculate Threshold for Each Image</span> is chosen, then this is ignored: the threshold is always determined by the selected automatic method using the histogram of the corresponding slice only.</p>
@@ -827,20 +827,21 @@ However, if single measurements should be made for individual objects that exten
 </div>
 </div>
 <div class="tabbed-set docutils">
-<input checked="checked" id="99e34f04-c2c8-4e03-ae5e-f5df6300ef01" name="273d1c1d-28e9-4fc2-ae4b-80ab7201f82d" type="radio">
-</input><label class="tabbed-label" for="99e34f04-c2c8-4e03-ae5e-f5df6300ef01">
+<input checked="checked" id="ef6e5537-5f40-4fe6-bb87-f695a6bcf6b5" name="29dbd9bd-3439-4639-9c03-ade8f30fd030" type="radio">
+</input><label class="tabbed-label" for="ef6e5537-5f40-4fe6-bb87-f695a6bcf6b5">
 Practical</label><div class="tabbed-content docutils">
 <p>Suppose you have a cell, nucleus or some other large 3D structure in a <strong>z</strong>-stack, and you want to draw the smallest 2D ROI that completely contains it on every slice.
 An example is shown below for the green structure in the <span class="menuselection">Confocal Series</span> sample image.</p>
 <p>How would you create such a ROI, and be confident that it is large enough for all slices?</p>
+<p><a class="reference external" href="https://ij.imjoy.io?run=https://gist.github.com/petebankhead/55b02288a529512fee0f321fee0da693"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 <div class="figure align-default">
 <div class="cell_output docutils container">
 <img alt="../../../_images/imagej_10_0.png" src="../../../_images/imagej_10_0.png" />
 </div>
 </div>
 </div>
-<input id="e1eb6676-4465-49a1-8c3a-efab062878de" name="273d1c1d-28e9-4fc2-ae4b-80ab7201f82d" type="radio">
-</input><label class="tabbed-label" for="e1eb6676-4465-49a1-8c3a-efab062878de">
+<input id="50c29b53-2866-4ab9-8cfb-72a038616bdd" name="29dbd9bd-3439-4639-9c03-ade8f30fd030" type="radio">
+</input><label class="tabbed-label" for="50c29b53-2866-4ab9-8cfb-72a038616bdd">
 Solution</label><div class="tabbed-content docutils">
 <p>My strategy would be to create a z-projection (max intensity) and then draw the ROI on this – or, preferably, create the ROI by thresholding using <span class="menuselection">Image ‣ Adjust ‣ Threshold</span> and the <span class="guilabel">Wand</span> tool.
 This ROI can then be transferred over to the original stack, either via the ROI Manager or <span class="menuselection">Edit ‣ Selection ‣ Restore Selection</span>.</p>
@@ -856,15 +857,15 @@ Rather, under <span class="menuselection">Analyze ‣ Set Measurements…</span>
 Then when you compute the stack histogram (or press <span class="menuselection">Measure</span> for 2D) only above-threshold pixels will be included in the statistics.
 Just be sure to reset <span class="guilabel">Limit to threshold</span> later.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="f1ef8ad5-0c85-465f-a18b-d91a5d777cd8" name="0b6f2b8c-0c36-4deb-90b3-687bde336e83" type="radio">
-</input><label class="tabbed-label" for="f1ef8ad5-0c85-465f-a18b-d91a5d777cd8">
+<input checked="checked" id="985a5ea2-0fa1-4c3d-8ff8-f670eca914e7" name="facf0007-e9b7-45c1-ade2-07379ab68706" type="radio">
+</input><label class="tabbed-label" for="985a5ea2-0fa1-4c3d-8ff8-f670eca914e7">
 Question</label><div class="tabbed-content docutils">
 <p>How can you translate the total number of pixels in an object into its volume, e.g.
 in µm<sup>3</sup>? Give some thought to how accurate your method will be.</p>
 </div>
-<input id="b50ba904-ef1a-4e76-abea-1400529788e1" name="0b6f2b8c-0c36-4deb-90b3-687bde336e83" type="radio">
-</input><label class="tabbed-label" for="b50ba904-ef1a-4e76-abea-1400529788e1">
-Solution</label><div class="tabbed-content docutils">
+<input id="3fe3c05d-90ef-4863-a9bd-41eaf2312b0c" name="facf0007-e9b7-45c1-ade2-07379ab68706" type="radio">
+</input><label class="tabbed-label" for="3fe3c05d-90ef-4863-a9bd-41eaf2312b0c">
+Answer</label><div class="tabbed-content docutils">
 <p>You could treat each pixel as a rectangular cuboid, with a volume equal to <em>pixel width_×_pixel height_×_voxel depth</em> (as given in <span class="menuselection">Image ‣ Properties…</span>).
 Then multiply this by the number of pixels within the object.
 This is what the <a class="reference internal" href="#sec-multidimensional-counter"><span class="std std-ref">3D Objects Counter</span></a>  plugin does when measuring volumes.</p>
@@ -891,13 +892,14 @@ If the main thing you want is the labelled image without many more results, it m
 </div>
 <div class="info admonition">
 <p class="admonition-title">Additional 3D tools</p>
-<p>For working with 3D data, it may be very useful to download the ‘3D ImageJ Suite’ from <a class="reference external" href="http://imagejdocu.tudor.lu/doku.php?id=plugin:stacks:3d_ij_suite:start">http://imagejdocu.tudor.lu/doku.php?id=plugin:stacks:3d_ij_suite:start</a>. This not only includes a range of fast filters and commands for segmentation, but also a 3D version of the ROI Manager.</p>
-<p>While created for bone image analysis, <em>BoneJ</em> (<a class="reference external" href="http://bonej.org/">http://bonej.org/</a>) also includes some components that are useful for general applications – including a fast <a class="reference external" href="http://bonej.org/particles">http://bonej.org/particles</a>[3D Particle Analyser] (another alternative to the 3D Objects Counter) and a tool to <a class="reference external" href="http://bonej.org/utilities">http://bonej.org/utilities</a>[interpolate ROIs across image slices].</p>
+<p>For working with 3D data, it may be very useful to download the ‘3D ImageJ Suite’ from <a class="reference external" href="https://imagej.net/plugins/3d-imagej-suite/">https://imagej.net/plugins/3d-imagej-suite/</a>.
+his not only includes a range of fast filters and commands for segmentation, but also a 3D version of the ROI Manager.</p>
+<p>While created for bone image analysis, <em>BoneJ</em> (<a class="reference external" href="https://bonej.org">https://bonej.org</a>) also includes some components that are useful for general applications –- including a fast <a class="reference external" href="https://bonej.org/particles">3D Particle Analyser</a> (another alternative to the 3D Objects Counter) and a tool to <a class="reference external" href="https://bonej.org/utilities">interpolate ROIs across image slices</a>.</p>
 </div>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="fn-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>See <a class="reference external" href="http://imagej.net/Bleach_Correction">http://imagej.net/Bleach_Correction</a></p>
+<dd><p>See <a class="reference external" href="https://imagej.net/Bleach_Correction">https://imagej.net/Bleach_Correction</a></p>
 </dd>
 <dt class="label" id="fn-2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>Be careful! If you have multiple channels, these should be split first</p>
@@ -905,7 +907,7 @@ If the main thing you want is the labelled image without many more results, it m
 <dt class="label" id="fn-3"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
 <dd><p>See See S Bolte and F P Cordelières.
 “A guided tour into subcellular colocalization analysis in light microscopy.” In: Journal of Microscopy <a class="reference external" href="http://224.Pt">224.Pt</a> 3 (Dec. 2006), pp. 213–32.
-url: <a class="reference external" href="http://www.ncbi.nlm.nih.gov/pubmed/1721005">http://www.ncbi.nlm.nih.gov/pubmed/1721005</a></p>
+url: <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/17210054/">https://pubmed.ncbi.nlm.nih.gov/17210054/</a></p>
 </dd>
 </dl>
 </div>

@@ -536,7 +536,7 @@ We can write 0.3333333 but our level of precision will depend upon our willingne
 
 In any case, rounding 0.1 to 0.100000001490116119384765625 (a possible floating point representation) is not so bad as rounding it to 0 (an integer representation), and the imprecisions of floating point numbers in image analysis are *usually* small enough to be disregarded.
 
-See <http://xkcd.com/217/> for more information.
+See <https://xkcd.com/217/> for more information.
 :::
 
 

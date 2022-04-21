@@ -60,11 +60,11 @@ The core of the application is a tiny file *ij.jar* (~2.5 MB) that runs on Java.
 You can download a platform-specific package that includes both ImageJ and Java for Windows, Mac or Linux.
 Including Java makes the download bigger, but makes the application self-contained and easy to run.
 
-#### 2. Fiji 
+#### 2. Fiji
 
 <img src="../../../images/logos/fiji-logo.png" align="right" width=10% />
 
-**Download from http://fiji.sc/**
+**Download from https://fiji.sc/**
 
 **Fiji**, which stands for _**F**iji **I**s **J**ust **I**mageJ_, is a distribution of ImageJ that comes bundled with a plethora of plugins and extra features that are especially useful for life scientists.
 It also has a powerful script editor that helps a lot when developing macros or scripts, an updater to help manage all the additions, and even a ['Big Data Viewer'](https://imagej.net/plugins/bdv/) for particularly huge images.
@@ -80,6 +80,18 @@ It has a few extra features, but not as many as Fiji.
 It was put together and is maintained by the [ImJoy team](https://github.com/imjoy-team) led by Wei Ouyang.
 
 For more information, see https://imagej.net/software/imagej-js
+
+:::{admonition} More interactivity with ImageJ.JS!
+:class: tip
+
+Whenever you see a button like this
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-data/blob/main/images/happy_cell.tif)
+it can be used to launch ImageJ.JS directly from this book, often with a relevant image opened.
+
+By default, ImageJ.JS will open in the same browser tab.
+If you want it to open in a new tab, then there's probably an easy trick in your browser to do that (on a computer, my guess is that it'll be pressing {kbd}`Ctrl` or {kbd}`⌘` when clicking the link).
+
+:::
 
 
 :::{admonition} Which ImageJ do I choose?
@@ -174,11 +186,11 @@ The search bar can also be activated using {kbd}`L` and used to find and run com
 :::{admonition} Losing control
 :class:
 
-In most software, shortcut keys often requires pressing {kbd}`Ctrl` (on Windows, Linux) or {kbd}`Cmd` (Mac).
-Therefore the shortcut to search for a command would be {kbd}`Ctrl + L` or {kbd}`Cmd + L`.
+In most software, shortcut keys often requires pressing {kbd}`Ctrl` (on Windows, Linux) or {kbd}`⌘` (Mac).
+Therefore the shortcut to search for a command would be {kbd}`Ctrl + L` or {kbd}`⌘ + L`.
 
 This works in ImageJ, but isn't necessary.
-Under {menuselection}`Edit --> Options --> Misc...`, you can specify whether the {kbd}`Ctrl` or {kbd}`Cmd` key is needed along with the letter for the shortcut.
+Under {menuselection}`Edit --> Options --> Misc...`, you can specify whether the {kbd}`Ctrl` or {kbd}`⌘` key is needed along with the letter for the shortcut.
 
 By default, this option is turned off -- so pressing {kbd}`L` alone is enough.
 You may find this might make it too easy to accidentally run commands, in which case you should select the option to turn it on.
@@ -199,7 +211,7 @@ As the cursor is then moved over the image, the value for the pixel under the cu
 Images can be navigated as follows:
 
  * **Zoom in**
- 
+
     1. Select the <img src="../../../images/imagej/icons/zoom.png" /> tool, then **left-click** on the image, or
     2. Press the {kbd}`+` key
 
@@ -240,9 +252,11 @@ Where is the origin of the image in ImageJ?
 
 **Tip:** You should be able to answer this question by opening an image in ImageJ, and observing the coordinates in the toolbar as you move the cursor over the image.
 
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/happy_cell.tif)
+
 ```
 
-```{tabbed} Answer
+```{tabbed} Solution
 The origin of the image is at the top left, i.e. the top left pixel is identified with the coordinate x=0, y=0.
 ```
 ````
@@ -289,9 +303,11 @@ I use {guilabel}`Minimum` and {guilabel}`Maximum` almost exclusively.
 Does adjusting any of the sliders in the brightness & contrast dialog change the pixel values or only the LUT?
 
 What happens if you press {guilabel}`Apply`?
+
+[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/bioimagebook.github.io/blob/main/chapters/1-concepts/1-images_and_pixels/images/couple.png)
 ```
 
-```{tabbed} Answer
+```{tabbed} Solution
 Adjusting the sliders changes the LUT -- and *not* the pixel values.
 
 That is, unless you press {guilabel}`Apply`.
