@@ -275,9 +275,9 @@ glue_fig('fig_blur_airy', fig)
 align: center
 name: fig-airy
 ---
-George Biddell Airy and the Airy pattern. (A) During his schooldays, Airy had been renowned for being skilled _'in the construction of peashooters and other such devices'_ (see <http://www-history.mcs.st-and.ac.uk/Biographies/Airy.html>).
+George Biddell Airy and the Airy pattern. (A) During his schooldays, Airy had been renowned for being skilled _'in the construction of peashooters and other such devices'_ (see <https://mathshistory.st-andrews.ac.uk/Biographies/Airy/>).
 The rings surrounding the Airy disk have been likened to the ripples on a pond.
-Although the rings phenomenon was already known, Airy wrote the first theoretical treatment of it in 1835 (<http://en.wikipedia.org/wiki/Airy_disk>).
+Although the rings phenomenon was already known, Airy wrote the first theoretical treatment of it in 1835 (<https://en.wikipedia.org/wiki/Airy_disk>).
 (B) An Airy pattern looks much like a 2D Gaussian function, although when the contrast is enhanced (C) small outer rings can be seen surrounding the Airy disk.
 ```
 

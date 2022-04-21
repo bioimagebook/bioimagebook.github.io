@@ -64,7 +64,7 @@ Including Java makes the download bigger, but makes the application self-contain
 
 <img src="../../../images/logos/fiji-logo.png" align="right" width=10% />
 
-**Download from http://fiji.sc/**
+**Download from https://fiji.sc/**
 
 **Fiji**, which stands for _**F**iji **I**s **J**ust **I**mageJ_, is a distribution of ImageJ that comes bundled with a plethora of plugins and extra features that are especially useful for life scientists.
 It also has a powerful script editor that helps a lot when developing macros or scripts, an updater to help manage all the additions, and even a ['Big Data Viewer'](https://imagej.net/plugins/bdv/) for particularly huge images.

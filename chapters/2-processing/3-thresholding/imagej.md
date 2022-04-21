@@ -82,7 +82,7 @@ Applying this to ImageJ's famous *blobs.gif* reveals that not all methods work e
 
 :::{admonition} Automated threshold methods
 :class: tip
-The various automated thresholds are described at http://imagej.net/Auto_Threshold, often with references to the original published papers upon which they are based.
+The various automated thresholds are described at https://imagej.net/Auto_Threshold, often with references to the original published papers upon which they are based.
 :::
 
 +++
@@ -228,7 +228,7 @@ The dialog again provides the option to try all of them.
 ```
 
 Using automated local filters is complicated by the fact that window sizes and parameters need to be tuned.
-What these mean in each case is described at http://imagej.net/Auto_Local_Threshold
+What these mean in each case is described at https://imagej.net/Auto_Local_Threshold
 
 Currently, ImageJ's local thresholding also requires that the image is converted to 8-bit.
 This should be done with some caution, since it can involve surreptitiously incorporating the [brightness & contrast settings](sec_bit_depths_converting) into the thresholding.

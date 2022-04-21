@@ -564,7 +564,7 @@ glue_fig('fig_noise_poisson', fig)
 align: center
 name: fig-poisson
 ---
-Siméon Denis Poisson and his distribution. (A) Poisson is said to have been extremely clumsy and uncoordinated with his hands. This contributed to him giving up an apprenticeship as a surgeon and entering mathematics, where the problem was less debilitating -- although apparently this meant his diagrams tended not to very well drawn (see http://www-history.mcs.st-andrews.ac.uk/history/Biographies/Poisson.html). (B) The 'Probability Mass Function' of the Poisson distribution for several different values of λ. This allows one to see for any 'true signal' λ the probability of actually counting any actual value k. Although it's more likely that one will count exactly k = λ than any other possible k, as λ increases the probability of getting precisely this value becomes smaller and smaller.
+Siméon Denis Poisson and his distribution. (A) Poisson is said to have been extremely clumsy and uncoordinated with his hands. This contributed to him giving up an apprenticeship as a surgeon and entering mathematics, where the problem was less debilitating -- although apparently this meant his diagrams tended not to very well drawn (see https://mathshistory.st-andrews.ac.uk/Biographies/Poisson/). (B) The 'Probability Mass Function' of the Poisson distribution for several different values of λ. This allows one to see for any 'true signal' λ the probability of actually counting any actual value k. Although it's more likely that one will count exactly k = λ than any other possible k, as λ increases the probability of getting precisely this value becomes smaller and smaller.
 ```
 
 
@@ -1028,7 +1028,7 @@ However, {ref}`chap_formation_spatial` has already argued that ultimately it's n
 This size can be determined based upon knowledge of the PSF and the **Nyquist-Shannon sampling theorem** ({numref}`fig-nyquist_shannon`).
 Images acquired with this pixel size are said to be **Nyquist sampled**.
 
-The easiest way I know to determine the corresponding pixel size for a given experiment is to use the online calculator provided by *Scientific Volume Imaging* at http://www.svi.nl/NyquistCalculator.
+The easiest way I know to determine the corresponding pixel size for a given experiment is to use the online calculator provided by *Scientific Volume Imaging* at https://svi.nl/NyquistCalculator.
 You may need larger pixels to reduce noise or see a wider field of view, but you do not get anything extra by using smaller pixels.
 
 ```{glue:figure} fig_noise_nyquist_shannon

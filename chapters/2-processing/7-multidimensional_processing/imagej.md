@@ -176,7 +176,7 @@ In such a case, using the stack histogram might cause fewer pixels to exceed the
 On the other hand, if images were previously normalized somehow to compensate for bleaching [^fn_1], then the stack threshold might be preferable again.
 It's tricky.
 
-[^fn_1]: See http://imagej.net/Bleach_Correction
+[^fn_1]: See https://imagej.net/Bleach_Correction
 
 
 There is one other implementation issue that needs attention.
@@ -286,7 +286,7 @@ In addition to various measurements, it provides labelled images as output, eith
 
 [^fn_3]: See See S Bolte and F P Cordelières.
 “A guided tour into subcellular colocalization analysis in light microscopy.” In: Journal of Microscopy 224.Pt 3 (Dec. 2006), pp. 213–32.
-url: http://www.ncbi.nlm.nih.gov/pubmed/1721005
+url: https://pubmed.ncbi.nlm.nih.gov/17210054/
 
 :::{admonition} Find Connected Regions
 :class: info
@@ -299,7 +299,8 @@ If the main thing you want is the labelled image without many more results, it m
 :::{admonition} Additional 3D tools
 :class: info
 
-For working with 3D data, it may be very useful to download the '3D ImageJ Suite' from http://imagejdocu.tudor.lu/doku.php?id=plugin:stacks:3d_ij_suite:start. This not only includes a range of fast filters and commands for segmentation, but also a 3D version of the ROI Manager.
+For working with 3D data, it may be very useful to download the '3D ImageJ Suite' from https://imagej.net/plugins/3d-imagej-suite/.
+his not only includes a range of fast filters and commands for segmentation, but also a 3D version of the ROI Manager.
 
-While created for bone image analysis, _BoneJ_ (http://bonej.org/) also includes some components that are useful for general applications – including a fast http://bonej.org/particles[3D Particle Analyser] (another alternative to the 3D Objects Counter) and a tool to http://bonej.org/utilities[interpolate ROIs across image slices].
+While created for bone image analysis, _BoneJ_ (https://bonej.org) also includes some components that are useful for general applications –- including a fast [3D Particle Analyser](https://bonej.org/particles) (another alternative to the 3D Objects Counter) and a tool to [interpolate ROIs across image slices](https://bonej.org/utilities).
 :::
