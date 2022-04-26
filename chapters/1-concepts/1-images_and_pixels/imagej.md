@@ -215,7 +215,7 @@ Images can be navigated as follows:
     1. Select the <img src="../../../images/imagej/icons/zoom.png" /> tool, then **left-click** on the image, or
     2. Press the {kbd}`+` key
 
-* **Zoom in**
+* **Zoom out**
 
     1. Select the <img src="../../../images/imagej/icons/zoom.png" /> tool, then **right-click** on the image, or
     2. Press the {kbd}`-` key
