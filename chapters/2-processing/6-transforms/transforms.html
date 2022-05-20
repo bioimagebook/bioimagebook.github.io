@@ -729,7 +729,7 @@ However, erosion and dilation can be computed from a distance map very efficient
 This can be much faster in practice.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Blobs.gif&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
 <span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
 <span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span>
@@ -753,6 +753,9 @@ This can be much faster in practice.</p>
 </div>
 </div>
 <div class="figure align-center" id="fig-morph-distance">
+<div class="cell_output docutils container">
+<img alt="../../../_images/transforms_7_0.png" src="../../../_images/transforms_7_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 117 </span><span class="caption-text">Implementing erosion (C) and dilation (F) of binary images by thresholding distance maps.</span><a class="headerlink" href="#fig-morph-distance" title="Permalink to this image">¶</a></p>
 </div>
 <p>But the distance map contains useful information that we can use in other ways.</p>
@@ -809,6 +812,9 @@ This provides an alternative to straightforward thresholding, which can be <em>e
 </div>
 </div>
 <div class="figure align-center" id="fig-transform-surface">
+<div class="cell_output docutils container">
+<img alt="../../../_images/transforms_11_0.png" src="../../../_images/transforms_11_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 118 </span><span class="caption-text">Visualizing an image as a landscape, using surface plots. Higher pixel values are generally viewed as peaks, although can easily switched to become valleys by inverting the image before plotting. This may be useful when providing input to the watershed transform.</span><a class="headerlink" href="#fig-transform-surface" title="Permalink to this image">¶</a></p>
 </div>
 <p>Now imagine water falling evenly upon this surface and slowly flooding it.
@@ -858,6 +864,9 @@ The water then continues to rise, with dams being built as needed, until in the 
 </div>
 </div>
 <div class="figure align-center" id="fig-transform-surface-watershed">
+<div class="cell_output docutils container">
+<img alt="../../../_images/transforms_15_1.png" src="../../../_images/transforms_15_1.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 119 </span><span class="caption-text">Applying the watershed transform to an image. Here, we passed the inverted image to the watershed transform because we want to identify bright spots rather than dark ones. The full watershed transform will expand the seeds to create a labeled image including all pixels, but we can optionally mask the expansion to prevent it filling the background. Here, we defined the mask by applying a global threshold using the triangle method. Note that the masked watershed segmentation is able to split some spots that were merged using the global threshold alone.</span><a class="headerlink" href="#fig-transform-surface-watershed" title="Permalink to this image">¶</a></p>
 </div>
 <p>Crucially, as the seeds are expanded during the watershed transform, regions are not allowed to overlap.
@@ -908,6 +917,9 @@ The process is as follows:</p>
 </div>
 </div>
 <div class="figure align-center" id="fig-morph-distance-split-small">
+<div class="cell_output docutils container">
+<img alt="../../../_images/transforms_18_0.png" src="../../../_images/transforms_18_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 120 </span><span class="caption-text">Splitting round objects using the distance and watershed transforms.</span><a class="headerlink" href="#fig-morph-distance-split-small" title="Permalink to this image">¶</a></p>
 </div>
 <p>The objects to be split do not have to be perfectly round.
@@ -918,7 +930,7 @@ The only requirement is that there are clearly distinct regional maxima in the d
 <span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span>
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Blobs.gif&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
 <span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
 <span class="n">im_dist</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
@@ -951,6 +963,9 @@ The only requirement is that there are clearly distinct regional maxima in the d
 </div>
 </div>
 <div class="figure align-center" id="fig-morph-distance-split">
+<div class="cell_output docutils container">
+<img alt="../../../_images/transforms_20_0.png" src="../../../_images/transforms_20_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 121 </span><span class="caption-text">Splitting merged blobs based on ‘roundness’ using the distance and watershed transforms.
 Because there are many small regional maxima in the distance transform, here we define seeds using H-maxima followed by a 3×3 dilation to avoid excessive splitting.</span><a class="headerlink" href="#fig-morph-distance-split" title="Permalink to this image">¶</a></p>
 </div>
@@ -973,7 +988,7 @@ In Python code using scikit-image, that means we are using the <code class="docu
 <span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
 <span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Blobs.gif&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
 <span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">lab</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
 
@@ -994,6 +1009,9 @@ In Python code using scikit-image, that means we are using the <code class="docu
 </div>
 </div>
 <div class="figure align-center" id="fig-morph-voronoi-expand">
+<div class="cell_output docutils container">
+<img alt="../../../_images/transforms_23_0.png" src="../../../_images/transforms_23_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 122 </span><span class="caption-text">Expanding blobs to compute the Voronoi transform of a labeled image, partitioning it into different regions according to the closest seed object.</span><a class="headerlink" href="#fig-morph-voronoi-expand" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -1016,7 +1034,7 @@ When seeds are close together, the higher label will ‘win’ the expansion rac
 <span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
 <span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Blobs.gif&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
 <span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">lab</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
 <span class="n">lab_dilated</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">dilation</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">disk</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
@@ -1034,6 +1052,9 @@ When seeds are close together, the higher label will ‘win’ the expansion rac
 </div>
 </div>
 <div class="figure align-center" id="fig-morph-bad-expand">
+<div class="cell_output docutils container">
+<img alt="../../../_images/transforms_26_0.png" src="../../../_images/transforms_26_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 124 </span><span class="caption-text">Expanding blobs using a maximum filter only. This approach is too simple; it results in overlapping labels and a lot of confusion.</span><a class="headerlink" href="#fig-morph-bad-expand" title="Permalink to this image">¶</a></p>
 </div>
 <p>Instead, we need to build upon the Voronoi approach shown in <a class="reference internal" href="#fig-morph-voronoi-expand"><span class="std std-numref">Fig. 122</span></a>.
@@ -1047,7 +1068,7 @@ If we update our watershed output to have background pixels at the same location
 <span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
 <span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Blobs.gif&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
 <span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">lab</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
 
@@ -1075,6 +1096,9 @@ If we update our watershed output to have background pixels at the same location
 </div>
 </div>
 <div class="figure align-center" id="fig-morph-distance-expand">
+<div class="cell_output docutils container">
+<img alt="../../../_images/transforms_29_0.png" src="../../../_images/transforms_29_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 125 </span><span class="caption-text">Using distance and watershed transforms to expand regions by a fixed distance, without overlap. The final output (F) is obtained using information from all images (A) - (E).</span><a class="headerlink" href="#fig-morph-distance-expand" title="Permalink to this image">¶</a></p>
 </div>
 </div>
