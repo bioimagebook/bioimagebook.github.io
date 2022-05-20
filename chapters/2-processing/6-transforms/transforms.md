@@ -5,9 +5,9 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.11.5
+    jupytext_version: 1.13.8
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -101,7 +101,7 @@ This can be much faster in practice.
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
 
-im = load_image('Blobs.gif')
+im = load_image('blobs.gif')
 bw = im < im.mean()
 
 from scipy.ndimage import distance_transform_edt
@@ -332,7 +332,7 @@ from scipy.ndimage import distance_transform_edt, label
 from skimage.color import label2rgb
 from skimage import filters
 
-im = load_image('Blobs.gif')
+im = load_image('blobs.gif')
 bw = im < im.mean()
 
 im_dist = distance_transform_edt(bw)
@@ -398,7 +398,7 @@ from scipy.ndimage import distance_transform_edt, label
 from skimage.segmentation import watershed
 from skimage.color import label2rgb
 
-im = load_image('Blobs.gif')
+im = load_image('blobs.gif')
 bw = im < im.mean()
 lab, n = label(bw)
 
@@ -452,7 +452,7 @@ from scipy.ndimage import distance_transform_edt, label
 from skimage.segmentation import watershed
 from skimage.color import label2rgb
 
-im = load_image('Blobs.gif')
+im = load_image('blobs.gif')
 bw = im < im.mean()
 lab, n = label(bw)
 lab_dilated = morph.dilation(lab, disk(10))
@@ -491,7 +491,7 @@ from scipy.ndimage import distance_transform_edt, label
 from skimage.segmentation import watershed
 from skimage.color import label2rgb
 
-im = load_image('Blobs.gif')
+im = load_image('blobs.gif')
 bw = im < im.mean()
 lab, n = label(bw)
 
