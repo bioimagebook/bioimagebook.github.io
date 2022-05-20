@@ -106,7 +106,7 @@ glue_fig('fig_blobs_binary_label', fig)
 align: center
 name: fig-blobs_binary_label
 ---
-Examples of a grayscale (Blobs.gif), binary and labelled image.
+Examples of a grayscale (blobs.gif), binary and labelled image.
 In (C), each label has been assigned a unique color for display.
 In (D), ROIs have been generated from (C) and superimposed on top of (A).
 It is common to use a LUT for labeled images that assigns a different color to each pixel value.
