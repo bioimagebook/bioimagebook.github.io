@@ -244,8 +244,10 @@ This can be approached differently, but the general principle is always to compa
 ```
 
 
-```{tabbed} Question
-:new-group:
+````{tab-set}
+
+```{tab-item} Question
+
 
 Calculate the SNR in the following cases:
 
@@ -258,7 +260,7 @@ For the purposes of this question, you should assume that read noise is the only
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 
 * We detect an average of 10 photons, read noise std. dev. 1 photon: _SNR = 10_
@@ -268,6 +270,8 @@ For the purposes of this question, you should assume that read noise is the only
 The noise causes us a similar degree of uncertainty in the first two cases.
 In the third case, the noise is likely to be less problematic: higher SNRs are good.
 ```
+
+````
 
 :::{admonition} Exploring noise
 :class: tip
@@ -623,10 +627,10 @@ Gaussian filtering reduces the noise in an image by replacing each pixel with a 
 ```
 
 
+`````{tab-set}
 
+````{tab-item} Question
 
-````{tabbed} Question
-:new-group:
 
 The formula for the probability mass function of the Poisson distribution is:
 
@@ -653,7 +657,7 @@ How common do you suppose it is to find pixels that are so noisy in the backgrou
 ````
 
 
-````{tabbed} Answer
+````{tab-item} Answer
 
 The probability of detecting 5 photons is approximately 0.0031.
 
@@ -665,6 +669,10 @@ Although this is a very low probability, images contain so many pixels that one 
 For example, in a rather dark and dull 512×512 pixel image in which the average photon emission rate is 1, we would expect 800 pixels to have a value of 5 -- and two pixels even to have a value of 8.
 The presence of isolated bright or dark pixels therefore usually tells us very little indeed, and it is only by processing the image more carefully and looking at surrounding values that we can (sometimes) discount the possibility these are simply the result of noise.
 ````
+
+`````
+
++++
 
 ### The SNR for Poisson noise
 
@@ -830,9 +838,10 @@ Either way, when attempting to determine the number of any small structures in a
 Therefore results obtained from bright and dark regions might not be directly comparable.
 
 
+````{tab-set}
 
-```{tabbed} Practical
-:new-group:
+```{tab-item} Practical
+
 
 Open the images *mystery_noise_1.tif* and *mystery_noise_2.tif* in ImageJ.
 
@@ -843,7 +852,7 @@ Which is which?
 ```
 
 
-```{tabbed} Solution
+```{tab-item} Solution
 
 The noise in *mystery_noise_1.tif* is Gaussian; the noise in *mystery_noise_2.tif* follows a Poisson distribution.
 Since there are reasonably flat regions within the cell and background, I would test this by drawing a ROI within each and measuring the standard deviations.
@@ -851,6 +860,10 @@ Where these are similar, the noise is Gaussian; if there is a big difference, th
 
 If no flat regions were available, I would try applying a gradient filter with the coefficients `-1 1 0`, and inspecting the results. Alternatively, I might try plotting a fluorescence profile or subtracting a very slightly smoothed version of each image.
 ```
+
+````
+
++++
 
 ## Combining noise sources
 
@@ -918,19 +931,19 @@ If the equipment is functioning properly, other noise sources could probably not
 Nevertheless, brave souls who wish to know more may find a concise, highly informative, list of more than 40 sources of imprecision in _The 39 steps: a cautionary tale of quantitative 3-D fluorescence microscopy_ by James Pawley (available online from various sources).
 :::
 
+````{tab-set}
 
-```{tabbed} Question
-:new-group:
+```{tab-item} Question
+
 
 Suppose you have an image that does not contain much light, but has some isolated bright pixels.
 
 Which kind of filter could you use to remove them? And is it safe to assume they are due to dark noise or something similar, or might the pixels correspond to actual bright structures?
 
-
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 A median filter is a popular choice for removing isolated bright pixels, although when using ImageJ I sometimes prefer {menuselection}`Process --> Noise --> Remove Outliers...` because this only puts the median-filtered output in the image if the original value was really extreme (according to some user-defined threshold).
 This then preserves the independence of the noise at all other pixels -- so it still behaves reliably and predictably like Poisson + Gaussian noise.
@@ -940,6 +953,10 @@ Assuming that the size of a pixel is smaller than the PSF (which is usually the 
 They _cannot_ be real structures, because any real structure would have to extend over a region at least as large as the PSF.
 However if the pixel size is very large, then we may not be able to rule out that the 'outliers' are caused by some real, bright structures.
 ```
+
+````
+
++++
 
 ## Finding photons
 

@@ -114,8 +114,10 @@ This can take some careful inspection to distinguish from the black border that 
 If you know the bit-depth and type of the image, you can figure out the range (e.g. 0-255 for an 8-bit unsigned integer image, 0-65,535 for 16-bit) and usually that gives a good indication to where the peaks would be -- but it isn't a perfect guide.
 Conceivably, we could have an image that was clipped at some other value because it has been rescaled *after* clipping.
 
-````{tabbed} Question
-:new-group:
+`````{tab-set}
+
+````{tab-item} Question
+
 Does the image below show signs of having been clipped?
 
 ```{image} images/imagej-histogram-maybe.png
@@ -124,7 +126,7 @@ Does the image below show signs of having been clipped?
 ```
 ````
 
-````{tabbed} Answer
+````{tab-item} Answer
 Yes!
 There is a small peak at the high end of the histogram, corresponding to pixel values of 4095.
 This is itself a suspicious number because it would be the maximum possible value in a 12-bit unsigned integer image (i.e. 2<sup>12</sup> - 1) -- so my guess is that was the bit-depth of the acquisition device.
@@ -134,6 +136,7 @@ We could check the proportion of pixels with that value, and use this to estimat
 But it's better to avoid clipping altogether when possible.
 ````
 
+`````
 
 (sec_bit_depths_converting)=
 ## Converting images
@@ -209,15 +212,17 @@ Fortunately, there is an easy way to achieve this:
 If you **really** need to reduce the bit-depth of an image in ImageJ, you should usually open {menuselection}`Image --> Adjust --> Brightness/Contrast...` ({kbd}`Shift + C`) and press the {guilabel}`Reset` button first, to minimize the data lost to clipping or rounding.
 :::
 
-```{tabbed} Question
-:new-group:
+````{tab-set}
+
+```{tab-item} Question
+
 Why is scaling usually a good thing when reducing the bit-depth, and why is a constant usually subtracted before applying this scaling?
 
 **Hint:** As an example, consider how a 16-bit image containing values in the range 4000–5000 might be converted to 8-bit first without scaling, and then alternatively by scaling with or without the initial constant subtraction.
 What constants for subtraction and division would usually minimize the amount of information lost when converting to 8-bit image, limiting the errors to rounding only and not clipping?
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 In the example given, converting to 8-bit without any scaling would result in all pixels simply becoming 255: all useful information in the image would be lost.
 
 With scaling but without subtraction, it would make sense to divide all pixel values by the maximum in the image divided by the maximum in the new bit depth, i.e. by 5000/255.
@@ -226,9 +231,14 @@ This would then lead to an image in which pixels fall into the range 204–255. 
 However, if we first subtract the smallest of our 16-bit values (i.e. 4000), our initial range becomes 0–1000. Divide then by 1000/255 and the new values become scaled across the full range of an 8-bit image, i.e. 0–255. We have still lost information – but considerably less than if we had not subtracted the constant first.
 ```
 
+````
 
-```{tabbed} Practical
-:new-group:
++++
+
+````{tab-set}
+
+```{tab-item} Practical
+
 Make sure that the {guilabel}`Scale When Converting` option is turned on (it should be by default).
 Then using a suitable 8-bit sample image, e.g. {menuselection}`File --> Open Samples --> Boats`, explore the effects of brightness/contrast settings when increasing or decreasing bit-depths.
 
@@ -237,10 +247,12 @@ Can you destroy the image by simply 1) increasing the bit-depth, and the then 2)
 [![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/6f9f451fdc0116197501ae504a57d5e7)
 ```
 
-```{tabbed} Solution
+```{tab-item} Solution
 It's generally a good idea to choose {guilabel}`Reset` in the {menuselection}`Brightness/Contrast...` window before reducing any bit-depths for 2D images (see {ref}`chap_multidimensional_processing` to read about special considerations related to *z*-stacks or time series).
 
 You can destroy an image by increasing its bit-depth, adjusting the brightness/contrast and then decreasing the bit-depth to the original one again.
 This may seem weird, because clearly the final bit-depth is *capable* of storing all the original pixel values.
 But ImageJ does not know this and does not check, so it will simply do its normal bit-depth-reducing conversion based on contrast settings.
 ```
+
+````

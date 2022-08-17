@@ -174,16 +174,16 @@ This conversion is often done within the analysis software, but depends upon the
 All being well, appropriate pixel sizes will have been written into an image file during acquisition and subsequently read by the software.
 Unfortunately, this does not always work out (see {ref}`chap_files`) and so we do always need to check our pixel sizes, and derived measurements of size, for reasonableness.
 
-`````{div} question
+`````{tab-set}
 
-````{tabbed} Question
+````{tab-item} Question
 Suppose we detect a structure and we count that it covers an area spanning 10 pixels.
 Suppose also that the pixel width = 2.0 µm and the pixel height is 2.0 µm.
 
 What is the **area** of the structure in µm<sup>2</sup>?
 ````
 
-````{tabbed} Answer
+````{tab-item} Answer
 40 µm<sup>2</sub>
 
 At least that's the answer I was looking for: 10 x 2µm x 2µm = 40µm<sup>2</sup>.
@@ -358,15 +358,15 @@ Visualizing the slices from a z-stack as separate images. Here, each slice has 2
 
 +++
 
-`````{div} question
+`````{tab-set}
 
-````{tabbed} Question
+````{tab-item} Question
 How many dimensions does the z-stack in {numref}`fig-dimensions_slices` have?
 
 *Remember: we count channels as a dimension here!*
 ````
 
-````{tabbed} Answer
+````{tab-item} Answer
 The image is 4D: x, y, z, channels.
 ````
 `````
