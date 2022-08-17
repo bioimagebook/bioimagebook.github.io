@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Pixel size &amp; dimensions &#8212; Introduction to Bioimage Analysis</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,21 +20,17 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -41,15 +39,16 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="ImageJ: Pixel size &amp; dimensions" href="imagej.html" />
@@ -61,7 +60,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +83,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -90,14 +104,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../README.html">
-   Introduction to Bioimage Analysis
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Introduction to Bioimage Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Front matter
  </span>
@@ -457,97 +472,199 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/chapters/1-concepts/5-pixel_size/pixel_size.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/chapters/1-concepts/5-pixel_size/pixel_size.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/1-concepts/5-pixel_size/pixel_size.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/1-concepts/5-pixel_size/pixel_size.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/chapters/1-concepts/5-pixel_size/pixel_size.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/chapters/1-concepts/5-pixel_size/pixel_size.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -594,12 +711,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Pixel size & dimensions</h1>
@@ -662,11 +778,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="pixel-size-dimensions">
-<span id="chap-dimensions"></span><span id="chap-pixel-size"></span><h1>Pixel size &amp; dimensions<a class="headerlink" href="#pixel-size-dimensions" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="pixel-size-dimensions">
+<span id="chap-dimensions"></span><span id="chap-pixel-size"></span><h1>Pixel size &amp; dimensions<a class="headerlink" href="#pixel-size-dimensions" title="Permalink to this headline">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline </p>
 <ul class="simple">
@@ -691,14 +808,14 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Hopefully by now you’re appropriately nervous about accidentally changing pixel values and therefore compromising your image’s integrity.
 If in doubt, you’ll always calculate histograms or other measurements before and after trying out something new, to check whether the pixels have been changed.</p>
 <p>This chapter explores pixels in more detail, including how they are arranged within an image and how they relate to things in the physical world.</p>
-</div>
-<div class="section" id="pixel-size">
-<h2>Pixel size<a class="headerlink" href="#pixel-size" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pixel-size">
+<h2>Pixel size<a class="headerlink" href="#pixel-size" title="Permalink to this headline">#</a></h2>
 <p><strong>How big is a pixel?</strong></p>
 <p>In one sense, a pixel is just a number: it doesn’t really have a size at all.
 However, if we don’t get too philosophical about it<a class="footnote-reference brackets" href="#philosophy" id="id1">1</a>, we intuitively know that the things depicted in our images usually have a size in real life.</p>
@@ -778,17 +895,21 @@ We can divide the width and height in physical units (often µm) by the number o
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-px-sizes" style="width: 90%">
+<figure class="align-center" id="fig-px-sizes" style="width: 90%">
 <div class="cell_output docutils container">
 <img alt="../../../_images/pixel_size_3_1.png" src="../../../_images/pixel_size_3_1.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">Images with different pixel sizes.
-Whenever the field of view remains the same, the pixel size increases as the number of pixels in the image decreases.</span><a class="headerlink" href="#fig-px-sizes" title="Permalink to this image">¶</a></p>
-</div>
-<div class="margin figure align-center" id="id2">
+<figcaption>
+<p><span class="caption-number">Fig. 34 </span><span class="caption-text">Images with different pixel sizes.
+Whenever the field of view remains the same, the pixel size increases as the number of pixels in the image decreases.</span><a class="headerlink" href="#fig-px-sizes" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="margin align-center" id="id2">
 <a class="reference internal image-reference" href="../../../_images/not_squares.png"><img alt="../../../_images/not_squares.png" src="../../../_images/not_squares.png" style="width: 80%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 35 </span><span class="caption-text"><a class="reference external" href="http://alvyray.com/Memos/CG/Microsoft/6_pixel.pdf">A Pixel is <em>Not</em> a Little Square</a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 35 </span><span class="caption-text"><a class="reference external" href="http://alvyray.com/Memos/CG/Microsoft/6_pixel.pdf">A Pixel is <em>Not</em> a Little Square</a></span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="info admonition">
 <p class="admonition-title">Pixel squareness </p>
 <p>Talking of pixels as having (usually) equal widths and heights makes them sound very square-like, but previously I stated that pixels are not squares – they are just displayed using squares.</p>
@@ -797,43 +918,41 @@ In short, pushing the pixels-are-square model too far leads to confusion in the 
 Alternative terms, such as <em>sampling distance</em>, are often used instead of pixel size – and are potentially less misleading.</p>
 <p>But ‘pixel size’ is still used commonly in software (including ImageJ), and we will use the term as a useful shorthand.</p>
 </div>
-<div class="section" id="pixel-sizes-and-measurements">
-<h3>Pixel sizes and measurements<a class="headerlink" href="#pixel-sizes-and-measurements" title="Permalink to this headline">¶</a></h3>
+<section id="pixel-sizes-and-measurements">
+<h3>Pixel sizes and measurements<a class="headerlink" href="#pixel-sizes-and-measurements" title="Permalink to this headline">#</a></h3>
 <p>Knowing the pixel size makes it possible to calibrate size measurements. For example, if we measure some structure horizontally in the image and find that it is 10 pixels in length, with a pixel size of 0.5µm, we can deduce that its actual length in reality is (approximately!) 10 × 0.5µm = 5µm.</p>
 <p>This conversion is often done within the analysis software, but depends upon the pixel size information being present and correct.
 All being well, appropriate pixel sizes will have been written into an image file during acquisition and subsequently read by the software.
 Unfortunately, this does not always work out (see <a class="reference internal" href="../6-files/files.html#chap-files"><span class="std std-ref">Files &amp; file formats</span></a>) and so we do always need to check our pixel sizes, and derived measurements of size, for reasonableness.</p>
-<div class="question docutils">
-<div class="tabbed-set docutils">
-<input checked="checked" id="f0a168dc-c766-4b23-b33d-675c729e03cf" name="6268dcee-03fb-49bf-a1bf-5d3dfa207bc2" type="radio">
-</input><label class="tabbed-label" for="f0a168dc-c766-4b23-b33d-675c729e03cf">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="8c0ec77c-c86f-4bd8-b499-b5cbd8799b23" name="d0c9f86d-ffb4-4b1c-910d-5070897ff9dd" type="radio">
+</input><label class="sd-tab-label" for="8c0ec77c-c86f-4bd8-b499-b5cbd8799b23">
+Question</label><div class="sd-tab-content docutils">
 <p>Suppose we detect a structure and we count that it covers an area spanning 10 pixels.
 Suppose also that the pixel width = 2.0 µm and the pixel height is 2.0 µm.</p>
 <p>What is the <strong>area</strong> of the structure in µm<sup>2</sup>?</p>
 </div>
-<input id="2fb5355d-6457-4026-84c2-696ef6170636" name="6268dcee-03fb-49bf-a1bf-5d3dfa207bc2" type="radio">
-</input><label class="tabbed-label" for="2fb5355d-6457-4026-84c2-696ef6170636">
-Answer</label><div class="tabbed-content docutils">
+<input id="dfe01f08-08cd-46ae-b1ee-8db9f6d23d73" name="d0c9f86d-ffb4-4b1c-910d-5070897ff9dd" type="radio">
+</input><label class="sd-tab-label" for="dfe01f08-08cd-46ae-b1ee-8db9f6d23d73">
+Answer</label><div class="sd-tab-content docutils">
 <p>40 µm<sup>2</sub></p>
 <p>At least that’s the answer I was looking for: 10 x 2µm x 2µm = 40µm<sup>2</sup>.</p>
 <p>If you want to be pedantic about it, you might quibble about whether it makes sense to report 2D areas for 3D structures, or the possible impact of measurement error caused by the diffraction limit.</p>
 <p>But let’s not be pedantic for now.</p>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="pixel-sizes-and-detail">
-<h3>Pixel sizes and detail<a class="headerlink" href="#pixel-sizes-and-detail" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pixel-sizes-and-detail">
+<h3>Pixel sizes and detail<a class="headerlink" href="#pixel-sizes-and-detail" title="Permalink to this headline">#</a></h3>
 <p>In general, if the pixel size in a microscopy image is large then we cannot see very fine detail (see <a class="reference internal" href="#fig-px-sizes"><span class="std std-numref">Fig. 34</span></a>).
 However, the subject becomes complicated by the diffraction of light whenever we are considering scales of hundreds of nanometers, so that acquiring images with smaller pixel sizes does not necessarily bring us extra information – and might even become a hindrance.</p>
 <p>This will be explored in more detail in <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html#chap-formation-spatial"><span class="std std-ref">Blur &amp; the PSF</span></a> and <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html#chap-formation-noise"><span class="std std-ref">Noise</span></a>.</p>
-</div>
-</div>
-<div class="section" id="dimensions">
-<h2>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="identifying-dimensions">
-<h3>Identifying dimensions<a class="headerlink" href="#identifying-dimensions" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="dimensions">
+<h2>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this headline">#</a></h2>
+<section id="identifying-dimensions">
+<h3>Identifying dimensions<a class="headerlink" href="#identifying-dimensions" title="Permalink to this headline">#</a></h3>
 <p>The concept of <strong>image dimensions</strong> is <em>mostly</em> straightforward, although I’m not aware of any universal definition that all people and all software stick to reliably.</p>
 <p>The approach we’ll take here is to say: <strong>the number of dimensions is the number of pieces of information you need to know to identify an individual pixel.</strong></p>
 <p>For example, in the most familiar 2D images, we can uniquely identify a pixel if we know its <em>x</em> and <em>y</em> spatial coordinates.</p>
@@ -877,20 +996,24 @@ We could throw away one of these dimensions – any one at all – and get a 4D 
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-dimensions">
+<figure class="align-center" id="fig-dimensions">
 <div class="cell_output docutils container">
 <img alt="../../../_images/pixel_size_7_0.png" src="../../../_images/pixel_size_7_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 36 </span><span class="caption-text">Depictions of images with different numbers of dimensions. (A) A single value is considered to have 0 dimensions. (B–E) Additional dimensions are added, here in the following order: <em>x</em> coordinate (1), <em>y</em> coordinate (2), channel number (3), <em>z</em> slice (4). The volume view in (E) was generated using the <a class="reference external" href="https://imagej.net/plugins/clearvolume">ClearVolume plugin for Fiji</a>.</span><a class="headerlink" href="#fig-dimensions" title="Permalink to this image">¶</a></p>
-</div>
-<div class="margin sidebar">
+<figcaption>
+<p><span class="caption-number">Fig. 36 </span><span class="caption-text">Depictions of images with different numbers of dimensions. (A) A single value is considered to have 0 dimensions. (B–E) Additional dimensions are added, here in the following order: <em>x</em> coordinate (1), <em>y</em> coordinate (2), channel number (3), <em>z</em> slice (4). The volume view in (E) was generated using the <a class="reference external" href="https://imagej.net/plugins/clearvolume">ClearVolume plugin for Fiji</a>.</span><a class="headerlink" href="#fig-dimensions" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Loic A. Royer et al. (2015). “ClearVolume – Open-source live 3D visualization for light sheet microscopy”. <em>Nature Methods</em> 12, 480–481. <a class="reference external" href="https://doi.org/10.1038/nmeth.3372">https://doi.org/10.1038/nmeth.3372</a></p>
-</div>
-<div class="figure align-center" id="fig-dimensions-5f">
+</aside>
+<figure class="align-center" id="fig-dimensions-5f">
 <img alt="../../../_images/mitosis.gif" src="../../../_images/mitosis.gif" />
-<p class="caption"><span class="caption-number">Fig. 37 </span><span class="caption-text">Visualization of a 5D image (xyczt) using ClearVolume + Fiji.</span><a class="headerlink" href="#fig-dimensions-5f" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 37 </span><span class="caption-text">Visualization of a 5D image (xyczt) using ClearVolume + Fiji.</span><a class="headerlink" href="#fig-dimensions-5f" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>In principle, therefore, 2D images do not need to have <em>x</em> and <em>y</em> dimensions.
 The dimensions could be <em>x</em> and <em>z</em>, or <em>y</em> and time, for example.
 But while we may play around with the identity of dimensions, the important fact remains: an <em>nD</em> image requires <em>n</em> pieces of information to identify each pixel.</p>
@@ -903,9 +1026,9 @@ If we have an image with <em>x</em>, <em>y</em> and <em>time</em> then we might 
 <p>I still think that our explanation of the number of dimensions as being ‘the number of things you need to know to identify a pixel’ is a good baseline way to think about it, and corresponds well with the implementation in software and usage in Python/NumPy.
 But we need to be prepared to use context to identify when the word ‘dimensions’ is being used with images more casually.</p>
 </div>
-</div>
-<div class="section" id="z-projections">
-<span id="sec-dims-z-project"></span><h3>Z-Projections<a class="headerlink" href="#z-projections" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="z-projections">
+<span id="sec-dims-z-project"></span><h3>Z-Projections<a class="headerlink" href="#z-projections" title="Permalink to this headline">#</a></h3>
 <p>The more dimensions we have, the trickier it can be to visualize the entire image effectively.</p>
 <p><strong>Z-stacks</strong> are composed of different 2D images (called <strong>slices</strong>) acquired at different focal depths, optionally with an extra channel dimension added as well.</p>
 <p>One way to visualize a z-stack is to simply look at each slice individually.</p>
@@ -954,25 +1077,25 @@ But we need to be prepared to use context to identify when the word ‘dimension
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-dimensions-slices">
+<figure class="align-center" id="fig-dimensions-slices">
 <div class="cell_output docutils container">
 <img alt="../../../_images/pixel_size_9_0.png" src="../../../_images/pixel_size_9_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 38 </span><span class="caption-text">Visualizing the slices from a z-stack as separate images. Here, each slice has 2 channels.</span><a class="headerlink" href="#fig-dimensions-slices" title="Permalink to this image">¶</a></p>
-</div>
-<div class="question docutils">
-<div class="tabbed-set docutils">
-<input checked="checked" id="df300c3b-eaa4-492e-b1c2-d9ee5a4f5380" name="eed18c4e-915b-4c0f-b238-498c1d574393" type="radio">
-</input><label class="tabbed-label" for="df300c3b-eaa4-492e-b1c2-d9ee5a4f5380">
-Question</label><div class="tabbed-content docutils">
+<figcaption>
+<p><span class="caption-number">Fig. 38 </span><span class="caption-text">Visualizing the slices from a z-stack as separate images. Here, each slice has 2 channels.</span><a class="headerlink" href="#fig-dimensions-slices" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="44c8316a-6b89-4947-863f-abc9132279b7" name="22b99b50-867e-4978-bf03-1bbb1f288c11" type="radio">
+</input><label class="sd-tab-label" for="44c8316a-6b89-4947-863f-abc9132279b7">
+Question</label><div class="sd-tab-content docutils">
 <p>How many dimensions does the z-stack in <a class="reference internal" href="#fig-dimensions-slices"><span class="std std-numref">Fig. 38</span></a> have?</p>
 <p><em>Remember: we count channels as a dimension here!</em></p>
 </div>
-<input id="dca57875-0f30-4ffa-80d5-0bd356c96f30" name="eed18c4e-915b-4c0f-b238-498c1d574393" type="radio">
-</input><label class="tabbed-label" for="dca57875-0f30-4ffa-80d5-0bd356c96f30">
-Answer</label><div class="tabbed-content docutils">
+<input id="f97d99be-fa4a-4743-8b41-8b5a2f3a9433" name="22b99b50-867e-4978-bf03-1bbb1f288c11" type="radio">
+</input><label class="sd-tab-label" for="f97d99be-fa4a-4743-8b41-8b5a2f3a9433">
+Answer</label><div class="sd-tab-content docutils">
 <p>The image is 4D: x, y, z, channels.</p>
-</div>
 </div>
 </div>
 <p>Viewing many slices separately is cumbersome.</p>
@@ -1019,15 +1142,17 @@ For each pixel location in the new image, the maximum value is taken across all 
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-dimensions-projection">
+<figure class="align-center" id="fig-dimensions-projection">
 <div class="cell_output docutils container">
 <img alt="../../../_images/pixel_size_13_0.png" src="../../../_images/pixel_size_13_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 39 </span><span class="caption-text">Visualizing a z-stack using z-projections.</span><a class="headerlink" href="#fig-dimensions-projection" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="orthogonal-slices">
-<span id="sec-dims-orthogonal"></span><h3>Orthogonal slices<a class="headerlink" href="#orthogonal-slices" title="Permalink to this headline">¶</a></h3>
+<figcaption>
+<p><span class="caption-number">Fig. 39 </span><span class="caption-text">Visualizing a z-stack using z-projections.</span><a class="headerlink" href="#fig-dimensions-projection" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="orthogonal-slices">
+<span id="sec-dims-orthogonal"></span><h3>Orthogonal slices<a class="headerlink" href="#orthogonal-slices" title="Permalink to this headline">#</a></h3>
 <p>Another useful way to visualize z-stack information is to use <strong>orthogonal slices</strong>.</p>
 <p>Conceptually, the z-stack is viewed as a 3D block of pixels (or perhaps, 4D if we count channels).
 We choose a single point in the image, and generate three orthogonal views on the image that pass through that point.
@@ -1126,12 +1251,14 @@ Each image depends upon the single point through which the orthogonal views pass
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-dimensions-orthogonal">
+<figure class="align-center" id="fig-dimensions-orthogonal">
 <div class="cell_output docutils container">
 <img alt="../../../_images/pixel_size_16_0.png" src="../../../_images/pixel_size_16_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 40 </span><span class="caption-text">Visualizing a z-stack using orthogonal slices at different locations within a z-stack, indicated by dashed lines.</span><a class="headerlink" href="#fig-dimensions-orthogonal" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 40 </span><span class="caption-text">Visualizing a z-stack using orthogonal slices at different locations within a z-stack, indicated by dashed lines.</span><a class="headerlink" href="#fig-dimensions-orthogonal" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The idea of orthogonal views and projections can be combined to give <strong>orthogonal projections</strong>, as shown in <a class="reference internal" href="#fig-dimensions-orthogonal-projections"><span class="std std-numref">Fig. 41</span></a>.
 In this case, we don’t need to choose a point through which to pass, because the projections do not depend upon a specific slice location; rather, all pixels contribute to each projection.</p>
 <div class="cell tag_remove-output tag_hide-cell docutils container">
@@ -1161,23 +1288,25 @@ In this case, we don’t need to choose a point through which to pass, because t
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-dimensions-orthogonal-projections">
+<figure class="align-center" id="fig-dimensions-orthogonal-projections">
 <div class="cell_output docutils container">
 <img alt="../../../_images/pixel_size_19_0.png" src="../../../_images/pixel_size_19_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 41 </span><span class="caption-text">Visualizing a z-stack using orthogonal projections.</span><a class="headerlink" href="#fig-dimensions-orthogonal-projections" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 41 </span><span class="caption-text">Visualizing a z-stack using orthogonal projections.</span><a class="headerlink" href="#fig-dimensions-orthogonal-projections" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="philosophy"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>If we <em>do</em> get too philosophical about it, I would expect there to be issues with ‘know’, ‘size’ and ‘real life’ – and probably many other elements of that sentence.</p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1201,9 +1330,11 @@ In this case, we don’t need to choose a point through which to pass, because t
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../4-colors/python.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1219,24 +1350,28 @@ In this case, we don’t need to choose a point through which to pass, because t
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pete Bankhead<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pete Bankhead<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>ImageJ: Measurements &amp; histograms &#8212; Introduction to Bioimage Analysis</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,21 +20,17 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -41,15 +39,16 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Python: Measurements &amp; histograms" href="python.html" />
@@ -61,7 +60,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +83,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -90,14 +104,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../README.html">
-   Introduction to Bioimage Analysis
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Introduction to Bioimage Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Front matter
  </span>
@@ -457,97 +472,199 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/chapters/1-concepts/2-measurements/imagej.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/chapters/1-concepts/2-measurements/imagej.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/1-concepts/2-measurements/imagej.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/1-concepts/2-measurements/imagej.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/chapters/1-concepts/2-measurements/imagej.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/chapters/1-concepts/2-measurements/imagej.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -599,12 +716,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>ImageJ: Measurements & histograms</h1>
@@ -672,11 +788,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="imagej-measurements-histograms">
-<span id="chap-rois"></span><h1>ImageJ: Measurements &amp; histograms<a class="headerlink" href="#imagej-measurements-histograms" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="imagej-measurements-histograms">
+<span id="chap-rois"></span><h1>ImageJ: Measurements &amp; histograms<a class="headerlink" href="#imagej-measurements-histograms" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
@@ -694,8 +811,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>ImageJ makes generating basic measurements and histograms <em>extremely</em> easy:</p>
 <ul class="simple">
 <li><p>Press <kbd class="kbd docutils literal notranslate">M</kbd> to make <strong>M</strong>easurements</p>
@@ -711,31 +828,31 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p>Assuming your image is 2D and there is no ROI active (we will explore <a class="reference internal" href="../5-pixel_size/pixel_size.html#chap-dimensions"><span class="std std-ref">dimensions</span></a> and <a class="reference internal" href="#sec-imagej-rois"><span class="std std-ref">ROIs</span></a> later), both of these commands will use all the pixels in the image.</p>
 <p>We’ll explore how to customize the regions being measured and exactly what measurements are made later in this section, but already it should be possible to answer the following questions.</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="ccb532e6-426b-43f1-b381-758e2a1ecdcc" name="be32d05e-b988-430d-8c11-af1a5015dd1f" type="radio">
-</input><label class="tabbed-label" for="ccb532e6-426b-43f1-b381-758e2a1ecdcc">
-Practical</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="9ce2698f-6e05-4004-bca3-2303116fa3ca" name="4fdb0da3-5954-4c66-a629-fe19c67bf55c" type="radio">
+</input><label class="sd-tab-label" for="9ce2698f-6e05-4004-bca3-2303116fa3ca">
+Practical</label><div class="sd-tab-content docutils">
 <p><em>similar_1.tif</em>, <em>similar_2.tif</em>, <em>similar_3.tif</em> and <em>similar_4.tif</em> are all, well, similar.
 However only two contain <em>identical</em> pixel values.</p>
 <p>Which two images contain the same values?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_1.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_2.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_3.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_4.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="c5428108-5d2d-446a-b1da-4650b070d0bd" name="be32d05e-b988-430d-8c11-af1a5015dd1f" type="radio">
-</input><label class="tabbed-label" for="c5428108-5d2d-446a-b1da-4650b070d0bd">
-Solution</label><div class="tabbed-content docutils">
+<input id="c6994012-2bc7-4ae0-bfc4-dd327c1419b1" name="4fdb0da3-5954-4c66-a629-fe19c67bf55c" type="radio">
+</input><label class="sd-tab-label" for="c6994012-2bc7-4ae0-bfc4-dd327c1419b1">
+Solution</label><div class="sd-tab-content docutils">
 <p>Only <em>similar_1.tif</em> and <em>similar_3.tif</em> can contain the same values.
 An easy way to determine this is to compute the mean (average) of all pixels in each of the images.
 Only those two images share the same mean value.</p>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <a class="reference internal image-reference" href="../../../_images/disguised.png"><img alt="../../../_images/disguised.png" src="../../../_images/disguised.png" style="width: 50%;" /></a>
-</div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="f2b3049b-4967-4ddc-9fe4-2828229843b8" name="2de1a9d7-0bbe-43c3-b99d-beda8887d314" type="radio">
-</input><label class="tabbed-label" for="f2b3049b-4967-4ddc-9fe4-2828229843b8">
-Practical</label><div class="tabbed-content docutils">
+</aside>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="ce9a25f5-697a-4bc6-b213-d428c9e11311" name="2060c5cd-18c5-407a-bbbe-905e9f7aa835" type="radio">
+</input><label class="sd-tab-label" for="ce9a25f5-697a-4bc6-b213-d428c9e11311">
+Practical</label><div class="sd-tab-content docutils">
 <p><em>disguise_matching.tif</em> has lost its match.</p>
 <p>Which of the following three images have the same pixel values as <em>disguise_matching.tif</em>?</p>
 <ul class="simple">
@@ -745,15 +862,15 @@ Practical</label><div class="tabbed-content docutils">
 </ul>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/disguise_matching.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/disguised_1.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/disguised_2.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/disguised_3.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="a6efe88d-3901-4dd2-9c00-534ae008a8c6" name="2de1a9d7-0bbe-43c3-b99d-beda8887d314" type="radio">
-</input><label class="tabbed-label" for="a6efe88d-3901-4dd2-9c00-534ae008a8c6">
-Solution</label><div class="tabbed-content docutils">
+<input id="376a6362-3a17-48c4-87a5-1a3492fd00df" name="2060c5cd-18c5-407a-bbbe-905e9f7aa835" type="radio">
+</input><label class="sd-tab-label" for="376a6362-3a17-48c4-87a5-1a3492fd00df">
+Solution</label><div class="sd-tab-content docutils">
 <p><em>disguised_3.tif</em> is the matching image.</p>
 </div>
 </div>
-</div>
-<div class="section" id="measuring-images">
-<h2>Measuring images<a class="headerlink" href="#measuring-images" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="measuring-images">
+<h2>Measuring images<a class="headerlink" href="#measuring-images" title="Permalink to this headline">#</a></h2>
 <p>When using <span class="menuselection">Analyze ‣ Measure</span>, the measurements are added to a <em>Results table</em>.</p>
 <p>By default, the mean, minimum and maximum pixel values are provided, along with the area of the image… and that’s all.
 It’s not a lot.</p>
@@ -782,12 +899,14 @@ Seeing an area of 10 <em>might</em> mean 10 pixels<sup>2</sup>, or 10 µm<sup>2<
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-measure" style="width: 100%">
+<figure class="align-center" id="fig-measure" style="width: 100%">
 <div class="cell_output docutils container">
 <img alt="../../../_images/imagej_5_0.png" src="../../../_images/imagej_5_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Measurements made on an image are added to a results table. The choice of measurements to make can be changed using the <span class="menuselection">Analyze ‣ Set Measurements…</span> command.</span><a class="headerlink" href="#fig-measure" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Measurements made on an image are added to a results table. The choice of measurements to make can be changed using the <span class="menuselection">Analyze ‣ Set Measurements…</span> command.</span><a class="headerlink" href="#fig-measure" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -804,14 +923,14 @@ Seeing an area of 10 <em>might</em> mean 10 pixels<sup>2</sup>, or 10 µm<sup>2<
 <p>Different, similar-looking tables can be created by different commands, or by duplicating an existing results table with <span class="menuselection">File ‣ Duplicate…</span>.
 Nevertheless, any new measurements you make with the <span class="menuselection">Measure</span> command will <em>only</em> be added to the original, official table.
 This also has an extra <span class="guilabel">Results</span> entry in its menu bar that other tables lack.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <div class="cell_output docutils container">
 <img alt="../../../_images/imagej_7_0.png" src="../../../_images/imagej_7_0.png" />
 </div>
+</figure>
 </div>
-</div>
-<div class="section" id="choosing-which-measurements-to-select">
-<h3>Choosing which measurements to select<a class="headerlink" href="#choosing-which-measurements-to-select" title="Permalink to this headline">¶</a></h3>
+<section id="choosing-which-measurements-to-select">
+<h3>Choosing which measurements to select<a class="headerlink" href="#choosing-which-measurements-to-select" title="Permalink to this headline">#</a></h3>
 <p>Some options within <span class="menuselection">Analyze ‣ Set Measurements…</span> are so universally useful that they should pretty much always be set.
 Conversely, some options are manifestly confusing and dangerous and should be used rarely – or not at all.</p>
 <p>Options to <strong>always</strong> select:</p>
@@ -827,10 +946,10 @@ Conversely, some options are manifestly confusing and dangerous and should be us
 </ul>
 <p>The two options that I think you should avoid can both result in something unexpected being measured if you don’t know (or have forgotten) that either was selected under <span class="menuselection">Analyze ‣ Set Measurements…</span>.</p>
 <p>Fortunately, they are not really needed if you master the art of generating, managing and transferring regions of interest between images.</p>
-</div>
-</div>
-<div class="section" id="regions-of-interest">
-<span id="sec-imagej-rois"></span><h2>Regions Of Interest<a class="headerlink" href="#regions-of-interest" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="regions-of-interest">
+<span id="sec-imagej-rois"></span><h2>Regions Of Interest<a class="headerlink" href="#regions-of-interest" title="Permalink to this headline">#</a></h2>
 <p><strong>Regions Of Interest (ROIs)</strong> can be used to define specific parts of an image that should be processed independently or measured.
 Only pixels within any ROI we draw will be included in the calculations when we run <span class="menuselection">Analyze ‣ Measure</span>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
@@ -844,19 +963,21 @@ Only pixels within any ROI we draw will be included in the calculations when we 
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-roi-drawing" style="width: 60%">
+<figure class="align-center" id="fig-roi-drawing" style="width: 60%">
 <div class="cell_output docutils container">
 <img alt="../../../_images/imagej_9_0.png" src="../../../_images/imagej_9_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">ROI drawing tools are found on the left side of the ImageJ tool bar (A). The ROI in (B) was created by drawing one rectangular and two circular ROIs, holding down the <kbd class="kbd docutils literal notranslate">Shift</kbd> key between each so that the regions were combined.</span><a class="headerlink" href="#fig-roi-drawing" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">ROI drawing tools are found on the left side of the ImageJ tool bar (A). The ROI in (B) was created by drawing one rectangular and two circular ROIs, holding down the <kbd class="kbd docutils literal notranslate">Shift</kbd> key between each so that the regions were combined.</span><a class="headerlink" href="#fig-roi-drawing" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>ROIs of different types (e.g. rectangles, circles, lines, points, polygons, freehand shapes) can be drawn using the commands in the tool bar (<a class="reference internal" href="#fig-roi-drawing"><span class="std std-numref">Fig. 13</span></a>), and are invariably 2D.
 Right-clicking the tools often provides access to related tools, while double-clicking may give additional options.
 When drawing a ROI, pressing <kbd class="kbd docutils literal notranslate">Shift</kbd> or <kbd class="kbd docutils literal notranslate">Control</kbd> before releasing the mouse button adds the ROI being drawn to any existing ROI already present.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><strong>ROIs</strong> in ImageJ are sometimes called <strong>selections</strong> – meaning the same thing</p>
-</div>
+</aside>
 <p>Somewhat confusingly, ROIs are sometimes referred to as <strong>selections</strong> in ImageJ.
 This is why some extra commands to create or adjust ROIs appear under the <span class="menuselection">Edit ‣ Selection</span> submenu.</p>
 <p>One such command is <span class="menuselection">Edit ‣ Selection ‣ Create Mask</span>.
@@ -872,16 +993,20 @@ This creates a new <a class="reference internal" href="../../2-processing/5-morp
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-rois-mask" style="width: 70%">
+<figure class="align-center" id="fig-rois-mask" style="width: 70%">
 <div class="cell_output docutils container">
 <img alt="../../../_images/imagej_11_0.png" src="../../../_images/imagej_11_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">A ROI representing an area is usually depicted using yellow lines drawn on an image, but sometimes it isn’t clear which pixels are inside or outside the ROI. <span class="menuselection">Edit ‣ Selection ‣ Create Mask</span> can help clarify this.</span><a class="headerlink" href="#fig-rois-mask" title="Permalink to this image">¶</a></p>
-</div>
-<div class="margin figure align-default" id="id2">
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">A ROI representing an area is usually depicted using yellow lines drawn on an image, but sometimes it isn’t clear which pixels are inside or outside the ROI. <span class="menuselection">Edit ‣ Selection ‣ Create Mask</span> can help clarify this.</span><a class="headerlink" href="#fig-rois-mask" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="margin align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/binary-options.png"><img alt="../../../_images/binary-options.png" src="../../../_images/binary-options.png" style="width: 196.7px; height: 168.7px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text"><span class="menuselection">Process ‣ Binary ‣ Options…</span></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text"><span class="menuselection">Process ‣ Binary ‣ Options…</span></span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="danger admonition">
 <p class="admonition-title">Interpreting ‘Create Mask’</p>
 <p>Unfortunately, when using <span class="menuselection">Edit ‣ Selection ‣ Create Mask</span> it is not <em>entirely certain</em> whether black means ‘inside’ or ‘outside’.
@@ -894,9 +1019,9 @@ This depends upon whether <span class="guilabel">Black background</span> is sele
 <p>Although ImageJ can measure very exactly whatever regions it is told to measure <em>within an image</em>, keep in mind that in light microscopy images any size measurements will not exactly correspond to sizes of structures <em>in real life</em>.
 This is especially true at very small scales (hundreds of nanometers or smaller), for resolution-related reasons that will be described in <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html#chap-formation-spatial"><span class="std std-ref">Blur &amp; the PSF</span></a>.</p>
 </div>
-</div>
-<div class="section" id="working-with-multiple-rois">
-<h2>Working with multiple ROIs<a class="headerlink" href="#working-with-multiple-rois" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="working-with-multiple-rois">
+<h2>Working with multiple ROIs<a class="headerlink" href="#working-with-multiple-rois" title="Permalink to this headline">#</a></h2>
 <p>Normally, only a single ROI can be ‘active’ in ImageJ (i.e. affecting measurements) at any one time.
 If you need control over multiple ROIs, there are two places in which you can store them.
 These differ according to purpose:</p>
@@ -904,12 +1029,12 @@ These differ according to purpose:</p>
 <li><p><strong>The ROI Manager:</strong> for most ROIs that you want to be able to edit and use for measurements</p></li>
 <li><p><strong>The image overlay:</strong> for ROIs that you only want to display</p></li>
 </ol>
-<div class="section" id="the-roi-manager">
-<h3>The ROI Manager<a class="headerlink" href="#the-roi-manager" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
+<section id="the-roi-manager">
+<h3>The ROI Manager<a class="headerlink" href="#the-roi-manager" title="Permalink to this headline">#</a></h3>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><kbd class="kbd docutils literal notranslate">T</kbd> for <em><strong>T</strong>roy manager</em>: shortcut to add ROI to the ROI Manager</p>
-</div>
+</aside>
 <p>ImageJ’s <em>ROI Manager</em> provides a convenient way to store multiple ROIs in a list, allowing you to easily access, edit and measure them.</p>
 <p>The slow way to open the ROI Manager is to choose <span class="menuselection">Analyze ‣ Tools ‣ ROI Manager…</span>.
 The fast way is just to draw a ROI and press <kbd class="kbd docutils literal notranslate">T</kbd>.</p>
@@ -933,14 +1058,16 @@ This is another reason why choosing <span class="guilabel">Display label</span> 
 <li><p><span class="guilabel">XOR</span> – create a single ROI containing all the selected ROIs, <em>except</em> the places where they overlap (‘eXclusive OR’)</p></li>
 </ul>
 </div>
-<div class="margin figure align-default" id="id3">
+<figure class="margin align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/binary-happy-roi-manager.png"><img alt="../../../_images/binary-happy-roi-manager.png" src="../../../_images/binary-happy-roi-manager.png" style="width: 177.79999999999998px; height: 238.7px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">The <em>ROI Manager</em> with two ROIs</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="1be0c019-dbb3-4868-9aac-970e1dcca501" name="19adba2b-647f-432f-a69a-8449e3df32e9" type="radio">
-</input><label class="tabbed-label" for="1be0c019-dbb3-4868-9aac-970e1dcca501">
-Practical</label><div class="tabbed-content docutils">
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">The <em>ROI Manager</em> with two ROIs</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="aa06c7c1-c3d4-44bd-bf30-05b8c0420af5" name="81e26f9b-272a-44d9-afe4-9e117bcf48dd" type="radio">
+</input><label class="sd-tab-label" for="aa06c7c1-c3d4-44bd-bf30-05b8c0420af5">
+Practical</label><div class="sd-tab-content docutils">
 <p>For <a class="reference internal" href="#fig-rois-mask"><span class="std std-numref">Fig. 14</span></a>, I used the ROI Manager to create a ROI with a hole in it.</p>
 <p>To do this in <em>happy_cell.tif</em>, you can</p>
 <ol class="simple">
@@ -953,19 +1080,19 @@ The end result is a ROI representing the cytoplasm, with the nucleus removed.</p
 <p><strong>Tip:</strong> Remember <span class="menuselection">Edit ‣ Selection ‣ Create Mask</span> will let you see which pixels are inside and which pixels are outside the ROI.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/happy_cell.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="e74bda0a-3ea5-4e95-bec6-b9691188763a" name="19adba2b-647f-432f-a69a-8449e3df32e9" type="radio">
-</input><label class="tabbed-label" for="e74bda0a-3ea5-4e95-bec6-b9691188763a">
-Solution</label><div class="tabbed-content docutils">
+<input id="9e9b526f-0875-4139-bf2d-300b97177623" name="81e26f9b-272a-44d9-afe4-9e117bcf48dd" type="radio">
+</input><label class="sd-tab-label" for="9e9b526f-0875-4139-bf2d-300b97177623">
+Solution</label><div class="sd-tab-content docutils">
 <p><span class="guilabel">XOR</span> (‘exclusive OR’) provides a ROI that contains pixels that are inside the cell OR inside the nucleus, but NOT both.</p>
 </div>
 </div>
-</div>
-<div class="section" id="overlays">
-<span id="sec-imagej-overlay"></span><h3>Overlays<a class="headerlink" href="#overlays" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
+</section>
+<section id="overlays">
+<span id="sec-imagej-overlay"></span><h3>Overlays<a class="headerlink" href="#overlays" title="Permalink to this headline">#</a></h3>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><kbd class="kbd docutils literal notranslate">B</kbd> for <em><strong>B</strong>overlay</em>: shortcut to add a ROI to an overlay</p>
-</div>
+</aside>
 <p>Overlays also contain a list of ROIs that are shown simultaneously on the image.
 However, unlike with the ROI Manager, ROIs stored on an overlay do <em>not</em> usually affect the <span class="guilabel">Measure</span> command.</p>
 <p>Overlays are therefore suitable for storing annotations for visualization purposes.
@@ -977,9 +1104,9 @@ The same submenu also provides commands to transfer ROIs between the overlay and
 <p>You can ‘reactivate’ a ROI on an overlay by clicking it with the <kbd class="kbd docutils literal notranslate">Alt</kbd> key pressed (provided a suitable ROI tool is selected), and then edit or reposition it.</p>
 <p>Note that if a ROI on an overlay has been ‘reactivated’ in this way, then it <em>does</em> influence measurements.</p>
 </div>
-</div>
-<div class="section" id="saving-rois">
-<h3>Saving ROIs<a class="headerlink" href="#saving-rois" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="saving-rois">
+<h3>Saving ROIs<a class="headerlink" href="#saving-rois" title="Permalink to this headline">#</a></h3>
 <p>Individual ROIs, currently active on an image, can be saved simply by choosing <span class="menuselection">File ‣ Save As ‣ Selection…</span></p>
 <p>The ROI Manager also has a <span class="guilabel">Save…</span> command (under <span class="guilabel">More</span>), which will save whichever ROIs are currently selected in the manager (or, if none are selected, all of them).</p>
 <p>Overlays are fixed to specific images and do not have their own special save command, but will nonetheless be included if you save the image as a TIFF file (ImageJ’s default format).
@@ -1000,30 +1127,32 @@ Therefore you may well want to use this command when creating figures or present
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-rois">
+<figure class="align-center" id="fig-rois">
 <div class="cell_output docutils container">
 <img alt="../../../_images/imagej_22_0.png" src="../../../_images/imagej_22_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">ROIs and overlays are displayed on top of images, and so can be removed easily without having any effect upon the pixel values.
-Flattened images may appear the same on screen, but are invariably RGB (see <a class="reference internal" href="../4-colors/colors.html#chap-colors"><span class="std std-ref">Channels &amp; colors</span></a>) and have had their pixel values permanently changed to show any annotations.</span><a class="headerlink" href="#fig-rois" title="Permalink to this image">¶</a></p>
-</div>
-<div class="margin sidebar">
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">ROIs and overlays are displayed on top of images, and so can be removed easily without having any effect upon the pixel values.
+Flattened images may appear the same on screen, but are invariably RGB (see <a class="reference internal" href="../4-colors/colors.html#chap-colors"><span class="std std-ref">Channels &amp; colors</span></a>) and have had their pixel values permanently changed to show any annotations.</span><a class="headerlink" href="#fig-rois" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <img alt="../../../_images/annotated_cyclists.png" src="../../../_images/annotated_cyclists.png" />
-</div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="abca6ab2-6753-4259-9deb-098ab4ffd876" name="010f2faf-e40f-498c-bc66-f1ba1b37b37b" type="radio">
-</input><label class="tabbed-label" for="abca6ab2-6753-4259-9deb-098ab4ffd876">
-Practical</label><div class="tabbed-content docutils">
+</aside>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="c74bf05a-7ccd-4340-8575-ce85f9821084" name="10e6bfae-6ec2-412d-99c1-67da635060a5" type="radio">
+</input><label class="sd-tab-label" for="c74bf05a-7ccd-4340-8575-ce85f9821084">
+Practical</label><div class="sd-tab-content docutils">
 <p>Open the images <em>Annotated_Cyclists_1.tif</em> and <em>Annotated_Cyclists_2.tif</em>, which depict the 3 main cyclist characteristics I found most disconcerting as a pedestrian in Heidelberg.</p>
 <p>The images should initially look the same, but in one the text is an overlay, while in the other the image has been flattened.
 Which is which? Try to think of several ways to investigate this.</p>
 <p><strong>Tip:</strong> Zooming in may help. So might searching the menus for overlay-related commands (aided by <kbd class="kbd docutils literal notranslate">L</kbd>).</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_1.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_2.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="036141aa-0ad3-414e-8d9f-18644e833197" name="010f2faf-e40f-498c-bc66-f1ba1b37b37b" type="radio">
-</input><label class="tabbed-label" for="036141aa-0ad3-414e-8d9f-18644e833197">
-Solution</label><div class="tabbed-content docutils">
+<input id="b02e7d20-b21f-4912-9bcd-4e70f79ac8ed" name="10e6bfae-6ec2-412d-99c1-67da635060a5" type="radio">
+</input><label class="sd-tab-label" for="b02e7d20-b21f-4912-9bcd-4e70f79ac8ed">
+Solution</label><div class="sd-tab-content docutils">
 <p><em>Annotated_Cyclists_1.tif</em> is the one with the overlay.</p>
 <p>Five ways to determine whether an annotation is an overlay or not:</p>
 <ol class="simple">
@@ -1039,25 +1168,25 @@ If the annotation remains visible on top of where you drew, it must be on an ove
 </ol>
 </div>
 </div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="ff3d4f9b-a53b-4ae2-b76c-8ed8aece2180" name="5d73493f-3d04-4b48-8384-462a26b2b38d" type="radio">
-</input><label class="tabbed-label" for="ff3d4f9b-a53b-4ae2-b76c-8ed8aece2180">
-Practical</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="907e7182-aac2-4afb-b5bd-4f1e88398a2a" name="418185c0-ddf9-403f-844e-45d242eaf781" type="radio">
+</input><label class="sd-tab-label" for="907e7182-aac2-4afb-b5bd-4f1e88398a2a">
+Practical</label><div class="sd-tab-content docutils">
 <p>Using the cyclist image containing the overlay from the previous practical, rearrange the annotations so that they are each positioned next to different cyclists.</p>
 <p>You could do this by deleting the overlay and starting again, but there are other, faster possibilities (using a technique mentioned before, or the <span class="menuselection">Image ‣ Overlay ‣ To ROI Manager</span> command).</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_1.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_2.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="945ba318-a1d6-48a7-9224-9c4537c8d36f" name="5d73493f-3d04-4b48-8384-462a26b2b38d" type="radio">
-</input><label class="tabbed-label" for="945ba318-a1d6-48a7-9224-9c4537c8d36f">
-Solution</label><div class="tabbed-content docutils">
+<input id="ad362d5b-c112-449c-b78a-50044cebb460" name="418185c0-ddf9-403f-844e-45d242eaf781" type="radio">
+</input><label class="sd-tab-label" for="ad362d5b-c112-449c-b78a-50044cebb460">
+Solution</label><div class="sd-tab-content docutils">
 <p>Click the annotation while holding down the <kbd class="kbd docutils literal notranslate">Alt</kbd> key, to bring it to life so it can be moved around again.
 This only works if certain tools are selected, e.g. <span class="guilabel">Rectangle</span> or <span class="guilabel">Text</span>, because some other tools have more overriding functions, such as zooming in or scrolling.</p>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="generating-histograms">
-<h2>Generating histograms<a class="headerlink" href="#generating-histograms" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="generating-histograms">
+<h2>Generating histograms<a class="headerlink" href="#generating-histograms" title="Permalink to this headline">#</a></h2>
 <p>Creating a histogram in ImageJ, via <span class="menuselection">Analyze ‣ Histogram</span> or simply pressing <kbd class="kbd docutils literal notranslate">H</kbd>, results in a new histogram window being created.
 Like with <span class="menuselection">Analyze ‣ Measure</span>, this will use a ROI if it is available; otherwise it will use the full image.</p>
 <p>An ImageJ histogram is displayed above some basic summary statistics and four intriguing buttons:</p>
@@ -1067,10 +1196,12 @@ Like with <span class="menuselection">Analyze ‣ Measure</span>, this will use 
 <li><p><span class="guilabel">Log</span> – to change the y axis to show the log of the counts for each bin; this is helpful to distinguish between counts that are very small</p></li>
 <li><p><span class="guilabel">Live</span> – to make the histogram responsive to whatever you do with the image – including changing the LUT, or any ROI</p></li>
 </ul>
-<div class="figure align-center" id="id4">
+<figure class="align-center" id="id4">
 <a class="reference internal image-reference" href="../../../_images/measure-imagej-histogram.png"><img alt="../../../_images/measure-imagej-histogram.png" src="../../../_images/measure-imagej-histogram.png" style="width: 651.6999999999999px; height: 296.09999999999997px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">An image with its histogram in ImageJ.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">An image with its histogram in ImageJ.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="admonition-a-histogram-of-an-image-and-an-image-of-a-histogram admonition">
 <p class="admonition-title">A histogram of an image… and an image of a histogram</p>
 <p>A slightly odd feature of ImageJ histograms is that <em>the histogram is also an image</em>.
@@ -1083,8 +1214,8 @@ We will revisit this in <a class="reference internal" href="../5-pixel_size/pixe
 <dd><p>If you have a stack, you also may need to explore <span class="guilabel">More &gt;&gt; Options…</span> to define whether all ROIs are shown on all slices, or only on the slices on which they were first created.</p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1108,9 +1239,11 @@ We will revisit this in <a class="reference internal" href="../5-pixel_size/pixe
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="measurements.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1126,24 +1259,28 @@ We will revisit this in <a class="reference internal" href="../5-pixel_size/pixe
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pete Bankhead<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pete Bankhead<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

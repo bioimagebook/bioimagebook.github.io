@@ -46,8 +46,10 @@ We'll explore how to customize the regions being measured and exactly what measu
 
 +++
 
-```{tabbed} Practical
-:new-group:
+````{tab-set}
+
+```{tab-item} Practical
+
 
 *similar_1.tif*, *similar_2.tif*, *similar_3.tif* and *similar_4.tif* are all, well, similar.
 However only two contain *identical* pixel values.
@@ -57,13 +59,14 @@ Which two images contain the same values?
 [![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_1.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_2.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_3.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_4.tif)
 ```
 
-```{tabbed} Solution
+```{tab-item} Solution
 
 Only *similar_1.tif* and *similar_3.tif* can contain the same values.
 An easy way to determine this is to compute the mean (average) of all pixels in each of the images.
 Only those two images share the same mean value.
 
 ```
+````
 
 ````{margin}
 ```{image} images/disguised.png
@@ -71,8 +74,10 @@ Only those two images share the same mean value.
 ```
 ````
 
-```{tabbed} Practical
-:new-group:
+````{tab-set}
+
+```{tab-item} Practical
+
 
 *disguise_matching.tif* has lost its match.
 
@@ -84,11 +89,13 @@ Which of the following three images have the same pixel values as *disguise_matc
 [![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/disguise_matching.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/disguised_1.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/disguised_2.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/disguised_3.tif)
 ```
 
-```{tabbed} Solution
+```{tab-item} Solution
 
 *disguised_3.tif* is the matching image.
 
 ```
+
+````
 
 +++
 
@@ -335,8 +342,10 @@ figclass: margin
 The *ROI Manager* with two ROIs
 ```
 
-```{tabbed} Practical
-:new-group:
+````{tab-set}
+
+```{tab-item} Practical
+
 
 For {numref}`fig-rois_mask`, I used the ROI Manager to create a ROI with a hole in it.
 
@@ -356,11 +365,13 @@ Which combine operation do you need to achieve this?
 [![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/happy_cell.tif)
 ```
 
-```{tabbed} Solution
+```{tab-item} Solution
 
 {guilabel}`XOR` ('exclusive OR') provides a ROI that contains pixels that are inside the cell OR inside the nucleus, but NOT both.
 
 ```
+
+````
 
 +++
 
@@ -429,8 +440,10 @@ Flattened images may appear the same on screen, but are invariably RGB (see {ref
 ```{image} images/annotated_cyclists.png
 ````
 
-```{tabbed} Practical
-:new-group:
+````{tab-set}
+
+```{tab-item} Practical
+
 
 Open the images *Annotated_Cyclists_1.tif* and *Annotated_Cyclists_2.tif*, which depict the 3 main cyclist characteristics I found most disconcerting as a pedestrian in Heidelberg.
 
@@ -442,7 +455,7 @@ Which is which? Try to think of several ways to investigate this.
 [![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_1.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_2.tif)
 ```
 
-```{tabbed} Solution
+```{tab-item} Solution
 *Annotated_Cyclists_1.tif* is the one with the overlay.
 
 Five ways to determine whether an annotation is an overlay or not:
@@ -458,10 +471,14 @@ If the annotation remains visible on top of where you drew, it must be on an ove
 5.  Choose {menuselection}`Image --> Overlay --> To ROI Manager` and see if anything happens at all.
 ```
 
+````
+
 +++
 
-```{tabbed} Practical
-:new-group:
+````{tab-set}
+
+```{tab-item} Practical
+
 
 Using the cyclist image containing the overlay from the previous practical, rearrange the annotations so that they are each positioned next to different cyclists.
 
@@ -471,11 +488,13 @@ You could do this by deleting the overlay and starting again, but there are othe
 ```
 
 
-```{tabbed} Solution
+```{tab-item} Solution
 
 Click the annotation while holding down the {kbd}`Alt` key, to bring it to life so it can be moved around again.
 This only works if certain tools are selected, e.g. {guilabel}`Rectangle` or {guilabel}`Text`, because some other tools have more overriding functions, such as zooming in or scrolling.
 ```
+
+````
 
 +++
 

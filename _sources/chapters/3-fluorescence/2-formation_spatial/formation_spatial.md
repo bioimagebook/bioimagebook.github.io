@@ -175,9 +175,10 @@ name: fig-psf_planes
 Simplified diagram to help visualize how a light-emitting point would be imaged using a widefield microscope. Some of the light originating from the point is captured by a lens. If you imagine the light then being directed towards a focal point, this leads to an hourglass shape. If a detector is placed close to the focal point, the spot-like image formed by the light striking the detector would be small and bright. However, if the detector were positioned above or below this focal plane, the intensity of the spot would decrease and its size would increase.
 ```
 
+````{tab-set}
 
-```{tabbed} Question
-:new-group:
+```{tab-item} Question
+
 
 In focus, a light-emitting point looks like a small, bright blob.
 Out of focus, it's much less bright and extends over a wider area.
@@ -188,7 +189,7 @@ In other words, would you expect more or less light in the focal plane than in o
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 In a widefield image, every plane we can record contains in-focus light along with _all_ the detectable light from _all_ other planes added together.
 Therefore we should expect approximately _the same total amount of light_ within each plane of a *z*-stack – just differently distributed.
@@ -197,6 +198,10 @@ That's potentially a lot of light in the 'wrong' place, especially if looking at
 At least, this would be so for an infinitely-large detector, or a small, centered sample.
 In practice, if the light originates from a location so out-of-focus that its light spills over the side of the detector then this plane would contain less light.
 ```
+
+````
+
++++
 
 ### The appearance of interference
 
@@ -377,29 +382,39 @@ where $\eta$ is the refractive index of the objective lens immersion medium (whi
 The practical importance of these equations is that they reveal the key factors that influence how blurry an image will be.
 This hints at some ways we might be able to reduce blurring at the acquisition stage.
 
-```{tabbed} Question
-:new-group:
+````{tab-set}
+
+```{tab-item} Question
+
 
 According to Equation {eq}`eqn-res_lateral`, the equation for the Airy disk size, what are the two variables we _may_ be able to control that influence the amount of blur in our images?
 And how must they be changed (increased or decreased) for the images to have less blur?
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 If the wavelength $\lambda$ is _lower_ or the objective NA is _higher_, $r_{airy}$ decreases and we have less blur.
 ```
 
-```{tabbed} Question
-:new-group:
+````
+
++++
+
+````{tab-set}
+
+```{tab-item} Question
+
 
 Does the NA have more influence on blur in the *xy* plane, or along the *z* axis?
 ```
 
 
-````{tabbed} Answer
+```{tab-item} Answer
 
 Because of the squaring, the NA has a much greater influence on blur along the *z* axis than in *xy*.
 This can be seen clearly in {numref}`fig-psf_na`.
+
+```
 
 ````
 
@@ -452,9 +467,10 @@ For an interactive tutorial on the effect of using different NAs, see <https://w
 
 ````
 
+`````{tab-set}
 
-```{tabbed} Question
-:new-group:
+```{tab-item} Question
+
 
 Convince yourself that $z_{min}$ will be considerably higher than $r_{airy}$ using one of the following methods:
 
@@ -468,7 +484,7 @@ What is the main implication of this observation, in terms of how separated stru
 ```
 
 
-````{tabbed} Answer
+````{tab-item} Answer
 
 The ratio is
 
@@ -483,6 +499,10 @@ When the NA is lower, the difference is even more.
 The main practical implication is that it's more likely that you will be able to distinguish structures that are separated from one another by a short distance in *xy* than similarly separated in *z*.
 If you really need information along the *z*-dimension more than anywhere else, maybe rotating your sample could help?
 ````
+
+`````
+
++++
 
 ### Spatial resolution
 
@@ -561,9 +581,10 @@ Airy patterns separated by different distances, defined in terms of Airy disk ra
 It should be kept in mind that the use of $r_{airy}$ and $z_{min}$ in the Rayleigh criterion is somewhat arbitrary -- and the effects of brightness differences, finite pixel sizes and noise further complicate the situation, so that in practice a greater distance may well be required for us to confidently distinguish structures. Nevertheless, the Rayleigh criterion is helpful to give some idea of the scale of distances involved, i.e.
 hundreds of nanometers when using visible light.
 
+````{tab-set}
 
-```{tabbed} Question
-:new-group:
+```{tab-item} Question
+
 
 Suppose the diameter of the Airy disk is around 500 nm, and you are looking at an image containing separate, well-spaced structures that are 2 nm, 20 nm and 200 nm in size.
 Assuming that you have imaged all of these exactly in focus (after all, you are a brilliant microscopist), how will these structures appear in the image?
@@ -573,13 +594,17 @@ _Note:_ This is a particularly important question! Think of both the size and br
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 Because even an infinitesimally small point cannot appear smaller than the Airy disk in the recorded image, _potentially all 3 of these structures look the same!_ There may be _some_ increase in size visible with the 200 nm structure (because it is larger than a single point, this makes it like many different, slightly-shifted-but-mostly-overlapping Airy disks added together), but it will certainly not appear 10 or 100 times larger than the others.
 
 _However_, because smaller objects typically emit fewer photons, the smaller structures may well appear less bright -- if they are bright enough to be visible at all.
 Therefore, at this scale accurate measurements of size are impossible from (conventional, non-super-resolution) fluorescence microscopy images, but the actual size may have some relationship with brightness.
 ```
+
+````
+
++++
 
 ### Measuring PSFs & small structures
 

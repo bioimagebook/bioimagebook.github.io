@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>ImageJ: Multidimensional processing &#8212; Introduction to Bioimage Analysis</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,21 +20,17 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -41,15 +39,16 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="From photons to pixels" href="../../3-fluorescence/1-formation_overview/formation_overview.html" />
@@ -61,7 +60,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +83,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -90,14 +104,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../README.html">
-   Introduction to Bioimage Analysis
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Introduction to Bioimage Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Front matter
  </span>
@@ -457,97 +472,199 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/chapters/2-processing/7-multidimensional_processing/imagej.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/chapters/2-processing/7-multidimensional_processing/imagej.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/7-multidimensional_processing/imagej.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/7-multidimensional_processing/imagej.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/chapters/2-processing/7-multidimensional_processing/imagej.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/chapters/2-processing/7-multidimensional_processing/imagej.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -599,12 +716,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>ImageJ: Multidimensional processing</h1>
@@ -672,11 +788,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="imagej-multidimensional-processing">
-<h1>ImageJ: Multidimensional processing<a class="headerlink" href="#imagej-multidimensional-processing" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="imagej-multidimensional-processing">
+<h1>ImageJ: Multidimensional processing<a class="headerlink" href="#imagej-multidimensional-processing" title="Permalink to this headline">#</a></h1>
 <div class="warning admonition">
 <p class="admonition-title">Work in progress!</p>
 <p>This section isn’t complete yet.
@@ -699,12 +816,12 @@ It’s really just a scattered collection of thoughts for now.</p>
 </div>
 </div>
 </div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>This section gives a brief overview of some things to think about when working with z-stacks and time series in ImageJ.</p>
-</div>
-<div class="section" id="point-operations-contrast-conversion">
-<h2>Point operations, contrast &amp; conversion<a class="headerlink" href="#point-operations-contrast-conversion" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="point-operations-contrast-conversion">
+<h2>Point operations, contrast &amp; conversion<a class="headerlink" href="#point-operations-contrast-conversion" title="Permalink to this headline">#</a></h2>
 <p>Point operations are straightforward: they depend only on individual pixels, so the number of dimensions is unimportant.
 Image arithmetic involving a 3D stack and a 2D image can also be carried out in ImageJ using the <span class="menuselection">Process ‣ Image Calculator</span>, where the operation involving the 2D image is applied to each slice of the 3D stack in turn.
 Other options, such as filtering and thresholding, are possible, but bring with them extra considerations – and often significantly higher computational costs.</p>
@@ -713,16 +830,16 @@ The normal <span class="menuselection">Brightness/Contrast…</span> tool only t
 Optimizing the display for a single slice does not necessarily mean the rest of the stack will look reasonable if the brightness changes much. <span class="menuselection">Process ‣ Enhance Contrast…</span> is a better choice, since here you can specify that the information in the entire stack should be used.
 You can also specify the percentage of pixels that should be saturated (clipped) <em>for display</em>, i.e. those that should be shown with the first or last colors in the LUT.
 So long as <span class="guilabel">Normalize</span> and <span class="guilabel">Equalize histogram</span> are not selected, the pixel values shouldn’t be changed.</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="9c02459f-49ef-474e-bf2f-56190ce1c9b2" name="83b3b58b-b88f-4451-ba4c-2c3ce7386c5c" type="radio">
-</input><label class="tabbed-label" for="9c02459f-49ef-474e-bf2f-56190ce1c9b2">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="70c81e3d-c6ab-43a3-8ed1-ec4f3f09d7de" name="89f5a036-2380-4f93-9c83-fc20cba39fe6" type="radio">
+</input><label class="sd-tab-label" for="70c81e3d-c6ab-43a3-8ed1-ec4f3f09d7de">
+Question</label><div class="sd-tab-content docutils">
 <p>By default, the percentage of saturated pixels in <span class="menuselection">Enhance Contrast…</span> is set to 0.4.
 Why might this be chosen instead of 0?</p>
 </div>
-<input id="ee898d62-74e6-405b-a04f-31f7c1d18fd9" name="83b3b58b-b88f-4451-ba4c-2c3ce7386c5c" type="radio">
-</input><label class="tabbed-label" for="ee898d62-74e6-405b-a04f-31f7c1d18fd9">
-Answer</label><div class="tabbed-content docutils">
+<input id="39f7768f-4a09-4e72-8e2a-41c92626c40c" name="89f5a036-2380-4f93-9c83-fc20cba39fe6" type="radio">
+</input><label class="sd-tab-label" for="39f7768f-4a09-4e72-8e2a-41c92626c40c">
+Answer</label><div class="sd-tab-content docutils">
 <p>If the percentage of saturated pixels is 0, then the minimum and maximum pixel values throughout the image will be given the first and last LUT colors respectively, with all other colors devoted to values in between.
 This is sensitive to outliers, and often results in images that have poor contrast.
 It’s usually better to accept some small amount of visual saturation, in order to give more LUT colors to the pixel values between the extremes.</p>
@@ -736,25 +853,25 @@ To minimize the information lost, these should usually be set to the minimum and
 <p>For this reason, it’s good practice to run <span class="menuselection">Enhance Contrast…</span> prior to reducing bit-depths of stacks, setting the saturation to 0 and using the entire stack.
 This means no pixels will be clipped in the output (although rescaling and rounding will still occur).</p>
 </div>
-</div>
-<div class="section" id="d-filtering">
-<h2>3D filtering<a class="headerlink" href="#d-filtering" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="d-filtering">
+<h2>3D filtering<a class="headerlink" href="#d-filtering" title="Permalink to this headline">#</a></h2>
 <p>Many filters naturally lend themselves to being applied to as many dimensions as are required.
 For example, a 3×3 mean filter can easily become a 3×3×3 filter if averaging across slices is allowed.
 Importantly, it then replaces each pixel by the average of 27 values, rather than 9.</p>
 <p>This implies the reduction in noise is <em>somewhat</em> similar to that of applying a 5×5 filter (25 values), but with a little less blurring in 2D and a little more along the third dimension instead.
 Several 3D filters are available under the <span class="menuselection">Plugins ‣ Process ‣</span> submenu.</p>
-<div class="section" id="fast-separable-filters">
-<h3>Fast, separable filters<a class="headerlink" href="#fast-separable-filters" title="Permalink to this headline">¶</a></h3>
+<section id="fast-separable-filters">
+<h3>Fast, separable filters<a class="headerlink" href="#fast-separable-filters" title="Permalink to this headline">#</a></h3>
 <p><span class="menuselection">Process ‣ Filters ‣ Gaussian Blur 3D…</span> uses this approach.</p>
 <div class="info admonition">
 <p class="admonition-title">Fast filters &amp; the Fourier transform</p>
 <p>Not all linear filters are separable, and applying a large, non-separable linear filter can also be extremely time-consuming.
 However, when this is the case a whole other method can be used to get the same result using the Fourier transform – where the speed no longer has the same dependence upon the filter size. Unfortunately, the Fourier method cannot be used for non-linear filters such as the median filter.</p>
 </div>
-</div>
-<div class="section" id="dimensions-isotropy">
-<h3>Dimensions &amp; isotropy<a class="headerlink" href="#dimensions-isotropy" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="dimensions-isotropy">
+<h3>Dimensions &amp; isotropy<a class="headerlink" href="#dimensions-isotropy" title="Permalink to this headline">#</a></h3>
 <p>If applying a filter in 3D instead of 2D, it may seem natural to define it as having the same size in the third dimension as in the original two.
 But for a <strong>z</strong>-stack, the spacing between slices is usually larger than the width and height of a pixel.
 And if the third dimension is time, then it uses another scale entirely.
@@ -762,16 +879,16 @@ Therefore more thought usually needs to be given to what sizes make most sense.<
 <p>In some commands (e.g.
 <span class="menuselection">Plugins ‣ Process ‣ Smooth (3D)</span>), there is a <span class="guilabel">Use calibration</span> option to determine whether the values you enter are defined in terms of the units found in the <span class="menuselection">Properties…</span> and therefore corrected for the stored pixel dimensions.
 Elsewhere (e.g. <span class="menuselection">Gaussian Blur 3D…</span>) the units are pixels, slices and time points – and so you are responsible for figuring out how to compensate for different scales and units.</p>
-</div>
-</div>
-<div class="section" id="thresholding-multidimensional-data">
-<h2>Thresholding multidimensional data<a class="headerlink" href="#thresholding-multidimensional-data" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="thresholding-multidimensional-data">
+<h2>Thresholding multidimensional data<a class="headerlink" href="#thresholding-multidimensional-data" title="Permalink to this headline">#</a></h2>
 <p>When thresholding an image with more than 2 dimensions using the <span class="menuselection">Threshold…</span> command, it is necessary to choose whether the threshold should be determined from the histogram of the entire stack, or from the currently-visible 2D slice only.
 If the latter, you will also be asked whether the same threshold should be used for every slice, or if it should be calculated anew for each slice based upon the slice histogram. In some circumstances, these choices can have a very large impact upon the result.</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="bc493294-bd37-4ca2-8951-360e67681afd" name="6e06f488-a117-4379-9055-02b64c190c9a" type="radio">
-</input><label class="tabbed-label" for="bc493294-bd37-4ca2-8951-360e67681afd">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="fb3b45b9-13ca-424a-97f0-5287517a2625" name="e26cef6b-432b-433a-a795-f1851dc5ebb0" type="radio">
+</input><label class="sd-tab-label" for="fb3b45b9-13ca-424a-97f0-5287517a2625">
+Question</label><div class="sd-tab-content docutils">
 <p>When you threshold a stack, you have an option to choose <span class="guilabel">Stack Histogram</span>. Then, when you choose <span class="guilabel">Apply</span> you are asked if you want to <span class="guilabel">Calculate Threshold for Each Image</span>.
 What difference do you expect these two options to make, and what combinations would you use for:</p>
 <ol class="simple">
@@ -783,9 +900,9 @@ What difference do you expect these two options to make, and what combinations w
 You will have to split the channels for this because ImageJ currently refuses to threshold multichannel images with extra dimensions (which helps avoid some confusion).
 <span class="guilabel">Dark Background</span> should always be selected here.</p>
 </div>
-<input id="a0c53657-83b9-494c-b3bb-b23bdc25f790" name="6e06f488-a117-4379-9055-02b64c190c9a" type="radio">
-</input><label class="tabbed-label" for="a0c53657-83b9-494c-b3bb-b23bdc25f790">
-Solution</label><div class="tabbed-content docutils">
+<input id="d68e9746-576c-4a10-9599-222741819d6f" name="e26cef6b-432b-433a-a795-f1851dc5ebb0" type="radio">
+</input><label class="sd-tab-label" for="d68e9746-576c-4a10-9599-222741819d6f">
+Answer</label><div class="sd-tab-content docutils">
 <p>If <span class="guilabel">Stack Histogram</span> is checked, the thresholds are computed from a histogram of all the pixels in the entire image stack; otherwise, the histogram of only the currently-displayed image slice is used.</p>
 <p>BUT! If <span class="guilabel">Calculate Threshold for Each Image</span> is chosen, then this is ignored: the threshold is always determined by the selected automatic method using the histogram of the corresponding slice only.</p>
 <p>Therefore, the most sensible combinations of thresholding options to use depend upon the type of data.</p>
@@ -808,9 +925,9 @@ This can cause holes to appear in the brightest parts of structures, and is prob
 A similar situation occurs with the low threshold when <span class="guilabel">Dark Background</span> is unchecked.</p>
 </div>
 </div>
-</div>
-<div class="section" id="measurements-in-3d-data">
-<h2>Measurements in 3D data<a class="headerlink" href="#measurements-in-3d-data" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="measurements-in-3d-data">
+<h2>Measurements in 3D data<a class="headerlink" href="#measurements-in-3d-data" title="Permalink to this headline">#</a></h2>
 <p>ImageJ has good support for making measurements in 2D, particularly the <span class="menuselection">Measure</span> and <span class="menuselection">Analyze Particles…</span> commands. The latter can happily handle 3D images, but only by creating and measuring 2D ROIs independently on each slice.
 Alternatively, <span class="menuselection">Image ‣ Stacks ‣ Plot Z-axis Profile</span> is like applying <span class="menuselection">Measure</span> to each slice independently, making measurements either over the entire image or any ROI.
 It will also plot the mean pixel values, but even if you do not particularly want this the command can still be useful.
@@ -826,29 +943,29 @@ However, if single measurements should be made for individual objects that exten
 </div>
 </div>
 </div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="2c90be07-f3bf-40ca-a817-eb500e331e0e" name="bdeed277-6ccf-4c4e-a419-2d99773a928f" type="radio">
-</input><label class="tabbed-label" for="2c90be07-f3bf-40ca-a817-eb500e331e0e">
-Practical</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="77992280-59f8-4d27-846b-a798f5834155" name="10dc9cac-98ad-4190-b030-f996449fea2b" type="radio">
+</input><label class="sd-tab-label" for="77992280-59f8-4d27-846b-a798f5834155">
+Practical</label><div class="sd-tab-content docutils">
 <p>Suppose you have a cell, nucleus or some other large 3D structure in a <strong>z</strong>-stack, and you want to draw the smallest 2D ROI that completely contains it on every slice.
 An example is shown below for the green structure in the <span class="menuselection">Confocal Series</span> sample image.</p>
 <p>How would you create such a ROI, and be confident that it is large enough for all slices?</p>
 <p><a class="reference external" href="https://ij.imjoy.io?run=https://gist.github.com/petebankhead/55b02288a529512fee0f321fee0da693"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
-<div class="figure align-default">
+<figure class="align-default">
 <div class="cell_output docutils container">
 <img alt="../../../_images/imagej_10_0.png" src="../../../_images/imagej_10_0.png" />
 </div>
+</figure>
 </div>
-</div>
-<input id="b1b7eda8-9443-41f2-a827-50099939c8f5" name="bdeed277-6ccf-4c4e-a419-2d99773a928f" type="radio">
-</input><label class="tabbed-label" for="b1b7eda8-9443-41f2-a827-50099939c8f5">
-Solution</label><div class="tabbed-content docutils">
+<input id="82c6fb24-ca0b-448d-b94e-e5ea8e0e515d" name="10dc9cac-98ad-4190-b030-f996449fea2b" type="radio">
+</input><label class="sd-tab-label" for="82c6fb24-ca0b-448d-b94e-e5ea8e0e515d">
+Solution</label><div class="sd-tab-content docutils">
 <p>My strategy would be to create a z-projection (max intensity) and then draw the ROI on this – or, preferably, create the ROI by thresholding using <span class="menuselection">Image ‣ Adjust ‣ Threshold</span> and the <span class="guilabel">Wand</span> tool.
 This ROI can then be transferred over to the original stack, either via the ROI Manager or <span class="menuselection">Edit ‣ Selection ‣ Restore Selection</span>.</p>
 </div>
 </div>
-<div class="section" id="histograms-threshold-clipping">
-<h3>Histograms &amp; threshold clipping<a class="headerlink" href="#histograms-threshold-clipping" title="Permalink to this headline">¶</a></h3>
+<section id="histograms-threshold-clipping">
+<h3>Histograms &amp; threshold clipping<a class="headerlink" href="#histograms-threshold-clipping" title="Permalink to this headline">#</a></h3>
 <p>One way to measure in 3D is to use the <span class="menuselection">Histogram</span> command and specify that the entire stack should be included – this provides some basic statistics, including the total number, mean, minimum, maximum and standard deviation of the pixels <a class="footnote-reference brackets" href="#fn-2" id="id2">2</a>.
 This will respect the boundaries of a 2D ROI if one has been drawn.</p>
 <p>This is a start, but it will not adjust to changes in the object boundary on each 2D plane.
@@ -856,16 +973,16 @@ A better approach could be to use <span class="menuselection">Image ‣ Adjust �
 Rather, under <span class="menuselection">Analyze ‣ Set Measurements…</span> select <span class="guilabel">Limit to threshold</span>.
 Then when you compute the stack histogram (or press <span class="menuselection">Measure</span> for 2D) only above-threshold pixels will be included in the statistics.
 Just be sure to reset <span class="guilabel">Limit to threshold</span> later.</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="49a8c998-f85d-47e1-8c8f-09e34e349f05" name="e3a886dd-f9bb-47e0-bdd7-b9bb65b540c9" type="radio">
-</input><label class="tabbed-label" for="49a8c998-f85d-47e1-8c8f-09e34e349f05">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="7837cff3-e6fc-47e1-ab94-20bc3d3a8928" name="56a4ce7b-b887-4ae8-936e-57caa2aef844" type="radio">
+</input><label class="sd-tab-label" for="7837cff3-e6fc-47e1-ab94-20bc3d3a8928">
+Question</label><div class="sd-tab-content docutils">
 <p>How can you translate the total number of pixels in an object into its volume, e.g.
 in µm<sup>3</sup>? Give some thought to how accurate your method will be.</p>
 </div>
-<input id="4b002b1c-74e9-422d-9796-7db87cb66ff8" name="e3a886dd-f9bb-47e0-bdd7-b9bb65b540c9" type="radio">
-</input><label class="tabbed-label" for="4b002b1c-74e9-422d-9796-7db87cb66ff8">
-Answer</label><div class="tabbed-content docutils">
+<input id="b7d933b0-4733-48be-95ff-e3bfa54ca717" name="56a4ce7b-b887-4ae8-936e-57caa2aef844" type="radio">
+</input><label class="sd-tab-label" for="b7d933b0-4733-48be-95ff-e3bfa54ca717">
+Answer</label><div class="sd-tab-content docutils">
 <p>You could treat each pixel as a rectangular cuboid, with a volume equal to <em>pixel width_×_pixel height_×_voxel depth</em> (as given in <span class="menuselection">Image ‣ Properties…</span>).
 Then multiply this by the number of pixels within the object.
 This is what the <a class="reference internal" href="#sec-multidimensional-counter"><span class="std std-ref">3D Objects Counter</span></a>  plugin does when measuring volumes.</p>
@@ -879,9 +996,9 @@ They are also likely to be quite sensitive to spacing.</p>
 <p>I am not a fan of <span class="guilabel">Limit to threshold</span>, because I am likely to forget to reset it afterwards and may subsequently measure the wrong things for days thereafter.</p>
 <p>An alternative that I prefer is to set my threshold on a 32-bit copy of the image I am working with, and then <span class="guilabel">Apply</span> the threshold using the <span class="guilabel">Set Background Pixels to NaN</span> option. Then all below-threshold pixels will automatically be excluded from any measurements I make on the result, since they are ‘no longer numbers’ (see <a class="reference internal" href="../3-thresholding/imagej.html#sec-thresholding-nans"><span class="std std-ref">Thresholding</span></a> for more details).</p>
 </div>
-</div>
-<div class="section" id="the-3d-objects-counter">
-<span id="sec-multidimensional-counter"></span><h3>The 3D Objects Counter<a class="headerlink" href="#the-3d-objects-counter" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="the-3d-objects-counter">
+<span id="sec-multidimensional-counter"></span><h3>The 3D Objects Counter<a class="headerlink" href="#the-3d-objects-counter" title="Permalink to this headline">#</a></h3>
 <p>Currently, the closest thing to <span class="menuselection">Analyze Particles…</span> for measuring connected objects in 3D built-in to Fiji is the 3D Objects Counter (<span class="menuselection">Analyze ‣ 3D Objects Counter</span>) <a class="footnote-reference brackets" href="#fn-3" id="id3">3</a>.
 Its settings (analogous to <span class="menuselection">Set Measurements…</span>) are under <span class="menuselection">Analyze ‣ 3D OC Options</span>.
 In addition to various measurements, it provides labelled images as output, either of the entire objects or only their central pixels – optionally with labels, or expanded to be more visible.</p>
@@ -910,9 +1027,9 @@ his not only includes a range of fast filters and commands for segmentation, but
 url: <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/17210054/">https://pubmed.ncbi.nlm.nih.gov/17210054/</a></p>
 </dd>
 </dl>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -936,9 +1053,11 @@ url: <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/1721005
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="multidimensional_processing.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -954,24 +1073,28 @@ url: <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/1721005
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pete Bankhead<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pete Bankhead<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

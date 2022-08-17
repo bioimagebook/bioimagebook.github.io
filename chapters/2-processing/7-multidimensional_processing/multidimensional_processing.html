@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Multidimensional processing &#8212; Introduction to Bioimage Analysis</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,21 +20,17 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -41,8 +39,10 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -51,7 +51,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="ImageJ: Multidimensional processing" href="imagej.html" />
@@ -63,7 +62,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -72,9 +85,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -92,14 +106,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../README.html">
-   Introduction to Bioimage Analysis
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Introduction to Bioimage Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Front matter
  </span>
@@ -459,97 +474,199 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/chapters/2-processing/7-multidimensional_processing/multidimensional_processing.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/chapters/2-processing/7-multidimensional_processing/multidimensional_processing.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/7-multidimensional_processing/multidimensional_processing.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/7-multidimensional_processing/multidimensional_processing.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/chapters/2-processing/7-multidimensional_processing/multidimensional_processing.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/chapters/2-processing/7-multidimensional_processing/multidimensional_processing.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -589,12 +706,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Multidimensional processing</h1>
@@ -650,11 +766,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="multidimensional-processing">
-<span id="chap-multidimensional-processing"></span><h1>Multidimensional processing<a class="headerlink" href="#multidimensional-processing" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="multidimensional-processing">
+<span id="chap-multidimensional-processing"></span><h1>Multidimensional processing<a class="headerlink" href="#multidimensional-processing" title="Permalink to this headline">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -679,8 +796,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>So far, in terms of image processing we have concentrated only on 2D images.
 Most of the operations we have considered can also be applied to 3D data – and sometimes data with more dimensions, in cases where this is meaningful.</p>
 <p>This very short overview of multidimensional processing describes a few of the issues to consider when extending analysis beyond two dimensions, and gives some pointers towards specialist tools.</p>
@@ -691,10 +808,10 @@ Most of the operations we have considered can also be applied to 3D data – and
 The first three are similar (spatial), whereas the last two are somewhat different.</p>
 <p>Although we considered channels to be another dimension <a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html#chap-dimensions"><span class="std std-ref">in previous chapters</span></a>, we don’t usually apply operations (e.g. filters, thresholds) <em>across</em> channels or time.
 Rather, we usually split the channels or timepoints during processing (e.g. to detect nuclei from one channel and a cell boundary in a second channel), then combine the ROIs or measurements at the end.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Tinevez, J.-Y., et al. (2017). TrackMate: An open and extensible platform for single-particle tracking. <em>Methods</em>, 115, 80–90. <a class="reference external" href="https://doi.org/10.1016/j.ymeth.2016.09.016">(DOI)</a></p>
-</div>
+</aside>
 <p>This means that the key processing steps don’t require an extra dimension for channels or time.</p>
 <p>In the case of time, the ‘combining’ step may involve linking objects to track them.
 Tools such as the fantastic <a class="reference external" href="https://imagej.net/plugins/trackmate/"><strong>Trackmate</strong></a> can be used for this.</p>
@@ -704,17 +821,17 @@ Tools such as the fantastic <a class="reference external" href="https://imagej.n
 <p>If a technique works for <em><strong>nD</strong></em> images, this indicates it can handle any number of dimensions.
 The SciPy <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/ndimage.html">Multidimensional image processing</a> package embraces this, being imported as <code class="docutils literal notranslate"><span class="pre">scipy.ndimage</span></code>.</p>
 </div>
-</div>
-<div class="section" id="segmentation-in-3d">
-<h2>Segmentation in 3D<a class="headerlink" href="#segmentation-in-3d" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="segmentation-in-3d">
+<h2>Segmentation in 3D<a class="headerlink" href="#segmentation-in-3d" title="Permalink to this headline">#</a></h2>
 <p>Image segmentation generally involves generating binary and labeled images.</p>
 <p>Most of the processing operations we have discussed to help perform image segmentation extend naturally into 3D (and beyond), although there are some extra considerations.</p>
-<div class="section" id="thresholding">
-<h3>Thresholding<a class="headerlink" href="#thresholding" title="Permalink to this headline">¶</a></h3>
+<section id="thresholding">
+<h3>Thresholding<a class="headerlink" href="#thresholding" title="Permalink to this headline">#</a></h3>
 <p>Thresholds are typically determined using the image histogram.
 This is computed from all pixels in the image – the number of dimensions does not really matter.</p>
 <p>The main consideration for thresholding in 3D is whether the other <em>z</em>-slices could introduce any kind of sneaky bias.
-One occasion when that could happen is if the images are acquired with different numbers of slices, e.g. some containing more out-of-focus planes than others (<a class="reference internal" href="#fig-multi-thresholds"><span class="std std-numref">Fig. 128</span></a>).
+One occasion when that could happen is if the images are acquired with different numbers of slices, e.g. some containing more out-of-focus planes than others (<a class="reference internal" href="#fig-multi-thresholds"><span class="std std-numref">Fig. 127</span></a>).
 These extra planes <em>could</em> impact the histogram and image statistics, and therefore any automated thresholds.
 An image with many out-of-focus slices might be thresholded differently from an image with few slices.</p>
 <p>A solution for that may be to extract a fixed number of slices from each image, for example 10 slices centered upon the volume of interest within the image.
@@ -843,35 +960,35 @@ This should generally make the images more comparable.</p>
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-multi-thresholds">
+<figure class="align-center" id="fig-multi-thresholds">
 <div class="cell_output docutils container">
 <img alt="../../../_images/multidimensional_processing_5_0.png" src="../../../_images/multidimensional_processing_5_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 128 </span><span class="caption-text">Thresholding a z-stack can be influenced by the number of out-of-focus slices. Here, an automated threshold determined using <a class="reference internal" href="../3-thresholding/thresholding.html#sec-thresholds-otsu"><span class="std std-ref">Otsu’s method</span></a> is applied to two z-stacks showing the same object. The top stack contains few out-of-focus slices, while the bottom stack contains the exact same data plus additional slices that contain only noise. Otsu’s method is well-suited to the top stack and performs well, however it fails badly on the bottom stack, where there is a much higher proportion of background pixels – and so the background peak is more dominant.</span><a class="headerlink" href="#fig-multi-thresholds" title="Permalink to this image">¶</a></p>
+<figcaption>
+<p><span class="caption-number">Fig. 127 </span><span class="caption-text">Thresholding a z-stack can be influenced by the number of out-of-focus slices. Here, an automated threshold determined using <a class="reference internal" href="../3-thresholding/thresholding.html#sec-thresholds-otsu"><span class="std std-ref">Otsu’s method</span></a> is applied to two z-stacks showing the same object. The top stack contains few out-of-focus slices, while the bottom stack contains the exact same data plus additional slices that contain only noise. Otsu’s method is well-suited to the top stack and performs well, however it fails badly on the bottom stack, where there is a much higher proportion of background pixels – and so the background peak is more dominant.</span><a class="headerlink" href="#fig-multi-thresholds" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="5ae68d93-7a62-4387-908b-11b7eb1777fd" name="cf494daa-1b63-4e1e-98d2-942b6d1231b4" type="radio">
+</input><label class="sd-tab-label" for="5ae68d93-7a62-4387-908b-11b7eb1777fd">
+Question</label><div class="sd-tab-content docutils">
+<p>How would you expect <a class="reference internal" href="#fig-multi-thresholds"><span class="std std-numref">Fig. 127</span></a> to differ if the <a class="reference internal" href="../3-thresholding/thresholding.html#sec-thresholds-triangle"><span class="std std-ref">triangle method</span></a> was used to determine the threshold, rather than <a class="reference internal" href="../3-thresholding/thresholding.html#sec-thresholds-otsu"><span class="std std-ref">Otsu’s method</span></a>?</p>
 </div>
-<div class="question docutils">
-<div class="tabbed-set docutils">
-<input checked="checked" id="bfd8cfb7-b1cc-42e3-a9f1-fa547ff06c94" name="d71658f9-2855-4896-8f1e-cffdd50c93c8" type="radio">
-</input><label class="tabbed-label" for="bfd8cfb7-b1cc-42e3-a9f1-fa547ff06c94">
-Question</label><div class="tabbed-content docutils">
-<p>How would you expect <a class="reference internal" href="#fig-multi-thresholds"><span class="std std-numref">Fig. 128</span></a> to differ if the <a class="reference internal" href="../3-thresholding/thresholding.html#sec-thresholds-triangle"><span class="std std-ref">triangle method</span></a> was used to determine the threshold, rather than <a class="reference internal" href="../3-thresholding/thresholding.html#sec-thresholds-otsu"><span class="std std-ref">Otsu’s method</span></a>?</p>
-</div>
-<input id="16c977fb-afa9-41c0-91ee-6e9d22eff16d" name="d71658f9-2855-4896-8f1e-cffdd50c93c8" type="radio">
-</input><label class="tabbed-label" for="16c977fb-afa9-41c0-91ee-6e9d22eff16d">
-Answer</label><div class="tabbed-content docutils">
+<input id="7e516c78-5cf7-4b8d-b441-88ce9e5092b1" name="cf494daa-1b63-4e1e-98d2-942b6d1231b4" type="radio">
+</input><label class="sd-tab-label" for="7e516c78-5cf7-4b8d-b441-88ce9e5092b1">
+Answer</label><div class="sd-tab-content docutils">
 <p>Here, the triangle method performs well.
 It sets the threshold appropriately at the foot of the background peak in both cases.</p>
-<div class="figure align-center">
+<figure class="align-center">
 <div class="cell_output docutils container">
 <img alt="../../../_images/multidimensional_processing_5_1.png" src="../../../_images/multidimensional_processing_5_1.png" />
 </div>
+</figure>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="filtering">
-<h3>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="filtering">
+<h3>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">#</a></h3>
 <p><strong>Linear filters</strong> can be easily extended to <em>nD</em> by defining a filter kernel with the desired number of dimensions.
 However, this can dramatically increase the computational requirements and so we need to begin considering performance.</p>
 <p>For example, suppose we have a 3×3 filter.
@@ -890,7 +1007,7 @@ For larger filters and images, we can rapidly increase the computations involved
 This means that instead of applying, for example, a single 11×11×11 filter (1331 coefficients) we can instead apply three separate 11×1 filters oriented along each dimension (33 coefficients).</p>
 <p>Not all linear filters are separable, but many common ones are.
 This includes mean filters (depending upon neigborhood shape) and Gaussian filters.
-The result of applying the filter separably should be the same as the result of applying one dense multidimensional filter (<a class="reference internal" href="#fig-gauss-separable"><span class="std std-numref">Fig. 129</span></a>).
+The result of applying the filter separably should be the same as the result of applying one dense multidimensional filter (<a class="reference internal" href="#fig-gauss-separable"><span class="std std-numref">Fig. 128</span></a>).
 Some small differences may arise through the handling of <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html#chap-bit-depths"><span class="std std-ref">rounding and bit-depths</span></a>, but the improvement in performance is almost certainly worth any tiny error introduced by applying a filter separably.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -935,12 +1052,14 @@ Some small differences may arise through the handling of <a class="reference int
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-gauss-separable">
+<figure class="align-center" id="fig-gauss-separable">
 <div class="cell_output docutils container">
 <img alt="../../../_images/multidimensional_processing_10_0.png" src="../../../_images/multidimensional_processing_10_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 129 </span><span class="caption-text">2D Gaussian smoothing can be applied using a single 2D filter, or by sequentially filtering either rows or columns of the image: the end result is the same (up to rounding error). The order of the separable filtering doesn’t matter.</span><a class="headerlink" href="#fig-gauss-separable" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 128 </span><span class="caption-text">2D Gaussian smoothing can be applied using a single 2D filter, or by sequentially filtering either rows or columns of the image: the end result is the same (up to rounding error). The order of the separable filtering doesn’t matter.</span><a class="headerlink" href="#fig-gauss-separable" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Considerations are similar for <strong>nonlinear filters</strong>: when we add more dimensions, the neighborhood size can increase quickly and make the calculations slow.
 Separability can help with some nonlinear filters (e.g. minimum and maximum, depending on window shape), but not all.
 Median filters in particular are difficult to optimize, and can be <em>extremely</em> slow when the neighborhood is large and/or more than 2D.</p>
@@ -996,31 +1115,33 @@ I might then choose <span class="math notranslate nohighlight">\(\sigma_x\)</spa
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-multi-min-separable">
+<figure class="align-center" id="fig-multi-min-separable">
 <div class="cell_output docutils container">
 <img alt="../../../_images/multidimensional_processing_13_0.png" src="../../../_images/multidimensional_processing_13_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 130 </span><span class="caption-text">A 15×15 minimum filter applied separably.</span><a class="headerlink" href="#fig-multi-min-separable" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="morphological-operations">
-<h3>Morphological operations<a class="headerlink" href="#morphological-operations" title="Permalink to this headline">¶</a></h3>
+<figcaption>
+<p><span class="caption-number">Fig. 129 </span><span class="caption-text">A 15×15 minimum filter applied separably.</span><a class="headerlink" href="#fig-multi-min-separable" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="morphological-operations">
+<h3>Morphological operations<a class="headerlink" href="#morphological-operations" title="Permalink to this headline">#</a></h3>
 <p>Erosion, dilation, opening and closing can all be implemented using minimum and maximum nonlinear filters, so the above considerations apply.
 Morphological reconstruction can also work in <em>nD</em>.
 Therefore all the new operations and tricks derived from these methods (e.g. creating outlines, finding regional maxima) should work.</p>
 <p>Thinning algorithms are often designed to work in 3D, although not usually higher dimensions.</p>
-</div>
-<div class="section" id="image-transforms">
-<h3>Image transforms<a class="headerlink" href="#image-transforms" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="image-transforms">
+<h3>Image transforms<a class="headerlink" href="#image-transforms" title="Permalink to this headline">#</a></h3>
 <p>The distance and watershed transforms extend readily to 3D, but require a little caution.</p>
 <p>One thing to look out for, especially with the distance transform, is whether pixel anisotropy is taken into consideration.
 If not, the the distance transform will not be capable of properly identifying the ‘nearest’ foreground or background pixel in calibrated units, but rather only in pixel units.</p>
 <p>A cumbersome workaround may be to resize the image so that the pixels <em>are</em> isotropic, but that may make every other analysis step more complicated and/or require a huge amount more memory to store the image.
 A preferable approach is to try to find a distance transform implementation that incorporates pixel size information into its calculations.</p>
-</div>
-</div>
-<div class="section" id="accelerating-analysis">
-<h2>Accelerating analysis<a class="headerlink" href="#accelerating-analysis" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="accelerating-analysis">
+<h2>Accelerating analysis<a class="headerlink" href="#accelerating-analysis" title="Permalink to this headline">#</a></h2>
 <p>One of the common themes of processing multidimensional images is performance.</p>
 <p>Even though <em>conceptually</em> most of the image processing techniques we’ve discussed can be extended to 3D and beyond, it’s usually not easy to do from the programmer’s perspective.
 As someone who writes software, I can attest that I don’t tend to support more dimensions than I have to because extra dimensions make the task of coding, debugging and optimizing much, much harder.</p>
@@ -1047,16 +1168,16 @@ Tasks tend to depend upon one another, and so it’s common for one processor to
 Our performance aspirations can also be thwarted by other bottlenecks, such as reading or writing images.</p>
 <p>To see a <strong>dramatic</strong> improvement in image processing performance, we usually need to look into <strong>Graphics Processing Unit (GPUs)</strong>, aka. <strong>graphics cards</strong>.</p>
 <p>A GPU can’t do everything that a general-purpose processor can do, but it is very good at what it <em>can</em> do – which includes core operations like image filtering or matrix multiplication.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Haase, R., Royer, L.A., Steinbach, P. et al. CLIJ: GPU-accelerated image processing for everyone. <em>Nat Methods</em> 17, 5–6 (2020). <a class="reference external" href="https://doi.org/10.1038/s41592-019-0650-1">(DOI)</a></p>
-</div>
+</aside>
 <p>Programming for GPUs is rather specialized, but there are some tools to help.
 <strong>Robert Haase</strong> has worked extensively on using GPUs for multidimensional bioimage analysis – I highly recommend checking out <a class="reference external" href="https://clij.github.io/"><strong>CLIJ</strong></a> and <a class="reference external" href="https://clesperanto.github.io"><strong>clEsperanto</strong></a> for more details.</p>
-</div>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1080,9 +1201,11 @@ Our performance aspirations can also be thwarted by other bottlenecks, such as r
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../6-transforms/imagej.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1098,24 +1221,28 @@ Our performance aspirations can also be thwarted by other bottlenecks, such as r
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pete Bankhead<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pete Bankhead<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

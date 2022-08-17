@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Files &amp; file formats &#8212; Introduction to Bioimage Analysis</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,21 +20,17 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -41,15 +39,16 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="ImageJ: Files &amp; file formats" href="imagej.html" />
@@ -61,7 +60,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +83,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -90,14 +104,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../README.html">
-   Introduction to Bioimage Analysis
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Introduction to Bioimage Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Front matter
  </span>
@@ -457,97 +472,199 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/chapters/1-concepts/6-files/files.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/chapters/1-concepts/6-files/files.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/1-concepts/6-files/files.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/1-concepts/6-files/files.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/chapters/1-concepts/6-files/files.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/chapters/1-concepts/6-files/files.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -604,12 +721,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Files & file formats</h1>
@@ -682,11 +798,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="files-file-formats">
-<span id="chap-files"></span><h1>Files &amp; file formats<a class="headerlink" href="#files-file-formats" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="files-file-formats">
+<span id="chap-files"></span><h1>Files &amp; file formats<a class="headerlink" href="#files-file-formats" title="Permalink to this headline">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -714,8 +831,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>One of the surest ways to lose information when working with images is by making bad file format choices.</p>
 <p>There is a vast array of file formats used to store images – but not all formats support all the bit-depths, types and dimensions needed for scientific imaging.
 Some formats tend to lose metadata, and some compromise pixel values through compression.</p>
@@ -741,7 +858,7 @@ Some formats tend to lose metadata, and some compromise pixel values through com
 </div>
 <p>To help put this into practice, <a class="reference internal" href="#table-file-formats"><span class="std std-numref">Table 1</span></a> lists some of the most important image formats you need to know about when saving images yourself.</p>
 <table class="table" id="table-file-formats">
-<caption><span class="caption-number">Table 1 </span><span class="caption-text">Some of the most useful file formats for bioimage analysis &amp; display</span><a class="headerlink" href="#table-file-formats" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Some of the most useful file formats for bioimage analysis &amp; display</span><a class="headerlink" href="#table-file-formats" title="Permalink to this table">#</a></caption>
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 20%" />
@@ -793,9 +910,9 @@ Some formats tend to lose metadata, and some compromise pixel values through com
 <p>The rest of this chapter explains the key ideas.
 Despite already having the conclusions, I hope you might persist with reading the rest anyway.
 Understanding more about file formats can help enormously when it comes to choosing how to save images for different purposes, and diagnosing problems when the wrong formats have been used.</p>
-</div>
-<div class="section" id="image-file-contents">
-<h2>Image file contents<a class="headerlink" href="#image-file-contents" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="image-file-contents">
+<h2>Image file contents<a class="headerlink" href="#image-file-contents" title="Permalink to this headline">#</a></h2>
 <p>An image file stored on computer contains two main things:</p>
 <ol class="simple">
 <li><p><strong>Pixel values</strong> – the ‘raw numbers’ of the image</p></li>
@@ -805,8 +922,8 @@ Understanding more about file formats can help enormously when it comes to choos
 But some pieces of the metadata are essential for the image data to be interpretable at all.
 And if metadata such as the pixel size is incorrect or missing, measurements can also be wrong.
 Therefore files must be saved in formats that preserve both the pixel values and metadata accurately if they are to be suitable for analysis later.</p>
-<div class="section" id="pixel-values-compression">
-<span id="sec-files-compression"></span><h3>Pixel values &amp; compression<a class="headerlink" href="#pixel-values-compression" title="Permalink to this headline">¶</a></h3>
+<section id="pixel-values-compression">
+<span id="sec-files-compression"></span><h3>Pixel values &amp; compression<a class="headerlink" href="#pixel-values-compression" title="Permalink to this headline">#</a></h3>
 <p>Pixel values are represented using bytes.
 As described in <a class="reference internal" href="../3-bit_depths/bit_depths.html#chap-bit-depths"><span class="std std-ref">Types &amp; bit-depths</span></a>, an 8-bit image uses 1 byte per pixel, a 16-bit image uses 2 bytes per pixel and a 32-bit image uses 4 bytes per pixel.</p>
 <p>However, the way these bytes are stored in the image file can depending upon whether compression is used.
@@ -890,9 +1007,14 @@ Technically, this approximation involves the ‘discrete cosine transform’; fo
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-files-lossy">
-<p class="caption"><span class="caption-number">Fig. 52 </span><span class="caption-text">Examples of images saved with (A) no compression, (B) lossless compression, and (C) lossy JPEG compression. The pixel values of (A) and (B) are identical. Image (C) looks similar, but zooming in on a detailed region reveals characteristic JPEG artefacts.</span><a class="headerlink" href="#fig-files-lossy" title="Permalink to this image">¶</a></p>
+<figure class="align-center" id="fig-files-lossy">
+<div class="cell_output docutils container">
+<img alt="../../../_images/files_5_1.png" src="../../../_images/files_5_1.png" />
 </div>
+<figcaption>
+<p><span class="caption-number">Fig. 52 </span><span class="caption-text">Examples of images saved with (A) no compression, (B) lossless compression, and (C) lossy JPEG compression. The pixel values of (A) and (B) are identical. Image (C) looks similar, but zooming in on a detailed region reveals characteristic JPEG artefacts.</span><a class="headerlink" href="#fig-files-lossy" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="tip admonition">
 <p class="admonition-title">Compression quality</p>
 <p>Lossy compression can often be varied with a ‘compression quality’ setting.
@@ -919,41 +1041,41 @@ Unless you’ve proof to the contrary, if you see a file with extension <em>.jpg
 A TIFF image could contain uncompressed data, or data compressed using a variety of different methods – both lossless and lossy, including JPEG.
 To determine if a TIFF image has used lossy compression, more detective work may be needed (e.g. zooming in and hunting for artefacts, comparing pixel statistics with the original data file, or using software to check for metadata).</p>
 </div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="8233015b-0546-438c-be5a-2cd4a96bab6a" name="eb126b58-9fc6-46a7-9ce5-e676a3c814f4" type="radio">
-</input><label class="tabbed-label" for="8233015b-0546-438c-be5a-2cd4a96bab6a">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="fc541d27-a224-4943-8763-68e0bf499cb8" name="f4d5c003-a3f2-4ce1-94ef-79bea767716f" type="radio">
+</input><label class="sd-tab-label" for="fc541d27-a224-4943-8763-68e0bf499cb8">
+Question</label><div class="sd-tab-content docutils">
 <p>It takes approximately 1 MB to store (1,000,000 bytes) an 8-bit uncompressed image with 1,000,000 pixels.</p>
 <p>How much memory does it take to store a 16-bit image with the same number of pixels?</p>
 <p><em>You can ignore the tiny bit of extra space needed to store any associated metadata.</em></p>
 </div>
-<input id="300531f5-d814-401d-a221-64d3b331e015" name="eb126b58-9fc6-46a7-9ce5-e676a3c814f4" type="radio">
-</input><label class="tabbed-label" for="300531f5-d814-401d-a221-64d3b331e015">
-Answer</label><div class="tabbed-content docutils">
+<input id="e6422909-fab5-4f4f-9344-5659b0bd7c9f" name="f4d5c003-a3f2-4ce1-94ef-79bea767716f" type="radio">
+</input><label class="sd-tab-label" for="e6422909-fab5-4f4f-9344-5659b0bd7c9f">
+Answer</label><div class="sd-tab-content docutils">
 <p>2 MB.</p>
 <p>8 bits corresponds to 1 byte, so 16 bits correspond to 2 bytes.
 We multiply the number of bytes per pixel by the number of pixels to get the minimum size required to store the uncompressed image.</p>
 </div>
 </div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="9b188800-d624-4374-91a0-12540faa4266" name="0a79b96c-7930-40cf-aeab-03b271c8525d" type="radio">
-</input><label class="tabbed-label" for="9b188800-d624-4374-91a0-12540faa4266">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="0e770025-dbe3-44b6-9847-a645836a4974" name="8337a480-a41a-47e7-bdd7-3c3792fdbc5e" type="radio">
+</input><label class="sd-tab-label" for="0e770025-dbe3-44b6-9847-a645836a4974">
+Question</label><div class="sd-tab-content docutils">
 <p>Suppose you have an original image in TIFF format (no compression).
 First, you save it as JPEG (lossy compression) to reduce the file size, then close it and throw away the TIFF.</p>
 <p>Upon hearing JPEG is bad, you reopen the image and save it as TIFF  once more (no compression), throwing away the JPEG.
 How does your final TIFF image look, and what is its file size?</p>
 </div>
-<input id="ea75fa2d-3eb0-4600-92f6-d0fc4044fa3b" name="0a79b96c-7930-40cf-aeab-03b271c8525d" type="radio">
-</input><label class="tabbed-label" for="ea75fa2d-3eb0-4600-92f6-d0fc4044fa3b">
-Answer</label><div class="tabbed-content docutils">
+<input id="0667272b-67c8-49bf-ba9f-bd7f744452cc" name="8337a480-a41a-47e7-bdd7-3c3792fdbc5e" type="radio">
+</input><label class="sd-tab-label" for="0667272b-67c8-49bf-ba9f-bd7f744452cc">
+Answer</label><div class="sd-tab-content docutils">
 <p>The final image will look exactly like the JPEG version, <em>but with the same file size as the original TIFF!</em>
 As such, it has ‘the worst of both worlds’.</p>
 </div>
 </div>
-</div>
-<div class="section" id="core-metadata">
-<h3>Core metadata<a class="headerlink" href="#core-metadata" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="core-metadata">
+<h3>Core metadata<a class="headerlink" href="#core-metadata" title="Permalink to this headline">#</a></h3>
 <p>Pixel values are represented as a <a class="reference internal" href="../3-bit_depths/bit_depths.html#chap-bit-depths"><span class="std std-ref">stream of bits: ones and zeros</span></a>.
 A few core pieces of metadata <em>must</em> be stored alongside these bits to interpret them as an image, such as the dimensions, bit-depth and type.
 If this information is missing – or wrong – then the image usually either cannot be read, or looks strange in some way (<a class="reference internal" href="#fig-files-core-metadata"><span class="std std-numref">Fig. 53</span></a>).</p>
@@ -985,18 +1107,23 @@ If this information is missing – or wrong – then the image usually either ca
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-files-core-metadata">
-<p class="caption"><span class="caption-number">Fig. 53 </span><span class="caption-text">Some examples of core metadata being read correctly or incorrectly.</span><a class="headerlink" href="#fig-files-core-metadata" title="Permalink to this image">¶</a></p>
+<figure class="align-center" id="fig-files-core-metadata">
+<div class="cell_output docutils container">
+<img alt="../../../_images/files_10_0.png" src="../../../_images/files_10_0.png" />
 </div>
+<figcaption>
+<p><span class="caption-number">Fig. 53 </span><span class="caption-text">Some examples of core metadata being read correctly or incorrectly.</span><a class="headerlink" href="#fig-files-core-metadata" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><em>Most</em> of the time, we don’t need to care about this because all image file formats store this core information, and software used to open the image <em>usually</em> interprets this correctly.</p>
 <p>But it isn’t unheard of for some fancy new format to store the core metadata in a way that cannot be properly read and interpreted by other software.
 If you try to open your images and find they look very odd, you should be aware that there might be a metadata problem – and you might need to contact the developer of the software to figure out what has gone wrong.</p>
 <p>More commonly, the choice of file format impacts what type of image can be stored.
 For example, PNG or JPEG images are limited to 2D integer data, optionally with 1, 3 or 4 channels; they do not support (for example) 32-bit floating point images, z-stacks or time series.
 Saving a 5D floating point image as a JPEG or PNG therefore inherently involves converting the image type and discarding information.</p>
-</div>
-<div class="section" id="additional-metadata">
-<h3>Additional metadata<a class="headerlink" href="#additional-metadata" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="additional-metadata">
+<h3>Additional metadata<a class="headerlink" href="#additional-metadata" title="Permalink to this headline">#</a></h3>
 <p>The most important piece of ‘non-core’ metadata is the <a class="reference internal" href="../5-pixel_size/pixel_size.html#chap-pixel-size"><span class="std std-ref">pixel size</span></a>.
 Unlike core metadata, it is <em>not</em> necessary for a file format to preserve the pixel size for an image to be opened and appear ‘correct’.</p>
 <p>This is a problem because if the pixel size is incorrect or missing, it remains possible to make length, area or volume measurements within an image – but these measurements are likely to be wrong.</p>
@@ -1028,18 +1155,18 @@ But one universal rule is to use whatever knowledge you have about whatever is i
 A quick internet search can reveal a typical diameter of a nucleus (perhaps 5-20 µm).
 Therefore you could spend a few minutes measuring some nucleus diameters to see if they are close to this value.
 If so, it does not prove the pixel size is correct but it does give some added confidence; if the value is far from what is expected, then it is a warning that the pixel size is wrong.</p>
-</div>
-</div>
-<div class="section" id="choosing-file-formats">
-<h2>Choosing file formats<a class="headerlink" href="#choosing-file-formats" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="choosing-file-formats">
+<h2>Choosing file formats<a class="headerlink" href="#choosing-file-formats" title="Permalink to this headline">#</a></h2>
 <p>The right choice of file format depends upon when you are saving the image, and what you will want to do with it.
 Three main scenarios are described below.</p>
-<div class="section" id="during-acquisition">
-<h3>During acquisition<a class="headerlink" href="#during-acquisition" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
+<section id="during-acquisition">
+<h3>During acquisition<a class="headerlink" href="#during-acquisition" title="Permalink to this headline">#</a></h3>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Examples formats for specific microscopes include <em>.lif</em> (Leica), <em>.czi</em> (Zeiss), <em>.nd2</em> (Nikon), <em>.vsi</em> (Olympus)… with many more.</p>
-</div>
+</aside>
 <p>The general rule is to</p>
 <div class="tip admonition">
 <p class="admonition-title">Saving images during acquisition</p>
@@ -1056,9 +1183,9 @@ It’s already available within Fiji and QuPath by default, or can be installed 
 Although it’s written in Java, Bio-Formats can also be used within some Python applications.</p>
 <p><em>If</em> you are unlucky enough that the native format for your microscope isn’t supported by Bio-Formats, you might need to export it in a different format for use elsewhere.
 But if you do this, it’s best to retain a copy of the original data anyway – so you can always refer to it using the original acquisition software to check what (if anything) might have been lost in the export.</p>
-</div>
-<div class="section" id="during-analysis">
-<h3>During analysis<a class="headerlink" href="#during-analysis" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="during-analysis">
+<h3>During analysis<a class="headerlink" href="#during-analysis" title="Permalink to this headline">#</a></h3>
 <p>If you want to save an image during analysis, the rule is</p>
 <div class="tip admonition">
 <p class="admonition-title">Saving images during analysis</p>
@@ -1075,9 +1202,9 @@ In that case, it might take some exploration to see which formats enable metadat
 Bio-Formats can read and write OME-TIFF images, which has a very well-defined standard for storing metadata (developed by the group behind Bio-Formats itself).
 This opens up more possibilities, such as writing TIFFs that include either lossless or lossy compression.
 OME-TIFF can also contain a lot more metadata than an ImageJ TIFF can, including things like stage position, laser power etc.</p>
-</div>
-<div class="section" id="for-display">
-<h3>For display<a class="headerlink" href="#for-display" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="for-display">
+<h3>For display<a class="headerlink" href="#for-display" title="Permalink to this headline">#</a></h3>
 <p>When it comes to displaying images, we usually only need a format that can support RGB images.
 Since we won’t use the image for further analysis, we don’t need to preserve the pixel size and don’t <em>necessarily</em> have to avoid compression artefacts.
 My personal preferred formats for different scenarios are:</p>
@@ -1118,14 +1245,19 @@ But bitmaps are needed for images formed from detecting light, which cannot be r
 <p>Finally, some versatile file formats, such as PDF or EPS, can store both kinds of image: perhaps a bitmap with some text annotations on top.
 If you are including text or diagrams, these formats are generally best.
 But if you only have bitmaps without annotations of any kind, then TIFF is probably the most common file format for creating figures.</p>
-<div class="figure align-center" id="fig-vector-bitmap">
-<p class="caption"><span class="caption-number">Fig. 54 </span><span class="caption-text">When viewed from afar, it may be difficult to know whether an image is a vector or a bitmap (A) because they can sometimes look identical (although a photograph or micrograph will always be a bitmap). However, when enlarged a vector image will remain sharp (B), whereas a bitmap will not (C).</span><a class="headerlink" href="#fig-vector-bitmap" title="Permalink to this image">¶</a></p>
+<figure class="align-center" id="fig-vector-bitmap">
+<div class="cell_output docutils container">
+<img alt="../../../_images/files_14_0.png" src="../../../_images/files_14_0.png" />
 </div>
+<figcaption>
+<p><span class="caption-number">Fig. 54 </span><span class="caption-text">When viewed from afar, it may be difficult to know whether an image is a vector or a bitmap (A) because they can sometimes look identical (although a photograph or micrograph will always be a bitmap). However, when enlarged a vector image will remain sharp (B), whereas a bitmap will not (C).</span><a class="headerlink" href="#fig-vector-bitmap" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
-</div>
-</div>
-<div class="section" id="pyramidal-images">
-<span id="sec-files-pyramidal"></span><h2>Pyramidal images<a class="headerlink" href="#pyramidal-images" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="pyramidal-images">
+<span id="sec-files-pyramidal"></span><h2>Pyramidal images<a class="headerlink" href="#pyramidal-images" title="Permalink to this headline">#</a></h2>
 <p>Finally, we end with a few words on <strong>pyramidal images</strong>: a type of image that is becoming increasingly common.</p>
 <p>Modern bioimages can be <em>huge</em>.
 It’s not uncommon for a single image to contain many gigabytes of pixel data, making it infeasible to open the full image in one go.</p>
@@ -1136,20 +1268,22 @@ For example, when viewing an image we only really need to access the pixels that
 <li><p>They store the image as separate chunks (often called ‘tiles’, if they are 2D)</p></li>
 <li><p>They store the same image at different resolutions in the same file</p></li>
 </ul>
-<div class="figure align-center" id="fig-files-pyramidal">
+<figure class="align-center" id="fig-files-pyramidal">
 <img alt="../../../_images/pyramid_small.png" src="../../../_images/pyramid_small.png" />
-<p class="caption"><span class="caption-number">Fig. 55 </span><span class="caption-text">Schematic diagram of a pyramidal image. The image itself (left) is broken into chunks and stored at multiple resolutions. The chunks needed to display the current field of view (top right) are highlighted in yellow.
-The original whole slide image here is from the <a class="reference external" href="https://camelyon16.grand-challenge.org">CAMELYON</a> grand challenge.</span><a class="headerlink" href="#fig-files-pyramidal" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 55 </span><span class="caption-text">Schematic diagram of a pyramidal image. The image itself (left) is broken into chunks and stored at multiple resolutions. The chunks needed to display the current field of view (top right) are highlighted in yellow.
+The original whole slide image here is from the <a class="reference external" href="https://camelyon16.grand-challenge.org">CAMELYON</a> grand challenge.</span><a class="headerlink" href="#fig-files-pyramidal" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Software designed to handle pyramidal images can then dip into the image file and read <strong>only the part of the image that is needed at the time</strong>.
 This is often only a tiny proportion of the entire dataset.</p>
 <p>Pyramidal images are especially common for pathology, although they are starting to be used more for other applications.
 <a class="reference external" href="https://qupath.github.io">QuPath</a> is open source software that is designed specifically to handle pyramidal images efficiently (and happens to also be the software that I wrote and maintain, because I wasn’t able to do the analysis with other open source tools at the time).
 Although QuPath can do a lot of things on its own, it can also be used <a class="reference external" href="https://qupath.readthedocs.io/en/stable/docs/advanced/imagej.html">with ImageJ</a>.</p>
-</div>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1173,9 +1307,11 @@ Although QuPath can do a lot of things on its own, it can also be used <a class=
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../5-pixel_size/python.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1191,24 +1327,28 @@ Although QuPath can do a lot of things on its own, it can also be used <a class=
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pete Bankhead<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pete Bankhead<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

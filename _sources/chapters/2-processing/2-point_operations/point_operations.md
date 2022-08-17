@@ -90,12 +90,16 @@ Examples include:
 **However**, we need to keep in mind that we're not dealing with abtract maths but rather bits and bytes.
 Which makes the next question particularly important.
 
-```{tabbed} Question
++++
+
+````{tab-set}
+
+```{tab-item} Question
 Suppose you add a constant to every pixel in the image.
 Why might subtracting the same constant from the result not give you back the image you started with?
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 If you add a constant that pushes pixel values outside the range supported by the bit-depth (e.g. 0–255 for 8-bit), then the result cannot fit in the image.
 It's likely to be clipped to the closest possible value instead.
 Subtracting the constant again does not restore the original value.
@@ -103,6 +107,10 @@ Subtracting the constant again does not restore the original value.
 For example: 200 *(original value)* + 100 *(constant)* &rarr; 255 *(closest valid value)*. <br/>
 But then 255 - 100 &rarr; 155.
 ```
+
+````
+
++++
 
 Based upon this, an important tip for image processing is:
 
@@ -180,7 +188,7 @@ The effect of image and LUT inversion. Note that each histogram appears to be a 
 Inverting an 8-bit (unsigned integer) image generally means subtracting all pixel values from 255, because 255 is the maximum supported by the image type and bit-depth.
 
 The 'maximum' is not always defined in this way.
-For a 32-bit or 64-bit image (either integer or floating point), the maximum possible value is *huge*, and using that would result in exceedingly large pixel values. 
+For a 32-bit or 64-bit image (either integer or floating point), the maximum possible value is *huge*, and using that would result in exceedingly large pixel values.
 Therefore the 'maximum' is usually defined in some other way rather than based on the image type, such as by taking the maximum pixel value found within the image.
 
 Because I don't like letting the software decide what maximum to use, I often cheat: I multiply the pixels by -1 (ensuring the image is floating point).
@@ -219,7 +227,7 @@ fig = plt.figure(figsize=(12, 4))
 # https://github.com/imagej/imagej1/blob/a0d335d1df4e4c0b4fc12c71ecfbb889d4c62e62/ij/process/ImageProcessor.java#L953
 
 # Create a linear ramp of pixel values from 0-255
-# This simulates an 8-bit ramp image 
+# This simulates an 8-bit ramp image
 # (although we'll do the calculations in 32-bit)
 ramp = np.tile(np.linspace(0, 255, num=256, dtype=np.float32), (64, 1))
 
@@ -382,8 +390,12 @@ with np.errstate(divide='ignore', invalid='ignore'):
 glue_fig("fig_points_masking_output", fig2)
 ```
 
-````{tabbed} Question
-:new-group:
++++
+
+`````{tab-set}
+
+````{tab-item} Question
+
 In the two 32-bit images shown here, white pixels have values of one and black pixels have values of zero (gray pixels have values somewhere in between).
 
 ```{glue:figure} fig_points_masking
@@ -396,7 +408,7 @@ What would be the result of multiplying the images together?
 And what would be the result of dividing the left image by the right image?
 ````
 
-````{tabbed} Answer
+````{tab-item} Answer
 Multiplying the images effectively results in everything outside the white region in the right image being removed from the left image (i.e. set to zero).
 
 ```{glue:figure} fig_points_masking_output
@@ -404,6 +416,10 @@ Multiplying the images effectively results in everything outside the white regio
 align: center
 ---
 ```
+
+`````
+
++++
 
 Dividing has a similar effect, except that instead of becoming zero the masked-out pixels will take one of three results, depending upon the original pixel's value in the left image:
 
@@ -426,7 +442,7 @@ im = load_image('happy_cell.tif')
 im = im - im.min()
 im = im / im.max() * 5
 
-# Create a random number generator - always good to seed this, 
+# Create a random number generator - always good to seed this,
 # to keep the randomness predictable each time we run the code...
 rng = np.random.default_rng(100)
 

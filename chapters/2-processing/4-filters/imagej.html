@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>ImageJ: Filters &#8212; Introduction to Bioimage Analysis</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,21 +20,17 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -41,15 +39,16 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Morphological operations" href="../5-morph/morph.html" />
@@ -61,7 +60,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +83,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -90,14 +104,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../README.html">
-   Introduction to Bioimage Analysis
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Introduction to Bioimage Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Front matter
  </span>
@@ -457,97 +472,199 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/chapters/2-processing/4-filters/imagej.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/chapters/2-processing/4-filters/imagej.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/4-filters/imagej.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/4-filters/imagej.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/chapters/2-processing/4-filters/imagej.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/chapters/2-processing/4-filters/imagej.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -594,12 +711,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>ImageJ: Filters</h1>
@@ -662,11 +778,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="imagej-filters">
-<h1>ImageJ: Filters<a class="headerlink" href="#imagej-filters" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="imagej-filters">
+<h1>ImageJ: Filters<a class="headerlink" href="#imagej-filters" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
@@ -684,15 +801,15 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Most of the filters we’ve considered are available through the <span class="menuselection">Process ‣ Filters</span> submenu.
 This section adds a little more information about their implementation in ImageJ, and asks a few questions.</p>
-</div>
-<div class="section" id="linear-filters">
-<h2>Linear filters<a class="headerlink" href="#linear-filters" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="mean-filters">
-<h3>Mean filters<a class="headerlink" href="#mean-filters" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="linear-filters">
+<h2>Linear filters<a class="headerlink" href="#linear-filters" title="Permalink to this headline">#</a></h2>
+<section id="mean-filters">
+<h3>Mean filters<a class="headerlink" href="#mean-filters" title="Permalink to this headline">#</a></h3>
 <p>The easiest way to apply a 3×3 mean filter in ImageJ is through the <span class="menuselection">Process ‣ Smooth</span> command.
 The fact that the shortcut is <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">S</kbd></kbd> can almost make this <em>too</em> easy, as I find myself accidentally smoothing when I really wanted to save my image.
 Take care.</p>
@@ -701,9 +818,9 @@ It uses approximately circular neighborhoods, and the neighborhood size is adjus
 The <span class="menuselection">Process ‣ Filters ‣ Show Circular Masks</span> command displays the neighborhoods used for different values of <span class="guilabel">Radius</span>.
 If you happen to choose <em>Radius = 1</em>, you get a 3×3 filter – and the same results as using <span class="menuselection">Smooth</span>.</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-filters-masks.png"><img alt="../../../_images/imagej-filters-masks.png" class="align-center" src="../../../_images/imagej-filters-masks.png" style="width: 35%;" /></a>
-</div>
-<div class="section" id="gaussian-filters">
-<h3>Gaussian filters<a class="headerlink" href="#gaussian-filters" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="gaussian-filters">
+<h3>Gaussian filters<a class="headerlink" href="#gaussian-filters" title="Permalink to this headline">#</a></h3>
 <p><span class="menuselection">Process ‣ Filters ‣ Gaussian Blur…</span> is the command that implements a Gaussian filter.</p>
 <p>In the event that you want a Gaussian filter that isn’t isotropic (i.e. has a different size along different dimensions), <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur 3D…</span> can be used.</p>
 <p>Although not <em>really</em> recommended, unsharp masking is available through <span class="menuselection">Process ‣ Filters ‣ Unsharp mask…</span>.</p>
@@ -712,33 +829,33 @@ If you happen to choose <em>Radius = 1</em>, you get a 3×3 filter – and the s
 <p>There’s currently no direct command in ImageJ to implement difference of Gaussians filtering, rather the steps need to be pieced together with image duplication and subtraction.
 However <a class="reference internal" href="../../appendices/macros/macro_dog.html#chap-macro-dog"><span class="std std-ref">Difference of Gaussians</span></a> describes how to generate a macro for DoG filtering.</p>
 </div>
-</div>
-<div class="section" id="custom-linear-filters">
-<h3>Custom linear filters<a class="headerlink" href="#custom-linear-filters" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="custom-linear-filters">
+<h3>Custom linear filters<a class="headerlink" href="#custom-linear-filters" title="Permalink to this headline">#</a></h3>
 <p><span class="menuselection">Process ‣ Filters ‣ Convolve…</span> makes it possible to define any custom linear filter by entering the values of the desired coefficients, separated by spaces and arranged in rows and columns.
 If you <span class="guilabel">Normalize Kernel</span> is selected, then the coefficients are scaled so that they add to 1, by dividing by the sum of all the coefficients – unless the sum is 0, in which case requesting normalizion does nothing.</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-filters-convolve-custom.png"><img alt="../../../_images/imagej-filters-convolve-custom.png" class="align-center" src="../../../_images/imagej-filters-convolve-custom.png" style="width: 80%;" /></a>
-<div class="tabbed-set docutils">
-<input checked="checked" id="8d0f364a-2e46-4a8f-b2d7-10e44cf00cf1" name="4d642a6c-c7b4-4018-9b5a-201d9c318f9d" type="radio">
-</input><label class="tabbed-label" for="8d0f364a-2e46-4a8f-b2d7-10e44cf00cf1">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="7de85b9f-d5a6-4c9f-a478-63802f150dbb" name="9d143e01-8cf8-4616-a71c-3bb35dbf9e25" type="radio">
+</input><label class="sd-tab-label" for="7de85b9f-d5a6-4c9f-a478-63802f150dbb">
+Question</label><div class="sd-tab-content docutils">
 <p>When defining an <em>n_×_n</em> filter kernel with <span class="menuselection">Convolve…</span>, ImageJ insists that <strong>n</strong> is an odd number. Why?</p>
 </div>
-<input id="bdb1f918-0f48-477a-958e-58b862a8b73b" name="4d642a6c-c7b4-4018-9b5a-201d9c318f9d" type="radio">
-</input><label class="tabbed-label" for="bdb1f918-0f48-477a-958e-58b862a8b73b">
-Answer</label><div class="tabbed-content docutils">
+<input id="119f1565-80ab-4ac2-9472-387a7b3dbd6d" name="9d143e01-8cf8-4616-a71c-3bb35dbf9e25" type="radio">
+</input><label class="sd-tab-label" for="119f1565-80ab-4ac2-9472-387a7b3dbd6d">
+Answer</label><div class="sd-tab-content docutils">
 <p>If <em>n</em> is an odd number, the filter has a clear central pixel.
 This makes it possible to center the filter kernel on a pixel on the image.</p>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <a class="reference internal image-reference" href="../../../_images/imagej-filters-convolve-1.png"><img alt="../../../_images/imagej-filters-convolve-1.png" class="align-center" src="../../../_images/imagej-filters-convolve-1.png" style="width: 80%;" /></a>
-</div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="b6068ae7-719a-4882-8870-108d8bba9b20" name="6be21a58-20b9-44ab-9abe-4f8a10c873fa" type="radio">
-</input><label class="tabbed-label" for="b6068ae7-719a-4882-8870-108d8bba9b20">
-Question</label><div class="tabbed-content docutils">
+</aside>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="069fc597-2fef-4f96-82c7-f7767f916e24" name="cc594e41-ffe0-440b-a195-5c8f6d956f3d" type="radio">
+</input><label class="sd-tab-label" for="069fc597-2fef-4f96-82c7-f7767f916e24">
+Question</label><div class="sd-tab-content docutils">
 <p>Predict what happens when you convolve an image using a filter that consists of a single coefficient with a value -1 in the following cases:</p>
 <ol class="simple">
 <li><p><span class="guilabel">Normalize Kernel</span> is checked</p></li>
@@ -746,9 +863,9 @@ Question</label><div class="tabbed-content docutils">
 <li><p>You have an 8-bit image, <span class="guilabel">Normalize Kernel</span> is unchecked</p></li>
 </ol>
 </div>
-<input id="a143c172-dc4a-417c-9e7a-d3f1646bc7e0" name="6be21a58-20b9-44ab-9abe-4f8a10c873fa" type="radio">
-</input><label class="tabbed-label" for="a143c172-dc4a-417c-9e7a-d3f1646bc7e0">
-Answer</label><div class="tabbed-content docutils">
+<input id="dc32f6c0-0ed8-4ac3-a522-51e46fc20afd" name="cc594e41-ffe0-440b-a195-5c8f6d956f3d" type="radio">
+</input><label class="sd-tab-label" for="dc32f6c0-0ed8-4ac3-a522-51e46fc20afd">
+Answer</label><div class="sd-tab-content docutils">
 <p>The results of convolving with a single -1 coefficient in different circumstances:</p>
 <ol class="simple">
 <li><p><em><span class="guilabel">Normalize Kernel</span> is checked</em>: Nothing at all happens. The normalization makes the filter just a single 1… and convolving with a single 1 leaves the image unchanged.</p></li>
@@ -757,33 +874,35 @@ Answer</label><div class="tabbed-content docutils">
 </ol>
 </div>
 </div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="52bdf5ab-9a6f-4129-b0f0-e3211dd42420" name="66a0c2d4-764a-4dd6-bf7d-26914c9a9fd3" type="radio">
-</input><label class="tabbed-label" for="52bdf5ab-9a6f-4129-b0f0-e3211dd42420">
-Practical</label><div class="tabbed-content docutils">
-<p>Using any image, work out which of the methods for dealing with boundaries shown in <a class="reference internal" href="filters.html#fig-filter-boundaries"><span class="std std-numref">Fig. 85</span></a> is used by ImageJ’s <span class="menuselection">Convolve…</span> command.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="21e1af55-cdc7-4113-b8c1-3698bf1e4e7e" name="ea278f29-4d9b-4f52-9408-e259243d72d6" type="radio">
+</input><label class="sd-tab-label" for="21e1af55-cdc7-4113-b8c1-3698bf1e4e7e">
+Practical</label><div class="sd-tab-content docutils">
+<p>Using any image, work out which of the methods for dealing with boundaries shown in <a class="reference internal" href="filters.html#fig-filter-boundaries"><span class="std std-numref">Fig. 84</span></a> is used by ImageJ’s <span class="menuselection">Convolve…</span> command.</p>
 <p><strong>Note:</strong> This requires a bit of creativity.
 It will certainly help to use an image with some variation at the image boundary.
 I used <span class="menuselection">File ‣ Open Samples ‣ Blobs</span>.</p>
 <p><a class="reference external" href="https://ij.imjoy.io?run=https://gist.github.com/petebankhead/cbbb6f210d173c8488247799efc3b970"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="332baa44-0b8a-42ec-803b-dca977adc64b" name="66a0c2d4-764a-4dd6-bf7d-26914c9a9fd3" type="radio">
-</input><label class="tabbed-label" for="332baa44-0b8a-42ec-803b-dca977adc64b">
-Solution</label><div class="tabbed-content docutils">
+<input id="a9b4c39f-e432-472a-b2ad-5d7934481fa6" name="ea278f29-4d9b-4f52-9408-e259243d72d6" type="radio">
+</input><label class="sd-tab-label" for="a9b4c39f-e432-472a-b2ad-5d7934481fa6">
+Solution</label><div class="sd-tab-content docutils">
 <p>Replication of boundary pixels is the default method used by <span class="menuselection">Process ‣ Filters ‣ Convolve…</span> in ImageJ (although other filtering plugins by different authors might use different methods).</p>
 <p>My approach to test this involved using <span class="menuselection">Convolve…</span> with a filter that consisting of a 1 followed by a lot of zeros (e.g. <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0...</span></code>).
 This basically shifts the image to the right, bringing whatever is outside the image boundary into view.</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-filters-convolve-padding.png"><img alt="../../../_images/imagej-filters-convolve-padding.png" class="align-center" src="../../../_images/imagej-filters-convolve-padding.png" style="width: 80%;" /></a>
 </div>
 </div>
-<div class="margin figure align-center" id="id1">
+<figure class="margin align-center" id="id1">
 <a class="reference internal image-reference" href="../../../_images/imagej-happy-edges.png"><img alt="../../../_images/imagej-happy-edges.png" src="../../../_images/imagej-happy-edges.png" style="width: 80%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 99 </span><span class="caption-text">Gradient magnitude</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="29799f41-dd48-4249-94dc-4c945873ad6b" name="31a744cd-4458-4486-ba57-00888cfbf5b4" type="radio">
-</input><label class="tabbed-label" for="29799f41-dd48-4249-94dc-4c945873ad6b">
-Practical</label><div class="tabbed-content docutils">
+<figcaption>
+<p><span class="caption-number">Fig. 98 </span><span class="caption-text">Gradient magnitude</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="ec535775-4eab-4b0a-a5f6-7f435b354001" name="bc43ab53-06a5-4ea3-b296-1f67beb4b91e" type="radio">
+</input><label class="sd-tab-label" for="ec535775-4eab-4b0a-a5f6-7f435b354001">
+Practical</label><div class="sd-tab-content docutils">
 <p>Practice using the commands we’ve met so far by determining the <strong>gradient magnitude</strong> of an image, as described <a class="reference internal" href="filters.html#sec-filters-gradient"><span class="std std-ref">here</span></a>.</p>
 <p>You will need to use</p>
 <ul class="simple">
@@ -797,9 +916,9 @@ Practical</label><div class="tabbed-content docutils">
 <em>(Be sure to pay attention to the bit-depth!)</em></p>
 <p><a class="reference external" href="https://ij.imjoy.io?run=https://gist.github.com/petebankhead/cbbb6f210d173c8488247799efc3b970"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="1aa61355-a8c9-440f-8428-6926ca421d0b" name="31a744cd-4458-4486-ba57-00888cfbf5b4" type="radio">
-</input><label class="tabbed-label" for="1aa61355-a8c9-440f-8428-6926ca421d0b">
-Solution</label><div class="tabbed-content docutils">
+<input id="2878c323-5c6c-469c-9337-8f09551e32f5" name="bc43ab53-06a5-4ea3-b296-1f67beb4b91e" type="radio">
+</input><label class="sd-tab-label" for="2878c323-5c6c-469c-9337-8f09551e32f5">
+Solution</label><div class="sd-tab-content docutils">
 <p>The process to calculate the gradient magnitude is:</p>
 <ol class="simple">
 <li><p>Convert the image to 32-bit (if it isn’t already 32-bit)</p></li>
@@ -831,34 +950,36 @@ Solution</label><div class="tabbed-content docutils">
 <p><strong>Note:</strong> This is (almost) what is done by the command <span class="menuselection">Process ‣ Find Edges</span>, except the gradient filters are slightly different.</p>
 </div>
 </div>
-<div class="margin figure align-center" id="id2">
+<figure class="margin align-center" id="id2">
 <a class="reference internal image-reference" href="../../../_images/imagej-filters-lut-edges.png"><img alt="../../../_images/imagej-filters-lut-edges.png" src="../../../_images/imagej-filters-lut-edges.png" style="width: 80%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 100 </span><span class="caption-text">The ‘Edges’ LUT</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="14b10437-f197-4896-9558-1a8cb31dd658" name="e8dd71fd-2c51-4ec8-a554-05b887eba02b" type="radio">
-</input><label class="tabbed-label" for="14b10437-f197-4896-9558-1a8cb31dd658">
-Practical</label><div class="tabbed-content docutils">
+<figcaption>
+<p><span class="caption-number">Fig. 99 </span><span class="caption-text">The ‘Edges’ LUT</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="7962bf3b-e6e2-4152-809c-bf3d57c578af" name="43db0067-01f4-4352-8e72-a539bcc996dc" type="radio">
+</input><label class="sd-tab-label" for="7962bf3b-e6e2-4152-809c-bf3d57c578af">
+Practical</label><div class="sd-tab-content docutils">
 <p>ImageJ has a LUT called <strong>edges</strong> under <span class="menuselection">Image ‣ Lookup Tables ‣ Edges</span>.
 Applied to <span class="menuselection">File ‣ Open samples ‣ Blobs (25K)</span>, it does a rather good job of highlighting edges – without actually changing the pixels at all.</p>
 <p>How does it work?
 Does it apply a filter?</p>
 <p><a class="reference external" href="https://ij.imjoy.io?run=https://gist.github.com/petebankhead/cbbb6f210d173c8488247799efc3b970"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="8276e170-d060-4e8d-a4d3-42f7305bb08d" name="e8dd71fd-2c51-4ec8-a554-05b887eba02b" type="radio">
-</input><label class="tabbed-label" for="8276e170-d060-4e8d-a4d3-42f7305bb08d">
-Solution</label><div class="tabbed-content docutils">
+<input id="d576f947-9aba-4178-b1e4-d35a9352e609" name="43db0067-01f4-4352-8e72-a539bcc996dc" type="radio">
+</input><label class="sd-tab-label" for="d576f947-9aba-4178-b1e4-d35a9352e609">
+Solution</label><div class="sd-tab-content docutils">
 <p>The <span class="menuselection">edges</span> LUT shows most low and high pixel values as black – and uses lighter shades of gray only for a small range of values in between (see <span class="menuselection">Image ‣ Color ‣ Edit LUT…</span>).
 In any image with a good separation of background and foreground pixels, but which still has a somewhat smooth transition between them, this means everything but the edges can appear black.</p>
 <p>All this is achieved by a LUT: no pixels were harmed, there was no filtering applied.</p>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="nonlinear-filters">
-<h2>Nonlinear filters<a class="headerlink" href="#nonlinear-filters" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="rank-filters">
-<h3>Rank filters<a class="headerlink" href="#rank-filters" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="nonlinear-filters">
+<h2>Nonlinear filters<a class="headerlink" href="#nonlinear-filters" title="Permalink to this headline">#</a></h2>
+<section id="rank-filters">
+<h3>Rank filters<a class="headerlink" href="#rank-filters" title="Permalink to this headline">#</a></h3>
 <p>The main rank filters are to be found exactly where you might expect them:</p>
 <ul class="simple">
 <li><p><span class="menuselection">Process ‣ Filters ‣ Median…</span></p></li>
@@ -867,17 +988,17 @@ In any image with a good separation of background and foreground pixels, but whi
 </ul>
 <p>ImageJ uses circular neighborhoods with its built-in rank filters, similar to how mean filters are implemented.
 We will meet these filters again in <a class="reference internal" href="../5-morph/morph.html#chap-morph"><span class="std std-ref">Morphological operations</span></a>.</p>
-</div>
-<div class="section" id="removing-outliers">
-<h3>Removing outliers<a class="headerlink" href="#removing-outliers" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="filters.html#fig-processing-filters-speckled"><span class="std std-numref">Fig. 87</span></a> shows that median filtering is much better than mean filtering for removing outliers.
+</section>
+<section id="removing-outliers">
+<h3>Removing outliers<a class="headerlink" href="#removing-outliers" title="Permalink to this headline">#</a></h3>
+<p><a class="reference internal" href="filters.html#fig-processing-filters-speckled"><span class="std std-numref">Fig. 86</span></a> shows that median filtering is much better than mean filtering for removing outliers.
 We might encounter this if something in the microscope is not quite functioning as expected or if dark noise is a problem, but otherwise we expect the noise in fluorescence microscopy images to produce few really extreme values (see <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html#chap-formation-noise"><span class="std std-ref">Noise</span></a>).</p>
 <p>Nevertheless, <span class="menuselection">Process ‣ Noise ‣ Remove Outliers…</span> provides an alternative if isolated bright values are present.
 This is a nonlinear filter that inserts median values <em>only whenever a pixel is found that is further away from the local median than some adjustable threshold</em>.</p>
 <p>It’s therefore like a more selective median filter that will only modify the image at pixels where it is considered really necessary.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -901,9 +1022,11 @@ This is a nonlinear filter that inserts median values <em>only whenever a pixel 
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="filters.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -919,24 +1042,28 @@ This is a nonlinear filter that inserts median values <em>only whenever a pixel 
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pete Bankhead<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pete Bankhead<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

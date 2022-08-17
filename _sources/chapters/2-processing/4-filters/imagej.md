@@ -81,18 +81,22 @@ If you {guilabel}`Normalize Kernel` is selected, then the coefficients are scale
 :align: center
 ```
 
-```{tabbed} Question
-:new-group:
+````{tab-set}
+
+```{tab-item} Question
+
 
 When defining an _n_×_n_ filter kernel with {menuselection}`Convolve...`, ImageJ insists that __n__ is an odd number. Why?
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 If *n* is an odd number, the filter has a clear central pixel.
 This makes it possible to center the filter kernel on a pixel on the image.
 ```
+
+````
 
 ````{margin}
 ```{image} images/imagej-filters-convolve-1.png
@@ -101,8 +105,10 @@ This makes it possible to center the filter kernel on a pixel on the image.
 ```
 ````
 
-```{tabbed} Question
-:new-group:
+````{tab-set}
+
+```{tab-item} Question
+
 
 Predict what happens when you convolve an image using a filter that consists of a single coefficient with a value -1 in the following cases:
 
@@ -111,7 +117,7 @@ Predict what happens when you convolve an image using a filter that consists of 
 3.  You have an 8-bit image, {guilabel}`Normalize Kernel` is unchecked
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 The results of convolving with a single -1 coefficient in different circumstances:
 1.  _{guilabel}`Normalize Kernel` is checked_: Nothing at all happens. The normalization makes the filter just a single 1... and convolving with a single 1 leaves the image unchanged.
@@ -119,9 +125,13 @@ The results of convolving with a single -1 coefficient in different circumstance
 3.  _You have an 8-bit image ({guilabel}`Normalize Kernel` unchecked)_: The pixel values would become negative, but then cannot be stored in an 8-bit unsigned integer form. Therefore, all pixels simply become clipped to zero.
 ```
 
+````
 
-````{tabbed} Practical
-:new-group:
+
+`````{tab-set}
+
+````{tab-item} Practical
+
 
 Using any image, work out which of the methods for dealing with boundaries shown in {numref}`fig-filter_boundaries` is used by ImageJ's {menuselection}`Convolve...` command.
 
@@ -134,7 +144,7 @@ I used {menuselection}`File --> Open Samples --> Blobs`.
 ````
 
 
-````{tabbed} Solution
+````{tab-item} Solution
 
 Replication of boundary pixels is the default method used by {menuselection}`Process --> Filters --> Convolve...` in ImageJ (although other filtering plugins by different authors might use different methods).
 
@@ -148,6 +158,8 @@ This basically shifts the image to the right, bringing whatever is outside the i
 
 ````
 
+`````
+
 ```{figure} images/imagej-happy-edges.png
 :align: center
 :width: 80%
@@ -156,8 +168,10 @@ This basically shifts the image to the right, bringing whatever is outside the i
 Gradient magnitude
 ```
 
-```{tabbed} Practical
-:new-group:
+`````{tab-set}
+
+```{tab-item} Practical
+
 
 Practice using the commands we've met so far by determining the **gradient magnitude** of an image, as described [here](sec_filters_gradient).
 
@@ -174,7 +188,7 @@ _(Be sure to pay attention to the bit-depth!)_
 [![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg)](https://ij.imjoy.io?run=https://gist.github.com/petebankhead/cbbb6f210d173c8488247799efc3b970)
 ```
 
-````{tabbed} Solution
+````{tab-item} Solution
 The process to calculate the gradient magnitude is:
 
 1.  Convert the image to 32-bit (if it isn't already 32-bit)
@@ -208,6 +222,8 @@ The convolution results in negative values, which is why the 32-bit conversion i
 **Note:** This is (almost) what is done by the command {menuselection}`Process --> Find Edges`, except the gradient filters are slightly different.
 ````
 
+`````
+
 
 ```{figure} images/imagej-filters-lut-edges.png
 :align: center
@@ -217,9 +233,10 @@ The convolution results in negative values, which is why the 32-bit conversion i
 The 'Edges' LUT
 ```
 
+````{tab-set}
 
-```{tabbed} Practical
-:new-group:
+```{tab-item} Practical
+
 
 ImageJ has a LUT called **edges** under {menuselection}`Image --> Lookup Tables --> Edges`.
 Applied to {menuselection}`File --> Open samples --> Blobs (25K)`, it does a rather good job of highlighting edges -- without actually changing the pixels at all.
@@ -231,14 +248,16 @@ Does it apply a filter?
 ```
 
 
-```{tabbed} Solution
+```{tab-item} Solution
 The {menuselection}`edges` LUT shows most low and high pixel values as black -- and uses lighter shades of gray only for a small range of values in between (see {menuselection}`Image --> Color --> Edit LUT...`).
 In any image with a good separation of background and foreground pixels, but which still has a somewhat smooth transition between them, this means everything but the edges can appear black.
 
 All this is achieved by a LUT: no pixels were harmed, there was no filtering applied.
 ```
 
+````
 
++++
 
 ## Nonlinear filters
 

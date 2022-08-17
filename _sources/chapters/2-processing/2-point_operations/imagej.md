@@ -82,7 +82,9 @@ At the top of the list come the arithmetic operations: {menuselection}`Add...`, 
 ```
 ````
 
-```{tabbed} Practical
+````{tab-set}
+
+```{tab-item} Practical
 Open the image *Spooked_16-bit.tif*, and apply *only* the following steps:
 
 * Measure the mean pixel value of the image
@@ -97,7 +99,7 @@ Can you explain the result?
 
 ```
 
-```{tabbed} Solution
+```{tab-item} Solution
 Firstly, the commands you need to run are:
 * {menuselection}`Analyze --> Measure`, or press {kbd}`M`
 * {menuselection}`Process --> Math --> Subtract...` with the value 600
@@ -116,6 +118,10 @@ If you didn't see this effect, then I would guess you had the foresight to run {
 If you do this, the mean values match after all.
 
 ```
+
+````
+
++++
 
 
 The {menuselection}`Process --> Math --> Log...` and {menuselection}`Process --> Math --> Gamma...` commands implement the log and gamma transforms respectively.
@@ -136,7 +142,9 @@ You'll need to follow up by using {menuselection}`Image --> Adjust --> Brightnes
 ```
 ````
 
-```{tabbed} Practical
+````{tab-set}
+
+```{tab-item} Practical
 Explore the use of {menuselection}`Process --> Math --> Gamma...` for enhancing the contrast of *Spooked_16-bit.tif*.
 
 If you want to see both the human and the ghost, should the gamma value be less than 1, equal to 1, or greater than 1?
@@ -149,13 +157,15 @@ You should now see a live update of how changing the gamma affects the pixel val
 
 ```
 
-```{tabbed} Solution
+```{tab-item} Solution
 The gamma needs to be less than 1.
 
 When the gamma is equal to 1, it isn't doing anything at all.
 When it is greater than 1, it's applying a non-linear adjustment -- but not one that really helps in this case.
 ```
+````
 
++++
 
 ### Image inversion
 
@@ -177,8 +187,9 @@ As is often the case, the signs of an inverted LUT are evident in the text at th
 :::
 
 
+````{tab-set}
 
-```{tabbed} Practical
+```{tab-item} Practical
 {menuselection}`Edit --> Invert` works differently when applied to different image types.
 Like in the 8-bit case, pixel values are always subtracted from some 'maximum'.
 
@@ -189,7 +200,7 @@ How this maximum is determined for 16 and 32-bit images in ImageJ?
 [![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Spooked_16-bit.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/happy_cell.tif)
 ```
 
-```{tabbed} Solution
+```{tab-item} Solution
 When I first wrote this question, to invert a 16-bit image pixel were subtracted from *the maximum value within the original image*.
 This is also true for stacks: the maximum value in the entire stack is found.
 
@@ -204,6 +215,10 @@ I would happily apply {menuselection}`Edit --> Invert` to an 8-bit image.
 For anything else, I'd generally rather convert to 32-bit and multiply by -1 -- so that I know the results should be repeatable, regardless of brightess & contrast settings.
 
 ```
+
+````
+
++++
 
 ## The Image Calculator
 
@@ -221,9 +236,10 @@ But beware of the bit-depth and type!
 If any of the original images are 8 or 16-bit, then the result might require clipping or rounding, in which case selecting the option to create a {guilabel}`32-bit (float) result` may be necessary to get the expected output.
 
 
+````{tab-set}
 
-```{tabbed} Practical
-:new-group:
+```{tab-item} Practical
+
 {menuselection}`Process --> Math --> Image Calculator...` finally makes it possible for us to check whether the pixel values of two images are all identical -- without relying on summary measurements or histograms.
 
 Use it to determine which two of the images *Same_1.tif*, *Same_2.tif* and *Same_3.tif* are identical in terms of pixel values.
@@ -231,7 +247,7 @@ Use it to determine which two of the images *Same_1.tif*, *Same_2.tif* and *Same
 [![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Same_1.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/Same_2.tif&open=https://github.com/bioimagebook/practical-data/blob/main/images/Same_3.tif)
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 My preferred way to check this is to subtract the images from one another, making sure that the result is 32-bit (in case there are negative values). Doing this should reveal something hidden in the image *Same_2.tif*.
 Note that the contrast settings differ between *Same_1.tif* and *Same_3.tif*, so they may _look_ different.
 
@@ -240,3 +256,5 @@ Note that the contrast settings differ between *Same_1.tif* and *Same_3.tif*, so
 When converted back into actual decimal values and then to colors for us to look at, this can appear strange.
 But at least if the resulting image is not completely black then we know that the original input images were not identical.)
 ```
+
+````

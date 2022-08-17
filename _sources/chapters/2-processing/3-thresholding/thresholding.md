@@ -157,16 +157,20 @@ Pixels are _4-connected_ if they are horizontally or vertically adjacent, but _n
 The choice of connectivity can make a big difference in the number and sizes of objects found, as the example on the right shows (distinct objects are shown in different colors).
 :::
 
-```{tabbed} Question
-:new-group:
+````{tab-set}
+
+```{tab-item} Question
+
 
 What do you suppose _6-connectivity_ and _26-connectivity_ refer to?
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 6-connectivity is similar to 4-connectivity, but in 3D.
 If all 3D diagonals are considered, we end up with each pixel having 26 neighbors.
 ```
+
+````
 
 +++
 

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>ImageJ: Image transforms &#8212; Introduction to Bioimage Analysis</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,21 +20,17 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -41,8 +39,10 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -51,7 +51,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Multidimensional processing" href="../7-multidimensional_processing/multidimensional_processing.html" />
@@ -63,7 +62,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -72,9 +85,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -92,14 +106,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../README.html">
-   Introduction to Bioimage Analysis
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Introduction to Bioimage Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Front matter
  </span>
@@ -459,97 +474,199 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/chapters/2-processing/6-transforms/imagej.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/chapters/2-processing/6-transforms/imagej.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/6-transforms/imagej.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/6-transforms/imagej.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/chapters/2-processing/6-transforms/imagej.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/chapters/2-processing/6-transforms/imagej.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -584,12 +701,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>ImageJ: Image transforms</h1>
@@ -640,11 +756,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="imagej-image-transforms">
-<h1>ImageJ: Image transforms<a class="headerlink" href="#imagej-image-transforms" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="imagej-image-transforms">
+<h1>ImageJ: Image transforms<a class="headerlink" href="#imagej-image-transforms" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
@@ -662,16 +779,16 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>ImageJ has excellent 2D distance and watershed transforms… although not necessarily everything about them is quite what you might expect.</p>
-</div>
-<div class="section" id="distance-transform">
-<h2>Distance transform<a class="headerlink" href="#distance-transform" title="Permalink to this headline">¶</a></h2>
-<div class="margin sidebar">
+</section>
+<section id="distance-transform">
+<h2>Distance transform<a class="headerlink" href="#distance-transform" title="Permalink to this headline">#</a></h2>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <a class="reference internal image-reference" href="../../../_images/imagej-binary-options.png"><img alt="../../../_images/imagej-binary-options.png" src="../../../_images/imagej-binary-options.png" style="width: 75%;" /></a>
-</div>
+</aside>
 <p>A 2D distance transform can be calculated in ImageJ using the <span class="menuselection">Process ‣ Binary ‣ Distance Map</span> command.</p>
 <p>A non-obvious feature of this is that the type of output given is determined by the <span class="guilabel">EDM output</span> option tucked away under <span class="menuselection">Process ‣ Binary ‣ Options…</span> (where EDM stands for ‘Euclidean Distance Map’).
 This makes a difference, because the distance between two diagonal pixels is considered <span class="math notranslate nohighlight">\(\sqrt{2} \approx 1.414\)</span> (by Pythagoras’ theorem) – which means that a 32-bit output can give more exact straight-line distances without rounding.</p>
@@ -689,14 +806,16 @@ This makes a difference, because the distance between two diagonal pixels is con
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-distance-commands-imagej">
+<figure class="align-center" id="fig-distance-commands-imagej">
 <div class="cell_output docutils container">
 <img alt="../../../_images/imagej_4_0.png" src="../../../_images/imagej_4_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 126 </span><span class="caption-text">Outputs from several distance transform-related commands in ImageJ.</span><a class="headerlink" href="#fig-distance-commands-imagej" title="Permalink to this image">¶</a></p>
-</div>
-<div class="section" id="ultimate-points">
-<h3>Ultimate points<a class="headerlink" href="#ultimate-points" title="Permalink to this headline">¶</a></h3>
+<figcaption>
+<p><span class="caption-number">Fig. 125 </span><span class="caption-text">Outputs from several distance transform-related commands in ImageJ.</span><a class="headerlink" href="#fig-distance-commands-imagej" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="ultimate-points">
+<h3>Ultimate points<a class="headerlink" href="#ultimate-points" title="Permalink to this headline">#</a></h3>
 <p><span class="menuselection">Process ‣ Binary ‣ Ultimate Points</span> is a related command.
 It uses the distance transform to identify the last points that would be removed if the objects would be eroded until they disappear.
 In other words, it identifies centers.
@@ -793,50 +912,52 @@ If segmentation has resulted in structures being merged together, then each dist
 Here, I’ve tried to replicate it in Python.
 The results aren’t necessarily identical to ImageJ’s implementation, but should be pretty close.</p>
 <p>Select to <span class="guilabel">Click to show</span> above to see how it works.</p>
-<div class="figure align-center" id="fig-distance-transform-python">
+<figure class="align-center" id="fig-distance-transform-python">
 <div class="cell_output docutils container">
 <img alt="../../../_images/imagej_7_1.png" src="../../../_images/imagej_7_1.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 127 </span><span class="caption-text">Computing the ultimate points from a binary image can be an effective step towards counting the objects in the image – even if these have been merged. It works best when the true objects are round in shape.</span><a class="headerlink" href="#fig-distance-transform-python" title="Permalink to this image">¶</a></p>
+<figcaption>
+<p><span class="caption-number">Fig. 126 </span><span class="caption-text">Computing the ultimate points from a binary image can be an effective step towards counting the objects in the image – even if these have been merged. It works best when the true objects are round in shape.</span><a class="headerlink" href="#fig-distance-transform-python" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
-</div>
-</div>
-<div class="section" id="watershed-after-distance-transform">
-<h3>Watershed (after distance transform)<a class="headerlink" href="#watershed-after-distance-transform" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="watershed-after-distance-transform">
+<h3>Watershed (after distance transform)<a class="headerlink" href="#watershed-after-distance-transform" title="Permalink to this headline">#</a></h3>
 <p>As the name suggests, ImageJ’s <span class="menuselection">Process ‣ Binary ‣ Watershed</span> command applies a watershed transform.</p>
 <p>However, as the name conceals, the watershed transform is always applied to a distance map – which is calculated automatically in the background.</p>
 <p>The clue to this is only that it appears in a <span class="menuselection">Process ‣ Binary</span> submenu, and therefore requires a binary image as input; a ‘regular’ watershed transform isn’t normally applied to a binary image.</p>
 <p>Effectively, the seeds of the watershed transform are the ‘ultimate points’ described above.
 The effect of the command is therefore to split ‘roundish’ objects.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <a class="reference internal image-reference" href="../../../_images/imagej-binary-blobs-stack.png"><img alt="../../../_images/imagej-binary-blobs-stack.png" src="../../../_images/imagej-binary-blobs-stack.png" style="width: 75%;" /></a>
-</div>
+</aside>
 <div class="admonition">
 <p class="admonition-title">Watching the distance transform</p>
 <p>If you click the <span class="guilabel">Dev</span> toolbar button and select <span class="menuselection">Debug Mode</span> from the drop-down menu, then running <span class="menuselection">Process ‣ Binary ‣ Watershed</span> will generate an image stack that visualizes how the seeds expanded during the watershed processing.</p>
 </div>
-</div>
-<div class="section" id="voronoi">
-<h3>Voronoi<a class="headerlink" href="#voronoi" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="voronoi">
+<h3>Voronoi<a class="headerlink" href="#voronoi" title="Permalink to this headline">#</a></h3>
 <p><span class="menuselection">Process ‣ Binary ‣ Voronoi</span> is another distance-and-watershed-based command for binary images.</p>
 <p>It will partition the image into different regions so that the separation lines have an equal distance to the nearest foreground objects.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <a class="reference internal image-reference" href="../../../_images/imagej-blobs-surroundings.png"><img alt="../../../_images/imagej-blobs-surroundings.png" src="../../../_images/imagej-blobs-surroundings.png" style="width: 75%;" /></a>
-</div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="8aefc3c9-af7a-4cdf-948c-c59c60a29308" name="33602eaa-665a-4025-b69b-dabfb85e3087" type="radio">
-</input><label class="tabbed-label" for="8aefc3c9-af7a-4cdf-948c-c59c60a29308">
-Question</label><div class="tabbed-content docutils">
+</aside>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="fb982b12-7b1f-4e09-9c8c-249dace44a28" name="70bfe86e-acd0-46eb-a12a-7aa3d3f748b4" type="radio">
+</input><label class="sd-tab-label" for="fb982b12-7b1f-4e09-9c8c-249dace44a28">
+Question</label><div class="sd-tab-content docutils">
 <p>Imagine you have created a binary image containing detected cells, but you are only interested in the region inside the cell that is close to the membrane, i.e. within 5 pixels of the edge of each detected object.
 Any pixels outside the objects or closer to their centers do not matter.</p>
 <p>How would you go about finding these regions using ImageJ and the distance transform?</p>
 <p><strong>Note:</strong> There other ways to do this using techniques we’ve discussed, although these don’t necessarily give identical results.</p>
 </div>
-<input id="4506e36a-1b87-4ea8-8829-a8e977fdae34" name="33602eaa-665a-4025-b69b-dabfb85e3087" type="radio">
-</input><label class="tabbed-label" for="4506e36a-1b87-4ea8-8829-a8e977fdae34">
-Answer</label><div class="tabbed-content docutils">
+<input id="b77f8e35-b49c-4dd5-821c-6f2121768f2c" name="70bfe86e-acd0-46eb-a12a-7aa3d3f748b4" type="radio">
+</input><label class="sd-tab-label" for="b77f8e35-b49c-4dd5-821c-6f2121768f2c">
+Answer</label><div class="sd-tab-content docutils">
 <p>This is the approach I was thinking of:</p>
 <ol class="simple">
 <li><p>Run <span class="menuselection">Edit ‣ Invert</span></p></li>
@@ -848,14 +969,14 @@ Answer</label><div class="tabbed-content docutils">
 The distance transform is also likely to be much faster for large distances, and more precise (assuming you use a 32-bit output).</p>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="watershed-transform">
-<h2>Watershed transform<a class="headerlink" href="#watershed-transform" title="Permalink to this headline">¶</a></h2>
-<div class="margin sidebar">
+</section>
+</section>
+<section id="watershed-transform">
+<h2>Watershed transform<a class="headerlink" href="#watershed-transform" title="Permalink to this headline">#</a></h2>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <a class="reference internal image-reference" href="../../../_images/imagej-find-maxima.png"><img alt="../../../_images/imagej-find-maxima.png" src="../../../_images/imagej-find-maxima.png" style="width: 75%;" /></a>
-</div>
+</aside>
 <p>So if ImageJ has a watershed transform, but it’s not the command called <span class="menuselection">Watershed</span>, then where is it?</p>
 <p>The answer is that it’s hidden in the phenomenally useful <span class="menuselection">Process ‣ Find maxima</span> command.</p>
 <p>I say ‘hidden’, because you specifically have to choose the output <span class="guilabel">Segmented Particles</span> to use it.
@@ -867,8 +988,8 @@ Depending upon which options are selected, this includes finding structures usin
 <p>Echoing my recommendation at the end of the last chapter, you should check out <strong>MorphoLibJ</strong> if you would like more transform options – particularly when it comes to watersheds of various kinds.</p>
 <p>See <a class="reference external" href="https://imagej.net/plugins/morpholibj">https://imagej.net/plugins/morpholibj</a> for more details.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -892,9 +1013,11 @@ Depending upon which options are selected, this includes finding structures usin
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="transforms.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -910,24 +1033,28 @@ Depending upon which options are selected, this includes finding structures usin
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pete Bankhead<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pete Bankhead<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

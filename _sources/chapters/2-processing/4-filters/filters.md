@@ -312,9 +312,10 @@ name: fig-mean_filter_sizes
 Smoothing an image using circular mean filters with different radii.
 ```
 
+````{tab-set}
 
-```{tabbed} Question
-:new-group:
+```{tab-item} Question
+
 
 In ImageJ, creating a mean filter with *Radius = 6* results in a circular filter that replaces each pixel with the mean of 121 pixels.
 Using a square
@@ -325,7 +326,7 @@ Can you think of any advantages in using the circular filter rather than the squ
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 Circles are more 'compact'.
 Every point on the perimeter of a circle is the same distance from the center.
@@ -336,6 +337,10 @@ If a pixel is further away, it's more likely to have a very different value beca
 Averaging across structures can blur them into one another, so is best avoided.
 
 ```
+
+````
+
++++
 
 (sec_filters_gradient)=
 ### Gradient filters
@@ -395,21 +400,24 @@ The process of calculating the gradient magnitude is:
 * Take the square root of the result
 
 
+````{tab-set}
 
-```{tabbed} Question
-:new-group:
+```{tab-item} Question
+
 
 Suppose the mean pixel value of an image is 100.
 What will the mean value be after applying a horizontal gradient filter?
 ```
 
 
-```{tabbed} Solution
+```{tab-item} Solution
 
 After applying a gradient filter, the image mean will be 0: every pixel is added once and subtracted once when calculating the result.
 
 (Note that the mean value of a *gradient magnitude* image will be ≥ 0, because all pixels have either positive values or are equal to zero.)
 ```
+
+````
 
 
 ````{margin}
@@ -617,15 +625,18 @@ show_image(im_max - im_min)
 glue_fig('fig_filters_max_minus_min', fig)
 ```
 
-```{tabbed} Question
-:new-group:
+
+`````{tab-set}
+
+```{tab-item} Question
+
 
 What would happen if you subtract a minimum filtered image (e.g.
 {numref}`fig-processing_filters_rank`C) from a maximum filtered image (Figure {numref}`fig-processing_filters_rank`B)?
 ```
 
 
-````{tabbed} Answer
+````{tab-item} Answer
 
 Subtracting a minimum from a maximum filtered image would be another way to accent the edges:
 
@@ -633,6 +644,8 @@ Subtracting a minimum from a maximum filtered image would be another way to acce
 :align: center
 ```
 ````
+
+`````
 
 
 

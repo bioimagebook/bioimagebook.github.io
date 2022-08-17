@@ -187,8 +187,10 @@ With a suitably colorful LUT (often {menuselection}`Image --> Lookup Tables --> 
 Creating a labeled image with {menuselection}`Analyze --> Analyze Particles`.
 ```
 
-````{tabbed} Practical
-:new-group:
+`````{tab-set}
+
+````{tab-item} Practical
+
 
 [Connectivity](sec_thresholds_connectivity) (4 or 8) is an important consideration when converting a binary image to objects, since it can have a major impact on the number and size of objects.
 
@@ -203,7 +205,7 @@ One way to do this is by thresholding a suitable image, another is to use the *B
 
 ````
 
-````{tabbed} Solution
+````{tab-item} Solution
 
 At the time of writing, {menuselection}`Analyze --> Analyze Particles...` uses 8-connectivity.
 
@@ -215,6 +217,8 @@ There are three options: 4-connectivity, 8-connectivity and 'legacy' (where 'leg
 :align: center
 ```
 ````
+
+`````
 
 
 ## Local thresholding
@@ -236,14 +240,17 @@ This should be done with some caution, since it can involve surreptitiously inco
 For these reasons, I tend to avoid local thresholding.
 
 
+````{tab-set}
 
-```{tabbed} Practical
-:new-group:
+```{tab-item} Practical
+
 
 Explore several automated methods of thresholding the different channels of {menuselection}`File --> Open samples --> HeLa Cells`, using both local and global automated thresholds, to draw your own conclusions about which methods you might prefer for different images.
 
 [![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9)
 ```
+
+````
 
 +++
 
@@ -266,9 +273,10 @@ It is therefore used to mask out regions, while preserving meaningful pixel valu
 This is an advanced option that is *potentially* useful, but can be a bit challenging to work with.
 You have to be extra cautious when using an image containing NaNs, since some commands might behave in surprising ways.
 
+````{tab-set}
 
-```{tabbed} Practical
-:new-group:
+```{tab-item} Practical
+
 
 Create an image including NaN pixels, then measure some ROIs drawn on it.
 Are area measurements affected by whether NaNs are present or not?
@@ -277,24 +285,30 @@ Are area measurements affected by whether NaNs are present or not?
 ```
 
 
-```{tabbed} Solution
+```{tab-item} Solution
 
 They are!
 If you measure the area of an image containing NaNs, the result is less than if you measure the area of the same image converted to 8-bit -- since only the non-NaN parts are included.
 If you measure a region containing NaNs only, the area is 0.
 ```
 
-```{tabbed} Question
-:new-group:
+````
+
+````{tab-set}
+
+```{tab-item} Question
+
 
 Through experiment or guesswork, what do you suppose happens to NaNs with a 32-bit image is converted to 8-bit or 16-bit?
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 Since NaN is not an integer, it cannot be stored in an 8-bit or 16-bit unsigned integer image.
 Instead, all NaNs simply become zero.
 ```
+
+````
 
 +++
 
@@ -326,8 +340,10 @@ show_image('images/imagej-m51-do.png', title="'Don't reset range' unselected", p
 glue_fig('fig_thresholds_range_reset', fig)
 ```
 
-````{tabbed} Practical
-:new-group:
+`````{tab-set}
+
+````{tab-item} Practical
+
 
 Explore setting thresholds with and without {guilabel}`Don't reset range` selected for the image {menuselection}`File --> Open Samples --> M51 Galaxy (16-bits)`, and pressing the {guilabel}`Auto` button to determine a threshold.
 
@@ -341,7 +357,7 @@ Keep {menuselection}`Image --> Adjust --> Brightness/Contrast...` open as you ex
 [![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/c5d2075777c458c70c69a1f2c8b37391)
 ````
 
-````{tabbed} Solution
+````{tab-item} Solution
 
 This image shows a potential use of the {guilabel}`Don't reset range` option -- used cautiously.
 
@@ -354,11 +370,14 @@ Thresholding a 16-bit image with and without 'Don't reset range' selected.
 ```
 
 ````
+`````
 
 +++
 
-```{tabbed} Practical
-:new-group:
+````{tab-set}
+
+```{tab-item} Practical
+
 
 What are the implications of using a 256-bin histogram for thresholding a 32-bit image?
 
@@ -375,7 +394,7 @@ How could you (manually) reduce the impact of any problems you find?
 ```
 
 
-```{tabbed} Solution
+```{tab-item} Solution
 
 First, a positive implication of using a 256-bit histogram for thresholding is that it can be fast: more bins add to the computations involved.
 Also, creating too many bins has the result of making most of them zero -- potentially causing some automated threshold-determination algorithms to fail.
@@ -395,6 +414,4 @@ However, if you do experience the issue then two possible ways to overcome it ar
 2. Convert the image to 8-bit manually yourself. This allows you to effectively choose the range of the histogram bins (using {menuselection}`Brightness/Contrast...`; see {ref}`Types & bit-depths<sec_bit_depths_converting>`) Since the threshold is made using 256 bins, you are not really losing any information that was not going to be lost anyway.
 ```
 
-```{code-cell} ipython3
-
-```
+````

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Image transforms &#8212; Introduction to Bioimage Analysis</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,21 +20,17 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -41,15 +39,16 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="ImageJ: Image transforms" href="imagej.html" />
@@ -61,7 +60,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +83,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -90,14 +104,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../README.html">
-   Introduction to Bioimage Analysis
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Introduction to Bioimage Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Front matter
  </span>
@@ -457,97 +472,199 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/chapters/2-processing/6-transforms/transforms.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/chapters/2-processing/6-transforms/transforms.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/6-transforms/transforms.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/6-transforms/transforms.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/chapters/2-processing/6-transforms/transforms.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/chapters/2-processing/6-transforms/transforms.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -587,12 +704,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Image transforms</h1>
@@ -648,11 +764,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="image-transforms">
-<span id="chap-transforms"></span><h1>Image transforms<a class="headerlink" href="#image-transforms" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="image-transforms">
+<span id="chap-transforms"></span><h1>Image transforms<a class="headerlink" href="#image-transforms" title="Permalink to this headline">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -678,15 +795,15 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>An <strong>image transform</strong> converts an image into some other form, in which the pixel values can have a (sometimes very) different interpretation.</p>
 <p>There are lots of ways to transform an image.
 We will focus on two that are especially useful for bioimage segmentation and analysis: the distance transform and the watershed transform.
 We will briefly introduce both, before then showing how they can be used in combination.</p>
-</div>
-<div class="section" id="the-distance-transform">
-<h2>The distance transform<a class="headerlink" href="#the-distance-transform" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-distance-transform">
+<h2>The distance transform<a class="headerlink" href="#the-distance-transform" title="Permalink to this headline">#</a></h2>
 <p>The <strong>distance transform</strong> (sometimes called the <strong>Euclidean distance transform</strong>) replaces each pixel of a binary image with the distance to the closest background pixel.
 If the pixel itself is already part of the background then this is zero.
 The result is an image called a <strong>distance map</strong>.</p>
@@ -716,12 +833,14 @@ The result is an image called a <strong>distance map</strong>.</p>
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-morph-distance-detail">
+<figure class="align-center" id="fig-morph-distance-detail">
 <div class="cell_output docutils container">
 <img alt="../../../_images/transforms_4_0.png" src="../../../_images/transforms_4_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 116 </span><span class="caption-text">A binary image and its corresponding distance map, including pixel values as an overlay.</span><a class="headerlink" href="#fig-morph-distance-detail" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 115 </span><span class="caption-text">A binary image and its corresponding distance map, including pixel values as an overlay.</span><a class="headerlink" href="#fig-morph-distance-detail" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>A natural question when considering the distance transform is: <em>why</em>?</p>
 <p>Although its importance may not be initially obvious, we will see that creative uses of the distance transform can help solve some other problems rather elegantly.</p>
 <p>For example, eroding or dilating binary images by a large amount can be very slow, because we have to use large maximum or minimum filters.
@@ -752,21 +871,23 @@ This can be much faster in practice.</p>
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-morph-distance">
+<figure class="align-center" id="fig-morph-distance">
 <div class="cell_output docutils container">
 <img alt="../../../_images/transforms_7_0.png" src="../../../_images/transforms_7_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 117 </span><span class="caption-text">Implementing erosion (C) and dilation (F) of binary images by thresholding distance maps.</span><a class="headerlink" href="#fig-morph-distance" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 116 </span><span class="caption-text">Implementing erosion (C) and dilation (F) of binary images by thresholding distance maps.</span><a class="headerlink" href="#fig-morph-distance" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>But the distance map contains useful information that we can use in other ways.</p>
 <p>For example, we can also use distance maps to estimate the <strong>local thickness</strong> of a structure.
 An application of this would be to assess blood vessel diameters.
 If we have a binary image representing a vessel, we can generate both a distance map and a thinned binary image.
 The distance map values corresponding to foreground pixels in the thinned image provide a local estimate of the vessel radius at that pixel, because the distance map gives the distance to the nearest background pixel – and thinned pixels occur at the vessel center.</p>
 <p>However, the distance transform can become even more useful if we combine it with other transforms.</p>
-</div>
-<div class="section" id="the-watershed-transform">
-<h2>The watershed transform<a class="headerlink" href="#the-watershed-transform" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-watershed-transform">
+<h2>The watershed transform<a class="headerlink" href="#the-watershed-transform" title="Permalink to this headline">#</a></h2>
 <p>The <strong>watershed transform</strong> is an example of a <strong>region growing</strong> method: beginning from some <strong>seed regions</strong>, the seeds are progressively expanded into larger regions until all the pixels of the image have been processed.
 This provides an alternative to straightforward thresholding, which can be <em>extremely</em> useful when need to partition an image into many different objects.</p>
 <p>To understand how the watershed transform works, picture the image as an uneven landscape in which the value of each pixel corresponds to a height.</p>
@@ -811,19 +932,21 @@ This provides an alternative to straightforward thresholding, which can be <em>e
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-transform-surface">
+<figure class="align-center" id="fig-transform-surface">
 <div class="cell_output docutils container">
 <img alt="../../../_images/transforms_11_0.png" src="../../../_images/transforms_11_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 118 </span><span class="caption-text">Visualizing an image as a landscape, using surface plots. Higher pixel values are generally viewed as peaks, although can easily switched to become valleys by inverting the image before plotting. This may be useful when providing input to the watershed transform.</span><a class="headerlink" href="#fig-transform-surface" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 117 </span><span class="caption-text">Visualizing an image as a landscape, using surface plots. Higher pixel values are generally viewed as peaks, although can easily switched to become valleys by inverting the image before plotting. This may be useful when providing input to the watershed transform.</span><a class="headerlink" href="#fig-transform-surface" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Now imagine water falling evenly upon this surface and slowly flooding it.
 The water gathers first in the deepest parts; that is, in the places where pixels have values lower than all their neighbors.
 These define the <strong>seeds</strong> of the watershed transform; we can think of them as separate water basins.</p>
 <p>As the water level rises across the image, occasionally it will reach a ridge between two basins – and, in reality, water could spill from one basin into the other.
 However, in the watershed transform this is not permitted; rather a dam is constructed at such ridges.
 The water then continues to rise, with dams being built as needed, until in the end every pixel is either part of a basin or a ridge, and there are exactly the same number of basins afterwards as there were at first.</p>
-<p>The operation of the watershed transform is illustrated in the video below and example output shown in <a class="reference internal" href="#fig-transform-surface-watershed"><span class="std std-numref">Fig. 119</span></a>.</p>
+<p>The operation of the watershed transform is illustrated in the video below and example output shown in <a class="reference internal" href="#fig-transform-surface-watershed"><span class="std std-numref">Fig. 118</span></a>.</p>
 <video autoplay loop playsinline controls muted>
   <source src="../../../_static/videos/watershed.mp4" type="video/mp4">
 </video>
@@ -863,25 +986,27 @@ The water then continues to rise, with dams being built as needed, until in the 
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-transform-surface-watershed">
+<figure class="align-center" id="fig-transform-surface-watershed">
 <div class="cell_output docutils container">
 <img alt="../../../_images/transforms_15_1.png" src="../../../_images/transforms_15_1.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 119 </span><span class="caption-text">Applying the watershed transform to an image. Here, we passed the inverted image to the watershed transform because we want to identify bright spots rather than dark ones. The full watershed transform will expand the seeds to create a labeled image including all pixels, but we can optionally mask the expansion to prevent it filling the background. Here, we defined the mask by applying a global threshold using the triangle method. Note that the masked watershed segmentation is able to split some spots that were merged using the global threshold alone.</span><a class="headerlink" href="#fig-transform-surface-watershed" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 118 </span><span class="caption-text">Applying the watershed transform to an image. Here, we passed the inverted image to the watershed transform because we want to identify bright spots rather than dark ones. The full watershed transform will expand the seeds to create a labeled image including all pixels, but we can optionally mask the expansion to prevent it filling the background. Here, we defined the mask by applying a global threshold using the triangle method. Note that the masked watershed segmentation is able to split some spots that were merged using the global threshold alone.</span><a class="headerlink" href="#fig-transform-surface-watershed" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Crucially, as the seeds are expanded during the watershed transform, regions are not allowed to overlap.
 Furthermore, once a pixel has been assigned to a region then it cannot be moved to become part of any other region.</p>
 <p>Using the ‘rain falling on a surface’ analogy, the seeds would be <strong>regional minima</strong> in an image, i.e. pixels with values that are lower than all neighboring pixels.
 This is where the water would gather first.</p>
-<p>In practice, we often need to have more control over the seeds rather than accepting all regional minima (to see why too many local minima could be a problem, observe that <a class="reference internal" href="#fig-transform-surface-watershed"><span class="std std-numref">Fig. 119</span></a> contains more regions that we probably would want).
+<p>In practice, we often need to have more control over the seeds rather than accepting all regional minima (to see why too many local minima could be a problem, observe that <a class="reference internal" href="#fig-transform-surface-watershed"><span class="std std-numref">Fig. 118</span></a> contains more regions that we probably would want).
 This variation is called the <strong>seeded watershed transform</strong>: the idea is the same, but we simply provide the seeds explicitly in the form of a labeled image, and the regions grow from these.
 We can generate seeds using other processing steps, such as by identifying <a class="reference internal" href="../5-morph/morph.html#sec-h-extrema"><span class="std std-ref">H-minima</span></a>.</p>
-</div>
-<div class="section" id="combining-transforms">
-<h2>Combining transforms<a class="headerlink" href="#combining-transforms" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="combining-transforms">
+<h2>Combining transforms<a class="headerlink" href="#combining-transforms" title="Permalink to this headline">#</a></h2>
 <p>The watershed transform can be applied to any image, but it has some particularly interesting applications when it is applied to an image that is a distance map.</p>
-<div class="section" id="splitting-round-objects">
-<h3>Splitting round objects<a class="headerlink" href="#splitting-round-objects" title="Permalink to this headline">¶</a></h3>
+<section id="splitting-round-objects">
+<h3>Splitting round objects<a class="headerlink" href="#splitting-round-objects" title="Permalink to this headline">#</a></h3>
 <p>A distance map has regional maxima whenever a foreground pixel is further from the background than any of its neighbors.</p>
 <p>This tends to occur towards the center of objects: particularly round objects that don’t contain any holes.
 Importantly, regional maxima can still be present even if the ‘round objects’ are connected to one another in the binary image used to generate the distance map originally.</p>
@@ -916,12 +1041,14 @@ The process is as follows:</p>
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-morph-distance-split-small">
+<figure class="align-center" id="fig-morph-distance-split-small">
 <div class="cell_output docutils container">
 <img alt="../../../_images/transforms_18_0.png" src="../../../_images/transforms_18_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 120 </span><span class="caption-text">Splitting round objects using the distance and watershed transforms.</span><a class="headerlink" href="#fig-morph-distance-split-small" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 119 </span><span class="caption-text">Splitting round objects using the distance and watershed transforms.</span><a class="headerlink" href="#fig-morph-distance-split-small" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The objects to be split do not have to be perfectly round.
 The only requirement is that there are clearly distinct regional maxima in the distance transform – or, alternatively, we can define suitable seeds using other processing steps.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
@@ -962,13 +1089,15 @@ The only requirement is that there are clearly distinct regional maxima in the d
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-morph-distance-split">
+<figure class="align-center" id="fig-morph-distance-split">
 <div class="cell_output docutils container">
 <img alt="../../../_images/transforms_20_0.png" src="../../../_images/transforms_20_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 121 </span><span class="caption-text">Splitting merged blobs based on ‘roundness’ using the distance and watershed transforms.
-Because there are many small regional maxima in the distance transform, here we define seeds using H-maxima followed by a 3×3 dilation to avoid excessive splitting.</span><a class="headerlink" href="#fig-morph-distance-split" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 120 </span><span class="caption-text">Splitting merged blobs based on ‘roundness’ using the distance and watershed transforms.
+Because there are many small regional maxima in the distance transform, here we define seeds using H-maxima followed by a 3×3 dilation to avoid excessive splitting.</span><a class="headerlink" href="#fig-morph-distance-split" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="tip admonition">
 <p class="admonition-title">Watershed lines</p>
 <p>When applying a watershed transform, it is often possible to specify whether the separations between regions are assigned one of the region labels, or are left as background pixels.</p>
@@ -976,9 +1105,9 @@ Because there are many small regional maxima in the distance transform, here we 
 This is consistent with how ImageJ’s default watershed command works, and also makes the splits clearer in the figures shown here.
 In Python code using scikit-image, that means we are using the <code class="docutils literal notranslate"><span class="pre">watershed_lines=True</span></code> option.</p>
 </div>
-</div>
-<div class="section" id="partitioning-images-with-voronoi">
-<h3>Partitioning images with Voronoi<a class="headerlink" href="#partitioning-images-with-voronoi" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="partitioning-images-with-voronoi">
+<h3>Partitioning images with Voronoi<a class="headerlink" href="#partitioning-images-with-voronoi" title="Permalink to this headline">#</a></h3>
 <p>Calculating the distance transform of an <em>inverted</em> binary image gives a distance map in which each pixel gives the distance to the closest foreground object.</p>
 <p>If we apply a watershed transform to this distance map, using the objects in the binary image as seeds, we effectively partition the image into different regions according to the closest object in the binary image.</p>
 <p>This is sometimes called the <strong>Voronoi transform</strong> of the image.</p>
@@ -1008,20 +1137,24 @@ In Python code using scikit-image, that means we are using the <code class="docu
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-morph-voronoi-expand">
+<figure class="align-center" id="fig-morph-voronoi-expand">
 <div class="cell_output docutils container">
 <img alt="../../../_images/transforms_23_0.png" src="../../../_images/transforms_23_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 122 </span><span class="caption-text">Expanding blobs to compute the Voronoi transform of a labeled image, partitioning it into different regions according to the closest seed object.</span><a class="headerlink" href="#fig-morph-voronoi-expand" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="expanding-without-overlaps">
-<h3>Expanding without overlaps<a class="headerlink" href="#expanding-without-overlaps" title="Permalink to this headline">¶</a></h3>
+<figcaption>
+<p><span class="caption-number">Fig. 121 </span><span class="caption-text">Expanding blobs to compute the Voronoi transform of a labeled image, partitioning it into different regions according to the closest seed object.</span><a class="headerlink" href="#fig-morph-voronoi-expand" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="expanding-without-overlaps">
+<h3>Expanding without overlaps<a class="headerlink" href="#expanding-without-overlaps" title="Permalink to this headline">#</a></h3>
 <p>Building upon the Vononoi idea in the last section, we can expand the objects themselves in such a way that they don’t overlap.</p>
-<div class="margin figure align-default" id="id1">
+<figure class="margin align-default" id="id1">
 <img alt="../../../_images/qupath_cells.png" src="../../../_images/qupath_cells.png" />
-<p class="caption"><span class="caption-number">Fig. 123 </span><span class="caption-text">QuPath’s cell detection, based upon nucleus detection + watershed expansion.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 122 </span><span class="caption-text">QuPath’s cell detection, based upon nucleus detection + watershed expansion.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Our goal is to dilate each object in the image by 10 pixels, but without merging.
 If seed objects are closer than 20 pixels apart, they each expand the same amount – until they meet in the middle.
 This technique may be used to approximate a cell boundary based upon detected nuclei by expansion using a fixed distance.</p>
@@ -1051,13 +1184,15 @@ When seeds are close together, the higher label will ‘win’ the expansion rac
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-morph-bad-expand">
+<figure class="align-center" id="fig-morph-bad-expand">
 <div class="cell_output docutils container">
 <img alt="../../../_images/transforms_26_0.png" src="../../../_images/transforms_26_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 124 </span><span class="caption-text">Expanding blobs using a maximum filter only. This approach is too simple; it results in overlapping labels and a lot of confusion.</span><a class="headerlink" href="#fig-morph-bad-expand" title="Permalink to this image">¶</a></p>
-</div>
-<p>Instead, we need to build upon the Voronoi approach shown in <a class="reference internal" href="#fig-morph-voronoi-expand"><span class="std std-numref">Fig. 122</span></a>.
+<figcaption>
+<p><span class="caption-number">Fig. 123 </span><span class="caption-text">Expanding blobs using a maximum filter only. This approach is too simple; it results in overlapping labels and a lot of confusion.</span><a class="headerlink" href="#fig-morph-bad-expand" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Instead, we need to build upon the Voronoi approach shown in <a class="reference internal" href="#fig-morph-voronoi-expand"><span class="std std-numref">Fig. 121</span></a>.
 The only difference we need to incorporate is that we prevent the watershed expansion from growing beyond 10 pixels.</p>
 <p>Fortunately, this criterion is easy to set: our distance map already gives us the distance to every seed object.
 We can threshold that to define a binary mask that indicates where regions should no longer expand.
@@ -1095,17 +1230,19 @@ If we update our watershed output to have background pixels at the same location
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-morph-distance-expand">
+<figure class="align-center" id="fig-morph-distance-expand">
 <div class="cell_output docutils container">
 <img alt="../../../_images/transforms_29_0.png" src="../../../_images/transforms_29_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 125 </span><span class="caption-text">Using distance and watershed transforms to expand regions by a fixed distance, without overlap. The final output (F) is obtained using information from all images (A) - (E).</span><a class="headerlink" href="#fig-morph-distance-expand" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 124 </span><span class="caption-text">Using distance and watershed transforms to expand regions by a fixed distance, without overlap. The final output (F) is obtained using information from all images (A) - (E).</span><a class="headerlink" href="#fig-morph-distance-expand" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1129,9 +1266,11 @@ If we update our watershed output to have background pixels at the same location
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../5-morph/imagej.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1147,24 +1286,28 @@ If we update our watershed output to have background pixels at the same location
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pete Bankhead<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pete Bankhead<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

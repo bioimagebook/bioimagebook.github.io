@@ -230,13 +230,13 @@ Thresholding a z-stack can be influenced by the number of out-of-focus slices. H
 
 +++
 
-`````{div} question
+`````{tab-set}
 
-````{tabbed} Question
+````{tab-item} Question
 How would you expect {numref}`fig-multi_thresholds` to differ if the [triangle method](sec_thresholds_triangle) was used to determine the threshold, rather than [Otsu's method](sec_thresholds_otsu)?
 ````
 
-````{tabbed} Answer
+````{tab-item} Answer
 Here, the triangle method performs well.
 It sets the threshold appropriately at the foot of the background peak in both cases.
 

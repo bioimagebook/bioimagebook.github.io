@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Blur &amp; the PSF &#8212; Introduction to Bioimage Analysis</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,21 +20,17 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -41,8 +39,10 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -51,7 +51,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Noise" href="../3-formation_noise/formation_noise.html" />
@@ -63,7 +62,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -72,9 +85,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -92,14 +106,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../README.html">
-   Introduction to Bioimage Analysis
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Introduction to Bioimage Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Front matter
  </span>
@@ -459,97 +474,199 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/chapters/3-fluorescence/2-formation_spatial/formation_spatial.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/chapters/3-fluorescence/2-formation_spatial/formation_spatial.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/3-fluorescence/2-formation_spatial/formation_spatial.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/3-fluorescence/2-formation_spatial/formation_spatial.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/chapters/3-fluorescence/2-formation_spatial/formation_spatial.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/chapters/3-fluorescence/2-formation_spatial/formation_spatial.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -603,12 +720,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Blur & the PSF</h1>
@@ -678,11 +794,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="blur-the-psf">
-<span id="chap-formation-spatial"></span><h1>Blur &amp; the PSF<a class="headerlink" href="#blur-the-psf" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="blur-the-psf">
+<span id="chap-formation-spatial"></span><h1>Blur &amp; the PSF<a class="headerlink" href="#blur-the-psf" title="Permalink to this headline">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -711,11 +828,11 @@ It’s better in <em>xy</em> than along the <em>z</em> dimension.</p></li>
 </div>
 </div>
 </div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Microscopy images normally look blurry because light originating from one point in the sample is not all detected at a single pixel: usually it is detected over several pixels and <em>z</em>-slices.
 This is <em>not</em> simply because we cannot use perfect lenses; rather, it’s caused by a fundamental limit imposed by the nature of light.
-The end result is as if the light that we detect is redistributed slightly throughout our data (<a class="reference internal" href="#fig-castles"><span class="std std-numref">Fig. 132</span></a>).</p>
+The end result is as if the light that we detect is redistributed slightly throughout our data (<a class="reference internal" href="#fig-castles"><span class="std std-numref">Fig. 131</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -726,12 +843,14 @@ The end result is as if the light that we detect is redistributed slightly throu
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-castles">
+<figure class="align-center" id="fig-castles">
 <div class="cell_output docutils container">
 <img alt="../../../_images/formation_spatial_3_0.png" src="../../../_images/formation_spatial_3_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 132 </span><span class="caption-text">Schematic diagram showing the effects of blur. Think of the sand as photons, and the <a class="reference internal" href="../../2-processing/6-transforms/transforms.html#fig-transform-surface"><span class="std std-ref">height of the sandcastle as the intensity values of pixels</span></a> (a greater height indicates more photons, and thus a brighter pixel). The ideal data would be sharp and could contain fine details (A), but after blurring it’s not only harder to discriminate details, but intensities in the brighter regions have been reduced and sizes increased (B). If we then wish to determine the size or height of one of the sandcastle’s towers, for example, we need to remember that any results we get by measuring (B) will differ from those we would have got if we could have measured (A) itself. Note, however, that approximately the same <em>amount</em> of signal (sand or photons) is present in both cases –- only the arrangement has been changed.</span><a class="headerlink" href="#fig-castles" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 131 </span><span class="caption-text">Schematic diagram showing the effects of blur. Think of the sand as photons, and the <a class="reference internal" href="../../2-processing/6-transforms/transforms.html#fig-transform-surface"><span class="std std-ref">height of the sandcastle as the intensity values of pixels</span></a> (a greater height indicates more photons, and thus a brighter pixel). The ideal data would be sharp and could contain fine details (A), but after blurring it’s not only harder to discriminate details, but intensities in the brighter regions have been reduced and sizes increased (B). If we then wish to determine the size or height of one of the sandcastle’s towers, for example, we need to remember that any results we get by measuring (B) will differ from those we would have got if we could have measured (A) itself. Note, however, that approximately the same <em>amount</em> of signal (sand or photons) is present in both cases –- only the arrangement has been changed.</span><a class="headerlink" href="#fig-castles" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>This is important for three reasons:</p>
 <ol class="simple">
 <li><p>Blur affects the apparent <strong>size</strong> of structures</p></li>
@@ -752,9 +871,9 @@ It would therefore be much nicer just to dispense with the blurring completely s
 <p>The purpose of this chapter is to offer a practical introduction to why the blurring occurs, what a widefield microscope’s PSF looks like, and why all this matters.
 Detailed optics and threatening integrals are not included, although several equations make appearances.
 Fortunately for the mathematically unenthusiastic, these are both short and useful.</p>
-</div>
-<div class="section" id="blur-convolution">
-<h2>Blur &amp; convolution<a class="headerlink" href="#blur-convolution" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="blur-convolution">
+<h2>Blur &amp; convolution<a class="headerlink" href="#blur-convolution" title="Permalink to this headline">#</a></h2>
 <p>As stated above, the fundamental cause of blur is that light originating from an infinitesimally small point cannot then be detected at a similar point, no matter how great our lenses or detectors might be.
 Rather, it ends up being focused to some larger volume known as the PSF, which has a minimum size dependent upon both the light’s wavelength and the lens being used.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
@@ -769,24 +888,26 @@ Rather, it ends up being focused to some larger volume known as the PSF, which h
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-psf-sizes">
+<figure class="align-center" id="fig-psf-sizes">
 <div class="cell_output docutils container">
 <img alt="../../../_images/formation_spatial_5_0.png" src="../../../_images/formation_spatial_5_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 133 </span><span class="caption-text">Although it might not be obvious at low magnification (A), an image can be viewed as composed of small points (B). This gives us a useful way to understand what has happened in a blurred image: each point has simply been replaced by a more diffuse blob, the PSF. Images appear more or less blurred depending upon how large the blobby PSFs are (C) and (D). This is equivalent to applying the PSF to an image as a linear filter.</span><a class="headerlink" href="#fig-psf-sizes" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 132 </span><span class="caption-text">Although it might not be obvious at low magnification (A), an image can be viewed as composed of small points (B). This gives us a useful way to understand what has happened in a blurred image: each point has simply been replaced by a more diffuse blob, the PSF. Images appear more or less blurred depending upon how large the blobby PSFs are (C) and (D). This is equivalent to applying the PSF to an image as a linear filter.</span><a class="headerlink" href="#fig-psf-sizes" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>This becomes more practically relevant if we consider that <em>any</em> fluorescing sample can be viewed as composed of many similar, exceedingly small light-emitting points – you may think of each point being a fluorophore.
 Our image would ideally then include individual points too, digitized into pixels with values proportional to the emitted light.
 But what we get instead is an image in which every point has been replaced by its PSF, scaled according to the point’s brightness.
 Where these PSFs overlap, the detected light intensities are simply added together.
-Exactly how blurry this causes the image to be depends upon the size of the PSF (<a class="reference internal" href="#fig-psf-sizes"><span class="std std-numref">Fig. 133</span></a>).</p>
+Exactly how blurry this causes the image to be depends upon the size of the PSF (<a class="reference internal" href="#fig-psf-sizes"><span class="std std-numref">Fig. 132</span></a>).</p>
 <p>This blurring process is equivalent to <strong>convolving</strong> the (impossible) ideal point image with the PSF: i.e. applying a linear filter, as described in <a class="reference internal" href="../../2-processing/4-filters/filters.html#chap-filters"><span class="std std-ref">Filters</span></a>.
 Because every point is blurred in the same way (at least in the ideal case; extra aberrations can cause some variations), this means that if we know the PSF then we can characterize the blur throughout the entire image – and thereby make inferences about the extent to which blurring will impact upon anything we measure.</p>
-</div>
-<div class="section" id="the-shape-of-the-psf">
-<h2>The shape of the PSF<a class="headerlink" href="#the-shape-of-the-psf" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-shape-of-the-psf">
+<h2>The shape of the PSF<a class="headerlink" href="#the-shape-of-the-psf" title="Permalink to this headline">#</a></h2>
 <p>We can gain an initial impression of a microscope’s PSF by recording a <em>z</em>-stack of a small, fluorescent bead, which represents an ideal light-emitting point.
-<a class="reference internal" href="#fig-psf-bead"><span class="std std-numref">Fig. 134</span></a> shows that, for a widefield microscope, the bead appears like a bright blob when it is in focus.
+<a class="reference internal" href="#fig-psf-bead"><span class="std std-numref">Fig. 133</span></a> shows that, for a widefield microscope, the bead appears like a bright blob when it is in focus.
 More curiously, when viewed from the side (<strong>xz</strong> or <strong>yz</strong>), it has a somewhat hourglass-like appearance – albeit with some extra patterns.
 This exact shape is well enough understood that PSFs can also be generated theoretically based upon the type of microscope and objective lenses used (C).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
@@ -800,12 +921,14 @@ This exact shape is well enough understood that PSFs can also be generated theor
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-psf-bead">
+<figure class="align-center" id="fig-psf-bead">
 <div class="cell_output docutils container">
 <img alt="../../../_images/formation_spatial_7_0.png" src="../../../_images/formation_spatial_7_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 134 </span><span class="caption-text">PSFs for a widefield microscope. (A) and (B) are from z-stacks acquired of a small fluorescent bead, displayed using linear contrast and after applying a gamma transform to make fainter details easier to discern (see <a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html#chap-point-operations"><span class="std std-ref">Point operations</span></a> for more information). (C) shows a theoretical PSF for a similar microscope. It differs in appearance partly because the bead is not really an infinitesimally small point, and partly because the real microscope’s objective lens is less than perfect. Nevertheless, the overall shapes are similar.</span><a class="headerlink" href="#fig-psf-bead" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 133 </span><span class="caption-text">PSFs for a widefield microscope. (A) and (B) are from z-stacks acquired of a small fluorescent bead, displayed using linear contrast and after applying a gamma transform to make fainter details easier to discern (see <a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html#chap-point-operations"><span class="std std-ref">Point operations</span></a> for more information). (C) shows a theoretical PSF for a similar microscope. It differs in appearance partly because the bead is not really an infinitesimally small point, and partly because the real microscope’s objective lens is less than perfect. Nevertheless, the overall shapes are similar.</span><a class="headerlink" href="#fig-psf-bead" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="info admonition">
 <p class="admonition-title">Generating PSFs</p>
 <p>ImageJ plugins to create theoretical PSFs are available from</p>
@@ -814,29 +937,31 @@ This exact shape is well enough understood that PSFs can also be generated theor
 <li><p><a class="reference external" href="http://bigwww.epfl.ch/algorithms/psfgenerator/">http://bigwww.epfl.ch/algorithms/psfgenerator/</a></p></li>
 </ul>
 </div>
-<div class="section" id="in-out-of-focus">
-<h3>In &amp; out of focus<a class="headerlink" href="#in-out-of-focus" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="#fig-psf-planes"><span class="std std-numref">Fig. 135</span></a> attempts to show that the hourglass aspect of the PSF is really perfectly intuitive.
+<section id="in-out-of-focus">
+<h3>In &amp; out of focus<a class="headerlink" href="#in-out-of-focus" title="Permalink to this headline">#</a></h3>
+<p><a class="reference internal" href="#fig-psf-planes"><span class="std std-numref">Fig. 134</span></a> attempts to show that the hourglass aspect of the PSF is really perfectly intuitive.
 When recording a <em>z</em>-stack of a light-emitting point, we would <em>prefer</em> that the light ended up at a single pixel in a single slice.
 But the light itself is oblivious to our wishes, and will cheerfully be detected if it happens to strike a detector, no matter where that is.
 Therefore we should expect the light to be detected across a small region only if the image is in-focus; otherwise it will be spread out to an extent that depends upon how far from the focal point it is detected.
 From the side (<strong>xz</strong> or <strong>yz</strong>), this leads to an hourglass shape.</p>
-<div class="figure align-center" id="fig-psf-planes">
+<figure class="align-center" id="fig-psf-planes">
 <a class="reference internal image-reference" href="../../../_images/psf_diagram.png"><img alt="../../../_images/psf_diagram.png" src="../../../_images/psf_diagram.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 135 </span><span class="caption-text">Simplified diagram to help visualize how a light-emitting point would be imaged using a widefield microscope. Some of the light originating from the point is captured by a lens. If you imagine the light then being directed towards a focal point, this leads to an hourglass shape. If a detector is placed close to the focal point, the spot-like image formed by the light striking the detector would be small and bright. However, if the detector were positioned above or below this focal plane, the intensity of the spot would decrease and its size would increase.</span><a class="headerlink" href="#fig-psf-planes" title="Permalink to this image">¶</a></p>
-</div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="eb5530e3-898b-478c-8db0-15e440844357" name="3b7094f0-ca3f-4123-bf50-cf311d2136ce" type="radio">
-</input><label class="tabbed-label" for="eb5530e3-898b-478c-8db0-15e440844357">
-Question</label><div class="tabbed-content docutils">
+<figcaption>
+<p><span class="caption-number">Fig. 134 </span><span class="caption-text">Simplified diagram to help visualize how a light-emitting point would be imaged using a widefield microscope. Some of the light originating from the point is captured by a lens. If you imagine the light then being directed towards a focal point, this leads to an hourglass shape. If a detector is placed close to the focal point, the spot-like image formed by the light striking the detector would be small and bright. However, if the detector were positioned above or below this focal plane, the intensity of the spot would decrease and its size would increase.</span><a class="headerlink" href="#fig-psf-planes" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="a045514f-4141-493d-82e4-98b26ec23396" name="f3712e45-4d1e-4e9d-943b-f6d4909da36c" type="radio">
+</input><label class="sd-tab-label" for="a045514f-4141-493d-82e4-98b26ec23396">
+Question</label><div class="sd-tab-content docutils">
 <p>In focus, a light-emitting point looks like a small, bright blob.
 Out of focus, it’s much less bright and extends over a wider area.</p>
 <p>However, how would you expect the <em>total amount</em> of light to differ in a widefield image depending upon whether a plane is in-focus or not?
 In other words, would you expect more or less light in the focal plane than in other planes above or below it?</p>
 </div>
-<input id="fd363abb-9ba5-432e-bab3-1b731200c6fe" name="3b7094f0-ca3f-4123-bf50-cf311d2136ce" type="radio">
-</input><label class="tabbed-label" for="fd363abb-9ba5-432e-bab3-1b731200c6fe">
-Answer</label><div class="tabbed-content docutils">
+<input id="51d9b5b5-0bb7-4fee-9908-b29879029969" name="f3712e45-4d1e-4e9d-943b-f6d4909da36c" type="radio">
+</input><label class="sd-tab-label" for="51d9b5b5-0bb7-4fee-9908-b29879029969">
+Answer</label><div class="sd-tab-content docutils">
 <p>In a widefield image, every plane we can record contains in-focus light along with <em>all</em> the detectable light from <em>all</em> other planes added together.
 Therefore we should expect approximately <em>the same total amount of light</em> within each plane of a <em>z</em>-stack – just differently distributed.
 That’s potentially a lot of light in the ‘wrong’ place, especially if looking at a thick sample.</p>
@@ -844,10 +969,10 @@ That’s potentially a lot of light in the ‘wrong’ place, especially if look
 In practice, if the light originates from a location so out-of-focus that its light spills over the side of the detector then this plane would contain less light.</p>
 </div>
 </div>
-</div>
-<div class="section" id="the-appearance-of-interference">
-<h3>The appearance of interference<a class="headerlink" href="#the-appearance-of-interference" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="#fig-psf-planes"><span class="std std-numref">Fig. 135</span></a> is quite limited in what it shows: it doesn’t begin to explain the extra patterns of the PSF, which appear on each 2D plane as concentric rings (see <a class="reference internal" href="#fig-bead-slices"><span class="std std-numref">Fig. 136</span></a>) nor why the PSF doesn’t shrink to a single point in the focal plane.
+</section>
+<section id="the-appearance-of-interference">
+<h3>The appearance of interference<a class="headerlink" href="#the-appearance-of-interference" title="Permalink to this headline">#</a></h3>
+<p><a class="reference internal" href="#fig-psf-planes"><span class="std std-numref">Fig. 134</span></a> is quite limited in what it shows: it doesn’t begin to explain the extra patterns of the PSF, which appear on each 2D plane as concentric rings (see <a class="reference internal" href="#fig-bead-slices"><span class="std std-numref">Fig. 135</span></a>) nor why the PSF doesn’t shrink to a single point in the focal plane.
 These factors relate to the interference of light waves.
 While it’s important to know that the rings occur – if only to avoid ever misinterpreting them as extra ring-like structures being really present in a sample – they have limited influence upon any analysis because the central region of the PSF is overwhelmingly brighter.
 Therefore for our purposes they can mostly be disregarded.</p>
@@ -862,16 +987,18 @@ Therefore for our purposes they can mostly be disregarded.</p>
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-bead-slices">
+<figure class="align-center" id="fig-bead-slices">
 <div class="cell_output docutils container">
-<img alt="../../../_images/formation_spatial_9_0.png" src="../../../_images/formation_spatial_9_0.png" />
+<img alt="../../../_images/formation_spatial_10_0.png" src="../../../_images/formation_spatial_10_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 136 </span><span class="caption-text">Ten slices from a z-stack acquired of a fluorescent bead, starting from above and moving down to the focal plane. The same linear contrast settings have been applied to each slice for easy comparison, although this causes the in-focus bead to appear saturated since otherwise the rings would not be visible at all. Because the image is (approximately) symmetrical along the z-axis, additional slices moving below the focal plane would appear similar.</span><a class="headerlink" href="#fig-bead-slices" title="Permalink to this image">¶</a></p>
-</div>
-<div class="section" id="the-airy-disk">
-<h4>The Airy disk<a class="headerlink" href="#the-airy-disk" title="Permalink to this headline">¶</a></h4>
+<figcaption>
+<p><span class="caption-number">Fig. 135 </span><span class="caption-text">Ten slices from a z-stack acquired of a fluorescent bead, starting from above and moving down to the focal plane. The same linear contrast settings have been applied to each slice for easy comparison, although this causes the in-focus bead to appear saturated since otherwise the rings would not be visible at all. Because the image is (approximately) symmetrical along the z-axis, additional slices moving below the focal plane would appear similar.</span><a class="headerlink" href="#fig-bead-slices" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="the-airy-disk">
+<h4>The Airy disk<a class="headerlink" href="#the-airy-disk" title="Permalink to this headline">#</a></h4>
 <p>Finally for this section, the PSF in the focal plane is important enough to deserve some attention, since we tend to want to measure things where they are most in-focus.
-This entire <em>xy</em> plane, including its interfering ripples, is called an <strong>Airy pattern</strong>, while the bright central part alone is the <strong>Airy disk</strong> (<a class="reference internal" href="#fig-airy"><span class="std std-numref">Fig. 137</span></a>).
+This entire <em>xy</em> plane, including its interfering ripples, is called an <strong>Airy pattern</strong>, while the bright central part alone is the <strong>Airy disk</strong> (<a class="reference internal" href="#fig-airy"><span class="std std-numref">Fig. 136</span></a>).
 In the best possible case, when all the light in a 2D image comes from in-focus structures, what we can image would already have been blurred by a filter that looks like this.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -914,17 +1041,19 @@ In the best possible case, when all the light in a 2D image comes from in-focus 
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-airy">
+<figure class="align-center" id="fig-airy">
 <div class="cell_output docutils container">
-<img alt="../../../_images/formation_spatial_11_0.png" src="../../../_images/formation_spatial_11_0.png" />
+<img alt="../../../_images/formation_spatial_12_0.png" src="../../../_images/formation_spatial_12_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 137 </span><span class="caption-text">George Biddell Airy and the Airy pattern. (A) During his schooldays, Airy had been renowned for being skilled <em>‘in the construction of peashooters and other such devices’</em> (see <a class="reference external" href="https://mathshistory.st-andrews.ac.uk/Biographies/Airy/">https://mathshistory.st-andrews.ac.uk/Biographies/Airy/</a>).
+<figcaption>
+<p><span class="caption-number">Fig. 136 </span><span class="caption-text">George Biddell Airy and the Airy pattern. (A) During his schooldays, Airy had been renowned for being skilled <em>‘in the construction of peashooters and other such devices’</em> (see <a class="reference external" href="https://mathshistory.st-andrews.ac.uk/Biographies/Airy/">https://mathshistory.st-andrews.ac.uk/Biographies/Airy/</a>).
 The rings surrounding the Airy disk have been likened to the ripples on a pond.
 Although the rings phenomenon was already known, Airy wrote the first theoretical treatment of it in 1835 (<a class="reference external" href="https://en.wikipedia.org/wiki/Airy_disk">https://en.wikipedia.org/wiki/Airy_disk</a>).
-(B) An Airy pattern looks much like a 2D Gaussian function, although when the contrast is enhanced (C) small outer rings can be seen surrounding the Airy disk.</span><a class="headerlink" href="#fig-airy" title="Permalink to this image">¶</a></p>
-</div>
+(B) An Airy pattern looks much like a 2D Gaussian function, although when the contrast is enhanced (C) small outer rings can be seen surrounding the Airy disk.</span><a class="headerlink" href="#fig-airy" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The Airy disk should look familiar.
-If we ignore the little interfering ripples around its edges, it can be very well approximated by a Gaussian function (<a class="reference internal" href="#fig-psf-surface"><span class="std std-numref">Fig. 138</span></a>).
+If we ignore the little interfering ripples around its edges, it can be very well approximated by a Gaussian function (<a class="reference internal" href="#fig-psf-surface"><span class="std std-numref">Fig. 137</span></a>).
 Therefore <em>the blur of a microscope in 2D is similar to applying a Gaussian filter</em>, at least in the focal plane.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -975,18 +1104,20 @@ Therefore <em>the blur of a microscope in 2D is similar to applying a Gaussian f
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-psf-surface">
+<figure class="align-center" id="fig-psf-surface">
 <div class="cell_output docutils container">
-<img alt="../../../_images/formation_spatial_13_0.png" src="../../../_images/formation_spatial_13_0.png" />
+<img alt="../../../_images/formation_spatial_14_0.png" src="../../../_images/formation_spatial_14_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 138 </span><span class="caption-text">Comparison of an Airy disk and a Gaussian of a similar size, using two wireframe plots and a correspnding 1D cross-section.
-The Gaussian is a <em>very</em> close match to the Airy disk, apart from the faint ripples at the sides, so we can often approximate the blur of a PSF using a Gaussian filter.</span><a class="headerlink" href="#fig-psf-surface" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="the-size-of-the-psf">
-<h2>The size of the PSF<a class="headerlink" href="#the-size-of-the-psf" title="Permalink to this headline">¶</a></h2>
+<figcaption>
+<p><span class="caption-number">Fig. 137 </span><span class="caption-text">Comparison of an Airy disk and a Gaussian of a similar size, using two wireframe plots and a correspnding 1D cross-section.
+The Gaussian is a <em>very</em> close match to the Airy disk, apart from the faint ripples at the sides, so we can often approximate the blur of a PSF using a Gaussian filter.</span><a class="headerlink" href="#fig-psf-surface" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+<section id="the-size-of-the-psf">
+<h2>The size of the PSF<a class="headerlink" href="#the-size-of-the-psf" title="Permalink to this headline">#</a></h2>
 <p>So much for appearances.
 To judge how the blurring will affect what we can see and measure, we need to know the <em>size</em> of the PSF.
 Because we don’t tend to want our images to be blurry, smaller would be preferable.</p>
@@ -994,38 +1125,38 @@ Because we don’t tend to want our images to be blurry, smaller would be prefer
 One approach for characterizing the Airy disk size is to consider its radius <span class="math notranslate nohighlight">\(r_{airy}\)</span> as the distance from the center to the first <em>minimum</em>: the lowest point before the first of the outer ripples begins.
 This is is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-res-lateral">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eqn-res-lateral" title="Permalink to this equation">¶</a></span>\[r_{airy} = \frac{0.61 \lambda}{\textrm{NA}}\]</div>
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqn-res-lateral" title="Permalink to this equation">#</a></span>\[r_{airy} = \frac{0.61 \lambda}{\textrm{NA}}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is the light wavelength and NA is the numerical aperture of the objective lens <a class="footnote-reference brackets" href="#fn-1" id="id1">1</a>.</p>
 <p>A comparable measurement to <span class="math notranslate nohighlight">\(r_{airy}\)</span> between the center and first minimum along the <em>z</em> axis is:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-res-axial">
-<span class="eqno">(2)<a class="headerlink" href="#equation-eqn-res-axial" title="Permalink to this equation">¶</a></span>\[z_{min} = \frac{2 \lambda \times \eta}{\textrm{NA}^2}\]</div>
+<span class="eqno">(2)<a class="headerlink" href="#equation-eqn-res-axial" title="Permalink to this equation">#</a></span>\[z_{min} = \frac{2 \lambda \times \eta}{\textrm{NA}^2}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\eta\)</span> is the refractive index of the objective lens immersion medium (which is a value related to the speed of light through that medium).</p>
 <p>The practical importance of these equations is that they reveal the key factors that influence how blurry an image will be.
 This hints at some ways we might be able to reduce blurring at the acquisition stage.</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="33f11acd-18fd-42f4-9419-0ee2ade6f696" name="0ceaf37b-f2f2-4c4a-bc8f-954e8498fb77" type="radio">
-</input><label class="tabbed-label" for="33f11acd-18fd-42f4-9419-0ee2ade6f696">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="2111445f-4bc9-48da-ad1b-f9c732352af1" name="b7aaeffa-e901-4362-a1b9-34bf6ccf23d3" type="radio">
+</input><label class="sd-tab-label" for="2111445f-4bc9-48da-ad1b-f9c732352af1">
+Question</label><div class="sd-tab-content docutils">
 <p>According to Equation <a class="reference internal" href="#equation-eqn-res-lateral">(1)</a>, the equation for the Airy disk size, what are the two variables we <em>may</em> be able to control that influence the amount of blur in our images?
 And how must they be changed (increased or decreased) for the images to have less blur?</p>
 </div>
-<input id="805882fb-fb36-4b9f-b7ad-d69b5abcbabd" name="0ceaf37b-f2f2-4c4a-bc8f-954e8498fb77" type="radio">
-</input><label class="tabbed-label" for="805882fb-fb36-4b9f-b7ad-d69b5abcbabd">
-Answer</label><div class="tabbed-content docutils">
+<input id="88d1372a-1daf-4457-9d2c-115daa645e6f" name="b7aaeffa-e901-4362-a1b9-34bf6ccf23d3" type="radio">
+</input><label class="sd-tab-label" for="88d1372a-1daf-4457-9d2c-115daa645e6f">
+Answer</label><div class="sd-tab-content docutils">
 <p>If the wavelength <span class="math notranslate nohighlight">\(\lambda\)</span> is <em>lower</em> or the objective NA is <em>higher</em>, <span class="math notranslate nohighlight">\(r_{airy}\)</span> decreases and we have less blur.</p>
 </div>
 </div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="b7ff834c-cd0a-4b27-94ae-306e73ed24d0" name="29e89275-4d8a-477b-98b5-ae089ab9eebe" type="radio">
-</input><label class="tabbed-label" for="b7ff834c-cd0a-4b27-94ae-306e73ed24d0">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="626def1f-d422-46da-b664-48bf7be934ce" name="1c50066e-d083-45a3-a172-864187871745" type="radio">
+</input><label class="sd-tab-label" for="626def1f-d422-46da-b664-48bf7be934ce">
+Question</label><div class="sd-tab-content docutils">
 <p>Does the NA have more influence on blur in the <em>xy</em> plane, or along the <em>z</em> axis?</p>
 </div>
-<input id="01baf459-1b5a-454c-8bc1-328ce4a14f4b" name="29e89275-4d8a-477b-98b5-ae089ab9eebe" type="radio">
-</input><label class="tabbed-label" for="01baf459-1b5a-454c-8bc1-328ce4a14f4b">
-Answer</label><div class="tabbed-content docutils">
+<input id="e8c9fbf9-762c-45a9-9fbc-2b26d3bc5b0c" name="1c50066e-d083-45a3-a172-864187871745" type="radio">
+</input><label class="sd-tab-label" for="e8c9fbf9-762c-45a9-9fbc-2b26d3bc5b0c">
+Answer</label><div class="sd-tab-content docutils">
 <p>Because of the squaring, the NA has a much greater influence on blur along the <em>z</em> axis than in <em>xy</em>.
-This can be seen clearly in <a class="reference internal" href="#fig-psf-na"><span class="std std-numref">Fig. 139</span></a>.</p>
+This can be seen clearly in <a class="reference internal" href="#fig-psf-na"><span class="std std-numref">Fig. 138</span></a>.</p>
 </div>
 </div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
@@ -1041,19 +1172,21 @@ This can be seen clearly in <a class="reference internal" href="#fig-psf-na"><sp
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-psf-na">
+<figure class="align-center" id="fig-psf-na">
 <div class="cell_output docutils container">
-<img alt="../../../_images/formation_spatial_15_0.png" src="../../../_images/formation_spatial_15_0.png" />
+<img alt="../../../_images/formation_spatial_17_0.png" src="../../../_images/formation_spatial_17_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 139 </span><span class="caption-text">Examples of theoretical PSFs generated with different Numerical Apertures.</span><a class="headerlink" href="#fig-psf-na" title="Permalink to this image">¶</a></p>
-</div>
-<div class="margin sidebar">
+<figcaption>
+<p><span class="caption-number">Fig. 138 </span><span class="caption-text">Examples of theoretical PSFs generated with different Numerical Apertures.</span><a class="headerlink" href="#fig-psf-na" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <img alt="../../../_images/na_theta.png" src="../../../_images/na_theta.png" />
-</div>
+</aside>
 <div class="admonition-numerical-aperture admonition">
 <p class="admonition-title">Numerical Aperture</p>
-<p>The equations for the PSF size show that if you can use an objective lens with a higher NA, you can potentially reduce blur in an image – especially along the <em>z</em> axis (<a class="reference internal" href="#fig-psf-na"><span class="std std-numref">Fig. 139</span></a>). Unfortunately, one soon reaches another limit in terms of what increasing the NA can achieve.
+<p>The equations for the PSF size show that if you can use an objective lens with a higher NA, you can potentially reduce blur in an image – especially along the <em>z</em> axis (<a class="reference internal" href="#fig-psf-na"><span class="std std-numref">Fig. 138</span></a>). Unfortunately, one soon reaches another limit in terms of what increasing the NA can achieve.
 This can be seen from the equation used to define it:</p>
 <div class="math notranslate nohighlight">
 \[\textrm{NA} = \eta \sin{\theta}\]</div>
@@ -1066,10 +1199,10 @@ This is a phenomenon whereby the PSF becomes asymmetrical at increasing depth an
 Therefore, matching the refractive indices of the immersion and embedding media is often <em>strongly</em> preferable to using the highest NA objective available: it’s usually better to have a larger PSF than a highly irregular one.</p>
 <p>For an interactive tutorial on the effect of using different NAs, see <a class="reference external" href="https://www.microscopyu.com/tutorials/imageformation-airyna">https://www.microscopyu.com/tutorials/imageformation-airyna</a>.</p>
 </div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="42fe2ae8-2ff5-4c37-86d4-bb12b831eddd" name="56045717-4f7c-484b-bd24-d23b81550d67" type="radio">
-</input><label class="tabbed-label" for="42fe2ae8-2ff5-4c37-86d4-bb12b831eddd">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="08e4d298-4a19-4acc-8255-d3932ebcd256" name="6b7451bc-42d4-4cc0-bef0-c066b601979e" type="radio">
+</input><label class="sd-tab-label" for="08e4d298-4a19-4acc-8255-d3932ebcd256">
+Question</label><div class="sd-tab-content docutils">
 <p>Convince yourself that <span class="math notranslate nohighlight">\(z_{min}\)</span> will be considerably higher than <span class="math notranslate nohighlight">\(r_{airy}\)</span> using one of the following methods:</p>
 <ul class="simple">
 <li><p>Put an example refractive index (e.g. <span class="math notranslate nohighlight">\(\eta = 1.34\)</span> for water), and some reasonable values of <span class="math notranslate nohighlight">\(\lambda\)</span> and the NA into the equations for the lateral <a class="reference internal" href="#equation-eqn-res-lateral">(1)</a> and axial <a class="reference internal" href="#equation-eqn-res-axial">(2)</a> resolution, and compare the results</p></li>
@@ -1078,9 +1211,9 @@ This should reveal that the ratio is bigger than 1, i.e. that <span class="math 
 </ul>
 <p>What is the main implication of this observation, in terms of how separated structures need to be along different dimensions for them still to be distinguishable?</p>
 </div>
-<input id="2ebf1dcd-126e-4391-ac0c-322bd5a28ac1" name="56045717-4f7c-484b-bd24-d23b81550d67" type="radio">
-</input><label class="tabbed-label" for="2ebf1dcd-126e-4391-ac0c-322bd5a28ac1">
-Answer</label><div class="tabbed-content docutils">
+<input id="f4bcb0c3-fd7c-495e-88bd-f73ff92f5f3a" name="6b7451bc-42d4-4cc0-bef0-c066b601979e" type="radio">
+</input><label class="sd-tab-label" for="f4bcb0c3-fd7c-495e-88bd-f73ff92f5f3a">
+Answer</label><div class="sd-tab-content docutils">
 <p>The ratio is</p>
 <div class="math notranslate nohighlight">
 \[\frac{z_{min}}{r_{airy}} = \frac{2 \lambda \times \eta}{\textrm{NA}^2} \times \frac{\textrm{NA}}{0.61 \lambda} = \frac{3.28\eta}{\textrm{NA}} = \frac{3.28}{\sin\theta}\]</div>
@@ -1091,12 +1224,12 @@ When the NA is lower, the difference is even more.</p>
 If you really need information along the <em>z</em>-dimension more than anywhere else, maybe rotating your sample could help?</p>
 </div>
 </div>
-<div class="section" id="spatial-resolution">
-<h3>Spatial resolution<a class="headerlink" href="#spatial-resolution" title="Permalink to this headline">¶</a></h3>
+<section id="spatial-resolution">
+<h3>Spatial resolution<a class="headerlink" href="#spatial-resolution" title="Permalink to this headline">#</a></h3>
 <p><strong>Spatial resolution</strong> is concerned with how close two structures can be while they are still distinguishable.
 This is a somewhat subjective and fuzzy idea, but one way to define it is by the <strong>Rayleigh Criterion</strong>, according to which two equally bright spots are said to be resolved (i.e. distinguishable) if they are separated by the distances calculated in the lateral <a class="reference internal" href="#equation-eqn-res-lateral">(1)</a> and axial <a class="reference internal" href="#equation-eqn-res-axial">(2)</a> equations above.
 If the spots are closer than this, they are likely to be seen as one.
-In the in-focus plane, this is illustrated in <a class="reference internal" href="#fig-rayleigh"><span class="std std-numref">Fig. 140</span></a>.</p>
+In the in-focus plane, this is illustrated in <a class="reference internal" href="#fig-rayleigh"><span class="std std-numref">Fig. 139</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">shift_horizontal</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
@@ -1155,33 +1288,35 @@ In the in-focus plane, this is illustrated in <a class="reference internal" href
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-rayleigh">
+<figure class="align-center" id="fig-rayleigh">
 <div class="cell_output docutils container">
-<img alt="../../../_images/formation_spatial_17_0.png" src="../../../_images/formation_spatial_17_0.png" />
+<img alt="../../../_images/formation_spatial_20_0.png" src="../../../_images/formation_spatial_20_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 140 </span><span class="caption-text">Airy patterns separated by different distances, defined in terms of Airy disk radii. The top row contains the patterns themselves, while the bottom row shows intensity profiles computed across the centers of the patterns. Two distinct spots are clearly visible whenever separated by at least one disk radius, and there is a dip apparent in the profile. However, if the separation is less than one radius, the contrast rapidly decreases until only one structure is apparent. By a separation of 0.5 radii, the two structures appear indistinguishable as a single, brighter structure.</span><a class="headerlink" href="#fig-rayleigh" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 139 </span><span class="caption-text">Airy patterns separated by different distances, defined in terms of Airy disk radii. The top row contains the patterns themselves, while the bottom row shows intensity profiles computed across the centers of the patterns. Two distinct spots are clearly visible whenever separated by at least one disk radius, and there is a dip apparent in the profile. However, if the separation is less than one radius, the contrast rapidly decreases until only one structure is apparent. By a separation of 0.5 radii, the two structures appear indistinguishable as a single, brighter structure.</span><a class="headerlink" href="#fig-rayleigh" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>It should be kept in mind that the use of <span class="math notranslate nohighlight">\(r_{airy}\)</span> and <span class="math notranslate nohighlight">\(z_{min}\)</span> in the Rayleigh criterion is somewhat arbitrary – and the effects of brightness differences, finite pixel sizes and noise further complicate the situation, so that in practice a greater distance may well be required for us to confidently distinguish structures. Nevertheless, the Rayleigh criterion is helpful to give some idea of the scale of distances involved, i.e.
 hundreds of nanometers when using visible light.</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="e2667280-8c08-4d34-8936-9e4ec6184e35" name="08c13fa8-228d-4a77-8e66-8bb814713526" type="radio">
-</input><label class="tabbed-label" for="e2667280-8c08-4d34-8936-9e4ec6184e35">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="c65ed5f7-dae2-4bc0-8520-05fbf3183af8" name="fe07d739-193b-42a9-a13b-bd6f8a1711f7" type="radio">
+</input><label class="sd-tab-label" for="c65ed5f7-dae2-4bc0-8520-05fbf3183af8">
+Question</label><div class="sd-tab-content docutils">
 <p>Suppose the diameter of the Airy disk is around 500 nm, and you are looking at an image containing separate, well-spaced structures that are 2 nm, 20 nm and 200 nm in size.
 Assuming that you have imaged all of these exactly in focus (after all, you are a brilliant microscopist), how will these structures appear in the image?</p>
 <p><em>Note:</em> This is a particularly important question! Think of both the size and brightness.</p>
 </div>
-<input id="d854147a-6248-474c-b4c3-0d8751ed340b" name="08c13fa8-228d-4a77-8e66-8bb814713526" type="radio">
-</input><label class="tabbed-label" for="d854147a-6248-474c-b4c3-0d8751ed340b">
-Answer</label><div class="tabbed-content docutils">
+<input id="520e5c29-3092-4902-8145-4d045c582d3b" name="fe07d739-193b-42a9-a13b-bd6f8a1711f7" type="radio">
+</input><label class="sd-tab-label" for="520e5c29-3092-4902-8145-4d045c582d3b">
+Answer</label><div class="sd-tab-content docutils">
 <p>Because even an infinitesimally small point cannot appear smaller than the Airy disk in the recorded image, <em>potentially all 3 of these structures look the same!</em> There may be <em>some</em> increase in size visible with the 200 nm structure (because it is larger than a single point, this makes it like many different, slightly-shifted-but-mostly-overlapping Airy disks added together), but it will certainly not appear 10 or 100 times larger than the others.</p>
 <p><em>However</em>, because smaller objects typically emit fewer photons, the smaller structures may well appear less bright – if they are bright enough to be visible at all.
 Therefore, at this scale accurate measurements of size are impossible from (conventional, non-super-resolution) fluorescence microscopy images, but the actual size may have some relationship with brightness.</p>
 </div>
 </div>
-</div>
-<div class="section" id="measuring-psfs-small-structures">
-<h3>Measuring PSFs &amp; small structures<a class="headerlink" href="#measuring-psfs-small-structures" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="measuring-psfs-small-structures">
+<h3>Measuring PSFs &amp; small structures<a class="headerlink" href="#measuring-psfs-small-structures" title="Permalink to this headline">#</a></h3>
 <p>Knowing that the Airy disk resembles a Gaussian function is extremely useful, because any time we see an Airy disk we can fit a 2D Gaussian to it.
 The parameters of the function will then tell us the Gaussian’s center exactly, which corresponds to where the fluorescing structure really is – admittedly not with complete accuracy, but potentially still beyond the accuracy of even the pixel size (noise is the real limitation).
 This idea is fundamental to single-molecule localization techniques, including those in super-resolution microscopes like STORM and PALM, but requires that PSFs are sufficiently well-spaced that they do not interfere with one another and thereby ruin the fitting.</p>
@@ -1201,9 +1336,9 @@ This may come in useful in <a class="reference internal" href="../../appendices/
 In other words, this is the best that we can hope for: the Airy disk cannot be made smaller simply by better focusing, although it could easily be made worse by a less-than-perfect objective lens</p>
 </dd>
 </dl>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1227,9 +1362,11 @@ In other words, this is the best that we can hope for: the Airy disk cannot be m
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../1-formation_overview/formation_overview.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1245,24 +1382,28 @@ In other words, this is the best that we can hope for: the Airy disk cannot be m
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pete Bankhead<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pete Bankhead<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

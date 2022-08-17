@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>ImageJ: Thresholding &#8212; Introduction to Bioimage Analysis</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,21 +20,17 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -41,15 +39,16 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Filters" href="../4-filters/filters.html" />
@@ -61,7 +60,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +83,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -90,14 +104,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../README.html">
-   Introduction to Bioimage Analysis
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Introduction to Bioimage Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Front matter
  </span>
@@ -457,97 +472,199 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/chapters/2-processing/3-thresholding/imagej.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/chapters/2-processing/3-thresholding/imagej.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/3-thresholding/imagej.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/3-thresholding/imagej.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/chapters/2-processing/3-thresholding/imagej.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/chapters/2-processing/3-thresholding/imagej.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -599,12 +716,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>ImageJ: Thresholding</h1>
@@ -672,11 +788,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="imagej-thresholding">
-<h1>ImageJ: Thresholding<a class="headerlink" href="#imagej-thresholding" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="imagej-thresholding">
+<h1>ImageJ: Thresholding<a class="headerlink" href="#imagej-thresholding" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
@@ -694,20 +811,20 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Here, we will explore some ImageJ’s methods to apply thresholds to images, generating binary images, labeled images and ROIs.
 We will also confront some of the associated complications.</p>
-</div>
-<div class="section" id="global-thresholding">
-<h2>Global thresholding<a class="headerlink" href="#global-thresholding" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="global-thresholding">
+<h2>Global thresholding<a class="headerlink" href="#global-thresholding" title="Permalink to this headline">#</a></h2>
 <p>The main thresholding command in ImageJ is <span class="menuselection">Image ‣ Adjust ‣ Threshold…</span>, with the shortcut <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">T</kbd></kbd>.</p>
 <p>This opens a <em>Threshold</em> dialog that allows you to identify pixels above a threshold, below a threshold, or falling between two thresholds.
 These options are controlled using a combination of the threshold sliders and the <span class="guilabel">Dark background</span> checkbox.
 There is also a drop-down menu allowing you to select from a list of automated thresholding methods.</p>
-<div class="figure align-center" id="fig-thresholds-imagej-dialog">
+<figure class="align-center" id="fig-thresholds-imagej-dialog">
 <img alt="../../../_images/imagej-thresholds-dialog.png" src="../../../_images/imagej-thresholds-dialog.png" />
-</div>
+</figure>
 <p>During preview, the pixels that are considered foreground are shown in red by default (it’s possible to change this, but I never do).
 After choosing suitable thresholds, pressing <span class="guilabel">Apply</span> produces a binary image.
 This replaces the original, so it may be wise to duplicate the image first.</p>
@@ -723,23 +840,23 @@ Therefore if you find that any processing of binary images gives odd results, be
 </div>
 <p>The <em>Threshold</em> dialog is good for interactively exploring different automated thresholding methods, but it can be hard to systematically compare them.
 <span class="menuselection">Image ‣ Adjust ‣ Auto Threshold…</span> helps with this, by providing an option to try <em>all</em> of the methods.</p>
-<div class="figure align-center" id="fig-thresholds-imagej-all-dialog">
+<figure class="align-center" id="fig-thresholds-imagej-all-dialog">
 <img alt="../../../_images/imagej-thresholds-all-dialog.png" src="../../../_images/imagej-thresholds-all-dialog.png" />
-</div>
+</figure>
 <p>Applying this to ImageJ’s famous <em>blobs.gif</em> reveals that not all methods work equally well:</p>
-<div class="figure align-center" id="fig-thresholds-imagej-all-blobs">
+<figure class="align-center" id="fig-thresholds-imagej-all-blobs">
 <img alt="../../../_images/imagej-thresholds-all-blobs.png" src="../../../_images/imagej-thresholds-all-blobs.png" />
-</div>
+</figure>
 <div class="tip admonition">
 <p class="admonition-title">Automated threshold methods</p>
 <p>The various automated thresholds are described at <a class="reference external" href="https://imagej.net/Auto_Threshold">https://imagej.net/Auto_Threshold</a>, often with references to the original published papers upon which they are based.</p>
 </div>
-</div>
-<div class="section" id="creating-objects">
-<h2>Creating objects<a class="headerlink" href="#creating-objects" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="creating-objects">
+<h2>Creating objects<a class="headerlink" href="#creating-objects" title="Permalink to this headline">#</a></h2>
 <p>Once we have a binary image, the next step is to identify objects for further exploration.</p>
-<div class="section" id="generating-measuring-rois">
-<h3>Generating &amp; measuring ROIs<a class="headerlink" href="#generating-measuring-rois" title="Permalink to this headline">¶</a></h3>
+<section id="generating-measuring-rois">
+<h3>Generating &amp; measuring ROIs<a class="headerlink" href="#generating-measuring-rois" title="Permalink to this headline">#</a></h3>
 <p>ROIs are a good way to represent objects in ImageJ, because they are easy to measure.
 In 2D, there are several options to generate ROIs from a thresholded image, each with slightly different applications:</p>
 <ul class="simple">
@@ -761,9 +878,9 @@ I might not necessarily <em>use</em> the single ROI for measurements in the end,
 <p>When you want to measure multiple objects quickly, <span class="menuselection">Analyze ‣ Analyze Particles…</span> is arguably the most automated and versatile option.
 Its various options also make it possible to ignore regions that are particularly small or large, straight or round (using a <span class="guilabel">Circularity</span> metric).
 It can output summary results and add ROIs for each region to the <em>ROI Manager</em>.</p>
-<div class="figure align-center">
+<figure class="align-center">
 <img alt="../../../_images/imagej-thresholds-analyze-dialog.png" src="../../../_images/imagej-thresholds-analyze-dialog.png" />
-</div>
+</figure>
 <div class="info admonition">
 <p class="admonition-title">Redirecting measurements</p>
 <p>Although binary images can show the shapes of things to be measured, pixel intensity measurements made on a binary image are not very helpful.
@@ -778,35 +895,41 @@ I’d rather add my ROIs to the <em>ROI Manager</em> and transfer them that way.
 <p>Historically, there has been a problem with my preferred approach to use the <em>ROI Manager</em> output from <span class="menuselection">Analyze ‣ Analyze Particles…</span>.</p>
 <p>It seems that <span class="menuselection">Analyze Particles…</span> handles holes correctly when making measurements by itself, but by default it would generate ROIs that lacked holes.
 This meant that if you would measure the ROIs later you could get different results, because the ROIs included extra pixels that were actually excluded (as holes) in the thresholded image.</p>
-<div class="figure align-center" id="id1" style="width: 90%">
+<figure class="align-center" id="id1" style="width: 90%">
 <img alt="../../../_images/imagej-thresholds-analyze-holes.png" src="../../../_images/imagej-thresholds-analyze-holes.png" />
-<p class="caption"><span class="caption-number">Fig. 77 </span><span class="caption-text">Different results when using <span class="menuselection">Analyze ‣ Analyze Particles…</span> directly, and then subsequently measuring the ROI that it generated. The image is binary, so the mean value should be 255 if only the above-threshold pixels are measured.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 76 </span><span class="caption-text">Different results when using <span class="menuselection">Analyze ‣ Analyze Particles…</span> directly, and then subsequently measuring the ROI that it generated. The image is binary, so the mean value should be 255 if only the above-threshold pixels are measured.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>However</strong>, there is a solution – which I only learned when writing about it here.
 Since ImageJ v1.53g, there is a <span class="guilabel">Composite ROIs</span> checkbox when using <span class="menuselection">Analyze Particles…</span>.
 If this is turned <strong>on</strong>, then ROIs with holes are generated as expected.</p>
-<div class="figure align-center" id="id2" style="width: 90%">
+<figure class="align-center" id="id2" style="width: 90%">
 <img alt="../../../_images/imagej-thresholds-analyze-composite.png" src="../../../_images/imagej-thresholds-analyze-composite.png" />
-<p class="caption"><span class="caption-number">Fig. 78 </span><span class="caption-text">Fixing the problem with holey regions by using <span class="guilabel">Composite ROIs</span>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 77 </span><span class="caption-text">Fixing the problem with holey regions by using <span class="guilabel">Composite ROIs</span>.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>This demonstrates the need to be cautious with any image analysis software, and to check out the various options associated with even common commands.
 They aren’t <em>always</em> doing what you might expect.</p>
 </div>
-</div>
-<div class="section" id="generating-labeled-images">
-<h3>Generating labeled images<a class="headerlink" href="#generating-labeled-images" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="generating-labeled-images">
+<h3>Generating labeled images<a class="headerlink" href="#generating-labeled-images" title="Permalink to this headline">#</a></h3>
 <p>ROIs are not the only way to represent image objects: sometimes labeled images are more useful.</p>
 <p><span class="menuselection">Analyze ‣ Analyze Particles…</span> can generate labeled images by using the <span class="guilabel">Show: Count Masks</span> option.
 This will generate a new image in which each pixel has a unique integer value indicating the number of the object it is part of – or zero if it is in the background.
-With a suitably colorful LUT (often <span class="menuselection">Image ‣ Lookup Tables ‣ Glasbey</span>), this can create a helpful and cheerful display of objects (<a class="reference internal" href="thresholding.html#fig-blobs-binary-label"><span class="std std-numref">Fig. 62</span></a>).</p>
-<div class="figure align-center" id="id3" style="width: 90%">
+With a suitably colorful LUT (often <span class="menuselection">Image ‣ Lookup Tables ‣ Glasbey</span>), this can create a helpful and cheerful display of objects (<a class="reference internal" href="thresholding.html#fig-blobs-binary-label"><span class="std std-numref">Fig. 61</span></a>).</p>
+<figure class="align-center" id="id3" style="width: 90%">
 <img alt="../../../_images/imagej-thresholds-analyze-labels.png" src="../../../_images/imagej-thresholds-analyze-labels.png" />
-<p class="caption"><span class="caption-number">Fig. 79 </span><span class="caption-text">Creating a labeled image with <span class="menuselection">Analyze ‣ Analyze Particles</span>.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="bf5e8212-b712-455d-8c93-1f4ed12420f6" name="dc48e800-e810-4a97-be9b-2b1c9c97b048" type="radio">
-</input><label class="tabbed-label" for="bf5e8212-b712-455d-8c93-1f4ed12420f6">
-Practical</label><div class="tabbed-content docutils">
+<figcaption>
+<p><span class="caption-number">Fig. 78 </span><span class="caption-text">Creating a labeled image with <span class="menuselection">Analyze ‣ Analyze Particles</span>.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="48aa0bb4-4eea-45e0-8c3b-8604c2c6b6d2" name="f31bb4a3-7520-4dff-ba72-8fe6730f2fc0" type="radio">
+</input><label class="sd-tab-label" for="48aa0bb4-4eea-45e0-8c3b-8604c2c6b6d2">
+Practical</label><div class="sd-tab-content docutils">
 <p><a class="reference internal" href="thresholding.html#sec-thresholds-connectivity"><span class="std std-ref">Connectivity</span></a> (4 or 8) is an important consideration when converting a binary image to objects, since it can have a major impact on the number and size of objects.</p>
 <p>Work out what kind of connectivity is used by</p>
 <ul class="simple">
@@ -817,43 +940,43 @@ Practical</label><div class="tabbed-content docutils">
 One way to do this is by thresholding a suitable image, another is to use the <em>Brush tool</em> <img alt="../../../_images/brush.png" src="../../../_images/brush.png" /> to draw your own pixels in the binary image.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="a137eb70-f3a4-438c-83cb-44b6ed550550" name="dc48e800-e810-4a97-be9b-2b1c9c97b048" type="radio">
-</input><label class="tabbed-label" for="a137eb70-f3a4-438c-83cb-44b6ed550550">
-Solution</label><div class="tabbed-content docutils">
+<input id="0e21cfa3-d12f-4949-862e-f51c90004635" name="f31bb4a3-7520-4dff-ba72-8fe6730f2fc0" type="radio">
+</input><label class="sd-tab-label" for="0e21cfa3-d12f-4949-862e-f51c90004635">
+Solution</label><div class="sd-tab-content docutils">
 <p>At the time of writing, <span class="menuselection">Analyze ‣ Analyze Particles…</span> uses 8-connectivity.</p>
 <p>For the <em>Wand tool</em> the right answer will depend upon the setting you see if you double-click the tool.
 There are three options: 4-connectivity, 8-connectivity and ‘legacy’ (where ‘legacy’ seems to behave a bit like 8-connectivity).</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-thresholds-wand-dialog.png"><img alt="../../../_images/imagej-thresholds-wand-dialog.png" class="align-center" src="../../../_images/imagej-thresholds-wand-dialog.png" style="width: 40%;" /></a>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="local-thresholding">
-<h2>Local thresholding<a class="headerlink" href="#local-thresholding" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="local-thresholding">
+<h2>Local thresholding<a class="headerlink" href="#local-thresholding" title="Permalink to this headline">#</a></h2>
 <p>A few methods to perform local thresholding can be found under <span class="menuselection">Image ‣ Adjust ‣ Auto Local Threshold</span>.
 The dialog again provides the option to try all of them.</p>
-<div class="figure align-center" id="fig-thresholds-imagej-local-dialog">
+<figure class="align-center" id="fig-thresholds-imagej-local-dialog">
 <img alt="../../../_images/imagej-thresholds-local-dialog.png" src="../../../_images/imagej-thresholds-local-dialog.png" />
-</div>
+</figure>
 <p>Using automated local filters is complicated by the fact that window sizes and parameters need to be tuned.
 What these mean in each case is described at <a class="reference external" href="https://imagej.net/Auto_Local_Threshold">https://imagej.net/Auto_Local_Threshold</a></p>
 <p>Currently, ImageJ’s local thresholding also requires that the image is converted to 8-bit.
 This should be done with some caution, since it can involve surreptitiously incorporating the <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html#sec-bit-depths-converting"><span class="std std-ref">brightness &amp; contrast settings</span></a> into the thresholding.</p>
 <p>For these reasons, I tend to avoid local thresholding.</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="7cb51558-7091-4e4a-9f1b-49831f508c29" name="bda24b3b-b815-4c8f-987c-5b0eb361f1a9" type="radio">
-</input><label class="tabbed-label" for="7cb51558-7091-4e4a-9f1b-49831f508c29">
-Practical</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="8ad8f9ec-2f3a-43c1-a483-a4f70fdcab55" name="2438e2a8-543a-488a-95ec-71dee5cd291a" type="radio">
+</input><label class="sd-tab-label" for="8ad8f9ec-2f3a-43c1-a483-a4f70fdcab55">
+Practical</label><div class="sd-tab-content docutils">
 <p>Explore several automated methods of thresholding the different channels of <span class="menuselection">File ‣ Open samples ‣ HeLa Cells</span>, using both local and global automated thresholds, to draw your own conclusions about which methods you might prefer for different images.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
 </div>
-</div>
-<div class="section" id="addendum-practical-issues">
-<h2>Addendum: Practical issues<a class="headerlink" href="#addendum-practical-issues" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="addendum-practical-issues">
+<h2>Addendum: Practical issues<a class="headerlink" href="#addendum-practical-issues" title="Permalink to this headline">#</a></h2>
 <p>We end this section with a brief discussion of a few non-obvious practical issues that impact thresholding, related to bit-depths and image types.</p>
-<div class="section" id="using-nans">
-<span id="sec-thresholding-nans"></span><h3>Using NaNs<a class="headerlink" href="#using-nans" title="Permalink to this headline">¶</a></h3>
+<section id="using-nans">
+<span id="sec-thresholding-nans"></span><h3>Using NaNs<a class="headerlink" href="#using-nans" title="Permalink to this headline">#</a></h3>
 <p>The first issue appears when you click <span class="guilabel">Apply</span> in the <span class="menuselection">Image ‣ Adjust ‣ Threshold…</span> dialog box for a 32-bit image.
 This leads to a prompt asking whether to <span class="guilabel">Set Background Pixels to NaN</span>.</p>
 <p>If this is chosen, a binary image is no longer created.
@@ -862,38 +985,38 @@ Instead, thresholding results in an image in which the foreground pixels retain 
 It is therefore used to mask out regions, while preserving meaningful pixel values elsewhere.</p>
 <p>This is an advanced option that is <em>potentially</em> useful, but can be a bit challenging to work with.
 You have to be extra cautious when using an image containing NaNs, since some commands might behave in surprising ways.</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="4d0b5ebe-e115-47e0-842a-27aa0fd44f01" name="56ca323d-69b7-4512-84b7-dd9f4d63449d" type="radio">
-</input><label class="tabbed-label" for="4d0b5ebe-e115-47e0-842a-27aa0fd44f01">
-Practical</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="7c7b9b8f-3aa5-4a7c-ad8f-01b27bf6a462" name="780c76cd-3826-4d15-8e4a-3c44c1dd63e2" type="radio">
+</input><label class="sd-tab-label" for="7c7b9b8f-3aa5-4a7c-ad8f-01b27bf6a462">
+Practical</label><div class="sd-tab-content docutils">
 <p>Create an image including NaN pixels, then measure some ROIs drawn on it.
 Are area measurements affected by whether NaNs are present or not?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="65f77ce7-00ef-4585-a7a1-f89ee2d9a82c" name="56ca323d-69b7-4512-84b7-dd9f4d63449d" type="radio">
-</input><label class="tabbed-label" for="65f77ce7-00ef-4585-a7a1-f89ee2d9a82c">
-Solution</label><div class="tabbed-content docutils">
+<input id="2414a8bc-66b7-41d4-b237-8ba03ee6c9cd" name="780c76cd-3826-4d15-8e4a-3c44c1dd63e2" type="radio">
+</input><label class="sd-tab-label" for="2414a8bc-66b7-41d4-b237-8ba03ee6c9cd">
+Solution</label><div class="sd-tab-content docutils">
 <p>They are!
 If you measure the area of an image containing NaNs, the result is less than if you measure the area of the same image converted to 8-bit – since only the non-NaN parts are included.
 If you measure a region containing NaNs only, the area is 0.</p>
 </div>
 </div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="a2697f46-ca7b-42ef-82aa-d6cdc28602bb" name="52cf9184-41aa-44d5-9b96-9ba408268551" type="radio">
-</input><label class="tabbed-label" for="a2697f46-ca7b-42ef-82aa-d6cdc28602bb">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="7708db8d-0fa8-468a-9e26-1859ec4167f3" name="487c7fba-d107-4268-a73c-2e0019b4516c" type="radio">
+</input><label class="sd-tab-label" for="7708db8d-0fa8-468a-9e26-1859ec4167f3">
+Question</label><div class="sd-tab-content docutils">
 <p>Through experiment or guesswork, what do you suppose happens to NaNs with a 32-bit image is converted to 8-bit or 16-bit?</p>
 </div>
-<input id="b3755fef-4f55-4584-93a3-a01f53c49358" name="52cf9184-41aa-44d5-9b96-9ba408268551" type="radio">
-</input><label class="tabbed-label" for="b3755fef-4f55-4584-93a3-a01f53c49358">
-Answer</label><div class="tabbed-content docutils">
+<input id="16165444-666a-4a2b-81c5-6c1be12e1c0b" name="487c7fba-d107-4268-a73c-2e0019b4516c" type="radio">
+</input><label class="sd-tab-label" for="16165444-666a-4a2b-81c5-6c1be12e1c0b">
+Answer</label><div class="sd-tab-content docutils">
 <p>Since NaN is not an integer, it cannot be stored in an 8-bit or 16-bit unsigned integer image.
 Instead, all NaNs simply become zero.</p>
 </div>
 </div>
-</div>
-<div class="section" id="histogram-binning">
-<h3>Histogram binning<a class="headerlink" href="#histogram-binning" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="histogram-binning">
+<h3>Histogram binning<a class="headerlink" href="#histogram-binning" title="Permalink to this headline">#</a></h3>
 <p>The second way in which bit-depths and types matter is that histograms of images &gt; 8-bit involve <em>binning</em> the data.
 For example, with a 32-bit image it would probably not make sense to create a histogram that has separate counts for all possible pixel values: in addition to counts for pixels with exact values 1 and 2, we would have thousands of counts for pixels with fractions in between and most of these counts would be 0.</p>
 <p>Instead, the histogram is generated by dividing the total data range (maximum – minimum pixel values) into 256 separate <em>bins</em> with equal widths, and counting how many pixels have values falling into the range of each bin.
@@ -908,33 +1031,35 @@ The same type of conversion is used for 16-bit images – <em>unless</em> you us
 And what makes things worse is that ImageJ’s behavior in this regard has changed across versions, so there’s a chance that any specific advice I give here won’t match the version you’re using anyway.</p>
 <p>I know I’m not alone in being confused, since this has been the subject of a <a class="reference external" href="https://forum.image.sc/t/auto-threshold-calculation-and-bright-and-contrast-auto-adjust-issue/19301">long discussion on the image.sc forum</a>.
 So the main message is: be aware that binning happens, and keep on the lookout for any unexpected effects that the brightness/contrast sliders might sneakily have on thresholding.</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="03c3d187-d8ba-4002-a4fb-fb73a1985caa" name="4661c882-0c05-49c9-b5a5-5237fd00c183" type="radio">
-</input><label class="tabbed-label" for="03c3d187-d8ba-4002-a4fb-fb73a1985caa">
-Practical</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="5a3aad74-6a2b-4559-8aba-7460ba0f098f" name="39f80832-7754-4f13-829d-177c9bc20b25" type="radio">
+</input><label class="sd-tab-label" for="5a3aad74-6a2b-4559-8aba-7460ba0f098f">
+Practical</label><div class="sd-tab-content docutils">
 <p>Explore setting thresholds with and without <span class="guilabel">Don’t reset range</span> selected for the image <span class="menuselection">File ‣ Open Samples ‣ M51 Galaxy (16-bits)</span>, and pressing the <span class="guilabel">Auto</span> button to determine a threshold.</p>
 <p>Keep <span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> open as you explore, so you can make adjustments before calculating the thresholds.</p>
-<div class="figure align-center" style="width: 25%">
+<figure class="align-center" style="width: 25%">
 <img alt="../../../_images/imagej-m51.png" src="../../../_images/imagej-m51.png" />
-</div>
+</figure>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/c5d2075777c458c70c69a1f2c8b37391"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="faef3fdc-93d3-4c9d-b24b-cfb7abac9470" name="4661c882-0c05-49c9-b5a5-5237fd00c183" type="radio">
-</input><label class="tabbed-label" for="faef3fdc-93d3-4c9d-b24b-cfb7abac9470">
-Solution</label><div class="tabbed-content docutils">
+<input id="4b7e0d67-5ee3-42f8-bef7-64dc08a3fd9c" name="39f80832-7754-4f13-829d-177c9bc20b25" type="radio">
+</input><label class="sd-tab-label" for="4b7e0d67-5ee3-42f8-bef7-64dc08a3fd9c">
+Solution</label><div class="sd-tab-content docutils">
 <p>This image shows a potential use of the <span class="guilabel">Don’t reset range</span> option – used cautiously.</p>
-<div class="figure align-center" id="id4">
+<figure class="align-center" id="id4">
 <div class="cell_output docutils container">
 <img alt="../../../_images/imagej_7_01.png" src="../../../_images/imagej_7_01.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 80 </span><span class="caption-text">Thresholding a 16-bit image with and without ‘Don’t reset range’ selected.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<figcaption>
+<p><span class="caption-number">Fig. 79 </span><span class="caption-text">Thresholding a 16-bit image with and without ‘Don’t reset range’ selected.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
-</div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="e448b6d9-c4af-416b-9820-d08fae5f3290" name="6c4b2b5c-d117-4351-901f-64b9b3f2260a" type="radio">
-</input><label class="tabbed-label" for="e448b6d9-c4af-416b-9820-d08fae5f3290">
-Practical</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="51fd4109-d9d8-436e-a9b0-c5b31e1c449b" name="e3703115-885b-497c-9816-2cc34c0a8079" type="radio">
+</input><label class="sd-tab-label" for="51fd4109-d9d8-436e-a9b0-c5b31e1c449b">
+Practical</label><div class="sd-tab-content docutils">
 <p>What are the implications of using a 256-bin histogram for thresholding a 32-bit image?</p>
 <p>In particular, how might any outlier pixels affect the accuracy with which you can define a threshold – automatically or manually?</p>
 <p>To explore this, you can use the extreme example of <em>cell_outlier.tif</em> along with the <span class="menuselection">Image ‣ Adjust ‣ Threshold…</span> command.</p>
@@ -942,9 +1067,9 @@ Practical</label><div class="tabbed-content docutils">
 <p><strong>Note:</strong> <span class="menuselection">Analyze ‣ Histogram</span> lets you investigate the image histogram with different numbers of bins – but any changes you make here will not be reflected in the histogram actually used for thresholding.</p>
 <p><a class="reference external" href="https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-data/blob/main/images/cell_outlier.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="40275a1f-cb87-42c1-9a12-c40b56d57461" name="6c4b2b5c-d117-4351-901f-64b9b3f2260a" type="radio">
-</input><label class="tabbed-label" for="40275a1f-cb87-42c1-9a12-c40b56d57461">
-Solution</label><div class="tabbed-content docutils">
+<input id="3748175e-24b7-4356-97e4-137b81fd45bd" name="e3703115-885b-497c-9816-2cc34c0a8079" type="radio">
+</input><label class="sd-tab-label" for="3748175e-24b7-4356-97e4-137b81fd45bd">
+Solution</label><div class="sd-tab-content docutils">
 <p>First, a positive implication of using a 256-bit histogram for thresholding is that it can be fast: more bins add to the computations involved.
 Also, creating too many bins has the result of making most of them zero – potentially causing some automated threshold-determination algorithms to fail.</p>
 <p>A negative implication is that using 256 bins means that only 256 different thresholds are possible: that is, if your image range is 0–25500, then the thresholds you could get are 0, 100, 200, … 25500.
@@ -961,9 +1086,9 @@ However, if you do experience the issue then two possible ways to overcome it ar
 </ol>
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -987,9 +1112,11 @@ However, if you do experience the issue then two possible ways to overcome it ar
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="thresholding.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1005,24 +1132,28 @@ However, if you do experience the issue then two possible ways to overcome it ar
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pete Bankhead<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pete Bankhead<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

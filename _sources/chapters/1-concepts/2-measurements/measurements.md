@@ -206,13 +206,13 @@ plt.tight_layout()
 glue_fig('fig_histograms_shuffled', fig)
 ```
 
-`````{div} question
+`````{tab-set}
 
-````{tabbed} Question
+````{tab-item} Question
 If two images have identical histograms and summary statistics (mean, min, max, standard deviation), does this **prove** that the images are identical?
 ````
 
-````{tabbed} Answer
+````{tab-item} Answer
 No! For example, we might have the same pixel values in a different arrangement.
 If I randomly shuffle the pixels in the image then the basic statistics and histogram remain unchanged -- but the image itself is very different.
 

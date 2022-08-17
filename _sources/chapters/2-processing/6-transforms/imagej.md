@@ -223,8 +223,10 @@ It will partition the image into different regions so that the separation lines 
 :width: 75%
 ````
 
-```{tabbed} Question
-:new-group:
+````{tab-set}
+
+```{tab-item} Question
+
 
 Imagine you have created a binary image containing detected cells, but you are only interested in the region inside the cell that is close to the membrane, i.e. within 5 pixels of the edge of each detected object.
 Any pixels outside the objects or closer to their centers do not matter.
@@ -235,7 +237,7 @@ How would you go about finding these regions using ImageJ and the distance trans
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 This is the approach I was thinking of:
 1. Run {menuselection}`Edit --> Invert`
@@ -246,6 +248,8 @@ This is the approach I was thinking of:
 There are more possible ways, such as applying a maximum filter and subtracting the original binary image -- but I think the distance transform is more elegant.
 The distance transform is also likely to be much faster for large distances, and more precise (assuming you use a 32-bit output).
 ```
+
+````
 
 +++
 

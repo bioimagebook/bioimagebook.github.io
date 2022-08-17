@@ -104,19 +104,21 @@ name: fig-outline_fill_skeleton
 The effects of the {menuselection}`Outline`, {menuselection}`Fill holes` and {menuselection}`Skeletonize` commands.
 ```
 
+````{tab-set}
 
-```{tabbed} Question
-:new-group:
+```{tab-item} Question
+
 
 The outline of an object in a binary image can also be determined by applying one other morphological operation to a duplicate of the image, and then using the {menuselection}`Image Calculator`.
 How?
 ```
 
-
-```{tabbed} Answer
+```{tab-item} Answer
 
 To outline the objects in a binary image, you can simply calculate the difference between the original image and an eroded (or dilated, if you want the pixels just beyond the objects) duplicate of the image.
 ```
+
+````
 
 +++
 

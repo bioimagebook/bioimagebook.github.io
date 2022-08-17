@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Microscopes &amp; detectors &#8212; Introduction to Bioimage Analysis</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,21 +20,17 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -41,15 +39,16 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Beyond this book" href="../../appendices/next_steps/next_steps.html" />
@@ -61,7 +60,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +83,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -90,14 +104,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../README.html">
-   Introduction to Bioimage Analysis
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Introduction to Bioimage Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Front matter
  </span>
@@ -457,97 +472,199 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/chapters/3-fluorescence/4-microscope_types/microscope_types.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/chapters/3-fluorescence/4-microscope_types/microscope_types.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/3-fluorescence/4-microscope_types/microscope_types.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/3-fluorescence/4-microscope_types/microscope_types.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/chapters/3-fluorescence/4-microscope_types/microscope_types.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/chapters/3-fluorescence/4-microscope_types/microscope_types.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -614,12 +731,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Microscopes & detectors</h1>
@@ -702,11 +818,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="microscopes-detectors">
-<span id="chap-microscope-types"></span><h1>Microscopes &amp; detectors<a class="headerlink" href="#microscopes-detectors" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="microscopes-detectors">
+<span id="chap-microscope-types"></span><h1>Microscopes &amp; detectors<a class="headerlink" href="#microscopes-detectors" title="Permalink to this headline">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -731,8 +848,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Successfully analyzing an image requires that it actually contains the necessary information in the first place.
 There are various practical issues related to the biology (e.g. not interfering too much with processes, for example by inadvertently killing things) and data handling (bit-depths, file formats, anything else in Part I of this book).
 However, assuming that these are in order, there are three other main factors to consider connected to the image contents:</p>
@@ -754,9 +871,9 @@ It’s a bit dated, but I’ve kept it anyway in case it might be useful to some
 <p>For a more extensive, and authoritative, description of the topics considered here, consider seeking out the <em>Handbook of Biological Confocal Microscopy</em> edited by James Pawley.
 This contains many excellent chapters, some of which may be available to download from the publisher’s website.</p>
 </div>
-</div>
-<div class="section" id="types-of-microscope">
-<h2>Types of microscope<a class="headerlink" href="#types-of-microscope" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="types-of-microscope">
+<h2>Types of microscope<a class="headerlink" href="#types-of-microscope" title="Permalink to this headline">#</a></h2>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -770,17 +887,19 @@ This contains many excellent chapters, some of which may be available to downloa
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-excitation">
+<figure class="align-center" id="fig-excitation">
 <div class="cell_output docutils container">
 <img alt="../../../_images/microscope_types_3_0.png" src="../../../_images/microscope_types_3_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 154 </span><span class="caption-text">Schematic diagrams to show the differences in excitation patterns.
+<figcaption>
+<p><span class="caption-number">Fig. 153 </span><span class="caption-text">Schematic diagrams to show the differences in excitation patterns.
 Here, an inverted microscope is assumed (the cell is resting on a coverslip, and illuminated from below).
 During the recording of a pixel, light can potentially be detected if it arises from any part of the green-illuminated region, although in the laser scanning and spinning disk confocal cases the pinhole will only permit a fraction of this light to pass through.
-Note that, for the 2-photon microscope, the excitation is confined to only the small, central region, while the red light above and below is not capable of exciting the fluorophores that have been used.</span><a class="headerlink" href="#fig-excitation" title="Permalink to this image">¶</a></p>
-</div>
-<div class="section" id="widefield">
-<h3>Widefield<a class="headerlink" href="#widefield" title="Permalink to this headline">¶</a></h3>
+Note that, for the 2-photon microscope, the excitation is confined to only the small, central region, while the red light above and below is not capable of exciting the fluorophores that have been used.</span><a class="headerlink" href="#fig-excitation" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="widefield">
+<h3>Widefield<a class="headerlink" href="#widefield" title="Permalink to this headline">#</a></h3>
 <p>So far, our schematic diagrams and PSF discussion have concentrated on <strong>widefield microscopes</strong>.
 In widefield microscopy, the entire sample is bathed in light, so that many fluorophores throughout the sample can be excited and emit photons simultaneously.
 All of the light that enters the objective may then be detected and contribute to any image being recorded.
@@ -789,9 +908,9 @@ Because photons are potentially emitted from everywhere in the sample, there wil
 Viewed in terms of PSFs, we capture part of the hourglass shape produced by every light-emitting point depending upon how in-focus it is in every image.</p>
 <p>This is bad news for spatial information and also for detecting small structures in thick samples, because the out-of-focus light is essentially unhelpful background.
 On the other hand, widefield images tend to include a lot of photons, which overcomes read noise, even when they are recorded fast.</p>
-</div>
-<div class="section" id="laser-scanning-confocal">
-<h3>Laser scanning confocal<a class="headerlink" href="#laser-scanning-confocal" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="laser-scanning-confocal">
+<h3>Laser scanning confocal<a class="headerlink" href="#laser-scanning-confocal" title="Permalink to this headline">#</a></h3>
 <p><strong>Optical sectioning</strong> is the ability to detect photons only from the plane of focus, rejecting those from elsewhere.
 This is necessary to look into thick samples without getting lost in the haze of other planes.
 <strong>Laser Scanning Confocal Microscopy (LSCM)</strong> achieves this by only concentrating on detecting light for one pixel at any time, and using a pinhole to try to only allow light from a corresponding point in the sample to be detected.</p>
@@ -806,15 +925,15 @@ Also, because single pixels are recorded separately, the image can (potentially)
 <p>However, these advantages comes with a major drawback.
 Images usually contain thousands to millions of pixels, and so only a tiny fraction of the time required to record an image is spent detecting photons for any one pixel in a LSCM image – unlike in the widefield case, where photons can be detected for all pixels over the entire image acquisition time. This can cause LSCM image acquisition to be comparatively slow, noisy (in terms of few detected photons) or both.
 Spatial information is therefore gained at a cost in noise and/or temporal resolution.</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="918e1748-b28b-41d1-8b93-e1d30a3aa1f0" name="9057855c-a3c6-442b-8636-688219e32bd6" type="radio">
-</input><label class="tabbed-label" for="918e1748-b28b-41d1-8b93-e1d30a3aa1f0">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="bbe44a2e-2317-4139-8a6d-1e7f6d73018d" name="20fc3f6f-f8dd-4938-9060-7c04086505a9" type="radio">
+</input><label class="sd-tab-label" for="bbe44a2e-2317-4139-8a6d-1e7f6d73018d">
+Question</label><div class="sd-tab-content docutils">
 <p>Why is it often recommended that the pinhole in LSCM be set to have the same size as one Airy disk? And why is it sometimes better not to strictly follow this recommendation?</p>
 </div>
-<input id="301d8110-b557-4ff4-9d00-3a98d034f03d" name="9057855c-a3c6-442b-8636-688219e32bd6" type="radio">
-</input><label class="tabbed-label" for="301d8110-b557-4ff4-9d00-3a98d034f03d">
-Answer</label><div class="tabbed-content docutils">
+<input id="deedd625-c0a0-4b57-b446-16c50cb299b7" name="20fc3f6f-f8dd-4938-9060-7c04086505a9" type="radio">
+</input><label class="sd-tab-label" for="deedd625-c0a0-4b57-b446-16c50cb299b7">
+Answer</label><div class="sd-tab-content docutils">
 <p>As described in <a class="reference internal" href="../2-formation_spatial/formation_spatial.html#chap-formation-spatial"><span class="std std-ref">Blur &amp; the PSF</span></a>, the vast majority of the light from the in-focus plane falls within the Airy disk.
 Using a pinhole smaller than this can result in so little light being detected that the image becomes too noisy to be useful.
 On the other hand, increasing the size of the pinhole will result in some more of the remaining light located in the outer rings of the Airy pattern, but <em>most</em> extra photons will come from out-of-focus planes.
@@ -825,27 +944,27 @@ Also, when recording a multichannel image then you may well have to set the pinh
 But because the size of the disk depends upon the light wavelength (as described in Equation <a class="reference internal" href="../2-formation_spatial/formation_spatial.html#equation-eqn-res-lateral">(1)</a>), the pinhole diameter will differ in terms of Airy disk sizes for other channels.</p>
 </div>
 </div>
-</div>
-<div class="section" id="spinning-disk-confocal">
-<h3>Spinning disk confocal<a class="headerlink" href="#spinning-disk-confocal" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="spinning-disk-confocal">
+<h3>Spinning disk confocal<a class="headerlink" href="#spinning-disk-confocal" title="Permalink to this headline">#</a></h3>
 <p>So a widefield system records all pixels at once without blocking the light from reaching the detector anywhere, whereas a LSCM can block out-of-focus light by only recording a single pixel at a time.
 Both options sound extreme: could there not be a compromise?</p>
 <p><strong>Spinning disk confocal microscopy (SDCM)</strong> implements one such compromise by using a large number of pinholes punched into a disk, so that the fluorophores can be excited and light detected for many different <em>non-adjacent</em> pixels simultaneously.
 By not trying to record adjacent pixels at the same time, pinholes can be used to block <em>most</em> of the out-of-focus light for each pixel, since this originates close to the region of interest for that pixel (i.e. the PSF becomes very dim at locations far away from its center) – but sufficiently-spaced pixels can still be recorded simultaneously with little influence on one another.</p>
 <p>In practice, spinning disk confocal microscopy images are likely to be less sharp than laser scanning confocal images because some light does scatter through other pinholes.
 Also, the pinhole sizes cannot be adjusted to fine-tune the balance between noise and optical sectioning. However, the optical sectioning offered by SDCM is at least a considerable improvement over the widefield case, and an acceptable SNR can be achieved with much faster frame-rates using SDCM as opposed to LSCM.</p>
-</div>
-<div class="section" id="multiphoton-microscopy">
-<h3>Multiphoton microscopy<a class="headerlink" href="#multiphoton-microscopy" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="multiphoton-microscopy">
+<h3>Multiphoton microscopy<a class="headerlink" href="#multiphoton-microscopy" title="Permalink to this headline">#</a></h3>
 <p>As previously mentioned, if the size of excitation volume could be reduced enough, then we would know where the photons originated even without a pinhole being required – but focused excitation is generally still subject to PSF-related issues, so that fluorophores throughout a whole hourglass-shaped volume can end up being excited.
 The main idea of <strong>multiphoton microscopy</strong> is that fluorophore excitation requires the <em>simultaneous absorption of multiple photons</em>, rather than only a single photon.
 The excitation light has a longer wavelength than would otherwise be required to cause molecular excitation with a single photon, but the energies of the multiple photons combine to cause the excitation.</p>
 <p>The benefit of this is that the multiphoton excitation only occurs at the focal region of the excitation – elsewhere within the ‘specimen PSF’ the light intensities are insufficient to produce the ‘multiphoton effect’ and raise the fluorophores into an excited state.
 This means that the region of the specimen emitting photons at any one time is much smaller than when using single photon excitation (as in LSCM), and also less damage is being caused to the sample outside of the sample plane.
 Furthermore, multiphoton microscopy is able to penetrate deeper into a specimen – up to several hundred µm.</p>
-</div>
-<div class="section" id="total-internal-reflection-fluorescence">
-<h3>Total Internal Reflection Fluorescence<a class="headerlink" href="#total-internal-reflection-fluorescence" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="total-internal-reflection-fluorescence">
+<h3>Total Internal Reflection Fluorescence<a class="headerlink" href="#total-internal-reflection-fluorescence" title="Permalink to this headline">#</a></h3>
 <p>As previously mentioned, widefield images of very thin specimens do not suffer much from out-of-focus blur because light is not emitted from many other planes.
 <strong>Total Internal Reflection Fluorescence (TIRF)</strong> microscopy makes use of this by stimulating fluorescence only in a very thin section of the sample close to the objective.
 Very briefly, TIRF microscopy involves using an illumination angled so that the change in refractive index encountered by the light as it approaches the specimen causes a further change in angle sufficient to prevent the light from directly entering the specimen (i.e. it is ‘totally internally reflected’).
@@ -853,27 +972,29 @@ Nevertheless, fluorophores can still be excited by an evanescent wave that is pr
 This wave decays exponentially, so that only fluorophores right at the surface are excited – meaning fluorophores deeper within the specimen do not interfere with the recording.</p>
 <p>Importantly, because the subsequent recording is essentially similar to that used when recording widefield images, photons are detected at all pixels in parallel and fast recording-rates are possible.
 Therefore if it’s only necessary to see to a depth of about 100 nm, TIRF microscopy may be a good choice.</p>
-</div>
-</div>
-<div class="section" id="photon-detectors">
-<h2>Photon detectors<a class="headerlink" href="#photon-detectors" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="photon-detectors">
+<h2>Photon detectors<a class="headerlink" href="#photon-detectors" title="Permalink to this headline">#</a></h2>
 <p>Certain detectors are associated with certain types of microscopy, and differ according to the level and type of noise you can expect.
 Understanding the basic principles greatly helps when choosing sensible values for parameters such as gain, pixel size and binning during acquisition to optimize the useful information in the image.
 The following provides a very brief introduction to two common detectors, and extra one variation.</p>
-<div class="section" id="pmts-one-pixel-at-a-time">
-<h3>PMTs: one pixel at a time<a class="headerlink" href="#pmts-one-pixel-at-a-time" title="Permalink to this headline">¶</a></h3>
+<section id="pmts-one-pixel-at-a-time">
+<h3>PMTs: one pixel at a time<a class="headerlink" href="#pmts-one-pixel-at-a-time" title="Permalink to this headline">#</a></h3>
 <p>If you only need to record one pixel at a time, a <strong>photomultiplier tube (PMT)</strong> might be what you need.
 The basic principle is this: a photon strikes a photocathode, hopefully producing an electron.
 When this occurs, the electron is accelerated towards a dynode, and any produced electrons accelerated towards further dynodes.
 By adjusting the ‘gain’, the acceleration of the electrons towards successive dynodes can be varied; higher accelerations mean there is an increased likelihood that the collision of the electrons with the dynode will produce a higher number of electrons moving into the next stage.
-The charge of the electrons is then quantified at the end (<a class="reference internal" href="#fig-pmt"><span class="std std-numref">Fig. 155</span></a>).
+The charge of the electrons is then quantified at the end (<a class="reference internal" href="#fig-pmt"><span class="std std-numref">Fig. 154</span></a>).
 Because the (possibly very small) number of original detected photons have now been amplified to a (possibly much) larger number electrons by the successive collisions with dynodes, the effect of read noise is usually minor for a PMT.</p>
-<div class="figure align-center" id="fig-pmt">
+<figure class="align-center" id="fig-pmt">
 <a class="reference internal image-reference" href="../../../_images/pmt.png"><img alt="../../../_images/pmt.png" src="../../../_images/pmt.png" style="width: 60%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 155 </span><span class="caption-text">Diagram showing the detection of a photon by a PMT.
+<figcaption>
+<p><span class="caption-number">Fig. 154 </span><span class="caption-text">Diagram showing the detection of a photon by a PMT.
 Each photon can be ‘multiplied’ to produce many electrons by accelerating the first produced electron towards a dynode, and repeating the process for all electrons produced along a succession of dynodes.
-The charge of the electrons reaching the end of the process can then be quantified, and ought to be proportional to the number of photons that arrived at the PMT.</span><a class="headerlink" href="#fig-pmt" title="Permalink to this image">¶</a></p>
-</div>
+The charge of the electrons reaching the end of the process can then be quantified, and ought to be proportional to the number of photons that arrived at the PMT.</span><a class="headerlink" href="#fig-pmt" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>More problematically, PMTs can suffer from the problem of having a low <strong>Quantum Efficiency (QE)</strong>.
 The QE is a measure of the proportion of photons striking the detector which then produce electrons, and values for a conventional PMT may be as low as 10–15%: the majority of the photons reaching the PMT are simply wasted.
 Thus photon noise can be a major issue, especially if there is a low amount of light available to detect in the first place.</p>
@@ -883,14 +1004,14 @@ Thus photon noise can be a major issue, especially if there is a low amount of l
 They are rather proportional, often with an offset added.</p>
 <p>It’s essential to estimate this offset (perhaps from a background region or an image acquired without using any excitation light) and subtract it if you need to compare pixel values in different images, in addition to using identical acquisition settings.</p>
 </div>
-</div>
-<div class="section" id="ccds-fast-imaging-when-there-are-a-lot-of-photons">
-<h3>CCDs: fast imaging when there are a lot of photons<a class="headerlink" href="#ccds-fast-imaging-when-there-are-a-lot-of-photons" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ccds-fast-imaging-when-there-are-a-lot-of-photons">
+<h3>CCDs: fast imaging when there are a lot of photons<a class="headerlink" href="#ccds-fast-imaging-when-there-are-a-lot-of-photons" title="Permalink to this headline">#</a></h3>
 <p>A <strong>Charged Coupled Device (CCD)</strong> is a detector with a region devoted to sensing photons, and which is subdivided into different ‘physical pixels’ that correspond to pixels in the final image.
 Thus the image size cannot be changed arbitrarily, but it’s possible to record photons for many pixels in parallel.</p>
 <p>When a photon strikes a pixel in the sensing part of the CCD, this often releases an electron – the QE is typically high (perhaps 90%).
 After a certain exposure time, different ‘electron clouds’ have then formed at each physical pixel on the sensor, each of which has a charge related to the number of colliding photons.
-This charge is then measured by passing the electrons through a charge amplifier, and the results used to assign an intensity value to the pixel in the final image (<a class="reference internal" href="#fig-ccd"><span class="std std-numref">Fig. 156</span></a>).</p>
+This charge is then measured by passing the electrons through a charge amplifier, and the results used to assign an intensity value to the pixel in the final image (<a class="reference internal" href="#fig-ccd"><span class="std std-numref">Fig. 155</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -902,28 +1023,30 @@ This charge is then measured by passing the electrons through a charge amplifier
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-ccd">
+<figure class="align-center" id="fig-ccd">
 <div class="cell_output docutils container">
-<img alt="../../../_images/microscope_types_5_0.png" src="../../../_images/microscope_types_5_0.png" />
+<img alt="../../../_images/microscope_types_6_0.png" src="../../../_images/microscope_types_6_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 156 </span><span class="caption-text">An illustration of the basic operation of a CCD camera (using frame transfer).
+<figcaption>
+<p><span class="caption-number">Fig. 155 </span><span class="caption-text">An illustration of the basic operation of a CCD camera (using frame transfer).
 First, photons strike a sense register, which is divided into pixels.
 This causes small clouds of electrons to be released and gather behind the pixels (A).
 These are then rapidly shifted downwards into another register of the same size, thereby freeing the sense register to continue detecting photons (B).
 The electron clouds are then shifted downwards again, one row at a time, with each row finally being shifted sequentially through a charge amplifier (C).
-This quantifies the charge of the electron clouds, from which pixel values for the final image are determined.</span><a class="headerlink" href="#fig-ccd" title="Permalink to this image">¶</a></p>
-</div>
+This quantifies the charge of the electron clouds, from which pixel values for the final image are determined.</span><a class="headerlink" href="#fig-ccd" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The electron clouds for each pixel might be larger than in the PMT case, both because of the higher QE and because more time can be spent detecting photons (since this is carried out for all pixels simultaneously).
 However, the step of amplifying the numbers of electrons safely above the read noise before quantification is missing. Consequently, read noise is potentially more problematic, and in some cases can even dominate the result.</p>
-</div>
-<div class="section" id="pixel-binning">
-<span id="sec-detectors-binning"></span><h3>Pixel binning<a class="headerlink" href="#pixel-binning" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pixel-binning">
+<span id="sec-detectors-binning"></span><h3>Pixel binning<a class="headerlink" href="#pixel-binning" title="Permalink to this headline">#</a></h3>
 <p>One way to address the issue of CCD read noise is to use <strong>pixel binning</strong>.
-In this case, the electrons from 4 (i.e. 2×2) pixels of the CCD are added together before being quantified: the electron clouds are approximately 4 times bigger relative to the read noise (<a class="reference internal" href="#fig-ccd-binning"><span class="std std-numref">Fig. 157</span></a>), and readout can be faster because fewer electron clouds need to be quantified.
+In this case, the electrons from 4 (i.e. 2×2) pixels of the CCD are added together before being quantified: the electron clouds are approximately 4 times bigger relative to the read noise (<a class="reference internal" href="#fig-ccd-binning"><span class="std std-numref">Fig. 156</span></a>), and readout can be faster because fewer electron clouds need to be quantified.
 The obvious disadvantage of this is that one cannot then put the electrons from the 4 pixels ‘back where they belong’.
 As a result, the binned measurement is simply treated as a single (bigger) pixel.
 The recorded image contains 25% of the pixels in the unbinned image, while still covering the same field of view, so spatial information is lost.
-Larger bins may also be used, with a correspondingly more dramatic impact upon image size (<a class="reference internal" href="#fig-ccd-binning"><span class="std std-numref">Fig. 157</span></a>D).</p>
+Larger bins may also be used, with a correspondingly more dramatic impact upon image size (<a class="reference internal" href="#fig-ccd-binning"><span class="std std-numref">Fig. 156</span></a>D).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -971,17 +1094,19 @@ Larger bins may also be used, with a correspondingly more dramatic impact upon i
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-ccd-binning">
+<figure class="align-center" id="fig-ccd-binning">
 <div class="cell_output docutils container">
-<img alt="../../../_images/microscope_types_7_0.png" src="../../../_images/microscope_types_7_0.png" />
+<img alt="../../../_images/microscope_types_8_0.png" src="../../../_images/microscope_types_8_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 157 </span><span class="caption-text">Illustration of the effect of binning applied to an image suffering from photon and (severe) read noise.
+<figcaption>
+<p><span class="caption-number">Fig. 156 </span><span class="caption-text">Illustration of the effect of binning applied to an image suffering from photon and (severe) read noise.
 As the bin size increases, the photons from neighboring pixels are combined into a single (larger) pixel before the read noise is added.
-As a consequence, the image becomes brighter relative to the read noise – but at a cost of spatial information.</span><a class="headerlink" href="#fig-ccd-binning" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="emccds-fast-imaging-with-low-light-levels">
-<h3>EMCCDs: fast imaging with low light levels<a class="headerlink" href="#emccds-fast-imaging-with-low-light-levels" title="Permalink to this headline">¶</a></h3>
+As a consequence, the image becomes brighter relative to the read noise – but at a cost of spatial information.</span><a class="headerlink" href="#fig-ccd-binning" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="emccds-fast-imaging-with-low-light-levels">
+<h3>EMCCDs: fast imaging with low light levels<a class="headerlink" href="#emccds-fast-imaging-with-low-light-levels" title="Permalink to this headline">#</a></h3>
 <p>And so you might wonder whether it is possible to increase the electron clouds (like with the PMT) with an CCD, and so get its advantages without the major inconvenience of read noise.
 <strong>Electron Multiplying CCDs (EMCCDs)</strong> achieve this to some extent.
 Here, the electrons are first passed through an additional ‘gain register’ before quantification.
@@ -1000,25 +1125,27 @@ Therefore read noise is effectively overcome at the cost of more photon noise.</
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-ccd-types">
+<figure class="align-center" id="fig-ccd-types">
 <div class="cell_output docutils container">
-<img alt="../../../_images/microscope_types_9_0.png" src="../../../_images/microscope_types_9_0.png" />
+<img alt="../../../_images/microscope_types_10_0.png" src="../../../_images/microscope_types_10_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 158 </span><span class="caption-text">A simplified diagram comparing a conventional CCD (with and without binning) and an EMCCD.
+<figcaption>
+<p><span class="caption-number">Fig. 157 </span><span class="caption-text">A simplified diagram comparing a conventional CCD (with and without binning) and an EMCCD.
 While each has the same physical number of pixels, when binning is used electrons from several pixels are combined before readout – thereby making the ‘logical’ pixels in the final image bigger.
 For the EMCCD, the electrons are shifted through a ‘gain register’ prior to quantification.
-See <a class="reference internal" href="#fig-ccd"><span class="std std-numref">Fig. 156</span></a> for additional labels; the sense register has been omitted for simplicity.</span><a class="headerlink" href="#fig-ccd-types" title="Permalink to this image">¶</a></p>
-</div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="b5907c96-8339-42fa-b5af-5b2e8f6689ba" name="abcb340d-d757-4c11-8ef2-bdfde55f609c" type="radio">
-</input><label class="tabbed-label" for="b5907c96-8339-42fa-b5af-5b2e8f6689ba">
-Question</label><div class="tabbed-content docutils">
+See <a class="reference internal" href="#fig-ccd"><span class="std std-numref">Fig. 155</span></a> for additional labels; the sense register has been omitted for simplicity.</span><a class="headerlink" href="#fig-ccd-types" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="83f30587-8057-48a3-8d6a-7e2e2ea50c54" name="14350af4-f417-4deb-98a9-0a36f04f4ffa" type="radio">
+</input><label class="sd-tab-label" for="83f30587-8057-48a3-8d6a-7e2e2ea50c54">
+Question</label><div class="sd-tab-content docutils">
 <p>From a practical point of view, an EMCCD is rather like having a CCD with no read noise, but with half the QE.
 Under what circumstances (i.e. high or low numbers of photons) is an EMCCD preferable to a CCD?</p>
 </div>
-<input id="e0b9c8fb-4438-4566-8f7c-f1507cba142f" name="abcb340d-d757-4c11-8ef2-bdfde55f609c" type="radio">
-</input><label class="tabbed-label" for="e0b9c8fb-4438-4566-8f7c-f1507cba142f">
-Answer</label><div class="tabbed-content docutils">
+<input id="c8238c0e-42aa-4dac-8256-d40678acb3a3" name="14350af4-f417-4deb-98a9-0a36f04f4ffa" type="radio">
+</input><label class="sd-tab-label" for="c8238c0e-42aa-4dac-8256-d40678acb3a3">
+Answer</label><div class="sd-tab-content docutils">
 <p>The gain register of EMCCDs offers benefits primarily when few photons are available (i.e. when read-noise is the main problem, such as in SDCM).
 CCDs are preferable when many photons are available (e.g. in widefield).</p>
 <p>If you are skeptical about this, consider an image in which your read noise standard deviation is 10 electrons and you detect on average 9 electrons (originally photons).
@@ -1030,15 +1157,15 @@ The final image will still look pretty bad, but at least interpreting it is not 
 The read noise of 10 is comparatively insignificant, and there is nothing to gain from electron multiplication and making the photon noise situation worse.</p>
 </div>
 </div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="ed8b2014-fd54-473e-a423-a4ba9fee59df" name="0b1ad74f-1625-4f77-aab9-d2faf29e936d" type="radio">
-</input><label class="tabbed-label" for="ed8b2014-fd54-473e-a423-a4ba9fee59df">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="c5ef001a-2495-40cb-ab12-ae7375cc0dfe" name="c8efb4bc-20ee-4f50-b294-bf3f82357e0c" type="radio">
+</input><label class="sd-tab-label" for="c5ef001a-2495-40cb-ab12-ae7375cc0dfe">
+Question</label><div class="sd-tab-content docutils">
 <p>Based upon the above descriptions, which detectors seem most appropriate (generally!) for (a) widefield microscopy, (b) SDCM and (c) LSCM?</p>
 </div>
-<input id="e425d3b0-fe9e-488a-9519-5b7d8ed3293e" name="0b1ad74f-1625-4f77-aab9-d2faf29e936d" type="radio">
-</input><label class="tabbed-label" for="e425d3b0-fe9e-488a-9519-5b7d8ed3293e">
-Answer</label><div class="tabbed-content docutils">
+<input id="9a2c714f-2aa8-429a-90e6-46d004a3ca8f" name="c8efb4bc-20ee-4f50-b294-bf3f82357e0c" type="radio">
+</input><label class="sd-tab-label" for="9a2c714f-2aa8-429a-90e6-46d004a3ca8f">
+Answer</label><div class="sd-tab-content docutils">
 <p>The following are reasonable rules of thumb:</p>
 <ul class="simple">
 <li><p><em>Widefield microscopy:</em> A CCD is suitable because of its ability to record many pixels simultaneously.
@@ -1049,18 +1176,18 @@ This is because SDCM usually gives lower photon counts (certainly lower than in 
 </ul>
 </div>
 </div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="121c0600-2f13-4e7a-8e00-9cd746a8374c" name="53945b95-1aef-4164-b480-ce8b4831fbab" type="radio">
-</input><label class="tabbed-label" for="121c0600-2f13-4e7a-8e00-9cd746a8374c">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="b4b392d2-6c9c-4419-8aec-e97a881d88d7" name="9db66154-23c3-4a09-b3dc-bccc481ef6d0" type="radio">
+</input><label class="sd-tab-label" for="b4b392d2-6c9c-4419-8aec-e97a881d88d7">
+Question</label><div class="sd-tab-content docutils">
 <p>Previously we explored how CCDs can use 2×2 binning to combine the electrons corresponding to multiple pixels together into a single pixel, which is then ‘less noisy’.
 A similar effect can be achieved by just acquiring an image without binning and applying a 2×2 filter, in which all the coefficients have values of one.
 Both techniques result in images that have roughly four times as many photons contributing to each pixel, and thus a better SNR.</p>
 <p>Think of one major advantage and one disadvantage of using filtering <em>after</em> acquisition, rather than binning <em>during</em> acquisition.</p>
 </div>
-<input id="451dd3e4-6754-4919-b75a-2162d8e1f98b" name="53945b95-1aef-4164-b480-ce8b4831fbab" type="radio">
-</input><label class="tabbed-label" for="451dd3e4-6754-4919-b75a-2162d8e1f98b">
-Answer</label><div class="tabbed-content docutils">
+<input id="2d379270-2450-4bb2-a6a2-34f0c5d37e86" name="9db66154-23c3-4a09-b3dc-bccc481ef6d0" type="radio">
+</input><label class="sd-tab-label" for="2d379270-2450-4bb2-a6a2-34f0c5d37e86">
+Answer</label><div class="sd-tab-content docutils">
 <p>A 2×2 binned image contains 1/4 the number of pixels of the original image.
 This represents a considerable loss of spatial information, and you would get a different result if you were to start binning at the first or second row or column, since different pixels would be combined in each case.
 On the other hand, filtering has the advantage of giving you an image that is exactly the same size as the original.
@@ -1075,9 +1202,9 @@ Sometimes this extra noise is too high a cost for the flexibility of filtering, 
 (In this regard, remember that read noise is typically worse for CCD cameras, but not such a problem for EMCCDs or PMTs.)</p>
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1101,9 +1228,11 @@ Sometimes this extra noise is too high a cost for the flexibility of filtering, 
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../3-formation_noise/formation_noise.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1119,24 +1248,28 @@ Sometimes this extra noise is too high a cost for the flexibility of filtering, 
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pete Bankhead<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pete Bankhead<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Filters &#8212; Introduction to Bioimage Analysis</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,21 +20,17 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -41,8 +39,10 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -51,7 +51,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="ImageJ: Filters" href="imagej.html" />
@@ -63,7 +62,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -72,9 +85,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -92,14 +106,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../README.html">
-   Introduction to Bioimage Analysis
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Introduction to Bioimage Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Front matter
  </span>
@@ -459,97 +474,199 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/chapters/2-processing/4-filters/filters.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/chapters/2-processing/4-filters/filters.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/4-filters/filters.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/4-filters/filters.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/chapters/2-processing/4-filters/filters.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/chapters/2-processing/4-filters/filters.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -623,12 +740,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Filters</h1>
@@ -718,11 +834,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="filters">
-<span id="chap-filters"></span><h1>Filters<a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="filters">
+<span id="chap-filters"></span><h1>Filters<a class="headerlink" href="#filters" title="Permalink to this headline">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -749,8 +866,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Filters are phenomenally useful.
 Almost all interesting image analysis involves filtering in some way at some stage.
 In fact, the analysis of a difficult image can sometimes become (almost) trivial once a suitable filter has been applied to it.
@@ -760,17 +877,17 @@ Different filters work by applying different calculations to the neighborhood to
 Although the plethora of available filters can be intimidating at first, knowing only a few of the most useful filters is already a huge advantage.</p>
 <p>This chapter begins by introducing several extremely common <strong>linear</strong> and <strong>nonlinear filters</strong> for image processing.
 It ends by considering in detail some techniques based on one particularly important linear filter.</p>
-</div>
-<div class="section" id="linear-filters">
-<span id="sec-filters-linear"></span><h2>Linear filters<a class="headerlink" href="#linear-filters" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="linear-filters">
+<span id="sec-filters-linear"></span><h2>Linear filters<a class="headerlink" href="#linear-filters" title="Permalink to this headline">#</a></h2>
 <p>Linear filters replace each pixel with a <strong>linear combination</strong> (‘sum of products’) of other pixels.
 Therefore the only mathematical background they require is the ability to add and multiply.</p>
 <p>A linear filter is defined using a <strong>filter kernel</strong>, which is like a tiny image in which the pixels are called <strong>filter coefficients</strong>.
 To filter an image, we center the kernel over each pixel of the input image.
 We then multiply each filter coefficient by the input image pixel that it overlaps, summing the result to give our filtered pixel value.
 Some examples should make this clearer.</p>
-<div class="section" id="mean-filters">
-<h3>Mean filters<a class="headerlink" href="#mean-filters" title="Permalink to this headline">¶</a></h3>
+<section id="mean-filters">
+<h3>Mean filters<a class="headerlink" href="#mean-filters" title="Permalink to this headline">#</a></h3>
 <p>Arguably the simplest linear filter is the <strong>mean filter</strong>.
 Each pixel value is simply replaced by the average (mean) of itself and its neighbors within a defined area.</p>
 <p>A simple <strong>3×3 mean filter</strong> averages each pixel with its 8 immediate neighbors (above, below, left, right and diagonals).
@@ -783,7 +900,7 @@ Each coefficient is 1/9, meaning that together all coefficients sum to 1.</p>
 <p>One of the main uses of a 3×3 mean filter is to reduce some common types of image noise, including Gaussian noise and Poisson noise.</p>
 <p>We’ll discuss the subject of noise in much more detail in a later chapter, <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html#chap-formation-noise"><span class="std std-ref">Noise</span></a>, and demonstrate <em>why</em> a mean filter works to reduce it.
 At this point, all we need to know about noise is that it acts like a random (positive or negative) error added to each pixel value, which obscures detail, messes with the histogram, and makes the image look grainy.</p>
-<p><a class="reference internal" href="#fig-filt-reduce-noise"><span class="std std-numref">Fig. 81</span></a> provides an illustration of how effectively the 3×3 filter can reduce Gaussian noise in an image.</p>
+<p><a class="reference internal" href="#fig-filt-reduce-noise"><span class="std std-numref">Fig. 80</span></a> provides an illustration of how effectively the 3×3 filter can reduce Gaussian noise in an image.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
@@ -829,14 +946,16 @@ At this point, all we need to know about noise is that it acts like a random (po
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-filt-reduce-noise">
+<figure class="align-center" id="fig-filt-reduce-noise">
 <div class="cell_output docutils container">
 <img alt="../../../_images/filters_3_0.png" src="../../../_images/filters_3_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 81 </span><span class="caption-text">Filters can be used to reduce noise.
+<figcaption>
+<p><span class="caption-number">Fig. 80 </span><span class="caption-text">Filters can be used to reduce noise.
 Applying a  3×3 mean filter makes the image smoother, as is particularly evident in the fluorescence plot made through the image center.
-Computing the difference between images shows what the filter removed, which was mostly random noise (with a little bit of image detail as well).</span><a class="headerlink" href="#fig-filt-reduce-noise" title="Permalink to this image">¶</a></p>
-</div>
+Computing the difference between images shows what the filter removed, which was mostly random noise (with a little bit of image detail as well).</span><a class="headerlink" href="#fig-filt-reduce-noise" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Our simple 3×3 mean filter could be easily modified in at least two ways:</p>
 <ol class="simple">
 <li><p>Its size could be increased. For example, instead of using just the pixels immediately adjacent to the one we are interested in, a 5×5 mean filter replaces each pixel by the average of a square containing 25 pixels, still centered on the main pixel of interest.</p></li>
@@ -845,7 +964,7 @@ Computing the difference between images shows what the filter removed, which was
 <p>Both of these adjustments can be achieved by changing the size of the filter kernel and its coefficients.</p>
 <p>One common change is to make a ‘circular’ mean filter.
 We can do this by defining the kernel in such a way that coefficients we want to ignore are set to 0, and the non-zero pixels approximate a circle.
-The size of the filter is then defined in terms of a radius value (<a class="reference internal" href="#fig-filter-shapes"><span class="std std-numref">Fig. 82</span></a>).</p>
+The size of the filter is then defined in terms of a radius value (<a class="reference internal" href="#fig-filter-shapes"><span class="std std-numref">Fig. 81</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
@@ -902,14 +1021,16 @@ The size of the filter is then defined in terms of a radius value (<a class="ref
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-filter-shapes">
+<figure class="align-center" id="fig-filter-shapes">
 <div class="cell_output docutils container">
 <img alt="../../../_images/filters_5_1.png" src="../../../_images/filters_5_1.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 82 </span><span class="caption-text">The kernels used with several mean filters.
+<figcaption>
+<p><span class="caption-number">Fig. 81 </span><span class="caption-text">The kernels used with several mean filters.
 Note that there’s no clearly ‘right’ way to approximate a circle within a pixel grid, and as a result different software can create circular filters that are slightly different.
-Here, (B) and (C) match the ‘circular’ filters used by ImageJ’s <span class="menuselection">Process ‣ Filters ‣ Mean…</span> command.</span><a class="headerlink" href="#fig-filter-shapes" title="Permalink to this image">¶</a></p>
-</div>
+Here, (B) and (C) match the ‘circular’ filters used by ImageJ’s <span class="menuselection">Process ‣ Filters ‣ Mean…</span> command.</span><a class="headerlink" href="#fig-filter-shapes" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="info admonition">
 <p class="admonition-title">Different names for (almost) the same thing</p>
 <p>The world of filtering is full of concepts with multiple names, all meaning pretty much the same thing. For example:</p>
@@ -923,7 +1044,7 @@ It’s worth knowing the equivalence to avoid being confused by the literature.
 In particular, ‘convolve’ is used often enough as a synonym for ‘filter’ (with a linear filter) that it’s important to remember.</p>
 </div>
 <p>Increasing the size of a mean filter increases its impact.
-This is not only in terms of reducing noise, but also in terms of reducing detail, i.e. making the image more blurry (<a class="reference internal" href="#fig-mean-filter-sizes"><span class="std std-numref">Fig. 83</span></a>).
+This is not only in terms of reducing noise, but also in terms of reducing detail, i.e. making the image more blurry (<a class="reference internal" href="#fig-mean-filter-sizes"><span class="std std-numref">Fig. 82</span></a>).
 If noise reduction is the primary goal, it’s therefore best to avoid unnecessary blurring by using the smallest filter that gives acceptable results.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -987,24 +1108,26 @@ If noise reduction is the primary goal, it’s therefore best to avoid unnecessa
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-mean-filter-sizes">
+<figure class="align-center" id="fig-mean-filter-sizes">
 <div class="cell_output docutils container">
 <img alt="../../../_images/filters_7_0.png" src="../../../_images/filters_7_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 83 </span><span class="caption-text">Smoothing an image using circular mean filters with different radii.</span><a class="headerlink" href="#fig-mean-filter-sizes" title="Permalink to this image">¶</a></p>
-</div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="7715a429-0bfc-4094-bb43-5184442cf294" name="2f20c549-5cb7-4571-b174-14cff08804f2" type="radio">
-</input><label class="tabbed-label" for="7715a429-0bfc-4094-bb43-5184442cf294">
-Question</label><div class="tabbed-content docutils">
+<figcaption>
+<p><span class="caption-number">Fig. 82 </span><span class="caption-text">Smoothing an image using circular mean filters with different radii.</span><a class="headerlink" href="#fig-mean-filter-sizes" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="4607f6d4-490c-4ef1-8ab3-03490d655d2a" name="6c16f822-6603-4b1a-9273-31e06e444be3" type="radio">
+</input><label class="sd-tab-label" for="4607f6d4-490c-4ef1-8ab3-03490d655d2a">
+Question</label><div class="sd-tab-content docutils">
 <p>In ImageJ, creating a mean filter with <em>Radius = 6</em> results in a circular filter that replaces each pixel with the mean of 121 pixels.
 Using a square
 11×11 filter would also replace each pixel with the mean of 121 pixels.</p>
 <p>Can you think of any advantages in using the circular filter rather than the square filter?</p>
 </div>
-<input id="043fa84e-42a4-4064-8f37-0086654222f5" name="2f20c549-5cb7-4571-b174-14cff08804f2" type="radio">
-</input><label class="tabbed-label" for="043fa84e-42a4-4064-8f37-0086654222f5">
-Answer</label><div class="tabbed-content docutils">
+<input id="36182746-5070-4f75-85cf-0841fea8aa69" name="6c16f822-6603-4b1a-9273-31e06e444be3" type="radio">
+</input><label class="sd-tab-label" for="36182746-5070-4f75-85cf-0841fea8aa69">
+Answer</label><div class="sd-tab-content docutils">
 <p>Circles are more ‘compact’.
 Every point on the perimeter of a circle is the same distance from the center.
 Therefore using a circular filter involves calculating the mean of all pixels a distance of <span class="math notranslate nohighlight">\(\leq\)</span> <em>Radius</em> pixels away from the center.</p>
@@ -1013,9 +1136,9 @@ If a pixel is further away, it’s more likely to have a very different value be
 Averaging across structures can blur them into one another, so is best avoided.</p>
 </div>
 </div>
-</div>
-<div class="section" id="gradient-filters">
-<span id="sec-filters-gradient"></span><h3>Gradient filters<a class="headerlink" href="#gradient-filters" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="gradient-filters">
+<span id="sec-filters-gradient"></span><h3>Gradient filters<a class="headerlink" href="#gradient-filters" title="Permalink to this headline">#</a></h3>
 <p>Linear filters can do much more than simply compute local averages.
 We only need to define a new filter kernel with different coefficients.</p>
 <p>Often, we want to detect structures in an image that are distinguishable from the background because of their edges.
@@ -1024,7 +1147,7 @@ Because an edge is usually characterized by a relatively sharp transition in pix
 <p>A very simple gradient filter has the coefficients <em>-1, 0, 1</em>.
 Applied to an image, this replaces every pixel with the difference between the pixel to the right and the pixel to the left.
 The output is positive whenever the pixel values are increasing horizontally, negative when the pixel values are decreasing, and zero if the values are constant – <em>no matter what the original constant value was</em>, so that flat areas are zero in the gradient image irrespective of their original brightness.
-We can also rotate the filter by 90 and get a vertical gradient image (<a class="reference internal" href="#fig-processing-filters-gradient"><span class="std std-numref">Fig. 84</span></a>).</p>
+We can also rotate the filter by 90 and get a vertical gradient image (<a class="reference internal" href="#fig-processing-filters-gradient"><span class="std std-numref">Fig. 83</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -1048,12 +1171,14 @@ We can also rotate the filter by 90 and get a vertical gradient image (<a class
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-processing-filters-gradient">
+<figure class="align-center" id="fig-processing-filters-gradient">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_9_0.png" src="../../../_images/filters_9_0.png" />
+<img alt="../../../_images/filters_10_0.png" src="../../../_images/filters_10_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 84 </span><span class="caption-text">Using gradient filters and the gradient magnitude for edge enhancement.</span><a class="headerlink" href="#fig-processing-filters-gradient" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 83 </span><span class="caption-text">Using gradient filters and the gradient magnitude for edge enhancement.</span><a class="headerlink" href="#fig-processing-filters-gradient" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Having two gradient images with positive and negative values can be somewhat hard to work with.
 We can combine filtering with <a class="reference internal" href="../2-point_operations/point_operations.html#chap-point-operations"><span class="std std-ref">point operations</span></a> to generate a single image representing the <strong>gradient magnitude</strong> <a class="footnote-reference brackets" href="#fn-3" id="id2">2</a>.
 The gradient magnitude has high values around edges (regardless of their orientation), and low values everywhere else.</p>
@@ -1064,32 +1189,32 @@ The gradient magnitude has high values around edges (regardless of their orienta
 <li><p>Add the squared images together</p></li>
 <li><p>Take the square root of the result</p></li>
 </ul>
-<div class="tabbed-set docutils">
-<input checked="checked" id="c7647a1c-b18f-4487-9a2f-b84db96af77a" name="c35a4a8f-12aa-4514-a026-29193e58b0a5" type="radio">
-</input><label class="tabbed-label" for="c7647a1c-b18f-4487-9a2f-b84db96af77a">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="a1131066-79d9-4d48-9e27-20e25338dc34" name="de6fa61e-36d5-470b-a5bf-28f379a4b406" type="radio">
+</input><label class="sd-tab-label" for="a1131066-79d9-4d48-9e27-20e25338dc34">
+Question</label><div class="sd-tab-content docutils">
 <p>Suppose the mean pixel value of an image is 100.
 What will the mean value be after applying a horizontal gradient filter?</p>
 </div>
-<input id="9ee8fabd-6644-405a-b70a-15e15461ef45" name="c35a4a8f-12aa-4514-a026-29193e58b0a5" type="radio">
-</input><label class="tabbed-label" for="9ee8fabd-6644-405a-b70a-15e15461ef45">
-Solution</label><div class="tabbed-content docutils">
+<input id="b7209873-80cc-4c94-bd79-c5e660df99c1" name="de6fa61e-36d5-470b-a5bf-28f379a4b406" type="radio">
+</input><label class="sd-tab-label" for="b7209873-80cc-4c94-bd79-c5e660df99c1">
+Solution</label><div class="sd-tab-content docutils">
 <p>After applying a gradient filter, the image mean will be 0: every pixel is added once and subtracted once when calculating the result.</p>
 <p>(Note that the mean value of a <em>gradient magnitude</em> image will be ≥ 0, because all pixels have either positive values or are equal to zero.)</p>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <img alt="../../../_images/filter_corner.png" src="../../../_images/filter_corner.png" />
-</div>
-</div>
-<div class="section" id="filtering-at-image-boundaries">
-<h3>Filtering at image boundaries<a class="headerlink" href="#filtering-at-image-boundaries" title="Permalink to this headline">¶</a></h3>
+</aside>
+</section>
+<section id="filtering-at-image-boundaries">
+<h3>Filtering at image boundaries<a class="headerlink" href="#filtering-at-image-boundaries" title="Permalink to this headline">#</a></h3>
 <p>If a filter consists of more than one coefficient, the neighborhood will extend beyond the image boundaries when filtering some pixels nearby.
 We need to handle this somehow.
 There are several common approaches.</p>
 <p>The boundary pixels could simply be ignored and left with their original values, but for large neighborhoods this would result in much of the image being unfiltered.
-Alternative options include treating every pixel beyond the boundary as zero, replicating the closest valid pixel, treating the image as if it is part of a periodic tiling, or mirroring the internal values (<a class="reference internal" href="#fig-filter-boundaries"><span class="std std-numref">Fig. 85</span></a>).</p>
+Alternative options include treating every pixel beyond the boundary as zero, replicating the closest valid pixel, treating the image as if it is part of a periodic tiling, or mirroring the internal values (<a class="reference internal" href="#fig-filter-boundaries"><span class="std std-numref">Fig. 84</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -1124,34 +1249,38 @@ Alternative options include treating every pixel beyond the boundary as zero, re
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-filter-boundaries">
+<figure class="align-center" id="fig-filter-boundaries">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_11_0.png" src="../../../_images/filters_11_0.png" />
+<img alt="../../../_images/filters_12_0.png" src="../../../_images/filters_12_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 85 </span><span class="caption-text">Methods for determining suitable values for pixels beyond image boundaries when filtering.</span><a class="headerlink" href="#fig-filter-boundaries" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 84 </span><span class="caption-text">Methods for determining suitable values for pixels beyond image boundaries when filtering.</span><a class="headerlink" href="#fig-filter-boundaries" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Different software can handle boundaries in different ways.
 Often, if you are using an image processing library to code your own filtering operation you will be able to specify the boundary operation.</p>
-</div>
-</div>
-<div class="section" id="nonlinear-filters">
-<h2>Nonlinear filters<a class="headerlink" href="#nonlinear-filters" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="nonlinear-filters">
+<h2>Nonlinear filters<a class="headerlink" href="#nonlinear-filters" title="Permalink to this headline">#</a></h2>
 <p>Linear filters involve taking neighborhoods of pixels, scaling them by the filter coefficients, and adding the results to get new pixel values.
 <strong>Nonlinear filters</strong> also make use of neighborhoods of pixels, but can use any other type of calculation to obtain the output.
 Here we’ll consider one especially important family of nonlinear filters.</p>
-<div class="section" id="rank-filters">
-<span id="sec-filters-rank"></span><h3>Rank filters<a class="headerlink" href="#rank-filters" title="Permalink to this headline">¶</a></h3>
+<section id="rank-filters">
+<span id="sec-filters-rank"></span><h3>Rank filters<a class="headerlink" href="#rank-filters" title="Permalink to this headline">#</a></h3>
 <p><strong>Rank filters</strong> effectively sort the values of all the neighboring pixels in ascending order, and then choose the output based upon this ordered list.</p>
 <p>Perhaps the most common example is the <strong>median filter</strong>, in which the pixel value at the center of the list is used for the filtered output.</p>
-<div class="figure align-center" id="fig-rank-results">
+<figure class="align-center" id="fig-rank-results">
 <img alt="../../../_images/rank_results.png" src="../../../_images/rank_results.png" />
-<p class="caption"><span class="caption-number">Fig. 86 </span><span class="caption-text">Results of different 3×3 rank filters when processing a single neighborhood in an image.
+<figcaption>
+<p><span class="caption-number">Fig. 85 </span><span class="caption-text">Results of different 3×3 rank filters when processing a single neighborhood in an image.
 The output of a
-3×3 mean filter in this case would also be 15.</span><a class="headerlink" href="#fig-rank-results" title="Permalink to this image">¶</a></p>
-</div>
+3×3 mean filter in this case would also be 15.</span><a class="headerlink" href="#fig-rank-results" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The result of applying a median filter is often similar to that of applying a mean filter, but has the major advantage of removing isolated extreme values completely, <em>without allowing them to have an impact upon surrounding pixels</em>.
-This is in contrast to a mean filter, which cannot ignore extreme pixels but rather will smooth them out into occupying larger regions (<a class="reference internal" href="#fig-processing-filters-speckled"><span class="std std-numref">Fig. 87</span></a>).</p>
-<p>However, a disadvantage of a median filter is that it can seem to introduce patterns or textures that were not present in the original image, at least whenever the size of the filter increases (see <a class="reference internal" href="#fig-processing-filters"><span class="std std-numref">Fig. 91</span></a>D below).
+This is in contrast to a mean filter, which cannot ignore extreme pixels but rather will smooth them out into occupying larger regions (<a class="reference internal" href="#fig-processing-filters-speckled"><span class="std std-numref">Fig. 86</span></a>).</p>
+<p>However, a disadvantage of a median filter is that it can seem to introduce patterns or textures that were not present in the original image, at least whenever the size of the filter increases (see <a class="reference internal" href="#fig-processing-filters"><span class="std std-numref">Fig. 90</span></a>D below).
 Another disadvantage is that large median filters tend to be slow.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -1206,15 +1335,17 @@ Another disadvantage is that large median filters tend to be slow.</p>
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-processing-filters-speckled">
+<figure class="align-center" id="fig-processing-filters-speckled">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_13_0.png" src="../../../_images/filters_13_0.png" />
+<img alt="../../../_images/filters_14_0.png" src="../../../_images/filters_14_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 87 </span><span class="caption-text">Applying 3×3 mean and median filters to an image containing isolated extreme values (known as <em>salt and pepper noise</em>).
+<figcaption>
+<p><span class="caption-number">Fig. 86 </span><span class="caption-text">Applying 3×3 mean and median filters to an image containing isolated extreme values (known as <em>salt and pepper noise</em>).
 A mean filter reduces the intensity of the extreme values but spreads out their influence.
-A small median filter is capable of removing the outliers completely, with a minimal effect upon the rest of the image.</span><a class="headerlink" href="#fig-processing-filters-speckled" title="Permalink to this image">¶</a></p>
-</div>
-<p>Other rank filters include the <strong>minimum</strong> and <strong>maximum filters</strong>, which replace each pixel value with the minimum or maximum value in the surrounding neighborhood respectively (<a class="reference internal" href="#fig-processing-filters-rank"><span class="std std-numref">Fig. 88</span></a>).
+A small median filter is capable of removing the outliers completely, with a minimal effect upon the rest of the image.</span><a class="headerlink" href="#fig-processing-filters-speckled" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Other rank filters include the <strong>minimum</strong> and <strong>maximum filters</strong>, which replace each pixel value with the minimum or maximum value in the surrounding neighborhood respectively (<a class="reference internal" href="#fig-processing-filters-rank"><span class="std std-numref">Fig. 87</span></a>).
 They will become more important when we discuss <a class="reference internal" href="../5-morph/morph.html#chap-morph"><span class="std std-ref">morphological operations</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -1242,12 +1373,14 @@ They will become more important when we discuss <a class="reference internal" hr
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-processing-filters-rank">
+<figure class="align-center" id="fig-processing-filters-rank">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_15_0.png" src="../../../_images/filters_15_0.png" />
+<img alt="../../../_images/filters_16_0.png" src="../../../_images/filters_16_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 88 </span><span class="caption-text">The result of applying 3×3 rank filters. The original noise-free image is shown below in <a class="reference internal" href="#fig-processing-filters"><span class="std std-numref">Fig. 91</span></a>A.</span><a class="headerlink" href="#fig-processing-filters-rank" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 87 </span><span class="caption-text">The result of applying 3×3 rank filters. The original noise-free image is shown below in <a class="reference internal" href="#fig-processing-filters"><span class="std std-numref">Fig. 90</span></a>A.</span><a class="headerlink" href="#fig-processing-filters-rank" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -1268,34 +1401,34 @@ They will become more important when we discuss <a class="reference internal" hr
 </div>
 </div>
 </div>
-<div class="tabbed-set docutils">
-<input checked="checked" id="07a284f2-bbae-41da-bfb5-2e5beb445568" name="a87a7cc8-e23b-4a72-9aa1-88cefeba2a5a" type="radio">
-</input><label class="tabbed-label" for="07a284f2-bbae-41da-bfb5-2e5beb445568">
-Question</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="69541019-379e-45ac-ba5f-7acee693a3b8" name="7bac5e63-0269-4658-9f32-9f1829140326" type="radio">
+</input><label class="sd-tab-label" for="69541019-379e-45ac-ba5f-7acee693a3b8">
+Question</label><div class="sd-tab-content docutils">
 <p>What would happen if you subtract a minimum filtered image (e.g.
-<a class="reference internal" href="#fig-processing-filters-rank"><span class="std std-numref">Fig. 88</span></a>C) from a maximum filtered image (Figure <a class="reference internal" href="#fig-processing-filters-rank"><span class="std std-numref">Fig. 88</span></a>B)?</p>
+<a class="reference internal" href="#fig-processing-filters-rank"><span class="std std-numref">Fig. 87</span></a>C) from a maximum filtered image (Figure <a class="reference internal" href="#fig-processing-filters-rank"><span class="std std-numref">Fig. 87</span></a>B)?</p>
 </div>
-<input id="d5814a26-b258-499e-9967-0ae29a91d6a2" name="a87a7cc8-e23b-4a72-9aa1-88cefeba2a5a" type="radio">
-</input><label class="tabbed-label" for="d5814a26-b258-499e-9967-0ae29a91d6a2">
-Answer</label><div class="tabbed-content docutils">
+<input id="6d41e896-db21-4864-a090-87e0a64983ab" name="7bac5e63-0269-4658-9f32-9f1829140326" type="radio">
+</input><label class="sd-tab-label" for="6d41e896-db21-4864-a090-87e0a64983ab">
+Answer</label><div class="sd-tab-content docutils">
 <p>Subtracting a minimum from a maximum filtered image would be another way to accent the edges:</p>
-<div class="figure align-center">
+<figure class="align-center">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_17_0.png" src="../../../_images/filters_17_0.png" />
+<img alt="../../../_images/filters_18_0.png" src="../../../_images/filters_18_0.png" />
+</div>
+</figure>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="gaussian-filters">
-<span id="sec-filters-gaussian"></span><h2>Gaussian filters<a class="headerlink" href="#gaussian-filters" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="filters-from-gaussian-functions">
-<h3>Filters from Gaussian functions<a class="headerlink" href="#filters-from-gaussian-functions" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="gaussian-filters">
+<span id="sec-filters-gaussian"></span><h2>Gaussian filters<a class="headerlink" href="#gaussian-filters" title="Permalink to this headline">#</a></h2>
+<section id="filters-from-gaussian-functions">
+<h3>Filters from Gaussian functions<a class="headerlink" href="#filters-from-gaussian-functions" title="Permalink to this headline">#</a></h3>
 <p>We conclude this chapter with one fantastically important linear filter, and some variants based upon it.</p>
 <p>A <strong>Gaussian filter</strong> is a linear filter that also smooths an image and reduces noise.
 However, unlike a mean filter – for which even the furthest away pixels in the neighborhood influence the result by the same amount as the closest pixels – the smoothing of a Gaussian filter is weighted so that the influence of a pixel decreases with its distance from the filter center.
-This tends to give a better result in many cases (<a class="reference internal" href="#fig-filt-smoothing"><span class="std std-numref">Fig. 89</span></a>).</p>
+This tends to give a better result in many cases (<a class="reference internal" href="#fig-filt-smoothing"><span class="std std-numref">Fig. 88</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -1329,15 +1462,17 @@ This tends to give a better result in many cases (<a class="reference internal" 
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-filt-smoothing">
+<figure class="align-center" id="fig-filt-smoothing">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_19_0.png" src="../../../_images/filters_19_0.png" />
+<img alt="../../../_images/filters_20_0.png" src="../../../_images/filters_20_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 89 </span><span class="caption-text">Comparing a mean and Gaussian filter.
+<figcaption>
+<p><span class="caption-number">Fig. 88 </span><span class="caption-text">Comparing a mean and Gaussian filter.
 The mean filter can introduce patterns and maxima where previously there were none.
-For example, the brightest region in (B) is one such maximum – <em>but the values of all pixels in the same region in (A) were zero!</em> By contrast, the Gaussian filter produces a smoother, more visually pleasing result, somewhat less prone to this effect (C).</span><a class="headerlink" href="#fig-filt-smoothing" title="Permalink to this image">¶</a></p>
-</div>
-<p>The coefficients of a Gaussian filter are determined from a Gaussian function (<a class="reference internal" href="#fig-gaussian-2d"><span class="std std-numref">Fig. 90</span></a>)</p>
+For example, the brightest region in (B) is one such maximum – <em>but the values of all pixels in the same region in (A) were zero!</em> By contrast, the Gaussian filter produces a smoother, more visually pleasing result, somewhat less prone to this effect (C).</span><a class="headerlink" href="#fig-filt-smoothing" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The coefficients of a Gaussian filter are determined from a Gaussian function (<a class="reference internal" href="#fig-gaussian-2d"><span class="std std-numref">Fig. 89</span></a>)</p>
 <div class="math notranslate nohighlight">
 \[
 g(x, y) = Ae^{-(\frac{x^2 + y^2}{2\sigma^2})}
@@ -1385,13 +1520,15 @@ The size of the function is controlled by <span class="math notranslate nohighli
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-gaussian-2d" style="width: 70%">
+<figure class="align-center" id="fig-gaussian-2d" style="width: 70%">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_21_0.png" src="../../../_images/filters_21_0.png" />
+<img alt="../../../_images/filters_22_0.png" src="../../../_images/filters_22_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 90 </span><span class="caption-text">Surface plot of a 2D Gaussian function.</span><a class="headerlink" href="#fig-gaussian-2d" title="Permalink to this image">¶</a></p>
-</div>
-<p>A comparison of several filters is shown in <a class="reference internal" href="#fig-processing-filters"><span class="std std-numref">Fig. 91</span></a>.</p>
+<figcaption>
+<p><span class="caption-number">Fig. 89 </span><span class="caption-text">Surface plot of a 2D Gaussian function.</span><a class="headerlink" href="#fig-gaussian-2d" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A comparison of several filters is shown in <a class="reference internal" href="#fig-processing-filters"><span class="std std-numref">Fig. 90</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
@@ -1433,20 +1570,22 @@ The size of the function is controlled by <span class="math notranslate nohighli
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-processing-filters">
+<figure class="align-center" id="fig-processing-filters">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_23_0.png" src="../../../_images/filters_23_0.png" />
+<img alt="../../../_images/filters_24_0.png" src="../../../_images/filters_24_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 91 </span><span class="caption-text">The effects of various filters upon a noisy image of a fixed cell.</span><a class="headerlink" href="#fig-processing-filters" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="filters-of-varying-sizes">
-<span id="chap-filters-gaussian-size"></span><h3>Filters of varying sizes<a class="headerlink" href="#filters-of-varying-sizes" title="Permalink to this headline">¶</a></h3>
+<figcaption>
+<p><span class="caption-number">Fig. 90 </span><span class="caption-text">The effects of various filters upon a noisy image of a fixed cell.</span><a class="headerlink" href="#fig-processing-filters" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="filters-of-varying-sizes">
+<span id="chap-filters-gaussian-size"></span><h3>Filters of varying sizes<a class="headerlink" href="#filters-of-varying-sizes" title="Permalink to this headline">#</a></h3>
 <p>Gaussian filters have useful properties that make them generally preferable to mean filters, some of which will be mentioned in <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html#chap-formation-spatial"><span class="std std-ref">Blur &amp; the PSF</span></a> (others require a trip into Fourier space, beyond the scope of this book).
 Therefore if you’re not sure which filter to use for smoothing, Gaussian is likely to be a safer choice than mean – particularly if the filter is large.
 Nevertheless, your decisions are not at an end since the precise size of the filter still needs to be chosen.</p>
 <p>A small filter will mostly suppress noise, because noise masquerades as tiny random fluctuations at individual pixels.
-As the filter size increases, Gaussian filtering starts to suppress larger structures occupying multiple pixels – reducing their intensities and increasing their sizes, until eventually they would be smoothed into surrounding regions (<a class="reference internal" href="#fig-gaussian-effects"><span class="std std-numref">Fig. 92</span></a>).
+As the filter size increases, Gaussian filtering starts to suppress larger structures occupying multiple pixels – reducing their intensities and increasing their sizes, until eventually they would be smoothed into surrounding regions (<a class="reference internal" href="#fig-gaussian-effects"><span class="std std-numref">Fig. 91</span></a>).
 By varying the filter size, we can then decide the <strong>scale</strong> at which the processing and analysis should happen.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -1507,14 +1646,16 @@ By varying the filter size, we can then decide the <strong>scale</strong> at whi
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-gaussian-effects">
+<figure class="align-center" id="fig-gaussian-effects">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_25_0.png" src="../../../_images/filters_25_0.png" />
+<img alt="../../../_images/filters_26_0.png" src="../../../_images/filters_26_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 92 </span><span class="caption-text">The effect of Gaussian filtering on the size and intensity of structures.</span><a class="headerlink" href="#fig-gaussian-effects" title="Permalink to this image">¶</a></p>
-</div>
-<p><a class="reference internal" href="#fig-edge-sigma"><span class="std std-numref">Fig. 93</span></a> shows an example of when this is useful.
-Here, gradient magnitude images are computed, similar to what was shown in <a class="reference internal" href="#fig-processing-filters-gradient"><span class="std std-numref">Fig. 84</span></a>, but because the original image is now noisy the initial result is not very useful – with even strong edges being buried amid noise (B).
+<figcaption>
+<p><span class="caption-number">Fig. 91 </span><span class="caption-text">The effect of Gaussian filtering on the size and intensity of structures.</span><a class="headerlink" href="#fig-gaussian-effects" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="#fig-edge-sigma"><span class="std std-numref">Fig. 92</span></a> shows an example of when this is useful.
+Here, gradient magnitude images are computed, similar to what was shown in <a class="reference internal" href="#fig-processing-filters-gradient"><span class="std std-numref">Fig. 83</span></a>, but because the original image is now noisy the initial result is not very useful – with even strong edges being buried amid noise (B).
 Applying a small Gaussian filter prior to computing the gradient magnitude gives much better results (C).
 If we only want the very strongest edges, then apply a larger filter would be better (D).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
@@ -1551,15 +1692,17 @@ If we only want the very strongest edges, then apply a larger filter would be be
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-edge-sigma">
+<figure class="align-center" id="fig-edge-sigma">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_27_0.png" src="../../../_images/filters_27_0.png" />
+<img alt="../../../_images/filters_28_0.png" src="../../../_images/filters_28_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 93 </span><span class="caption-text">Applying Gaussian filters before computing the gradient magnitude changes the scale at which edges are enhanced.</span><a class="headerlink" href="#fig-edge-sigma" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="difference-of-gaussians-filtering">
-<span id="sec-filters-dog"></span><h3>Difference of Gaussians filtering<a class="headerlink" href="#difference-of-gaussians-filtering" title="Permalink to this headline">¶</a></h3>
+<figcaption>
+<p><span class="caption-number">Fig. 92 </span><span class="caption-text">Applying Gaussian filters before computing the gradient magnitude changes the scale at which edges are enhanced.</span><a class="headerlink" href="#fig-edge-sigma" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="difference-of-gaussians-filtering">
+<span id="sec-filters-dog"></span><h3>Difference of Gaussians filtering<a class="headerlink" href="#difference-of-gaussians-filtering" title="Permalink to this headline">#</a></h3>
 <p>So Gaussian filters can be chosen to suppress small structures.
 But what if we also wish to suppress large structures – so that we can concentrate on detecting or measuring structures with sizes inside a particular range?</p>
 <p>We already have the pieces necessary to construct one solution.</p>
@@ -1568,7 +1711,7 @@ Then we apply a <em>second</em> Gaussian filter, bigger than the first, to a dup
 This will remove even more structures, while still preserving the largest features in the image.</p>
 <p>The trick is that, if we subtract this second filtered image from the first, we are left with an image that contains the information that ‘falls between’ the two smoothing scales we used.</p>
 <p>This process is called <strong>difference of Gaussians (DoG) filtering</strong>, and it is a technique that I use <em>all the time</em>.
-It is especially useful for detecting small structures, or as an alternative to the gradient magnitude for enhancing edges (<a class="reference internal" href="#fig-dog-red-hela"><span class="std std-numref">Fig. 94</span></a>).</p>
+It is especially useful for detecting small structures, or as an alternative to the gradient magnitude for enhancing edges (<a class="reference internal" href="#fig-dog-red-hela"><span class="std std-numref">Fig. 93</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -1595,12 +1738,14 @@ It is especially useful for detecting small structures, or as an alternative to 
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-dog-red-hela">
+<figure class="align-center" id="fig-dog-red-hela">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_29_0.png" src="../../../_images/filters_29_0.png" />
+<img alt="../../../_images/filters_30_0.png" src="../../../_images/filters_30_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 94 </span><span class="caption-text">Difference of Gaussian filtering of the same image at various scales.</span><a class="headerlink" href="#fig-dog-red-hela" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 93 </span><span class="caption-text">Difference of Gaussian filtering of the same image at various scales.</span><a class="headerlink" href="#fig-dog-red-hela" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian_kernel</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
@@ -1660,21 +1805,23 @@ It is especially useful for detecting small structures, or as an alternative to 
 <div class="info admonition">
 <p class="admonition-title">DoG filters</p>
 <p>In fact, to get the result of DoG filtering it’s not necessary to filter the image twice and subtract the results.
-We could equally well subtract the coefficients of the larger filter from the smaller first (after making sure both filters are the same size by adding zeros to the edges as required), then apply the resulting filter to the image only once (<a class="reference internal" href="#fig-dog-plots"><span class="std std-numref">Fig. 95</span></a>).</p>
-<div class="figure align-center" id="fig-dog-plots">
+We could equally well subtract the coefficients of the larger filter from the smaller first (after making sure both filters are the same size by adding zeros to the edges as required), then apply the resulting filter to the image only once (<a class="reference internal" href="#fig-dog-plots"><span class="std std-numref">Fig. 94</span></a>).</p>
+<figure class="align-center" id="fig-dog-plots">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_31_0.png" src="../../../_images/filters_31_0.png" />
+<img alt="../../../_images/filters_32_0.png" src="../../../_images/filters_32_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 95 </span><span class="caption-text">Surface plots of two Gaussian filters with small and large <span class="math notranslate nohighlight">\(\sigma\)</span>, and the result of subtracting the latter from the former.
-The sum of the coefficients for (A) and (B) is one in each case, while the coefficients of (C) add to zero.</span><a class="headerlink" href="#fig-dog-plots" title="Permalink to this image">¶</a></p>
+<figcaption>
+<p><span class="caption-number">Fig. 94 </span><span class="caption-text">Surface plots of two Gaussian filters with small and large <span class="math notranslate nohighlight">\(\sigma\)</span>, and the result of subtracting the latter from the former.
+The sum of the coefficients for (A) and (B) is one in each case, while the coefficients of (C) add to zero.</span><a class="headerlink" href="#fig-dog-plots" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
-</div>
-</div>
-<div class="section" id="laplacian-of-gaussian-filtering">
-<h3>Laplacian of Gaussian filtering<a class="headerlink" href="#laplacian-of-gaussian-filtering" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="laplacian-of-gaussian-filtering">
+<h3>Laplacian of Gaussian filtering<a class="headerlink" href="#laplacian-of-gaussian-filtering" title="Permalink to this headline">#</a></h3>
 <p>One minor complication with DoG filtering is the need to select two different values of <span class="math notranslate nohighlight">\(\sigma\)</span>.
 A similar operation, which requires only a single <span class="math notranslate nohighlight">\(\sigma\)</span> and a single filter, is <strong>Laplacian of Gaussian (LoG) filtering</strong>.</p>
-<p>The appearance of a LoG filter is like an upside-down DoG filter (<a class="reference internal" href="#fig-log-plots"><span class="std std-numref">Fig. 96</span></a>), but if the resulting image is <a class="reference internal" href="../2-point_operations/point_operations.html#sec-points-inversion"><span class="std std-ref">inverted</span></a> then the results are comparable <a class="footnote-reference brackets" href="#fn-4" id="id3">3</a>.</p>
+<p>The appearance of a LoG filter is like an upside-down DoG filter (<a class="reference internal" href="#fig-log-plots"><span class="std std-numref">Fig. 95</span></a>), but if the resulting image is <a class="reference internal" href="../2-point_operations/point_operations.html#sec-points-inversion"><span class="std std-ref">inverted</span></a> then the results are comparable <a class="footnote-reference brackets" href="#fn-4" id="id3">3</a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -1713,12 +1860,14 @@ A similar operation, which requires only a single <span class="math notranslate 
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-log-plots">
+<figure class="align-center" id="fig-log-plots">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_33_0.png" src="../../../_images/filters_33_0.png" />
+<img alt="../../../_images/filters_34_0.png" src="../../../_images/filters_34_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 96 </span><span class="caption-text">Surface plot of a LoG filter. This closely resembles <a class="reference internal" href="#fig-dog-plots"><span class="std std-numref">Fig. 95</span></a>, but inverted so that the negative values are found in the filter center.</span><a class="headerlink" href="#fig-log-plots" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 95 </span><span class="caption-text">Surface plot of a LoG filter. This closely resembles <a class="reference internal" href="#fig-dog-plots"><span class="std std-numref">Fig. 94</span></a>, but inverted so that the negative values are found in the filter center.</span><a class="headerlink" href="#fig-log-plots" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -1740,17 +1889,19 @@ A similar operation, which requires only a single <span class="math notranslate 
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-dog-on-log">
+<figure class="align-center" id="fig-dog-on-log">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_35_0.png" src="../../../_images/filters_35_0.png" />
+<img alt="../../../_images/filters_36_0.png" src="../../../_images/filters_36_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 97 </span><span class="caption-text">Application of DoG and LoG filtering to an image.
+<figcaption>
+<p><span class="caption-number">Fig. 96 </span><span class="caption-text">Application of DoG and LoG filtering to an image.
 Both methods enhance the appearance of spot-like structures, and (to a lesser extent) edges, and result in an image containing both positive and negative values with an overall mean of zero.
-In the case of LoG filtering, inversion is involved: darker points become bright after filtering.</span><a class="headerlink" href="#fig-dog-on-log" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="unsharp-masking">
-<h3>Unsharp masking<a class="headerlink" href="#unsharp-masking" title="Permalink to this headline">¶</a></h3>
+In the case of LoG filtering, inversion is involved: darker points become bright after filtering.</span><a class="headerlink" href="#fig-dog-on-log" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="unsharp-masking">
+<h3>Unsharp masking<a class="headerlink" href="#unsharp-masking" title="Permalink to this headline">#</a></h3>
 <p>Finally, a related technique widely-used to enhance the visibility of details in images – although certainly <em>not</em> advisable for quantitative analysis – is <strong>unsharp masking</strong>.</p>
 <p>This uses a Gaussian filter first to blur the edges of an image, and then subtracts it from the original.
 But rather than stop there, the subtracted image is multiplied by some weighting factor and <em>added back</em> to the original.
@@ -1779,13 +1930,15 @@ This gives an image that looks much the same as the original, but with edges sha
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-unsharp-masking">
+<figure class="align-center" id="fig-unsharp-masking">
 <div class="cell_output docutils container">
-<img alt="../../../_images/filters_37_0.png" src="../../../_images/filters_37_0.png" />
+<img alt="../../../_images/filters_38_0.png" src="../../../_images/filters_38_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 98 </span><span class="caption-text">The application of unsharp masking to a blurred image.
-First a Gaussian-smoothed version of the image (<span class="math notranslate nohighlight">\(\sigma = 1\)</span>) is subtracted from the original, scaled (<span class="math notranslate nohighlight">\(weight = 0.7\)</span>) and added back to the original.</span><a class="headerlink" href="#fig-unsharp-masking" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 97 </span><span class="caption-text">The application of unsharp masking to a blurred image.
+First a Gaussian-smoothed version of the image (<span class="math notranslate nohighlight">\(\sigma = 1\)</span>) is subtracted from the original, scaled (<span class="math notranslate nohighlight">\(weight = 0.7\)</span>) and added back to the original.</span><a class="headerlink" href="#fig-unsharp-masking" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Unsharp masking can improve the visual appearance of an image, but it’s important to remember that it modifies the image content in a way that might well be considered suspicious in scientific circles.
 Therefore, if you apply unsharp masking to any image you intend to share with the world you should have a good justification and certainly admit what you have done.
 The technique is included here not as a recommendation that you use it, but rather to show how Gaussian filters can be combined with point operations in creative ways.</p>
@@ -1807,11 +1960,11 @@ This is something we almost never need to care about for two reasons:</p>
 <dd><p>A LoG filter is also often referred to as a <em>mexican-hat filter</em>, although clearly the filter (or the hat-wearer) should be inverted for the name to make more sense</p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1835,9 +1988,11 @@ This is something we almost never need to care about for two reasons:</p>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../3-thresholding/imagej.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1853,24 +2008,28 @@ This is something we almost never need to care about for two reasons:</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pete Bankhead<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pete Bankhead<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Channels &amp; colors &#8212; Introduction to Bioimage Analysis</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,21 +20,17 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -41,15 +39,16 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="ImageJ: Channels &amp; colors" href="imagej.html" />
@@ -61,7 +60,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +83,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -90,14 +104,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../README.html">
-   Introduction to Bioimage Analysis
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    Introduction to Bioimage Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Front matter
  </span>
@@ -457,97 +472,199 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/chapters/1-concepts/4-colors/colors.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/chapters/1-concepts/4-colors/colors.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/1-concepts/4-colors/colors.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/1-concepts/4-colors/colors.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/chapters/1-concepts/4-colors/colors.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/chapters/1-concepts/4-colors/colors.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -599,12 +716,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Channels & colors</h1>
@@ -672,11 +788,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="channels-colors">
-<span id="chap-colors"></span><h1>Channels &amp; colors<a class="headerlink" href="#channels-colors" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="channels-colors">
+<span id="chap-colors"></span><h1>Channels &amp; colors<a class="headerlink" href="#channels-colors" title="Permalink to this headline">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -703,8 +820,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>One way to introduce color into images is to use a suitable LUT, as described in <a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html#chap-pixels"><span class="std std-ref">Images &amp; pixels</span></a>.
 Then the fact that different colors could be involved in the display of such images was really only incidental: at each location in the image there was still only one channel, one pixel and one value.</p>
 <p>There are images for which color plays a more important role.
@@ -714,9 +831,9 @@ We will consider two types:</p>
 <li><p><strong>Multichannel / composite images</strong> – which are often better for analysis, but need to be converted to RGB for display</p></li>
 </ol>
 <p>Since they often <em>look</em> the same, but behave very differently, knowing which kind of color image you have is important for any scientific work.</p>
-</div>
-<div class="section" id="mixing-red-green-blue">
-<h2>Mixing red, green &amp; blue<a class="headerlink" href="#mixing-red-green-blue" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="mixing-red-green-blue">
+<h2>Mixing red, green &amp; blue<a class="headerlink" href="#mixing-red-green-blue" title="Permalink to this headline">#</a></h2>
 <p>We previously discussed how image LUTs provide a way to map pixel values to colors that can be displayed on screen.
 Now that we’ve looked at image types and bit-depths, we can expand a bit more on how that works in practice.</p>
 <p>In general, each color is represented using three 8-bit unsigned integers: one for <strong>r</strong>ed, one for <strong>g</strong>reen, one for <strong>b</strong>lue.
@@ -786,488 +903,488 @@ Each integer value defines how much of each primary color should be mixed togeth
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_d07f8 th {
+#T_2a371 th {
   text-align: center;
 }
-#T_d07f8_row0_col0, #T_d07f8_row0_col1, #T_d07f8_row0_col2 {
+#T_2a371_row0_col0, #T_2a371_row0_col1, #T_2a371_row0_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 0);
 }
-#T_d07f8_row0_col3 {
+#T_2a371_row0_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(0, 0, 0);
 }
-#T_d07f8_row1_col0 {
+#T_2a371_row1_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(17, 0, 0);
 }
-#T_d07f8_row1_col1 {
+#T_2a371_row1_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 17, 0);
 }
-#T_d07f8_row1_col2 {
+#T_2a371_row1_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 17);
 }
-#T_d07f8_row1_col3 {
+#T_2a371_row1_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(17, 17, 17);
 }
-#T_d07f8_row2_col0 {
+#T_2a371_row2_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(34, 0, 0);
 }
-#T_d07f8_row2_col1 {
+#T_2a371_row2_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 34, 0);
 }
-#T_d07f8_row2_col2 {
+#T_2a371_row2_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 34);
 }
-#T_d07f8_row2_col3 {
+#T_2a371_row2_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(34, 34, 34);
 }
-#T_d07f8_row3_col0 {
+#T_2a371_row3_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(51, 0, 0);
 }
-#T_d07f8_row3_col1 {
+#T_2a371_row3_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 51, 0);
 }
-#T_d07f8_row3_col2 {
+#T_2a371_row3_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 51);
 }
-#T_d07f8_row3_col3 {
+#T_2a371_row3_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(51, 51, 51);
 }
-#T_d07f8_row4_col0 {
+#T_2a371_row4_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(68, 0, 0);
 }
-#T_d07f8_row4_col1 {
+#T_2a371_row4_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 68, 0);
 }
-#T_d07f8_row4_col2 {
+#T_2a371_row4_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 68);
 }
-#T_d07f8_row4_col3 {
+#T_2a371_row4_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(68, 68, 68);
 }
-#T_d07f8_row5_col0 {
+#T_2a371_row5_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(85, 0, 0);
 }
-#T_d07f8_row5_col1 {
+#T_2a371_row5_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 85, 0);
 }
-#T_d07f8_row5_col2 {
+#T_2a371_row5_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 85);
 }
-#T_d07f8_row5_col3 {
+#T_2a371_row5_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(85, 85, 85);
 }
-#T_d07f8_row6_col0 {
+#T_2a371_row6_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(102, 0, 0);
 }
-#T_d07f8_row6_col1 {
+#T_2a371_row6_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 102, 0);
 }
-#T_d07f8_row6_col2 {
+#T_2a371_row6_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 102);
 }
-#T_d07f8_row6_col3 {
+#T_2a371_row6_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(102, 102, 102);
 }
-#T_d07f8_row7_col0 {
+#T_2a371_row7_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(119, 0, 0);
 }
-#T_d07f8_row7_col1 {
+#T_2a371_row7_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 119, 0);
 }
-#T_d07f8_row7_col2 {
+#T_2a371_row7_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 119);
 }
-#T_d07f8_row7_col3 {
+#T_2a371_row7_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(119, 119, 119);
 }
-#T_d07f8_row8_col0 {
+#T_2a371_row8_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(136, 0, 0);
 }
-#T_d07f8_row8_col1 {
+#T_2a371_row8_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 136, 0);
 }
-#T_d07f8_row8_col2 {
+#T_2a371_row8_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 136);
 }
-#T_d07f8_row8_col3 {
+#T_2a371_row8_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(136, 136, 136);
 }
-#T_d07f8_row9_col0 {
+#T_2a371_row9_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(153, 0, 0);
 }
-#T_d07f8_row9_col1 {
+#T_2a371_row9_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 153, 0);
 }
-#T_d07f8_row9_col2 {
+#T_2a371_row9_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 153);
 }
-#T_d07f8_row9_col3 {
+#T_2a371_row9_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(153, 153, 153);
 }
-#T_d07f8_row10_col0 {
+#T_2a371_row10_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(170, 0, 0);
 }
-#T_d07f8_row10_col1 {
+#T_2a371_row10_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 170, 0);
 }
-#T_d07f8_row10_col2 {
+#T_2a371_row10_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 170);
 }
-#T_d07f8_row10_col3 {
+#T_2a371_row10_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(170, 170, 170);
 }
-#T_d07f8_row11_col0 {
+#T_2a371_row11_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(187, 0, 0);
 }
-#T_d07f8_row11_col1 {
+#T_2a371_row11_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 187, 0);
 }
-#T_d07f8_row11_col2 {
+#T_2a371_row11_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 187);
 }
-#T_d07f8_row11_col3 {
+#T_2a371_row11_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(187, 187, 187);
 }
-#T_d07f8_row12_col0 {
+#T_2a371_row12_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(204, 0, 0);
 }
-#T_d07f8_row12_col1 {
+#T_2a371_row12_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 204, 0);
 }
-#T_d07f8_row12_col2 {
+#T_2a371_row12_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 204);
 }
-#T_d07f8_row12_col3 {
+#T_2a371_row12_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(204, 204, 204);
 }
-#T_d07f8_row13_col0 {
+#T_2a371_row13_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(221, 0, 0);
 }
-#T_d07f8_row13_col1 {
+#T_2a371_row13_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 221, 0);
 }
-#T_d07f8_row13_col2 {
+#T_2a371_row13_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 221);
 }
-#T_d07f8_row13_col3 {
+#T_2a371_row13_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(221, 221, 221);
 }
-#T_d07f8_row14_col0 {
+#T_2a371_row14_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(238, 0, 0);
 }
-#T_d07f8_row14_col1 {
+#T_2a371_row14_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 238, 0);
 }
-#T_d07f8_row14_col2 {
+#T_2a371_row14_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 238);
 }
-#T_d07f8_row14_col3 {
+#T_2a371_row14_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(238, 238, 238);
 }
-#T_d07f8_row15_col0 {
+#T_2a371_row15_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(255, 0, 0);
 }
-#T_d07f8_row15_col1 {
+#T_2a371_row15_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 255, 0);
 }
-#T_d07f8_row15_col2 {
+#T_2a371_row15_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 255);
 }
-#T_d07f8_row15_col3 {
+#T_2a371_row15_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(255, 255, 255);
 }
 </style>
-<table id="T_d07f8">
+<table id="T_2a371">
   <caption>Grayscale LUT</caption>
   <thead>
     <tr>
-      <th id="T_d07f8_level0_col0" class="col_heading level0 col0" >Red</th>
-      <th id="T_d07f8_level0_col1" class="col_heading level0 col1" >Green</th>
-      <th id="T_d07f8_level0_col2" class="col_heading level0 col2" >Blue</th>
-      <th id="T_d07f8_level0_col3" class="col_heading level0 col3" >Color</th>
+      <th id="T_2a371_level0_col0" class="col_heading level0 col0" >Red</th>
+      <th id="T_2a371_level0_col1" class="col_heading level0 col1" >Green</th>
+      <th id="T_2a371_level0_col2" class="col_heading level0 col2" >Blue</th>
+      <th id="T_2a371_level0_col3" class="col_heading level0 col3" >Color</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_d07f8_row0_col0" class="data row0 col0" >0</td>
-      <td id="T_d07f8_row0_col1" class="data row0 col1" >0</td>
-      <td id="T_d07f8_row0_col2" class="data row0 col2" >0</td>
-      <td id="T_d07f8_row0_col3" class="data row0 col3" ></td>
+      <td id="T_2a371_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_2a371_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_2a371_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_2a371_row0_col3" class="data row0 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row1_col0" class="data row1 col0" >17</td>
-      <td id="T_d07f8_row1_col1" class="data row1 col1" >17</td>
-      <td id="T_d07f8_row1_col2" class="data row1 col2" >17</td>
-      <td id="T_d07f8_row1_col3" class="data row1 col3" ></td>
+      <td id="T_2a371_row1_col0" class="data row1 col0" >17</td>
+      <td id="T_2a371_row1_col1" class="data row1 col1" >17</td>
+      <td id="T_2a371_row1_col2" class="data row1 col2" >17</td>
+      <td id="T_2a371_row1_col3" class="data row1 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row2_col0" class="data row2 col0" >34</td>
-      <td id="T_d07f8_row2_col1" class="data row2 col1" >34</td>
-      <td id="T_d07f8_row2_col2" class="data row2 col2" >34</td>
-      <td id="T_d07f8_row2_col3" class="data row2 col3" ></td>
+      <td id="T_2a371_row2_col0" class="data row2 col0" >34</td>
+      <td id="T_2a371_row2_col1" class="data row2 col1" >34</td>
+      <td id="T_2a371_row2_col2" class="data row2 col2" >34</td>
+      <td id="T_2a371_row2_col3" class="data row2 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row3_col0" class="data row3 col0" >51</td>
-      <td id="T_d07f8_row3_col1" class="data row3 col1" >51</td>
-      <td id="T_d07f8_row3_col2" class="data row3 col2" >51</td>
-      <td id="T_d07f8_row3_col3" class="data row3 col3" ></td>
+      <td id="T_2a371_row3_col0" class="data row3 col0" >51</td>
+      <td id="T_2a371_row3_col1" class="data row3 col1" >51</td>
+      <td id="T_2a371_row3_col2" class="data row3 col2" >51</td>
+      <td id="T_2a371_row3_col3" class="data row3 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row4_col0" class="data row4 col0" >68</td>
-      <td id="T_d07f8_row4_col1" class="data row4 col1" >68</td>
-      <td id="T_d07f8_row4_col2" class="data row4 col2" >68</td>
-      <td id="T_d07f8_row4_col3" class="data row4 col3" ></td>
+      <td id="T_2a371_row4_col0" class="data row4 col0" >68</td>
+      <td id="T_2a371_row4_col1" class="data row4 col1" >68</td>
+      <td id="T_2a371_row4_col2" class="data row4 col2" >68</td>
+      <td id="T_2a371_row4_col3" class="data row4 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row5_col0" class="data row5 col0" >85</td>
-      <td id="T_d07f8_row5_col1" class="data row5 col1" >85</td>
-      <td id="T_d07f8_row5_col2" class="data row5 col2" >85</td>
-      <td id="T_d07f8_row5_col3" class="data row5 col3" ></td>
+      <td id="T_2a371_row5_col0" class="data row5 col0" >85</td>
+      <td id="T_2a371_row5_col1" class="data row5 col1" >85</td>
+      <td id="T_2a371_row5_col2" class="data row5 col2" >85</td>
+      <td id="T_2a371_row5_col3" class="data row5 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row6_col0" class="data row6 col0" >102</td>
-      <td id="T_d07f8_row6_col1" class="data row6 col1" >102</td>
-      <td id="T_d07f8_row6_col2" class="data row6 col2" >102</td>
-      <td id="T_d07f8_row6_col3" class="data row6 col3" ></td>
+      <td id="T_2a371_row6_col0" class="data row6 col0" >102</td>
+      <td id="T_2a371_row6_col1" class="data row6 col1" >102</td>
+      <td id="T_2a371_row6_col2" class="data row6 col2" >102</td>
+      <td id="T_2a371_row6_col3" class="data row6 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row7_col0" class="data row7 col0" >119</td>
-      <td id="T_d07f8_row7_col1" class="data row7 col1" >119</td>
-      <td id="T_d07f8_row7_col2" class="data row7 col2" >119</td>
-      <td id="T_d07f8_row7_col3" class="data row7 col3" ></td>
+      <td id="T_2a371_row7_col0" class="data row7 col0" >119</td>
+      <td id="T_2a371_row7_col1" class="data row7 col1" >119</td>
+      <td id="T_2a371_row7_col2" class="data row7 col2" >119</td>
+      <td id="T_2a371_row7_col3" class="data row7 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row8_col0" class="data row8 col0" >136</td>
-      <td id="T_d07f8_row8_col1" class="data row8 col1" >136</td>
-      <td id="T_d07f8_row8_col2" class="data row8 col2" >136</td>
-      <td id="T_d07f8_row8_col3" class="data row8 col3" ></td>
+      <td id="T_2a371_row8_col0" class="data row8 col0" >136</td>
+      <td id="T_2a371_row8_col1" class="data row8 col1" >136</td>
+      <td id="T_2a371_row8_col2" class="data row8 col2" >136</td>
+      <td id="T_2a371_row8_col3" class="data row8 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row9_col0" class="data row9 col0" >153</td>
-      <td id="T_d07f8_row9_col1" class="data row9 col1" >153</td>
-      <td id="T_d07f8_row9_col2" class="data row9 col2" >153</td>
-      <td id="T_d07f8_row9_col3" class="data row9 col3" ></td>
+      <td id="T_2a371_row9_col0" class="data row9 col0" >153</td>
+      <td id="T_2a371_row9_col1" class="data row9 col1" >153</td>
+      <td id="T_2a371_row9_col2" class="data row9 col2" >153</td>
+      <td id="T_2a371_row9_col3" class="data row9 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row10_col0" class="data row10 col0" >170</td>
-      <td id="T_d07f8_row10_col1" class="data row10 col1" >170</td>
-      <td id="T_d07f8_row10_col2" class="data row10 col2" >170</td>
-      <td id="T_d07f8_row10_col3" class="data row10 col3" ></td>
+      <td id="T_2a371_row10_col0" class="data row10 col0" >170</td>
+      <td id="T_2a371_row10_col1" class="data row10 col1" >170</td>
+      <td id="T_2a371_row10_col2" class="data row10 col2" >170</td>
+      <td id="T_2a371_row10_col3" class="data row10 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row11_col0" class="data row11 col0" >187</td>
-      <td id="T_d07f8_row11_col1" class="data row11 col1" >187</td>
-      <td id="T_d07f8_row11_col2" class="data row11 col2" >187</td>
-      <td id="T_d07f8_row11_col3" class="data row11 col3" ></td>
+      <td id="T_2a371_row11_col0" class="data row11 col0" >187</td>
+      <td id="T_2a371_row11_col1" class="data row11 col1" >187</td>
+      <td id="T_2a371_row11_col2" class="data row11 col2" >187</td>
+      <td id="T_2a371_row11_col3" class="data row11 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row12_col0" class="data row12 col0" >204</td>
-      <td id="T_d07f8_row12_col1" class="data row12 col1" >204</td>
-      <td id="T_d07f8_row12_col2" class="data row12 col2" >204</td>
-      <td id="T_d07f8_row12_col3" class="data row12 col3" ></td>
+      <td id="T_2a371_row12_col0" class="data row12 col0" >204</td>
+      <td id="T_2a371_row12_col1" class="data row12 col1" >204</td>
+      <td id="T_2a371_row12_col2" class="data row12 col2" >204</td>
+      <td id="T_2a371_row12_col3" class="data row12 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row13_col0" class="data row13 col0" >221</td>
-      <td id="T_d07f8_row13_col1" class="data row13 col1" >221</td>
-      <td id="T_d07f8_row13_col2" class="data row13 col2" >221</td>
-      <td id="T_d07f8_row13_col3" class="data row13 col3" ></td>
+      <td id="T_2a371_row13_col0" class="data row13 col0" >221</td>
+      <td id="T_2a371_row13_col1" class="data row13 col1" >221</td>
+      <td id="T_2a371_row13_col2" class="data row13 col2" >221</td>
+      <td id="T_2a371_row13_col3" class="data row13 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row14_col0" class="data row14 col0" >238</td>
-      <td id="T_d07f8_row14_col1" class="data row14 col1" >238</td>
-      <td id="T_d07f8_row14_col2" class="data row14 col2" >238</td>
-      <td id="T_d07f8_row14_col3" class="data row14 col3" ></td>
+      <td id="T_2a371_row14_col0" class="data row14 col0" >238</td>
+      <td id="T_2a371_row14_col1" class="data row14 col1" >238</td>
+      <td id="T_2a371_row14_col2" class="data row14 col2" >238</td>
+      <td id="T_2a371_row14_col3" class="data row14 col3" ></td>
     </tr>
     <tr>
-      <td id="T_d07f8_row15_col0" class="data row15 col0" >255</td>
-      <td id="T_d07f8_row15_col1" class="data row15 col1" >255</td>
-      <td id="T_d07f8_row15_col2" class="data row15 col2" >255</td>
-      <td id="T_d07f8_row15_col3" class="data row15 col3" ></td>
+      <td id="T_2a371_row15_col0" class="data row15 col0" >255</td>
+      <td id="T_2a371_row15_col1" class="data row15 col1" >255</td>
+      <td id="T_2a371_row15_col2" class="data row15 col2" >255</td>
+      <td id="T_2a371_row15_col3" class="data row15 col3" ></td>
     </tr>
   </tbody>
 </table>
@@ -1282,308 +1399,308 @@ Each integer value defines how much of each primary color should be mixed togeth
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_51b89 th {
+#T_b6940 th {
   text-align: center;
 }
-#T_51b89_row0_col0, #T_51b89_row0_col1, #T_51b89_row0_col2, #T_51b89_row1_col1, #T_51b89_row1_col2, #T_51b89_row2_col1, #T_51b89_row2_col2, #T_51b89_row3_col1, #T_51b89_row3_col2, #T_51b89_row4_col1, #T_51b89_row4_col2, #T_51b89_row5_col1, #T_51b89_row5_col2, #T_51b89_row6_col1, #T_51b89_row6_col2, #T_51b89_row7_col1, #T_51b89_row7_col2, #T_51b89_row8_col1, #T_51b89_row8_col2, #T_51b89_row9_col1, #T_51b89_row9_col2, #T_51b89_row10_col1, #T_51b89_row10_col2, #T_51b89_row11_col1, #T_51b89_row11_col2, #T_51b89_row12_col1, #T_51b89_row12_col2, #T_51b89_row13_col1, #T_51b89_row13_col2, #T_51b89_row14_col1, #T_51b89_row14_col2, #T_51b89_row15_col1, #T_51b89_row15_col2 {
+#T_b6940_row0_col0, #T_b6940_row0_col1, #T_b6940_row0_col2, #T_b6940_row1_col1, #T_b6940_row1_col2, #T_b6940_row2_col1, #T_b6940_row2_col2, #T_b6940_row3_col1, #T_b6940_row3_col2, #T_b6940_row4_col1, #T_b6940_row4_col2, #T_b6940_row5_col1, #T_b6940_row5_col2, #T_b6940_row6_col1, #T_b6940_row6_col2, #T_b6940_row7_col1, #T_b6940_row7_col2, #T_b6940_row8_col1, #T_b6940_row8_col2, #T_b6940_row9_col1, #T_b6940_row9_col2, #T_b6940_row10_col1, #T_b6940_row10_col2, #T_b6940_row11_col1, #T_b6940_row11_col2, #T_b6940_row12_col1, #T_b6940_row12_col2, #T_b6940_row13_col1, #T_b6940_row13_col2, #T_b6940_row14_col1, #T_b6940_row14_col2, #T_b6940_row15_col1, #T_b6940_row15_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 0);
 }
-#T_51b89_row0_col3 {
+#T_b6940_row0_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(0, 0, 0);
 }
-#T_51b89_row1_col0 {
+#T_b6940_row1_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(17, 0, 0);
 }
-#T_51b89_row1_col3 {
+#T_b6940_row1_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(17, 0, 0);
 }
-#T_51b89_row2_col0 {
+#T_b6940_row2_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(34, 0, 0);
 }
-#T_51b89_row2_col3 {
+#T_b6940_row2_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(34, 0, 0);
 }
-#T_51b89_row3_col0 {
+#T_b6940_row3_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(51, 0, 0);
 }
-#T_51b89_row3_col3 {
+#T_b6940_row3_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(51, 0, 0);
 }
-#T_51b89_row4_col0 {
+#T_b6940_row4_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(68, 0, 0);
 }
-#T_51b89_row4_col3 {
+#T_b6940_row4_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(68, 0, 0);
 }
-#T_51b89_row5_col0 {
+#T_b6940_row5_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(85, 0, 0);
 }
-#T_51b89_row5_col3 {
+#T_b6940_row5_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(85, 0, 0);
 }
-#T_51b89_row6_col0 {
+#T_b6940_row6_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(102, 0, 0);
 }
-#T_51b89_row6_col3 {
+#T_b6940_row6_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(102, 0, 0);
 }
-#T_51b89_row7_col0 {
+#T_b6940_row7_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(119, 0, 0);
 }
-#T_51b89_row7_col3 {
+#T_b6940_row7_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(119, 0, 0);
 }
-#T_51b89_row8_col0 {
+#T_b6940_row8_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(136, 0, 0);
 }
-#T_51b89_row8_col3 {
+#T_b6940_row8_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(136, 0, 0);
 }
-#T_51b89_row9_col0 {
+#T_b6940_row9_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(153, 0, 0);
 }
-#T_51b89_row9_col3 {
+#T_b6940_row9_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(153, 0, 0);
 }
-#T_51b89_row10_col0 {
+#T_b6940_row10_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(170, 0, 0);
 }
-#T_51b89_row10_col3 {
+#T_b6940_row10_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(170, 0, 0);
 }
-#T_51b89_row11_col0 {
+#T_b6940_row11_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(187, 0, 0);
 }
-#T_51b89_row11_col3 {
+#T_b6940_row11_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(187, 0, 0);
 }
-#T_51b89_row12_col0 {
+#T_b6940_row12_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(204, 0, 0);
 }
-#T_51b89_row12_col3 {
+#T_b6940_row12_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(204, 0, 0);
 }
-#T_51b89_row13_col0 {
+#T_b6940_row13_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(221, 0, 0);
 }
-#T_51b89_row13_col3 {
+#T_b6940_row13_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(221, 0, 0);
 }
-#T_51b89_row14_col0 {
+#T_b6940_row14_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(238, 0, 0);
 }
-#T_51b89_row14_col3 {
+#T_b6940_row14_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(238, 0, 0);
 }
-#T_51b89_row15_col0 {
+#T_b6940_row15_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(255, 0, 0);
 }
-#T_51b89_row15_col3 {
+#T_b6940_row15_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(255, 0, 0);
 }
 </style>
-<table id="T_51b89">
+<table id="T_b6940">
   <caption>Red LUT</caption>
   <thead>
     <tr>
-      <th id="T_51b89_level0_col0" class="col_heading level0 col0" >Red</th>
-      <th id="T_51b89_level0_col1" class="col_heading level0 col1" >Green</th>
-      <th id="T_51b89_level0_col2" class="col_heading level0 col2" >Blue</th>
-      <th id="T_51b89_level0_col3" class="col_heading level0 col3" >Color</th>
+      <th id="T_b6940_level0_col0" class="col_heading level0 col0" >Red</th>
+      <th id="T_b6940_level0_col1" class="col_heading level0 col1" >Green</th>
+      <th id="T_b6940_level0_col2" class="col_heading level0 col2" >Blue</th>
+      <th id="T_b6940_level0_col3" class="col_heading level0 col3" >Color</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_51b89_row0_col0" class="data row0 col0" >0</td>
-      <td id="T_51b89_row0_col1" class="data row0 col1" >0</td>
-      <td id="T_51b89_row0_col2" class="data row0 col2" >0</td>
-      <td id="T_51b89_row0_col3" class="data row0 col3" ></td>
+      <td id="T_b6940_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_b6940_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_b6940_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_b6940_row0_col3" class="data row0 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row1_col0" class="data row1 col0" >17</td>
-      <td id="T_51b89_row1_col1" class="data row1 col1" >0</td>
-      <td id="T_51b89_row1_col2" class="data row1 col2" >0</td>
-      <td id="T_51b89_row1_col3" class="data row1 col3" ></td>
+      <td id="T_b6940_row1_col0" class="data row1 col0" >17</td>
+      <td id="T_b6940_row1_col1" class="data row1 col1" >0</td>
+      <td id="T_b6940_row1_col2" class="data row1 col2" >0</td>
+      <td id="T_b6940_row1_col3" class="data row1 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row2_col0" class="data row2 col0" >34</td>
-      <td id="T_51b89_row2_col1" class="data row2 col1" >0</td>
-      <td id="T_51b89_row2_col2" class="data row2 col2" >0</td>
-      <td id="T_51b89_row2_col3" class="data row2 col3" ></td>
+      <td id="T_b6940_row2_col0" class="data row2 col0" >34</td>
+      <td id="T_b6940_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_b6940_row2_col2" class="data row2 col2" >0</td>
+      <td id="T_b6940_row2_col3" class="data row2 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row3_col0" class="data row3 col0" >51</td>
-      <td id="T_51b89_row3_col1" class="data row3 col1" >0</td>
-      <td id="T_51b89_row3_col2" class="data row3 col2" >0</td>
-      <td id="T_51b89_row3_col3" class="data row3 col3" ></td>
+      <td id="T_b6940_row3_col0" class="data row3 col0" >51</td>
+      <td id="T_b6940_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_b6940_row3_col2" class="data row3 col2" >0</td>
+      <td id="T_b6940_row3_col3" class="data row3 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row4_col0" class="data row4 col0" >68</td>
-      <td id="T_51b89_row4_col1" class="data row4 col1" >0</td>
-      <td id="T_51b89_row4_col2" class="data row4 col2" >0</td>
-      <td id="T_51b89_row4_col3" class="data row4 col3" ></td>
+      <td id="T_b6940_row4_col0" class="data row4 col0" >68</td>
+      <td id="T_b6940_row4_col1" class="data row4 col1" >0</td>
+      <td id="T_b6940_row4_col2" class="data row4 col2" >0</td>
+      <td id="T_b6940_row4_col3" class="data row4 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row5_col0" class="data row5 col0" >85</td>
-      <td id="T_51b89_row5_col1" class="data row5 col1" >0</td>
-      <td id="T_51b89_row5_col2" class="data row5 col2" >0</td>
-      <td id="T_51b89_row5_col3" class="data row5 col3" ></td>
+      <td id="T_b6940_row5_col0" class="data row5 col0" >85</td>
+      <td id="T_b6940_row5_col1" class="data row5 col1" >0</td>
+      <td id="T_b6940_row5_col2" class="data row5 col2" >0</td>
+      <td id="T_b6940_row5_col3" class="data row5 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row6_col0" class="data row6 col0" >102</td>
-      <td id="T_51b89_row6_col1" class="data row6 col1" >0</td>
-      <td id="T_51b89_row6_col2" class="data row6 col2" >0</td>
-      <td id="T_51b89_row6_col3" class="data row6 col3" ></td>
+      <td id="T_b6940_row6_col0" class="data row6 col0" >102</td>
+      <td id="T_b6940_row6_col1" class="data row6 col1" >0</td>
+      <td id="T_b6940_row6_col2" class="data row6 col2" >0</td>
+      <td id="T_b6940_row6_col3" class="data row6 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row7_col0" class="data row7 col0" >119</td>
-      <td id="T_51b89_row7_col1" class="data row7 col1" >0</td>
-      <td id="T_51b89_row7_col2" class="data row7 col2" >0</td>
-      <td id="T_51b89_row7_col3" class="data row7 col3" ></td>
+      <td id="T_b6940_row7_col0" class="data row7 col0" >119</td>
+      <td id="T_b6940_row7_col1" class="data row7 col1" >0</td>
+      <td id="T_b6940_row7_col2" class="data row7 col2" >0</td>
+      <td id="T_b6940_row7_col3" class="data row7 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row8_col0" class="data row8 col0" >136</td>
-      <td id="T_51b89_row8_col1" class="data row8 col1" >0</td>
-      <td id="T_51b89_row8_col2" class="data row8 col2" >0</td>
-      <td id="T_51b89_row8_col3" class="data row8 col3" ></td>
+      <td id="T_b6940_row8_col0" class="data row8 col0" >136</td>
+      <td id="T_b6940_row8_col1" class="data row8 col1" >0</td>
+      <td id="T_b6940_row8_col2" class="data row8 col2" >0</td>
+      <td id="T_b6940_row8_col3" class="data row8 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row9_col0" class="data row9 col0" >153</td>
-      <td id="T_51b89_row9_col1" class="data row9 col1" >0</td>
-      <td id="T_51b89_row9_col2" class="data row9 col2" >0</td>
-      <td id="T_51b89_row9_col3" class="data row9 col3" ></td>
+      <td id="T_b6940_row9_col0" class="data row9 col0" >153</td>
+      <td id="T_b6940_row9_col1" class="data row9 col1" >0</td>
+      <td id="T_b6940_row9_col2" class="data row9 col2" >0</td>
+      <td id="T_b6940_row9_col3" class="data row9 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row10_col0" class="data row10 col0" >170</td>
-      <td id="T_51b89_row10_col1" class="data row10 col1" >0</td>
-      <td id="T_51b89_row10_col2" class="data row10 col2" >0</td>
-      <td id="T_51b89_row10_col3" class="data row10 col3" ></td>
+      <td id="T_b6940_row10_col0" class="data row10 col0" >170</td>
+      <td id="T_b6940_row10_col1" class="data row10 col1" >0</td>
+      <td id="T_b6940_row10_col2" class="data row10 col2" >0</td>
+      <td id="T_b6940_row10_col3" class="data row10 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row11_col0" class="data row11 col0" >187</td>
-      <td id="T_51b89_row11_col1" class="data row11 col1" >0</td>
-      <td id="T_51b89_row11_col2" class="data row11 col2" >0</td>
-      <td id="T_51b89_row11_col3" class="data row11 col3" ></td>
+      <td id="T_b6940_row11_col0" class="data row11 col0" >187</td>
+      <td id="T_b6940_row11_col1" class="data row11 col1" >0</td>
+      <td id="T_b6940_row11_col2" class="data row11 col2" >0</td>
+      <td id="T_b6940_row11_col3" class="data row11 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row12_col0" class="data row12 col0" >204</td>
-      <td id="T_51b89_row12_col1" class="data row12 col1" >0</td>
-      <td id="T_51b89_row12_col2" class="data row12 col2" >0</td>
-      <td id="T_51b89_row12_col3" class="data row12 col3" ></td>
+      <td id="T_b6940_row12_col0" class="data row12 col0" >204</td>
+      <td id="T_b6940_row12_col1" class="data row12 col1" >0</td>
+      <td id="T_b6940_row12_col2" class="data row12 col2" >0</td>
+      <td id="T_b6940_row12_col3" class="data row12 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row13_col0" class="data row13 col0" >221</td>
-      <td id="T_51b89_row13_col1" class="data row13 col1" >0</td>
-      <td id="T_51b89_row13_col2" class="data row13 col2" >0</td>
-      <td id="T_51b89_row13_col3" class="data row13 col3" ></td>
+      <td id="T_b6940_row13_col0" class="data row13 col0" >221</td>
+      <td id="T_b6940_row13_col1" class="data row13 col1" >0</td>
+      <td id="T_b6940_row13_col2" class="data row13 col2" >0</td>
+      <td id="T_b6940_row13_col3" class="data row13 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row14_col0" class="data row14 col0" >238</td>
-      <td id="T_51b89_row14_col1" class="data row14 col1" >0</td>
-      <td id="T_51b89_row14_col2" class="data row14 col2" >0</td>
-      <td id="T_51b89_row14_col3" class="data row14 col3" ></td>
+      <td id="T_b6940_row14_col0" class="data row14 col0" >238</td>
+      <td id="T_b6940_row14_col1" class="data row14 col1" >0</td>
+      <td id="T_b6940_row14_col2" class="data row14 col2" >0</td>
+      <td id="T_b6940_row14_col3" class="data row14 col3" ></td>
     </tr>
     <tr>
-      <td id="T_51b89_row15_col0" class="data row15 col0" >255</td>
-      <td id="T_51b89_row15_col1" class="data row15 col1" >0</td>
-      <td id="T_51b89_row15_col2" class="data row15 col2" >0</td>
-      <td id="T_51b89_row15_col3" class="data row15 col3" ></td>
+      <td id="T_b6940_row15_col0" class="data row15 col0" >255</td>
+      <td id="T_b6940_row15_col1" class="data row15 col1" >0</td>
+      <td id="T_b6940_row15_col2" class="data row15 col2" >0</td>
+      <td id="T_b6940_row15_col3" class="data row15 col3" ></td>
     </tr>
   </tbody>
 </table>
@@ -1600,992 +1717,992 @@ Each integer value defines how much of each primary color should be mixed togeth
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_88ca3 th {
+#T_40f96 th {
   text-align: center;
 }
-#T_88ca3_row0_col0 {
+#T_40f96_row0_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(68, 0, 0);
 }
-#T_88ca3_row0_col1 {
+#T_40f96_row0_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 1, 0);
 }
-#T_88ca3_row0_col2 {
+#T_40f96_row0_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 84);
 }
-#T_88ca3_row0_col3 {
+#T_40f96_row0_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(68, 1, 84);
 }
-#T_88ca3_row1_col0 {
+#T_40f96_row1_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(72, 0, 0);
 }
-#T_88ca3_row1_col1 {
+#T_40f96_row1_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 25, 0);
 }
-#T_88ca3_row1_col2 {
+#T_40f96_row1_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 107);
 }
-#T_88ca3_row1_col3 {
+#T_40f96_row1_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(72, 25, 107);
 }
-#T_88ca3_row2_col0 {
+#T_40f96_row2_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(70, 0, 0);
 }
-#T_88ca3_row2_col1 {
+#T_40f96_row2_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 47, 0);
 }
-#T_88ca3_row2_col2 {
+#T_40f96_row2_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 124);
 }
-#T_88ca3_row2_col3 {
+#T_40f96_row2_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(70, 47, 124);
 }
-#T_88ca3_row3_col0 {
+#T_40f96_row3_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(64, 0, 0);
 }
-#T_88ca3_row3_col1 {
+#T_40f96_row3_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 67, 0);
 }
-#T_88ca3_row3_col2 {
+#T_40f96_row3_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 135);
 }
-#T_88ca3_row3_col3 {
+#T_40f96_row3_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(64, 67, 135);
 }
-#T_88ca3_row4_col0 {
+#T_40f96_row4_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(56, 0, 0);
 }
-#T_88ca3_row4_col1 {
+#T_40f96_row4_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 86, 0);
 }
-#T_88ca3_row4_col2 {
+#T_40f96_row4_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 139);
 }
-#T_88ca3_row4_col3 {
+#T_40f96_row4_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(56, 86, 139);
 }
-#T_88ca3_row5_col0 {
+#T_40f96_row5_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(48, 0, 0);
 }
-#T_88ca3_row5_col1 {
+#T_40f96_row5_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 103, 0);
 }
-#T_88ca3_row5_col2, #T_88ca3_row7_col2 {
+#T_40f96_row5_col2, #T_40f96_row7_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 141);
 }
-#T_88ca3_row5_col3 {
+#T_40f96_row5_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(48, 103, 141);
 }
-#T_88ca3_row6_col0 {
+#T_40f96_row6_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(41, 0, 0);
 }
-#T_88ca3_row6_col1 {
+#T_40f96_row6_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 120, 0);
 }
-#T_88ca3_row6_col2 {
+#T_40f96_row6_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 142);
 }
-#T_88ca3_row6_col3 {
+#T_40f96_row6_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(41, 120, 142);
 }
-#T_88ca3_row7_col0 {
+#T_40f96_row7_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(35, 0, 0);
 }
-#T_88ca3_row7_col1 {
+#T_40f96_row7_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 136, 0);
 }
-#T_88ca3_row7_col3 {
+#T_40f96_row7_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(35, 136, 141);
 }
-#T_88ca3_row8_col0 {
+#T_40f96_row8_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(30, 0, 0);
 }
-#T_88ca3_row8_col1 {
+#T_40f96_row8_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 152, 0);
 }
-#T_88ca3_row8_col2 {
+#T_40f96_row8_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 138);
 }
-#T_88ca3_row8_col3 {
+#T_40f96_row8_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(30, 152, 138);
 }
-#T_88ca3_row9_col0 {
+#T_40f96_row9_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(34, 0, 0);
 }
-#T_88ca3_row9_col1 {
+#T_40f96_row9_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 167, 0);
 }
-#T_88ca3_row9_col2 {
+#T_40f96_row9_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 132);
 }
-#T_88ca3_row9_col3 {
+#T_40f96_row9_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(34, 167, 132);
 }
-#T_88ca3_row10_col0 {
+#T_40f96_row10_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(53, 0, 0);
 }
-#T_88ca3_row10_col1 {
+#T_40f96_row10_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 183, 0);
 }
-#T_88ca3_row10_col2 {
+#T_40f96_row10_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 120);
 }
-#T_88ca3_row10_col3 {
+#T_40f96_row10_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(53, 183, 120);
 }
-#T_88ca3_row11_col0 {
+#T_40f96_row11_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(83, 0, 0);
 }
-#T_88ca3_row11_col1 {
+#T_40f96_row11_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 197, 0);
 }
-#T_88ca3_row11_col2 {
+#T_40f96_row11_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 103);
 }
-#T_88ca3_row11_col3 {
+#T_40f96_row11_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(83, 197, 103);
 }
-#T_88ca3_row12_col0 {
+#T_40f96_row12_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(121, 0, 0);
 }
-#T_88ca3_row12_col1 {
+#T_40f96_row12_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 209, 0);
 }
-#T_88ca3_row12_col2 {
+#T_40f96_row12_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 81);
 }
-#T_88ca3_row12_col3 {
+#T_40f96_row12_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(121, 209, 81);
 }
-#T_88ca3_row13_col0 {
+#T_40f96_row13_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(165, 0, 0);
 }
-#T_88ca3_row13_col1 {
+#T_40f96_row13_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 218, 0);
 }
-#T_88ca3_row13_col2 {
+#T_40f96_row13_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 53);
 }
-#T_88ca3_row13_col3 {
+#T_40f96_row13_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(165, 218, 53);
 }
-#T_88ca3_row14_col0 {
+#T_40f96_row14_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(210, 0, 0);
 }
-#T_88ca3_row14_col1 {
+#T_40f96_row14_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 225, 0);
 }
-#T_88ca3_row14_col2 {
+#T_40f96_row14_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 27);
 }
-#T_88ca3_row14_col3 {
+#T_40f96_row14_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(210, 225, 27);
 }
-#T_88ca3_row15_col0 {
+#T_40f96_row15_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(253, 0, 0);
 }
-#T_88ca3_row15_col1 {
+#T_40f96_row15_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 231, 0);
 }
-#T_88ca3_row15_col2 {
+#T_40f96_row15_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 36);
 }
-#T_88ca3_row15_col3 {
+#T_40f96_row15_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(253, 231, 36);
 }
 </style>
-<table id="T_88ca3">
+<table id="T_40f96">
   <caption>Viridis LUT</caption>
   <thead>
     <tr>
-      <th id="T_88ca3_level0_col0" class="col_heading level0 col0" >Red</th>
-      <th id="T_88ca3_level0_col1" class="col_heading level0 col1" >Green</th>
-      <th id="T_88ca3_level0_col2" class="col_heading level0 col2" >Blue</th>
-      <th id="T_88ca3_level0_col3" class="col_heading level0 col3" >Color</th>
+      <th id="T_40f96_level0_col0" class="col_heading level0 col0" >Red</th>
+      <th id="T_40f96_level0_col1" class="col_heading level0 col1" >Green</th>
+      <th id="T_40f96_level0_col2" class="col_heading level0 col2" >Blue</th>
+      <th id="T_40f96_level0_col3" class="col_heading level0 col3" >Color</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_88ca3_row0_col0" class="data row0 col0" >68</td>
-      <td id="T_88ca3_row0_col1" class="data row0 col1" >1</td>
-      <td id="T_88ca3_row0_col2" class="data row0 col2" >84</td>
-      <td id="T_88ca3_row0_col3" class="data row0 col3" ></td>
+      <td id="T_40f96_row0_col0" class="data row0 col0" >68</td>
+      <td id="T_40f96_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_40f96_row0_col2" class="data row0 col2" >84</td>
+      <td id="T_40f96_row0_col3" class="data row0 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row1_col0" class="data row1 col0" >72</td>
-      <td id="T_88ca3_row1_col1" class="data row1 col1" >25</td>
-      <td id="T_88ca3_row1_col2" class="data row1 col2" >107</td>
-      <td id="T_88ca3_row1_col3" class="data row1 col3" ></td>
+      <td id="T_40f96_row1_col0" class="data row1 col0" >72</td>
+      <td id="T_40f96_row1_col1" class="data row1 col1" >25</td>
+      <td id="T_40f96_row1_col2" class="data row1 col2" >107</td>
+      <td id="T_40f96_row1_col3" class="data row1 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row2_col0" class="data row2 col0" >70</td>
-      <td id="T_88ca3_row2_col1" class="data row2 col1" >47</td>
-      <td id="T_88ca3_row2_col2" class="data row2 col2" >124</td>
-      <td id="T_88ca3_row2_col3" class="data row2 col3" ></td>
+      <td id="T_40f96_row2_col0" class="data row2 col0" >70</td>
+      <td id="T_40f96_row2_col1" class="data row2 col1" >47</td>
+      <td id="T_40f96_row2_col2" class="data row2 col2" >124</td>
+      <td id="T_40f96_row2_col3" class="data row2 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row3_col0" class="data row3 col0" >64</td>
-      <td id="T_88ca3_row3_col1" class="data row3 col1" >67</td>
-      <td id="T_88ca3_row3_col2" class="data row3 col2" >135</td>
-      <td id="T_88ca3_row3_col3" class="data row3 col3" ></td>
+      <td id="T_40f96_row3_col0" class="data row3 col0" >64</td>
+      <td id="T_40f96_row3_col1" class="data row3 col1" >67</td>
+      <td id="T_40f96_row3_col2" class="data row3 col2" >135</td>
+      <td id="T_40f96_row3_col3" class="data row3 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row4_col0" class="data row4 col0" >56</td>
-      <td id="T_88ca3_row4_col1" class="data row4 col1" >86</td>
-      <td id="T_88ca3_row4_col2" class="data row4 col2" >139</td>
-      <td id="T_88ca3_row4_col3" class="data row4 col3" ></td>
+      <td id="T_40f96_row4_col0" class="data row4 col0" >56</td>
+      <td id="T_40f96_row4_col1" class="data row4 col1" >86</td>
+      <td id="T_40f96_row4_col2" class="data row4 col2" >139</td>
+      <td id="T_40f96_row4_col3" class="data row4 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row5_col0" class="data row5 col0" >48</td>
-      <td id="T_88ca3_row5_col1" class="data row5 col1" >103</td>
-      <td id="T_88ca3_row5_col2" class="data row5 col2" >141</td>
-      <td id="T_88ca3_row5_col3" class="data row5 col3" ></td>
+      <td id="T_40f96_row5_col0" class="data row5 col0" >48</td>
+      <td id="T_40f96_row5_col1" class="data row5 col1" >103</td>
+      <td id="T_40f96_row5_col2" class="data row5 col2" >141</td>
+      <td id="T_40f96_row5_col3" class="data row5 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row6_col0" class="data row6 col0" >41</td>
-      <td id="T_88ca3_row6_col1" class="data row6 col1" >120</td>
-      <td id="T_88ca3_row6_col2" class="data row6 col2" >142</td>
-      <td id="T_88ca3_row6_col3" class="data row6 col3" ></td>
+      <td id="T_40f96_row6_col0" class="data row6 col0" >41</td>
+      <td id="T_40f96_row6_col1" class="data row6 col1" >120</td>
+      <td id="T_40f96_row6_col2" class="data row6 col2" >142</td>
+      <td id="T_40f96_row6_col3" class="data row6 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row7_col0" class="data row7 col0" >35</td>
-      <td id="T_88ca3_row7_col1" class="data row7 col1" >136</td>
-      <td id="T_88ca3_row7_col2" class="data row7 col2" >141</td>
-      <td id="T_88ca3_row7_col3" class="data row7 col3" ></td>
+      <td id="T_40f96_row7_col0" class="data row7 col0" >35</td>
+      <td id="T_40f96_row7_col1" class="data row7 col1" >136</td>
+      <td id="T_40f96_row7_col2" class="data row7 col2" >141</td>
+      <td id="T_40f96_row7_col3" class="data row7 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row8_col0" class="data row8 col0" >30</td>
-      <td id="T_88ca3_row8_col1" class="data row8 col1" >152</td>
-      <td id="T_88ca3_row8_col2" class="data row8 col2" >138</td>
-      <td id="T_88ca3_row8_col3" class="data row8 col3" ></td>
+      <td id="T_40f96_row8_col0" class="data row8 col0" >30</td>
+      <td id="T_40f96_row8_col1" class="data row8 col1" >152</td>
+      <td id="T_40f96_row8_col2" class="data row8 col2" >138</td>
+      <td id="T_40f96_row8_col3" class="data row8 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row9_col0" class="data row9 col0" >34</td>
-      <td id="T_88ca3_row9_col1" class="data row9 col1" >167</td>
-      <td id="T_88ca3_row9_col2" class="data row9 col2" >132</td>
-      <td id="T_88ca3_row9_col3" class="data row9 col3" ></td>
+      <td id="T_40f96_row9_col0" class="data row9 col0" >34</td>
+      <td id="T_40f96_row9_col1" class="data row9 col1" >167</td>
+      <td id="T_40f96_row9_col2" class="data row9 col2" >132</td>
+      <td id="T_40f96_row9_col3" class="data row9 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row10_col0" class="data row10 col0" >53</td>
-      <td id="T_88ca3_row10_col1" class="data row10 col1" >183</td>
-      <td id="T_88ca3_row10_col2" class="data row10 col2" >120</td>
-      <td id="T_88ca3_row10_col3" class="data row10 col3" ></td>
+      <td id="T_40f96_row10_col0" class="data row10 col0" >53</td>
+      <td id="T_40f96_row10_col1" class="data row10 col1" >183</td>
+      <td id="T_40f96_row10_col2" class="data row10 col2" >120</td>
+      <td id="T_40f96_row10_col3" class="data row10 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row11_col0" class="data row11 col0" >83</td>
-      <td id="T_88ca3_row11_col1" class="data row11 col1" >197</td>
-      <td id="T_88ca3_row11_col2" class="data row11 col2" >103</td>
-      <td id="T_88ca3_row11_col3" class="data row11 col3" ></td>
+      <td id="T_40f96_row11_col0" class="data row11 col0" >83</td>
+      <td id="T_40f96_row11_col1" class="data row11 col1" >197</td>
+      <td id="T_40f96_row11_col2" class="data row11 col2" >103</td>
+      <td id="T_40f96_row11_col3" class="data row11 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row12_col0" class="data row12 col0" >121</td>
-      <td id="T_88ca3_row12_col1" class="data row12 col1" >209</td>
-      <td id="T_88ca3_row12_col2" class="data row12 col2" >81</td>
-      <td id="T_88ca3_row12_col3" class="data row12 col3" ></td>
+      <td id="T_40f96_row12_col0" class="data row12 col0" >121</td>
+      <td id="T_40f96_row12_col1" class="data row12 col1" >209</td>
+      <td id="T_40f96_row12_col2" class="data row12 col2" >81</td>
+      <td id="T_40f96_row12_col3" class="data row12 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row13_col0" class="data row13 col0" >165</td>
-      <td id="T_88ca3_row13_col1" class="data row13 col1" >218</td>
-      <td id="T_88ca3_row13_col2" class="data row13 col2" >53</td>
-      <td id="T_88ca3_row13_col3" class="data row13 col3" ></td>
+      <td id="T_40f96_row13_col0" class="data row13 col0" >165</td>
+      <td id="T_40f96_row13_col1" class="data row13 col1" >218</td>
+      <td id="T_40f96_row13_col2" class="data row13 col2" >53</td>
+      <td id="T_40f96_row13_col3" class="data row13 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row14_col0" class="data row14 col0" >210</td>
-      <td id="T_88ca3_row14_col1" class="data row14 col1" >225</td>
-      <td id="T_88ca3_row14_col2" class="data row14 col2" >27</td>
-      <td id="T_88ca3_row14_col3" class="data row14 col3" ></td>
+      <td id="T_40f96_row14_col0" class="data row14 col0" >210</td>
+      <td id="T_40f96_row14_col1" class="data row14 col1" >225</td>
+      <td id="T_40f96_row14_col2" class="data row14 col2" >27</td>
+      <td id="T_40f96_row14_col3" class="data row14 col3" ></td>
     </tr>
     <tr>
-      <td id="T_88ca3_row15_col0" class="data row15 col0" >253</td>
-      <td id="T_88ca3_row15_col1" class="data row15 col1" >231</td>
-      <td id="T_88ca3_row15_col2" class="data row15 col2" >36</td>
-      <td id="T_88ca3_row15_col3" class="data row15 col3" ></td>
+      <td id="T_40f96_row15_col0" class="data row15 col0" >253</td>
+      <td id="T_40f96_row15_col1" class="data row15 col1" >231</td>
+      <td id="T_40f96_row15_col2" class="data row15 col2" >36</td>
+      <td id="T_40f96_row15_col3" class="data row15 col3" ></td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
-#T_4c840 th {
+#T_ed867 th {
   text-align: center;
 }
-#T_4c840_row0_col0 {
+#T_ed867_row0_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(58, 0, 0);
 }
-#T_4c840_row0_col1 {
+#T_ed867_row0_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 76, 0);
 }
-#T_4c840_row0_col2 {
+#T_ed867_row0_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 192);
 }
-#T_4c840_row0_col3 {
+#T_ed867_row0_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(58, 76, 192);
 }
-#T_4c840_row1_col0 {
+#T_ed867_row1_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(78, 0, 0);
 }
-#T_4c840_row1_col1 {
+#T_ed867_row1_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 105, 0);
 }
-#T_4c840_row1_col2 {
+#T_ed867_row1_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 216);
 }
-#T_4c840_row1_col3 {
+#T_ed867_row1_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(78, 105, 216);
 }
-#T_4c840_row2_col0 {
+#T_ed867_row2_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(100, 0, 0);
 }
-#T_4c840_row2_col1 {
+#T_ed867_row2_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 133, 0);
 }
-#T_4c840_row2_col2 {
+#T_ed867_row2_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 235);
 }
-#T_4c840_row2_col3 {
+#T_ed867_row2_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(100, 133, 235);
 }
-#T_4c840_row3_col0 {
+#T_ed867_row3_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(123, 0, 0);
 }
-#T_4c840_row3_col1 {
+#T_ed867_row3_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 158, 0);
 }
-#T_4c840_row3_col2 {
+#T_ed867_row3_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 248);
 }
-#T_4c840_row3_col3 {
+#T_ed867_row3_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(123, 158, 248);
 }
-#T_4c840_row4_col0 {
+#T_ed867_row4_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(146, 0, 0);
 }
-#T_4c840_row4_col1 {
+#T_ed867_row4_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 180, 0);
 }
-#T_4c840_row4_col2 {
+#T_ed867_row4_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 254);
 }
-#T_4c840_row4_col3 {
+#T_ed867_row4_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(146, 180, 254);
 }
-#T_4c840_row5_col0 {
+#T_ed867_row5_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(170, 0, 0);
 }
-#T_4c840_row5_col1 {
+#T_ed867_row5_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 198, 0);
 }
-#T_4c840_row5_col2 {
+#T_ed867_row5_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 253);
 }
-#T_4c840_row5_col3 {
+#T_ed867_row5_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(170, 198, 253);
 }
-#T_4c840_row6_col0 {
+#T_ed867_row6_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(192, 0, 0);
 }
-#T_4c840_row6_col1 {
+#T_ed867_row6_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 211, 0);
 }
-#T_4c840_row6_col2 {
+#T_ed867_row6_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 245);
 }
-#T_4c840_row6_col3 {
+#T_ed867_row6_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(192, 211, 245);
 }
-#T_4c840_row7_col0 {
+#T_ed867_row7_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(211, 0, 0);
 }
-#T_4c840_row7_col1 {
+#T_ed867_row7_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 219, 0);
 }
-#T_4c840_row7_col2 {
+#T_ed867_row7_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 230);
 }
-#T_4c840_row7_col3 {
+#T_ed867_row7_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(211, 219, 230);
 }
-#T_4c840_row8_col0 {
+#T_ed867_row8_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(229, 0, 0);
 }
-#T_4c840_row8_col1 {
+#T_ed867_row8_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 216, 0);
 }
-#T_4c840_row8_col2 {
+#T_ed867_row8_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 208);
 }
-#T_4c840_row8_col3 {
+#T_ed867_row8_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(229, 216, 208);
 }
-#T_4c840_row9_col0 {
+#T_ed867_row9_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(241, 0, 0);
 }
-#T_4c840_row9_col1 {
+#T_ed867_row9_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 202, 0);
 }
-#T_4c840_row9_col2 {
+#T_ed867_row9_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 182);
 }
-#T_4c840_row9_col3 {
+#T_ed867_row9_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(241, 202, 182);
 }
-#T_4c840_row10_col0 {
+#T_ed867_row10_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(246, 0, 0);
 }
-#T_4c840_row10_col1 {
+#T_ed867_row10_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 183, 0);
 }
-#T_4c840_row10_col2 {
+#T_ed867_row10_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 156);
 }
-#T_4c840_row10_col3 {
+#T_ed867_row10_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(246, 183, 156);
 }
-#T_4c840_row11_col0 {
+#T_ed867_row11_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(245, 0, 0);
 }
-#T_4c840_row11_col1 {
+#T_ed867_row11_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 160, 0);
 }
-#T_4c840_row11_col2 {
+#T_ed867_row11_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 129);
 }
-#T_4c840_row11_col3 {
+#T_ed867_row11_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(245, 160, 129);
 }
-#T_4c840_row12_col0 {
+#T_ed867_row12_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(237, 0, 0);
 }
-#T_4c840_row12_col1 {
+#T_ed867_row12_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 132, 0);
 }
-#T_4c840_row12_col2 {
+#T_ed867_row12_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 103);
 }
-#T_4c840_row12_col3 {
+#T_ed867_row12_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(237, 132, 103);
 }
-#T_4c840_row13_col0 {
+#T_ed867_row13_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(223, 0, 0);
 }
-#T_4c840_row13_col1 {
+#T_ed867_row13_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 100, 0);
 }
-#T_4c840_row13_col2 {
+#T_ed867_row13_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 79);
 }
-#T_4c840_row13_col3 {
+#T_ed867_row13_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(223, 100, 79);
 }
-#T_4c840_row14_col0 {
+#T_ed867_row14_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(204, 0, 0);
 }
-#T_4c840_row14_col1 {
+#T_ed867_row14_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 63, 0);
 }
-#T_4c840_row14_col2 {
+#T_ed867_row14_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 57);
 }
-#T_4c840_row14_col3 {
+#T_ed867_row14_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(204, 63, 57);
 }
-#T_4c840_row15_col0 {
+#T_ed867_row15_col0 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(179, 0, 0);
 }
-#T_4c840_row15_col1 {
+#T_ed867_row15_col1 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 3, 0);
 }
-#T_4c840_row15_col2 {
+#T_ed867_row15_col2 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   color: rgba(0, 0, 38);
 }
-#T_4c840_row15_col3 {
+#T_ed867_row15_col3 {
   width: 8em;
   font-size: 80%;
   text-align: center;
   background-color: rgba(179, 3, 38);
 }
 </style>
-<table id="T_4c840">
+<table id="T_ed867">
   <caption>Coolwarm LUT</caption>
   <thead>
     <tr>
-      <th id="T_4c840_level0_col0" class="col_heading level0 col0" >Red</th>
-      <th id="T_4c840_level0_col1" class="col_heading level0 col1" >Green</th>
-      <th id="T_4c840_level0_col2" class="col_heading level0 col2" >Blue</th>
-      <th id="T_4c840_level0_col3" class="col_heading level0 col3" >Color</th>
+      <th id="T_ed867_level0_col0" class="col_heading level0 col0" >Red</th>
+      <th id="T_ed867_level0_col1" class="col_heading level0 col1" >Green</th>
+      <th id="T_ed867_level0_col2" class="col_heading level0 col2" >Blue</th>
+      <th id="T_ed867_level0_col3" class="col_heading level0 col3" >Color</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_4c840_row0_col0" class="data row0 col0" >58</td>
-      <td id="T_4c840_row0_col1" class="data row0 col1" >76</td>
-      <td id="T_4c840_row0_col2" class="data row0 col2" >192</td>
-      <td id="T_4c840_row0_col3" class="data row0 col3" ></td>
+      <td id="T_ed867_row0_col0" class="data row0 col0" >58</td>
+      <td id="T_ed867_row0_col1" class="data row0 col1" >76</td>
+      <td id="T_ed867_row0_col2" class="data row0 col2" >192</td>
+      <td id="T_ed867_row0_col3" class="data row0 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row1_col0" class="data row1 col0" >78</td>
-      <td id="T_4c840_row1_col1" class="data row1 col1" >105</td>
-      <td id="T_4c840_row1_col2" class="data row1 col2" >216</td>
-      <td id="T_4c840_row1_col3" class="data row1 col3" ></td>
+      <td id="T_ed867_row1_col0" class="data row1 col0" >78</td>
+      <td id="T_ed867_row1_col1" class="data row1 col1" >105</td>
+      <td id="T_ed867_row1_col2" class="data row1 col2" >216</td>
+      <td id="T_ed867_row1_col3" class="data row1 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row2_col0" class="data row2 col0" >100</td>
-      <td id="T_4c840_row2_col1" class="data row2 col1" >133</td>
-      <td id="T_4c840_row2_col2" class="data row2 col2" >235</td>
-      <td id="T_4c840_row2_col3" class="data row2 col3" ></td>
+      <td id="T_ed867_row2_col0" class="data row2 col0" >100</td>
+      <td id="T_ed867_row2_col1" class="data row2 col1" >133</td>
+      <td id="T_ed867_row2_col2" class="data row2 col2" >235</td>
+      <td id="T_ed867_row2_col3" class="data row2 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row3_col0" class="data row3 col0" >123</td>
-      <td id="T_4c840_row3_col1" class="data row3 col1" >158</td>
-      <td id="T_4c840_row3_col2" class="data row3 col2" >248</td>
-      <td id="T_4c840_row3_col3" class="data row3 col3" ></td>
+      <td id="T_ed867_row3_col0" class="data row3 col0" >123</td>
+      <td id="T_ed867_row3_col1" class="data row3 col1" >158</td>
+      <td id="T_ed867_row3_col2" class="data row3 col2" >248</td>
+      <td id="T_ed867_row3_col3" class="data row3 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row4_col0" class="data row4 col0" >146</td>
-      <td id="T_4c840_row4_col1" class="data row4 col1" >180</td>
-      <td id="T_4c840_row4_col2" class="data row4 col2" >254</td>
-      <td id="T_4c840_row4_col3" class="data row4 col3" ></td>
+      <td id="T_ed867_row4_col0" class="data row4 col0" >146</td>
+      <td id="T_ed867_row4_col1" class="data row4 col1" >180</td>
+      <td id="T_ed867_row4_col2" class="data row4 col2" >254</td>
+      <td id="T_ed867_row4_col3" class="data row4 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row5_col0" class="data row5 col0" >170</td>
-      <td id="T_4c840_row5_col1" class="data row5 col1" >198</td>
-      <td id="T_4c840_row5_col2" class="data row5 col2" >253</td>
-      <td id="T_4c840_row5_col3" class="data row5 col3" ></td>
+      <td id="T_ed867_row5_col0" class="data row5 col0" >170</td>
+      <td id="T_ed867_row5_col1" class="data row5 col1" >198</td>
+      <td id="T_ed867_row5_col2" class="data row5 col2" >253</td>
+      <td id="T_ed867_row5_col3" class="data row5 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row6_col0" class="data row6 col0" >192</td>
-      <td id="T_4c840_row6_col1" class="data row6 col1" >211</td>
-      <td id="T_4c840_row6_col2" class="data row6 col2" >245</td>
-      <td id="T_4c840_row6_col3" class="data row6 col3" ></td>
+      <td id="T_ed867_row6_col0" class="data row6 col0" >192</td>
+      <td id="T_ed867_row6_col1" class="data row6 col1" >211</td>
+      <td id="T_ed867_row6_col2" class="data row6 col2" >245</td>
+      <td id="T_ed867_row6_col3" class="data row6 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row7_col0" class="data row7 col0" >211</td>
-      <td id="T_4c840_row7_col1" class="data row7 col1" >219</td>
-      <td id="T_4c840_row7_col2" class="data row7 col2" >230</td>
-      <td id="T_4c840_row7_col3" class="data row7 col3" ></td>
+      <td id="T_ed867_row7_col0" class="data row7 col0" >211</td>
+      <td id="T_ed867_row7_col1" class="data row7 col1" >219</td>
+      <td id="T_ed867_row7_col2" class="data row7 col2" >230</td>
+      <td id="T_ed867_row7_col3" class="data row7 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row8_col0" class="data row8 col0" >229</td>
-      <td id="T_4c840_row8_col1" class="data row8 col1" >216</td>
-      <td id="T_4c840_row8_col2" class="data row8 col2" >208</td>
-      <td id="T_4c840_row8_col3" class="data row8 col3" ></td>
+      <td id="T_ed867_row8_col0" class="data row8 col0" >229</td>
+      <td id="T_ed867_row8_col1" class="data row8 col1" >216</td>
+      <td id="T_ed867_row8_col2" class="data row8 col2" >208</td>
+      <td id="T_ed867_row8_col3" class="data row8 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row9_col0" class="data row9 col0" >241</td>
-      <td id="T_4c840_row9_col1" class="data row9 col1" >202</td>
-      <td id="T_4c840_row9_col2" class="data row9 col2" >182</td>
-      <td id="T_4c840_row9_col3" class="data row9 col3" ></td>
+      <td id="T_ed867_row9_col0" class="data row9 col0" >241</td>
+      <td id="T_ed867_row9_col1" class="data row9 col1" >202</td>
+      <td id="T_ed867_row9_col2" class="data row9 col2" >182</td>
+      <td id="T_ed867_row9_col3" class="data row9 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row10_col0" class="data row10 col0" >246</td>
-      <td id="T_4c840_row10_col1" class="data row10 col1" >183</td>
-      <td id="T_4c840_row10_col2" class="data row10 col2" >156</td>
-      <td id="T_4c840_row10_col3" class="data row10 col3" ></td>
+      <td id="T_ed867_row10_col0" class="data row10 col0" >246</td>
+      <td id="T_ed867_row10_col1" class="data row10 col1" >183</td>
+      <td id="T_ed867_row10_col2" class="data row10 col2" >156</td>
+      <td id="T_ed867_row10_col3" class="data row10 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row11_col0" class="data row11 col0" >245</td>
-      <td id="T_4c840_row11_col1" class="data row11 col1" >160</td>
-      <td id="T_4c840_row11_col2" class="data row11 col2" >129</td>
-      <td id="T_4c840_row11_col3" class="data row11 col3" ></td>
+      <td id="T_ed867_row11_col0" class="data row11 col0" >245</td>
+      <td id="T_ed867_row11_col1" class="data row11 col1" >160</td>
+      <td id="T_ed867_row11_col2" class="data row11 col2" >129</td>
+      <td id="T_ed867_row11_col3" class="data row11 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row12_col0" class="data row12 col0" >237</td>
-      <td id="T_4c840_row12_col1" class="data row12 col1" >132</td>
-      <td id="T_4c840_row12_col2" class="data row12 col2" >103</td>
-      <td id="T_4c840_row12_col3" class="data row12 col3" ></td>
+      <td id="T_ed867_row12_col0" class="data row12 col0" >237</td>
+      <td id="T_ed867_row12_col1" class="data row12 col1" >132</td>
+      <td id="T_ed867_row12_col2" class="data row12 col2" >103</td>
+      <td id="T_ed867_row12_col3" class="data row12 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row13_col0" class="data row13 col0" >223</td>
-      <td id="T_4c840_row13_col1" class="data row13 col1" >100</td>
-      <td id="T_4c840_row13_col2" class="data row13 col2" >79</td>
-      <td id="T_4c840_row13_col3" class="data row13 col3" ></td>
+      <td id="T_ed867_row13_col0" class="data row13 col0" >223</td>
+      <td id="T_ed867_row13_col1" class="data row13 col1" >100</td>
+      <td id="T_ed867_row13_col2" class="data row13 col2" >79</td>
+      <td id="T_ed867_row13_col3" class="data row13 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row14_col0" class="data row14 col0" >204</td>
-      <td id="T_4c840_row14_col1" class="data row14 col1" >63</td>
-      <td id="T_4c840_row14_col2" class="data row14 col2" >57</td>
-      <td id="T_4c840_row14_col3" class="data row14 col3" ></td>
+      <td id="T_ed867_row14_col0" class="data row14 col0" >204</td>
+      <td id="T_ed867_row14_col1" class="data row14 col1" >63</td>
+      <td id="T_ed867_row14_col2" class="data row14 col2" >57</td>
+      <td id="T_ed867_row14_col3" class="data row14 col3" ></td>
     </tr>
     <tr>
-      <td id="T_4c840_row15_col0" class="data row15 col0" >179</td>
-      <td id="T_4c840_row15_col1" class="data row15 col1" >3</td>
-      <td id="T_4c840_row15_col2" class="data row15 col2" >38</td>
-      <td id="T_4c840_row15_col3" class="data row15 col3" ></td>
+      <td id="T_ed867_row15_col0" class="data row15 col0" >179</td>
+      <td id="T_ed867_row15_col1" class="data row15 col1" >3</td>
+      <td id="T_ed867_row15_col2" class="data row15 col2" >38</td>
+      <td id="T_ed867_row15_col3" class="data row15 col3" ></td>
     </tr>
   </tbody>
 </table>
@@ -2594,9 +2711,9 @@ Each integer value defines how much of each primary color should be mixed togeth
 <p>Because each of the red, green and blue values can be in the range 0-255, mixing them together can generate (theoretically at least) up to 256 x 256 x 256 = 16,777,216 different colors, i.e. a <em>lot</em>.</p>
 <p>When it comes to display, this method of representing color using 8-bit RGB values should easily give us many more colors than we could ever hope to distinguish by eye.
 We don’t need a higher bit-depth for display.</p>
-</div>
-<div class="section" id="rgb-images">
-<h2>RGB images<a class="headerlink" href="#rgb-images" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="rgb-images">
+<h2>RGB images<a class="headerlink" href="#rgb-images" title="Permalink to this headline">#</a></h2>
 <p>Until now we have considered images where each pixel has a single value, and there is an LUT associated with the image to map these values to colors.</p>
 <p>Now that we know how colors are represented, we can consider another option.</p>
 <p>Instead of storing a single value per pixel, we can store the RGB values that represent the color used to display the pixel instead.
@@ -2604,8 +2721,8 @@ Each pixel then has three values (for red, green and blue), not just a single va
 <p>When an image is stored in this way it’s called an <strong>RGB image</strong>.</p>
 <p>We can easily create an RGB image from any combination of image + LUT: just replace each pixel value in the original image with the associated RGB values that we find in the LUT.
 Now each pixel has three values instead of one, but the end result <em>looks</em> exactly the same.</p>
-<div class="section" id="the-risk-of-rgb">
-<h3>The risk of RGB<a class="headerlink" href="#the-risk-of-rgb" title="Permalink to this headline">¶</a></h3>
+<section id="the-risk-of-rgb">
+<h3>The risk of RGB<a class="headerlink" href="#the-risk-of-rgb" title="Permalink to this headline">#</a></h3>
 <p>The problem with converting an image to RGB is that, in general, <em>we can’t go back!</em>
 In fact, the unwitting <em>overuse</em> of RGB images is one of the most common sources of data-destroying errors in some branches of scientific imaging.</p>
 <div class="danger admonition">
@@ -2668,18 +2785,20 @@ We have converted the data to 8-bit and used the LUT to determine how much to sc
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-colors-im-grays-colormap" style="width: 60%">
+<figure class="align-center" id="fig-colors-im-grays-colormap" style="width: 60%">
 <div class="cell_output docutils container">
 <img alt="../../../_images/colors_12_0.png" src="../../../_images/colors_12_0.png" />
 </div>
-</div>
-<div class="figure align-center" id="fig-colors-im-grays-rgb">
+</figure>
+<figure class="align-center" id="fig-colors-im-grays-rgb">
 <div class="cell_output docutils container">
 <img alt="../../../_images/colors_12_1.png" src="../../../_images/colors_12_1.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Converting a grayscale image to RGB can lose information. We can separate out the red, green and blue values from the RGB image and visualize each as separate images to explore the information they contain. Even though the RGB image looks unchanged from the original, and all three color channels have similar histograms to the original, the bit-depth has been reduced and image statistics modified.
-There is also a big histogram peak that indicates substantial clipping.</span><a class="headerlink" href="#fig-colors-im-grays-rgb" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 25 </span><span class="caption-text">Converting a grayscale image to RGB can lose information. We can separate out the red, green and blue values from the RGB image and visualize each as separate images to explore the information they contain. Even though the RGB image looks unchanged from the original, and all three color channels have similar histograms to the original, the bit-depth has been reduced and image statistics modified.
+There is also a big histogram peak that indicates substantial clipping.</span><a class="headerlink" href="#fig-colors-im-grays-rgb" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The impact of converting an image with any other LUT to RGB is even more dramatic, as shown in <a class="reference internal" href="#fig-colors-im-rgb"><span class="std std-numref">Fig. 26</span></a>.
 Here, the red, green and blue values are different and the histograms for each color are very different.
 Again, it would not be possible to recover the original pixel values from the RGB image.</p>
@@ -2735,22 +2854,24 @@ Again, it would not be possible to recover the original pixel values from the RG
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-colors-im-colormap" style="width: 60%">
+<figure class="align-center" id="fig-colors-im-colormap" style="width: 60%">
 <div class="cell_output docutils container">
 <img alt="../../../_images/colors_15_0.png" src="../../../_images/colors_15_0.png" />
 </div>
-</div>
-<div class="figure align-center" id="fig-colors-im-rgb">
+</figure>
+<figure class="align-center" id="fig-colors-im-rgb">
 <div class="cell_output docutils container">
 <img alt="../../../_images/colors_15_1.png" src="../../../_images/colors_15_1.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">Converting an to RGB can lose information in a particularly dramatic way if the LUT is not grayscale. The histograms for each channel may now look completely different.</span><a class="headerlink" href="#fig-colors-im-rgb" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="the-role-of-rgb">
-<h3>The role of RGB<a class="headerlink" href="#the-role-of-rgb" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="using-rgb-images-for-display">
-<h4>Using RGB images for display<a class="headerlink" href="#using-rgb-images-for-display" title="Permalink to this headline">¶</a></h4>
+<figcaption>
+<p><span class="caption-number">Fig. 26 </span><span class="caption-text">Converting an to RGB can lose information in a particularly dramatic way if the LUT is not grayscale. The histograms for each channel may now look completely different.</span><a class="headerlink" href="#fig-colors-im-rgb" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="the-role-of-rgb">
+<h3>The role of RGB<a class="headerlink" href="#the-role-of-rgb" title="Permalink to this headline">#</a></h3>
+<section id="using-rgb-images-for-display">
+<h4>Using RGB images for display<a class="headerlink" href="#using-rgb-images-for-display" title="Permalink to this headline">#</a></h4>
 <p>So what’s the point of having RGB images, if they are so risky?</p>
 <p>One of the biggest reasons to use RGB images in science is for presentation.
 While specialist image analysis software applications, such as ImageJ, are typically designed to handle a range of exotic image types and bit-depths, the same is not true for non-scientific software.</p>
@@ -2769,25 +2890,27 @@ They <em>only</em> saved an RGB copy, with all the rescaling and LUT magic appli
 This usually reveals that the image is not ‘all black’ after all.
 Rather, one only needs to adjust the brightness and contrast (using the LUT) to see the raw data in all its glory.</p>
 </div>
-</div>
-<div class="section" id="when-rgb-is-all-you-ve-got">
-<h4>When RGB is all you’ve got<a class="headerlink" href="#when-rgb-is-all-you-ve-got" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="when-rgb-is-all-you-ve-got">
+<h4>When RGB is all you’ve got<a class="headerlink" href="#when-rgb-is-all-you-ve-got" title="Permalink to this headline">#</a></h4>
 <p>All the previous comments about <em>‘don’t convert to RGB before analysis’</em> as based on the assumption that your raw data isn’t already RGB.
 This is usually the case with microscopy and medical imaging whenever accurate quantification is important.</p>
 <p>Nevertheless, it’s not <em>always</em> the case.</p>
 <p>A common example is brightfield imaging for histology or pathology.
 Here, the camera is often RGB and an RGB image is really as close to the raw data as we are likely to get.</p>
-<div class="figure align-center" id="id1">
+<figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="../../../_images/cmu-1-small-region.jpg"><img alt="../../../_images/cmu-1-small-region.jpg" src="../../../_images/cmu-1-small-region.jpg" style="width: 229.60000000000002px; height: 307.20000000000005px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">Example RGB histology image, from <a class="reference external" href="https://openslide.org">https://openslide.org</a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 27 </span><span class="caption-text">Example RGB histology image, from <a class="reference external" href="https://openslide.org">https://openslide.org</a></span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Crucially, the analysis of brightfield images in histology usually aims to replicate (and sometimes improve upon) the visual assessment that a pathologist might make looking down a microscope.
 It’s often based on detecting, classifying and counting cells, measuring stained areas, or recognizing the presence of particular patterns – but <em>not</em> accurately quantifying staining intensity.</p>
-</div>
-</div>
-</div>
-<div class="section" id="multichannel-images">
-<h2>Multichannel images<a class="headerlink" href="#multichannel-images" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="multichannel-images">
+<h2>Multichannel images<a class="headerlink" href="#multichannel-images" title="Permalink to this headline">#</a></h2>
 <p>So far, we have focussed on 2D images with a <strong>single channel</strong> – that is, a single value for every pixel at every <em>x,y</em> coordinate in the image.</p>
 <p>Such images can be converted to 8-bit RGB using a LUT.
 If we do this, then we get an image with <strong>three channels</strong>, where each channel is displayed using red, green and blue LUTs – with the colors blended together for display.
@@ -2835,32 +2958,38 @@ This means we can still extract channels or adjust their LUTs as needed.</p>
 </div>
 </div>
 </div>
-<div class="figure align-center" id="fig-colors-composite-rgb">
+<figure class="align-center" id="fig-colors-composite-rgb">
 <div class="cell_output docutils container">
 <img alt="../../../_images/colors_20_0.png" src="../../../_images/colors_20_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Multichannel image using red, green and blue LUTs.
+<figcaption>
+<p><span class="caption-number">Fig. 28 </span><span class="caption-text">Multichannel image using red, green and blue LUTs.
 Although this looks a lot like an RGB image, each channel still contains the raw data (which might be 16-bit or 32-bit).
-The original pixel values can be extracted if needed, and different LUTs used.</span><a class="headerlink" href="#fig-colors-composite-rgb" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-center" id="fig-colors-composite-non-rgb">
+The original pixel values can be extracted if needed, and different LUTs used.</span><a class="headerlink" href="#fig-colors-composite-rgb" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="fig-colors-composite-non-rgb">
 <div class="cell_output docutils container">
 <img alt="../../../_images/colors_20_1.png" src="../../../_images/colors_20_1.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Multichannel image from <a class="reference internal" href="#fig-colors-composite-rgb"><span class="std std-numref">Fig. 28</span></a> using different LUTs.
-Again, no information is lost: we can access the original pixel values, and update the LUTs if needed.</span><a class="headerlink" href="#fig-colors-composite-non-rgb" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 29 </span><span class="caption-text">Multichannel image from <a class="reference internal" href="#fig-colors-composite-rgb"><span class="std std-numref">Fig. 28</span></a> using different LUTs.
+Again, no information is lost: we can access the original pixel values, and update the LUTs if needed.</span><a class="headerlink" href="#fig-colors-composite-non-rgb" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Just like with a single channel image, we can create an RGB image that allows us to visualize our multichannel image – using the LUTs to figure out which RGB values are needed to represent the color of each pixel.</p>
 <p>Then, againf just like with the single channel image, this is problematic if we don’t keep the raw data – because we can never recover the original values from the RGB representation.</p>
-<div class="figure align-center" id="fig-colors-composite-rgb-split">
+<figure class="align-center" id="fig-colors-composite-rgb-split">
 <div class="cell_output docutils container">
 <img alt="../../../_images/colors_20_2.png" src="../../../_images/colors_20_2.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">We can create an RGB image from <a class="reference internal" href="#fig-colors-composite-non-rgb"><span class="std std-numref">Fig. 29</span></a>, but then we have three channels locked to red, green and blue – which have converted the original channels to 8-bit, and mixed up information due to the LUT colors used. We can no longer recover the original pixel values after converting to RGB.</span><a class="headerlink" href="#fig-colors-composite-rgb-split" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="summary-of-color-images">
-<h2>Summary of color images<a class="headerlink" href="#summary-of-color-images" title="Permalink to this headline">¶</a></h2>
+<figcaption>
+<p><span class="caption-number">Fig. 30 </span><span class="caption-text">We can create an RGB image from <a class="reference internal" href="#fig-colors-composite-non-rgb"><span class="std std-numref">Fig. 29</span></a>, but then we have three channels locked to red, green and blue – which have converted the original channels to 8-bit, and mixed up information due to the LUT colors used. We can no longer recover the original pixel values after converting to RGB.</span><a class="headerlink" href="#fig-colors-composite-rgb-split" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="summary-of-color-images">
+<h2>Summary of color images<a class="headerlink" href="#summary-of-color-images" title="Permalink to this headline">#</a></h2>
 <p>The main message here can be distilled into two rules:</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2892,10 +3021,10 @@ This is useful to separate hue from brightness, e.g. to help identify all red pi
 I have tried to focus here on the main need-to-know topics that impact analyzing scientific images.
 With this in mind, I think that understanding RGB (and its limitations) is crucial – while other transforms can be picked up later if they are needed.</p>
 </div>
-</div>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2919,9 +3048,11 @@ With this in mind, I think that understanding RGB (and its limitations) is cruci
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../3-bit_depths/python.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2937,24 +3068,28 @@ With this in mind, I think that understanding RGB (and its limitations) is cruci
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pete Bankhead<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pete Bankhead<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
