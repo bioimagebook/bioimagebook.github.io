@@ -501,9 +501,10 @@ figclass: margin
 Small holes filled.
 ```
 
+````{tab-set}
 
-```{tabbed} Question
-:new-group:
+```{tab-item} Question
+
 
 We don't always want to fill *all* the holes within a binary image, but rather only the smaller ones.
 Can you think of a way to fill *only holes smaller than 1000 px²*, using area opening?
@@ -511,7 +512,7 @@ Can you think of a way to fill *only holes smaller than 1000 px²*, using area o
 You'll need at least one operation described in previous chapter.
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 One way to fill holes below a fixed size:
 
@@ -520,6 +521,7 @@ One way to fill holes below a fixed size:
 * Invert the result
 
 ```
+````
 
 +++
 

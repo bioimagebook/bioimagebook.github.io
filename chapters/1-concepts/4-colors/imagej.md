@@ -81,9 +81,10 @@ The distinction is really important when it comes to measurements and histograms
 
 When it comes to measuring an RGB image, the enigmatic statement above that ImageJ 'converts the image' is explained (in more detail than you might want) [at the end](sec_colors_converts).
 
+````{tab-set}
 
-```{tabbed} Practical
-:new-group:
+```{tab-item} Practical
+
 
 Explore several of the images under {menuselection}`File --> Open Samples -->` and identify which are treated by ImageJ as RGB, which as multichannel, and which have just a single channel.
 There is only one correct answer per image.
@@ -109,7 +110,7 @@ Hopefully the Fiji bug will be fixed before you read this.
 ```
 
 
-```{tabbed} Solution
+```{tab-item} Solution
 
 | Image                                    | RGB | Multichannel | Single channel |
 |------------------------------------------|:---:|:------------:|:--------------:|
@@ -128,6 +129,8 @@ There are several awkward images:
 * {menuselection}`Image with Overlay` looks colorful, but the colors all come from the [overlay](sec_imagej_overlay) -- not from the image being RGB. Admittedly, the name helps here.
 
 ```
+
+````
 
 
 ## Working with channels
@@ -253,8 +256,10 @@ Flattening is similar to taking a screenshot of the image as it currently appear
 
 +++
 
-```{tabbed} Question
-:new-group:
+````{tab-set}
+
+```{tab-item} Question
+
 
 ImageJ has two different copying commands, {menuselection}`Edit --> Copy` and {menuselection}`Edit --> Copy to System`.
 Why?
@@ -264,7 +269,7 @@ Be on the lookout for any conversions.
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 {menuselection}`Edit --> Copy` allows you to copy part of an individual image slice (i.e. a 2D part of a particular color channel) and paste it into another image while exactly preserving the original image type and pixel values.
 You can also use {menuselection}`File --> New --> Internal Clipboard` to get the copied region (but {menuselection}`Image --> Duplicate...` is usually a better option).
@@ -276,10 +281,14 @@ If therefore preserves the image appearance, but not necessarily the pixel value
 
 ```
 
+````
+
 +++
 
-```{tabbed} Practical
-:new-group:
+````{tab-set}
+
+```{tab-item} Practical
+
 
 You can test the compatibility of composite and RGB images by opening {menuselection}`File --> Open Samples --> HeLa Cells` image, and saving it using {menuselection}`File --> Save As --> Tiff...` both before and after running {menuselection}`Image --> Type --> RGB Color` to convert the original 16-bit composite data to RGB.
 
@@ -288,9 +297,14 @@ Try then opening both saved images in other software (e.g. Microsoft PowerPoint&
 [![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9)
 ```
 
+````
 
-```{tabbed} Practical
-:new-group:
++++
+
+````{tab-set}
+
+```{tab-item} Practical
+
 
 Think of at least 2 ways in which converting a composite image to RGB can lose information.
 
@@ -302,7 +316,7 @@ The {menuselection}`Image --> Color --> Split Channels` command should help.
 ```
 
 
-```{tabbed} Solution
+```{tab-item} Solution
 
 +++
 
@@ -323,6 +337,8 @@ Their colors could be so mixed together that the original pixel values would be 
 And so the good things about RGB images are that they look identical to the original image you had before conversion, and other software (e.g. webbrowsers or PowerPoint&reg;) can understand them effortlessly.
 But the _potentially very bad_ thing about RGB images is that creating them requires conversion, and after this it might very well be _impossible_ to regain the original pixel values.
 ```
+
+````
 
 --------
 

@@ -245,8 +245,10 @@ To determine if a TIFF image has used lossy compression, more detective work may
 
 +++
 
-```{tabbed} Question
-:new-group:
+````{tab-set}
+
+```{tab-item} Question
+
 
 It takes approximately 1 MB to store (1,000,000 bytes) an 8-bit uncompressed image with 1,000,000 pixels.
 
@@ -255,7 +257,7 @@ How much memory does it take to store a 16-bit image with the same number of pix
 *You can ignore the tiny bit of extra space needed to store any associated metadata.*
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 2 MB.
 
@@ -263,10 +265,14 @@ How much memory does it take to store a 16-bit image with the same number of pix
 We multiply the number of bytes per pixel by the number of pixels to get the minimum size required to store the uncompressed image.
 ```
 
+````
+
 +++
 
-```{tabbed} Question
-:new-group:
+````{tab-set}
+
+```{tab-item} Question
+
 
 Suppose you have an original image in TIFF format (no compression).
 First, you save it as JPEG (lossy compression) to reduce the file size, then close it and throw away the TIFF.
@@ -276,11 +282,13 @@ How does your final TIFF image look, and what is its file size?
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 The final image will look exactly like the JPEG version, *but with the same file size as the original TIFF!*
 As such, it has 'the worst of both worlds'.
 ```
+
+````
 
 +++
 

@@ -184,8 +184,10 @@ Although by no means obvious, this indicates that the image is too large.
 If this happens, you might want to try [QuPath](sec_files_pyramidal) instead.
 
 
-```{tabbed} Practical
-:new-group:
+````{tab-set}
+
+```{tab-item} Practical
+
 
 To get a feel for the importance of metadata, you can try opening an image in which it is completely absent.
 This is quite tricky, and requires some detective work (or some luck).
@@ -209,7 +211,7 @@ The difference is similar to how a perfectly respectable number like __twenty-th
 ```
 
 
-```{tabbed} Solution
+```{tab-item} Solution
 
 The file size gives you the $$ \textrm{File size (in bytes)} = \frac{\textrm{width} \times \textrm{height} \times \textrm{bit-depth}}{8} $$ where the division by 8 converts the total number of bits to bytes (since 8 bits make 1 byte).
 This can be used to make reasonable starting estimates for the width, height and bit-depth, but figuring out which are correct likely still requires some trial-and-error.
@@ -226,3 +228,5 @@ Using these values in the import should result in a reasonable image.
 Now make sure never to lose your metadata, and you do not need to solve such puzzles often in real life.
 (Also, any explanations for what exactly was going on in that scene would be welcome.)
 ```
+
+````

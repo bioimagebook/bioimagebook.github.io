@@ -236,9 +236,9 @@ When the image is larger than the visible region, a small (purple) overview appe
 +++
 
 
-````{div} question
+````{tab-set}
 
-```{tabbed} Practical
+```{tab-item} Practical
 The status bar also shows the x and y coordinates for the pixel under the cursor.
 However, to interpret these you need to know the *origin*, i.e. the location of the pixel at x=0, y=0.
 
@@ -256,7 +256,7 @@ Where is the origin of the image in ImageJ?
 
 ```
 
-```{tabbed} Solution
+```{tab-item} Solution
 The origin of the image is at the top left, i.e. the top left pixel is identified with the coordinate x=0, y=0.
 ```
 ````
@@ -297,9 +297,9 @@ I use {guilabel}`Minimum` and {guilabel}`Maximum` almost exclusively.
 :::
 
 
-````{div} question
+````{tab-set}
 
-```{tabbed} Practical
+```{tab-item} Practical
 Does adjusting any of the sliders in the brightness & contrast dialog change the pixel values or only the LUT?
 
 What happens if you press {guilabel}`Apply`?
@@ -307,7 +307,7 @@ What happens if you press {guilabel}`Apply`?
 [![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/bioimagebook.github.io/blob/main/chapters/1-concepts/1-images_and_pixels/images/couple.png)
 ```
 
-```{tabbed} Solution
+```{tab-item} Solution
 Adjusting the sliders changes the LUT -- and *not* the pixel values.
 
 That is, unless you press {guilabel}`Apply`.

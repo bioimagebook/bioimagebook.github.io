@@ -126,15 +126,16 @@ However, these advantages comes with a major drawback.
 Images usually contain thousands to millions of pixels, and so only a tiny fraction of the time required to record an image is spent detecting photons for any one pixel in a LSCM image -- unlike in the widefield case, where photons can be detected for all pixels over the entire image acquisition time. This can cause LSCM image acquisition to be comparatively slow, noisy (in terms of few detected photons) or both.
 Spatial information is therefore gained at a cost in noise and/or temporal resolution.
 
+````{tab-set}
 
-```{tabbed} Question
-:new-group:
+```{tab-item} Question
+
 
 Why is it often recommended that the pinhole in LSCM be set to have the same size as one Airy disk? And why is it sometimes better not to strictly follow this recommendation?
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 As described in {ref}`chap_formation_spatial`, the vast majority of the light from the in-focus plane falls within the Airy disk.
 Using a pinhole smaller than this can result in so little light being detected that the image becomes too noisy to be useful.
@@ -146,6 +147,10 @@ Nevertheless, sometimes a reduction in optical sectioning is a worthwhile cost -
 Also, when recording a multichannel image then you may well have to set the pinhole size according to the Airy disk for one channel.
 But because the size of the disk depends upon the light wavelength (as described in Equation {eq}`eqn-res_lateral`), the pinhole diameter will differ in terms of Airy disk sizes for other channels.
 ```
+
+````
+
++++
 
 ### Spinning disk confocal
 
@@ -357,16 +362,17 @@ For the EMCCD, the electrons are shifted through a 'gain register' prior to quan
 See {numref}`fig-ccd` for additional labels; the sense register has been omitted for simplicity.
 ```
 
+````{tab-set}
 
-```{tabbed} Question
-:new-group:
+```{tab-item} Question
+
 
 From a practical point of view, an EMCCD is rather like having a CCD with no read noise, but with half the QE.
 Under what circumstances (i.e. high or low numbers of photons) is an EMCCD preferable to a CCD?
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 The gain register of EMCCDs offers benefits primarily when few photons are available (i.e. when read-noise is the main problem, such as in SDCM).
 CCDs are preferable when many photons are available (e.g. in widefield).
@@ -381,15 +387,20 @@ But suppose you happen to have 90000 detected photons instead, in which case the
 The read noise of 10 is comparatively insignificant, and there is nothing to gain from electron multiplication and making the photon noise situation worse.
 ```
 
+````
 
-```{tabbed} Question
-:new-group:
++++
+
+````{tab-set}
+
+```{tab-item} Question
+
 
 Based upon the above descriptions, which detectors seem most appropriate (generally!) for (a) widefield microscopy, (b) SDCM and (c) LSCM?
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 The following are reasonable rules of thumb:
 
@@ -401,9 +412,14 @@ This is because SDCM usually gives lower photon counts (certainly lower than in 
 * _Laser Scanning Confocal Microscopy:_ PMTs are suitable, since the image is built up one pixel at a time.
 ```
 
+````
 
-```{tabbed} Question
-:new-group:
++++
+
+````{tab-set}
+
+```{tab-item} Question
+
 
 Previously we explored how CCDs can use 2×2 binning to combine the electrons corresponding to multiple pixels together into a single pixel, which is then 'less noisy'.
 A similar effect can be achieved by just acquiring an image without binning and applying a 2×2 filter, in which all the coefficients have values of one.
@@ -413,7 +429,7 @@ Think of one major advantage and one disadvantage of using filtering _after_ acq
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 A 2×2 binned image contains 1/4 the number of pixels of the original image.
 This represents a considerable loss of spatial information, and you would get a different result if you were to start binning at the first or second row or column, since different pixels would be combined in each case.
@@ -430,6 +446,4 @@ Sometimes this extra noise is too high a cost for the flexibility of filtering, 
 (In this regard, remember that read noise is typically worse for CCD cameras, but not such a problem for EMCCDs or PMTs.)
 ```
 
-```{code-cell} ipython3
-
-```
+````

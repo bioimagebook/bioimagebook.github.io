@@ -12,6 +12,19 @@ kernelspec:
   name: python3
 ---
 
+(chap_bit_depths)=
+# Types & bit-depths
+
+:::{admonition} Chapter outline
+:class: tip
+
+* The **bit-depth** & **type** of an image determine what pixel values it can contain
+* An image with a **higher bit-depth** can (potentially) contain **more information**
+* During acquisition, most images have the type **unsigned integer**
+* During processing, it's often better to use **floating point** types
+* Attempting to store values outside the range permitted by the type & bit-depth leads to **clipping** -- which is usually **very bad indeed**
+:::
+
 ```{code-cell} ipython3
 :tags: [hide-cell, thebe-init]
 
@@ -27,19 +40,6 @@ from myst_nb import glue
 import numpy as np
 from scipy import ndimage
 ```
-
-(chap_bit_depths)=
-# Types & bit-depths
-
-:::{admonition} Chapter outline
-:class: tip
-
-* The **bit-depth** & **type** of an image determine what pixel values it can contain
-* An image with a **higher bit-depth** can (potentially) contain **more information**
-* During acquisition, most images have the type **unsigned integer**
-* During processing, it's often better to use **floating point** types
-* Attempting to store values outside the range permitted by the type & bit-depth leads to **clipping** -- which is usually **very bad indeed**
-:::
 
 +++
 
@@ -173,16 +173,17 @@ In practice, computers tend to work with groups of 8 bits, with each group of 8 
 Microscopes that acquire 8-bit images are still reasonably common, and these permit 2<sup>8</sup> = 256 different pixel values, which fall in the range 0–255.
 The next step up is a 16-bit image, which can contain 2<sup>16</sup> = 65536 values: a dramatic improvement (0–65535).
 
+````{tab-set}
 
-```{tabbed} Question
-:new-group:
+```{tab-item} Question
+
 What impact would you expect bit-depth to have on the file size of a saved image?
 
 For example, would you expect an 8-bit image to have a larger, smaller or (roughly) equivalent file size to a 16-bit image of the same scene?
 You can assume the two images have the same number of pixels.
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 In general, the file size required to store an image is expected to be higher with a higher bit-depth.
 
 Assuming that the image isn't [compressed](sec_files_compression), a 16-bit image would require roughly twice as much storage space as a corresponding 8-bit image.
@@ -190,6 +191,8 @@ Assuming that the image isn't [compressed](sec_files_compression), a 16-bit imag
 If you have a 1024 x 1024 pixel image that is 8-bit, that should take roughly 1 MB to store.
 The corresponding 16-bit image would require approximately 2 MB.
 ```
+
+````
 
 +++
 
@@ -258,8 +261,10 @@ Conceivably you *can* have a 32-bit signed/unsigned integer image, or even a 16-
 ```
 ````
 
-````{tabbed} Question
-:new-group:
+`````{tab-set}
+
+````{tab-item} Question
+
 
 The pixels shown on the right all belong to different images.
 
@@ -273,7 +278,7 @@ Your type options are:
 * Floating point
 ````
 
-````{tabbed} Answer
+````{tab-item} Answer
 The possible image types, from left to right:
 
 1.  Signed integer or floating point
@@ -283,23 +288,39 @@ The possible image types, from left to right:
 Note that 'floating point' is an option in all cases: it's the most flexible representation.
 ````
 
-```{tabbed} Question
-:new-group:
+`````
+
++++
+
+````{tab-set}
+
+```{tab-item} Question
+
 What is the maximum pixel value that can be stored in a *16-bit, unsigned integer* image?
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 The maximum value that can be stored in a 16-bit, unsigned integer image is 2<sup>16</sup>-1 = 65535.
 ```
 
-```{tabbed} Question
-:new-group:
+````
+
++++
+
+````{tab-set}
+
+```{tab-item} Question
+
 What would be the maximum pixel value that can be stored in a *16-bit, signed integer* image?
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 The maximum value that can be stored in a 16-bit, signed integer image is 2<sup>15</sup>-1 = 32767 (since one of the bits is used for the sign, we have 15 remaining).
 ```
+
+````
+
++++
 
 ```{code-cell} ipython3
 :tags: [remove-cell, remove-output]
@@ -473,13 +494,14 @@ Therefore **during image acquisition, any available controls should be adjusted 
 % - RESCALED TO A LOWER BIT-DEPTH, RESCALED TO A HIGHER BIT-DEPTH, CLIPPED
 
 
+````{tab-set}
 
-```{tabbed} Question
-:new-group:
+```{tab-item} Question
+
 When acquiring an 8-bit unsigned integer image, is it fair to say your data is fine so long as your minimum pixel value is 0 and your maximum value is 255?
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 No! At least, not really.
 
 You *cannot* store pixels outside the range 0–255.
@@ -488,9 +510,14 @@ Therefore, you should ensure images you acquire do not contain any pixels with t
 To be confident your 8-bit data is not clipped, the maximum range would be 1–254.
 ```
 
+````
 
-```{tabbed} Question
-:new-group:
++++
+
+````{tab-set}
+
+```{tab-item} Question
+
 The bit-depth of an image is probably some multiple of 8, but the bit-depth that a [detector (e.g. CCD)](chap_microscope_types) can support might not be.
 
 For example, what is the maximum value in a 16-bit image that was acquired using a camera with a 12-bit output?
@@ -500,7 +527,7 @@ And what is the maximum value in a 8-bit image acquired using a camera with a 14
 Assume unsigned integers are used in both cases.
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 The maximum value of a 16-bit image obtained using a 12-bit camera is 4095 (i.e. 2<sup>12</sup>-1).
 
 The maximum value of an 8-bit image obtained using a 14-bit camera is 255 – the extra bits of the camera do not change this.
@@ -510,6 +537,7 @@ So be aware that the actual range of possible values depends upon the acquisitio
 The lower bit-depth will dominate.
 ```
 
+````
 
 ### Rounding errors
 
@@ -564,13 +592,15 @@ When given the option of acquiring a 16-bit or 8-bit image, most of the time you
 
 :::
 
-```{tabbed} Question
+````{tab-set}
+
+```{tab-item} Question
 Although *more bits are better* is a simple rule of thumb we can share with those who do not know the subtleties of bit-depths, it should not be held completely rigorously.
 
 Can you think of any circumstances when more bits might *not* be better?
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 Reasons why a lower bit depth is *sometimes* preferable to a higher one include:
 
 * A higher bit-depth leads to larger file sizes, and potentially slower processing. For very large datasets, this might be a bigger issue that any loss of precision found in using fewer bits.
@@ -578,3 +608,5 @@ Reasons why a lower bit depth is *sometimes* preferable to a higher one include:
 
 But with smallish datasets for which processing and storage costs are not a problem, it is safest to err on the side of more bits than we strictly need.
 ```
+
+````

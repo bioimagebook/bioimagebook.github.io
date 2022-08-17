@@ -64,15 +64,15 @@ This handbook is designed to be interactive in two main ways:
 Various questions and practical exercises are scattered throughout the text.
 To make the most of these, please follow the instructions below.
 
-````{div} question
+````{tab-set}
 
-```{tabbed} Question
+```{tab-item} Question
 When you see a question, try to come up with your own answer first.
 
 Then, if you want to compare your answer with mine, click on the *Answer* tab.
 ```
 
-```{tabbed} Answer
+```{tab-item} Answer
 Good! This is my answer.
 ```
 ````

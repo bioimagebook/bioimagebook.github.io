@@ -58,8 +58,10 @@ You can also specify the percentage of pixels that should be saturated (clipped)
 So long as {guilabel}`Normalize` and {guilabel}`Equalize histogram` are not selected, the pixel values shouldn't be changed.
 
 
-```{tabbed} Question
-:new-group:
+````{tab-set}
+
+```{tab-item} Question
+
 
 By default, the percentage of saturated pixels in {menuselection}`Enhance Contrast...` is set to 0.4.
 Why might this be chosen instead of 0?
@@ -68,14 +70,14 @@ Why might this be chosen instead of 0?
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 If the percentage of saturated pixels is 0, then the minimum and maximum pixel values throughout the image will be given the first and last LUT colors respectively, with all other colors devoted to values in between.
 This is sensitive to outliers, and often results in images that have poor contrast.
 It's usually better to accept some small amount of visual saturation, in order to give more LUT colors to the pixel values between the extremes.
 ```
 
-
+````
 
 
 :::{admonition} Converting bit-depths of multidimensional images
@@ -137,9 +139,10 @@ Elsewhere (e.g. {menuselection}`Gaussian Blur 3D...`) the units are pixels, slic
 When thresholding an image with more than 2 dimensions using the {menuselection}`Threshold...` command, it is necessary to choose whether the threshold should be determined from the histogram of the entire stack, or from the currently-visible 2D slice only.
 If the latter, you will also be asked whether the same threshold should be used for every slice, or if it should be calculated anew for each slice based upon the slice histogram. In some circumstances, these choices can have a very large impact upon the result.
 
+````{tab-set}
 
-```{tabbed} Question
-:new-group:
+```{tab-item} Question
+
 
 When you threshold a stack, you have an option to choose {guilabel}`Stack Histogram`. Then, when you choose {guilabel}`Apply` you are asked if you want to {guilabel}`Calculate Threshold for Each Image`.
 What difference do you expect these two options to make, and what combinations would you use for:
@@ -153,11 +156,10 @@ _Note:_ Have a look at what happens when you click {guilabel}`Auto` while scroll
 You will have to split the channels for this because ImageJ currently refuses to threshold multichannel images with extra dimensions (which helps avoid some confusion).
 {guilabel}`Dark Background` should always be selected here.
 
-
 ```
 
 
-```{tabbed} Solution
+```{tab-item} Answer
 
 If {guilabel}`Stack Histogram` is checked, the thresholds are computed from a histogram of all the pixels in the entire image stack; otherwise, the histogram of only the currently-displayed image slice is used.
 
@@ -187,6 +189,8 @@ This can cause holes to appear in the brightest parts of structures, and is prob
 A similar situation occurs with the low threshold when {guilabel}`Dark Background` is unchecked.
 ```
 
+````
+
 +++
 
 ## Measurements in 3D data
@@ -206,8 +210,10 @@ show_image('images/widest_roi_3.png', pos=133)
 glue_fig('fig_multidimensional_widest', fig)
 ```
 
-::::{tabbed} Practical
-:new-group:
+`````{tab-set}
+
+````{tab-item} Practical
+
 
 Suppose you have a cell, nucleus or some other large 3D structure in a __z__-stack, and you want to draw the smallest 2D ROI that completely contains it on every slice.
 An example is shown below for the green structure in the {menuselection}`Confocal Series` sample image.
@@ -219,14 +225,16 @@ How would you create such a ROI, and be confident that it is large enough for al
 ```{glue:figure} fig_multidimensional_widest
 ```
 
-::::
+````
 
 
-:::{tabbed} Solution
+```{tab-item} Solution
 
 My strategy would be to create a z-projection (max intensity) and then draw the ROI on this – or, preferably, create the ROI by thresholding using {menuselection}`Image --> Adjust --> Threshold` and the {guilabel}`Wand` tool.
 This ROI can then be transferred over to the original stack, either via the ROI Manager or {menuselection}`Edit --> Selection --> Restore Selection`.
-:::
+```
+
+`````
 
 
 
@@ -245,8 +253,10 @@ Then when you compute the stack histogram (or press {menuselection}`Measure` for
 Just be sure to reset {guilabel}`Limit to threshold` later.
 
 
-```{tabbed} Question
-:new-group:
+````{tab-set}
+
+```{tab-item} Question
+
 
 How can you translate the total number of pixels in an object into its volume, e.g.
 in µm<sup>3</sup>? Give some thought to how accurate your method will be.
@@ -255,7 +265,7 @@ in µm<sup>3</sup>? Give some thought to how accurate your method will be.
 ```
 
 
-```{tabbed} Answer
+```{tab-item} Answer
 
 You could treat each pixel as a rectangular cuboid, with a volume equal to _pixel width_×_pixel height_×_voxel depth_ (as given in {menuselection}`Image --> Properties...`).
 Then multiply this by the number of pixels within the object.
@@ -266,7 +276,9 @@ However, it is unlikely to be very accurate – and volume measurements obtained
 They are also likely to be quite sensitive to spacing.
 ```
 
+````
 
++++
 
 
 :::{admonition} Using NaNs
