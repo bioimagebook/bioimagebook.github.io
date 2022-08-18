@@ -1043,7 +1043,7 @@ Small pixels are needed to see detail, but also reduce the number of photons per
 However, {ref}`chap_formation_spatial` has already argued that ultimately it's not pixel size, but rather the PSF that limits spatial resolution -- which suggests that there is a minimum pixel size below which nothing is gained, and the only result is that more noise is added.
 
 This size can be determined based upon knowledge of the PSF and the **Nyquist-Shannon sampling theorem** ({numref}`fig-nyquist_shannon`).
-Images acquired with this pixel size are said to be **Nyquist sampled**.
+Images acquired with this pixel size are said to be **Nyquist sampled** (although see Alvy Ray Smith's epic *A Biography of the Pixel* for the case why credit for the sampling theorem really belongs to **Vladimir Kotelnikov**).
 
 The easiest way I know to determine the corresponding pixel size for a given experiment is to use the online calculator provided by *Scientific Volume Imaging* at https://svi.nl/NyquistCalculator.
 You may need larger pixels to reduce noise or see a wider field of view, but you do not get anything extra by using smaller pixels.
