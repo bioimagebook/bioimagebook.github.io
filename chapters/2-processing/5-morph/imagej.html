@@ -762,8 +762,10 @@ title="Print to PDF"
 </section>
 <section id="erosion-dilation-opening-closing">
 <h2>Erosion, dilation, opening &amp; closing<a class="headerlink" href="#erosion-dilation-opening-closing" title="Permalink to this headline">#</a></h2>
-<p><span class="menuselection">Process ‣ Binary</span> contains the commands <span class="menuselection">Erode</span>, <span class="menuselection">Dilate</span>, <span class="menuselection">Open</span> and <span class="menuselection">Close-</span> commands –- but these are actually pretty limited, because they only use 3×3 neighborhoods.</p>
-<p>To perform erosion, dilation, opening and closing with larger neighborhoods, you can instead use the <span class="menuselection">Maximum…</span> and <span class="menuselection">Minimum…</span> filters, combining them if necessary.</p>
+<p><span class="menuselection">Process ‣ Binary</span> contains the commands <span class="menuselection">Erode</span>, <span class="menuselection">Dilate</span>, <span class="menuselection">Open</span> and <span class="menuselection">Close-</span> commands.</p>
+<p>These are relevant here, but my advice is to avoid them.
+By default they work with fixed 3×3 pixel neighborhoods, but they <em>could</em> do something different if someone has been messing about with the <span class="guilabel">Iterations (1-100)</span> or <span class="guilabel">Count (1-8)</span> options under <span class="menuselection">Process ‣ Binary ‣ Options…</span> – and this unpredictability could well cause trouble.</p>
+<p>To perform erosion, dilation, opening and closing with more control and possibly larger neighborhoods, I strongly prefer to use the <span class="menuselection">Process ‣ Filters ‣ Maximum…</span> and <span class="menuselection">Process ‣ Filters ‣ Minimum…</span> commands, combining them if necessary.</p>
 <div class="tip admonition">
 <p class="admonition-title">Morphological operations in Fiji</p>
 <p>Fiji contains <span class="menuselection">Process ‣ Morphology ‣ Gray Morphology</span>, which provides a more flexible implementation of erosion, dilation, opening and closing using a variety of shapes for both grayscale and binary images.</p>
@@ -817,14 +819,14 @@ title="Print to PDF"
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="ec425d61-d415-481c-b060-9d10fba8aec7" name="fb5e0546-00bc-4fd3-b5c2-367968c9d2da" type="radio">
-</input><label class="sd-tab-label" for="ec425d61-d415-481c-b060-9d10fba8aec7">
+<input checked="checked" id="1f28d24d-51e9-4ba8-a08b-59bd28f74db6" name="ad82c657-2f4e-4ff3-aa9f-a32f9da93ad4" type="radio">
+</input><label class="sd-tab-label" for="1f28d24d-51e9-4ba8-a08b-59bd28f74db6">
 Question</label><div class="sd-tab-content docutils">
 <p>The outline of an object in a binary image can also be determined by applying one other morphological operation to a duplicate of the image, and then using the <span class="menuselection">Image Calculator</span>.
 How?</p>
 </div>
-<input id="89196f69-9151-47e7-a4cb-1dcac03b7c80" name="fb5e0546-00bc-4fd3-b5c2-367968c9d2da" type="radio">
-</input><label class="sd-tab-label" for="89196f69-9151-47e7-a4cb-1dcac03b7c80">
+<input id="1e16c096-3a5e-4f7e-abe0-0b03a02e3a5e" name="ad82c657-2f4e-4ff3-aa9f-a32f9da93ad4" type="radio">
+</input><label class="sd-tab-label" for="1e16c096-3a5e-4f7e-abe0-0b03a02e3a5e">
 Answer</label><div class="sd-tab-content docutils">
 <p>To outline the objects in a binary image, you can simply calculate the difference between the original image and an eroded (or dilated, if you want the pixels just beyond the objects) duplicate of the image.</p>
 </div>
