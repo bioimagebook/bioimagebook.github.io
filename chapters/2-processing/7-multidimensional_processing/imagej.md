@@ -297,7 +297,7 @@ Its settings (analogous to {menuselection}`Set Measurements...`) are under {menu
 In addition to various measurements, it provides labelled images as output, either of the entire objects or only their central pixels – optionally with labels, or expanded to be more visible.
 
 [^fn_3]: See See S Bolte and F P Cordelières.
-“A guided tour into subcellular colocalization analysis in light microscopy.” In: Journal of Microscopy 224.Pt 3 (Dec. 2006), pp. 213–32.
+“A guided tour into subcellular colocalization analysis in light microscopy.” Journal of Microscopy 224.Pt 3 (Dec. 2006), pp. 213–32.
 url: https://pubmed.ncbi.nlm.nih.gov/17210054/
 
 :::{admonition} Find Connected Regions

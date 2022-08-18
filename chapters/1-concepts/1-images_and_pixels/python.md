@@ -42,6 +42,8 @@ Before continuing, you should [make the notebook interactive](sec-live-notebooks
 
 :::{admonition} Python overview
 If you want a quick introduction to Python, check out the [Python Primer](../../appendices/python/python.md) section.
+
+For lots more, see Robert Haase's [Bio-image Analysis Notebooks](https://haesleinhuepf.github.io/BioImageAnalysisNotebooks/).
 :::
 
 
@@ -57,7 +59,7 @@ Read and display an image in Python.
 """
 
 # In Python, we need to import things before we can use them
-# (And, often, google to find out what we ought to be importing, 
+# (And, often, google to find out what we ought to be importing,
 # then copy & paste the same import statements a lot)
 import matplotlib.pyplot as plt
 from imageio import imread
@@ -94,7 +96,7 @@ help(plt.imshow)
 
 This can sometimes reveal an overwhelming amount of information, and it can take a bit of time to figure out how to identify the key bits.
 
-The important plotting options for our purposes are 
+The important plotting options for our purposes are
 * `cmap` to change the colormap (LUT)
 * `vmin` to change the pixel value corresponding to the first color in the colormap
 * `vmax` to change the pixel value corresponding to the last color in the colormap
@@ -193,17 +195,17 @@ def my_imshow(im, title=None, cmap='gray'):
     Call imshow and turn the axis off, optionally setting a title and colormap.
     The default colormap is 'gray', and there is no default title.
     """
-    
+
     # Show image & turn off axis
     plt.imshow(im, cmap=cmap)
     plt.axis(False)
-    
+
     # Show a title if we have one
     if title is not None:
         plt.title(title)
-        
+
     plt.show()
-    
+
 # Now I just need to call my function rather than customize every plot
 my_imshow(im, title='Here is my new title')
 my_imshow(im, title='Now I have inverted the colormap', cmap='gray_r')
