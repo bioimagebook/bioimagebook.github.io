@@ -39,9 +39,12 @@ However, there are other useful morphological operations lurking elsewhere -- al
 
 ## Erosion, dilation, opening & closing
 
-{menuselection}`Process --> Binary` contains the commands {menuselection}`Erode`, {menuselection}`Dilate`, {menuselection}`Open` and {menuselection}`Close-` commands –- but these are actually pretty limited, because they only use 3×3 neighborhoods.
+{menuselection}`Process --> Binary` contains the commands {menuselection}`Erode`, {menuselection}`Dilate`, {menuselection}`Open` and {menuselection}`Close-` commands.
 
-To perform erosion, dilation, opening and closing with larger neighborhoods, you can instead use the {menuselection}`Maximum...` and {menuselection}`Minimum...` filters, combining them if necessary.
+These are relevant here, but my advice is to avoid them.
+By default they work with fixed 3×3 pixel neighborhoods, but they *could* do something different if someone has been messing about with the {guilabel}`Iterations (1-100)` or {guilabel}`Count (1-8)` options under {menuselection}`Process --> Binary --> Options...` -- and this unpredictability could well cause trouble.
+
+To perform erosion, dilation, opening and closing with more control and possibly larger neighborhoods, I strongly prefer to use the {menuselection}`Process --> Filters --> Maximum...` and {menuselection}`Process --> Filters --> Minimum...` commands, combining them if necessary.
 
 
 :::{admonition} Morphological operations in Fiji
