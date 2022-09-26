@@ -68,7 +68,7 @@ In some software (including ImageJ) a binary image has the values 0 and 255, but
 
 For the rest of this chapter, we will assume that our binary images use 0 for the background (shown as black) and 1 for the foreground (shown as white).
 
-This is important: if we can generate a binary image in which are our objects of interest are in the foreground, we can then use this binary image to help us make measurements of those objects.
+This is important: if we can generate a binary image in which all our objects of interest are in the foreground, we can then use this binary image to help us make measurements of those objects.
 
 One way to do this involves identifying individual objects in the binary image by labeling **connected components**.
 A connected component is really just a connected group of foreground pixels, which together represent a distinct object.
