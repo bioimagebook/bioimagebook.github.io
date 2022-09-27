@@ -68,7 +68,7 @@ In some software (including ImageJ) a binary image has the values 0 and 255, but
 
 For the rest of this chapter, we will assume that our binary images use 0 for the background (shown as black) and 1 for the foreground (shown as white).
 
-This is important: if we can generate a binary image in which are our objects of interest are in the foreground, we can then use this binary image to help us make measurements of those objects.
+This is important: if we can generate a binary image in which all our objects of interest are in the foreground, we can then use this binary image to help us make measurements of those objects.
 
 One way to do this involves identifying individual objects in the binary image by labeling **connected components**.
 A connected component is really just a connected group of foreground pixels, which together represent a distinct object.
@@ -1091,8 +1091,8 @@ im -= im.min()
 im = im / im.max()
 im = (im * 255).astype(np.uint8)
 
-# Apply triangle threshold
-bw_triangle = im > threshold_niblack(im, window_size=25, k=-1.5)
+# Apply local Niblack threshold
+bw_niblack = im > threshold_niblack(im, window_size=25, k=-1.5)
 
 # Show, using an alternative colormap to boost contrast
 fig = create_figure(figsize=(8, 2.5))
@@ -1101,7 +1101,7 @@ cmap = cm.get_cmap('magma')
 show_image(im, title="(A) Original image", clip_percentile=0.5, cmap=cmap, pos=131)
 show_histogram(im, title="(B) Histogram of (A)", bins=np.arange(0, 100), pos=132)
 plt.xlim([0, 100])
-show_image(bw_triangle, title="(C) Triangle threshold applied to (A)", pos=133)
+show_image(bw_niblack, title="(C) Niblack threshold applied to (A)", pos=133)
 
 plt.tight_layout()
 glue_fig('fig_thresholds_local_niblack', fig)
@@ -1120,7 +1120,7 @@ I find the window size and *k* parameters difficult to tune, and it suffers the 
 
 However, local thresholding becomes more interesting and powerful if we take matters into our own hands by thinking about the problem from a slightly different angle.
 
-Suppose we had a second image that contained values equal to the thresholds want to apply at each pixel.
+Suppose we had a second image that contained values equal to the thresholds we want to apply at each pixel.
 If we simply *subtract* this second image from the first, we can then apply a global threshold of 0 to detect what we want.
 
 Alternatively, we could subtract an image with values that aren't exactly equal to the local thresholds, but similar enough to effectively flatten out the background so that a global threshold can be applied.
