@@ -1091,7 +1091,7 @@ im -= im.min()
 im = im / im.max()
 im = (im * 255).astype(np.uint8)
 
-# Apply triangle threshold
+# Apply local Niblack threshold
 bw_niblack = im > threshold_niblack(im, window_size=25, k=-1.5)
 
 # Show, using an alternative colormap to boost contrast
