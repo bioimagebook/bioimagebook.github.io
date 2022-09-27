@@ -108,7 +108,7 @@ kernel /= kernel.sum()
 
 # Ensure aligned
 # fig = create_figure(figsize=(8, 8))
-fig, ax = plt.subplots(2, 3, sharex='col', figsize=(8, 5), dpi=200)
+fig, ax = plt.subplots(2, 3, sharex='col', sharey='row', figsize=(8, 5), dpi=200)
 
 # Show images & plots
 show_image(im, title="(A) Original image", pos=231)
