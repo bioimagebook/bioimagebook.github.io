@@ -907,7 +907,7 @@ If we can automate image segmentation, this is not only likely to be much faster
 Usually, these values are 0 and 1.
 In some software (including ImageJ) a binary image has the values 0 and 255, but this doesn’t really make any difference to how it is used: the key point for our purposes is that one of the values represents the foreground (i.e. pixels that are part of an object), and the other value represents the background.</p>
 <p>For the rest of this chapter, we will assume that our binary images use 0 for the background (shown as black) and 1 for the foreground (shown as white).</p>
-<p>This is important: if we can generate a binary image in which are our objects of interest are in the foreground, we can then use this binary image to help us make measurements of those objects.</p>
+<p>This is important: if we can generate a binary image in which all our objects of interest are in the foreground, we can then use this binary image to help us make measurements of those objects.</p>
 <p>One way to do this involves identifying individual objects in the binary image by labeling <strong>connected components</strong>.
 A connected component is really just a connected group of foreground pixels, which together represent a distinct object.
 By labeling connected components, we get a <strong>labeled image</strong> in which the pixels belonging to each object have a unique integer value.
@@ -990,13 +990,13 @@ Pixels are <em>4-connected</em> if they are horizontally or vertically adjacent,
 <p>The choice of connectivity can make a big difference in the number and sizes of objects found, as the example on the right shows (distinct objects are shown in different colors).</p>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="daa3f5d8-66e5-4e37-b0e3-0acef7495a9c" name="5a8f658b-be67-456d-9965-6467ab92264c" type="radio">
-</input><label class="sd-tab-label" for="daa3f5d8-66e5-4e37-b0e3-0acef7495a9c">
+<input checked="checked" id="039160a2-1fda-49c7-afe6-0d99678ae3cb" name="1e55719e-98e2-4250-b9ec-ba758ce5d631" type="radio">
+</input><label class="sd-tab-label" for="039160a2-1fda-49c7-afe6-0d99678ae3cb">
 Question</label><div class="sd-tab-content docutils">
 <p>What do you suppose <em>6-connectivity</em> and <em>26-connectivity</em> refer to?</p>
 </div>
-<input id="52e0b4a6-6a58-45ed-9d5c-2e72e03b2949" name="5a8f658b-be67-456d-9965-6467ab92264c" type="radio">
-</input><label class="sd-tab-label" for="52e0b4a6-6a58-45ed-9d5c-2e72e03b2949">
+<input id="62a4ef26-3e26-4147-be24-af4075bafdb2" name="1e55719e-98e2-4250-b9ec-ba758ce5d631" type="radio">
+</input><label class="sd-tab-label" for="62a4ef26-3e26-4147-be24-af4075bafdb2">
 Answer</label><div class="sd-tab-content docutils">
 <p>6-connectivity is similar to 4-connectivity, but in 3D.
 If all 3D diagonals are considered, we end up with each pixel having 26 neighbors.</p>
@@ -1840,8 +1840,8 @@ Note the sign: <em>-k</em> is used, because the original definition was focussed
 <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 <span class="n">im</span> <span class="o">=</span> <span class="p">(</span><span class="n">im</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 
-<span class="c1"># Apply triangle threshold</span>
-<span class="n">bw_triangle</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">threshold_niblack</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="c1"># Apply local Niblack threshold</span>
+<span class="n">bw_niblack</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">threshold_niblack</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mf">1.5</span><span class="p">)</span>
 
 <span class="c1"># Show, using an alternative colormap to boost contrast</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
@@ -1850,7 +1850,7 @@ Note the sign: <em>-k</em> is used, because the original definition was focussed
 <span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
 <span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Histogram of (A)&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_triangle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Triangle threshold applied to (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw_niblack</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Niblack threshold applied to (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_thresholds_local_niblack&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
@@ -1869,7 +1869,7 @@ Note the sign: <em>-k</em> is used, because the original definition was focussed
 <p>To be honest, I don’t tend to use this approach for bioimages.
 I find the window size and <em>k</em> parameters difficult to tune, and it suffers the problem of the mean and standard deviation not being robust.</p>
 <p>However, local thresholding becomes more interesting and powerful if we take matters into our own hands by thinking about the problem from a slightly different angle.</p>
-<p>Suppose we had a second image that contained values equal to the thresholds want to apply at each pixel.
+<p>Suppose we had a second image that contained values equal to the thresholds we want to apply at each pixel.
 If we simply <em>subtract</em> this second image from the first, we can then apply a global threshold of 0 to detect what we want.</p>
 <p>Alternatively, we could subtract an image with values that aren’t exactly equal to the local thresholds, but similar enough to effectively flatten out the background so that a global threshold can be applied.
 This then provides us access to all global automated thresholding methods, and an intuition of how the histograms ought to look for the methods to be appropriate.
