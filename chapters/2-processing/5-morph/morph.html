@@ -860,17 +860,17 @@ title="Print to PDF"
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
+%autoreload 2
 
-<span class="c1"># Default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+# Default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
+from helpers import *
+from matplotlib import pyplot as plt
+from myst_nb import glue
+import numpy as np
+from scipy import ndimage
 </pre></div>
 </div>
 </div>
@@ -886,52 +886,52 @@ They could benefit from some extra cleaning up.</p>
 <h2>Morphological operations using rank filters<a class="headerlink" href="#morphological-operations-using-rank-filters" title="Permalink to this headline">#</a></h2>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Show morphological operations.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Show morphological operations.
 
-<span class="sd">Note that, as a habit, I use &#39;bw_&#39; at the beginning of variable names for</span>
-<span class="sd">variables that are really binary (black/white) images to identify these</span>
-<span class="sd">from other images, for which I use &#39;im_&#39;.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+Note that, as a habit, I use &#39;bw_&#39; at the beginning of variable names for
+variables that are really binary (black/white) images to identify these
+from other images, for which I use &#39;im_&#39;.
+&quot;&quot;&quot;
 
-<span class="k">def</span> <span class="nf">create_disk</span><span class="p">(</span><span class="n">radius</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Create a circular structuring element.</span>
-<span class="sd">    This is essentially the binary/morphological equivalent the filter kernel.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">radius</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="o">*</span><span class="n">r</span>
+def create_disk(radius: int):
+    &quot;&quot;&quot;
+    Create a circular structuring element.
+    This is essentially the binary/morphological equivalent the filter kernel.
+    &quot;&quot;&quot;
+    r = radius
+    x = np.arange(-r, r+1)
+    y = np.arange(-r, r+1)
+    y, x = np.meshgrid(x, x)
+    return x*x + y*y &lt;= r*r
 
-<span class="c1"># Create structuring element</span>
-<span class="n">radius</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">strel</span> <span class="o">=</span> <span class="n">create_disk</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+# Create structuring element
+radius = 2
+strel = create_disk(radius)
 
-<span class="c1"># Erode, dilate, open &amp; close the corresponding images</span>
-<span class="c1"># Use &gt; 0 when reading to ensure they are binary (&#39;bool&#39;) arrays,</span>
-<span class="c1"># not 8-bit images that happen to just have two values in them.</span>
-<span class="n">bw_erode</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/morph_erode.png&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="n">bw_eroded</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_erosion</span><span class="p">(</span><span class="n">bw_erode</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">strel</span><span class="p">)</span>
+# Erode, dilate, open &amp; close the corresponding images
+# Use &gt; 0 when reading to ensure they are binary (&#39;bool&#39;) arrays,
+# not 8-bit images that happen to just have two values in them.
+bw_erode = load_image(&#39;images/morph_erode.png&#39;) &gt; 0
+bw_eroded = ndimage.binary_erosion(bw_erode, structure=strel)
 
-<span class="n">bw_dilate</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/morph_dilate.png&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="n">bw_dilated</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_dilation</span><span class="p">(</span><span class="n">bw_dilate</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">strel</span><span class="p">)</span>
+bw_dilate = load_image(&#39;images/morph_dilate.png&#39;) &gt; 0
+bw_dilated = ndimage.binary_dilation(bw_dilate, structure=strel)
 
-<span class="n">bw_open</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/morph_open.png&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="n">bw_opened</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_opening</span><span class="p">(</span><span class="n">bw_open</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">strel</span><span class="p">)</span>
+bw_open = load_image(&#39;images/morph_open.png&#39;) &gt; 0
+bw_opened = ndimage.binary_opening(bw_open, structure=strel)
 
-<span class="n">bw_close</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/morph_close.png&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="n">bw_closed</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_closing</span><span class="p">(</span><span class="n">bw_close</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">strel</span><span class="p">)</span>
+bw_close = load_image(&#39;images/morph_close.png&#39;) &gt; 0
+bw_closed = ndimage.binary_closing(bw_close, structure=strel)
 
-<span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+# Show original concatenated with the filtered images
+fig = create_figure(figsize=(8, 4))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">bw_erode</span><span class="p">,</span> <span class="n">bw_eroded</span><span class="p">)),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Erosion&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">bw_dilate</span><span class="p">,</span> <span class="n">bw_dilated</span><span class="p">)),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Dilation&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">bw_open</span><span class="p">,</span> <span class="n">bw_opened</span><span class="p">)),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Opening&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">bw_close</span><span class="p">,</span> <span class="n">bw_closed</span><span class="p">)),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Closing&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_erode_dilate_open&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+show_image(np.vstack((bw_erode, bw_eroded)), title=&quot;(A) Erosion&quot;, pos=141)
+show_image(np.vstack((bw_dilate, bw_dilated)), title=&quot;(B) Dilation&quot;, pos=142)
+show_image(np.vstack((bw_open, bw_opened)), title=&quot;(C) Opening&quot;, pos=143)
+show_image(np.vstack((bw_close, bw_closed)), title=&quot;(D) Closing&quot;, pos=144)
+glue_fig(&#39;fig_erode_dilate_open&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -964,50 +964,50 @@ This can split single objects into multiple pieces.</p>
 This can also cause objects to merge.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_spots</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="mi">50</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">450</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">im</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def load_spots() -&gt; np.ndarray:
+    im = load_image(&#39;hela-cells.zip&#39;)[50:400, 50:450, 0].astype(np.float32)
+    return im
 
-<span class="k">def</span> <span class="nf">load_binary_spots</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Create a small, imperfect binary image containing spots.</span>
-<span class="sd">    We don&#39;t try to optimize preprocessing or thresholds - we just want something for illustration.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">skimage.filters</span> <span class="k">as</span> <span class="nn">filters</span>
-    <span class="kn">import</span> <span class="nn">skimage.morphology</span> <span class="k">as</span> <span class="nn">morph</span>
+def load_binary_spots(method=&#39;median&#39;) -&gt; np.ndarray:
+    &quot;&quot;&quot;
+    Create a small, imperfect binary image containing spots.
+    We don&#39;t try to optimize preprocessing or thresholds - we just want something for illustration.
+    &quot;&quot;&quot;
+    import skimage.filters as filters
+    import skimage.morphology as morph
 
-    <span class="n">im</span> <span class="o">=</span> <span class="n">load_spots</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;median&#39;</span><span class="p">:</span>
-        <span class="n">im_bg</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">median_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
-        <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im_bg</span>
-    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;opening&#39;</span><span class="p">:</span>
-        <span class="n">im_bg</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">opening</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">morph</span><span class="o">.</span><span class="n">disk</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
-        <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im_bg</span>
-    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;dog&#39;</span><span class="p">:</span>
-        <span class="n">sigma</span> <span class="o">=</span> <span class="mf">2.5</span>
-        <span class="n">im</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span> <span class="o">-</span> <span class="n">filters</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="o">*</span><span class="mf">1.6</span><span class="p">)</span>
-    <span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">filters</span><span class="o">.</span><span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">bw</span>
+    im = load_spots()
+    if method == &#39;median&#39;:
+        im_bg = ndimage.median_filter(im, (15, 15))
+        im = im - im_bg
+    elif method == &#39;opening&#39;:
+        im_bg = morph.opening(im, morph.disk(10))
+        im = im - im_bg
+    elif method == &#39;dog&#39;:
+        sigma = 2.5
+        im = filters.gaussian(im, sigma) - filters.gaussian(im, sigma*1.6)
+    bw = im &gt; filters.threshold_triangle(im)
+    return bw
 
-<span class="c1"># Define radius (change this to update the figure!)</span>
-<span class="n">radius</span> <span class="o">=</span> <span class="mi">2</span>
+# Define radius (change this to update the figure!)
+radius = 2
 
-<span class="c1"># Create structuring element</span>
-<span class="n">strel</span> <span class="o">=</span> <span class="n">create_disk</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+# Create structuring element
+strel = create_disk(radius)
 
-<span class="c1"># Load image &amp; process</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">load_binary_spots</span><span class="p">()</span>
-<span class="n">bw_eroded</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_erosion</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">strel</span><span class="p">)</span>
-<span class="n">bw_dilated</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_dilation</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">strel</span><span class="p">)</span>
+# Load image &amp; process
+bw = load_binary_spots()
+bw_eroded = ndimage.binary_erosion(bw, structure=strel)
+bw_dilated = ndimage.binary_dilation(bw, structure=strel)
 
-<span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+# Show original concatenated with the filtered images
+fig = create_figure(figsize=(8, 8))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Binary image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_eroded</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(B) Erosion (radius=</span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_dilated</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Dilation (radius=</span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_erode_dilate_spots&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+show_image(bw, title=&quot;(A) Binary image&quot;, pos=131)
+show_image(bw_eroded, title=f&quot;(B) Erosion (radius={radius})&quot;, pos=132)
+show_image(bw_dilated, title=f&quot;(C) Dilation (radius={radius})&quot;, pos=133)
+plt.tight_layout()
+glue_fig(&#39;fig_erode_dilate_spots&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1035,26 +1035,26 @@ The dilation can cause almost-connected objects to merge, and these often then r
 If you wish to count objects, but they are wrongly subdivided in the segmentation, closing may help make the counts more accurate.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define radius (change this to update the figure!)</span>
-<span class="n">radius</span> <span class="o">=</span> <span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define radius (change this to update the figure!)
+radius = 2
 
-<span class="c1"># Create structuring element</span>
-<span class="n">strel</span> <span class="o">=</span> <span class="n">create_disk</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+# Create structuring element
+strel = create_disk(radius)
 
-<span class="c1"># Load image &amp; process</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">load_binary_spots</span><span class="p">()</span>
-<span class="n">bw_opened</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_opening</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">strel</span><span class="p">)</span>
-<span class="n">bw_closed</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_closing</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">strel</span><span class="p">)</span>
+# Load image &amp; process
+bw = load_binary_spots()
+bw_opened = ndimage.binary_opening(bw, structure=strel)
+bw_closed = ndimage.binary_closing(bw, structure=strel)
 
-<span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+# Show original concatenated with the filtered images
+fig = create_figure(figsize=(8, 8))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Binary image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_opened</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(B) Opened (radius=</span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_closed</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Closed (radius=</span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+show_image(bw, title=&quot;(A) Binary image&quot;, pos=131)
+show_image(bw_opened, title=f&quot;(B) Opened (radius={radius})&quot;, pos=132)
+show_image(bw_closed, title=f&quot;(C) Closed (radius={radius})&quot;, pos=133)
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_open_close_spots&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_open_close_spots&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1096,26 +1096,26 @@ This makes it possible to make measurements that are likely to be within the cyt
 </div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define radius (change this to update the figure!)</span>
-<span class="n">radius</span> <span class="o">=</span> <span class="mi">3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define radius (change this to update the figure!)
+radius = 3
 
-<span class="c1"># Create structuring element</span>
-<span class="n">strel</span> <span class="o">=</span> <span class="n">create_disk</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+# Create structuring element
+strel = create_disk(radius)
 
-<span class="c1"># Load image &amp; process</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">load_binary_spots</span><span class="p">()</span>
-<span class="n">bw_eroded</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_erosion</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">strel</span><span class="p">)</span>
-<span class="n">bw_dilated</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_dilation</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">strel</span><span class="p">)</span>
+# Load image &amp; process
+bw = load_binary_spots()
+bw_eroded = ndimage.binary_erosion(bw, structure=strel)
+bw_dilated = ndimage.binary_dilation(bw, structure=strel)
 
-<span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+# Show original concatenated with the filtered images
+fig = create_figure(figsize=(8, 8))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Binary image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span> <span class="o">^</span> <span class="n">bw_eroded</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(B) Inner boundaries (radius=</span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_dilated</span> <span class="o">^</span> <span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Outer boundaries (radius=</span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+show_image(bw, title=&quot;(A) Binary image&quot;, pos=131)
+show_image(bw ^ bw_eroded, title=f&quot;(B) Inner boundaries (radius={radius})&quot;, pos=132)
+show_image(bw_dilated ^ bw, title=f&quot;(C) Outer boundaries (radius={radius})&quot;, pos=133)
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_binary_outlines&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_binary_outlines&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1141,28 +1141,28 @@ In practice, this is not always a problem because noise can make plateaus virtua
 <p>A bigger problem is that the approach often identifies far too many maxima to be useful (<a class="reference internal" href="#fig-morph-simple-maxima"><span class="std std-numref">Fig. 104</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span> <span class="k">as</span> <span class="n">filters</span>
-<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">mark_boundaries</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from skimage import morphology as morph
+from skimage import filters as filters
+from skimage.segmentation import mark_boundaries
 
-<span class="c1"># Load image &amp; process</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_spots</span><span class="p">()</span>
-<span class="n">im_dilated</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">maximum_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">==</span> <span class="n">im_dilated</span>
-<span class="n">im2</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="n">im2</span> <span class="o">=</span> <span class="n">im2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im2</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="mf">99.5</span><span class="p">)</span>
-<span class="n">im_boundaries</span> <span class="o">=</span> <span class="n">mark_boundaries</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">bw</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+# Load image &amp; process
+im = load_spots()
+im_dilated = ndimage.maximum_filter(im, (3, 3))
+bw = im == im_dilated
+im2 = im - np.percentile(im.ravel(), 0.5)
+im2 = im2 / np.percentile(im2.ravel(), 99.5)
+im_boundaries = mark_boundaries(np.clip(im2, 0, 1), bw, color=(1, 0, 0))
 
-<span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+# Show original concatenated with the filtered images
+fig = create_figure(figsize=(8, 8))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Grayscale image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dilated</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(B) 3×3 dilation of (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Pseudo-maxima where (A) == (B)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_boundaries</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Overlay of pseudo maxima&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+show_image(im, clip_percentile=0.5, title=&quot;(A) Grayscale image&quot;, pos=221)
+show_image(im_dilated, title=f&quot;(B) 3×3 dilation of (A)&quot;, pos=222)
+show_image(bw, title=f&quot;(C) Pseudo-maxima where (A) == (B)&quot;, pos=223)
+show_image(im_boundaries, title=f&quot;(C) Overlay of pseudo maxima&quot;, pos=224)
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_simple_maxima&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_morph_simple_maxima&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1180,24 +1180,24 @@ However, tuning the parameters becomes difficult.</p>
 <p>We will see an alternative approach that is often more intuitive in <a class="reference internal" href="#sec-h-extrema"><span class="std std-ref">H-Maxima &amp; H-Minima</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Show original concatenated with the filtered images
+fig = create_figure(figsize=(8, 8))
 
-<span class="c1"># Load image &amp; process</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_spots</span><span class="p">()</span>
-<span class="n">im_dilated</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">maximum_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">==</span> <span class="n">im_dilated</span>
-<span class="n">im2</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="n">im2</span> <span class="o">=</span> <span class="n">im2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im2</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="mf">99.5</span><span class="p">)</span>
-<span class="n">im_boundaries</span> <span class="o">=</span> <span class="n">mark_boundaries</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">bw</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+# Load image &amp; process
+im = load_spots()
+im_dilated = ndimage.maximum_filter(im, (7, 7))
+bw = im == im_dilated
+im2 = im - np.percentile(im.ravel(), 0.5)
+im2 = im2 / np.percentile(im2.ravel(), 99.5)
+im_boundaries = mark_boundaries(np.clip(im2, 0, 1), bw, color=(1, 0, 0))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Grayscale image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dilated</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(B) 7×7 dilation of (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Pseudo-maxima where (A) == (B)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_boundaries</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Overlay of pseudo maxima&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+show_image(im, clip_percentile=0.5, title=&quot;(A) Grayscale image&quot;, pos=221)
+show_image(im_dilated, title=f&quot;(B) 7×7 dilation of (A)&quot;, pos=222)
+show_image(bw, title=f&quot;(C) Pseudo-maxima where (A) == (B)&quot;, pos=223)
+show_image(im_boundaries, title=f&quot;(C) Overlay of pseudo maxima&quot;, pos=224)
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_simple_maxima_bigger&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_morph_simple_maxima_bigger&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1224,26 +1224,26 @@ If the area of a component falls below a specified area threshold, the pixels fo
 It simply applies a minimum area threshold, removing everything smaller.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define areas (change this to update the figure!)</span>
-<span class="n">small_area</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">large_area</span> <span class="o">=</span> <span class="mi">100</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define areas (change this to update the figure!)
+small_area = 10
+large_area = 100
 
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
+from skimage import morphology as morph
 
-<span class="c1"># Load image &amp; process</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">load_binary_spots</span><span class="p">()</span>
-<span class="n">bw_small_opened</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">area_opening</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">small_area</span><span class="p">)</span>
-<span class="n">bw_large_opened</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">area_opening</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">large_area</span><span class="p">)</span>
+# Load image &amp; process
+bw = load_binary_spots()
+bw_small_opened = morph.area_opening(bw, small_area)
+bw_large_opened = morph.area_opening(bw, large_area)
 
-<span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+# Show original concatenated with the filtered images
+fig = create_figure(figsize=(8, 8))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Binary image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_small_opened</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(B) Small area opening (</span><span class="si">{</span><span class="n">small_area</span><span class="si">}</span><span class="s2"> px²)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_large_opened</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Large area opening (</span><span class="si">{</span><span class="n">large_area</span><span class="si">}</span><span class="s2"> px²)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+show_image(bw, title=&quot;(A) Binary image&quot;, pos=131)
+show_image(bw_small_opened, title=f&quot;(B) Small area opening ({small_area} px²)&quot;, pos=132)
+show_image(bw_large_opened, title=f&quot;(C) Large area opening ({large_area} px²)&quot;, pos=133)
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_area_open_spots&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_area_open_spots&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1264,22 +1264,22 @@ These components are then ‘flipped’ to become foreground pixels instead.</p>
 <p>Should we then want to identify the holes themselves, we can subtract the original image from the filled image.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from skimage import morphology as morph
 
-<span class="c1"># Load image &amp; process</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">bw_filled</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_fill_holes</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+# Load image &amp; process
+im = load_image(&#39;happy_cell.tif&#39;)
+bw = im &gt; im.mean()
+bw_filled = ndimage.binary_fill_holes(bw)
 
-<span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+# Show original concatenated with the filtered images
+fig = create_figure(figsize=(8, 8))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Binary image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_filled</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(B) Holes filled&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_filled</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span> <span class="o">-</span> <span class="n">bw</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Result of (B) - (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+show_image(bw, title=&quot;(A) Binary image&quot;, pos=131)
+show_image(bw_filled, title=f&quot;(B) Holes filled&quot;, pos=132)
+show_image(bw_filled.astype(np.uint8) - bw.astype(np.uint8), title=f&quot;(C) Result of (B) - (A)&quot;, pos=133)
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_fill_holes_cell&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_fill_holes_cell&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1294,18 +1294,18 @@ These components are then ‘flipped’ to become foreground pixels instead.</p>
 </figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code to selective fill small holes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Code to selective fill small holes
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+im = load_image(&#39;happy_cell.tif&#39;)
+bw = im &gt; im.mean()
 
-<span class="n">bw2</span> <span class="o">=</span> <span class="o">~</span><span class="n">bw</span>
-<span class="n">bw2</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">area_opening</span><span class="p">(</span><span class="n">bw2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-<span class="n">bw2</span> <span class="o">=</span> <span class="o">~</span><span class="n">bw2</span>
+bw2 = ~bw
+bw2 = morph.area_opening(bw2, 1000)
+bw2 = ~bw2
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw2</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_fill_small_holes_cell&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+fig = create_figure(figsize=(2, 2))
+show_image(bw2)
+glue_fig(&#39;fig_fill_small_holes_cell&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1319,15 +1319,15 @@ These components are then ‘flipped’ to become foreground pixels instead.</p>
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="107b1769-ca07-4da6-8d51-bb777c36e4e1" name="8dfcd823-02fc-4813-8a2a-788610d022cb" type="radio">
-</input><label class="sd-tab-label" for="107b1769-ca07-4da6-8d51-bb777c36e4e1">
+<input checked="checked" id="cb035e29-4fa9-46ad-bb07-e79e3cd8aaba" name="5a60afab-2495-4d08-816e-149979242aba" type="radio">
+</input><label class="sd-tab-label" for="cb035e29-4fa9-46ad-bb07-e79e3cd8aaba">
 Question</label><div class="sd-tab-content docutils">
 <p>We don’t always want to fill <em>all</em> the holes within a binary image, but rather only the smaller ones.
 Can you think of a way to fill <em>only holes smaller than 1000 px²</em>, using area opening?</p>
 <p>You’ll need at least one operation described in previous chapter.</p>
 </div>
-<input id="82aa4c86-fb2b-4c6b-9804-74e9994c2199" name="8dfcd823-02fc-4813-8a2a-788610d022cb" type="radio">
-</input><label class="sd-tab-label" for="82aa4c86-fb2b-4c6b-9804-74e9994c2199">
+<input id="6050d1ae-892f-4e7f-beeb-007576dc90b9" name="5a60afab-2495-4d08-816e-149979242aba" type="radio">
+</input><label class="sd-tab-label" for="6050d1ae-892f-4e7f-beeb-007576dc90b9">
 Answer</label><div class="sd-tab-content docutils">
 <p>One way to fill holes below a fixed size:</p>
 <ul class="simple">
@@ -1344,22 +1344,22 @@ Answer</label><div class="sd-tab-content docutils">
 They are particularly useful with filamental or tube-like structures, such as axons or blood vessels.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im = load_image(&#39;happy_cell.tif&#39;)
+bw = im &gt; im.mean()
 
-<span class="n">bw</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_fill_holes</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
-<span class="n">bw_thinned</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">thin</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
-<span class="n">bw_skeletonized</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">skeletonize</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+bw = ndimage.binary_fill_holes(bw)
+bw_thinned = morph.thin(bw)
+bw_skeletonized = morph.skeletonize(bw)
 
-<span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+# Show original concatenated with the filtered images
+fig = create_figure(figsize=(8, 4))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Binary image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_thinned</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Thinned image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_skeletonized</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Skeletonized image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+show_image(bw, title=&quot;(A) Binary image&quot;, pos=131)
+show_image(bw_thinned, title=&quot;(B) Thinned image&quot;, pos=132)
+show_image(bw_skeletonized, title=&quot;(C) Skeletonized image&quot;, pos=133)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_binary_thinning&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+plt.tight_layout()
+glue_fig(&#39;fig_binary_thinning&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1408,24 +1408,24 @@ The markers will expand to fill the mask regions that contain them.
 But any mask regions that don’t contain marker pixels are simply ignored.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from skimage import morphology as morph
 
-<span class="c1"># Load image &amp; process</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_spots</span><span class="p">()</span>
-<span class="n">bw_low</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="n">im</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-<span class="n">bw_high</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">im</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-<span class="n">bw_hist</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">reconstruction</span><span class="p">(</span><span class="n">bw_high</span><span class="p">,</span> <span class="n">bw_low</span><span class="p">)</span>
+# Load image &amp; process
+im = load_spots()
+bw_low = im &gt; im.mean() + im.std()
+bw_high = im &gt; im.mean() + 3 * im.std()
+bw_hist = morph.reconstruction(bw_high, bw_low)
 
-<span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+# Show original concatenated with the filtered images
+fig = create_figure(figsize=(8, 8))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Grayscale image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_low</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Marker image (low threshold)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_high</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(B) Mask image (high threshold)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_hist</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Reconstruction result (hysteresis threshold)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+show_image(im, clip_percentile=0.5, title=&quot;(A) Grayscale image&quot;, pos=221)
+show_image(bw_low, title=&quot;(A) Marker image (low threshold)&quot;, pos=222)
+show_image(bw_high, title=f&quot;(B) Mask image (high threshold)&quot;, pos=223)
+show_image(bw_hist, title=f&quot;(C) Reconstruction result (hysteresis threshold)&quot;, pos=224)
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_hysteresis_threshold_spots&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_hysteresis_threshold_spots&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1457,30 +1457,30 @@ For H-maxima, the process is:</p>
 We can apply the same process to an inverted image to find <em>H-minima</em>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span> <span class="k">as</span> <span class="n">filters</span>
-<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">mark_boundaries</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from skimage import morphology as morph
+from skimage import filters as filters
+from skimage.segmentation import mark_boundaries
 
-<span class="c1"># Load image &amp; process</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_spots</span><span class="p">()</span>
-<span class="n">h</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-<span class="n">im_recon</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">reconstruction</span><span class="p">(</span><span class="n">im</span> <span class="o">-</span> <span class="n">h</span><span class="p">,</span> <span class="n">im</span><span class="p">)</span>
+# Load image &amp; process
+im = load_spots()
+h = im.std()
+im_recon = morph.reconstruction(im - h, im)
 
-<span class="n">bw</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">h_maxima</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
-<span class="n">im2</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="n">im2</span> <span class="o">=</span> <span class="n">im2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im2</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="mf">99.5</span><span class="p">)</span>
-<span class="n">im_boundaries</span> <span class="o">=</span> <span class="n">mark_boundaries</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">bw</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+bw = morph.h_maxima(im, h)
+im2 = im - np.percentile(im.ravel(), 0.5)
+im2 = im2 / np.percentile(im2.ravel(), 99.5)
+im_boundaries = mark_boundaries(np.clip(im2, 0, 1), bw, color=(1, 0, 0))
 
-<span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+# Show original concatenated with the filtered images
+fig = create_figure(figsize=(8, 8))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Grayscale image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_recon</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(B) Morphological reconstruction result&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span> <span class="o">-</span> <span class="n">im_recon</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Result of (A) - (B)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_boundaries</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) H-maxima as an overlay&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+show_image(im, clip_percentile=0.5, title=&quot;(A) Grayscale image&quot;, pos=221)
+show_image(im_recon, clip_percentile=0.5, title=f&quot;(B) Morphological reconstruction result&quot;, pos=222)
+show_image(im - im_recon, clip_percentile=0.5, title=f&quot;(C) Result of (A) - (B)&quot;, pos=223)
+show_image(im_boundaries, title=f&quot;(C) H-maxima as an overlay&quot;, pos=224)
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_h_maxima&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_morph_h_maxima&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1506,25 +1506,25 @@ This defines the marker image.
 The original image is used as the mask.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from skimage import morphology as morph
 
-<span class="n">radius</span> <span class="o">=</span> <span class="mi">10</span>
+radius = 10
 
-<span class="c1"># Load image &amp; process</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_spots</span><span class="p">()</span>
-<span class="n">im_open</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">opening</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">morph</span><span class="o">.</span><span class="n">disk</span><span class="p">(</span><span class="n">radius</span><span class="p">))</span>
-<span class="n">im_recon</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">reconstruction</span><span class="p">(</span><span class="n">im_open</span><span class="p">,</span> <span class="n">im</span><span class="p">)</span>
+# Load image &amp; process
+im = load_spots()
+im_open = morph.opening(im, morph.disk(radius))
+im_recon = morph.reconstruction(im_open, im)
 
-<span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+# Show original concatenated with the filtered images
+fig = create_figure(figsize=(8, 8))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Grayscale image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_open</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(B) Morphological opening (radius=</span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_recon</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Opening by reconstruction (radius=</span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span> <span class="o">-</span> <span class="n">im_recon</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(D) Result of (A) - (C)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+show_image(im, clip_percentile=0.5, title=&quot;(A) Grayscale image&quot;, pos=221)
+show_image(im_open, clip_percentile=0.5, title=f&quot;(B) Morphological opening (radius={radius})&quot;, pos=222)
+show_image(im_recon, clip_percentile=0.5, title=f&quot;(C) Opening by reconstruction (radius={radius})&quot;, pos=223)
+show_image(im - im_recon, clip_percentile=0.5, title=f&quot;(D) Result of (A) - (C)&quot;, pos=224)
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_reconstruct_opening&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_morph_reconstruct_opening&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1544,24 +1544,24 @@ This can make opening by reconstruction more attractive for generating backgroun
 Like area opening, opening by reconstruction is able to remove some objects while retaining the shapes of larger objects exactly.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from skimage import morphology as morph
 
-<span class="n">radius</span> <span class="o">=</span> <span class="mi">3</span>
+radius = 3
 
-<span class="c1"># Load image &amp; process</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">load_binary_spots</span><span class="p">()</span>
-<span class="n">bw_open</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">opening</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">morph</span><span class="o">.</span><span class="n">disk</span><span class="p">(</span><span class="n">radius</span><span class="p">))</span>
-<span class="n">bw_opening_by_recon</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">reconstruction</span><span class="p">(</span><span class="n">bw_open</span><span class="p">,</span> <span class="n">bw</span><span class="p">)</span>
+# Load image &amp; process
+bw = load_binary_spots()
+bw_open = morph.opening(bw, morph.disk(radius))
+bw_opening_by_recon = morph.reconstruction(bw_open, bw)
 
-<span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+# Show original concatenated with the filtered images
+fig = create_figure(figsize=(8, 8))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Binary image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_open</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(B) Morphological opening (radius=</span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_opening_by_recon</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(C) Opening by reconstruction (radius=</span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+show_image(bw, title=&quot;(A) Binary image&quot;, pos=131)
+show_image(bw_open, title=f&quot;(B) Morphological opening (radius={radius})&quot;, pos=132)
+show_image(bw_opening_by_recon, title=f&quot;(C) Opening by reconstruction (radius={radius})&quot;, pos=133)
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_reconstruct_opening_binary&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_morph_reconstruct_opening_binary&#39;, fig)
 </pre></div>
 </div>
 </div>

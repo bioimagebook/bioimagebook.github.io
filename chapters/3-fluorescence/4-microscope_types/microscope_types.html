@@ -835,17 +835,17 @@ title="Print to PDF"
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
+%autoreload 2
 
-<span class="c1"># Default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+# Default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
+from helpers import *
+from matplotlib import pyplot as plt
+from myst_nb import glue
+import numpy as np
+from scipy import ndimage
 </pre></div>
 </div>
 </div>
@@ -878,13 +878,13 @@ This contains many excellent chapters, some of which may be available to downloa
 <h2>Types of microscope<a class="headerlink" href="#types-of-microscope" title="Permalink to this headline">#</a></h2>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/excite_widefield.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Widefield&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">151</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/excite_confocal.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;LSCM&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">152</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/excite_spinning_disc.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;SDCM&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">153</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/excite_2p.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;2-Photon&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">154</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/excite_tirf.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;TIRF&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">155</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_microscopes_types&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
+show_image(&#39;images/excite_widefield.png&#39;, title=&#39;Widefield&#39;, pos=151)
+show_image(&#39;images/excite_confocal.png&#39;, title=&#39;LSCM&#39;, pos=152)
+show_image(&#39;images/excite_spinning_disc.png&#39;, title=&#39;SDCM&#39;, pos=153)
+show_image(&#39;images/excite_2p.png&#39;, title=&#39;2-Photon&#39;, pos=154)
+show_image(&#39;images/excite_tirf.png&#39;, title=&#39;TIRF&#39;, pos=155)
+glue_fig(&#39;fig_microscopes_types&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -928,13 +928,13 @@ Also, because single pixels are recorded separately, the image can (potentially)
 Images usually contain thousands to millions of pixels, and so only a tiny fraction of the time required to record an image is spent detecting photons for any one pixel in a LSCM image – unlike in the widefield case, where photons can be detected for all pixels over the entire image acquisition time. This can cause LSCM image acquisition to be comparatively slow, noisy (in terms of few detected photons) or both.
 Spatial information is therefore gained at a cost in noise and/or temporal resolution.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="755ced7e-cfec-41ff-a4f4-155c0fee6e72" name="7ddbf3f4-39c4-4788-833c-6e7bd3bf2508" type="radio">
-</input><label class="sd-tab-label" for="755ced7e-cfec-41ff-a4f4-155c0fee6e72">
+<input checked="checked" id="f1265817-8936-4827-92d3-3415866acaa0" name="1f173db1-4382-4780-9ca9-030c3b5e79cc" type="radio">
+</input><label class="sd-tab-label" for="f1265817-8936-4827-92d3-3415866acaa0">
 Question</label><div class="sd-tab-content docutils">
 <p>Why is it often recommended that the pinhole in LSCM be set to have the same size as one Airy disk? And why is it sometimes better not to strictly follow this recommendation?</p>
 </div>
-<input id="122591d4-bd72-490d-9c02-87fa3094bf6f" name="7ddbf3f4-39c4-4788-833c-6e7bd3bf2508" type="radio">
-</input><label class="sd-tab-label" for="122591d4-bd72-490d-9c02-87fa3094bf6f">
+<input id="33e3ef3c-8434-4586-bc06-00c69dbfd043" name="1f173db1-4382-4780-9ca9-030c3b5e79cc" type="radio">
+</input><label class="sd-tab-label" for="33e3ef3c-8434-4586-bc06-00c69dbfd043">
 Answer</label><div class="sd-tab-content docutils">
 <p>As described in <a class="reference internal" href="../2-formation_spatial/formation_spatial.html#chap-formation-spatial"><span class="std std-ref">Blur &amp; the PSF</span></a>, the vast majority of the light from the in-focus plane falls within the Airy disk.
 Using a pinhole smaller than this can result in so little light being detected that the image becomes too noisy to be useful.
@@ -1016,11 +1016,11 @@ After a certain exposure time, different ‘electron clouds’ have then formed 
 This charge is then measured by passing the electrons through a charge amplifier, and the results used to assign an intensity value to the pixel in the final image (<a class="reference internal" href="#fig-ccd"><span class="std std-numref">Fig. 155</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/ccd_1.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Photon detection&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/ccd_2.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Frame transfer&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/ccd_3.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Quantification&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_microscopes_ccd&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
+show_image(&#39;images/ccd_1.png&#39;, title=&#39;Photon detection&#39;, pos=131)
+show_image(&#39;images/ccd_2.png&#39;, title=&#39;Frame transfer&#39;, pos=132)
+show_image(&#39;images/ccd_3.png&#39;, title=&#39;Quantification&#39;, pos=133)
+glue_fig(&#39;fig_microscopes_ccd&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1051,47 +1051,47 @@ The recorded image contains 25% of the pixels in the unbinned image, while still
 Larger bins may also be used, with a correspondingly more dramatic impact upon image size (<a class="reference internal" href="#fig-ccd-binning"><span class="std std-numref">Fig. 156</span></a>D).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
 
-<span class="k">def</span> <span class="nf">bin2x2</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Apply 2x2 binning to the pixels of a 2D image.</span>
-<span class="sd">    Note that if the dimensions are not even numbers then the final row/column</span>
-<span class="sd">    of pixels may have to be trimmed.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">r</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">im</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">r</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">r</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">im</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">r</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+def bin2x2(im):
+    &quot;&quot;&quot;
+    Apply 2x2 binning to the pixels of a 2D image.
+    Note that if the dimensions are not even numbers then the final row/column
+    of pixels may have to be trimmed.
+    &quot;&quot;&quot;
+    r = int(np.floor(im.shape[0]/2)*2)
+    c = int(np.floor(im.shape[1]/2)*2)
+    return im[0:r:2, 0:c:2] + im[1:r:2, 0:c:2] + im[0:r:2, 1:c:2] + im[1:r:2, 1:c:2]
 
-<span class="c1"># Simulate larger bins by progressively applying 2x2 binning</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+# Simulate larger bins by progressively applying 2x2 binning
+im = load_image(&#39;happy_cell.tif&#39;)
+im = im.astype(np.float32)
 
-<span class="c1"># Add a little photon noise</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">1012</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">im</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+# Add a little photon noise
+rng = np.random.default_rng(1012)
+im = rng.poisson(1 + im).astype(np.float32)
 
-<span class="c1"># Create binned images</span>
-<span class="n">im2</span> <span class="o">=</span> <span class="n">bin2x2</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
-<span class="n">im4</span> <span class="o">=</span> <span class="n">bin2x2</span><span class="p">(</span><span class="n">im2</span><span class="p">)</span>
-<span class="n">im8</span> <span class="o">=</span> <span class="n">bin2x2</span><span class="p">(</span><span class="n">im4</span><span class="p">)</span>
-<span class="n">im16</span> <span class="o">=</span> <span class="n">bin2x2</span><span class="p">(</span><span class="n">im8</span><span class="p">)</span>
+# Create binned images
+im2 = bin2x2(im)
+im4 = bin2x2(im2)
+im8 = bin2x2(im4)
+im16 = bin2x2(im8)
 
-<span class="c1"># Define a fixed read noise standard deviation &amp; apply it</span>
-<span class="n">read_noise_sigma</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="n">im</span> <span class="o">+=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">read_noise_sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">im2</span> <span class="o">+=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">read_noise_sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">im2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">im4</span> <span class="o">+=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">read_noise_sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">im4</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">im8</span> <span class="o">+=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">read_noise_sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">im8</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+# Define a fixed read noise standard deviation &amp; apply it
+read_noise_sigma = 50
+im += rng.normal(scale=read_noise_sigma, size=im.shape)
+im2 += rng.normal(scale=read_noise_sigma, size=im2.shape)
+im4 += rng.normal(scale=read_noise_sigma, size=im4.shape)
+im8 += rng.normal(scale=read_noise_sigma, size=im8.shape)
 
-<span class="c1"># Show images with read noise added</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;No binning&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">141</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;2x2 binning&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">142</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im4</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;4x4 binning&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">143</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im8</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;8x8 binning&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">144</span><span class="p">))</span>
+# Show images with read noise added
+fig = create_figure((8, 3))
+show_image(im, clip_percentile=0.5, title=&#39;No binning&#39;, pos=(141))
+show_image(im2, clip_percentile=0.5, title=&#39;2x2 binning&#39;, pos=(142))
+show_image(im4, clip_percentile=0.5, title=&#39;4x4 binning&#39;, pos=(143))
+show_image(im8, clip_percentile=0.5, title=&#39;8x8 binning&#39;, pos=(144))
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_microscopes_ccd_binning&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_microscopes_ccd_binning&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1118,11 +1118,11 @@ Despite the small probability, by incorporating &gt; 500 such stages, the size o
 Therefore read noise is effectively overcome at the cost of more photon noise.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/ccd_conventional.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CCD (no binning)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/ccd_binned.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CCD (2×2 binning)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/ccd_em.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;EMCCD&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_microscopes_ccd_types&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
+show_image(&#39;images/ccd_conventional.png&#39;, title=&#39;CCD (no binning)&#39;, pos=131)
+show_image(&#39;images/ccd_binned.png&#39;, title=&#39;CCD (2×2 binning)&#39;, pos=132)
+show_image(&#39;images/ccd_em.png&#39;, title=&#39;EMCCD&#39;, pos=133)
+glue_fig(&#39;fig_microscopes_ccd_types&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1139,14 +1139,14 @@ See <a class="reference internal" href="#fig-ccd"><span class="std std-numref">F
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="464bbe44-bcc6-4f51-a720-3dd0e91231df" name="162d26fa-ab87-4b21-a8e5-4cdc2dbe0df2" type="radio">
-</input><label class="sd-tab-label" for="464bbe44-bcc6-4f51-a720-3dd0e91231df">
+<input checked="checked" id="48f6c041-6b48-4970-b349-43fadf58d368" name="df415bc8-9c17-470f-9429-aacd5890a872" type="radio">
+</input><label class="sd-tab-label" for="48f6c041-6b48-4970-b349-43fadf58d368">
 Question</label><div class="sd-tab-content docutils">
 <p>From a practical point of view, an EMCCD is rather like having a CCD with no read noise, but with half the QE.
 Under what circumstances (i.e. high or low numbers of photons) is an EMCCD preferable to a CCD?</p>
 </div>
-<input id="66cd8998-bf28-477f-a86e-fe265f3637d8" name="162d26fa-ab87-4b21-a8e5-4cdc2dbe0df2" type="radio">
-</input><label class="sd-tab-label" for="66cd8998-bf28-477f-a86e-fe265f3637d8">
+<input id="38b92a21-97ea-49c8-8083-0cf963136cf8" name="df415bc8-9c17-470f-9429-aacd5890a872" type="radio">
+</input><label class="sd-tab-label" for="38b92a21-97ea-49c8-8083-0cf963136cf8">
 Answer</label><div class="sd-tab-content docutils">
 <p>The gain register of EMCCDs offers benefits primarily when few photons are available (i.e. when read-noise is the main problem, such as in SDCM).
 CCDs are preferable when many photons are available (e.g. in widefield).</p>
@@ -1160,13 +1160,13 @@ The read noise of 10 is comparatively insignificant, and there is nothing to gai
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="aef7b437-89ce-4276-b8d8-a8ef4fb4ac4c" name="201a6c30-b415-498d-8bb1-ec280c27ad3d" type="radio">
-</input><label class="sd-tab-label" for="aef7b437-89ce-4276-b8d8-a8ef4fb4ac4c">
+<input checked="checked" id="4f09e3c8-03f0-4ac1-b07d-b8c3741c36f3" name="abb8a847-859c-4e41-9b5e-942e335e86b7" type="radio">
+</input><label class="sd-tab-label" for="4f09e3c8-03f0-4ac1-b07d-b8c3741c36f3">
 Question</label><div class="sd-tab-content docutils">
 <p>Based upon the above descriptions, which detectors seem most appropriate (generally!) for (a) widefield microscopy, (b) SDCM and (c) LSCM?</p>
 </div>
-<input id="a3f0fa97-2661-4d1d-8415-d36921dde661" name="201a6c30-b415-498d-8bb1-ec280c27ad3d" type="radio">
-</input><label class="sd-tab-label" for="a3f0fa97-2661-4d1d-8415-d36921dde661">
+<input id="cf931c74-c98a-494c-a4ad-98a40c475d77" name="abb8a847-859c-4e41-9b5e-942e335e86b7" type="radio">
+</input><label class="sd-tab-label" for="cf931c74-c98a-494c-a4ad-98a40c475d77">
 Answer</label><div class="sd-tab-content docutils">
 <p>The following are reasonable rules of thumb:</p>
 <ul class="simple">
@@ -1179,16 +1179,16 @@ This is because SDCM usually gives lower photon counts (certainly lower than in 
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="3947978b-3c5c-421b-bc75-c4b317d62de1" name="46926458-8bc5-4e11-a028-9feeda2e54f2" type="radio">
-</input><label class="sd-tab-label" for="3947978b-3c5c-421b-bc75-c4b317d62de1">
+<input checked="checked" id="437bb977-d2d6-4647-b34e-c8f24d0d1df5" name="7cfc7a4e-b989-41cb-b327-243ed7443ee2" type="radio">
+</input><label class="sd-tab-label" for="437bb977-d2d6-4647-b34e-c8f24d0d1df5">
 Question</label><div class="sd-tab-content docutils">
 <p>Previously we explored how CCDs can use 2×2 binning to combine the electrons corresponding to multiple pixels together into a single pixel, which is then ‘less noisy’.
 A similar effect can be achieved by just acquiring an image without binning and applying a 2×2 filter, in which all the coefficients have values of one.
 Both techniques result in images that have roughly four times as many photons contributing to each pixel, and thus a better SNR.</p>
 <p>Think of one major advantage and one disadvantage of using filtering <em>after</em> acquisition, rather than binning <em>during</em> acquisition.</p>
 </div>
-<input id="d78b639d-3735-4138-b399-d4ba65749099" name="46926458-8bc5-4e11-a028-9feeda2e54f2" type="radio">
-</input><label class="sd-tab-label" for="d78b639d-3735-4138-b399-d4ba65749099">
+<input id="5d3f13c8-258a-43e5-b6fd-4d412daf98fe" name="7cfc7a4e-b989-41cb-b327-243ed7443ee2" type="radio">
+</input><label class="sd-tab-label" for="5d3f13c8-258a-43e5-b6fd-4d412daf98fe">
 Answer</label><div class="sd-tab-content docutils">
 <p>A 2×2 binned image contains 1/4 the number of pixels of the original image.
 This represents a considerable loss of spatial information, and you would get a different result if you were to start binning at the first or second row or column, since different pixels would be combined in each case.

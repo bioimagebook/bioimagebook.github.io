@@ -755,22 +755,22 @@ title="Print to PDF"
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Nothing very interesting to see here:</span>
-<span class="sd">these are just default imports that help the rest of the code on this page run.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Nothing very interesting to see here:
+these are just default imports that help the rest of the code on this page run.
+&quot;&quot;&quot;
 
-<span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+%load_ext autoreload
+%autoreload 2
 
-<span class="c1"># Default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+# Default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
+from helpers import *
+from matplotlib import pyplot as plt
+from myst_nb import glue
+import numpy as np
+from scipy import ndimage
 </pre></div>
 </div>
 </div>
@@ -784,57 +784,57 @@ The colored squares are nothing more than a helpful visualization that enable us
 <p>When it comes to processing and analysis, we need to get past the display and delve into the real data: the numbers (<a class="reference internal" href="#fig-image-array"><span class="std std-numref">Fig. 3</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Welcome! Here you can see the first example of Python code used to generate</span>
-<span class="sd">figures in this book.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Welcome! Here you can see the first example of Python code used to generate
+figures in this book.
 
-<span class="sd">If you are working with a &#39;live&#39; version of the book, you should be able to</span>
-<span class="sd">make some adjustments to regenerate new figures.</span>
+If you are working with a &#39;live&#39; version of the book, you should be able to
+make some adjustments to regenerate new figures.
 
-<span class="sd">Each code block contains two main parts:</span>
-<span class="sd">1. A part responsible for loading images, applying processing etc.</span>
-<span class="sd">2. A part that plots the result in a figure (usually with matplotlib)</span>
+Each code block contains two main parts:
+1. A part responsible for loading images, applying processing etc.
+2. A part that plots the result in a figure (usually with matplotlib)
 
-<span class="sd">The first of these is the most important, because it complements the main text.</span>
-<span class="sd">My hope is that, by seeing the code involved, concepts might become clearer.</span>
+The first of these is the most important, because it complements the main text.
+My hope is that, by seeing the code involved, concepts might become clearer.
 
-<span class="sd">The plotting itself can be quite fiddly to make everything align, and can often</span>
-<span class="sd">be ignored.</span>
+The plotting itself can be quite fiddly to make everything align, and can often
+be ignored.
 
-<span class="sd">As a rule, I use the following conventions:</span>
-<span class="sd">- A variable starting with &#39;im_&#39; refers to a &#39;normal&#39; image</span>
-<span class="sd">- A variable starting with &#39;bw_&#39; refers to a binary image</span>
-<span class="sd">- A variable starting with &#39;lab_&#39; refers to a labeled image</span>
+As a rule, I use the following conventions:
+- A variable starting with &#39;im_&#39; refers to a &#39;normal&#39; image
+- A variable starting with &#39;bw_&#39; refers to a binary image
+- A variable starting with &#39;lab_&#39; refers to a labeled image
 
-<span class="sd">When it comes to plotting, &#39;fig&#39; invariably refers to the figure being plotted</span>
-<span class="sd">and &#39;plt&#39; refers to &#39;pyplot&#39; (standard in matplotlib).</span>
-<span class="sd">&#39;show_image&#39;, &#39;show_plot&#39; and &#39;show_histogram&#39; are helper methods to standardize</span>
-<span class="sd">display throughout the book.</span>
-<span class="sd">&#39;glue&#39; and &#39;glue_fig&#39; other what enable the plots to be incorporating into the book.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-
-<span class="c1"># Read an image &amp; select a detailed region</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/couple.png&#39;</span><span class="p">)</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="p">(</span><span class="mi">205</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
-<span class="n">im_detail</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">height</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">width</span><span class="p">]</span>
+When it comes to plotting, &#39;fig&#39; invariably refers to the figure being plotted
+and &#39;plt&#39; refers to &#39;pyplot&#39; (standard in matplotlib).
+&#39;show_image&#39;, &#39;show_plot&#39; and &#39;show_histogram&#39; are helper methods to standardize
+display throughout the book.
+&#39;glue&#39; and &#39;glue_fig&#39; other what enable the plots to be incorporating into the book.
+&quot;&quot;&quot;
 
 
-<span class="c1"># Show plots</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
-<span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+# Read an image &amp; select a detailed region
+im = load_image(&#39;images/couple.png&#39;)
+x, y, width, height = (205, 130, 12, 12)
+im_detail = im[y:y+height, x:x+width]
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Original image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_detail</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Enlarged view from (A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+# Show plots
+fig = create_figure(figsize=(8, 4))
+import matplotlib.patches as patches
+rect = patches.Rectangle((x, y), width, height, linewidth=1, edgecolor=&#39;r&#39;, facecolor=&#39;none&#39;)
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_detail</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Pixel values from (B)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="n">im_detail</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">z</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+show_image(im, vmin=0, vmax=255, title=&#39;(A) Original image&#39;, pos=131)
+plt.gca().add_patch(rect)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_couple&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+show_image(im_detail, vmin=0, vmax=255, title=&#39;(B) Enlarged view from (A)&#39;, pos=132)
+
+show_image(im_detail, vmin=0, vmax=255, alpha = 1, title=&#39;(C) Pixel values from (B)&#39;, pos=133)
+for (i, j), z in np.ndenumerate(im_detail):
+    plt.text(j, i, str(z), ha=&#39;center&#39;, va=&#39;center&#39;, fontdict={&#39;size&#39;: 5})
+
+glue_fig(&#39;fig_couple&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -861,37 +861,37 @@ The colored squares are nothing more than a helpful visualization that enable us
 </div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Create four images that look exactly the same, but all contain different pixel values.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Create four images that look exactly the same, but all contain different pixel values.
+&quot;&quot;&quot;
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;sunny_cell.tif&#39;</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">im</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">uint16</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+im = load_image(&#39;sunny_cell.tif&#39;)
+assert im.dtype == np.uint16
+fig = create_figure(figsize=(10, 4))
 
-<span class="c1"># Original image, with 1% clipped for display</span>
-<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Original 16-bit image&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+# Original image, with 1% clipped for display
+vmin = np.percentile(im, 1)
+vmax = np.percentile(im, 99)
+show_image(im, cmap=&#39;gray&#39;, title=&#39;Original 16-bit image&#39;, vmin=vmin, vmax=vmax, pos=141)
 
-<span class="c1"># 32-bit, rescaled</span>
-<span class="n">im2</span> <span class="o">=</span> <span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">-</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="mi">50</span>
-<span class="n">vmin2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">vmax2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;32-bit processed&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+# 32-bit, rescaled
+im2 = (im.astype(np.float32) - im.mean()) / im.std() * 50
+vmin2 = np.percentile(im2, 1)
+vmax2 = np.percentile(im2, 99)
+show_image(im2, cmap=&#39;gray&#39;, title=&#39;32-bit processed&#39;, vmin=vmin2, vmax=vmax2, pos=142)
 
-<span class="c1"># 8-bit, clipped</span>
-<span class="n">im3</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="n">im3</span> <span class="o">=</span> <span class="p">(</span><span class="n">im3</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">)</span> <span class="o">*</span> <span class="mi">255</span>
-<span class="n">im3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
-<span class="n">im3</span> <span class="o">=</span> <span class="n">im3</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im3</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;8-bit clipped&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+# 8-bit, clipped
+im3 = im.astype(np.float32)
+im3 = (im3 - vmin) / (vmax - vmin) * 255
+im3 = np.clip(im3, 0, 255)
+im3 = im3.astype(np.uint8)
+show_image(im3, cmap=&#39;gray&#39;, title=&#39;8-bit clipped&#39;, vmin=0, vmax=255, pos=143)
 
-<span class="c1"># 8-bit, clipped, then inverted with inverted LUT</span>
-<span class="n">im4</span> <span class="o">=</span> <span class="mi">255</span> <span class="o">-</span> <span class="n">im3</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im4</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Inverted with inverted LUT&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+# 8-bit, clipped, then inverted with inverted LUT
+im4 = 255 - im3
+show_image(im4, cmap=&#39;gray_r&#39;, title=&#39;Inverted with inverted LUT&#39;, vmin=0, vmax=255, pos=144)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_images_look_same&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_images_look_same&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -907,31 +907,31 @@ Measuring each of these images would give different results, for reasons we shal
 </figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Display the same image in 4 different ways by changing the LUT/colormap.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Display the same image in 4 different ways by changing the LUT/colormap.
+&quot;&quot;&quot;
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;sunny_cell.tif&#39;</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">im</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">uint16</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+im = load_image(&#39;sunny_cell.tif&#39;)
+assert im.dtype == np.uint16
+fig = create_figure(figsize=(10, 4))
 
-<span class="c1"># Original image, with 1% clipped for display</span>
-<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Original 16-bit image&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+# Original image, with 1% clipped for display
+vmin = np.percentile(im, 1)
+vmax = np.percentile(im, 99)
+show_image(im, cmap=&#39;gray&#39;, title=&#39;Original 16-bit image&#39;, vmin=vmin, vmax=vmax, pos=141)
 
-<span class="c1"># Original image, with 10% clipped for display</span>
-<span class="n">vmin2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">vmax2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Enhanced contrast LUT&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+# Original image, with 10% clipped for display
+vmin2 = np.percentile(im, 10)
+vmax2 = np.percentile(im, 90)
+show_image(im, cmap=&#39;gray&#39;, title=&#39;Enhanced contrast LUT&#39;, vmin=vmin2, vmax=vmax2, pos=142)
 
-<span class="c1"># Invert the LUT (in matplotlib, just add &#39;_r&#39; at the end)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Inverted LUT&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+# Invert the LUT (in matplotlib, just add &#39;_r&#39; at the end)
+show_image(im, cmap=&#39;gray_r&#39;, title=&#39;Inverted LUT&#39;, vmin=vmin, vmax=vmax, pos=143)
 
-<span class="c1"># Use an alternative LUT</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Magma LUT&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+# Use an alternative LUT
+show_image(im, cmap=&#39;magma&#39;, title=&#39;Magma LUT&#39;, vmin=vmin, vmax=vmax, pos=144)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_images_look_different&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_images_look_different&#39;, fig)
 </pre></div>
 </div>
 </div>

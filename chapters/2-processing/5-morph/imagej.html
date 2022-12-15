@@ -740,17 +740,17 @@ title="Print to PDF"
 <h1>ImageJ: Morphological operations<a class="headerlink" href="#imagej-morphological-operations" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
+%autoreload 2
 
-<span class="c1"># Default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+# Default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
+from helpers import *
+from matplotlib import pyplot as plt
+from myst_nb import glue
+import numpy as np
+from scipy import ndimage
 </pre></div>
 </div>
 </div>
@@ -784,28 +784,28 @@ By default they work with fixed 3×3 pixel neighborhoods, but they <em>could</em
 </div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
 
-<span class="c1"># There are different ways to generate outlines, depending upon how thick they should be</span>
-<span class="c1"># and whether we get the &#39;inner&#39; or &#39;outer&#39;.</span>
-<span class="n">bw_outline</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/outline.png&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="n">bw_outlined</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_dilation</span><span class="p">(</span><span class="n">bw_outline</span><span class="p">)</span> <span class="o">^</span> <span class="n">bw_outline</span>
+# There are different ways to generate outlines, depending upon how thick they should be
+# and whether we get the &#39;inner&#39; or &#39;outer&#39;.
+bw_outline = load_image(&#39;images/outline.png&#39;) &gt; 0
+bw_outlined = ndimage.binary_dilation(bw_outline) ^ bw_outline
 
-<span class="c1"># Fill holes</span>
-<span class="n">bw_fill</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/fill_holes.png&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="n">bw_filled</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_fill_holes</span><span class="p">(</span><span class="n">bw_fill</span><span class="p">)</span>
+# Fill holes
+bw_fill = load_image(&#39;images/fill_holes.png&#39;) &gt; 0
+bw_filled = ndimage.binary_fill_holes(bw_fill)
 
-<span class="c1"># ndimage doesn&#39;t include skeletonize - so use skimage instead</span>
-<span class="c1"># (Note that different skeletonize algorithms might give different results)</span>
-<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">skeletonize</span>
-<span class="n">bw_skeletonize</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/skeletonize.png&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="n">bw_skeletonized</span> <span class="o">=</span> <span class="n">skeletonize</span><span class="p">(</span><span class="n">bw_skeletonize</span><span class="p">)</span>
+# ndimage doesn&#39;t include skeletonize - so use skimage instead
+# (Note that different skeletonize algorithms might give different results)
+from skimage.morphology import skeletonize
+bw_skeletonize = load_image(&#39;images/skeletonize.png&#39;) &gt; 0
+bw_skeletonized = skeletonize(bw_skeletonize)
 
-<span class="c1"># Show original concatenated with the filtered images</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">bw_outline</span><span class="p">,</span> <span class="n">bw_outlined</span><span class="p">)),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Outline&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">bw_fill</span><span class="p">,</span> <span class="n">bw_filled</span><span class="p">)),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Fill holes&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">bw_skeletonize</span><span class="p">,</span> <span class="n">bw_skeletonized</span><span class="p">)),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Skeletonize&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_outline_fill_skeleton&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+# Show original concatenated with the filtered images
+show_image(np.vstack((bw_outline, bw_outlined)), title=&quot;(A) Outline&quot;, pos=131)
+show_image(np.vstack((bw_fill, bw_filled)), title=&quot;(B) Fill holes&quot;, pos=132)
+show_image(np.vstack((bw_skeletonize, bw_skeletonized)), title=&quot;(C) Skeletonize&quot;, pos=133)
+glue_fig(&#39;fig_outline_fill_skeleton&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -819,14 +819,14 @@ By default they work with fixed 3×3 pixel neighborhoods, but they <em>could</em
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="71e862a6-86b2-4768-b6a7-c5a7a20fdee3" name="c0602b53-0f7c-4ee8-a67b-a3c9faea154c" type="radio">
-</input><label class="sd-tab-label" for="71e862a6-86b2-4768-b6a7-c5a7a20fdee3">
+<input checked="checked" id="e02c9cf2-6ba2-427a-9d06-2af812837f3f" name="ac60dc43-0cde-452d-8d8e-11a984d27088" type="radio">
+</input><label class="sd-tab-label" for="e02c9cf2-6ba2-427a-9d06-2af812837f3f">
 Question</label><div class="sd-tab-content docutils">
 <p>The outline of an object in a binary image can also be determined by applying one other morphological operation to a duplicate of the image, and then using the <span class="menuselection">Image Calculator</span>.
 How?</p>
 </div>
-<input id="a95dbe1b-1f3e-4b19-8a58-5c2015cb3852" name="c0602b53-0f7c-4ee8-a67b-a3c9faea154c" type="radio">
-</input><label class="sd-tab-label" for="a95dbe1b-1f3e-4b19-8a58-5c2015cb3852">
+<input id="d2b6d0da-58da-497e-8128-c6eb1e4865c2" name="ac60dc43-0cde-452d-8d8e-11a984d27088" type="radio">
+</input><label class="sd-tab-label" for="d2b6d0da-58da-497e-8128-c6eb1e4865c2">
 Answer</label><div class="sd-tab-content docutils">
 <p>To outline the objects in a binary image, you can simply calculate the difference between the original image and an eroded (or dilated, if you want the pixels just beyond the objects) duplicate of the image.</p>
 </div>

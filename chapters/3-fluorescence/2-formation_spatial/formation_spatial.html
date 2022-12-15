@@ -815,17 +815,17 @@ It’s better in <em>xy</em> than along the <em>z</em> dimension.</p></li>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
+%autoreload 2
 
-<span class="c1"># Default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+# Default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
+from helpers import *
+from matplotlib import pyplot as plt
+from myst_nb import glue
+import numpy as np
+from scipy import ndimage
 </pre></div>
 </div>
 </div>
@@ -837,10 +837,10 @@ This is <em>not</em> simply because we cannot use perfect lenses; rather, it’s
 The end result is as if the light that we detect is redistributed slightly throughout our data (<a class="reference internal" href="#fig-castles"><span class="std std-numref">Fig. 131</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/castle_sharp.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Sharp&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">121</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/castle_convolved.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Blurred&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">122</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_blur_castles&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
+show_image(&#39;images/castle_sharp.jpg&#39;, title=&#39;(A) Sharp&#39;, pos=121)
+show_image(&#39;images/castle_convolved.jpg&#39;, title=&#39;(B) Blurred&#39;, pos=122)
+glue_fig(&#39;fig_blur_castles&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -880,12 +880,12 @@ Fortunately for the mathematically unenthusiastic, these are both short and usef
 Rather, it ends up being focused to some larger volume known as the PSF, which has a minimum size dependent upon both the light’s wavelength and the lens being used.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/psf_sizes_orig.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Entire image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/psf_sizes_detail.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Detail of (A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/psf_sizes_small.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Some blur&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/psf_sizes_large.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(D) A lot of blur&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_blur_psf_sizes&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
+show_image(&#39;images/psf_sizes_orig.png&#39;, title=&#39;(A) Entire image&#39;, pos=141)
+show_image(&#39;images/psf_sizes_detail.png&#39;, title=&#39;(B) Detail of (A)&#39;, pos=142)
+show_image(&#39;images/psf_sizes_small.png&#39;, title=&#39;(C) Some blur&#39;, pos=143)
+show_image(&#39;images/psf_sizes_large.png&#39;, title=&#39;(D) A lot of blur&#39;, pos=144)
+glue_fig(&#39;fig_blur_psf_sizes&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -914,11 +914,11 @@ More curiously, when viewed from the side (<strong>xz</strong> or <strong>yz</st
 This exact shape is well enough understood that PSFs can also be generated theoretically based upon the type of microscope and objective lenses used (C).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/bead_linear.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Bead (linear)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/bead_gamma.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Bead (gamma))&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/bead_theoretical.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Theoretical PSF (linear)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_blur_psf_bead&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
+show_image(&#39;images/bead_linear.png&#39;, title=&#39;(A) Bead (linear)&#39;, pos=131)
+show_image(&#39;images/bead_gamma.png&#39;, title=&#39;(B) Bead (gamma))&#39;, pos=132)
+show_image(&#39;images/bead_theoretical.png&#39;, title=&#39;(C) Theoretical PSF (linear)&#39;, pos=133)
+glue_fig(&#39;fig_blur_psf_bead&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -953,16 +953,16 @@ From the side (<strong>xz</strong> or <strong>yz</strong>), this leads to an hou
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="23b625a4-b649-48bb-88f3-17e364edea63" name="927cdc42-ed56-4502-9136-63ccbcd2e5ef" type="radio">
-</input><label class="sd-tab-label" for="23b625a4-b649-48bb-88f3-17e364edea63">
+<input checked="checked" id="4e4fb043-94ec-462f-a90c-17c004ca3a30" name="d54bef9f-adf2-45dd-872e-b37be6c98bcd" type="radio">
+</input><label class="sd-tab-label" for="4e4fb043-94ec-462f-a90c-17c004ca3a30">
 Question</label><div class="sd-tab-content docutils">
 <p>In focus, a light-emitting point looks like a small, bright blob.
 Out of focus, it’s much less bright and extends over a wider area.</p>
 <p>However, how would you expect the <em>total amount</em> of light to differ in a widefield image depending upon whether a plane is in-focus or not?
 In other words, would you expect more or less light in the focal plane than in other planes above or below it?</p>
 </div>
-<input id="1c022a76-6fd1-4152-93e7-4e7e6a9f8a67" name="927cdc42-ed56-4502-9136-63ccbcd2e5ef" type="radio">
-</input><label class="sd-tab-label" for="1c022a76-6fd1-4152-93e7-4e7e6a9f8a67">
+<input id="672a22eb-511d-4daa-956a-17ffe4bcc13d" name="d54bef9f-adf2-45dd-872e-b37be6c98bcd" type="radio">
+</input><label class="sd-tab-label" for="672a22eb-511d-4daa-956a-17ffe4bcc13d">
 Answer</label><div class="sd-tab-content docutils">
 <p>In a widefield image, every plane we can record contains in-focus light along with <em>all</em> the detectable light from <em>all</em> other planes added together.
 Therefore we should expect approximately <em>the same total amount of light</em> within each plane of a <em>z</em>-stack – just differently distributed.
@@ -980,11 +980,11 @@ While it’s important to know that the rings occur – if only to avoid ever mi
 Therefore for our purposes they can mostly be disregarded.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">show_image</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;images/bead_slices_</span><span class="si">{</span><span class="n">ii</span><span class="si">}</span><span class="s1">.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 6))
+for ii in range(10):
+    show_image(f&#39;images/bead_slices_{ii}.png&#39;, pos=(2, 5, ii+1))
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_blur_bead_slices&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_blur_bead_slices&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1004,41 +1004,41 @@ This entire <em>xy</em> plane, including its interfering ripples, is called an <
 In the best possible case, when all the light in a 2D image comes from in-focus structures, what we can image would already have been blurred by a filter that looks like this.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">demo_airy_disk</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Create an Airy disk image for illustration.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def demo_airy_disk(radius=10, size=128):
+    &quot;&quot;&quot;
+    Create an Airy disk image for illustration.
 
-<span class="sd">    Parameters:</span>
-<span class="sd">     radius: radius of the Airy disk, in pixels</span>
-<span class="sd">     size:   width and height of the image, in pixels</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">j1</span>
+    Parameters:
+     radius: radius of the Airy disk, in pixels
+     size:   width and height of the image, in pixels
+    &quot;&quot;&quot;
+    from scipy.special import j1
 
-    <span class="n">s</span> <span class="o">=</span> <span class="mf">3.83</span> <span class="o">/</span> <span class="n">radius</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="o">*</span> <span class="n">s</span>
-    <span class="n">x</span> <span class="o">-=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="n">result</span><span class="p">[</span><span class="n">r</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">j1</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">r</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">r</span><span class="p">[</span><span class="n">r</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
-    <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span>
+    s = 3.83 / radius
+    x = np.arange(size, dtype=np.float64) * s
+    x -= x.mean()
+    y, x = np.meshgrid(x, x)
+    r = np.sqrt(x*x + y*y)
+    result = np.ones(r.shape)
+    result[r != 0] = (2 * j1(r[r != 0]) / r[r != 0])**2
+    return result, y, x
 
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+from matplotlib import cm
 
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;inferno&#39;</span><span class="p">)</span>
-<span class="n">im_airy</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">demo_airy_disk</span><span class="p">(</span><span class="n">radius</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">65</span><span class="p">)</span>
+cmap = cm.get_cmap(&#39;inferno&#39;)
+im_airy, y, x = demo_airy_disk(radius = 10, size = 65)
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
-<span class="c1"># ax_cartoon = fig.add_subplot(1, 3, 1)</span>
-<span class="c1"># ax_disk = fig.add_subplot(1, 3, 2)</span>
-<span class="c1"># ax_3d = fig.add_subplot(1, 3, 3, projection=&#39;3d&#39;, elev=20)</span>
+fig = create_figure(figsize=(8, 2.5))
+# ax_cartoon = fig.add_subplot(1, 3, 1)
+# ax_disk = fig.add_subplot(1, 3, 2)
+# ax_3d = fig.add_subplot(1, 3, 3, projection=&#39;3d&#39;, elev=20)
 
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/Airy.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) George Biddell Airy (1801–1892)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_airy</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Airy pattern&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_airy</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Airy pattern (contrast enhanced)&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+show_image(&#39;images/Airy.jpg&#39;, title=&#39;(A) George Biddell Airy (1801–1892)&#39;, pos=131)
+show_image(im_airy, title=&#39;(B) Airy pattern&#39;, vmin=-0.05, vmax=0.8, cmap=cmap, pos=132)
+show_image(im_airy, title=&#39;(C) Airy pattern (contrast enhanced)&#39;, vmin=-0.05, vmax=0.1, cmap=cmap, pos=133)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_blur_airy&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+plt.tight_layout()
+glue_fig(&#39;fig_blur_airy&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1059,49 +1059,49 @@ If we ignore the little interfering ripples around its edges, it can be very wel
 Therefore <em>the blur of a microscope in 2D is similar to applying a Gaussian filter</em>, at least in the focal plane.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Show 3D plots to compare an Airy disk with a 2D Gaussian function.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Show 3D plots to compare an Airy disk with a 2D Gaussian function.
+&quot;&quot;&quot;
 
-<span class="c1"># Create an Airy disk image</span>
-<span class="n">radius</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">im_airy</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">demo_airy_disk</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">65</span><span class="p">)</span>
+# Create an Airy disk image
+radius = 10
+im_airy, y, x = demo_airy_disk(radius=radius, size = 65)
 
-<span class="c1"># Compute FWHM from the Airy disk radius,</span>
-<span class="c1"># convert to a Gaussian sigma &amp; then create 2D Gaussian</span>
-<span class="n">fwhm</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">/</span> <span class="mf">3.232</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="n">fwhm</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
-<span class="n">im_gaussian</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">))</span>
+# Compute FWHM from the Airy disk radius,
+# convert to a Gaussian sigma &amp; then create 2D Gaussian
+fwhm = radius / 3.232
+sigma = fwhm / (2 * np.sqrt(2 * np.log(2)))
+im_gaussian = np.exp(-(x*x + y*y)/(2 * sigma * sigma))
 
-<span class="c1"># Show plots</span>
-<span class="n">color_airy</span> <span class="o">=</span> <span class="s1">&#39;#1f77b4&#39;</span>
-<span class="n">color_gaussian</span> <span class="o">=</span> <span class="s1">&#39;#ff7f0e&#39;</span>
+# Show plots
+color_airy = &#39;#1f77b4&#39;
+color_gaussian = &#39;#ff7f0e&#39;
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
-<span class="n">ax_disk</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">ax_gaussian</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">ax_fit</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+fig = create_figure(figsize=(8, 2.5))
+ax_disk = fig.add_subplot(1, 3, 1, projection=&#39;3d&#39;, elev=20)
+ax_gaussian = fig.add_subplot(1, 3, 2, projection=&#39;3d&#39;, elev=20)
+ax_fit = fig.add_subplot(1, 3, 3)
 
-<span class="n">ax_disk</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">im_airy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color_airy</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">ax_gaussian</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">im_gaussian</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color_gaussian</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+ax_disk.plot_wireframe(x, y, im_airy, color=color_airy, linewidth=0.5)
+ax_gaussian.plot_wireframe(x, y, im_gaussian, color=color_gaussian, linewidth=0.5)
 
-<span class="n">row</span> <span class="o">=</span> <span class="n">im_airy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">im_airy</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="n">color_airy</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">ax_fit</span><span class="p">)</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">im_gaussian</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="n">color_gaussian</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">ax_fit</span><span class="p">)</span>
+row = im_airy.shape[0]//2
+show_plot(y[row, :], im_airy[row, :], color=color_airy, axes=ax_fit)
+show_plot(y[row, :], im_gaussian[row, :], color=color_gaussian, axes=ax_fit)
 
-<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;(A) Airy disk&#39;</span><span class="p">,</span>
-          <span class="s1">&#39;(B) Gaussian function&#39;</span><span class="p">,</span>
-          <span class="s1">&#39;(C) Gaussian fit to Airy disk&#39;</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">title</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">ax_disk</span><span class="p">,</span> <span class="n">ax_gaussian</span><span class="p">,</span> <span class="n">ax_fit</span><span class="p">],</span> <span class="n">titles</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span><span class="s1">&#39;small&#39;</span><span class="p">})</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_zticklabels</span><span class="p">([])</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="k">pass</span>
+titles = [&#39;(A) Airy disk&#39;,
+          &#39;(B) Gaussian function&#39;,
+          &#39;(C) Gaussian fit to Airy disk&#39;]
+for ax, title in zip([ax_disk, ax_gaussian, ax_fit], titles):
+    ax.set_title(title, fontdict={&#39;fontsize&#39;:&#39;small&#39;})
+    ax.set_xticklabels([])
+    ax.set_yticklabels([])
+    try:
+        ax.set_zticklabels([])
+    except:
+        pass
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_blur_psf_surface&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_blur_psf_surface&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1136,26 +1136,26 @@ This is is given by:</p>
 <p>The practical importance of these equations is that they reveal the key factors that influence how blurry an image will be.
 This hints at some ways we might be able to reduce blurring at the acquisition stage.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="73f1b9f6-2867-4026-b22c-96531d5a1d5f" name="181bb7d2-ea76-4d1d-8e4d-2b8df82a1d8b" type="radio">
-</input><label class="sd-tab-label" for="73f1b9f6-2867-4026-b22c-96531d5a1d5f">
+<input checked="checked" id="97da9f7d-21aa-43b7-a6b9-a5573acc9894" name="81cdf103-6278-4bb8-be19-199775e2398c" type="radio">
+</input><label class="sd-tab-label" for="97da9f7d-21aa-43b7-a6b9-a5573acc9894">
 Question</label><div class="sd-tab-content docutils">
 <p>According to Equation <a class="reference internal" href="#equation-eqn-res-lateral">(1)</a>, the equation for the Airy disk size, what are the two variables we <em>may</em> be able to control that influence the amount of blur in our images?
 And how must they be changed (increased or decreased) for the images to have less blur?</p>
 </div>
-<input id="1fe1e465-ad8d-4860-8271-e4b89502650f" name="181bb7d2-ea76-4d1d-8e4d-2b8df82a1d8b" type="radio">
-</input><label class="sd-tab-label" for="1fe1e465-ad8d-4860-8271-e4b89502650f">
+<input id="70709225-caee-4100-8f0a-233d4cebf0fe" name="81cdf103-6278-4bb8-be19-199775e2398c" type="radio">
+</input><label class="sd-tab-label" for="70709225-caee-4100-8f0a-233d4cebf0fe">
 Answer</label><div class="sd-tab-content docutils">
 <p>If the wavelength <span class="math notranslate nohighlight">\(\lambda\)</span> is <em>lower</em> or the objective NA is <em>higher</em>, <span class="math notranslate nohighlight">\(r_{airy}\)</span> decreases and we have less blur.</p>
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="ec6a2eee-85a9-41d5-b044-0e4e97cd6c93" name="1501386f-cdef-44ae-8ddb-9e4bab10177d" type="radio">
-</input><label class="sd-tab-label" for="ec6a2eee-85a9-41d5-b044-0e4e97cd6c93">
+<input checked="checked" id="a4bf25a8-a3a6-42e5-a9ed-6ce33054038c" name="82ba58a9-256f-40bc-a2fa-4fceb06fdc46" type="radio">
+</input><label class="sd-tab-label" for="a4bf25a8-a3a6-42e5-a9ed-6ce33054038c">
 Question</label><div class="sd-tab-content docutils">
 <p>Does the NA have more influence on blur in the <em>xy</em> plane, or along the <em>z</em> axis?</p>
 </div>
-<input id="03ad7d47-393c-4ba6-8556-687cde4a2aaa" name="1501386f-cdef-44ae-8ddb-9e4bab10177d" type="radio">
-</input><label class="sd-tab-label" for="03ad7d47-393c-4ba6-8556-687cde4a2aaa">
+<input id="05a9a541-1a75-4142-b5e2-981a46ab9e28" name="82ba58a9-256f-40bc-a2fa-4fceb06fdc46" type="radio">
+</input><label class="sd-tab-label" for="05a9a541-1a75-4142-b5e2-981a46ab9e28">
 Answer</label><div class="sd-tab-content docutils">
 <p>Because of the squaring, the NA has a much greater influence on blur along the <em>z</em> axis than in <em>xy</em>.
 This can be seen clearly in <a class="reference internal" href="#fig-psf-na"><span class="std std-numref">Fig. 138</span></a>.</p>
@@ -1163,13 +1163,13 @@ This can be seen clearly in <a class="reference internal" href="#fig-psf-na"><sp
 </div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/psf_na_names.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/psf_na_08.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;NA = 0.8&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/psf_na_1.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;NA = 1.0&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/psf_na_12.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;NA = 1.2&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
+show_image(&#39;images/psf_na_names.png&#39;, pos=141)
+show_image(&#39;images/psf_na_08.png&#39;, title=&#39;NA = 0.8&#39;, pos=142)
+show_image(&#39;images/psf_na_1.png&#39;, title=&#39;NA = 1.0&#39;, pos=143)
+show_image(&#39;images/psf_na_12.png&#39;, title=&#39;NA = 1.2&#39;, pos=144)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_blur_psf_na&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_blur_psf_na&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1202,8 +1202,8 @@ Therefore, matching the refractive indices of the immersion and embedding media 
 <p>For an interactive tutorial on the effect of using different NAs, see <a class="reference external" href="https://www.microscopyu.com/tutorials/imageformation-airyna">https://www.microscopyu.com/tutorials/imageformation-airyna</a>.</p>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="063a4844-dfde-44ef-bff9-a8d12f032014" name="3a2758d3-521b-435f-87c6-a7f0be057f48" type="radio">
-</input><label class="sd-tab-label" for="063a4844-dfde-44ef-bff9-a8d12f032014">
+<input checked="checked" id="90e3c2d2-ba14-4a02-bb56-7b4548e14c46" name="6006e54e-b315-4871-b7fc-163aed584560" type="radio">
+</input><label class="sd-tab-label" for="90e3c2d2-ba14-4a02-bb56-7b4548e14c46">
 Question</label><div class="sd-tab-content docutils">
 <p>Convince yourself that <span class="math notranslate nohighlight">\(z_{min}\)</span> will be considerably higher than <span class="math notranslate nohighlight">\(r_{airy}\)</span> using one of the following methods:</p>
 <ul class="simple">
@@ -1213,8 +1213,8 @@ This should reveal that the ratio is bigger than 1, i.e. that <span class="math 
 </ul>
 <p>What is the main implication of this observation, in terms of how separated structures need to be along different dimensions for them still to be distinguishable?</p>
 </div>
-<input id="821466f6-aab2-4504-b0d6-9437c9fe589a" name="3a2758d3-521b-435f-87c6-a7f0be057f48" type="radio">
-</input><label class="sd-tab-label" for="821466f6-aab2-4504-b0d6-9437c9fe589a">
+<input id="813ba281-5637-4a3b-856a-54e0b05c8f69" name="6006e54e-b315-4871-b7fc-163aed584560" type="radio">
+</input><label class="sd-tab-label" for="813ba281-5637-4a3b-856a-54e0b05c8f69">
 Answer</label><div class="sd-tab-content docutils">
 <p>The ratio is</p>
 <div class="math notranslate nohighlight">
@@ -1234,58 +1234,59 @@ If the spots are closer than this, they are likely to be seen as one.
 In the in-focus plane, this is illustrated in <a class="reference internal" href="#fig-rayleigh"><span class="std std-numref">Fig. 139</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">shift_horizontal</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Shift an image horizonally left or right, padding with zeros.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">im</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="n">n</span><span class="p">],</span> <span class="n">pad_width</span><span class="o">=</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">[:,</span> <span class="o">-</span><span class="n">n</span><span class="p">:],</span> <span class="n">pad_width</span><span class="o">=</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">n</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+def shift_horizontal(im, n: int):
+    &quot;&quot;&quot;
+    Shift an image horizonally left or right, padding with zeros.
+    &quot;&quot;&quot;
+    if n == 0:
+        return im
+    if n &gt; 0:
+        return np.pad(im[:, :-n], pad_width=((0, 0), (n, 0)))
+    else:
+        return np.pad(im[:, -n:], pad_width=((0, 0), (0, -n)))
 
 
-<span class="c1"># Create an Airy disk in a (reasonably) big image</span>
-<span class="n">radius</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">pad</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">im_airy</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">demo_airy_disk</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">radius</span><span class="o">*</span><span class="n">pad</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">radius</span><span class="o">*</span><span class="n">pad</span><span class="p">,</span> <span class="n">radius</span><span class="o">*</span><span class="n">pad</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">radius</span>
-<span class="n">row</span> <span class="o">=</span> <span class="n">im_airy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span>
+# Create an Airy disk in a (reasonably) big image
+radius = 40
+pad = 2
+im_airy, x, y = demo_airy_disk(radius=radius, size=radius*pad*2+1)
+x = np.arange(-radius*pad, radius*pad+1) / radius
+row = im_airy.shape[0]//2
 
-<span class="n">im_airy_2</span> <span class="o">=</span> <span class="n">shift_horizontal</span><span class="p">(</span><span class="n">im_airy</span><span class="p">,</span> <span class="o">-</span><span class="n">radius</span><span class="p">)</span> <span class="o">+</span> <span class="n">shift_horizontal</span><span class="p">(</span><span class="n">im_airy</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
-<span class="n">im_airy_1</span> <span class="o">=</span> <span class="n">shift_horizontal</span><span class="p">(</span><span class="n">im_airy</span><span class="p">,</span> <span class="o">-</span><span class="n">radius</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">shift_horizontal</span><span class="p">(</span><span class="n">im_airy</span><span class="p">,</span> <span class="n">radius</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">im_airy_0_8</span> <span class="o">=</span> <span class="n">shift_horizontal</span><span class="p">(</span><span class="n">im_airy</span><span class="p">,</span> <span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">radius</span><span class="o">*</span><span class="mf">0.4</span><span class="p">))</span> <span class="o">+</span> <span class="n">shift_horizontal</span><span class="p">(</span><span class="n">im_airy</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">radius</span><span class="o">*</span><span class="mf">0.4</span><span class="p">))</span>
-<span class="n">im_airy_0_5</span> <span class="o">=</span> <span class="n">shift_horizontal</span><span class="p">(</span><span class="n">im_airy</span><span class="p">,</span> <span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">radius</span><span class="o">*</span><span class="mf">0.25</span><span class="p">))</span> <span class="o">+</span> <span class="n">shift_horizontal</span><span class="p">(</span><span class="n">im_airy</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">radius</span><span class="o">*</span><span class="mf">0.25</span><span class="p">))</span>
+im_airy_2 = shift_horizontal(im_airy, -radius) + shift_horizontal(im_airy, radius)
+im_airy_1 = shift_horizontal(im_airy, -radius//2) + shift_horizontal(im_airy, radius//2)
+im_airy_0_8 = shift_horizontal(im_airy, -int(radius*0.4)) + shift_horizontal(im_airy, int(radius*0.4))
+im_airy_0_5 = shift_horizontal(im_airy, -int(radius*0.25)) + shift_horizontal(im_airy, int(radius*0.25))
 
-<span class="c1"># Show plots</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+# Show plots
+fig = create_figure(figsize=(8, 4))
 
-<span class="n">img_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;magma&#39;</span><span class="p">),</span>
-    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-    <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
+img_args = dict(
+    cmap=cm.get_cmap(&#39;magma&#39;),
+    vmin=0,
+    vmax=1
+)
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_airy_2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) 2 radii separation&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">img_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">241</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_airy_1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) 1 radius separation&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">img_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">242</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_airy_0_8</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) 0.8 disk separation&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">img_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">243</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_airy_0_5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(D) 0.5 disk separation&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">img_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">244</span><span class="p">)</span>
+show_image(im_airy_2, title=&#39;(A) 2 radii separation&#39;, **img_args, pos=241)
+show_image(im_airy_1, title=&#39;(B) 1 radius separation&#39;, **img_args, pos=242)
+show_image(im_airy_0_8, title=&#39;(C) 0.8 disk separation&#39;, **img_args, pos=243)
+show_image(im_airy_0_5, title=&#39;(D) 0.5 disk separation&#39;, **img_args, pos=244)
 
-<span class="n">plot_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">],</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Disk radii&#39;</span>
-<span class="p">)</span>
+plot_args = dict(
+    ylim=[-0.1, 1.8],
+    xlabel=&#39;Disk radii&#39;
+)
 
-<span class="n">show_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">im_airy_2</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">245</span><span class="p">)</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">im_airy_1</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">246</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">im_airy_0_8</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">247</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">im_airy_0_5</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">248</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+show_plot(x, im_airy_2[row, :], **plot_args, pos=245)
+show_plot(x, im_airy_1[row, :], **plot_args, pos=246)
+plt.yticks([])
+show_plot(x, im_airy_0_8[row, :], **plot_args, pos=247)
+plt.yticks([])
+show_plot(x, im_airy_0_5[row, :], **plot_args, pos=248)
+plt.yticks([])
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_blur_rayleigh&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_blur_rayleigh&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1301,15 +1302,15 @@ In the in-focus plane, this is illustrated in <a class="reference internal" href
 <p>It should be kept in mind that the use of <span class="math notranslate nohighlight">\(r_{airy}\)</span> and <span class="math notranslate nohighlight">\(z_{min}\)</span> in the Rayleigh criterion is somewhat arbitrary – and the effects of brightness differences, finite pixel sizes and noise further complicate the situation, so that in practice a greater distance may well be required for us to confidently distinguish structures. Nevertheless, the Rayleigh criterion is helpful to give some idea of the scale of distances involved, i.e.
 hundreds of nanometers when using visible light.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="05c1af56-9900-404f-8e6e-8c49de0f1eb2" name="9b2f1aa0-384c-421b-91aa-07ffcc7c7a61" type="radio">
-</input><label class="sd-tab-label" for="05c1af56-9900-404f-8e6e-8c49de0f1eb2">
+<input checked="checked" id="b397fd99-4dbf-4ba3-8c9d-e1b5c109849d" name="5b38ca00-b916-4f36-999a-6feeaff78805" type="radio">
+</input><label class="sd-tab-label" for="b397fd99-4dbf-4ba3-8c9d-e1b5c109849d">
 Question</label><div class="sd-tab-content docutils">
 <p>Suppose the diameter of the Airy disk is around 500 nm, and you are looking at an image containing separate, well-spaced structures that are 2 nm, 20 nm and 200 nm in size.
 Assuming that you have imaged all of these exactly in focus (after all, you are a brilliant microscopist), how will these structures appear in the image?</p>
 <p><em>Note:</em> This is a particularly important question! Think of both the size and brightness.</p>
 </div>
-<input id="bbc43554-8493-478a-8836-38f73eae3a70" name="9b2f1aa0-384c-421b-91aa-07ffcc7c7a61" type="radio">
-</input><label class="sd-tab-label" for="bbc43554-8493-478a-8836-38f73eae3a70">
+<input id="2f1c2bc9-b711-4c55-8737-fd13fdb87e4a" name="5b38ca00-b916-4f36-999a-6feeaff78805" type="radio">
+</input><label class="sd-tab-label" for="2f1c2bc9-b711-4c55-8737-fd13fdb87e4a">
 Answer</label><div class="sd-tab-content docutils">
 <p>Because even an infinitesimally small point cannot appear smaller than the Airy disk in the recorded image, <em>potentially all 3 of these structures look the same!</em> There may be <em>some</em> increase in size visible with the 200 nm structure (because it is larger than a single point, this makes it like many different, slightly-shifted-but-mostly-overlapping Airy disks added together), but it will certainly not appear 10 or 100 times larger than the others.</p>
 <p><em>However</em>, because smaller objects typically emit fewer photons, the smaller structures may well appear less bright – if they are bright enough to be visible at all.

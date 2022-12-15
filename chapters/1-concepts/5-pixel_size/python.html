@@ -723,13 +723,13 @@ title="Print to PDF"
 There’s a strong chance it will be updated whenever I figure out how to install <a class="reference external" href="https://allencellmodeling.github.io/aicsimageio/index.html">AICSImageIO</a> on my stubborn computer (and find time to revise the book).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, our usual default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># First, our usual default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
 
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+from helpers import *
+import matplotlib.pyplot as plt
+import numpy as np
 </pre></div>
 </div>
 </div>
@@ -741,23 +741,23 @@ There’s a strong chance it will be updated whenever I figure out how to instal
 We can request the metadata when loading it from <code class="docutils literal notranslate"><span class="pre">imageio</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The easy with with the helper function</span>
-<span class="c1"># im, metadata = load_image(&#39;Rat_Hippocampal_Neuron.zip&#39;, volume=True, metadata=True)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># The easy with with the helper function
+# im, metadata = load_image(&#39;Rat_Hippocampal_Neuron.zip&#39;, volume=True, metadata=True)
 
-<span class="c1"># The awkward way using imageio directly</span>
-<span class="kn">import</span> <span class="nn">imageio</span>
+# The awkward way using imageio directly
+import imageio
 
-<span class="c1"># Get the path to the image &amp; unzip it (the unzipping isn&#39;t needed for .tif images generally)</span>
-<span class="n">path</span> <span class="o">=</span> <span class="n">find_image</span><span class="p">(</span><span class="s1">&#39;Rat_Hippocampal_Neuron.zip&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zf</span><span class="p">:</span>
-    <span class="n">names</span> <span class="o">=</span> <span class="n">zf</span><span class="o">.</span><span class="n">namelist</span><span class="p">()</span>
-    <span class="k">with</span> <span class="n">zf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">as</span> <span class="n">entry</span><span class="p">:</span>
-        <span class="n">image_bytes</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+# Get the path to the image &amp; unzip it (the unzipping isn&#39;t needed for .tif images generally)
+path = find_image(&#39;Rat_Hippocampal_Neuron.zip&#39;)[0]
+with ZipFile(path, &#39;r&#39;) as zf:
+    names = zf.namelist()
+    with zf.open(names[0]) as entry:
+        image_bytes = entry.read()
 
-<span class="c1"># Usually you can just pass the path here, instead of image_bytes</span>
-<span class="n">reader</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">get_reader</span><span class="p">(</span><span class="n">image_bytes</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;.tif&#39;</span><span class="p">)</span>
-<span class="n">metadata</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_meta_data</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+# Usually you can just pass the path here, instead of image_bytes
+reader = imageio.get_reader(image_bytes, format=&#39;.tif&#39;)
+metadata = reader.get_meta_data()
+print(metadata)
 </pre></div>
 </div>
 </div>
@@ -770,8 +770,8 @@ We can request the metadata when loading it from <code class="docutils literal n
 <p>Printing that a little more nicely, we get:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for k, v in metadata.items():
+    print(f&#39;{k}: {v}&#39;)
 </pre></div>
 </div>
 </div>
@@ -812,7 +812,7 @@ resolution: (6.25, 6.25, &#39;NONE&#39;)
 <p>It’s tempting to suppose that means the pixel width and height are both 6.25 µm - <em>however</em> if I check the same image in ImageJ itself, I see the pixel width and height are actually 0.16 µm… which happens to equal 1.0/6.25 µm.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">6.25</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(1.0 / 6.25)
 </pre></div>
 </div>
 </div>
@@ -834,12 +834,12 @@ So I can’t say a great deal more about it for now.</p>
 But for now, we’ll persist with <code class="docutils literal notranslate"><span class="pre">imageio</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;confocal-series.zip&#39;</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Shape: </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im, metadata = load_image(&#39;confocal-series.zip&#39;, volume=True, metadata=True)
+print(f&#39;Shape: {im.shape}&#39;)
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Metadata:&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+print(&#39;Metadata:&#39;)
+for k, v in metadata.items():
+    print(f&#39;{k}: {v}&#39;)
 </pre></div>
 </div>
 </div>
@@ -884,10 +884,10 @@ I can find that information buried in the metadata, which helps make sense of th
 <p>Since we already considered how to view multichannel images in the last chapter, let’s extract a single channel here.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Channels come second</span>
-<span class="c1"># This gives us all the z-slices (:), the first channel (0), everything else (...)</span>
-<span class="n">im_single</span> <span class="o">=</span> <span class="n">im</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;New shape: </span><span class="si">{</span><span class="n">im_single</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Channels come second
+# This gives us all the z-slices (:), the first channel (0), everything else (...)
+im_single = im[:, 0, ...]
+print(f&#39;New shape: {im_single.shape}&#39;)
 </pre></div>
 </div>
 </div>
@@ -901,29 +901,29 @@ I can find that information buried in the metadata, which helps make sense of th
 <p>For example, we can rapidly generate different z-projections.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(16, 4))
 
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_single</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Max z-projection&#39;</span><span class="p">)</span>
+plt.subplot(1, 4, 1)
+plt.imshow(im_single.max(axis=0))
+plt.axis(False)
+plt.title(&#39;Max z-projection&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_single</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Min z-projection&#39;</span><span class="p">)</span>
+plt.subplot(1, 4, 2)
+plt.imshow(im_single.min(axis=0))
+plt.axis(False)
+plt.title(&#39;Min z-projection&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_single</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mean z-projection&#39;</span><span class="p">)</span>
+plt.subplot(1, 4, 3)
+plt.imshow(im_single.mean(axis=0))
+plt.axis(False)
+plt.title(&#39;Mean z-projection&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_single</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Std.dev. z-projection&#39;</span><span class="p">)</span>
+plt.subplot(1, 4, 4)
+plt.imshow(im_single.std(axis=0))
+plt.axis(False)
+plt.title(&#39;Std.dev. z-projection&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -937,29 +937,29 @@ I can find that information buried in the metadata, which helps make sense of th
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(16, 4))
 
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_single</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Max y-projection&#39;</span><span class="p">)</span>
+plt.subplot(1, 4, 1)
+plt.imshow(im_single.max(axis=1))
+plt.axis(False)
+plt.title(&#39;Max y-projection&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_single</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Min y-projection&#39;</span><span class="p">)</span>
+plt.subplot(1, 4, 2)
+plt.imshow(im_single.min(axis=1))
+plt.axis(False)
+plt.title(&#39;Min y-projection&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_single</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mean y-projection&#39;</span><span class="p">)</span>
+plt.subplot(1, 4, 3)
+plt.imshow(im_single.mean(axis=1))
+plt.axis(False)
+plt.title(&#39;Mean y-projection&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_single</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Std.dev. y-projection&#39;</span><span class="p">)</span>
+plt.subplot(1, 4, 4)
+plt.imshow(im_single.std(axis=1))
+plt.axis(False)
+plt.title(&#39;Std.dev. y-projection&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -970,26 +970,26 @@ I can find that information buried in the metadata, which helps make sense of th
 <p>And we can also slice wherever we like as well, to obtain orthogonal views.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(8, 8))
 
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_single</span><span class="p">[</span><span class="n">im_single</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Middle z-slice&#39;</span><span class="p">)</span>
+plt.subplot(2, 2, 1)
+plt.imshow(im_single[im_single.shape[0]//2, ...])
+plt.axis(False)
+plt.title(&#39;Middle z-slice&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+plt.subplot(2, 2, 3)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_single</span><span class="p">[:,</span> <span class="n">im_single</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Middle row&#39;</span><span class="p">)</span>
+plt.imshow(im_single[:, im_single.shape[1]//2, ...])
+plt.axis(False)
+plt.title(&#39;Middle row&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_single</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">im_single</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">())</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Middle column&#39;</span><span class="p">)</span>
+plt.subplot(2, 2, 2)
+plt.imshow(im_single[..., im_single.shape[2]//2].transpose())
+plt.axis(False)
+plt.title(&#39;Middle column&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.tight_layout()
+plt.show()
 </pre></div>
 </div>
 </div>

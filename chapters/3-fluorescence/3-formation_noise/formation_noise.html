@@ -843,17 +843,17 @@ title="Print to PDF"
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
+%autoreload 2
 
-<span class="c1"># Default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+# Default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
+from helpers import *
+from matplotlib import pyplot as plt
+from myst_nb import glue
+import numpy as np
+from scipy import ndimage
 </pre></div>
 </div>
 </div>
@@ -876,53 +876,53 @@ Nevertheless, it may be helpful to know a bit more detail about why – and what
 <span id="sec-noise-background"></span><h3>Background<a class="headerlink" href="#background" title="Permalink to this headline">#</a></h3>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Visualize an image with/without noise.</span>
-<span class="sd">The point is that noise comprises random positive/negative values,</span>
-<span class="sd">usually with a predictable distribution.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Visualize an image with/without noise.
+The point is that noise comprises random positive/negative values,
+usually with a predictable distribution.
 
-<span class="sd">(Of course, in the simulation we can make sure that&#39;s the case...</span>
-<span class="sd">but real-world investigations support the basis of these simulations)</span>
-<span class="sd">&quot;&quot;&quot;</span>
+(Of course, in the simulation we can make sure that&#39;s the case...
+but real-world investigations support the basis of these simulations)
+&quot;&quot;&quot;
 
-<span class="c1"># Load image &amp; normalize between 0 and 1</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+# Load image &amp; normalize between 0 and 1
+im = load_image(&#39;happy_cell.tif&#39;).astype(np.float32)
+im = im - im.min()
+im = im / im.max()
 
-<span class="c1"># Adjust the intensities a bit.</span>
-<span class="c1"># This allows us to balance the brightness signal and the background,</span>
-<span class="c1"># which helps because for very low signals Poisson noise looks weirder -</span>
-<span class="c1"># and right now we don&#39;t want to be distracted by odd-looking histograms.</span>
-<span class="c1"># We&#39;ll cover that later.</span>
-<span class="n">background</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">max_signal</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">background</span> <span class="o">+</span> <span class="n">im</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_signal</span> <span class="o">-</span> <span class="n">background</span><span class="p">)</span>
+# Adjust the intensities a bit.
+# This allows us to balance the brightness signal and the background,
+# which helps because for very low signals Poisson noise looks weirder -
+# and right now we don&#39;t want to be distracted by odd-looking histograms.
+# We&#39;ll cover that later.
+background = 40
+max_signal = 100
+im = background + im * (max_signal - background)
 
-<span class="c1"># Blur (to simulate point spread function)</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+# Blur (to simulate point spread function)
+sigma = 2
+im = ndimage.gaussian_filter(im, sigma)
 
-<span class="c1"># Add Poisson noise (for realism)</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">im_noisy</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+# Add Poisson noise (for realism)
+rng = np.random.default_rng(100)
+im_noisy = rng.poisson(im)
 
-<span class="c1"># Compute the difference between the noisy image &amp; ideal image</span>
-<span class="n">im_diff</span> <span class="o">=</span> <span class="n">im_noisy</span> <span class="o">-</span> <span class="n">im</span>
+# Compute the difference between the noisy image &amp; ideal image
+im_diff = im_noisy - im
 
-<span class="c1"># Show images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">))</span>
+# Show images
+fig = create_figure(figsize=(8, 1.8))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Noisy image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Noise-free (blurred) image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_diff</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Result of (A) - (B)&#39;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
-<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_diff</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(D) Histogram of (A) - (B)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+show_image(im_noisy, title=&#39;(A) Noisy image&#39;, pos=141)
+show_image(im, title=&#39;(B) Noise-free (blurred) image&#39;, pos=142)
+show_image(im_diff, title=&#39;(C) Result of (A) - (B)&#39;, clip_percentile=1, pos=143)
+show_histogram(im_diff.flatten(), xlabel=None, ylabel=None, title=&#39;(D) Histogram of (A) - (B)&#39;, pos=144)
+plt.xticks([])
+plt.yticks([])
 
-<span class="c1"># plt.tight_layout()</span>
+# plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_demo&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_noise_demo&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -947,37 +947,37 @@ No matter which of these we have, the most interesting distribution parameter fo
 Assuming everything else stays the same, if the standard deviation of the noise is higher then the image looks worse (<a class="reference internal" href="#fig-gaussian-hists"><span class="std std-numref">Fig. 141</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Demonstrate that noise with a higher standard deviation makes an image</span>
-<span class="sd">look worse, if all else stays the same (i.e. lower signal-to-noise ratio).</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Demonstrate that noise with a higher standard deviation makes an image
+look worse, if all else stays the same (i.e. lower signal-to-noise ratio).
+&quot;&quot;&quot;
 
-<span class="c1"># Load image</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+# Load image
+im = load_image(&#39;happy_cell.tif&#39;).astype(np.float32)
 
-<span class="c1"># Add noise with different standard deivations</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+# Add noise with different standard deivations
+rng = np.random.default_rng(200)
 
-<span class="n">im_noise_5</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span>
-<span class="n">im_noise_10</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
-<span class="n">im_noise_20</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">20</span>
+im_noise_5 = im + rng.normal(size=im.shape) * 5
+im_noise_10 = im + rng.normal(size=im.shape) * 10
+im_noise_20 = im + rng.normal(size=im.shape) * 20
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+fig = create_figure(figsize=(8, 4))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_noise_5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Std. dev. 5&#39;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_noise_10</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Std. dev. 10&#39;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_noise_20</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Std. dev. 20&#39;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+show_image(im_noise_5, title=&#39;(A) Std. dev. 5&#39;, clip_percentile=1, pos=231)
+show_image(im_noise_10, title=&#39;(B) Std. dev. 10&#39;, clip_percentile=1, pos=232)
+show_image(im_noise_20, title=&#39;(C) Std. dev. 20&#39;, clip_percentile=1, pos=233)
 
-<span class="c1"># Easier to show histograms with same settings in a loop</span>
-<span class="n">pos</span> <span class="o">=</span> <span class="mi">234</span>
-<span class="k">for</span> <span class="n">im_noise</span> <span class="ow">in</span> <span class="p">[</span><span class="n">im_noise_5</span><span class="p">,</span> <span class="n">im_noise_10</span><span class="p">,</span> <span class="n">im_noise_20</span><span class="p">]:</span>
-    <span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noise</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">110</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3000</span><span class="p">])</span>
-    <span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+# Easier to show histograms with same settings in a loop
+pos = 234
+for im_noise in [im_noise_5, im_noise_10, im_noise_20]:
+    show_histogram(im_noise.flatten(), pos=pos)
+    plt.xlim([-50, 110])
+    plt.ylim([0, 3000])
+    pos += 1
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_gaussian_hists&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+plt.tight_layout()
+glue_fig(&#39;fig_gaussian_hists&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1032,8 +1032,8 @@ For example, if we have detected 20 photons, a noise standard deviation of 10 ph
 <div class="math notranslate nohighlight" id="equation-eqn-snr">
 <span class="eqno">(3)<a class="headerlink" href="#equation-eqn-snr" title="Permalink to this equation">#</a></span>\[\textrm{SNR} = \frac{\textrm{Signal}}{\textrm{Noise standard deviation}}\]</div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="5e80254f-6cc8-4cc6-b67a-6b8ce31b096c" name="d9bc66bb-12e2-46bc-bffb-fb6ee6356ba6" type="radio">
-</input><label class="sd-tab-label" for="5e80254f-6cc8-4cc6-b67a-6b8ce31b096c">
+<input checked="checked" id="3c4372cd-ec90-474f-92b6-636ea7daa552" name="1f1615ec-ded7-4231-bc6e-633b1796ca57" type="radio">
+</input><label class="sd-tab-label" for="3c4372cd-ec90-474f-92b6-636ea7daa552">
 Question</label><div class="sd-tab-content docutils">
 <p>Calculate the SNR in the following cases:</p>
 <ul class="simple">
@@ -1043,8 +1043,8 @@ Question</label><div class="sd-tab-content docutils">
 </ul>
 <p>For the purposes of this question, you should assume that read noise is the only noise present (ignore photon noise).</p>
 </div>
-<input id="cdcdb522-4df9-4cb7-8608-67e2304ca424" name="d9bc66bb-12e2-46bc-bffb-fb6ee6356ba6" type="radio">
-</input><label class="sd-tab-label" for="cdcdb522-4df9-4cb7-8608-67e2304ca424">
+<input id="e23b1aba-321e-4e55-8879-4d177e389a33" name="1f1615ec-ded7-4231-bc6e-633b1796ca57" type="radio">
+</input><label class="sd-tab-label" for="e23b1aba-321e-4e55-8879-4d177e389a33">
 Answer</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>We detect an average of 10 photons, read noise std. dev. 1 photon: <em>SNR = 10</em></p></li>
@@ -1090,38 +1090,38 @@ We can check that it really works by using a simulation.
 This means it should usually give us an image that is more amenable to thresholding.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Splitting one image to form two.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Splitting one image to form two.
+&quot;&quot;&quot;
 
-<span class="c1"># Load image</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+# Load image
+im = load_image(&#39;happy_cell.tif&#39;).astype(np.float32)
 
-<span class="c1"># Create two independeny noisy images</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">im_noisy1</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">im_noisy2</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+# Create two independeny noisy images
+rng = np.random.default_rng(200)
+im_noisy1 = im + rng.normal(scale=20, size=im.shape)
+im_noisy2 = im + rng.normal(scale=20, size=im.shape)
 
-<span class="c1"># Average the images</span>
-<span class="n">im_sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">im_noisy1</span> <span class="o">+</span> <span class="n">im_noisy2</span><span class="p">)</span>
-<span class="n">im_averaged</span> <span class="o">=</span> <span class="n">im_sum</span> <span class="o">/</span> <span class="mf">2.0</span>
+# Average the images
+im_sum = (im_noisy1 + im_noisy2)
+im_averaged = im_sum / 2.0
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+fig = create_figure(figsize=(8, 4))
 
-<span class="c1"># Show the images and histograms</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy1</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) First noisy image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">241</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy2</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Second noisy image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">242</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_sum</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Sum of (A) and (B)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">243</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_averaged</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Average (A) and (B)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">244</span><span class="p">)</span>
+# Show the images and histograms
+show_image(im_noisy1, clip_percentile=0.5, title=&quot;(A) First noisy image&quot;, pos=241)
+show_image(im_noisy2, clip_percentile=0.5, title=&quot;(B) Second noisy image&quot;, pos=242)
+show_image(im_sum, clip_percentile=0.5, title=&quot;(C) Sum of (A) and (B)&quot;, pos=243)
+show_image(im_averaged, clip_percentile=0.5, title=&quot;(D) Average (A) and (B)&quot;, pos=244)
 
-<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noisy1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">245</span><span class="p">)</span>
-<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noisy2</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">246</span><span class="p">)</span>
-<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_sum</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">247</span><span class="p">)</span>
-<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_averaged</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">248</span><span class="p">)</span>
+show_histogram(im_noisy1, pos=245)
+show_histogram(im_noisy2, ylabel=None, pos=246)
+show_histogram(im_sum, ylabel=None, pos=247)
+show_histogram(im_averaged, ylabel=None, pos=248)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_sum&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_noise_sum&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1148,45 +1148,45 @@ We can do the same process for all the columns we skipped – thereby giving us 
 If we average these images together, these differences average out and we have another similar-looking image – but with reduced noise.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Splitting one image to form two.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Splitting one image to form two.
+&quot;&quot;&quot;
 
-<span class="c1"># Load image</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+# Load image
+im = load_image(&#39;happy_cell.tif&#39;).astype(np.float32)
 
-<span class="c1"># Add noise</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">im_noisy</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">20</span>
+# Add noise
+rng = np.random.default_rng(200)
+im_noisy = im + rng.normal(size=im.shape) * 20
 
-<span class="c1"># Split left and right images</span>
-<span class="n">im_left</span> <span class="o">=</span> <span class="n">im_noisy</span><span class="p">[:,</span> <span class="p">::</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">im_right</span> <span class="o">=</span> <span class="n">im_noisy</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+# Split left and right images
+im_left = im_noisy[:, ::2]
+im_right = im_noisy[:, 1::2]
 
-<span class="c1"># Average the images</span>
-<span class="n">im_averaged</span> <span class="o">=</span> <span class="p">(</span><span class="n">im_left</span> <span class="o">+</span> <span class="n">im_right</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+# Average the images
+im_averaged = (im_left + im_right) / 2.0
 
-<span class="c1"># fig = create_figure(figsize=(8, 3))</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-                        <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:[</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">1</span><span class="p">]},</span>
-                        <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span>
-                        <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+# fig = create_figure(figsize=(8, 3))
+fig, axs = plt.subplots(nrows=2, ncols=4, dpi=200,
+                        gridspec_kw={&#39;height_ratios&#39;:[1.5,1]},
+                        sharey=&#39;row&#39;,
+                        figsize=(8, 3.5))
 
-<span class="c1"># Pad images for display</span>
+# Pad images for display
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_left</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Odd columns&quot;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_right</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Even columns&quot;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_averaged</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Average of odd &amp; even columns&quot;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span>
+show_image(im_noisy, title=&quot;(A) Original image&quot;, axes=axs[0][0])
+show_image(im_left, title=&quot;(B) Odd columns&quot;, axes=axs[0][1])
+show_image(im_right, title=&quot;(C) Even columns&quot;, axes=axs[0][2])
+show_image(im_averaged, title=&quot;(D) Average of odd &amp; even columns&quot;, axes=axs[0][3])
 
-<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_left</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_right</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_averaged</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span>
+show_histogram(im_noisy, axes=axs[1][0])
+show_histogram(im_left, ylabel=None, axes=axs[1][1])
+show_histogram(im_right, ylabel=None, axes=axs[1][2])
+show_histogram(im_averaged, ylabel=None, axes=axs[1][3])
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_split&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_noise_split&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1206,76 +1206,76 @@ And perhaps even adjacent diagonals, if we wish.</p>
 <p>This is <em>precisely</em> the idea underlying our use of a <a class="reference internal" href="../../2-processing/4-filters/filters.html#chap-filters"><span class="std std-ref">3×3 mean filter to reduce noise</span></a>: we don’t have independent images to average, so we average within an image instead (<a class="reference internal" href="#fig-noise-filt-averaging"><span class="std std-numref">Fig. 144</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Show the effect of averaging pixels.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Show the effect of averaging pixels.
+&quot;&quot;&quot;
 
-<span class="c1"># Load image</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+# Load image
+im = load_image(&#39;happy_cell.tif&#39;).astype(np.float32)
 
-<span class="c1"># If we have fewer pixels, the differences will be easier to see</span>
-<span class="c1"># im = im[::2, ::2]</span>
+# If we have fewer pixels, the differences will be easier to see
+# im = im[::2, ::2]
 
-<span class="c1"># Add noise</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">im_noisy</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">20</span>
+# Add noise
+rng = np.random.default_rng(200)
+im_noisy = im + rng.normal(size=im.shape) * 20
 
-<span class="c1"># Compute the average of 2 adjacent pixels</span>
-<span class="n">kernel_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="mf">2.0</span>
-<span class="n">im_noisy_2</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">kernel_2</span><span class="p">)</span>
+# Compute the average of 2 adjacent pixels
+kernel_2 = np.asarray([1, 1, 0]).reshape((1, 3)) / 2.0
+im_noisy_2 = ndimage.convolve(im_noisy, kernel_2)
 
-<span class="c1"># Compute the average of 9 adjacent pixels</span>
-<span class="n">kernel_9</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="mf">9.0</span>
-<span class="n">im_noisy_9</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">kernel_9</span><span class="p">)</span>
+# Compute the average of 9 adjacent pixels
+kernel_9 = np.ones((3, 3)) / 9.0
+im_noisy_9 = ndimage.convolve(im_noisy, kernel_9)
 
-<span class="c1"># Compute same display settings to use for all images</span>
-<span class="n">im_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-    <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="mi">98</span><span class="p">)</span>
-<span class="p">)</span>
+# Compute same display settings to use for all images
+im_args = dict(
+    vmin = np.percentile(im_noisy, 2),
+    vmax = np.percentile(im_noisy, 98)
+)
 
-<span class="c1"># fig = create_figure(figsize=(8, 6))</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+# fig = create_figure(figsize=(8, 6))
+fig, ax = plt.subplots(3, 3, sharey=&#39;row&#39;, dpi=200, figsize=(8, 8))
 
-<span class="n">row</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>
-<span class="n">line_args</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="p">],</span> <span class="s1">&#39;w--&#39;</span><span class="p">)</span>
+row = im.shape[0] // 2
+line_args = ([0, im.shape[1]-1], [row, row], &#39;w--&#39;)
 
-<span class="n">pos</span> <span class="o">=</span> <span class="mi">331</span>
+pos = 331
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Original image&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">im_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
-<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+show_image(im_noisy, title=&#39;(A) Original image&#39;, **im_args, pos=pos)
+plt.plot(*line_args)
+pos += 1
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy_2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Averaging 2 adjacent pixels&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">im_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
-<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+show_image(im_noisy_2, title=&#39;(B) Averaging 2 adjacent pixels&#39;, **im_args, pos=pos)
+plt.plot(*line_args)
+pos += 1
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy_9</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Averaging 9 adjacent pixels&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">im_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
-<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+show_image(im_noisy_9, title=&#39;(C) Averaging 9 adjacent pixels&#39;, **im_args, pos=pos)
+plt.plot(*line_args)
+pos += 1
 
-<span class="n">show_plot</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
-<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+show_plot(im_noisy[row, :], xlabel=&#39;x&#39;, ylabel=&#39;Value&#39;, linewidth=1, pos=pos)
+pos += 1
 
-<span class="n">show_plot</span><span class="p">(</span><span class="n">im_noisy_2</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
-<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+show_plot(im_noisy_2[row, :], xlabel=&#39;x&#39;, linewidth=1, pos=pos)
+pos += 1
 
-<span class="n">show_plot</span><span class="p">(</span><span class="n">im_noisy_9</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
-<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+show_plot(im_noisy_9[row, :], xlabel=&#39;x&#39;, linewidth=1, pos=pos)
+pos += 1
 
-<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">120</span><span class="p">])</span>
-<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noisy_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">120</span><span class="p">])</span>
-<span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_noisy_9</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">120</span><span class="p">])</span>
+show_histogram(im_noisy, pos=pos)
+plt.xlim([-60, 120])
+pos += 1
+show_histogram(im_noisy_2, pos=pos)
+plt.xlim([-60, 120])
+pos += 1
+show_histogram(im_noisy_9, pos=pos)
+plt.xlim([-60, 120])
 
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filt_averaging&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_filt_averaging&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1300,33 +1300,33 @@ Among other things, it included a now-famous analysis of the number of soldiers 
 However, the usefulness of the Poisson distribution extends far beyond gruesome military analysis to many, quite different applications – including the probability of photon emission, which is itself inherently random.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Show Probability mass function for the Poisson distribution.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Show Probability mass function for the Poisson distribution.
+&quot;&quot;&quot;
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+fig = create_figure(figsize=(8, 4))
 
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/Poisson.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Siméon Denis Poisson (1781–1840)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">121</span><span class="p">)</span>
+show_image(&#39;images/Poisson.jpg&#39;, title=&#39;Siméon Denis Poisson (1781–1840)&#39;, pos=121)
 
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
-<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
-<span class="n">plot_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
-    <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Poisson distribution&#39;</span>
-<span class="p">)</span>
-<span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]:</span>
-    <span class="n">poisson</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
-    <span class="n">show_plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="o">**</span><span class="n">plot_params</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;λ=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+from scipy import stats
+k = np.arange(20)
+plt.subplot(122)
+plot_params = dict(
+    color=None,
+    marker=&#39;o&#39;,
+    markersize=4,
+    title=&#39;Poisson distribution&#39;
+)
+for mu in [1, 2, 5, 10]:
+    poisson = stats.poisson(mu)
+    show_plot(k, poisson.pmf(k), **plot_params, label=f&#39;λ={mu}&#39;)
+plt.legend()
+plt.xlabel(&#39;k&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+plt.tight_layout()
 
-<span class="c1"># show_image(&#39;images/maths_pmf_poisson.png&#39;, title=&#39;Poisson distribution&#39;, pos=122)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_poisson&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+# show_image(&#39;images/maths_pmf_poisson.png&#39;, title=&#39;Poisson distribution&#39;, pos=122)
+glue_fig(&#39;fig_noise_poisson&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1360,20 +1360,20 @@ It can even be observed from a very close inspection of <a class="reference inte
 </figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
 
-<span class="n">r</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">c</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">s</span> <span class="o">=</span> <span class="mi">256</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Rat_Hippocampal_Neuron.zip&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)[</span><span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span><span class="n">c</span><span class="o">+</span><span class="n">s</span><span class="p">]</span>
+r = 100
+c = 100
+s = 256
+im = load_image(&#39;Rat_Hippocampal_Neuron.zip&#39;).astype(np.float32)[r:r+s, c:c+s]
 
-<span class="n">im2</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-<span class="n">im_diff</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im2</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Original image)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Gaussian filtered image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_diff</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Result of (A) - (B)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+im2 = ndimage.gaussian_filter(im, sigma=0.25)
+im_diff = im - im2
+show_image(im, clip_percentile=0.5, title=&#39;(A) Original image)&#39;, pos=131)
+show_image(im2, clip_percentile=0.5, title=&#39;(B) Gaussian filtered image&#39;, pos=132)
+show_image(im_diff, clip_percentile=5, title=&#39;(C) Result of (A) - (B)&#39;, pos=133)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_neuron&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_noise_neuron&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1388,8 +1388,8 @@ Gaussian filtering reduces the noise in an image by replacing each pixel with a 
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="70220d00-b204-4e05-b857-1c4e5dfbc407" name="1b6ac2b9-1c7a-4cf5-91a1-70a1e6187bd5" type="radio">
-</input><label class="sd-tab-label" for="70220d00-b204-4e05-b857-1c4e5dfbc407">
+<input checked="checked" id="4188e50d-036f-4dc2-88ed-77e88055ea5f" name="e939bac7-d1c2-4e3e-a326-ad9a1eb4547a" type="radio">
+</input><label class="sd-tab-label" for="4188e50d-036f-4dc2-88ed-77e88055ea5f">
 Question</label><div class="sd-tab-content docutils">
 <p>The formula for the probability mass function of the Poisson distribution is:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-poisson">
@@ -1407,8 +1407,8 @@ Applying this, the probability of not detecting any photons (<span class="math n
 <p>Assuming the mean rate of photon emission is 1, use Equation <a class="reference internal" href="#equation-eqn-poisson">(4)</a> to calculate the probability of actually detecting 5 (which, at 5 times the true rate, would be an extremely inaccurate result).
 How common do you suppose it is to find pixels that are so noisy in the background region of a dark image?</p>
 </div>
-<input id="889c817c-e838-41a4-a386-975eb1b7e17f" name="1b6ac2b9-1c7a-4cf5-91a1-70a1e6187bd5" type="radio">
-</input><label class="sd-tab-label" for="889c817c-e838-41a4-a386-975eb1b7e17f">
+<input id="7f7b575f-a7cc-4f68-ae71-4b134b89f3b9" name="e939bac7-d1c2-4e3e-a326-ad9a1eb4547a" type="radio">
+</input><label class="sd-tab-label" for="7f7b575f-a7cc-4f68-ae71-4b134b89f3b9">
 Answer</label><div class="sd-tab-content docutils">
 <p>The probability of detecting 5 photons is approximately 0.0031.</p>
 <div class="math notranslate nohighlight">
@@ -1470,56 +1470,56 @@ Or, if that still does not feel right, you can turn it upside down and consider 
 This is illustrated in <a class="reference internal" href="#fig-poisson-ramp"><span class="std std-numref">Fig. 149</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, axs = plt.subplots(figsize=(8, 6), dpi=200, sharex=&#39;col&#39;, sharey=&#39;row&#39;)
 
-<span class="c1"># Create a ramp image with increasing intensity</span>
-<span class="n">max_val</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">width</span> <span class="o">=</span> <span class="mi">400</span>
-<span class="n">height</span> <span class="o">=</span> <span class="n">width</span> <span class="o">//</span> <span class="mi">5</span>
-<span class="n">spot_spacing</span> <span class="o">=</span> <span class="n">width</span> <span class="o">//</span> <span class="mi">10</span>
-<span class="n">spot_rel_intensity</span> <span class="o">=</span> <span class="mf">0.4</span>
-<span class="n">spot_abs_intensity</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_val</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">spot_rel_intensity</span>
+# Create a ramp image with increasing intensity
+max_val = 200
+width = 400
+height = width // 5
+spot_spacing = width // 10
+spot_rel_intensity = 0.4
+spot_abs_intensity = (max_val / 2) * spot_rel_intensity
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_val</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
-<span class="n">im_ramp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">width</span><span class="p">)),</span> <span class="n">height</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+x = np.linspace(0, max_val, width)
+im_ramp = np.repeat(x.reshape((1, width)), height, axis=0)
 
-<span class="c1"># Create Gaussian spots, each with maximum intensity of 1</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">row</span> <span class="o">=</span> <span class="n">height</span> <span class="o">//</span> <span class="mi">2</span>
-<span class="n">im_spots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">im_ramp</span><span class="p">)</span>
-<span class="n">im_spots</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">spot_spacing</span><span class="p">::</span><span class="n">spot_spacing</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">im_spots</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im_spots</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
-<span class="n">im_spots</span> <span class="o">=</span> <span class="n">im_spots</span> <span class="o">/</span> <span class="n">im_spots</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+# Create Gaussian spots, each with maximum intensity of 1
+sigma = 2
+row = height // 2
+im_spots = np.zeros_like(im_ramp)
+im_spots[row, spot_spacing::spot_spacing] = 1
+im_spots = ndimage.gaussian_filter(im_spots, sigma)
+im_spots = im_spots / im_spots.max()
 
-<span class="c1"># Add spots to ramp with same absolute or relative intensity</span>
-<span class="n">im_ramp_abs</span> <span class="o">=</span> <span class="n">im_ramp</span> <span class="o">+</span> <span class="n">im_spots</span> <span class="o">*</span> <span class="n">spot_abs_intensity</span>
-<span class="n">im_ramp_rel</span> <span class="o">=</span> <span class="n">im_ramp</span> <span class="o">+</span> <span class="n">im_ramp</span> <span class="o">*</span> <span class="n">im_spots</span> <span class="o">*</span> <span class="n">spot_rel_intensity</span>
+# Add spots to ramp with same absolute or relative intensity
+im_ramp_abs = im_ramp + im_spots * spot_abs_intensity
+im_ramp_rel = im_ramp + im_ramp * im_spots * spot_rel_intensity
 
-<span class="c1"># Add poisson noise to each ramp</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">im_ramp_abs_noise</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">im_ramp_abs</span><span class="p">)</span>
-<span class="n">im_ramp_rel_noise</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">im_ramp_rel</span><span class="p">)</span>
+# Add poisson noise to each ramp
+rng = np.random.default_rng(100)
+im_ramp_abs_noise = rng.poisson(im_ramp_abs)
+im_ramp_rel_noise = rng.poisson(im_ramp_rel)
 
-<span class="n">plot_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Mean photons&#39;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Detected photons&#39;</span><span class="p">,</span>
-    <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">im_ramp_rel_noise</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span>
-    <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="p">)</span>
+plot_args = dict(
+    xlabel=&#39;Mean photons&#39;,
+    ylabel=&#39;Detected photons&#39;,
+    ylim=[0, im_ramp_rel_noise.max()],
+    xlim=None,
+)
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_ramp_abs</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Spots with the same absolute brightness&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">421</span><span class="p">)</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">im_ramp_abs</span><span class="p">[</span><span class="n">row</span><span class="p">,:],</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">423</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_ramp_abs_noise</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">425</span><span class="p">)</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">im_ramp_abs_noise</span><span class="p">[</span><span class="n">row</span><span class="p">,:],</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">427</span><span class="p">)</span>
+show_image(im_ramp_abs, title=&#39;Spots with the same absolute brightness&#39;, pos=421)
+show_plot(x, im_ramp_abs[row,:], **plot_args, pos=423)
+show_image(im_ramp_abs_noise, clip_percentile=0.5, pos=425)
+show_plot(x, im_ramp_abs_noise[row,:], **plot_args, pos=427)
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_ramp_rel</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Spots with the same relative brightness&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">422</span><span class="p">)</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">im_ramp_rel</span><span class="p">[</span><span class="n">row</span><span class="p">,:],</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">424</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_ramp_rel_noise</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">426</span><span class="p">)</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">im_ramp_rel_noise</span><span class="p">[</span><span class="n">row</span><span class="p">,:],</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">428</span><span class="p">)</span>
+show_image(im_ramp_rel, title=&#39;Spots with the same relative brightness&#39;, pos=422)
+show_plot(x, im_ramp_rel[row,:], **plot_args, pos=424)
+show_image(im_ramp_rel_noise, clip_percentile=0.5, pos=426)
+show_plot(x, im_ramp_rel_noise[row,:], **plot_args, pos=428)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_poisson_ramp&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_noise_poisson_ramp&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1537,16 +1537,16 @@ But if the fluorescence increase is defined <em>relative</em> to the background,
 Either way, when attempting to determine the number of any small structures in an image, for example, we need to remember that the numbers we will be able to detect will be affected by the background nearby.
 Therefore results obtained from bright and dark regions might not be directly comparable.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="4c3335a4-447b-4f5e-b6c3-a758392346fe" name="64541162-bbff-4bd3-a8b4-32501b6e77fe" type="radio">
-</input><label class="sd-tab-label" for="4c3335a4-447b-4f5e-b6c3-a758392346fe">
+<input checked="checked" id="952b9d1d-6ebd-4cfb-a826-8ce3bead6c78" name="7275a20d-199b-4cd0-809b-58432c1593f9" type="radio">
+</input><label class="sd-tab-label" for="952b9d1d-6ebd-4cfb-a826-8ce3bead6c78">
 Practical</label><div class="sd-tab-content docutils">
 <p>Open the images <em>mystery_noise_1.tif</em> and <em>mystery_noise_2.tif</em> in ImageJ.</p>
 <p>Both are noisy, but in one the noise follows a Gaussian distribution (like read noise) and in the other it follows a Poisson distribution (like photon noise).
 Which is which?</p>
 <p><a class="reference external" href="https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-data/blob/main/images/mystery_noise_1.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/mystery_noise_2.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="c89df678-0a9d-4088-8c3d-f738ca98f41e" name="64541162-bbff-4bd3-a8b4-32501b6e77fe" type="radio">
-</input><label class="sd-tab-label" for="c89df678-0a9d-4088-8c3d-f738ca98f41e">
+<input id="92f32b14-fd37-45bb-9508-46c33fd13bd8" name="7275a20d-199b-4cd0-809b-58432c1593f9" type="radio">
+</input><label class="sd-tab-label" for="92f32b14-fd37-45bb-9508-46c33fd13bd8">
 Solution</label><div class="sd-tab-content docutils">
 <p>The noise in <em>mystery_noise_1.tif</em> is Gaussian; the noise in <em>mystery_noise_2.tif</em> follows a Poisson distribution.
 Since there are reasonably flat regions within the cell and background, I would test this by drawing a ROI within each and measuring the standard deviations.
@@ -1562,27 +1562,27 @@ Where these are similar, the noise is Gaussian; if there is a big difference, th
 The first of these is what we want, while the latter two are random numbers that may be positive or negative.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, ax = plt.subplots(1, 4, figsize=(10, 2), dpi=200, sharey=True)
 
-<span class="n">steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">steps</span><span class="p">,</span> <span class="n">steps</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+steps = np.power(2, np.arange(0, 9, 1))
+steps = np.repeat(steps, 32, axis=0)
+steps = np.concatenate([steps, steps[::-1]]).flatten()
 
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">steps_poisson</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span>
-<span class="n">noise_gaussian</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">steps</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">8</span>
-<span class="n">steps_gaussian</span> <span class="o">=</span> <span class="n">steps</span> <span class="o">+</span> <span class="n">noise_gaussian</span>
-<span class="n">steps_both</span> <span class="o">=</span> <span class="n">steps_poisson</span> <span class="o">+</span> <span class="n">noise_gaussian</span>
+rng = np.random.default_rng(100)
+steps_poisson = rng.poisson(steps)
+noise_gaussian = rng.normal(size=steps.shape) * 8
+steps_gaussian = steps + noise_gaussian
+steps_both = steps_poisson + noise_gaussian
 
-<span class="n">ylim</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">320</span><span class="p">]</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;A noise-free signal&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="n">ylim</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">steps_poisson</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Photon noise&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="n">ylim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">steps_gaussian</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Read noise&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="n">ylim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">steps_both</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Photon + Read noise&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="n">ylim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+ylim = [0, 320]
+show_plot(steps, title=&#39;A noise-free signal&#39;, ylim=ylim, pos=141)
+show_plot(steps_poisson, title=&#39;Photon noise&#39;, ylim=ylim, color=(0.4, 0, 0), pos=142)
+show_plot(steps_gaussian, title=&#39;Read noise&#39;, ylim=ylim, color=(0, 0.4, 0), pos=143)
+show_plot(steps_both, title=&#39;Photon + Read noise&#39;, ylim=ylim, color=(0, 0, 0.4), pos=144)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+plt.tight_layout()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_steps&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_noise_steps&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1614,14 +1614,14 @@ However, dark noise is less likely to cause problems if many true photons are de
 Nevertheless, brave souls who wish to know more may find a concise, highly informative, list of more than 40 sources of imprecision in <em>The 39 steps: a cautionary tale of quantitative 3-D fluorescence microscopy</em> by James Pawley (available online from various sources).</p>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="96138ffb-e802-4cdb-8b78-9f99a302a79b" name="902b8fb2-2140-4d2c-8517-8f3e4d06a948" type="radio">
-</input><label class="sd-tab-label" for="96138ffb-e802-4cdb-8b78-9f99a302a79b">
+<input checked="checked" id="543034d5-edb1-4346-b780-77b2cc511b2a" name="9d3754ac-7520-4db3-8844-9a58697bf289" type="radio">
+</input><label class="sd-tab-label" for="543034d5-edb1-4346-b780-77b2cc511b2a">
 Question</label><div class="sd-tab-content docutils">
 <p>Suppose you have an image that does not contain much light, but has some isolated bright pixels.</p>
 <p>Which kind of filter could you use to remove them? And is it safe to assume they are due to dark noise or something similar, or might the pixels correspond to actual bright structures?</p>
 </div>
-<input id="ba07fdc3-5616-40a5-b059-78ff8abed36b" name="902b8fb2-2140-4d2c-8517-8f3e4d06a948" type="radio">
-</input><label class="sd-tab-label" for="ba07fdc3-5616-40a5-b059-78ff8abed36b">
+<input id="a215fce0-373e-4f71-950a-2f7e2860ce3b" name="9d3754ac-7520-4db3-8844-9a58697bf289" type="radio">
+</input><label class="sd-tab-label" for="a215fce0-373e-4f71-950a-2f7e2860ce3b">
 Answer</label><div class="sd-tab-content docutils">
 <p>A median filter is a popular choice for removing isolated bright pixels, although when using ImageJ I sometimes prefer <span class="menuselection">Process ‣ Noise ‣ Remove Outliers…</span> because this only puts the median-filtered output in the image if the original value was really extreme (according to some user-defined threshold).
 This then preserves the independence of the noise at all other pixels – so it still behaves reliably and predictably like Poisson + Gaussian noise.
@@ -1640,27 +1640,27 @@ If this is too harsh on the sample, it may be possible to record multiple images
 If there is little movement between exposures, these images could be added or averaged to get a similar effect (<a class="reference internal" href="#fig-noise-averaging"><span class="std std-numref">Fig. 151</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Show impact of adding images with Poisson noise.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Show impact of adding images with Poisson noise.
+&quot;&quot;&quot;
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+im = load_image(&#39;happy_cell.tif&#39;)
+im = im / im.max()
 
-<span class="c1"># Create a stack of 1000 images with Poisson noise</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">noisy_images</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">rng</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">im</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)])</span>
+# Create a stack of 1000 images with Poisson noise
+rng = np.random.default_rng(200)
+noisy_images = np.dstack([rng.poisson(im) for ii in range(1000)])
 
-<span class="c1"># Display in a similar way</span>
-<span class="n">im_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">clip_percentile</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+# Display in a similar way
+im_args = dict(clip_percentile=1)
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">noisy_images</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;1 image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">noisy_images</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">10</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;10 images&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">im_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">noisy_images</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">100</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;100 images&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">im_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">noisy_images</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">1000</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;1000 images&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">im_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+fig = create_figure(figsize=(8, 4))
+show_image(noisy_images[:, :, 0], title=&#39;1 image&#39;, pos=141)
+show_image(np.mean(noisy_images[:, :, :10], axis=2), title=&#39;10 images&#39;, **im_args, pos=142)
+show_image(np.mean(noisy_images[:, :, :100], axis=2), title=&#39;100 images&#39;, **im_args, pos=143)
+show_image(np.mean(noisy_images[:, :, :1000], axis=2), title=&#39;1000 images&#39;, **im_args, pos=144)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_averaging&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_noise_averaging&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1679,33 +1679,33 @@ One way to do this is though <a class="reference internal" href="../4-microscope
 Understanding its behavior, and especially how <a class="reference internal" href="../../2-processing/4-filters/filters.html#chap-filters"><span class="std std-ref">filters</span></a> can reduce it, can help us cope with it during analysis.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
 
-<span class="k">def</span> <span class="nf">bin2x2</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Apply 2x2 binning to the pixels of a 2D image.</span>
-<span class="sd">    Note that if the dimensions are not even numbers then the final row/column</span>
-<span class="sd">    of pixels may have to be trimmed.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">r</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">im</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">r</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">r</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">im</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">r</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">c</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+def bin2x2(im):
+    &quot;&quot;&quot;
+    Apply 2x2 binning to the pixels of a 2D image.
+    Note that if the dimensions are not even numbers then the final row/column
+    of pixels may have to be trimmed.
+    &quot;&quot;&quot;
+    r = int(np.floor(im.shape[0]/2)*2)
+    c = int(np.floor(im.shape[1]/2)*2)
+    return im[0:r:2, 0:c:2] + im[1:r:2, 0:c:2] + im[0:r:2, 1:c:2] + im[1:r:2, 1:c:2]
 
-<span class="c1"># Simulate larger bins by progressively applying 2x2 binning</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/nyquist_shannon.png&#39;</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
+# Simulate larger bins by progressively applying 2x2 binning
+im = load_image(&#39;images/nyquist_shannon.png&#39;)
+assert im.shape == (512, 512)
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="n">im2</span> <span class="o">=</span> <span class="n">bin2x2</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
-<span class="n">im4</span> <span class="o">=</span> <span class="n">bin2x2</span><span class="p">(</span><span class="n">im2</span><span class="p">)</span>
-<span class="n">im8</span> <span class="o">=</span> <span class="n">bin2x2</span><span class="p">(</span><span class="n">im4</span><span class="p">)</span>
-<span class="n">im16</span> <span class="o">=</span> <span class="n">bin2x2</span><span class="p">(</span><span class="n">im8</span><span class="p">)</span>
+im = im.astype(np.float32)
+im2 = bin2x2(im)
+im4 = bin2x2(im2)
+im8 = bin2x2(im4)
+im16 = bin2x2(im8)
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im8</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;64 x 64 pixels&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;128 x 128 pixels&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;512 x 512 pixels&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+show_image(im8, title=&#39;64 x 64 pixels&#39;, pos=131)
+show_image(im4, title=&#39;128 x 128 pixels&#39;, pos=132)
+show_image(im, title=&#39;512 x 512 pixels&#39;, pos=133)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_noise_nyquist_shannon&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_noise_nyquist_shannon&#39;, fig)
 </pre></div>
 </div>
 </div>

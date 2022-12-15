@@ -846,16 +846,16 @@ title="Print to PDF"
 <h1>ImageJ:  Pixel size &amp; dimensions<a class="headerlink" href="#imagej-pixel-size-dimensions" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
+%autoreload 2
 
-<span class="c1"># Default import</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+# Default import
+import sys
+sys.path.append(&#39;../../../&#39;)
+from helpers import *
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+import numpy as np
+from matplotlib import pyplot as plt
 </pre></div>
 </div>
 </div>
@@ -891,15 +891,15 @@ Otherwise, the pixel sizes are given in the units displayed nearby in the proper
 <p>The pixel width and height are <em>usually</em> the same.
 The voxel depth (where relevant) is often different.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="f8a4ead6-025a-4b02-827e-560292217eff" name="20edccf2-6424-4ce6-aff1-87b8faab55d8" type="radio">
-</input><label class="sd-tab-label" for="f8a4ead6-025a-4b02-827e-560292217eff">
+<input checked="checked" id="edf2fe65-21c9-413e-8f8e-40e0716d9709" name="078e57b2-94a6-4bf4-8118-63f6599b6700" type="radio">
+</input><label class="sd-tab-label" for="edf2fe65-21c9-413e-8f8e-40e0716d9709">
 Question</label><div class="sd-tab-content docutils">
 <p>One way to check if the pixel size information is set for an image is to use <span class="menuselection">Image ‣ Properties…</span></p>
 <p>How else can you check this, even more easily?</p>
 <p><strong>Tip:</strong> The answer should already be visible in <a class="reference internal" href="#fig-properties-confocal"><span class="std std-numref">Fig. 42</span></a> and <a class="reference internal" href="#fig-properties-fluorescent"><span class="std std-numref">Fig. 43</span></a>.</p>
 </div>
-<input id="b00f7e80-68c0-47a5-bdc6-384f4b99ae43" name="20edccf2-6424-4ce6-aff1-87b8faab55d8" type="radio">
-</input><label class="sd-tab-label" for="b00f7e80-68c0-47a5-bdc6-384f4b99ae43">
+<input id="145ee7ec-d040-4105-8f23-1c87068536db" name="078e57b2-94a6-4bf4-8118-63f6599b6700" type="radio">
+</input><label class="sd-tab-label" for="145ee7ec-d040-4105-8f23-1c87068536db">
 Answer</label><div class="sd-tab-content docutils">
 <p>The size of the image is given at the top of each image window.
 If the pixel size information is available, this is given in calibrated units.
@@ -1007,16 +1007,16 @@ Misinterpreting the dimensions can not only affect the display of the image, but
 <p>It’s also possible to change the dimensions through <span class="menuselection">Image ‣ Properties…</span>, but I find that can sometimes be unreliable because of the old stack/hyperstack distinction (i.e. it doesn’t convert a stack to a hyperstack, and therefore doesn’t display all the sliders that are needed).
 A better option is to use <span class="menuselection">Image ‣ Hyperstack ‣ Stack to Hyperstack…</span> to fix dimensions.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="316ebe0c-cf5b-495c-9f56-d19febd287b8" name="95575eac-75b8-4f8a-87aa-729c23cffcd8" type="radio">
-</input><label class="sd-tab-label" for="316ebe0c-cf5b-495c-9f56-d19febd287b8">
+<input checked="checked" id="14679fdb-1018-4f62-89f1-00e53e47d809" name="3924a2e1-d29f-42a4-944b-04840d1af172" type="radio">
+</input><label class="sd-tab-label" for="14679fdb-1018-4f62-89f1-00e53e47d809">
 Practical</label><div class="sd-tab-content docutils">
 <p>Something terrible has befallen the file <em>lost_dimensions.tif</em>, so that it’s displayed as a 3D stack, when in reality it should have more dimensions.</p>
 <p>By inspecting the file, identify how many channels, <em>z</em>-slices and time points it originally contained, and set these using <span class="menuselection">Image ‣ Hyperstack ‣ Stack to Hyperstack…</span> so that it displays properly.
 What are the correct dimensions?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/lost_dimensions.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="ffd2c95b-1501-4cde-a955-c8bd4ef14439" name="95575eac-75b8-4f8a-87aa-729c23cffcd8" type="radio">
-</input><label class="sd-tab-label" for="ffd2c95b-1501-4cde-a955-c8bd4ef14439">
+<input id="4d382210-83e3-47e5-9f70-c3be7ab6cd50" name="3924a2e1-d29f-42a4-944b-04840d1af172" type="radio">
+</input><label class="sd-tab-label" for="4d382210-83e3-47e5-9f70-c3be7ab6cd50">
 Solution</label><div class="sd-tab-content docutils">
 <p><em>lost_dimensions.tif</em> should contain 2 channels, 3 <em>z</em>-slices and 16 time points.</p>
 <p>The dimensions are in the default order (<em>xyczt</em>).</p>
@@ -1054,8 +1054,8 @@ This means the plot data updates as any changes are made to the image, including
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="6ea0a501-a541-4c1e-8aba-3feb0014374d" name="32f313a6-19a6-4a82-a5f8-ba9d044f659f" type="radio">
-</input><label class="sd-tab-label" for="6ea0a501-a541-4c1e-8aba-3feb0014374d">
+<input checked="checked" id="80c040c6-eac9-4f2a-a718-11faad8f88b3" name="b8b8a354-9424-4b2a-8328-70e7fb12550d" type="radio">
+</input><label class="sd-tab-label" for="80c040c6-eac9-4f2a-a718-11faad8f88b3">
 Practical</label><div class="sd-tab-content docutils">
 <p>Create a profile plot from any image, by drawing a line ROI and pressing <kbd class="kbd docutils literal notranslate">K</kbd>.</p>
 <p>As far as ImageJ is concerned, the profile plot itself is an image – albeit a strange one.
@@ -1063,8 +1063,8 @@ This means you can use <span class="menuselection">Image ‣ Properties…</span
 <p>What do you notice about the pixel sizes?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="cd570666-3277-4146-ad6f-6ebfd31ed377" name="32f313a6-19a6-4a82-a5f8-ba9d044f659f" type="radio">
-</input><label class="sd-tab-label" for="cd570666-3277-4146-ad6f-6ebfd31ed377">
+<input id="fda1e0d9-8431-440a-b837-c90d98449f28" name="b8b8a354-9424-4b2a-8328-70e7fb12550d" type="radio">
+</input><label class="sd-tab-label" for="fda1e0d9-8431-440a-b837-c90d98449f28">
 Solution</label><div class="sd-tab-content docutils">
 <p>You will probably see that the pixel width and height are different.
 In fact, the pixel width depends upon the scaling of the x-axis and the pixel height depends upon the scaling of the y-axis.</p>
@@ -1084,11 +1084,11 @@ This forces the line to be perfectly horizontal or perfectly vertical; without <
 This supports several different projection types, as shown in <a class="reference internal" href="#fig-visualize-fiji-projection"><span class="std std-numref">Fig. 49</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/z-project-sum.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Sum projection&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/z-project-max.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Max projection&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/z-project-min.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Min projection&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_dimensions*z*project&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
+show_image(&#39;images/z-project-sum.png&#39;, title=&#39;Sum projection&#39;, pos=131)
+show_image(&#39;images/z-project-max.png&#39;, title=&#39;Max projection&#39;, pos=132)
+show_image(&#39;images/z-project-min.png&#39;, title=&#39;Min projection&#39;, pos=133)
+glue_fig(&#39;fig_dimensions*z*project&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1102,8 +1102,8 @@ This supports several different projection types, as shown in <a class="referenc
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="579b5933-512f-422f-86a9-2a21d1261cff" name="f656c7cd-cc7d-4d56-bc46-e9a7283bf945" type="radio">
-</input><label class="sd-tab-label" for="579b5933-512f-422f-86a9-2a21d1261cff">
+<input checked="checked" id="ca89f46e-c8d2-4610-b67a-1a7e90bc58fa" name="7337a246-d8e0-4e8f-a9e9-c2301dfbd682" type="radio">
+</input><label class="sd-tab-label" for="ca89f46e-c8d2-4610-b67a-1a7e90bc58fa">
 Question</label><div class="sd-tab-content docutils">
 <p>Imagine computing a sum and a maximum projection of a 10-slice stack containing a large, in-focus nucleus.
 How might each of these projections be affected if your stack contained:</p>
@@ -1112,8 +1112,8 @@ How might each of these projections be affected if your stack contained:</p>
 <li><p>several very bright, isolated, randomly distributed outlier pixels – with values twice what they should be (due to noise)</p></li>
 </ul>
 </div>
-<input id="bc380b95-43cb-4752-aa32-f6d453e7e249" name="f656c7cd-cc7d-4d56-bc46-e9a7283bf945" type="radio">
-</input><label class="sd-tab-label" for="bc380b95-43cb-4752-aa32-f6d453e7e249">
+<input id="0e4f9236-a7ff-4ea5-a878-106302759ade" name="7337a246-d8e0-4e8f-a9e9-c2301dfbd682" type="radio">
+</input><label class="sd-tab-label" for="0e4f9236-a7ff-4ea5-a878-106302759ade">
 Answer</label><div class="sd-tab-content docutils">
 <p>Additional, out-of-focus planes will have an effect upon sum projections: increasing all the resulting pixel values.
 However, the extra planes would have minimal effects upon maximum projections, since they are unlikely to contain higher values than the in-focus planes.</p>
@@ -1126,15 +1126,15 @@ Such outliers would also influence a sum projection, but less drastically becaus
 <a class="reference internal image-reference" href="../../../_images/pixels-max-max-mitosis.png"><img alt="../../../_images/pixels-max-max-mitosis.png" src="../../../_images/pixels-max-max-mitosis.png" style="width: 60%;" /></a>
 </aside>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="aa3b12e5-6789-4dc2-82d3-c8a5e3b8a766" name="98eb459b-5660-4395-90cc-44453785d999" type="radio">
-</input><label class="sd-tab-label" for="aa3b12e5-6789-4dc2-82d3-c8a5e3b8a766">
+<input checked="checked" id="06eb1fab-c80f-4219-ab09-d2055ff6525e" name="1ba219d8-170d-4f28-bb79-f043886b5ce1" type="radio">
+</input><label class="sd-tab-label" for="06eb1fab-c80f-4219-ab09-d2055ff6525e">
 Practical</label><div class="sd-tab-content docutils">
 <p>What happens if you calculate a maximum projection <em>twice</em> for the 5D image <span class="menuselection">File ‣ Open samples ‣ Mitosis</span>?</p>
 <p>By this I mean you run <span class="menuselection">Image ‣ Stacks ‣ Z Project…</span> on the original image, and then again on the output of the first projection.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/9dbe7657bb476ea457f14229e93c5862"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="c2cd4963-a7ce-4999-9e97-f38a0dc4810b" name="98eb459b-5660-4395-90cc-44453785d999" type="radio">
-</input><label class="sd-tab-label" for="c2cd4963-a7ce-4999-9e97-f38a0dc4810b">
+<input id="28a6e21d-371b-4d41-82ff-ca18df286cbe" name="1ba219d8-170d-4f28-bb79-f043886b5ce1" type="radio">
+</input><label class="sd-tab-label" for="28a6e21d-371b-4d41-82ff-ca18df286cbe">
 Solution</label><div class="sd-tab-content docutils">
 <p>You should end up with a maximum <em>z</em>-projecton followed by a time projection!</p>
 <p>If there is a time dimension but no <em>z</em> dimension, <span class="menuselection">Image ‣ Stacks ‣ Z Project…</span> will use time instead.</p>

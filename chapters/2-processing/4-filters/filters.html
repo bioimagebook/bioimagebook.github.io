@@ -853,17 +853,17 @@ title="Print to PDF"
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
+%autoreload 2
 
-<span class="c1"># Default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+# Default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
+from helpers import *
+from matplotlib import pyplot as plt
+from myst_nb import glue
+import numpy as np
+from scipy import ndimage
 </pre></div>
 </div>
 </div>
@@ -905,45 +905,45 @@ At this point, all we need to know about noise is that it acts like a random (po
 <p><a class="reference internal" href="#fig-filt-reduce-noise"><span class="std std-numref">Fig. 80</span></a> provides an illustration of how effectively the 3×3 filter can reduce Gaussian noise in an image.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from scipy import ndimage
+import matplotlib.pyplot as plt
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="p">[::</span><span class="mi">2</span><span class="p">,</span> <span class="p">::</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+im = load_image(&#39;happy_cell.tif&#39;).astype(np.float32)
+im = im[::2, ::2]
+rng = np.random.default_rng(100)
+im = im + rng.normal(size=im.shape) * 10
 
-<span class="c1"># Identify central row &amp; define how line should be displayed</span>
-<span class="n">row</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>
-<span class="n">line_args</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="p">],</span> <span class="s1">&#39;w--&#39;</span><span class="p">)</span>
+# Identify central row &amp; define how line should be displayed
+row = im.shape[0] // 2
+line_args = ([0, im.shape[1]-1], [row, row], &#39;w--&#39;)
 
-<span class="c1"># Create a 3x3 mean filter kernel</span>
-<span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">kernel</span> <span class="o">/=</span> <span class="n">kernel</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+# Create a 3x3 mean filter kernel
+kernel = np.ones((3, 3))
+kernel /= kernel.sum()
 
-<span class="c1"># Ensure aligned</span>
-<span class="c1"># fig = create_figure(figsize=(8, 8))</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+# Ensure aligned
+# fig = create_figure(figsize=(8, 8))
+fig, ax = plt.subplots(2, 3, sharex=&#39;col&#39;, sharey=&#39;row&#39;, figsize=(8, 5), dpi=200)
 
-<span class="c1"># Show images &amp; plots</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
+# Show images &amp; plots
+show_image(im, title=&quot;(A) Original image&quot;, pos=231)
+plt.plot(*line_args)
 
-<span class="n">im_mean</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_mean</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Mean filtered&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
+im_mean = ndimage.convolve(im, kernel)
+show_image(im_mean, title=&quot;(B) Mean filtered&quot;, pos=232)
+plt.plot(*line_args)
 
-<span class="n">im_diff</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im_mean</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">im_diff</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="mi">3</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_diff</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Subtraction (A) - (B)&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">s</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
+im_diff = im - im_mean
+s = im_diff.std() * 3
+show_image(im_diff, title=&quot;(C) Subtraction (A) - (B)&quot;, vmin=-s, vmax=s, pos=233)
+plt.plot(*line_args)
 
-<span class="n">show_plot</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">im_mean</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">im_diff</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+show_plot(im[row, :], ylabel=&#39;Value&#39;, xlabel=&#39;x&#39;, pos=234)
+show_plot(im_mean[row, :], xlabel=&#39;x&#39;, pos=235)
+show_plot(im_diff[row, :], xlabel=&#39;x&#39;, pos=236)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filt_reduce_noise&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+plt.tight_layout()
+glue_fig(&#39;fig_filt_reduce_noise&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -969,56 +969,56 @@ We can do this by defining the kernel in such a way that coefficients we want to
 The size of the filter is then defined in terms of a radius value (<a class="reference internal" href="#fig-filter-shapes"><span class="std std-numref">Fig. 81</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8,4))
 
-<span class="k">def</span> <span class="nf">make_disk</span><span class="p">(</span><span class="n">radius</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Use a distance transform to create a circular disk filter</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">width</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
-    <span class="n">k</span><span class="p">[</span><span class="n">width</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">width</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="c1"># Different implementations treat the radius value differently...</span>
-    <span class="c1"># here, we try to match ImageJ&#39;s filters for the figure</span>
-    <span class="k">return</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="o">~</span><span class="n">k</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">radius</span> <span class="o">+</span> <span class="mf">0.5</span>
+def make_disk(radius: float, width=5) -&gt; np.ndarray:
+    &quot;&quot;&quot;
+    Use a distance transform to create a circular disk filter
+    &quot;&quot;&quot;
+    from scipy.ndimage import distance_transform_edt
+    k = np.zeros((width, width), dtype=bool)
+    k[width//2, width//2] = 1
+    # Different implementations treat the radius value differently...
+    # here, we try to match ImageJ&#39;s filters for the figure
+    return distance_transform_edt(~k) &lt;= radius + 0.5
 
-<span class="n">kernels</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;3x3 square&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)),</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s1">&#39;Circular, radius=1.5&#39;</span><span class="p">,</span> <span class="n">make_disk</span><span class="p">(</span><span class="mf">1.5</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s1">&#39;Circular, radius=2.5&#39;</span><span class="p">,</span> <span class="n">make_disk</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s1">&#39;5x5 square&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)),</span> <span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)),</span>
-<span class="p">]</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)]</span>
-<span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
+kernels = [
+    (&#39;3x3 square&#39;, np.pad(np.ones((3,3)), 1), (0.2, 0.2, 0.7)),
+    (&#39;Circular, radius=1.5&#39;, make_disk(1.5), (0.2, 0.7, 0.2)),
+    (&#39;Circular, radius=2.5&#39;, make_disk(2), (0.7, 0.2, 0.2)),
+    (&#39;5x5 square&#39;, np.ones((5,5)), (0.6, 0.2, 0.6)),
+]
+colors = [(0.8, 0.2, 0.2)]
+ii = 0
+from matplotlib.colors import ListedColormap
 
-<span class="c1"># Show the kernels + grid (more code than you might expect...)</span>
-<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">kernels</span><span class="p">:</span>
-    <span class="n">ii</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="n">ii</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">show_image</span><span class="p">(</span><span class="n">kernel</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">ListedColormap</span><span class="p">([</span><span class="n">c</span><span class="o">+</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">c</span><span class="o">+</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,)]),</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">kernels</span><span class="p">),</span><span class="n">ii</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">show_image</span><span class="p">(</span><span class="n">kernel</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">ListedColormap</span><span class="p">([</span><span class="n">c</span><span class="o">+</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,),</span> <span class="n">c</span><span class="o">+</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,)]),</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">kernels</span><span class="p">),</span><span class="n">ii</span><span class="p">))</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">kernel</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">)</span>
-    <span class="n">fd_main</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
-    <span class="n">fd_zero</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">}</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="n">kernel</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
-            <span class="n">fd</span> <span class="o">=</span> <span class="n">fd_zero</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$\frac</span><span class="si">{1}</span><span class="s1">{&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;}$&#39;</span>
-            <span class="n">fd</span> <span class="o">=</span> <span class="n">fd_main</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="n">fd</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="o">+</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="o">+</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+# Show the kernels + grid (more code than you might expect...)
+for name, kernel, c in kernels:
+    ii += 1
+    if ii == 1:
+        show_image(kernel, vmin=0, vmax=1, cmap=ListedColormap([c+(0,), c+(0.4,)]), alpha = 1, title=name, pos=(1,len(kernels),ii))
+    else:
+        show_image(kernel, vmin=0, vmax=1, cmap=ListedColormap([c+(0.1,), c+(0.4,)]), alpha = 1, title=name, pos=(1,len(kernels),ii))
+    s = int(kernel.sum())
+    plt.xticks(ticks=np.arange(5)-0.5, labels=[])
+    plt.yticks(ticks=np.arange(5)-0.5, labels=[])
+    plt.xlim(-0.6, 4.6)
+    plt.ylim(-0.6, 4.6)
+    fd_main = {&#39;size&#39;: 10}
+    fd_zero = {&#39;size&#39;: 8}
+    for (i, j), z in np.ndenumerate(kernel):
+        if z == 0:
+            t = &#39;0&#39;
+            fd = fd_zero
+        else:
+            t = r&#39;$\frac{1}{&#39;+str(s)+&#39;}$&#39;
+            fd = fd_main
+        plt.text(j, i, t, ha=&#39;center&#39;, va=&#39;center&#39;, fontdict=fd)
+        plt.hlines(np.arange(6)-0.5, -0.5, 4.5, color=c+(0.25,), linewidth=0.25)
+        plt.vlines(np.arange(6)-0.5, -0.5, 4.5, color=c+(0.25,), linewidth=0.25)
+plt.show()
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filter_shapes&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_filter_shapes&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1050,62 +1050,62 @@ This is not only in terms of reducing noise, but also in terms of reducing detai
 If noise reduction is the primary goal, it’s therefore best to avoid unnecessary blurring by using the smallest filter that gives acceptable results.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a circular mean filter</span>
-<span class="k">def</span> <span class="nf">create_mean_kernel</span><span class="p">(</span><span class="n">radius</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">radius</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="n">mask</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="o">*</span><span class="n">r</span>
-    <span class="n">kernel</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">kernel</span> <span class="o">/</span> <span class="n">kernel</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create a circular mean filter
+def create_mean_kernel(radius: int):
+    r = radius
+    x = np.arange(-r, r+1)
+    y = np.arange(-r, r+1)
+    y, x = np.meshgrid(x, x)
+    mask = x*x + y*y &lt;= r*r
+    kernel = mask.astype(np.float64)
+    return kernel / kernel.sum()
 
 
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+from scipy import ndimage
+import matplotlib.pyplot as plt
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="p">[::</span><span class="mi">2</span><span class="p">,</span> <span class="p">::</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+im = load_image(&#39;happy_cell.tif&#39;).astype(np.float32)
+im = im[::2, ::2]
+rng = np.random.default_rng(100)
+im = im + rng.normal(size=im.shape) * 10
 
-<span class="n">kernels</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Original image&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="s1">&#39;Filtered, radius=1&#39;</span><span class="p">:</span> <span class="n">create_mean_kernel</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
-    <span class="s1">&#39;Filtered, radius=5&#39;</span><span class="p">:</span> <span class="n">create_mean_kernel</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
-    <span class="s1">&#39;Filtered, radius=10&#39;</span><span class="p">:</span> <span class="n">create_mean_kernel</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="p">}</span>
+kernels = {
+    &#39;Original image&#39;: None,
+    &#39;Filtered, radius=1&#39;: create_mean_kernel(1),
+    &#39;Filtered, radius=5&#39;: create_mean_kernel(5),
+    &#39;Filtered, radius=10&#39;: create_mean_kernel(10)
+}
 
-<span class="c1"># Identify central row &amp; define how line should be displayed</span>
-<span class="n">row</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>
-<span class="n">line_args</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="p">],</span> <span class="s1">&#39;w--&#39;</span><span class="p">)</span>
+# Identify central row &amp; define how line should be displayed
+row = im.shape[0] // 2
+line_args = ([0, im.shape[1]-1], [row, row], &#39;w--&#39;)
 
-<span class="c1"># Ensure aligned</span>
-<span class="c1"># fig = create_figure(figsize=(8, 8))</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">kernels</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+# Ensure aligned
+# fig = create_figure(figsize=(8, 8))
+fig, ax = plt.subplots(2, len(kernels), sharex=&#39;col&#39;, figsize=(8, 4), dpi=200)
 
-<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">kernels</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="n">kernel</span> <span class="ow">in</span> <span class="n">kernels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="n">kernel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">im_filtered</span> <span class="o">=</span> <span class="n">im</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">im_filtered</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
+count = 0
+n = len(kernels)
+for title, kernel in kernels.items():
+    count += 1
+    if kernel is None:
+        im_filtered = im
+    else:
+        im_filtered = ndimage.convolve(im, kernel)
 
-    <span class="c1"># Show images &amp; plots</span>
-    <span class="n">show_image</span><span class="p">(</span><span class="n">im_filtered</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">count</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
+    # Show images &amp; plots
+    show_image(im_filtered, title=title, pos=(2, n, count))
+    plt.plot(*line_args)
 
-    <span class="n">show_plot</span><span class="p">(</span><span class="n">im_filtered</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="n">count</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+    show_plot(im_filtered[row, :], xlabel=&#39;x&#39;, pos=(2, n, n+count))
+    plt.ylim([-20, 80])
+    if count &gt; 1:
+        plt.yticks([])
+    else:
+        plt.ylabel(&#39;Value&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_mean_filter_sizes&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+plt.tight_layout()
+glue_fig(&#39;fig_mean_filter_sizes&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1119,16 +1119,16 @@ If noise reduction is the primary goal, it’s therefore best to avoid unnecessa
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="bbafc985-2770-4acf-8110-1a33b9828350" name="418adf8f-91f7-430c-8fe5-e44447cf73d7" type="radio">
-</input><label class="sd-tab-label" for="bbafc985-2770-4acf-8110-1a33b9828350">
+<input checked="checked" id="e5fb3717-ae94-4e6a-95c5-7e9600ff26a2" name="ab9ca4c1-c133-4a8a-b8c4-d58edffdded1" type="radio">
+</input><label class="sd-tab-label" for="e5fb3717-ae94-4e6a-95c5-7e9600ff26a2">
 Question</label><div class="sd-tab-content docutils">
 <p>In ImageJ, creating a mean filter with <em>Radius = 6</em> results in a circular filter that replaces each pixel with the mean of 121 pixels.
 Using a square
 11×11 filter would also replace each pixel with the mean of 121 pixels.</p>
 <p>Can you think of any advantages in using the circular filter rather than the square filter?</p>
 </div>
-<input id="c6e05299-7b10-48c1-94fa-6e27b1d9f8d0" name="418adf8f-91f7-430c-8fe5-e44447cf73d7" type="radio">
-</input><label class="sd-tab-label" for="c6e05299-7b10-48c1-94fa-6e27b1d9f8d0">
+<input id="51472cf5-8062-4995-8fd1-8815d63a37b6" name="ab9ca4c1-c133-4a8a-b8c4-d58edffdded1" type="radio">
+</input><label class="sd-tab-label" for="51472cf5-8062-4995-8fd1-8815d63a37b6">
 Answer</label><div class="sd-tab-content docutils">
 <p>Circles are more ‘compact’.
 Every point on the perimeter of a circle is the same distance from the center.
@@ -1152,23 +1152,23 @@ The output is positive whenever the pixel values are increasing horizontally, ne
 We can also rotate the filter by 90 and get a vertical gradient image (<a class="reference internal" href="#fig-processing-filters-gradient"><span class="std std-numref">Fig. 83</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
+im = load_image(&#39;happy_cell.tif&#39;)
 
-<span class="n">kernel_horizontal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">kernel_vertical</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+kernel_horizontal = np.asarray([-1, 0, 1]).reshape((1, 3))
+kernel_vertical = np.asarray([-1, 0, 1]).reshape((3, 1))
 
-<span class="n">im_horizontal</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">kernel_horizontal</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_horizontal</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Horizontal gradient&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+im_horizontal = ndimage.convolve(im, kernel_horizontal)
+show_image(im_horizontal, title=&quot;(A) Horizontal gradient&quot;, pos=131)
 
-<span class="n">im_vertical</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">kernel_vertical</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_vertical</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Vertical gradient&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+im_vertical = ndimage.convolve(im, kernel_vertical)
+show_image(im_vertical, title=&quot;(B) Vertical gradient&quot;, pos=132)
 
-<span class="n">im_grad_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">im_horizontal</span><span class="o">*</span><span class="n">im_horizontal</span> <span class="o">+</span> <span class="n">im_vertical</span><span class="o">*</span><span class="n">im_vertical</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_grad_mag</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Gradient magnitude&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+im_grad_mag = np.sqrt(im_horizontal*im_horizontal + im_vertical*im_vertical)
+show_image(im_grad_mag, title=&quot;(C) Gradient magnitude&quot;, pos=133)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_processing_filters_gradient&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_processing_filters_gradient&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1192,14 +1192,14 @@ The gradient magnitude has high values around edges (regardless of their orienta
 <li><p>Take the square root of the result</p></li>
 </ul>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="022db50b-0b11-4281-84f4-bb1972907138" name="022583ee-aa6c-4970-8a40-79dc5666014c" type="radio">
-</input><label class="sd-tab-label" for="022db50b-0b11-4281-84f4-bb1972907138">
+<input checked="checked" id="ebbb2fad-358f-4c23-912f-44338a4daa9b" name="b2f81b37-d325-4ec4-b774-6cd8286dd862" type="radio">
+</input><label class="sd-tab-label" for="ebbb2fad-358f-4c23-912f-44338a4daa9b">
 Question</label><div class="sd-tab-content docutils">
 <p>Suppose the mean pixel value of an image is 100.
 What will the mean value be after applying a horizontal gradient filter?</p>
 </div>
-<input id="6f202350-c809-462c-b21f-f0d3f711a1f1" name="022583ee-aa6c-4970-8a40-79dc5666014c" type="radio">
-</input><label class="sd-tab-label" for="6f202350-c809-462c-b21f-f0d3f711a1f1">
+<input id="6347778e-f8c0-4b58-8999-e102834d3e2b" name="b2f81b37-d325-4ec4-b774-6cd8286dd862" type="radio">
+</input><label class="sd-tab-label" for="6347778e-f8c0-4b58-8999-e102834d3e2b">
 Solution</label><div class="sd-tab-content docutils">
 <p>After applying a gradient filter, the image mean will be 0: every pixel is added once and subtracted once when calculating the result.</p>
 <p>(Note that the mean value of a <em>gradient magnitude</em> image will be ≥ 0, because all pixels have either positive values or are equal to zero.)</p>
@@ -1219,34 +1219,34 @@ There are several common approaches.</p>
 Alternative options include treating every pixel beyond the boundary as zero, replicating the closest valid pixel, treating the image as if it is part of a periodic tiling, or mirroring the internal values (<a class="reference internal" href="#fig-filter-boundaries"><span class="std std-numref">Fig. 84</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Illustrate different boundary padding methods that may be used with convolution.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Illustrate different boundary padding methods that may be used with convolution.
+&quot;&quot;&quot;
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+fig = create_figure(figsize=(8, 4))
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;/images/boundary_demo.png&#39;</span><span class="p">)</span>
-<span class="n">pad_size</span> <span class="o">=</span> <span class="mi">100</span>
+im = load_image(&#39;/images/boundary_demo.png&#39;)
+pad_size = 100
 
-<span class="n">im_padded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_padded</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+im_padded = np.pad(im, pad_size, mode=&#39;constant&#39;, constant_values=im.max())
+show_image(im_padded, title=&quot;(A) Original image&quot;, pos=231)
 
-<span class="n">im_zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_zeros</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Zeros&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
+im_zeros = np.pad(im, pad_size, mode=&#39;constant&#39;)
+show_image(im_zeros, title=&quot;(B) Zeros&quot;, pos=232)
 
-<span class="n">im_replicate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_replicate</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Edge replication&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+im_replicate = np.pad(im, pad_size, mode=&#39;edge&#39;)
+show_image(im_replicate, title=&quot;(C) Edge replication&quot;, pos=233)
 
-<span class="n">im_circular</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;wrap&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_circular</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Wrapped/circular&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+im_circular = np.pad(im, pad_size, mode=&#39;wrap&#39;)
+show_image(im_circular, title=&quot;(D) Wrapped/circular&quot;, pos=234)
 
-<span class="n">im_symmetric</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;symmetric&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_symmetric</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(E) Symmetric&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+im_symmetric = np.pad(im, pad_size, mode=&#39;symmetric&#39;)
+show_image(im_symmetric, title=&quot;(E) Symmetric&quot;, pos=235)
 
-<span class="n">im_extra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;linear_ramp&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_extra</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(E) Linear ramp&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+im_extra = np.pad(im, pad_size, mode=&#39;linear_ramp&#39;)
+show_image(im_extra, title=&quot;(E) Linear ramp&quot;, pos=236)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filter_boundaries&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_filter_boundaries&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1286,53 +1286,53 @@ This is in contrast to a mean filter, which cannot ignore extreme pixels but rat
 Another disadvantage is that large median filters tend to be slow.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Illustrate how median filters remove salt-and-pepper noise more cleanly than mean filters.</span>
-<span class="sd">(Note: most noise isn&#39;t like this, and median filters aren&#39;t always preferable)</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Illustrate how median filters remove salt-and-pepper noise more cleanly than mean filters.
+(Note: most noise isn&#39;t like this, and median filters aren&#39;t always preferable)
+&quot;&quot;&quot;
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+fig = create_figure(figsize=(8, 4))
 
-<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1.inset_locator</span> <span class="kn">import</span> <span class="n">zoomed_inset_axes</span>
+from mpl_toolkits.axes_grid1.inset_locator import zoomed_inset_axes
 
-<span class="k">def</span> <span class="nf">add_inset</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">],</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">axins</span> <span class="o">=</span> <span class="n">zoomed_inset_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="mi">340</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="mi">210</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="mi">40</span>
-    <span class="n">axins</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="n">axins</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span>
-    <span class="n">axins</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="n">axins</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
-    <span class="n">axins</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">indicate_inset_zoom</span><span class="p">(</span><span class="n">axins</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">edge_color</span><span class="p">)</span>
+def add_inset(ax, im, loc=[50, 50, 160, 160], edge_color=&#39;black&#39;, **kwargs):
+    axins = zoomed_inset_axes(ax, zoom=4, loc=&#39;upper left&#39;)
+    x = 340
+    y = 210
+    s = 40
+    axins.imshow(im, cmap=&#39;gray&#39;, interpolation=&#39;nearest&#39;, **kwargs)
+    axins.set_xlim(x, x+s)
+    axins.set_ylim(y+s, y)
+    axins.set_xticks([])
+    axins.set_yticks([])
+    ax.indicate_inset_zoom(axins, edgecolor=edge_color)
 
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;fixed_cells.png&#39;</span><span class="p">)</span>
+im = load_image(&#39;fixed_cells.png&#39;)
 
-<span class="c1"># Add salt-and-pepper noise by creating uniformly distributed noise,</span>
-<span class="c1"># then thresholding to choose which pixels should become black and white</span>
-<span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.05</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">im_random</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">im</span><span class="p">[</span><span class="n">im_random</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">im</span><span class="p">[</span><span class="n">im_random</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">-</span><span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Salt &amp; pepper noise&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;upper&quot;</span><span class="p">)</span>
-<span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im</span><span class="p">)</span>
+# Add salt-and-pepper noise by creating uniformly distributed noise,
+# then thresholding to choose which pixels should become black and white
+threshold = 0.05
+rng = np.random.default_rng(100)
+im_random = rng.random(size=im.shape)
+im[im_random &lt; threshold] = 0
+im[im_random &gt; 1-threshold] = 255
+show_image(im, title=&quot;(A) Salt &amp; pepper noise&quot;, pos=131, origin=&quot;upper&quot;)
+add_inset(plt.gca(), im)
 
-<span class="c1"># 3x3 mean filter</span>
-<span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">kernel</span> <span class="o">=</span> <span class="n">kernel</span> <span class="o">/</span> <span class="n">kernel</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="n">im_mean</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_mean</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Mean filter&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_mean</span><span class="p">)</span>
+# 3x3 mean filter
+kernel = np.ones((3, 3))
+kernel = kernel / kernel.sum()
+im_mean = ndimage.convolve(im, kernel)
+show_image(im_mean, title=&quot;(B) Mean filter&quot;, pos=132)
+add_inset(plt.gca(), im_mean)
 
-<span class="c1"># 3x3 median filter</span>
-<span class="n">im_median</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">median_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_median</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Median filter&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_median</span><span class="p">)</span>
+# 3x3 median filter
+im_median = ndimage.median_filter(im, size=3)
+show_image(im_median, title=&quot;(C) Median filter&quot;, pos=133)
+add_inset(plt.gca(), im_median)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_processing_filters_speckled&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_processing_filters_speckled&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1351,26 +1351,26 @@ A small median filter is capable of removing the outliers completely, with a min
 They will become more important when we discuss <a class="reference internal" href="../5-morph/morph.html#chap-morph"><span class="std std-ref">morphological operations</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Compare median, maximum and minimum filters.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Compare median, maximum and minimum filters.
+&quot;&quot;&quot;
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+fig = create_figure(figsize=(8, 4))
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;fixed_cells.png&#39;</span><span class="p">)</span>
+im = load_image(&#39;fixed_cells.png&#39;)
 
-<span class="n">filt_size</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">im_median</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">median_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">filt_size</span><span class="p">)</span>
-<span class="n">im_max</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">maximum_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">filt_size</span><span class="p">)</span>
-<span class="n">im_min</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">minimum_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">filt_size</span><span class="p">)</span>
+filt_size = 3
+im_median = ndimage.median_filter(im, size=filt_size)
+im_max = ndimage.maximum_filter(im, size=filt_size)
+im_min = ndimage.minimum_filter(im, size=filt_size)
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_median</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Median filter&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_median</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_max</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Maximum filter&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_max</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_min</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Minimum filter&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_min</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_processing_filters_rank&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+show_image(im_median, title=&quot;(A) Median filter&quot;, pos=131)
+add_inset(plt.gca(), im_median)
+show_image(im_max, title=&quot;(B) Maximum filter&quot;, pos=132)
+add_inset(plt.gca(), im_max)
+show_image(im_min, title=&quot;(C) Minimum filter&quot;, pos=133)
+add_inset(plt.gca(), im_min)
+glue_fig(&#39;fig_processing_filters_rank&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1385,33 +1385,33 @@ They will become more important when we discuss <a class="reference internal" hr
 </figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Compute maximum minus minimum to show it enhances edges.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Compute maximum minus minimum to show it enhances edges.
+&quot;&quot;&quot;
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+fig = create_figure(figsize=(2, 2))
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;fixed_cells.png&#39;</span><span class="p">)</span>
+im = load_image(&#39;fixed_cells.png&#39;)
 
-<span class="n">filt_size</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">im_max</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">maximum_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">filt_size</span><span class="p">)</span>
-<span class="n">im_min</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">minimum_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">filt_size</span><span class="p">)</span>
+filt_size = 3
+im_max = ndimage.maximum_filter(im, size=filt_size)
+im_min = ndimage.minimum_filter(im, size=filt_size)
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_max</span> <span class="o">-</span> <span class="n">im_min</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filters_max_minus_min&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+show_image(im_max - im_min)
+glue_fig(&#39;fig_filters_max_minus_min&#39;, fig)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="a1951d49-b9ba-4fdc-88ae-b21e910facaf" name="50cc29b9-6991-4098-a8f9-8e85fe8b3a22" type="radio">
-</input><label class="sd-tab-label" for="a1951d49-b9ba-4fdc-88ae-b21e910facaf">
+<input checked="checked" id="a08f272b-d0fe-45b7-a816-41fc0d7c14cc" name="7525c804-7d38-4ecc-89e1-d209a3ffeac4" type="radio">
+</input><label class="sd-tab-label" for="a08f272b-d0fe-45b7-a816-41fc0d7c14cc">
 Question</label><div class="sd-tab-content docutils">
 <p>What would happen if you subtract a minimum filtered image (e.g.
 <a class="reference internal" href="#fig-processing-filters-rank"><span class="std std-numref">Fig. 87</span></a>C) from a maximum filtered image (Figure <a class="reference internal" href="#fig-processing-filters-rank"><span class="std std-numref">Fig. 87</span></a>B)?</p>
 </div>
-<input id="483dc09a-ea54-44db-85cb-80cfd465e06b" name="50cc29b9-6991-4098-a8f9-8e85fe8b3a22" type="radio">
-</input><label class="sd-tab-label" for="483dc09a-ea54-44db-85cb-80cfd465e06b">
+<input id="b0096a77-7404-4c4a-9e31-175962b83b9f" name="7525c804-7d38-4ecc-89e1-d209a3ffeac4" type="radio">
+</input><label class="sd-tab-label" for="b0096a77-7404-4c4a-9e31-175962b83b9f">
 Answer</label><div class="sd-tab-content docutils">
 <p>Subtracting a minimum from a maximum filtered image would be another way to accent the edges:</p>
 <figure class="align-center">
@@ -1433,33 +1433,33 @@ However, unlike a mean filter – for which even the furthest away pixels in the
 This tends to give a better result in many cases (<a class="reference internal" href="#fig-filt-smoothing"><span class="std std-numref">Fig. 88</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Illustrate difference in mean &amp; Gaussian filter.</span>
-<span class="sd">Note that filter sizes here are a matter of taste -- there&#39;s nothing special about the values.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Illustrate difference in mean &amp; Gaussian filter.
+Note that filter sizes here are a matter of taste -- there&#39;s nothing special about the values.
+&quot;&quot;&quot;
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+fig = create_figure(figsize=(8, 4))
 
-<span class="c1"># Create a simple image with some points</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
-<span class="n">im</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">im</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">im</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+# Create a simple image with some points
+n = 10
+im = np.zeros((n, n))
+im[0, 6] = 3
+im[5, 0] = 2
+im[9, 9] = 1
+im = np.pad(im, 10)
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+show_image(im, pos=131)
 
-<span class="c1"># Create Mean filter</span>
-<span class="n">kernel</span> <span class="o">=</span> <span class="n">create_mean_kernel</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">im_mean</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_mean</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+# Create Mean filter
+kernel = create_mean_kernel(6)
+im_mean = ndimage.convolve(im, kernel)
+show_image(im_mean, pos=132)
 
-<span class="c1"># Create a Gaussian filter</span>
-<span class="n">im_gauss</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_gauss</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+# Create a Gaussian filter
+im_gauss = ndimage.gaussian_filter(im, 4)
+show_image(im_gauss, pos=133)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filt_smoothing&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_filt_smoothing&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1485,39 +1485,39 @@ The size of the function is controlled by <span class="math notranslate nohighli
 <span class="math notranslate nohighlight">\(\sigma\)</span> is equivalent to the standard deviation of a normal (i.e. Gaussian) distribution.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Create a surface plot of a 2D Gaussian function.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Create a surface plot of a 2D Gaussian function.
+&quot;&quot;&quot;
 
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
-<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">LightSource</span>
+from matplotlib import cm
+from matplotlib.colors import LightSource
 
-<span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+n = 50
+x = np.arange(-n, n+1, 1)
+y = np.arange(-n, n+1, 1)
+x, y = np.meshgrid(x, y)
 
-<span class="n">sigma</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">sigma</span><span class="p">))</span>
+sigma = 10
+z = np.exp(-(x*x + y*y)/(2*sigma*sigma))
 
-<span class="n">ls</span> <span class="o">=</span> <span class="n">LightSource</span><span class="p">()</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">z</span> <span class="o">/</span> <span class="n">z</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-<span class="n">rgb</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">shade</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;plasma&#39;</span><span class="p">),</span> <span class="n">blend_mode</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">)</span>
+ls = LightSource()
+z = z / z.max()
+rgb = ls.shade(z, cmap=cm.get_cmap(&#39;plasma&#39;), blend_mode=&#39;soft&#39;)
 
-<span class="c1"># Create surface plots</span>
-<span class="n">surf_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">facecolors</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">,</span>
-    <span class="n">antialiased</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">shade</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">rstride</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">cstride</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="o">**</span><span class="n">surf_args</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+# Create surface plots
+surf_args = dict(
+    facecolors = rgb,
+    antialiased = False,
+    linewidth = 0,
+    shade = False,
+    rstride = 1,
+    cstride = 1
+)
+fig, ax = plt.subplots(1, 1, subplot_kw=dict(projection=&#39;3d&#39;, elev=30), dpi=200, figsize=(4, 3))
+ax.plot_surface(x, y, z, **surf_args)
+ax.axis(False)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filters_math_gaussian_2d&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_filters_math_gaussian_2d&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1533,41 +1533,41 @@ The size of the function is controlled by <span class="math notranslate nohighli
 <p>A comparison of several filters is shown in <a class="reference internal" href="#fig-processing-filters"><span class="std std-numref">Fig. 90</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 12))
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;fixed_cells.png&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">im_noisy</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">/</span> <span class="mi">8</span>
+im = load_image(&#39;fixed_cells.png&#39;).astype(np.float32) / 255
+rng = np.random.default_rng(100)
+im_noisy = im + rng.normal(size=im.shape) / 8
 
-<span class="n">show_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-    <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
-<span class="p">)</span>
+show_args = dict(
+    vmin = np.percentile(im_noisy, 1),
+    vmax = np.percentile(im_noisy, 99)
+)
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original, noise-free image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">321</span><span class="p">)</span>
-<span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im</span><span class="p">)</span>
+show_image(im, title=&quot;(A) Original, noise-free image&quot;, pos=321)
+add_inset(plt.gca(), im)
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Noisy image&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">322</span><span class="p">)</span>
-<span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_noisy</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">)</span>
+show_image(im_noisy, title=&quot;(B) Noisy image&quot;, **show_args, pos=322)
+add_inset(plt.gca(), im_noisy, **show_args)
 
-<span class="n">kernel</span> <span class="o">=</span> <span class="n">create_mean_kernel</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">im_mean</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_mean</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Mean filtered, radius = 3&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">323</span><span class="p">)</span>
-<span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_mean</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">)</span>
+kernel = create_mean_kernel(3)
+im_mean = ndimage.convolve(im_noisy, kernel)
+show_image(im_mean, title=&quot;(C) Mean filtered, radius = 3&quot;, **show_args, pos=323)
+add_inset(plt.gca(), im_mean, **show_args)
 
-<span class="n">im_median</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">median_filter</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">footprint</span><span class="o">=</span><span class="n">kernel</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_median</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Median filtered, radius = 3&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">324</span><span class="p">)</span>
-<span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_median</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">)</span>
+im_median = ndimage.median_filter(im_noisy, footprint=kernel &gt; 0)
+show_image(im_median, title=&quot;(D) Median filtered, radius = 3&quot;, **show_args, pos=324)
+add_inset(plt.gca(), im_median, **show_args)
 
-<span class="n">im_gauss_1</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_gauss_1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(E) Gaussian filtered, $\sigma = 1$&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">325</span><span class="p">)</span>
-<span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_gauss_1</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">)</span>
+im_gauss_1 = ndimage.gaussian_filter(im_noisy, 1)
+show_image(im_gauss_1, title=&quot;(E) Gaussian filtered, $\sigma = 1$&quot;, **show_args, pos=325)
+add_inset(plt.gca(), im_gauss_1, **show_args)
 
-<span class="n">im_gauss_4</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_gauss_4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(F) Gaussian filtered, $\sigma = 3$&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">326</span><span class="p">)</span>
-<span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_gauss_4</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">)</span>
+im_gauss_4 = ndimage.gaussian_filter(im_noisy, 3)
+show_image(im_gauss_4, title=&quot;(F) Gaussian filtered, $\sigma = 3$&quot;, **show_args, pos=326)
+add_inset(plt.gca(), im_gauss_4, **show_args)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_processing_filters&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_processing_filters&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1591,59 +1591,59 @@ As the filter size increases, Gaussian filtering starts to suppress larger struc
 By varying the filter size, we can then decide the <strong>scale</strong> at which the processing and analysis should happen.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read image, extract first channel &amp; crop a bit</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mi">168</span>
-<span class="n">w</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Read image, extract first channel &amp; crop a bit
+x = 40
+y = 168
+w = 100
+im = load_image(&#39;hela-cells.zip&#39;)[y:y+w, x:x+w, 0]
 
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+from scipy import ndimage
+import matplotlib.pyplot as plt
 
-<span class="n">sigmas</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+sigmas = [0, 1, 2, 4]
 
-<span class="c1"># Identify central row &amp; define how line should be displayed</span>
-<span class="n">row</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>
-<span class="n">line_args</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="p">],</span> <span class="s1">&#39;w--&#39;</span><span class="p">)</span>
+# Identify central row &amp; define how line should be displayed
+row = im.shape[0] // 2
+line_args = ([0, im.shape[1]-1], [row, row], &#39;w--&#39;)
 
-<span class="c1"># Ensure aligned</span>
-<span class="c1"># fig = create_figure(figsize=(8, 8))</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sigmas</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+# Ensure aligned
+# fig = create_figure(figsize=(8, 8))
+fig, ax = plt.subplots(2, len(sigmas), sharex=&#39;col&#39;, figsize=(8, 4), dpi=200)
 
-<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sigmas</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sigmas</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">sigma</span><span class="p">:</span>
-        <span class="n">im_filtered</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Gaussian filtered $\sigma=</span><span class="si">{</span><span class="n">sigma</span><span class="si">}</span><span class="s1">$&#39;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">im_filtered</span> <span class="o">=</span> <span class="n">im</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Original image&#39;</span>
+n = len(sigmas)
+for count, sigma in enumerate(sigmas):
+    if sigma:
+        im_filtered = ndimage.gaussian_filter(im, sigma)
+        title = f&#39;Gaussian filtered $\sigma={sigma}$&#39;
+    else:
+        im_filtered = im
+        title = &#39;Original image&#39;
 
-    <span class="c1"># Show images &amp; plots</span>
-    <span class="n">show_image</span><span class="p">(</span><span class="n">im_filtered</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
+    # Show images &amp; plots
+    show_image(im_filtered, title=title, pos=(2, n, count+1))
+    plt.plot(*line_args)
 
-    <span class="n">show_plot</span><span class="p">(</span><span class="n">im_filtered</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2200</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">2001</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="p">[])</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">2001</span><span class="p">,</span> <span class="mi">500</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+    show_plot(im_filtered[row, :], xlabel=&#39;x&#39;, pos=(2, n, n+count+1))
+    plt.ylim([0, 2200])
+    plt.grid(True, axis=&#39;y&#39;, alpha=0.5)
+    if count &gt; 0:
+        plt.yticks(ticks=np.arange(500, 2001, 500), labels=[])
+    else:
+        plt.yticks(ticks=np.arange(500, 2001, 500))
+        plt.ylabel(&#39;Value&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_gaussian_effects&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+plt.tight_layout()
+glue_fig(&#39;fig_gaussian_effects&#39;, fig)
 
 
 
-<span class="c1"># fig = create_figure(figsize=(8, 4))</span>
-<span class="c1"># show_image(&#39;images/gaussian_effects_sigma_0.png&#39;, title=&quot;(A) Original image&quot;, pos=231)</span>
-<span class="c1"># show_image(&#39;images/gaussian_effects_sigma_2.png&#39;, title=&quot;(B) Gaussian $\sigma = 2$&quot;, pos=232)</span>
-<span class="c1"># show_image(&#39;images/gaussian_effects_sigma_5.png&#39;, title=&quot;(C) Gaussian $\sigma = 5$&quot;, pos=233)</span>
+# fig = create_figure(figsize=(8, 4))
+# show_image(&#39;images/gaussian_effects_sigma_0.png&#39;, title=&quot;(A) Original image&quot;, pos=231)
+# show_image(&#39;images/gaussian_effects_sigma_2.png&#39;, title=&quot;(B) Gaussian $\sigma = 2$&quot;, pos=232)
+# show_image(&#39;images/gaussian_effects_sigma_5.png&#39;, title=&quot;(C) Gaussian $\sigma = 5$&quot;, pos=233)
 
-<span class="c1"># show_image(&#39;images/gaussian_effects_plot.png&#39;, title=&quot;(D) Profile plots of the intensity in the red channel of the image&quot;, pos=234)</span>
-<span class="c1"># glue_fig(&#39;fig_gaussian_effects&#39;, fig)</span>
+# show_image(&#39;images/gaussian_effects_plot.png&#39;, title=&quot;(D) Profile plots of the intensity in the red channel of the image&quot;, pos=234)
+# glue_fig(&#39;fig_gaussian_effects&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1662,34 +1662,34 @@ Applying a small Gaussian filter prior to computing the gradient magnitude gives
 If we only want the very strongest edges, then apply a larger filter would be better (D).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
 
-<span class="k">def</span> <span class="nf">grad_mag</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculate a gradient magnitude image</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">kernel_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-    <span class="n">kernel_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="n">im_h</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">kernel_h</span><span class="p">)</span>
-    <span class="n">im_v</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">kernel_v</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">im_h</span><span class="o">*</span><span class="n">im_h</span> <span class="o">+</span> <span class="n">im_v</span><span class="o">*</span><span class="n">im_v</span><span class="p">)</span>
+def grad_mag(im):
+    &quot;&quot;&quot;
+    Calculate a gradient magnitude image
+    &quot;&quot;&quot;
+    kernel_h = np.asarray([-1, 0, 1]).reshape((1, 3))
+    kernel_v = np.asarray([-1, 0, 1]).reshape((3, 1))
+    im_h = ndimage.convolve(im, kernel_h)
+    im_v = ndimage.convolve(im, kernel_v)
+    return np.sqrt(im_h*im_h + im_v*im_v)
 
-<span class="c1"># Get a noisy image</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+# Get a noisy image
+im = load_image(&#39;happy_cell.tif&#39;)
+rng = np.random.default_rng(100)
+im = im + rng.normal(size=im.shape) * 10
 
-<span class="c1"># Compute gradient magnitude with / without smoothing</span>
-<span class="n">im_sigma_0</span> <span class="o">=</span> <span class="n">grad_mag</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
-<span class="n">im_sigma_2</span> <span class="o">=</span> <span class="n">grad_mag</span><span class="p">(</span><span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">im_sigma_5</span> <span class="o">=</span> <span class="n">grad_mag</span><span class="p">(</span><span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+# Compute gradient magnitude with / without smoothing
+im_sigma_0 = grad_mag(im)
+im_sigma_2 = grad_mag(ndimage.gaussian_filter(im, 2))
+im_sigma_5 = grad_mag(ndimage.gaussian_filter(im, 5))
 
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_sigma_0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) No smoothing&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_sigma_2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Gaussian $\sigma=2$&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_sigma_5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Gaussian $\sigma=5$&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_edge_sigma&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+show_image(im, title=&quot;(A) Original image&quot;, pos=141)
+show_image(im_sigma_0, title=&quot;(B) No smoothing&quot;, clip_percentile=1, pos=142)
+show_image(im_sigma_2, title=&quot;(C) Gaussian $\sigma=2$&quot;, pos=143)
+show_image(im_sigma_5, title=&quot;(D) Gaussian $\sigma=5$&quot;, pos=144)
+glue_fig(&#39;fig_edge_sigma&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1716,26 +1716,26 @@ This will remove even more structures, while still preserving the largest featur
 It is especially useful for detecting small structures, or as an alternative to the gradient magnitude for enhancing edges (<a class="reference internal" href="#fig-dog-red-hela"><span class="std std-numref">Fig. 93</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(6, 6))
 
-<span class="k">def</span> <span class="nf">dog_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Apply a difference of Gaussians filter</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">im1</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">sigma1</span><span class="p">)</span>
-    <span class="n">im2</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">sigma2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">im1</span> <span class="o">-</span> <span class="n">im2</span>
+def dog_filter(im, sigma1, sigma2):
+    &quot;&quot;&quot;
+    Apply a difference of Gaussians filter
+    &quot;&quot;&quot;
+    im1 = ndimage.gaussian_filter(im.astype(np.float32), sigma1)
+    im2 = ndimage.gaussian_filter(im.astype(np.float32), sigma2)
+    return im1 - im2
 
-<span class="c1"># Read image, extract first channel &amp; crop a bit</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="mi">446</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="mi">446</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+# Read image, extract first channel &amp; crop a bit
+x = 40
+y = 40
+im = load_image(&#39;hela-cells.zip&#39;)[y:y+446, x:x+446, 0]
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">dog_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) DoG, $\sigma = $1, 2&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">dog_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) DoG, $\sigma = $2, 4&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">dog_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) DoG, $\sigma = $4, 8&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_dog_red_hela&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+show_image(im, title=&quot;(A) Original image&quot;, clip_percentile=0.5, pos=221)
+show_image(dog_filter(im, 1, 2), title=&quot;(B) DoG, $\sigma = $1, 2&quot;, clip_percentile=0.5, pos=222)
+show_image(dog_filter(im, 2, 4), title=&quot;(B) DoG, $\sigma = $2, 4&quot;, clip_percentile=0.5, pos=223)
+show_image(dog_filter(im, 4, 8), title=&quot;(B) DoG, $\sigma = $4, 8&quot;, clip_percentile=0.5, pos=224)
+glue_fig(&#39;fig_dog_red_hela&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1750,56 +1750,56 @@ It is especially useful for detecting small structures, or as an alternative to 
 </figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian_kernel</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Create an image with a single 1 in the middle,</span>
-<span class="sd">    the apply a Gaussian filter to get the coefficients.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">filt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
-    <span class="n">filt</span><span class="p">[</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
-    <span class="k">return</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">filt</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def gaussian_kernel(shape, sigma: float):
+    &quot;&quot;&quot;
+    Create an image with a single 1 in the middle,
+    the apply a Gaussian filter to get the coefficients.
+    &quot;&quot;&quot;
+    filt = np.zeros(shape)
+    filt[shape[0]//2, shape[1]//2] = 1.0
+    return ndimage.gaussian_filter(filt, sigma)
 
 
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+from matplotlib import cm
 
-<span class="n">n</span> <span class="o">=</span> <span class="mi">25</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+n = 25
+x = np.arange(-n, n+1, 1)
+y = np.arange(-n, n+1, 1)
+x, y = np.meshgrid(x, y)
 
-<span class="c1"># Define filter sigmas</span>
-<span class="n">sigma_small</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">sigma_large</span> <span class="o">=</span> <span class="n">sigma_small</span> <span class="o">*</span> <span class="mf">1.6</span>
+# Define filter sigmas
+sigma_small = 5
+sigma_large = sigma_small * 1.6
 
-<span class="c1"># To view the filter coefficients, apply the filter to an image with a single 1</span>
-<span class="n">gauss_small</span> <span class="o">=</span> <span class="n">gaussian_kernel</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">sigma_small</span><span class="p">)</span>
-<span class="n">gauss_large</span> <span class="o">=</span> <span class="n">gaussian_kernel</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">sigma_large</span><span class="p">)</span>
-<span class="n">gauss_diff</span> <span class="o">=</span> <span class="n">gauss_small</span> <span class="o">-</span> <span class="n">gauss_large</span>
+# To view the filter coefficients, apply the filter to an image with a single 1
+gauss_small = gaussian_kernel(x.shape, sigma_small)
+gauss_large = gaussian_kernel(x.shape, sigma_large)
+gauss_diff = gauss_small - gauss_large
 
-<span class="c1"># Create surface plots</span>
-<span class="n">surf_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;plasma&#39;</span><span class="p">),</span>
-    <span class="n">antialiased</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="mi">25</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gauss_small</span><span class="p">,</span> <span class="o">**</span><span class="n">surf_args</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gauss_large</span><span class="p">,</span> <span class="o">**</span><span class="n">surf_args</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gauss_diff</span><span class="p">,</span> <span class="o">**</span><span class="n">surf_args</span><span class="p">)</span>
+# Create surface plots
+surf_args = dict(
+    cmap = cm.get_cmap(&#39;plasma&#39;),
+    antialiased = False,
+)
+fig, ax = plt.subplots(1, 3, dpi=200, subplot_kw=dict(projection=&#39;3d&#39;, elev=25), figsize=(15, 5))
+ax[0].plot_surface(x, y, gauss_small, **surf_args)
+ax[1].plot_surface(x, y, gauss_large, **surf_args)
+ax[2].plot_surface(x, y, gauss_diff, **surf_args)
 
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;(A) Smaller Gaussian filter&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;(B) Larger Gaussian filter&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;(C) Difference of Gaussians filter&#39;</span><span class="p">)</span>
+ax[0].set_title(&#39;(A) Smaller Gaussian filter&#39;)
+ax[1].set_title(&#39;(B) Larger Gaussian filter&#39;)
+ax[2].set_title(&#39;(C) Difference of Gaussians filter&#39;)
 
-<span class="c1"># Set z-limits to match</span>
-<span class="n">max_val</span> <span class="o">=</span> <span class="n">gauss_small</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-<span class="n">min_val</span> <span class="o">=</span> <span class="n">gauss_diff</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
-    <span class="n">a</span><span class="o">.</span><span class="n">set_zlim</span><span class="p">(</span><span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">)</span>
-    <span class="n">a</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
-    <span class="n">a</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
-    <span class="n">a</span><span class="o">.</span><span class="n">set_zticklabels</span><span class="p">([])</span>
+# Set z-limits to match
+max_val = gauss_small.max()
+min_val = gauss_diff.min()
+for a in ax:
+    a.set_zlim(min_val, max_val)
+    a.set_xticklabels([])
+    a.set_yticklabels([])
+    a.set_zticklabels([])
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_dog_plots&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_dog_plots&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1826,38 +1826,38 @@ A similar operation, which requires only a single <span class="math notranslate 
 <p>The appearance of a LoG filter is like an upside-down DoG filter (<a class="reference internal" href="#fig-log-plots"><span class="std std-numref">Fig. 95</span></a>), but if the resulting image is <a class="reference internal" href="../2-point_operations/point_operations.html#sec-points-inversion"><span class="std std-ref">inverted</span></a> then the results are comparable <a class="footnote-reference brackets" href="#fn-4" id="id3">3</a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
 
-<span class="k">def</span> <span class="nf">log_kernel</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Create an image with a single 1 in the middle,</span>
-<span class="sd">    the apply a Gaussian filter to get the coefficients.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">filt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
-    <span class="n">filt</span><span class="p">[</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
-    <span class="k">return</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_laplace</span><span class="p">(</span><span class="n">filt</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+def log_kernel(shape, sigma: float):
+    &quot;&quot;&quot;
+    Create an image with a single 1 in the middle,
+    the apply a Gaussian filter to get the coefficients.
+    &quot;&quot;&quot;
+    filt = np.zeros(shape)
+    filt[shape[0]//2, shape[1]//2] = 1.0
+    return ndimage.gaussian_laplace(filt, sigma)
 
-<span class="n">n</span> <span class="o">=</span> <span class="mi">25</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="mi">6</span>
+n = 25
+x = np.arange(-n, n+1, 1)
+y = np.arange(-n, n+1, 1)
+x, y = np.meshgrid(x, y)
+sigma = 6
 
-<span class="c1">#</span>
-<span class="n">z_log</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span><span class="o">*</span><span class="n">sigma</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">))</span>
+#
+z_log = ((x*x + y*y - 2 * sigma*sigma)/(np.power(sigma, 4))) * np.exp(-(x*x + y*y)/(2 * sigma * sigma))
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="mi">25</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z_log</span><span class="p">,</span> <span class="o">**</span><span class="n">surf_args</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="n">z_log</span><span class="p">,</span> <span class="o">**</span><span class="n">surf_args</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
-    <span class="n">a</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
-    <span class="n">a</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
-    <span class="n">a</span><span class="o">.</span><span class="n">set_zticklabels</span><span class="p">([])</span>
+fig, ax = plt.subplots(1, 2, subplot_kw=dict(projection=&#39;3d&#39;, elev=25), figsize=(10, 5))
+ax[0].plot_surface(x, y, z_log, **surf_args)
+ax[1].plot_surface(x, y, -z_log, **surf_args)
+for a in ax:
+    a.set_xticklabels([])
+    a.set_yticklabels([])
+    a.set_zticklabels([])
 
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;LoG filter&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Inverted LoG filter&#39;</span><span class="p">)</span>
+ax[0].set_title(&#39;LoG filter&#39;)
+ax[1].set_title(&#39;Inverted LoG filter&#39;)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_log_plots&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_log_plots&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1872,21 +1872,21 @@ A similar operation, which requires only a single <span class="math notranslate 
 </figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/dog_on_log_orig.png&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+im = load_image(&#39;images/dog_on_log_orig.png&#39;).astype(np.float32)
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Dog on a log&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+show_image(im, title=&quot;(A) Dog on a log&quot;, pos=131)
 
-<span class="n">sigma_dog</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">im_dog</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma_dog</span><span class="p">)</span> <span class="o">-</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma_dog</span> <span class="o">*</span> <span class="mf">1.6</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dog</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) DoG filtered dog&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+sigma_dog = 2
+im_dog = ndimage.gaussian_filter(im, sigma_dog) - ndimage.gaussian_filter(im, sigma_dog * 1.6)
+show_image(im_dog, title=&quot;(B) DoG filtered dog&quot;, clip_percentile=0.25, pos=132)
 
-<span class="n">sigma_log</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">im_log</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_laplace</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma_log</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_log</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) LoG filtered dog&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+sigma_log = 2
+im_log = ndimage.gaussian_laplace(im, sigma_log)
+show_image(im_log, title=&quot;(C) LoG filtered dog&quot;, clip_percentile=0.25, pos=133)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_dog_on_log&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_dog_on_log&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1910,24 +1910,24 @@ But rather than stop there, the subtracted image is multiplied by some weighting
 This gives an image that looks much the same as the original, but with edges sharpened by an amount dependent upon the chosen weight.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/unsharp_masking_orig.png&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
-<span class="k">if</span> <span class="n">im</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+im = load_image(&#39;images/unsharp_masking_orig.png&#39;).astype(np.float32) / 255
+if im.ndim &gt; 2:
+    im = im[:, :, 0]
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+show_image(im, title=&quot;(A) Original image&quot;, pos=131)
 
-<span class="n">sigma</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">im_gauss</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
-<span class="n">im_diff</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im_gauss</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_diff</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Gaussian subtracted&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+sigma = 8
+im_gauss = ndimage.gaussian_filter(im, sigma)
+im_diff = im - im_gauss
+show_image(im_diff, title=&quot;(B) Gaussian subtracted&quot;, clip_percentile=0.25, pos=132)
 
-<span class="n">im_unsharp</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">im_diff</span> <span class="o">*</span> <span class="mi">2</span>
-<span class="n">im_unsharp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im_unsharp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_unsharp</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Unsharp masked&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+im_unsharp = im + im_diff * 2
+im_unsharp = np.clip(im_unsharp, 0, 1)
+show_image(im_unsharp, title=&quot;(C) Unsharp masked&quot;, pos=133)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_unsharp_masking&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_unsharp_masking&#39;, fig)
 </pre></div>
 </div>
 </div>

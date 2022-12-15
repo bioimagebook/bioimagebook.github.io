@@ -764,17 +764,17 @@ title="Print to PDF"
 <span id="chap-bit-depths-imagej"></span><h1>ImageJ: Types &amp; bit-depths<a class="headerlink" href="#imagej-types-bit-depths" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
+%autoreload 2
 
-<span class="c1"># Default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+# Default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
+from helpers import *
+from matplotlib import pyplot as plt
+from myst_nb import glue
+import numpy as np
+from scipy import ndimage
 </pre></div>
 </div>
 </div>
@@ -807,10 +807,10 @@ But since an 8-bit and 16-bit images in ImageJ are <em>always</em> unsigned inte
 But you don’t usually have to; you can also see the information at the top of the image window.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/type-window-series.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">121</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/type-window-neuron.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">122</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_types_windows&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
+show_image(&#39;images/type-window-series.png&#39;, pos=121)
+show_image(&#39;images/type-window-neuron.png&#39;, pos=122)
+glue_fig(&#39;fig_types_windows&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -834,10 +834,10 @@ We will explore this in <a class="reference internal" href="../4-colors/colors.h
 <span class="menuselection">Analyze ‣ Histogram</span> is the essential command needed to diagnose if something is wrong – just press <kbd class="kbd docutils literal notranslate">H</kbd> to run it.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/imagej-histogram-unclipped.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Good image (no clipping)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">121</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/imagej-histogram-clipped.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Clipped image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">122</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_types_imagej_clipping&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
+show_image(&#39;images/imagej-histogram-unclipped.png&#39;, title=&quot;Good image (no clipping)&quot;, pos=121)
+show_image(&#39;images/imagej-histogram-clipped.png&#39;, title=&quot;Clipped image&quot;, pos=122)
+glue_fig(&#39;fig_types_imagej_clipping&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -855,14 +855,14 @@ This can take some careful inspection to distinguish from the black border that 
 <p>If you know the bit-depth and type of the image, you can figure out the range (e.g. 0-255 for an 8-bit unsigned integer image, 0-65,535 for 16-bit) and usually that gives a good indication to where the peaks would be – but it isn’t a perfect guide.
 Conceivably, we could have an image that was clipped at some other value because it has been rescaled <em>after</em> clipping.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="93bef537-700b-488f-9d00-4b745ee24dc9" name="801ac064-c973-4a55-819e-a82a2df25e3a" type="radio">
-</input><label class="sd-tab-label" for="93bef537-700b-488f-9d00-4b745ee24dc9">
+<input checked="checked" id="c807cb20-f643-4c8e-a59c-80fb561dc5ab" name="df84cc76-3e1a-4287-baae-1e242a3b6160" type="radio">
+</input><label class="sd-tab-label" for="c807cb20-f643-4c8e-a59c-80fb561dc5ab">
 Question</label><div class="sd-tab-content docutils">
 <p>Does the image below show signs of having been clipped?</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-histogram-maybe.png"><img alt="../../../_images/imagej-histogram-maybe.png" class="align-center" src="../../../_images/imagej-histogram-maybe.png" style="width: 60%;" /></a>
 </div>
-<input id="5e856146-ed5e-4b37-974b-0f7e2deec156" name="801ac064-c973-4a55-819e-a82a2df25e3a" type="radio">
-</input><label class="sd-tab-label" for="5e856146-ed5e-4b37-974b-0f7e2deec156">
+<input id="3d225d5d-dd73-4baa-857e-05198f2aa0f0" name="df84cc76-3e1a-4287-baae-1e242a3b6160" type="radio">
+</input><label class="sd-tab-label" for="3d225d5d-dd73-4baa-857e-05198f2aa0f0">
 Answer</label><div class="sd-tab-content docutils">
 <p>Yes!
 There is a small peak at the high end of the histogram, corresponding to pixel values of 4095.
@@ -943,15 +943,15 @@ Fortunately, there is an easy way to achieve this:</p>
 <p>If you <strong>really</strong> need to reduce the bit-depth of an image in ImageJ, you should usually open <span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> (<kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">C</kbd></kbd>) and press the <span class="guilabel">Reset</span> button first, to minimize the data lost to clipping or rounding.</p>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="f80f95b8-2072-45d1-aebb-db04fc50c997" name="6b789b77-11da-46e3-8c1a-94bf45c95915" type="radio">
-</input><label class="sd-tab-label" for="f80f95b8-2072-45d1-aebb-db04fc50c997">
+<input checked="checked" id="105fb8dd-c186-4e80-8b9d-c9060a379eb9" name="2c9c6bef-e143-4366-b4c6-fb64e73ac333" type="radio">
+</input><label class="sd-tab-label" for="105fb8dd-c186-4e80-8b9d-c9060a379eb9">
 Question</label><div class="sd-tab-content docutils">
 <p>Why is scaling usually a good thing when reducing the bit-depth, and why is a constant usually subtracted before applying this scaling?</p>
 <p><strong>Hint:</strong> As an example, consider how a 16-bit image containing values in the range 4000–5000 might be converted to 8-bit first without scaling, and then alternatively by scaling with or without the initial constant subtraction.
 What constants for subtraction and division would usually minimize the amount of information lost when converting to 8-bit image, limiting the errors to rounding only and not clipping?</p>
 </div>
-<input id="99e85c97-9e7e-4c20-a976-1081438c2dac" name="6b789b77-11da-46e3-8c1a-94bf45c95915" type="radio">
-</input><label class="sd-tab-label" for="99e85c97-9e7e-4c20-a976-1081438c2dac">
+<input id="17637143-1f7d-41f4-89b1-e7c03bde8e35" name="2c9c6bef-e143-4366-b4c6-fb64e73ac333" type="radio">
+</input><label class="sd-tab-label" for="17637143-1f7d-41f4-89b1-e7c03bde8e35">
 Answer</label><div class="sd-tab-content docutils">
 <p>In the example given, converting to 8-bit without any scaling would result in all pixels simply becoming 255: all useful information in the image would be lost.</p>
 <p>With scaling but without subtraction, it would make sense to divide all pixel values by the maximum in the image divided by the maximum in the new bit depth, i.e. by 5000/255.
@@ -960,16 +960,16 @@ This would then lead to an image in which pixels fall into the range 204–255. 
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="551322fd-8c59-4a91-b867-918096ac61b5" name="40184b3e-089e-4840-8362-024e77258e28" type="radio">
-</input><label class="sd-tab-label" for="551322fd-8c59-4a91-b867-918096ac61b5">
+<input checked="checked" id="dde84ad9-8625-48a7-ba3d-e5f09ed1b74b" name="1f5482e1-8581-4e69-aa6f-4389cd8aae54" type="radio">
+</input><label class="sd-tab-label" for="dde84ad9-8625-48a7-ba3d-e5f09ed1b74b">
 Practical</label><div class="sd-tab-content docutils">
 <p>Make sure that the <span class="guilabel">Scale When Converting</span> option is turned on (it should be by default).
 Then using a suitable 8-bit sample image, e.g. <span class="menuselection">File ‣ Open Samples ‣ Boats</span>, explore the effects of brightness/contrast settings when increasing or decreasing bit-depths.</p>
 <p>Can you destroy the image by simply 1) increasing the bit-depth, and the then 2) decreasing the bit-depth to its original value?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/6f9f451fdc0116197501ae504a57d5e7"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="a0ca6eb4-3372-47ff-ada7-e4b9252a3cca" name="40184b3e-089e-4840-8362-024e77258e28" type="radio">
-</input><label class="sd-tab-label" for="a0ca6eb4-3372-47ff-ada7-e4b9252a3cca">
+<input id="024ec96c-7cb9-425d-8374-e182d64914ac" name="1f5482e1-8581-4e69-aa6f-4389cd8aae54" type="radio">
+</input><label class="sd-tab-label" for="024ec96c-7cb9-425d-8374-e182d64914ac">
 Solution</label><div class="sd-tab-content docutils">
 <p>It’s generally a good idea to choose <span class="guilabel">Reset</span> in the <span class="menuselection">Brightness/Contrast…</span> window before reducing any bit-depths for 2D images (see <a class="reference internal" href="../../2-processing/7-multidimensional_processing/multidimensional_processing.html#chap-multidimensional-processing"><span class="std std-ref">Multidimensional processing</span></a> to read about special considerations related to <em>z</em>-stacks or time series).</p>
 <p>You can destroy an image by increasing its bit-depth, adjusting the brightness/contrast and then decreasing the bit-depth to the original one again.

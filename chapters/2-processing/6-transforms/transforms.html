@@ -782,17 +782,17 @@ title="Print to PDF"
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
+%autoreload 2
 
-<span class="c1"># Default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+# Default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
+from helpers import *
+from matplotlib import pyplot as plt
+from myst_nb import glue
+import numpy as np
+from scipy import ndimage
 </pre></div>
 </div>
 </div>
@@ -811,26 +811,26 @@ If the pixel itself is already part of the background then this is zero.
 The result is an image called a <strong>distance map</strong>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from scipy.ndimage import distance_transform_edt
+from skimage import morphology as morph
 
-<span class="c1"># Create a small image</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="n">bw</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">dilation</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">morph</span><span class="o">.</span><span class="n">disk</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+# Create a small image
+bw = np.zeros((9, 9))
+bw[4, 4] = 1
+bw = morph.dilation(bw, morph.disk(3))
 
-<span class="c1"># Compute the distance transform</span>
-<span class="n">im_dist</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+# Compute the distance transform
+im_dist = distance_transform_edt(bw)
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Binary image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">121</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Distance transform&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">122</span><span class="p">)</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="n">im_dist</span><span class="p">):</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span> <span class="k">if</span> <span class="n">z</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s1">&#39;k&#39;</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+fig = create_figure(figsize=(5, 2.5))
+show_image(bw, title=&#39;Binary image&#39;, pos=121)
+show_image(im_dist, title=&#39;Distance transform&#39;, pos=122)
+for (i, j), z in np.ndenumerate(im_dist):
+    c = &#39;w&#39; if z &lt; 1 else &#39;k&#39;
+    plt.text(j, i, str(round(z, 2)), color=c, ha=&#39;center&#39;, va=&#39;center&#39;, fontdict={&#39;size&#39;: 5})
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_distance_detail&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+plt.tight_layout()
+glue_fig(&#39;fig_morph_distance_detail&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -850,25 +850,25 @@ However, erosion and dilation can be computed from a distance map very efficient
 This can be much faster in practice.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im = load_image(&#39;blobs.gif&#39;)
+bw = im &lt; im.mean()
 
-<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span>
+from scipy.ndimage import distance_transform_edt
 
-<span class="n">im_dist</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+im_dist = distance_transform_edt(bw)
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Binary image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Distance map of (A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Thresholded (B) &gt; 5&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+fig = create_figure(figsize=(8, 6))
+show_image(bw, title=&#39;(A) Binary image&#39;, pos=231)
+show_image(im_dist, title=&#39;(B) Distance map of (A)&#39;, pos=232)
+show_image(im_dist &gt; 5, title=&#39;(C) Thresholded (B) &gt; 5&#39;, pos=233)
 
-<span class="n">im_dist_inv</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="o">~</span><span class="n">bw</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="o">~</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(D) Binary image (inverted)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist_inv</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(E) Distance map of (D)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist_inv</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(F) Thresholded (E) &lt; 5&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+im_dist_inv = distance_transform_edt(~bw)
+show_image(~bw, title=&#39;(D) Binary image (inverted)&#39;, pos=234)
+show_image(im_dist_inv, title=&#39;(E) Distance map of (D)&#39;, pos=235)
+show_image(im_dist_inv &lt; 5, title=&#39;(F) Thresholded (E) &lt; 5&#39;, pos=236)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_distance&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+plt.tight_layout()
+glue_fig(&#39;fig_morph_distance&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -895,41 +895,41 @@ This provides an alternative to straightforward thresholding, which can be <em>e
 <p>To understand how the watershed transform works, picture the image as an uneven landscape in which the value of each pixel corresponds to a height.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from matplotlib import cm
 
-<span class="k">def</span> <span class="nf">load_watershed_image</span><span class="p">():</span>
-    <span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-    <span class="n">im</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
-    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="mi">128</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="mi">75</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="mi">128</span>
-    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span><span class="n">c</span><span class="o">+</span><span class="n">s</span><span class="p">]</span>
-    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">im</span>
+def load_watershed_image():
+    im = load_image(&#39;hela-cells.zip&#39;)[:, :, 0].astype(np.float32)
+    im = ndimage.gaussian_filter(im, sigma=1.5)
+    im = im - ndimage.gaussian_filter(im, sigma=5)
+    r = 128
+    c = 75
+    s = 128
+    im = im[r:r+s, c:c+s]
+    im = im / im.max()
+    return im
 
-<span class="c1"># Visualize an image as a surface plot</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_watershed_image</span><span class="p">()</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original image&#39;</span><span class="p">)</span>
+# Visualize an image as a surface plot
+fig = create_figure(figsize=(12, 8))
+im = load_watershed_image()
+show_image(im, clip_percentile=0.5, pos=131)
+plt.title(&#39;Original image&#39;)
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_zticklabels</span><span class="p">([])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Surface plot&#39;</span><span class="p">)</span>
+ax = fig.add_subplot(1, 3, 2, projection=&quot;3d&quot;)
+X, Y = np.meshgrid(np.linspace(0, 1, im.shape[1]), np.linspace(0, 1, im.shape[0]))
+ax.plot_surface(X, Y, im, color=(0.4, 0.8, 0.2), shade=True)
+ax.set_xticklabels([])
+ax.set_yticklabels([])
+ax.set_zticklabels([])
+ax.set_title(&#39;Surface plot&#39;)
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="o">-</span><span class="n">im</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_zticklabels</span><span class="p">([])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Inverted surface plot&#39;</span><span class="p">)</span>
+ax = fig.add_subplot(1, 3, 3, projection=&quot;3d&quot;)
+ax.plot_surface(X, Y, -im, color=(0.4, 0.8, 0.2))
+ax.set_xticklabels([])
+ax.set_yticklabels([])
+ax.set_zticklabels([])
+ax.set_title(&#39;Inverted surface plot&#39;)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_transform_surface&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_transform_surface&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -956,34 +956,34 @@ The water then continues to rise, with dams being built as needed, until in the 
 <iframe width="1042" height="586" src="https://www.youtube.com/embed/yywoAgJzje8?loop=1&playlist=yywoAgJzje8&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div> --><div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
-<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
-<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_triangle</span>
-<span class="kn">from</span> <span class="nn">skimage.morphology.extrema</span> <span class="kn">import</span> <span class="n">local_minima</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from skimage.color import label2rgb
+from skimage.segmentation import watershed
+from skimage.filters import threshold_triangle
+from skimage.morphology.extrema import local_minima
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_watershed_image</span><span class="p">()</span>
-<span class="n">bw_mask</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+im = load_watershed_image()
+bw_mask = im &gt; threshold_triangle(im)
 
-<span class="c1"># lab_seeds, n = ndimage.label(morph.h_maxima(im, im.std()/3.0))</span>
-<span class="n">lab_seeds</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">local_minima</span><span class="p">(</span><span class="o">-</span><span class="n">im</span><span class="p">))</span>
-<span class="n">lab_watershed</span> <span class="o">=</span> <span class="n">watershed</span><span class="p">(</span><span class="o">-</span><span class="n">im</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">watershed_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">lab_watershed_masked</span> <span class="o">=</span> <span class="n">watershed</span><span class="p">(</span><span class="o">-</span><span class="n">im</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">bw_mask</span><span class="p">,</span> <span class="n">watershed_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+# lab_seeds, n = ndimage.label(morph.h_maxima(im, im.std()/3.0))
+lab_seeds, n = ndimage.label(local_minima(-im))
+lab_watershed = watershed(-im, markers=None, watershed_line=True)
+lab_watershed_masked = watershed(-im, markers=None, mask=bw_mask, watershed_line=True)
 
-<span class="n">im2</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
-<span class="n">im2</span> <span class="o">=</span> <span class="n">im2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="mf">99.75</span><span class="p">)</span>
-<span class="n">im2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+im2 = im - np.percentile(im, 0.25)
+im2 = im2 / np.percentile(im2, 99.75)
+im2 = np.clip(im2, 0, 1)
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab_seeds</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">im2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Image with seeds&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab_watershed</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">im2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Full watershed segmentation&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_mask</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Binary image (triangle threshold)&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab_watershed_masked</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">im2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Masked watershed segmentation&#39;</span><span class="p">)</span>
+fig = create_figure(figsize=(12, 12))
+show_image(label2rgb(lab_seeds, image=im2, bg_label=0, alpha=0.6), pos=221)
+plt.title(&#39;Image with seeds&#39;)
+show_image(label2rgb(lab_watershed, image=im2, bg_label=0), pos=222)
+plt.title(&#39;Full watershed segmentation&#39;)
+show_image(bw_mask, pos=223)
+plt.title(&#39;Binary image (triangle threshold)&#39;)
+show_image(label2rgb(lab_watershed_masked, image=im2, bg_label=0), pos=224)
+plt.title(&#39;Masked watershed segmentation&#39;)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_transform_surface_watershed&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_transform_surface_watershed&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1021,24 +1021,24 @@ The process is as follows:</p>
 </ul>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">disk</span><span class="p">,</span> <span class="n">dilation</span>
-<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from skimage.morphology import disk, dilation
+from skimage.segmentation import watershed
 
-<span class="n">bw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">75</span><span class="p">,</span> <span class="mi">99</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
-<span class="n">bw</span><span class="p">[</span><span class="mi">37</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">bw</span><span class="p">[</span><span class="mi">37</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">strel</span> <span class="o">=</span> <span class="n">disk</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+bw = np.zeros((75, 99), dtype=bool)
+bw[37, 30] = True
+bw[37, -30] = True
+strel = disk(22)
 
-<span class="n">bw</span> <span class="o">=</span> <span class="n">dilation</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">strel</span><span class="p">)</span>
-<span class="n">im_dist</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
-<span class="n">lab</span> <span class="o">=</span> <span class="n">watershed</span><span class="p">(</span><span class="o">-</span><span class="n">im_dist</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">bw</span><span class="p">,</span> <span class="n">watershed_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+bw = dilation(bw, strel)
+im_dist = distance_transform_edt(bw)
+lab = watershed(-im_dist, markers=None, mask=bw, watershed_line=True)
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Binary image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Distance map of (A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">lab</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Watershed split of (B)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+fig = create_figure(figsize=(8, 4))
+show_image(bw, title=&#39;(A) Binary image&#39;, pos=131)
+show_image(im_dist, title=&#39;(B) Distance map of (A)&#39;, pos=132)
+show_image(lab &gt; 0, title=&#39;(C) Watershed split of (B)&#39;, pos=133)
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_distance_split_small&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_morph_distance_split_small&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1055,38 +1055,38 @@ The process is as follows:</p>
 The only requirement is that there are clearly distinct regional maxima in the distance transform – or, alternatively, we can define suitable seeds using other processing steps.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
-<span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from scipy.ndimage import distance_transform_edt, label
+from skimage.color import label2rgb
+from skimage import filters
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+im = load_image(&#39;blobs.gif&#39;)
+bw = im &lt; im.mean()
 
-<span class="n">im_dist</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
-<span class="n">im_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">im_dist</span><span class="p">)</span>
+im_dist = distance_transform_edt(bw)
+im_dist = np.round(im_dist)
 
-<span class="c1"># Defining the seeds is quite tricky, because there can be lots of tiny maxima</span>
-<span class="c1"># Here, we use H-maxima to find only the larger maxima.</span>
-<span class="c1"># We then still need to dilate them slightly to ensure maxima within the same</span>
-<span class="c1"># blob are connected, to avoid having too many seeds.</span>
-<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">extrema</span>
-<span class="c1"># bw_maxima = im_dist == ndimage.maximum_filter(im_dist, size=(5, 5))</span>
-<span class="n">bw_maxima</span> <span class="o">=</span> <span class="n">extrema</span><span class="o">.</span><span class="n">h_maxima</span><span class="p">(</span><span class="n">im_dist</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="n">bw_maxima</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_dilation</span><span class="p">(</span><span class="n">bw_maxima</span><span class="p">)</span>
-<span class="n">bw_maxima</span> <span class="o">=</span> <span class="n">bw_maxima</span> <span class="o">&amp;</span> <span class="n">bw</span>           <span class="c1"># Make sure we didn&#39;t dilate beyond the original binary mask</span>
-<span class="n">lab_seeds</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">bw_maxima</span><span class="p">)</span>
+# Defining the seeds is quite tricky, because there can be lots of tiny maxima
+# Here, we use H-maxima to find only the larger maxima.
+# We then still need to dilate them slightly to ensure maxima within the same
+# blob are connected, to avoid having too many seeds.
+from skimage.morphology import extrema
+# bw_maxima = im_dist == ndimage.maximum_filter(im_dist, size=(5, 5))
+bw_maxima = extrema.h_maxima(im_dist, 0.5)
+bw_maxima = ndimage.binary_dilation(bw_maxima)
+bw_maxima = bw_maxima &amp; bw           # Make sure we didn&#39;t dilate beyond the original binary mask
+lab_seeds, n = label(bw_maxima)
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Binary image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Distance map from&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab_seeds</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Seed labels from (B)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
+fig = create_figure(figsize=(8, 6))
+show_image(bw, title=&#39;(A) Binary image&#39;, pos=221)
+show_image(im_dist, title=&#39;(B) Distance map from&#39;, pos=222)
+show_image(label2rgb(lab_seeds, bg_label=0), title=&#39;(C) Seed labels from (B)&#39;, pos=223)
 
-<span class="n">lab2</span> <span class="o">=</span> <span class="n">watershed</span><span class="p">(</span><span class="o">-</span><span class="n">im_dist</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="n">lab_seeds</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">bw</span><span class="p">,</span> <span class="n">watershed_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(E) Watershed from (C, A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
+lab2 = watershed(-im_dist, markers=lab_seeds, mask=bw, watershed_line=True)
+show_image(label2rgb(lab2, bg_label=0), title=&#39;(E) Watershed from (C, A)&#39;, pos=224)
 
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_distance_split&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+plt.tight_layout()
+glue_fig(&#39;fig_morph_distance_split&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1115,26 +1115,26 @@ In Python code using scikit-image, that means we are using the <code class="docu
 <p>This is sometimes called the <strong>Voronoi transform</strong> of the image.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
-<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
-<span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from scipy.ndimage import distance_transform_edt, label
+from skimage.segmentation import watershed
+from skimage.color import label2rgb
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">lab</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+im = load_image(&#39;blobs.gif&#39;)
+bw = im &lt; im.mean()
+lab, n = label(bw)
 
-<span class="n">im_dist_inv</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="o">~</span><span class="n">bw</span><span class="p">)</span>
-<span class="n">bw_dilated</span> <span class="o">=</span> <span class="p">(</span><span class="n">im_dist_inv</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+im_dist_inv = distance_transform_edt(~bw)
+bw_dilated = (im_dist_inv &lt; 10)
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Binary image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Seed labels from (A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist_inv</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Distance map from (A, inverted)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
-<span class="n">lab2</span> <span class="o">=</span> <span class="n">watershed</span><span class="p">(</span><span class="n">im_dist_inv</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">watershed_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(D) Watershed from (B, C)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
+fig = create_figure(figsize=(6, 6))
+show_image(bw, title=&#39;(A) Binary image&#39;, pos=221)
+show_image(label2rgb(lab, bg_label=0), title=&#39;(B) Seed labels from (A)&#39;, pos=222)
+show_image(im_dist_inv, title=&#39;(C) Distance map from (A, inverted)&#39;, pos=223)
+lab2 = watershed(im_dist_inv, lab, watershed_line=True)
+show_image(label2rgb(lab2, bg_label=0), title=&#39;(D) Watershed from (B, C)&#39;, pos=224)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_voronoi_expand&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+plt.tight_layout()
+glue_fig(&#39;fig_morph_voronoi_expand&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1165,23 +1165,23 @@ We can’t simply dilate a labeled image with a maximum filter, because there’
 When seeds are close together, the higher label will ‘win’ the expansion race in every case, dominating the output.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
-<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
-<span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from scipy.ndimage import distance_transform_edt, label
+from skimage.segmentation import watershed
+from skimage.color import label2rgb
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">lab</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
-<span class="n">lab_dilated</span> <span class="o">=</span> <span class="n">morph</span><span class="o">.</span><span class="n">dilation</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">disk</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+im = load_image(&#39;blobs.gif&#39;)
+bw = im &lt; im.mean()
+lab, n = label(bw)
+lab_dilated = morph.dilation(lab, disk(10))
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Seed labels from (A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab_dilated</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Seeds expanded by dilation&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Overlay of (A) and (B)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab_dilated</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Overlay of (A) and (B)&#39;</span><span class="p">)</span>
+fig = create_figure(figsize=(8, 6))
+show_image(label2rgb(lab, bg_label=0), title=&#39;(A) Seed labels from (A)&#39;, pos=131)
+show_image(label2rgb(lab_dilated, bg_label=0), title=&#39;(B) Seeds expanded by dilation&#39;, pos=132)
+show_image(label2rgb(lab, bg_label=0), title=&#39;(C) Overlay of (A) and (B)&#39;, pos=133)
+show_image(label2rgb(lab_dilated, bg_label=0), alpha=0.5, title=&#39;(C) Overlay of (A) and (B)&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_bad_expand&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+plt.tight_layout()
+glue_fig(&#39;fig_morph_bad_expand&#39;, fig)
 </pre></div>
 </div>
 </div>
@@ -1201,33 +1201,33 @@ We can threshold that to define a binary mask that indicates where regions shoul
 If we update our watershed output to have background pixels at the same locations where our binary mask has background pixels, we have achieved a constrained expansion of 10 pixels without overlap.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
-<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
-<span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from scipy.ndimage import distance_transform_edt, label
+from skimage.segmentation import watershed
+from skimage.color import label2rgb
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">lab</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+im = load_image(&#39;blobs.gif&#39;)
+bw = im &lt; im.mean()
+lab, n = label(bw)
 
-<span class="n">im_dist_inv</span> <span class="o">=</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="o">~</span><span class="n">bw</span><span class="p">)</span>
-<span class="n">bw_dilated</span> <span class="o">=</span> <span class="p">(</span><span class="n">im_dist_inv</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+im_dist_inv = distance_transform_edt(~bw)
+bw_dilated = (im_dist_inv &lt; 10)
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Binary image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Seed labels from (A)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dist_inv</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Distance map from (A, inverted)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+fig = create_figure(figsize=(8, 6))
+show_image(bw, title=&#39;(A) Binary image&#39;, pos=231)
+show_image(label2rgb(lab, bg_label=0), title=&#39;(B) Seed labels from (A)&#39;, pos=232)
+show_image(im_dist_inv, title=&#39;(C) Distance map from (A, inverted)&#39;, pos=233)
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_dilated</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(D) Thresholded (C) &lt; 10&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+show_image(bw_dilated, title=&#39;(D) Thresholded (C) &lt; 10&#39;, pos=234)
 
-<span class="n">lab2</span> <span class="o">=</span> <span class="n">watershed</span><span class="p">(</span><span class="n">im_dist_inv</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">bw_dilated</span><span class="p">,</span> <span class="n">watershed_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(E) Masked watershed from (B, C, D)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
-<span class="n">lab2</span><span class="p">[</span><span class="o">~</span><span class="n">bw_dilated</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+lab2 = watershed(im_dist_inv, lab, mask=bw_dilated, watershed_line=True)
+show_image(label2rgb(lab2, bg_label=0), title=&#39;(E) Masked watershed from (B, C, D)&#39;, pos=235)
+lab2[~bw_dilated] = 0
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(F) Expanded seeds&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab2</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(F) Expanded seeds&#39;</span><span class="p">)</span>
+show_image(label2rgb(lab, bg_label=0), title=&#39;(F) Expanded seeds&#39;, pos=236)
+show_image(label2rgb(lab2, bg_label=0), alpha=0.5, title=&#39;(F) Expanded seeds&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_morph_distance_expand&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+plt.tight_layout()
+glue_fig(&#39;fig_morph_distance_expand&#39;, fig)
 </pre></div>
 </div>
 </div>

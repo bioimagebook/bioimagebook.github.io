@@ -742,17 +742,17 @@ title="Print to PDF"
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
+%autoreload 2
 
-<span class="c1"># Default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+# Default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
+from helpers import *
+from matplotlib import pyplot as plt
+from myst_nb import glue
+import numpy as np
+from scipy import ndimage
 </pre></div>
 </div>
 </div>
@@ -799,64 +799,64 @@ If you can identify what you want to quantify, you’re a long way towards solvi
 <p><a class="reference internal" href="#fig-workflow"><span class="std std-numref">Fig. 56</span></a> shows an example of how these ideas can fit together.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Quick image analysis workflow to demonstrate the main steps involved.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+Quick image analysis workflow to demonstrate the main steps involved.
+&quot;&quot;&quot;
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
-<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_triangle</span>
-<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">disk</span><span class="p">,</span> <span class="n">extrema</span>
-<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span><span class="p">,</span> <span class="n">mark_boundaries</span>
-<span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+import numpy as np
+from scipy import ndimage
+from skimage.filters import threshold_triangle
+from skimage.morphology import disk, extrema
+from skimage.segmentation import watershed, mark_boundaries
+from skimage.color import label2rgb
+from matplotlib import pyplot as plt
 
-<span class="c1"># Read &amp; crop image</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">s</span> <span class="o">=</span> <span class="mi">450</span>
-<span class="n">im_rgb</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+# Read &amp; crop image
+x = 10
+y = 0
+s = 450
+im_rgb = load_image(&#39;hela-cells.zip&#39;)[x:x+s, y:y+s, :].astype(np.float32)
 
-<span class="c1"># Convert to RGB - need to rescale each channel between 0 and 1</span>
-<span class="n">im_rgb_rgb</span> <span class="o">=</span> <span class="n">im_rgb</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">im_rgb</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">im_rgb</span> <span class="o">=</span> <span class="n">im_rgb</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im_rgb</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="mf">99.5</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+# Convert to RGB - need to rescale each channel between 0 and 1
+im_rgb_rgb = im_rgb - np.min(im_rgb.reshape((-1, 3)), axis=0).reshape((1, 1, 3))
+im_rgb = im_rgb / np.percentile(im_rgb.reshape((-1, 3)), 99.5, axis=0).reshape((1, 1, 3))
 
-<span class="c1"># Extract channel of interest</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">im_rgb</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+# Extract channel of interest
+im = im_rgb[:, :, 0]
 
-<span class="c1"># Apply difference of Gaussians filter</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">sigma2</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">*</span> <span class="mf">1.6</span>
-<span class="n">im_dog</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span> <span class="o">-</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">)</span>
+# Apply difference of Gaussians filter
+sigma = 3
+sigma2 = sigma * 1.6
+im_dog = ndimage.gaussian_filter(im, sigma) - ndimage.gaussian_filter(im, sigma2)
 
-<span class="c1"># Threshold for spot detection</span>
-<span class="n">bw_spots</span> <span class="o">=</span> <span class="n">im_dog</span> <span class="o">&gt;</span> <span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im_dog</span><span class="p">)</span>
+# Threshold for spot detection
+bw_spots = im_dog &gt; threshold_triangle(im_dog)
 
-<span class="c1"># Clean up with a morphological opening</span>
-<span class="n">strel</span> <span class="o">=</span> <span class="n">disk</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">bw_spots_opened</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_opening</span><span class="p">(</span><span class="n">bw_spots</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">strel</span><span class="p">)</span>
+# Clean up with a morphological opening
+strel = disk(3)
+bw_spots_opened = ndimage.binary_opening(bw_spots, structure=strel)
 
-<span class="c1"># Perform distance-and-watershed-based split</span>
-<span class="n">bw_spots_dist</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">distance_transform_edt</span><span class="p">(</span><span class="n">bw_spots_opened</span><span class="p">)</span>
-<span class="n">bw_spots_max</span> <span class="o">=</span> <span class="n">extrema</span><span class="o">.</span><span class="n">h_maxima</span><span class="p">(</span><span class="n">bw_spots_dist</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="n">bw_spots_max</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_dilation</span><span class="p">(</span><span class="n">bw_spots_max</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
-<span class="n">bw_spots_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">bw_spots_opened</span><span class="p">,</span> <span class="n">bw_spots_max</span><span class="p">)</span>
-<span class="n">lab_spots</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">bw_spots_max</span><span class="p">)</span>
-<span class="n">lab_spots</span> <span class="o">=</span> <span class="n">watershed</span><span class="p">(</span><span class="o">-</span><span class="n">bw_spots_dist</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="n">lab_spots</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">bw_spots_opened</span><span class="p">,</span> <span class="n">watershed_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">bw_spots_cleaned</span> <span class="o">=</span> <span class="n">lab_spots</span> <span class="o">&gt;</span> <span class="mi">0</span>
+# Perform distance-and-watershed-based split
+bw_spots_dist = ndimage.distance_transform_edt(bw_spots_opened)
+bw_spots_max = extrema.h_maxima(bw_spots_dist, 0.5)
+bw_spots_max = ndimage.binary_dilation(bw_spots_max, structure=np.ones((3, 3)))
+bw_spots_max = np.bitwise_and(bw_spots_opened, bw_spots_max)
+lab_spots, n = ndimage.label(bw_spots_max)
+lab_spots = watershed(-bw_spots_dist, markers=lab_spots, mask=bw_spots_opened, watershed_line=True)
+bw_spots_cleaned = lab_spots &gt; 0
 
-<span class="c1"># Show images</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+# Show images
+fig = create_figure(figsize=(8, 4))
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Original image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">241</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Extract channel&#39;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">242</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dog</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Apply filters&#39;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">243</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_spots</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(D) Apply threshold&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">244</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">bw_spots_cleaned</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(E) Refine detection&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">245</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">lab_spots</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">bg_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(F) Distinguish objects&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">246</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">mark_boundaries</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im_rgb</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">lab_spots</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;thick&#39;</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(G) Relate objects to image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">247</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/workflow_results.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(H) Make measurements&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">248</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_overview_workflow&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+show_image(np.clip(im_rgb, 0, 1), title=&#39;(A) Original image&#39;, pos=241)
+show_image(im, title=&#39;(B) Extract channel&#39;, clip_percentile=0.5, pos=242)
+show_image(im_dog, title=&#39;(C) Apply filters&#39;, clip_percentile=0.5, pos=243)
+show_image(bw_spots, title=&#39;(D) Apply threshold&#39;, pos=244)
+show_image(bw_spots_cleaned, title=&#39;(E) Refine detection&#39;, pos=245)
+show_image(label2rgb(lab_spots, bg_label=0, bg_color=&#39;black&#39;), title=&#39;(F) Distinguish objects&#39;, pos=246)
+show_image(mark_boundaries(np.clip(im_rgb, 0, 1), lab_spots, mode=&#39;thick&#39;), title=&#39;(G) Relate objects to image&#39;, pos=247)
+show_image(&#39;images/workflow_results.png&#39;, title=&#39;(H) Make measurements&#39;, pos=248)
+glue_fig(&#39;fig_overview_workflow&#39;, fig)
 </pre></div>
 </div>
 </div>

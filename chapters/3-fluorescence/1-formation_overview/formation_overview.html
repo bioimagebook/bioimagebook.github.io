@@ -751,17 +751,17 @@ title="Print to PDF"
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
+%autoreload 2
 
-<span class="c1"># Default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+# Default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
+from helpers import *
+from matplotlib import pyplot as plt
+from myst_nb import glue
+import numpy as np
+from scipy import ndimage
 </pre></div>
 </div>
 </div>
@@ -829,76 +829,76 @@ This means that even if we could detect every photon perfectly we would <em>stil
 <p>These issues are depicted in <a class="reference internal" href="#fig-colored-spots"><span class="std std-numref">Fig. 130</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4.5))
 
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">draw</span>
-<span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">downscale_local_mean</span><span class="p">,</span> <span class="n">rescale</span>
+from skimage import draw
+from skimage.transform import downscale_local_mean, rescale
 
-<span class="k">def</span> <span class="nf">create_random_disks</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">rng</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">min_radius</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_radius</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Create random circular objects</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="n">radius</span> <span class="o">=</span> <span class="n">min_radius</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_radius</span> <span class="o">-</span> <span class="n">min_radius</span><span class="p">)</span>
-        <span class="n">cx</span> <span class="o">=</span> <span class="n">max_radius</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">max_radius</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span>
-        <span class="n">cy</span> <span class="o">=</span> <span class="n">max_radius</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">max_radius</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span>
-        <span class="n">coords</span> <span class="o">=</span> <span class="n">draw</span><span class="o">.</span><span class="n">disk</span><span class="p">((</span><span class="n">cy</span><span class="p">,</span> <span class="n">cx</span><span class="p">),</span> <span class="n">radius</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span>
-        <span class="n">im</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
-    <span class="k">return</span> <span class="n">im</span>
+def create_random_disks(shape, rng, n=10, min_radius=5, max_radius=15, dtype=np.float32):
+    &quot;&quot;&quot;
+    Create random circular objects
+    &quot;&quot;&quot;
+    im = np.zeros(shape, dtype=dtype)
+    for ii in range(n):
+        radius = min_radius + rng.random() * (max_radius - min_radius)
+        cx = max_radius + np.floor(rng.random() * (shape[1] - max_radius*2))
+        cy = max_radius + np.floor(rng.random() * (shape[0] - max_radius*2))
+        coords = draw.disk((cy, cx), radius, shape=shape)
+        im[coords] = 1.0
+    return im
 
-<span class="c1"># Create an &#39;ideal&#39; 2-channel image of structures (at high resolution)</span>
-<span class="n">size</span> <span class="o">=</span> <span class="mi">512</span>
-<span class="n">min_radius</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">max_radius</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="n">im_structures</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">((</span>
-    <span class="n">create_random_disks</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span> <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">min_radius</span><span class="o">=</span><span class="n">min_radius</span><span class="p">,</span> <span class="n">max_radius</span><span class="o">=</span><span class="n">max_radius</span><span class="p">),</span>
-    <span class="n">create_random_disks</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span> <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">min_radius</span><span class="o">=</span><span class="n">min_radius</span><span class="p">,</span> <span class="n">max_radius</span><span class="o">=</span><span class="n">max_radius</span><span class="p">)</span>
-<span class="p">))</span>
+# Create an &#39;ideal&#39; 2-channel image of structures (at high resolution)
+size = 512
+min_radius = 5
+max_radius = 30
+rng = np.random.default_rng(100)
+n = 30
+im_structures = np.dstack((
+    create_random_disks((size, size), rng=rng, n=n, min_radius=min_radius, max_radius=max_radius),
+    create_random_disks((size, size), rng=rng, n=n, min_radius=min_radius, max_radius=max_radius)
+))
 
-<span class="c1"># Create a (lower-resolution) rasterized version</span>
-<span class="n">im_rasterized</span> <span class="o">=</span> <span class="n">downscale_local_mean</span><span class="p">(</span><span class="n">im_structures</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+# Create a (lower-resolution) rasterized version
+im_rasterized = downscale_local_mean(im_structures, (4, 4, 1))
 
-<span class="c1"># Simulate blur with PSF</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">im_blurred</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im_rasterized</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">sigma</span><span class="p">)</span>
+# Simulate blur with PSF
+sigma = 5
+im_blurred = ndimage.gaussian_filter(im_rasterized, sigma=(sigma, sigma, 0)) * (2*np.pi*sigma*sigma)
 
-<span class="c1"># Simulate Poisson noise</span>
-<span class="n">im_noisy</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">im_blurred</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+# Simulate Poisson noise
+im_noisy = rng.poisson(1 + im_blurred * 2)
 
-<span class="c1"># Convert to RGB</span>
-<span class="n">im_structures</span> <span class="o">=</span> <span class="n">create_rgb</span><span class="p">(</span><span class="n">im_structures</span><span class="p">,</span> <span class="p">((</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;magenta&#39;</span><span class="p">)))</span>
-<span class="n">im_rasterized</span> <span class="o">=</span> <span class="n">create_rgb</span><span class="p">(</span><span class="n">im_rasterized</span><span class="p">,</span> <span class="p">((</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;magenta&#39;</span><span class="p">)))</span>
-<span class="n">im_blurred</span> <span class="o">=</span> <span class="n">create_rgb</span><span class="p">(</span><span class="n">im_blurred</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im_blurred</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">vmax</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im_blurred</span><span class="p">,</span> <span class="mf">99.99</span><span class="p">),</span> <span class="n">colors</span><span class="o">=</span><span class="p">((</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;magenta&#39;</span><span class="p">)))</span>
-<span class="n">im_noisy</span> <span class="o">=</span> <span class="n">create_rgb</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">vmax</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="mf">99.99</span><span class="p">),</span> <span class="n">colors</span><span class="o">=</span><span class="p">((</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;magenta&#39;</span><span class="p">)))</span>
+# Convert to RGB
+im_structures = create_rgb(im_structures, ((&#39;green&#39;, &#39;magenta&#39;)))
+im_rasterized = create_rgb(im_rasterized, ((&#39;green&#39;, &#39;magenta&#39;)))
+im_blurred = create_rgb(im_blurred, vmin=np.percentile(im_blurred, 0.01), vmax=np.percentile(im_blurred, 99.99), colors=((&#39;green&#39;, &#39;magenta&#39;)))
+im_noisy = create_rgb(im_noisy, vmin=np.percentile(im_noisy, 0.01), vmax=np.percentile(im_noisy, 99.99), colors=((&#39;green&#39;, &#39;magenta&#39;)))
 
-<span class="c1"># Show images</span>
+# Show images
 
-<span class="k">def</span> <span class="nf">connect_axes</span><span class="p">(</span><span class="n">axA</span><span class="p">,</span> <span class="n">axB</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Draw an arrow between two axes</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">ConnectionPatch</span>
-    <span class="n">con</span> <span class="o">=</span> <span class="n">ConnectionPatch</span><span class="p">(</span><span class="n">xyA</span><span class="o">=</span><span class="p">(</span><span class="mf">1.02</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">xyB</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">coordsA</span><span class="o">=</span><span class="n">axA</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">coordsB</span><span class="o">=</span><span class="n">axB</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> 
-                          <span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-|&gt;&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,)</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">axesA</span><span class="o">=</span><span class="n">axA</span><span class="p">,</span> <span class="n">axesB</span><span class="o">=</span><span class="n">axB</span><span class="p">)</span>
-    <span class="c1"># fig.axes[1].add_artist(con)</span>
-    <span class="n">axB</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+def connect_axes(axA, axB):
+    &quot;&quot;&quot;
+    Draw an arrow between two axes
+    &quot;&quot;&quot;
+    from matplotlib.patches import ConnectionPatch
+    con = ConnectionPatch(xyA=(1.02, 0.5), xyB=(-0.02, 0.5), coordsA=axA.transAxes, coordsB=axB.transAxes, 
+                          arrowstyle=&quot;-|&gt;&quot;, color=(0.25,)*3, linewidth=2, axesA=axA, axesB=axB)
+    # fig.axes[1].add_artist(con)
+    axB.add_artist(con)
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_structures</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Real structures&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">242</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_rasterized</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Digital image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">243</span><span class="p">)</span>
-<span class="n">connect_axes</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+show_image(im_structures, title=&#39;Real structures&#39;, pos=242)
+show_image(im_rasterized, title=&#39;Digital image&#39;, pos=243)
+connect_axes(fig.axes[-2], fig.axes[-1])
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_structures</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Real structures&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">245</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_rasterized</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Digital image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">246</span><span class="p">)</span>
-<span class="n">connect_axes</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_blurred</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Blurred image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">247</span><span class="p">)</span>
-<span class="n">connect_axes</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Blurred + Noisy image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">248</span><span class="p">)</span>
-<span class="n">connect_axes</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+show_image(im_structures, title=&#39;Real structures&#39;, pos=245)
+show_image(im_rasterized, title=&#39;Digital image&#39;, pos=246)
+connect_axes(fig.axes[-2], fig.axes[-1])
+show_image(im_blurred, title=&#39;Blurred image&#39;, pos=247)
+connect_axes(fig.axes[-2], fig.axes[-1])
+show_image(im_noisy, title=&#39;Blurred + Noisy image&#39;, pos=248)
+connect_axes(fig.axes[-2], fig.axes[-1])
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_imaging_colored_spots&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+glue_fig(&#39;fig_imaging_colored_spots&#39;, fig)
 </pre></div>
 </div>
 </div>

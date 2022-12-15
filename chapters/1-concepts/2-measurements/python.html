@@ -745,19 +745,19 @@ title="Print to PDF"
 <p>Here, we will explore how to make measurements and generate histograms with Python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Our usual default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Our usual default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
 
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+from helpers import *
+import matplotlib.pyplot as plt
 
-<span class="c1"># Read an image - we need to know the full path to wherever it is</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
+# Read an image - we need to know the full path to wherever it is
+im = load_image(&#39;happy_cell.tif&#39;)
 
-<span class="c1"># Show the image</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+# Show the image
+plt.imshow(im, cmap=&#39;gray&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -772,7 +772,7 @@ title="Print to PDF"
 Since there can be a <em>lot</em> of values (i.e. millions of pixels per image), only a few are shown by default.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(im)
 </pre></div>
 </div>
 </div>
@@ -792,7 +792,7 @@ Since there can be a <em>lot</em> of values (i.e. millions of pixels per image),
 <p>This returns the size in the order <code class="docutils literal notranslate"><span class="pre">(height,</span> <span class="pre">width)</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(im.shape)
 </pre></div>
 </div>
 </div>
@@ -805,10 +805,10 @@ Since there can be a <em>lot</em> of values (i.e. millions of pixels per image),
 <p>Whenever we have a 2D NumPy array, we can easily transpose it - which will switch the width and height values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im2</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">im2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im2 = im.transpose()
+print(im2.shape)
+plt.imshow(im2)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -826,7 +826,7 @@ Since there can be a <em>lot</em> of values (i.e. millions of pixels per image),
 <p>For example, to compute the average (mean) pixel value we can simply use <code class="docutils literal notranslate"><span class="pre">im.mean()</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im.mean()
 </pre></div>
 </div>
 </div>
@@ -840,10 +840,10 @@ Since there can be a <em>lot</em> of values (i.e. millions of pixels per image),
 <p>However, if we want to print multiple values - and multiple statistics - in quick succession we should use the <code class="docutils literal notranslate"><span class="pre">print</span></code> function again.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(im.mean())
+print(im.min())
+print(im.max())
+print(im.std())
 </pre></div>
 </div>
 </div>
@@ -863,10 +863,10 @@ Since there can be a <em>lot</em> of values (i.e. millions of pixels per image),
 <p>The part between the braces <code class="docutils literal notranslate"><span class="pre">{}</span></code> can be a calculation, and if you add <code class="docutils literal notranslate"><span class="pre">:.2f</span></code> at the end this will optionally limit the number of decimal places (here, to two).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean:     </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Minimum:  </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum:  </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Std.dev.: </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(f&#39;Mean:     {im.mean()}&#39;)
+print(f&#39;Minimum:  {im.min():.1f}&#39;)
+print(f&#39;Maximum:  {im.max():.2f}&#39;)
+print(f&#39;Std.dev.: {im.std():.3f}&#39;)
 </pre></div>
 </div>
 </div>
@@ -888,8 +888,8 @@ Std.dev.: 27.156
 However, the result can be a bit surprising.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.hist(im)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -901,9 +901,9 @@ However, the result can be a bit surprising.</p>
 We can generate that with a call to <code class="docutils literal notranslate"><span class="pre">.flatten()</span></code>, and use the flattened array to create the histogram.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Shape before flatten(): </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">im_flat</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Shape after flatten(): </span><span class="si">{</span><span class="n">im_flat</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(f&#39;Shape before flatten(): {im.shape}&#39;)
+im_flat = im.flatten()
+print(f&#39;Shape after flatten(): {im_flat.shape}&#39;)
 </pre></div>
 </div>
 </div>
@@ -916,8 +916,8 @@ Shape after flatten(): (60000,)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">im_flat</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.hist(im_flat)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -929,8 +929,8 @@ Shape after flatten(): (60000,)
 This includes the ability to set the color or number of histogram bins.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.hist(im.flatten(), bins=50, color=&#39;red&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>

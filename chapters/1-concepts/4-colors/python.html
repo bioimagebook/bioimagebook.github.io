@@ -808,13 +808,13 @@ title="Print to PDF"
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, our usual default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># First, our usual default imports
+import sys
+sys.path.append(&#39;../../../&#39;)
 
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+from helpers import *
+import matplotlib.pyplot as plt
+import numpy as np
 </pre></div>
 </div>
 </div>
@@ -824,11 +824,11 @@ title="Print to PDF"
 <p>Let’s begin by reading the RGB image used on the title page of this book.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;title_cells.png&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im = load_image(&#39;title_cells.png&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.imshow(im)
+plt.axis(False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -839,7 +839,7 @@ title="Print to PDF"
 <p>If we check the shape of the image, we can see that the RGB information seems to be joined on at the end: the shape is in the form <code class="docutils literal notranslate"><span class="pre">[rows,</span> <span class="pre">columns,</span> <span class="pre">channels]</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(im.shape)
 </pre></div>
 </div>
 </div>
@@ -860,22 +860,22 @@ title="Print to PDF"
 <p>One option is to split the RGB channels to give three separate single-channel images.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a wider figure so we can fit in subplots</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Make a wider figure so we can fit in subplots
+plt.figure(figsize=(12, 4))
 
-<span class="c1"># Show each of the three channels</span>
-<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+# Show each of the three channels
+for ii in range(3):
     
-    <span class="c1"># Subplot indices start at 1</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    # Subplot indices start at 1
+    plt.subplot(1, 3, ii+1)
     
-    <span class="c1"># Array indices start at 0</span>
-    <span class="n">im_channel</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_channel</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Channel </span><span class="si">{</span><span class="n">ii</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    # Array indices start at 0
+    im_channel = im[..., ii]
+    plt.imshow(im_channel, cmap=&#39;gray&#39;)
+    plt.title(f&#39;Channel {ii}&#39;)
+    plt.axis(False)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -889,12 +889,12 @@ title="Print to PDF"
 <p>A second easy option is to simply calculate the average (mean) of the RGB values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use axis=-1 to &#39;average along the last dimension&#39;</span>
-<span class="c1"># Here, I could also have used im.mean(axis=2)</span>
-<span class="n">im_mean</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_mean</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Use axis=-1 to &#39;average along the last dimension&#39;
+# Here, I could also have used im.mean(axis=2)
+im_mean = im.mean(axis=-1)
+plt.imshow(im_mean, cmap=&#39;gray&#39;)
+plt.axis(False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -909,13 +909,13 @@ Commonly the weights are</p>
 <p>This is what scikit-image’s <a class="reference external" href="https://scikit-image.org/docs/stable/api/skimage.color.html#skimage.color.rgb2gray"><code class="docutils literal notranslate"><span class="pre">rgb2gray</span></code></a> does, as described <a class="reference external" href="https://scikit-image.org/docs/stable/auto_examples/color_exposure/plot_rgb_to_gray.html">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">rgb2gray</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from skimage.color import rgb2gray
 
-<span class="n">im_weighted_mean</span> <span class="o">=</span> <span class="n">rgb2gray</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+im_weighted_mean = rgb2gray(im)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_weighted_mean</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.imshow(im_weighted_mean, cmap=&#39;gray&#39;)
+plt.axis(False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -927,9 +927,9 @@ Commonly the weights are</p>
 <p>To check if they really <em>are</em> different, we can show one subtracted from the other.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_mean</span> <span class="o">-</span> <span class="n">im_weighted_mean</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.imshow(im_mean - im_weighted_mean, cmap=&#39;gray&#39;)
+plt.axis(False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -942,9 +942,9 @@ The fact the <em>difference</em> image looks the same suggests to me that some r
 <p>So let’s go back to checking the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> comparing statistics.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The mean of im is: </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s1"> (dtype=</span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The mean of im_mean is: </span><span class="si">{</span><span class="n">im_mean</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s1"> (dtype=</span><span class="si">{</span><span class="n">im_mean</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The mean of im_weighted_mean is: </span><span class="si">{</span><span class="n">im_weighted_mean</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s1"> (dtype=</span><span class="si">{</span><span class="n">im_mean</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(f&#39;The mean of im is: {im.mean()} (dtype={im.dtype})&#39;)
+print(f&#39;The mean of im_mean is: {im_mean.mean()} (dtype={im_mean.dtype})&#39;)
+print(f&#39;The mean of im_weighted_mean is: {im_weighted_mean.mean()} (dtype={im_mean.dtype})&#39;)
 </pre></div>
 </div>
 </div>
@@ -962,10 +962,10 @@ So we do need to be on the lookout for sneaky conversions.</p>
 <p>With that in mind, we can make our images comparable my dividing our <code class="docutils literal notranslate"><span class="pre">im_mean</span></code> by 255.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im_diff</span> <span class="o">=</span> <span class="n">im_mean</span><span class="o">/</span><span class="mf">255.0</span> <span class="o">-</span> <span class="n">im_weighted_mean</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_diff</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im_diff = im_mean/255.0 - im_weighted_mean
+plt.imshow(im_diff, cmap=&#39;gray&#39;)
+plt.axis(False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -991,12 +991,12 @@ However, if we rely upon <code class="docutils literal notranslate"><span class=
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The custom helper function effectively uses imageio.imread(path), </span>
-<span class="c1"># but has some extra logic to find the image &amp; unzip it.</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Rat_Hippocampal_Neuron.zip&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># The custom helper function effectively uses imageio.imread(path), 
+# but has some extra logic to find the image &amp; unzip it.
+im = load_image(&#39;Rat_Hippocampal_Neuron.zip&#39;)
 
-<span class="c1"># This image should have 5 channels... let&#39;s see if it does</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+# This image should have 5 channels... let&#39;s see if it does
+print(im.shape)
 </pre></div>
 </div>
 </div>
@@ -1009,19 +1009,16 @@ However, if we rely upon <code class="docutils literal notranslate"><span class=
 <p>We can do better if we switch to <code class="docutils literal notranslate"><span class="pre">imageio.volread</span></code> to treat the image as a volume instead.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This effectively uses imageio.volread(path)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;Rat_Hippocampal_Neuron.zip&#39;</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># This effectively uses imageio.volread(path)
+im = load_image(&#39;Rat_Hippocampal_Neuron.zip&#39;, volume=True)
 
-<span class="c1"># Check the dimensions again</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+# Check the dimensions again
+print(im.shape)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5, 512, 512)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1032,11 +1029,11 @@ However, if we rely upon <code class="docutils literal notranslate"><span class=
 <p>The good news is that, if you know what’s required, you can easily move the channels to the right place.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im_channels_first</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">im_channels_last</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im_channels_first = im.copy()
+im_channels_last = np.moveaxis(im, 0, -1)
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Channels first shape:</span><span class="se">\t</span><span class="s1"> </span><span class="si">{</span><span class="n">im_channels_first</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Channels last shape:</span><span class="se">\t</span><span class="s1"> </span><span class="si">{</span><span class="n">im_channels_last</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+print(f&#39;Channels first shape:\t {im_channels_first.shape}&#39;)
+print(f&#39;Channels last shape:\t {im_channels_last.shape}&#39;)
 </pre></div>
 </div>
 </div>
@@ -1053,15 +1050,15 @@ Channels last shape:	 (512, 512, 5)
 <p>Unfortunately, you can’t easily show any arbitrary multichannel image using either channels-first or channels-last.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_channels_first</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;I knew this wouldn</span><span class="se">\&#39;</span><span class="s1">t work! </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>try:
+    plt.imshow(im_channels_first)
+except TypeError as err:
+    print(f&#39;I knew this wouldn\&#39;t work! {err}&#39;)
     
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_channels_last</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;And this doesn</span><span class="se">\&#39;</span><span class="s1">t work either! </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+try:
+    plt.imshow(im_channels_last)
+except TypeError as err:
+    print(f&#39;And this doesn\&#39;t work either! {err}&#39;)
 </pre></div>
 </div>
 </div>
@@ -1077,25 +1074,25 @@ And this doesn&#39;t work either! Invalid shape (512, 512, 5) for image data
 <p>We can show the channels one by one, as in the RGB case, or average the channels if we like - although the mean we get probably won’t be a very meaningful mean.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">im_channels_last</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im = im_channels_last.copy()
 
-<span class="c1"># Make a wider figure so we can fit in subplots</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+# Make a wider figure so we can fit in subplots
+plt.figure(figsize=(15, 6))
 
-<span class="c1"># Show each of the three channels</span>
-<span class="n">n_channels</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_channels</span><span class="p">):</span>
+# Show each of the three channels
+n_channels = im.shape[-1]
+for ii in range(n_channels):
     
-    <span class="c1"># Subplot indices start at 1</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_channels</span><span class="p">,</span> <span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    # Subplot indices start at 1
+    plt.subplot(1, n_channels, ii+1)
     
-    <span class="c1"># Array indices start at 0</span>
-    <span class="n">im_channel</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_channel</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Channel </span><span class="si">{</span><span class="n">ii</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    # Array indices start at 0
+    im_channel = im[..., ii]
+    plt.imshow(im_channel)
+    plt.title(f&#39;Channel {ii}&#39;)
+    plt.axis(False)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1105,12 +1102,12 @@ And this doesn&#39;t work either! Invalid shape (512, 512, 5) for image data
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Not a very meaningful mean - the pixel values in the channels mean quite different things, </span>
-<span class="c1"># so it doesn&#39;t make much sense to combine them in this way</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mean of channels&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Not a very meaningful mean - the pixel values in the channels mean quite different things, 
+# so it doesn&#39;t make much sense to combine them in this way
+plt.imshow(im.mean(axis=-1))
+plt.title(&#39;Mean of channels&#39;)
+plt.axis(False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1127,39 +1124,39 @@ We can just choose a colormap, like with any other single-channel image, but we 
 Here is a helper function to do that.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">colorize</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Helper function to create an RGB image from a single-channel image using a </span>
-<span class="sd">    specific color.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Check that we do just have a 2D image</span>
-    <span class="k">if</span> <span class="n">im</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;This function expects a single-channel image!&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def colorize(im, color, clip_percentile=0.1):
+    &quot;&quot;&quot;
+    Helper function to create an RGB image from a single-channel image using a 
+    specific color.
+    &quot;&quot;&quot;
+    # Check that we do just have a 2D image
+    if im.ndim &gt; 2 and im.shape[2] != 1:
+        raise ValueError(&#39;This function expects a single-channel image!&#39;)
         
-    <span class="c1"># Rescale the image according to how we want to display it</span>
-    <span class="n">im_scaled</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="p">)</span>
-    <span class="n">im_scaled</span> <span class="o">=</span> <span class="n">im_scaled</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im_scaled</span><span class="p">,</span> <span class="mi">100</span> <span class="o">-</span> <span class="n">clip_percentile</span><span class="p">)</span>
-    <span class="n">im_scaled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im_scaled</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    # Rescale the image according to how we want to display it
+    im_scaled = im.astype(np.float32) - np.percentile(im, clip_percentile)
+    im_scaled = im_scaled / np.percentile(im_scaled, 100 - clip_percentile)
+    im_scaled = np.clip(im_scaled, 0, 1)
     
-    <span class="c1"># Need to make sure we have a channels dimension for the multiplication to work</span>
-    <span class="n">im_scaled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_3d</span><span class="p">(</span><span class="n">im_scaled</span><span class="p">)</span>
+    # Need to make sure we have a channels dimension for the multiplication to work
+    im_scaled = np.atleast_3d(im_scaled)
     
-    <span class="c1"># Reshape the color (here, we assume channels last)</span>
-    <span class="n">color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">color</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">im_scaled</span> <span class="o">*</span> <span class="n">color</span>
+    # Reshape the color (here, we assume channels last)
+    color = np.asarray(color).reshape((1, 1, -1))
+    return im_scaled * color
     
-<span class="c1"># The color we provide gives RGB values in order, between 0 and 1</span>
-<span class="n">im_red</span> <span class="o">=</span> <span class="n">colorize</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_red</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Magenta&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+# The color we provide gives RGB values in order, between 0 and 1
+im_red = colorize(im[..., 0], (1, 0, 1))
+plt.imshow(im_red)
+plt.axis(False)
+plt.title(&#39;Magenta&#39;)
+plt.show()
 
-<span class="n">im_green</span> <span class="o">=</span> <span class="n">colorize</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_green</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Green&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+im_green = colorize(im[..., 2], (0, 1, 0))
+plt.imshow(im_green)
+plt.axis(False)
+plt.title(&#39;Green&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1177,11 +1174,11 @@ Here is a helper function to do that.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im_composite</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im_red</span> <span class="o">+</span> <span class="n">im_green</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_composite</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Composite image&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im_composite = np.clip(im_red + im_green, 0, 1)
+plt.imshow(im_composite)
+plt.title(&#39;Composite image&#39;)
+plt.axis(False)
+plt.show()
 </pre></div>
 </div>
 </div>
