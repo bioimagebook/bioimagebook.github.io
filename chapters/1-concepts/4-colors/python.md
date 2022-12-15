@@ -283,7 +283,7 @@ plt.axis(False)
 plt.title('Magenta')
 plt.show()
 
-im_green = colorize(im[..., 2], (1, 1, 0))
+im_green = colorize(im[..., 2], (0, 1, 0))
 plt.imshow(im_green)
 plt.axis(False)
 plt.title('Green')
