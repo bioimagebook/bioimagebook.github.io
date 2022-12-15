@@ -619,9 +619,9 @@ bw_hist = morph.reconstruction(bw_high, bw_low)
 fig = create_figure(figsize=(8, 8))
 
 show_image(im, clip_percentile=0.5, title="(A) Grayscale image", pos=221)
-show_image(bw_low, title="(A) Marker image (low threshold)", pos=222)
-show_image(bw_high, title=f"(B) Mask image (high threshold)", pos=223)
-show_image(bw_hist, title=f"(C) Reconstruction result (hysteresis threshold)", pos=224)
+show_image(bw_low, title="(B) Mask image (low threshold)", pos=222)
+show_image(bw_high, title=f"(C) Marker image (high threshold)", pos=223)
+show_image(bw_hist, title=f"(D) Reconstruction result (hysteresis threshold)", pos=224)
 plt.tight_layout()
 
 glue_fig('fig_hysteresis_threshold_spots', fig)
