@@ -3,8 +3,8 @@ author       : "Pete Bankhead"  # The author of the book
 copyright    : "2022-2023"  # Copyright year to be placed in the footer
 logo         : 'images/book-logo-smaller.png'
 
-exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", '_unused/**', 'nbs/*']
-only_build_toc_files: false
+exclude_patterns     : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", '_unused/**', 'nbs/*']
+only_build_toc_files : false
 
 execute:
   execute_notebooks: "auto"
@@ -28,6 +28,7 @@ parse:
 
 sphinx:
   config:
+    html_baseurl: https://bioimagebook.github.io/
     bibtex_bibfiles:
       - "references.bib"
     html_js_files:
@@ -35,6 +36,10 @@ sphinx:
       - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
     templates_path:
       - _templates
+  extra_extensions:
+    - sphinx_sitemap
+  local_extensions:
+    notranslate_gui: _ext
 
 latex:
   latex_engine: xelatex

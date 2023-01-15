@@ -8,7 +8,7 @@ This book tries explain the main ideas of image analysis in a practical and enga
 
 It's written primarily for busy biologists who need to analyze images as part of their work -- but I hope others might find it useful as well.
 
-The core content is based on my earlier handbook *Analyzing fluorescence microscopy images with ImageJ* ([PDF](https://www.researchgate.net/publication/260261544_Analyzing_fluorescence_microscopy_images_with_ImageJ), [GitBook](https://petebankhead.gitbooks.io/imagej-intro/)).
+The core content is based on my earlier handbook *{notranslate}`Analyzing fluorescence microscopy images with ImageJ`* ([PDF](https://www.researchgate.net/publication/260261544_Analyzing_fluorescence_microscopy_images_with_ImageJ), [GitBook](https://petebankhead.gitbooks.io/imagej-intro/)).
 This has been extensively revised, generalized and expanded; the new title reflects the fact that it's no longer entirely focussed on fluorescence images, nor on ImageJ -- although both still play a big role.
 
 The biggest change is that it now exists as an open [Jupyter Book](https://jupyterbook.org).
