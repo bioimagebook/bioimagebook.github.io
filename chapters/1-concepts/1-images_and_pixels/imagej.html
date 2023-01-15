@@ -36,10 +36,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/design-tabs.js"></script>
@@ -49,6 +52,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://bioimagebook.github.io/chapters/1-concepts/1-images_and_pixels/imagej.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Python: Images &amp; pixels" href="python.html" />
@@ -133,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../0-preamble/disclaimer.html">
    Disclaimer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../CHANGELOG.html">
+   Changelog
   </a>
  </li>
 </ul>
@@ -926,22 +935,22 @@ You can then run it either by double-clicking on the entry, or by using the up o
 <p><span class="caption-number">Fig. 7 </span><span class="caption-text">The <em>Command Finder</em> dialog</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>In Fiji, you might see the <em>Command Finder</em> or you can alternatively switch on a <em>search bar</em> by selecting it under <span class="menuselection">Edit ‣ Options ‣ Search Bar…</span>.
+<p>In Fiji, you might see the <em>Command Finder</em> or you can alternatively switch on a <em>search bar</em> by selecting it under <span class="menuselection notranslate">Edit ‣ Options ‣ Search Bar…</span>.
 The idea is the same.
 The search bar can also be activated using <kbd class="kbd docutils literal notranslate">L</kbd> and used to find and run commands.</p>
 </div>
 <figure class="margin align-center" id="id4">
 <a class="reference internal image-reference" href="../../../_images/imagej-options-misc.png"><img alt="../../../_images/imagej-options-misc.png" src="../../../_images/imagej-options-misc.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text"><span class="menuselection">Edit ‣ Options ‣ Misc…</span> dialog</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text"><span class="menuselection notranslate">Edit ‣ Options ‣ Misc…</span> dialog</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition">
 <p class="admonition-title">Losing control</p>
-<p>In most software, shortcut keys often requires pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd> (on Windows, Linux) or <kbd class="kbd docutils literal notranslate">⌘</kbd> (Mac).
+<p>In most software, shortcut keys often require pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd> (on Windows, Linux) or <kbd class="kbd docutils literal notranslate">⌘</kbd> (Mac).
 Therefore the shortcut to search for a command would be <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">L</kbd></kbd> or <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">⌘</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">L</kbd></kbd>.</p>
 <p>This works in ImageJ, but isn’t necessary.
-Under <span class="menuselection">Edit ‣ Options ‣ Misc…</span>, you can specify whether the <kbd class="kbd docutils literal notranslate">Ctrl</kbd> or <kbd class="kbd docutils literal notranslate">⌘</kbd> key is needed along with the letter for the shortcut.</p>
+Under <span class="menuselection notranslate">Edit ‣ Options ‣ Misc…</span>, you can specify whether the <kbd class="kbd docutils literal notranslate">Ctrl</kbd> or <kbd class="kbd docutils literal notranslate">⌘</kbd> key is needed along with the letter for the shortcut.</p>
 <p>By default, this option is turned off – so pressing <kbd class="kbd docutils literal notranslate">L</kbd> alone is enough.
 You may find this might make it too easy to accidentally run commands, in which case you should select the option to turn it on.</p>
 </div>
@@ -949,7 +958,7 @@ You may find this might make it too easy to accidentally run commands, in which 
 </section>
 <section id="opening-images-viewing-pixels">
 <h2>Opening images &amp; viewing pixels<a class="headerlink" href="#opening-images-viewing-pixels" title="Permalink to this headline">#</a></h2>
-<p>I am always taken aback when I see someone open an image in ImageJ through the menus, by choosing <span class="menuselection">File ‣ Open…</span>.</p>
+<p>I am always taken aback when I see someone open an image in ImageJ through the menus, by choosing <span class="menuselection notranslate">File ‣ Open…</span>.</p>
 <p>Although this can work, it’s unnecessarily slow and awkward.
 The more elegant way to open an image is to simply drag the image file onto ImageJ’s toolbar.</p>
 <p>As the cursor is then moved over the image, the value for the pixel under the cursor is displayed in ImageJ’s status bar.
@@ -978,8 +987,8 @@ Images can be navigated as follows:</p>
 <video autoplay loop playsinline controls muted>
   <source src="../../../_static/videos/imagej-opening.mp4" type="video/mp4">
 </video><div class="sd-tab-set docutils">
-<input checked="checked" id="6c9e91d9-3465-42dc-82e4-f3a3528a71e6" name="48c62a60-9cac-41ac-b28f-c3694848dff0" type="radio">
-</input><label class="sd-tab-label" for="6c9e91d9-3465-42dc-82e4-f3a3528a71e6">
+<input checked="checked" id="2ade74f8-62f6-4b9e-abbf-3d63b2c7a05d" name="707f17c3-6c7a-46a8-a8e2-4af96a9f63bf" type="radio">
+</input><label class="sd-tab-label" for="2ade74f8-62f6-4b9e-abbf-3d63b2c7a05d">
 Practical</label><div class="sd-tab-content docutils">
 <p>The status bar also shows the x and y coordinates for the pixel under the cursor.
 However, to interpret these you need to know the <em>origin</em>, i.e. the location of the pixel at x=0, y=0.</p>
@@ -994,8 +1003,8 @@ However, to interpret these you need to know the <em>origin</em>, i.e. the locat
 <p><strong>Tip:</strong> You should be able to answer this question by opening an image in ImageJ, and observing the coordinates in the toolbar as you move the cursor over the image.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/happy_cell.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="23dd5ffa-94ef-4ccf-ac58-a1c4b6a147b4" name="48c62a60-9cac-41ac-b28f-c3694848dff0" type="radio">
-</input><label class="sd-tab-label" for="23dd5ffa-94ef-4ccf-ac58-a1c4b6a147b4">
+<input id="ff4ea445-66d5-4f06-8803-620d8e4b0064" name="707f17c3-6c7a-46a8-a8e2-4af96a9f63bf" type="radio">
+</input><label class="sd-tab-label" for="ff4ea445-66d5-4f06-8803-620d8e4b0064">
 Solution</label><div class="sd-tab-content docutils">
 <p>The origin of the image is at the top left, i.e. the top left pixel is identified with the coordinate x=0, y=0.</p>
 </div>
@@ -1011,40 +1020,40 @@ Solution</label><div class="sd-tab-content docutils">
 <p><span class="caption-number">Fig. 9 </span><span class="caption-text"><em>Brightness/Contrast</em> dialog</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The main command to change the brightness of an image is <span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span>.
+<p>The main command to change the brightness of an image is <span class="menuselection notranslate">Image ‣ Adjust ‣ Brightness/Contrast…</span>.
 Since you’re likely to use it a lot, it is worth learning the shortcut: <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">C</kbd></kbd>.</p>
-<p>The Brightness/Contrast dialog has four sliders: <span class="guilabel">Minimum</span>, <span class="guilabel">Maximum</span>, <span class="guilabel">Brightness</span> &amp; <span class="guilabel">Contrast</span>.
+<p>The Brightness/Contrast dialog has four sliders: <span class="guilabel notranslate">Minimum</span>, <span class="guilabel notranslate">Maximum</span>, <span class="guilabel notranslate">Brightness</span> &amp; <span class="guilabel notranslate">Contrast</span>.
 They are linked together: changing either of the first two also results in a change to the last two, and vice versa.</p>
 <p>Supposing you have a grayscale LUT, with colors ranging from black to white, you should see that</p>
 <ul class="simple">
-<li><p>All pixels with a value less than or equal to the <span class="guilabel">Minimum</span> will be shown as black</p></li>
-<li><p>All pixels with a value greater than or equal to the <span class="guilabel">Maximum</span> will be shown as white</p></li>
+<li><p>All pixels with a value less than or equal to the <span class="guilabel notranslate">Minimum</span> will be shown as black</p></li>
+<li><p>All pixels with a value greater than or equal to the <span class="guilabel notranslate">Maximum</span> will be shown as white</p></li>
 <li><p>All other pixels with a value in between will be shown using a shade of gray</p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Use the minimum &amp; maximum sliders</p>
-<p>Despite the name of the command implying <span class="guilabel">Brightness</span> and <span class="guilabel">Contrast</span> are the star perfomers, I would argue that the <span class="guilabel">Minimum</span> and <span class="guilabel">Maximum</span> sliders are far more intuitive.</p>
-<p>I use <span class="guilabel">Minimum</span> and <span class="guilabel">Maximum</span> almost exclusively.</p>
+<p>Despite the name of the command implying <span class="guilabel notranslate">Brightness</span> and <span class="guilabel notranslate">Contrast</span> are the star perfomers, I would argue that the <span class="guilabel notranslate">Minimum</span> and <span class="guilabel notranslate">Maximum</span> sliders are far more intuitive.</p>
+<p>I use <span class="guilabel notranslate">Minimum</span> and <span class="guilabel notranslate">Maximum</span> almost exclusively.</p>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="3a6da182-e18c-41e4-b355-0c4ac3c5a4dd" name="a4e8d522-e6af-47ff-8dd7-ae8ce85d7f84" type="radio">
-</input><label class="sd-tab-label" for="3a6da182-e18c-41e4-b355-0c4ac3c5a4dd">
+<input checked="checked" id="9aed15c9-be99-4ae9-9aa9-293b85047d81" name="ffe08147-e4c2-48f6-a984-054af03d703e" type="radio">
+</input><label class="sd-tab-label" for="9aed15c9-be99-4ae9-9aa9-293b85047d81">
 Practical</label><div class="sd-tab-content docutils">
 <p>Does adjusting any of the sliders in the brightness &amp; contrast dialog change the pixel values or only the LUT?</p>
-<p>What happens if you press <span class="guilabel">Apply</span>?</p>
+<p>What happens if you press <span class="guilabel notranslate">Apply</span>?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/bioimagebook.github.io/blob/main/chapters/1-concepts/1-images_and_pixels/images/couple.png"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="02d87af0-35dd-47e9-91bb-4c812ff1375c" name="a4e8d522-e6af-47ff-8dd7-ae8ce85d7f84" type="radio">
-</input><label class="sd-tab-label" for="02d87af0-35dd-47e9-91bb-4c812ff1375c">
+<input id="91f548ee-57f7-43f1-a07b-e3e8c0897504" name="ffe08147-e4c2-48f6-a984-054af03d703e" type="radio">
+</input><label class="sd-tab-label" for="91f548ee-57f7-43f1-a07b-e3e8c0897504">
 Solution</label><div class="sd-tab-content docutils">
 <p>Adjusting the sliders changes the LUT – and <em>not</em> the pixel values.</p>
-<p>That is, unless you press <span class="guilabel">Apply</span>.
-If you do press <span class="guilabel">Apply</span> then the pixel values are changed.</p>
-<p>Recent versions of ImageJ give a warning when pressing <span class="guilabel">Apply</span>, but previous versions did not… which made it an extremely dangerous button for new users of the software.
+<p>That is, unless you press <span class="guilabel notranslate">Apply</span>.
+If you do press <span class="guilabel notranslate">Apply</span> then the pixel values are changed.</p>
+<p>Recent versions of ImageJ give a warning when pressing <span class="guilabel notranslate">Apply</span>, but previous versions did not… which made it an extremely dangerous button for new users of the software.
 In most cases, the rule is:</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p><strong>When adjusting the brightness &amp; contrast in ImageJ, don’t press <span class="guilabel">Apply</span>!</strong></p>
+<p><strong>When adjusting the brightness &amp; contrast in ImageJ, don’t press <span class="guilabel notranslate">Apply</span>!</strong></p>
 </div>
 <p>You shouldn’t break this rule without a good reason!</p>
 </div>
@@ -1052,10 +1061,10 @@ In most cases, the rule is:</p>
 </section>
 <section id="switching-luts">
 <h3>Switching LUTs<a class="headerlink" href="#switching-luts" title="Permalink to this headline">#</a></h3>
-<p>You can change the colors of the LUT by selecting an alternative option from the <span class="menuselection">Image ‣ Lookup tables ‣</span> submenu.</p>
+<p>You can change the colors of the LUT by selecting an alternative option from the <span class="menuselection notranslate">Image ‣ Lookup tables ‣</span> submenu.</p>
 <div class="tip admonition">
 <p class="admonition-title">Use the Control Panel to frequently access the same menu</p>
-<p>If you want to explore LUTs quickly, use <span class="menuselection">Plugins ‣ Utilities ‣ Control Panel</span>.
+<p>If you want to explore LUTs quickly, use <span class="menuselection notranslate">Plugins ‣ Utilities ‣ Control Panel</span>.
 This opens a window that allows you to double-click on commands from any menu or submenu to apply that command quickly.</p>
 </div>
 <hr class="footnotes docutils" />

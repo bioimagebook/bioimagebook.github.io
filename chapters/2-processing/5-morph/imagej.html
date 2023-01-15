@@ -36,10 +36,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/design-tabs.js"></script>
@@ -49,6 +52,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://bioimagebook.github.io/chapters/2-processing/5-morph/imagej.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Image transforms" href="../6-transforms/transforms.html" />
@@ -133,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../0-preamble/disclaimer.html">
    Disclaimer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../CHANGELOG.html">
+   Changelog
   </a>
  </li>
 </ul>
@@ -757,30 +766,30 @@ title="Print to PDF"
 </div>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>ImageJ’s <span class="menuselection">Process ‣ Binary</span> submenu contains various useful commands for working with binary images, including some of the morphological operations we’ve looked at.</p>
+<p>ImageJ’s <span class="menuselection notranslate">Process ‣ Binary</span> submenu contains various useful commands for working with binary images, including some of the morphological operations we’ve looked at.</p>
 <p>However, there are other useful morphological operations lurking elsewhere – although most require extra plugins, or switching to Fiji.</p>
 </section>
 <section id="erosion-dilation-opening-closing">
 <h2>Erosion, dilation, opening &amp; closing<a class="headerlink" href="#erosion-dilation-opening-closing" title="Permalink to this headline">#</a></h2>
-<p><span class="menuselection">Process ‣ Binary</span> contains the commands <span class="menuselection">Erode</span>, <span class="menuselection">Dilate</span>, <span class="menuselection">Open</span> and <span class="menuselection">Close-</span> commands.</p>
+<p><span class="menuselection notranslate">Process ‣ Binary</span> contains the commands <span class="menuselection notranslate">Erode</span>, <span class="menuselection notranslate">Dilate</span>, <span class="menuselection notranslate">Open</span> and <span class="menuselection notranslate">Close-</span> commands.</p>
 <p>These are relevant here, but my advice is to avoid them.
-By default they work with fixed 3×3 pixel neighborhoods, but they <em>could</em> do something different if someone has been messing about with the <span class="guilabel">Iterations (1-100)</span> or <span class="guilabel">Count (1-8)</span> options under <span class="menuselection">Process ‣ Binary ‣ Options…</span> – and this unpredictability could well cause trouble.</p>
-<p>To perform erosion, dilation, opening and closing with more control and possibly larger neighborhoods, I strongly prefer to use the <span class="menuselection">Process ‣ Filters ‣ Maximum…</span> and <span class="menuselection">Process ‣ Filters ‣ Minimum…</span> commands, combining them if necessary.</p>
+By default they work with fixed 3×3 pixel neighborhoods, but they <em>could</em> do something different if someone has been messing about with the <span class="guilabel notranslate">Iterations (1-100)</span> or <span class="guilabel notranslate">Count (1-8)</span> options under <span class="menuselection notranslate">Process ‣ Binary ‣ Options…</span> – and this unpredictability could well cause trouble.</p>
+<p>To perform erosion, dilation, opening and closing with more control and possibly larger neighborhoods, I strongly prefer to use the <span class="menuselection notranslate">Process ‣ Filters ‣ Maximum…</span> and <span class="menuselection notranslate">Process ‣ Filters ‣ Minimum…</span> commands, combining them if necessary.</p>
 <div class="tip admonition">
 <p class="admonition-title">Morphological operations in Fiji</p>
-<p>Fiji contains <span class="menuselection">Process ‣ Morphology ‣ Gray Morphology</span>, which provides a more flexible implementation of erosion, dilation, opening and closing using a variety of shapes for both grayscale and binary images.</p>
+<p>Fiji contains <span class="menuselection notranslate">Process ‣ Morphology ‣ Gray Morphology</span>, which provides a more flexible implementation of erosion, dilation, opening and closing using a variety of shapes for both grayscale and binary images.</p>
 <p>You can also find the plugin for ImageJ at <a class="reference external" href="https://imagej.nih.gov/ij/plugins/gray-morphology.html">https://imagej.nih.gov/ij/plugins/gray-morphology.html</a></p>
 </div>
 </section>
 <section id="outlines-holes-skeletonization">
 <h2>Outlines, holes &amp; skeletonization<a class="headerlink" href="#outlines-holes-skeletonization" title="Permalink to this headline">#</a></h2>
-<p>The <span class="menuselection">Process ‣ Binary ‣ Outline</span> command, predictably, removes all the interior pixels from
+<p>The <span class="menuselection notranslate">Process ‣ Binary ‣ Outline</span> command, predictably, removes all the interior pixels from
 2D binary objects, leaving only the perimeters (<a class="reference internal" href="#fig-outline-fill-skeleton"><span class="std std-numref">Fig. 114</span></a>A).</p>
-<p><span class="menuselection">Process ‣ Binary ‣ Fill Holes</span> would then fill these interior pixels in again, or indeed fill in any background pixels that are completely surrounded by foreground pixels (<a class="reference internal" href="#fig-outline-fill-skeleton"><span class="std std-numref">Fig. 114</span></a>B).</p>
-<p><span class="menuselection">Process ‣ Binary ‣ Skeletonize</span> shaves off all the outer pixels of an object until only a connected central line remains (<a class="reference internal" href="#fig-outline-fill-skeleton"><span class="std std-numref">Fig. 114</span></a>C).</p>
+<p><span class="menuselection notranslate">Process ‣ Binary ‣ Fill Holes</span> would then fill these interior pixels in again, or indeed fill in any background pixels that are completely surrounded by foreground pixels (<a class="reference internal" href="#fig-outline-fill-skeleton"><span class="std std-numref">Fig. 114</span></a>B).</p>
+<p><span class="menuselection notranslate">Process ‣ Binary ‣ Skeletonize</span> shaves off all the outer pixels of an object until only a connected central line remains (<a class="reference internal" href="#fig-outline-fill-skeleton"><span class="std std-numref">Fig. 114</span></a>C).</p>
 <div class="tip admonition">
 <p class="admonition-title">Analyzing skeletons</p>
-<p>If you are analyzing linear structures (e.g. blood vessels, neurons), then this command or those in Fiji’s <span class="menuselection">Plugins ‣ Skeleton ‣</span> submenu may be helpful.</p>
+<p>If you are analyzing linear structures (e.g. blood vessels, neurons), then this command or those in Fiji’s <span class="menuselection notranslate">Plugins ‣ Skeleton ‣</span> submenu may be helpful.</p>
 </div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -815,18 +824,18 @@ By default they work with fixed 3×3 pixel neighborhoods, but they <em>could</em
 <img alt="../../../_images/imagej_3_03.png" src="../../../_images/imagej_3_03.png" />
 </div>
 <figcaption>
-<p><span class="caption-number">Fig. 114 </span><span class="caption-text">The effects of the <span class="menuselection">Outline</span>, <span class="menuselection">Fill holes</span> and <span class="menuselection">Skeletonize</span> commands.</span><a class="headerlink" href="#fig-outline-fill-skeleton" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 114 </span><span class="caption-text">The effects of the <span class="menuselection notranslate">Outline</span>, <span class="menuselection notranslate">Fill holes</span> and <span class="menuselection notranslate">Skeletonize</span> commands.</span><a class="headerlink" href="#fig-outline-fill-skeleton" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="b92e9633-1c91-4e75-aa7f-c2da7728b3a1" name="83d7087b-5e5d-437d-9b34-a2651bc998c8" type="radio">
-</input><label class="sd-tab-label" for="b92e9633-1c91-4e75-aa7f-c2da7728b3a1">
+<input checked="checked" id="3a783e1c-4060-4b4d-9b08-0c5b4f967706" name="ca8e70dc-2309-47d9-af08-3e3529ffd0a2" type="radio">
+</input><label class="sd-tab-label" for="3a783e1c-4060-4b4d-9b08-0c5b4f967706">
 Question</label><div class="sd-tab-content docutils">
-<p>The outline of an object in a binary image can also be determined by applying one other morphological operation to a duplicate of the image, and then using the <span class="menuselection">Image Calculator</span>.
+<p>The outline of an object in a binary image can also be determined by applying one other morphological operation to a duplicate of the image, and then using the <span class="menuselection notranslate">Image Calculator</span>.
 How?</p>
 </div>
-<input id="39b1b9c7-6a29-4b5b-9c26-d8e299131559" name="83d7087b-5e5d-437d-9b34-a2651bc998c8" type="radio">
-</input><label class="sd-tab-label" for="39b1b9c7-6a29-4b5b-9c26-d8e299131559">
+<input id="a31931f6-8709-4ccf-b452-bd6eb07159ef" name="ca8e70dc-2309-47d9-af08-3e3529ffd0a2" type="radio">
+</input><label class="sd-tab-label" for="a31931f6-8709-4ccf-b452-bd6eb07159ef">
 Answer</label><div class="sd-tab-content docutils">
 <p>To outline the objects in a binary image, you can simply calculate the difference between the original image and an eroded (or dilated, if you want the pixels just beyond the objects) duplicate of the image.</p>
 </div>

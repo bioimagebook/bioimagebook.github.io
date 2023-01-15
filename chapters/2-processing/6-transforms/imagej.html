@@ -36,10 +36,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/design-tabs.js"></script>
@@ -51,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://bioimagebook.github.io/chapters/2-processing/6-transforms/imagej.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Multidimensional processing" href="../7-multidimensional_processing/multidimensional_processing.html" />
@@ -135,6 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../0-preamble/disclaimer.html">
    Disclaimer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../CHANGELOG.html">
+   Changelog
   </a>
  </li>
 </ul>
@@ -791,8 +800,8 @@ title="Print to PDF"
 <p class="sidebar-title"></p>
 <a class="reference internal image-reference" href="../../../_images/imagej-binary-options.png"><img alt="../../../_images/imagej-binary-options.png" src="../../../_images/imagej-binary-options.png" style="width: 75%;" /></a>
 </aside>
-<p>A 2D distance transform can be calculated in ImageJ using the <span class="menuselection">Process ‣ Binary ‣ Distance Map</span> command.</p>
-<p>A non-obvious feature of this is that the type of output given is determined by the <span class="guilabel">EDM output</span> option tucked away under <span class="menuselection">Process ‣ Binary ‣ Options…</span> (where EDM stands for ‘Euclidean Distance Map’).
+<p>A 2D distance transform can be calculated in ImageJ using the <span class="menuselection notranslate">Process ‣ Binary ‣ Distance Map</span> command.</p>
+<p>A non-obvious feature of this is that the type of output given is determined by the <span class="guilabel notranslate">EDM output</span> option tucked away under <span class="menuselection notranslate">Process ‣ Binary ‣ Options…</span> (where EDM stands for ‘Euclidean Distance Map’).
 This makes a difference, because the distance between two diagonal pixels is considered <span class="math notranslate nohighlight">\(\sqrt{2} \approx 1.414\)</span> (by Pythagoras’ theorem) – which means that a 32-bit output can give more exact straight-line distances without rounding.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -818,7 +827,7 @@ This makes a difference, because the distance between two diagonal pixels is con
 </figure>
 <section id="ultimate-points">
 <h3>Ultimate points<a class="headerlink" href="#ultimate-points" title="Permalink to this headline">#</a></h3>
-<p><span class="menuselection">Process ‣ Binary ‣ Ultimate Points</span> is a related command.
+<p><span class="menuselection notranslate">Process ‣ Binary ‣ Ultimate Points</span> is a related command.
 It uses the distance transform to identify the last points that would be removed if the objects would be eroded until they disappear.
 In other words, it identifies centers.
 But these are not simply single center points for each object; rather, they are maximum points in the distance map, and therefore the pixels furthest away from the boundary.</p>
@@ -913,7 +922,7 @@ If segmentation has resulted in structures being merged together, then each dist
 <p>Although conceptually straightforward, and easy to use in ImageJ, implementing ‘Ultimate points’ in other software can be tricky.
 Here, I’ve tried to replicate it in Python.
 The results aren’t necessarily identical to ImageJ’s implementation, but should be pretty close.</p>
-<p>Select to <span class="guilabel">Click to show</span> above to see how it works.</p>
+<p>Select to <span class="guilabel notranslate">Click to show</span> above to see how it works.</p>
 <figure class="align-center" id="fig-distance-transform-python">
 <div class="cell_output docutils container">
 <img alt="../../../_images/imagej_7_1.png" src="../../../_images/imagej_7_1.png" />
@@ -926,9 +935,9 @@ The results aren’t necessarily identical to ImageJ’s implementation, but sho
 </section>
 <section id="watershed-after-distance-transform">
 <h3>Watershed (after distance transform)<a class="headerlink" href="#watershed-after-distance-transform" title="Permalink to this headline">#</a></h3>
-<p>As the name suggests, ImageJ’s <span class="menuselection">Process ‣ Binary ‣ Watershed</span> command applies a watershed transform.</p>
+<p>As the name suggests, ImageJ’s <span class="menuselection notranslate">Process ‣ Binary ‣ Watershed</span> command applies a watershed transform.</p>
 <p>However, as the name conceals, the watershed transform is always applied to a distance map – which is calculated automatically in the background.</p>
-<p>The clue to this is only that it appears in a <span class="menuselection">Process ‣ Binary</span> submenu, and therefore requires a binary image as input; a ‘regular’ watershed transform isn’t normally applied to a binary image.</p>
+<p>The clue to this is only that it appears in a <span class="menuselection notranslate">Process ‣ Binary</span> submenu, and therefore requires a binary image as input; a ‘regular’ watershed transform isn’t normally applied to a binary image.</p>
 <p>Effectively, the seeds of the watershed transform are the ‘ultimate points’ described above.
 The effect of the command is therefore to split ‘roundish’ objects.</p>
 <aside class="margin sidebar">
@@ -937,35 +946,35 @@ The effect of the command is therefore to split ‘roundish’ objects.</p>
 </aside>
 <div class="admonition">
 <p class="admonition-title">Watching the distance transform</p>
-<p>If you click the <span class="guilabel">Dev</span> toolbar button and select <span class="menuselection">Debug Mode</span> from the drop-down menu, then running <span class="menuselection">Process ‣ Binary ‣ Watershed</span> will generate an image stack that visualizes how the seeds expanded during the watershed processing.</p>
+<p>If you click the <span class="guilabel notranslate">Dev</span> toolbar button and select <span class="menuselection notranslate">Debug Mode</span> from the drop-down menu, then running <span class="menuselection notranslate">Process ‣ Binary ‣ Watershed</span> will generate an image stack that visualizes how the seeds expanded during the watershed processing.</p>
 </div>
 </section>
 <section id="voronoi">
 <h3>Voronoi<a class="headerlink" href="#voronoi" title="Permalink to this headline">#</a></h3>
-<p><span class="menuselection">Process ‣ Binary ‣ Voronoi</span> is another distance-and-watershed-based command for binary images.</p>
+<p><span class="menuselection notranslate">Process ‣ Binary ‣ Voronoi</span> is another distance-and-watershed-based command for binary images.</p>
 <p>It will partition the image into different regions so that the separation lines have an equal distance to the nearest foreground objects.</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <a class="reference internal image-reference" href="../../../_images/imagej-blobs-surroundings.png"><img alt="../../../_images/imagej-blobs-surroundings.png" src="../../../_images/imagej-blobs-surroundings.png" style="width: 75%;" /></a>
 </aside>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="1f469688-3aa4-4315-aa66-7bf494d6cde4" name="e8aed275-8dd8-42a5-956a-ac06ce76f890" type="radio">
-</input><label class="sd-tab-label" for="1f469688-3aa4-4315-aa66-7bf494d6cde4">
+<input checked="checked" id="0f670e83-ea6d-42e2-a4a8-eacb7bf56cff" name="0898a66a-f924-42d5-8339-6d0a2a1bdea1" type="radio">
+</input><label class="sd-tab-label" for="0f670e83-ea6d-42e2-a4a8-eacb7bf56cff">
 Question</label><div class="sd-tab-content docutils">
 <p>Imagine you have created a binary image containing detected cells, but you are only interested in the region inside the cell that is close to the membrane, i.e. within 5 pixels of the edge of each detected object.
 Any pixels outside the objects or closer to their centers do not matter.</p>
 <p>How would you go about finding these regions using ImageJ and the distance transform?</p>
 <p><strong>Note:</strong> There other ways to do this using techniques we’ve discussed, although these don’t necessarily give identical results.</p>
 </div>
-<input id="d400fa5b-d6aa-4a23-bf62-52ffb03ac408" name="e8aed275-8dd8-42a5-956a-ac06ce76f890" type="radio">
-</input><label class="sd-tab-label" for="d400fa5b-d6aa-4a23-bf62-52ffb03ac408">
+<input id="302fd9d0-2d9d-4f47-8ca1-09f254b5d0dc" name="0898a66a-f924-42d5-8339-6d0a2a1bdea1" type="radio">
+</input><label class="sd-tab-label" for="302fd9d0-2d9d-4f47-8ca1-09f254b5d0dc">
 Answer</label><div class="sd-tab-content docutils">
 <p>This is the approach I was thinking of:</p>
 <ol class="simple">
-<li><p>Run <span class="menuselection">Edit ‣ Invert</span></p></li>
-<li><p>Run <span class="menuselection">Process ‣ Binary ‣ Distance Map</span></p></li>
-<li><p>Run <span class="menuselection">Image ‣ Adjust ‣ Threshold…</span></p></li>
-<li><p>Choose <span class="guilabel">Set</span> and enter <em>Lower Threshold Level: 1</em> and <em>Higher Threshold Level: 5</em>.</p></li>
+<li><p>Run <span class="menuselection notranslate">Edit ‣ Invert</span></p></li>
+<li><p>Run <span class="menuselection notranslate">Process ‣ Binary ‣ Distance Map</span></p></li>
+<li><p>Run <span class="menuselection notranslate">Image ‣ Adjust ‣ Threshold…</span></p></li>
+<li><p>Choose <span class="guilabel notranslate">Set</span> and enter <em>Lower Threshold Level: 1</em> and <em>Higher Threshold Level: 5</em>.</p></li>
 </ol>
 <p>There are more possible ways, such as applying a maximum filter and subtracting the original binary image – but I think the distance transform is more elegant.
 The distance transform is also likely to be much faster for large distances, and more precise (assuming you use a 32-bit output).</p>
@@ -979,11 +988,11 @@ The distance transform is also likely to be much faster for large distances, and
 <p class="sidebar-title"></p>
 <a class="reference internal image-reference" href="../../../_images/imagej-find-maxima.png"><img alt="../../../_images/imagej-find-maxima.png" src="../../../_images/imagej-find-maxima.png" style="width: 75%;" /></a>
 </aside>
-<p>So if ImageJ has a watershed transform, but it’s not the command called <span class="menuselection">Watershed</span>, then where is it?</p>
-<p>The answer is that it’s hidden in the phenomenally useful <span class="menuselection">Process ‣ Find maxima</span> command.</p>
-<p>I say ‘hidden’, because you specifically have to choose the output <span class="guilabel">Segmented Particles</span> to use it.
+<p>So if ImageJ has a watershed transform, but it’s not the command called <span class="menuselection notranslate">Watershed</span>, then where is it?</p>
+<p>The answer is that it’s hidden in the phenomenally useful <span class="menuselection notranslate">Process ‣ Find maxima</span> command.</p>
+<p>I say ‘hidden’, because you specifically have to choose the output <span class="guilabel notranslate">Segmented Particles</span> to use it.
 And you’ll need to flip your expectations: unlike most watershed transforms, it will start at the <em>intensity peaks</em> of the image (i.e. the maxima) and expand outwards, rather than starting at minima.</p>
-<p>But don’t let those things discourage you: I highly recommend exploring the various options of <span class="menuselection">Process ‣ Find maxima</span> to see what all it can do.
+<p>But don’t let those things discourage you: I highly recommend exploring the various options of <span class="menuselection notranslate">Process ‣ Find maxima</span> to see what all it can do.
 Depending upon which options are selected, this includes finding structures using a global threshold, a local threshold, generating point ROIs and generating binary regions.</p>
 <div class="tip admonition">
 <p class="admonition-title">Check out MorphoLibJ</p>

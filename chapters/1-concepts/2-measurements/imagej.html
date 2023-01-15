@@ -36,10 +36,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/design-tabs.js"></script>
@@ -49,6 +52,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://bioimagebook.github.io/chapters/1-concepts/2-measurements/imagej.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Python: Measurements &amp; histograms" href="python.html" />
@@ -133,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../0-preamble/disclaimer.html">
    Disclaimer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../CHANGELOG.html">
+   Changelog
   </a>
  </li>
 </ul>
@@ -819,28 +828,28 @@ title="Print to PDF"
 <ul class="simple">
 <li><p>Press <kbd class="kbd docutils literal notranslate">M</kbd> to make <strong>M</strong>easurements</p>
 <ul>
-<li><p>This is the shortcut to run <span class="menuselection">Analyze ‣ Measure</span>.</p></li>
+<li><p>This is the shortcut to run <span class="menuselection notranslate">Analyze ‣ Measure</span>.</p></li>
 </ul>
 </li>
 <li><p>Press <kbd class="kbd docutils literal notranslate">H</kbd> to create a <strong>H</strong>istogram</p>
 <ul>
-<li><p>This is the shortcut to run <span class="menuselection">Analyze ‣ Histogram</span>.</p></li>
+<li><p>This is the shortcut to run <span class="menuselection notranslate">Analyze ‣ Histogram</span>.</p></li>
 </ul>
 </li>
 </ul>
 <p>Assuming your image is 2D and there is no ROI active (we will explore <a class="reference internal" href="../5-pixel_size/pixel_size.html#chap-dimensions"><span class="std std-ref">dimensions</span></a> and <a class="reference internal" href="#sec-imagej-rois"><span class="std std-ref">ROIs</span></a> later), both of these commands will use all the pixels in the image.</p>
 <p>We’ll explore how to customize the regions being measured and exactly what measurements are made later in this section, but already it should be possible to answer the following questions.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="0b3dcc54-1bea-429e-a8ea-80a38636800b" name="f234b004-bc6f-4460-bfb7-ca6ad864cf21" type="radio">
-</input><label class="sd-tab-label" for="0b3dcc54-1bea-429e-a8ea-80a38636800b">
+<input checked="checked" id="b2bae862-b1fe-4026-abe2-5049571a225d" name="298c7ba0-bdfb-4f49-8002-b23bd79fe2c2" type="radio">
+</input><label class="sd-tab-label" for="b2bae862-b1fe-4026-abe2-5049571a225d">
 Practical</label><div class="sd-tab-content docutils">
 <p><em>similar_1.tif</em>, <em>similar_2.tif</em>, <em>similar_3.tif</em> and <em>similar_4.tif</em> are all, well, similar.
 However only two contain <em>identical</em> pixel values.</p>
 <p>Which two images contain the same values?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_1.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_2.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_3.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/similar_4.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="4dc9c897-cc0f-4850-8c7a-0fe7984ac255" name="f234b004-bc6f-4460-bfb7-ca6ad864cf21" type="radio">
-</input><label class="sd-tab-label" for="4dc9c897-cc0f-4850-8c7a-0fe7984ac255">
+<input id="b7935add-b943-400d-b5aa-73f47d48d9de" name="298c7ba0-bdfb-4f49-8002-b23bd79fe2c2" type="radio">
+</input><label class="sd-tab-label" for="b7935add-b943-400d-b5aa-73f47d48d9de">
 Solution</label><div class="sd-tab-content docutils">
 <p>Only <em>similar_1.tif</em> and <em>similar_3.tif</em> can contain the same values.
 An easy way to determine this is to compute the mean (average) of all pixels in each of the images.
@@ -852,8 +861,8 @@ Only those two images share the same mean value.</p>
 <a class="reference internal image-reference" href="../../../_images/disguised.png"><img alt="../../../_images/disguised.png" src="../../../_images/disguised.png" style="width: 50%;" /></a>
 </aside>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="fca74379-9baa-4e56-9720-fa34138bb8b0" name="ce32eac2-f7ec-49dd-9a67-aec3a850c64f" type="radio">
-</input><label class="sd-tab-label" for="fca74379-9baa-4e56-9720-fa34138bb8b0">
+<input checked="checked" id="14ff05d7-7360-4727-a1bf-3d7d5fee539b" name="43e6ed0d-a459-43fb-a4a3-6e4626e52745" type="radio">
+</input><label class="sd-tab-label" for="14ff05d7-7360-4727-a1bf-3d7d5fee539b">
 Practical</label><div class="sd-tab-content docutils">
 <p><em>disguise_matching.tif</em> has lost its match.</p>
 <p>Which of the following three images have the same pixel values as <em>disguise_matching.tif</em>?</p>
@@ -864,8 +873,8 @@ Practical</label><div class="sd-tab-content docutils">
 </ul>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/disguise_matching.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/disguised_1.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/disguised_2.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/disguised_3.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="529cfcb8-d85c-4df0-b9b6-16c083e7dfc7" name="ce32eac2-f7ec-49dd-9a67-aec3a850c64f" type="radio">
-</input><label class="sd-tab-label" for="529cfcb8-d85c-4df0-b9b6-16c083e7dfc7">
+<input id="c490b6d1-a05b-4dc3-8f86-6a06da8decc9" name="43e6ed0d-a459-43fb-a4a3-6e4626e52745" type="radio">
+</input><label class="sd-tab-label" for="c490b6d1-a05b-4dc3-8f86-6a06da8decc9">
 Solution</label><div class="sd-tab-content docutils">
 <p><em>disguised_3.tif</em> is the matching image.</p>
 </div>
@@ -873,13 +882,13 @@ Solution</label><div class="sd-tab-content docutils">
 </section>
 <section id="measuring-images">
 <h2>Measuring images<a class="headerlink" href="#measuring-images" title="Permalink to this headline">#</a></h2>
-<p>When using <span class="menuselection">Analyze ‣ Measure</span>, the measurements are added to a <em>Results table</em>.</p>
+<p>When using <span class="menuselection notranslate">Analyze ‣ Measure</span>, the measurements are added to a <em>Results table</em>.</p>
 <p>By default, the mean, minimum and maximum pixel values are provided, along with the area of the image… and that’s all.
 It’s not a lot.</p>
 <p>Furthermore, if you make multiple measurements then they are added to the <em>same</em> results table, without any identifiers.
 This is especially confusing if you have several images open at the same time, and have no clue which row of the results table corresponds to measurements from which image.</p>
-<p><span class="menuselection">Analyze ‣ Set Measurements…</span> makes it possible to address both of these limitations.
-It not only provides many more measurements that can be selected, it includes a crucial <span class="guilabel">Display label</span> option that will cause the title of the image to be included in the results table (<a class="reference internal" href="#fig-measure"><span class="std std-numref">Fig. 12</span></a>).</p>
+<p><span class="menuselection notranslate">Analyze ‣ Set Measurements…</span> makes it possible to address both of these limitations.
+It not only provides many more measurements that can be selected, it includes a crucial <span class="guilabel notranslate">Display label</span> option that will cause the title of the image to be included in the results table (<a class="reference internal" href="#fig-measure"><span class="std std-numref">Fig. 12</span></a>).</p>
 <div class="caution admonition" id="sec-imagej-measure-calibration">
 <p class="admonition-title">Measurement units matter – but aren’t displayed!</p>
 <p>The results table does not include units for measurements, even though these are essential.
@@ -906,7 +915,7 @@ Seeing an area of 10 <em>might</em> mean 10 pixels<sup>2</sup>, or 10 µm<sup>2<
 <img alt="../../../_images/imagej_5_0.png" src="../../../_images/imagej_5_0.png" />
 </div>
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Measurements made on an image are added to a results table. The choice of measurements to make can be changed using the <span class="menuselection">Analyze ‣ Set Measurements…</span> command.</span><a class="headerlink" href="#fig-measure" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Measurements made on an image are added to a results table. The choice of measurements to make can be changed using the <span class="menuselection notranslate">Analyze ‣ Set Measurements…</span> command.</span><a class="headerlink" href="#fig-measure" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
@@ -921,10 +930,10 @@ Seeing an area of 10 <em>might</em> mean 10 pixels<sup>2</sup>, or 10 µm<sup>2<
 </div>
 <div class="admonition-the-one-true-results-table-its-imposters admonition">
 <p class="admonition-title">The ‘One True Results Table’ &amp; its imposters</p>
-<p>A small idiosyncrasy to be aware of is that, as far as ImageJ is concerned, there is only ever one ‘official’ results table – the one with the title <span class="guilabel">Results</span>.</p>
-<p>Different, similar-looking tables can be created by different commands, or by duplicating an existing results table with <span class="menuselection">File ‣ Duplicate…</span>.
-Nevertheless, any new measurements you make with the <span class="menuselection">Measure</span> command will <em>only</em> be added to the original, official table.
-This also has an extra <span class="guilabel">Results</span> entry in its menu bar that other tables lack.</p>
+<p>A small idiosyncrasy to be aware of is that, as far as ImageJ is concerned, there is only ever one ‘official’ results table – the one with the title <span class="guilabel notranslate">Results</span>.</p>
+<p>Different, similar-looking tables can be created by different commands, or by duplicating an existing results table with <span class="menuselection notranslate">File ‣ Duplicate…</span>.
+Nevertheless, any new measurements you make with the <span class="menuselection notranslate">Measure</span> command will <em>only</em> be added to the original, official table.
+This also has an extra <span class="guilabel notranslate">Results</span> entry in its menu bar that other tables lack.</p>
 <figure class="align-default">
 <div class="cell_output docutils container">
 <img alt="../../../_images/imagej_7_0.png" src="../../../_images/imagej_7_0.png" />
@@ -933,27 +942,27 @@ This also has an extra <span class="guilabel">Results</span> entry in its menu b
 </div>
 <section id="choosing-which-measurements-to-select">
 <h3>Choosing which measurements to select<a class="headerlink" href="#choosing-which-measurements-to-select" title="Permalink to this headline">#</a></h3>
-<p>Some options within <span class="menuselection">Analyze ‣ Set Measurements…</span> are so universally useful that they should pretty much always be set.
+<p>Some options within <span class="menuselection notranslate">Analyze ‣ Set Measurements…</span> are so universally useful that they should pretty much always be set.
 Conversely, some options are manifestly confusing and dangerous and should be used rarely – or not at all.</p>
 <p>Options to <strong>always</strong> select:</p>
 <ul class="simple">
-<li><p><span class="guilabel">Area</span>, <span class="guilabel">Mean gray value</span>, <span class="guilabel">Standard deviation</span>, <span class="guilabel">Min &amp; max gray value</span> – basic summary values</p></li>
-<li><p><span class="guilabel">Display label</span> – includes the image title</p></li>
-<li><p><span class="guilabel">Stack Position</span> – includes the 2D plane that has been measured in an image with <a class="reference internal" href="../5-pixel_size/pixel_size.html#chap-dimensions"><span class="std std-ref">more dimensions</span></a>.</p></li>
+<li><p><span class="guilabel notranslate">Area</span>, <span class="guilabel notranslate">Mean gray value</span>, <span class="guilabel notranslate">Standard deviation</span>, <span class="guilabel notranslate">Min &amp; max gray value</span> – basic summary values</p></li>
+<li><p><span class="guilabel notranslate">Display label</span> – includes the image title</p></li>
+<li><p><span class="guilabel notranslate">Stack Position</span> – includes the 2D plane that has been measured in an image with <a class="reference internal" href="../5-pixel_size/pixel_size.html#chap-dimensions"><span class="std std-ref">more dimensions</span></a>.</p></li>
 </ul>
 <p>Options to <strong>avoid</strong>:</p>
 <ul class="simple">
-<li><p><span class="guilabel">Limit to threshold</span> – restricts the region being measured according to any <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html#chap-thresholding"><span class="std std-ref">threshold</span></a> that has been set; don’t do this routinely, instead convert your threshold to a ROI and use that instead.</p></li>
-<li><p><span class="guilabel">Redirect to</span> – measures a different image from the one that’s selected. It sounds weird, but it’s intended for cases where you have two corresponding images; one in which you can identify a region to measure, and one that contains the pixel values you should measure.</p></li>
+<li><p><span class="guilabel notranslate">Limit to threshold</span> – restricts the region being measured according to any <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html#chap-thresholding"><span class="std std-ref">threshold</span></a> that has been set; don’t do this routinely, instead convert your threshold to a ROI and use that instead.</p></li>
+<li><p><span class="guilabel notranslate">Redirect to</span> – measures a different image from the one that’s selected. It sounds weird, but it’s intended for cases where you have two corresponding images; one in which you can identify a region to measure, and one that contains the pixel values you should measure.</p></li>
 </ul>
-<p>The two options that I think you should avoid can both result in something unexpected being measured if you don’t know (or have forgotten) that either was selected under <span class="menuselection">Analyze ‣ Set Measurements…</span>.</p>
+<p>The two options that I think you should avoid can both result in something unexpected being measured if you don’t know (or have forgotten) that either was selected under <span class="menuselection notranslate">Analyze ‣ Set Measurements…</span>.</p>
 <p>Fortunately, they are not really needed if you master the art of generating, managing and transferring regions of interest between images.</p>
 </section>
 </section>
 <section id="regions-of-interest">
 <span id="sec-imagej-rois"></span><h2>Regions Of Interest<a class="headerlink" href="#regions-of-interest" title="Permalink to this headline">#</a></h2>
 <p><strong>Regions Of Interest (ROIs)</strong> can be used to define specific parts of an image that should be processed independently or measured.
-Only pixels within any ROI we draw will be included in the calculations when we run <span class="menuselection">Analyze ‣ Measure</span>.</p>
+Only pixels within any ROI we draw will be included in the calculations when we run <span class="menuselection notranslate">Analyze ‣ Measure</span>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
@@ -981,8 +990,8 @@ When drawing a ROI, pressing <kbd class="kbd docutils literal notranslate">Shift
 <p><strong>ROIs</strong> in ImageJ are sometimes called <strong>selections</strong> – meaning the same thing</p>
 </aside>
 <p>Somewhat confusingly, ROIs are sometimes referred to as <strong>selections</strong> in ImageJ.
-This is why some extra commands to create or adjust ROIs appear under the <span class="menuselection">Edit ‣ Selection</span> submenu.</p>
-<p>One such command is <span class="menuselection">Edit ‣ Selection ‣ Create Mask</span>.
+This is why some extra commands to create or adjust ROIs appear under the <span class="menuselection notranslate">Edit ‣ Selection</span> submenu.</p>
+<p>One such command is <span class="menuselection notranslate">Edit ‣ Selection ‣ Create Mask</span>.
 This creates a new <a class="reference internal" href="../../2-processing/5-morph/morph.html#chap-binary"><span class="std std-ref">binary</span></a> (black and white) image that differentiates between the pixels that are inside and outside the ROI.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -1000,21 +1009,21 @@ This creates a new <a class="reference internal" href="../../2-processing/5-morp
 <img alt="../../../_images/imagej_11_0.png" src="../../../_images/imagej_11_0.png" />
 </div>
 <figcaption>
-<p><span class="caption-number">Fig. 14 </span><span class="caption-text">A ROI representing an area is usually depicted using yellow lines drawn on an image, but sometimes it isn’t clear which pixels are inside or outside the ROI. <span class="menuselection">Edit ‣ Selection ‣ Create Mask</span> can help clarify this.</span><a class="headerlink" href="#fig-rois-mask" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">A ROI representing an area is usually depicted using yellow lines drawn on an image, but sometimes it isn’t clear which pixels are inside or outside the ROI. <span class="menuselection notranslate">Edit ‣ Selection ‣ Create Mask</span> can help clarify this.</span><a class="headerlink" href="#fig-rois-mask" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="margin align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/binary-options.png"><img alt="../../../_images/binary-options.png" src="../../../_images/binary-options.png" style="width: 196.7px; height: 168.7px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 15 </span><span class="caption-text"><span class="menuselection">Process ‣ Binary ‣ Options…</span></span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text"><span class="menuselection notranslate">Process ‣ Binary ‣ Options…</span></span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="danger admonition">
 <p class="admonition-title">Interpreting ‘Create Mask’</p>
-<p>Unfortunately, when using <span class="menuselection">Edit ‣ Selection ‣ Create Mask</span> it is not <em>entirely certain</em> whether black means ‘inside’ or ‘outside’.
-This depends upon whether <span class="guilabel">Black background</span> is selected within <span class="menuselection">Process ‣ Binary ‣ Options…</span>.</p>
+<p>Unfortunately, when using <span class="menuselection notranslate">Edit ‣ Selection ‣ Create Mask</span> it is not <em>entirely certain</em> whether black means ‘inside’ or ‘outside’.
+This depends upon whether <span class="guilabel notranslate">Black background</span> is selected within <span class="menuselection notranslate">Process ‣ Binary ‣ Options…</span>.</p>
 <p>This doesn’t usually matter in practice, because it tends to be clear from the context; ROIs usually cover a small region of the image, so the background color is the one seen in the majority of pixels.</p>
-<p>An exception to this is if <span class="menuselection">Edit ‣ Selection ‣ Make Inverse</span> has been used to flip a ROI to represent all the background pixels of the original, with the foreground removed.</p>
+<p>An exception to this is if <span class="menuselection notranslate">Edit ‣ Selection ‣ Make Inverse</span> has been used to flip a ROI to represent all the background pixels of the original, with the foreground removed.</p>
 </div>
 <div class="caution admonition">
 <p class="admonition-title">Don’t overestimate the accuracy of measurements</p>
@@ -1038,26 +1047,26 @@ These differ according to purpose:</p>
 <p><kbd class="kbd docutils literal notranslate">T</kbd> for <em><strong>T</strong>roy manager</em>: shortcut to add ROI to the ROI Manager</p>
 </aside>
 <p>ImageJ’s <em>ROI Manager</em> provides a convenient way to store multiple ROIs in a list, allowing you to easily access, edit and measure them.</p>
-<p>The slow way to open the ROI Manager is to choose <span class="menuselection">Analyze ‣ Tools ‣ ROI Manager…</span>.
+<p>The slow way to open the ROI Manager is to choose <span class="menuselection notranslate">Analyze ‣ Tools ‣ ROI Manager…</span>.
 The fast way is just to draw a ROI and press <kbd class="kbd docutils literal notranslate">T</kbd>.</p>
-<p>The additional <span class="guilabel">Measure</span> command within the manager is then like applying <span class="menuselection">Analyze ‣ Measure</span> to each ROI in turn.
-If you happen to want to show all the ROIs simultaneously, you can select the <span class="guilabel">Show All</span> option <a class="footnote-reference brackets" href="#fn-1" id="id1">1</a>.</p>
+<p>The additional <span class="guilabel notranslate">Measure</span> command within the manager is then like applying <span class="menuselection notranslate">Analyze ‣ Measure</span> to each ROI in turn.
+If you happen to want to show all the ROIs simultaneously, you can select the <span class="guilabel notranslate">Show All</span> option <a class="footnote-reference brackets" href="#fn-1" id="id1">1</a>.</p>
 <p>Because ROIs in the ROI Manager are represented independently of the image on which they were defined, you can create a ROI on one image, add it to the ROI manager, select a different image and then click on the ROI in the ROI Manager to place it on the second image.
 This provides one way to transfer a ROI from one image to another.</p>
 <p>Measurements made from the ROI Manager always use the most recently-selected image, so be careful if you have several images open at the same time.
-This is another reason why choosing <span class="guilabel">Display label</span> under <span class="menuselection">Analyze ‣ Set Measurements…</span> is so important.</p>
+This is another reason why choosing <span class="guilabel notranslate">Display label</span> under <span class="menuselection notranslate">Analyze ‣ Set Measurements…</span> is so important.</p>
 <div class="tip admonition">
 <p class="admonition-title">Transferring individual ROIs</p>
-<p>A faster way to transfer a single ROI between images without using the ROI Manager is to click on the second image and press <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">E</kbd></kbd> (the shortcut for <span class="menuselection">Edit ‣ Selection ‣ Restore Selection</span>)</p>
+<p>A faster way to transfer a single ROI between images without using the ROI Manager is to click on the second image and press <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">E</kbd></kbd> (the shortcut for <span class="menuselection notranslate">Edit ‣ Selection ‣ Restore Selection</span>)</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Expert ROI manipulation with the ROI Manager</p>
 <p>Using the ROI Manager, you can craft your ROIs into more complex shapes: adding or removing other ROIs.</p>
 <p>To do this, first add the main ROIs you want to work with to the manager. Then select them, and choose from among the options:</p>
 <ul class="simple">
-<li><p><span class="guilabel">AND</span> – create a ROI containing only the regions where the selected ROIs overlap</p></li>
-<li><p><span class="guilabel">OR</span> – create a single ROI composed by combining all the selected ROIs</p></li>
-<li><p><span class="guilabel">XOR</span> – create a single ROI containing all the selected ROIs, <em>except</em> the places where they overlap (‘eXclusive OR’)</p></li>
+<li><p><span class="guilabel notranslate">AND</span> – create a ROI containing only the regions where the selected ROIs overlap</p></li>
+<li><p><span class="guilabel notranslate">OR</span> – create a single ROI composed by combining all the selected ROIs</p></li>
+<li><p><span class="guilabel notranslate">XOR</span> – create a single ROI containing all the selected ROIs, <em>except</em> the places where they overlap (‘eXclusive OR’)</p></li>
 </ul>
 </div>
 <figure class="margin align-default" id="id3">
@@ -1067,8 +1076,8 @@ This is another reason why choosing <span class="guilabel">Display label</span> 
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="876df8bf-1cd6-4202-bd22-268993ddf830" name="8be111ad-5c50-40a1-ae15-0749bf3751a0" type="radio">
-</input><label class="sd-tab-label" for="876df8bf-1cd6-4202-bd22-268993ddf830">
+<input checked="checked" id="bd61e508-30bd-40b1-bcf3-98592504c3da" name="6fc54da2-5131-474f-8d30-db61c0c5446c" type="radio">
+</input><label class="sd-tab-label" for="bd61e508-30bd-40b1-bcf3-98592504c3da">
 Practical</label><div class="sd-tab-content docutils">
 <p>For <a class="reference internal" href="#fig-rois-mask"><span class="std std-numref">Fig. 14</span></a>, I used the ROI Manager to create a ROI with a hole in it.</p>
 <p>To do this in <em>happy_cell.tif</em>, you can</p>
@@ -1076,16 +1085,16 @@ Practical</label><div class="sd-tab-content docutils">
 <li><p>Draw one ROI around the full cell, and add it to the ROI Manager</p></li>
 <li><p>Draw a second ROI around the nucleus, and add it to the ROI Manager</p></li>
 </ol>
-<p>Then you can select both ROIs and use <em>one</em> of the combine operations – <span class="guilabel">AND</span>, <span class="guilabel">OR</span>, <span class="guilabel">XOR</span> – to subtract the nucleus ROI from the cell ROI.
+<p>Then you can select both ROIs and use <em>one</em> of the combine operations – <span class="guilabel notranslate">AND</span>, <span class="guilabel notranslate">OR</span>, <span class="guilabel notranslate">XOR</span> – to subtract the nucleus ROI from the cell ROI.
 The end result is a ROI representing the cytoplasm, with the nucleus removed.</p>
 <p>Which combine operation do you need to achieve this?</p>
-<p><strong>Tip:</strong> Remember <span class="menuselection">Edit ‣ Selection ‣ Create Mask</span> will let you see which pixels are inside and which pixels are outside the ROI.</p>
+<p><strong>Tip:</strong> Remember <span class="menuselection notranslate">Edit ‣ Selection ‣ Create Mask</span> will let you see which pixels are inside and which pixels are outside the ROI.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/happy_cell.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="a68d2be1-6ec9-4050-a506-621ecbfe420e" name="8be111ad-5c50-40a1-ae15-0749bf3751a0" type="radio">
-</input><label class="sd-tab-label" for="a68d2be1-6ec9-4050-a506-621ecbfe420e">
+<input id="bb6a33fa-1e7b-4927-853d-a0c945633671" name="6fc54da2-5131-474f-8d30-db61c0c5446c" type="radio">
+</input><label class="sd-tab-label" for="bb6a33fa-1e7b-4927-853d-a0c945633671">
 Solution</label><div class="sd-tab-content docutils">
-<p><span class="guilabel">XOR</span> (‘exclusive OR’) provides a ROI that contains pixels that are inside the cell OR inside the nucleus, but NOT both.</p>
+<p><span class="guilabel notranslate">XOR</span> (‘exclusive OR’) provides a ROI that contains pixels that are inside the cell OR inside the nucleus, but NOT both.</p>
 </div>
 </div>
 </section>
@@ -1096,10 +1105,10 @@ Solution</label><div class="sd-tab-content docutils">
 <p><kbd class="kbd docutils literal notranslate">B</kbd> for <em><strong>B</strong>overlay</em>: shortcut to add a ROI to an overlay</p>
 </aside>
 <p>Overlays also contain a list of ROIs that are shown simultaneously on the image.
-However, unlike with the ROI Manager, ROIs stored on an overlay do <em>not</em> usually affect the <span class="guilabel">Measure</span> command.</p>
+However, unlike with the ROI Manager, ROIs stored on an overlay do <em>not</em> usually affect the <span class="guilabel notranslate">Measure</span> command.</p>
 <p>Overlays are therefore suitable for storing annotations for visualization purposes.
 You can think of them as existing on their own separate layer, so that adding and removing the overlay does not mess up the underlying pixel values (<a class="reference internal" href="#fig-rois"><span class="std std-numref">Fig. 17</span></a>).</p>
-<p>The main commands for working with overlays are found in the <span class="menuselection">Image ‣ Overlay ‣</span> submenu, where you can get started by drawing a ROI and choosing <span class="guilabel">Add Selection</span> (or simply press <kbd class="kbd docutils literal notranslate">B</kbd>).
+<p>The main commands for working with overlays are found in the <span class="menuselection notranslate">Image ‣ Overlay ‣</span> submenu, where you can get started by drawing a ROI and choosing <span class="guilabel notranslate">Add Selection</span> (or simply press <kbd class="kbd docutils literal notranslate">B</kbd>).
 The same submenu also provides commands to transfer ROIs between the overlay and the ROI Manager.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1109,13 +1118,13 @@ The same submenu also provides commands to transfer ROIs between the overlay and
 </section>
 <section id="saving-rois">
 <h3>Saving ROIs<a class="headerlink" href="#saving-rois" title="Permalink to this headline">#</a></h3>
-<p>Individual ROIs, currently active on an image, can be saved simply by choosing <span class="menuselection">File ‣ Save As ‣ Selection…</span></p>
-<p>The ROI Manager also has a <span class="guilabel">Save…</span> command (under <span class="guilabel">More</span>), which will save whichever ROIs are currently selected in the manager (or, if none are selected, all of them).</p>
+<p>Individual ROIs, currently active on an image, can be saved simply by choosing <span class="menuselection notranslate">File ‣ Save As ‣ Selection…</span></p>
+<p>The ROI Manager also has a <span class="guilabel notranslate">Save…</span> command (under <span class="guilabel notranslate">More</span>), which will save whichever ROIs are currently selected in the manager (or, if none are selected, all of them).</p>
 <p>Overlays are fixed to specific images and do not have their own special save command, but will nonetheless be included if you save the image as a TIFF file (ImageJ’s default format).
 Any currently-active ROI will also be saved in a TIFF.</p>
 <p>This is all fine if you work only in ImageJ or Fiji, but unfortunately if you try to view your ROIs in other software it is highly unlikely to work properly.
 The ROI format is specific to ImageJ.</p>
-<p>The way around this is to use the <span class="menuselection">Image ‣ Overlay ‣ Flatten</span> command.
+<p>The way around this is to use the <span class="menuselection notranslate">Image ‣ Overlay ‣ Flatten</span> command.
 This creates an <em>RGB copy of the image in which the pixel values have been changed</em> so that any ROIs or overlays will appear whenever you open the image elsewhere.
 Therefore you may well want to use this command when creating figures or presentations, but you do <em>not</em> want to subsequently apply your analysis to the image you have flattened – always use the original instead.</p>
 <p>For more details on the impact of converting an image to RGB, see <a class="reference internal" href="../4-colors/colors.html#chap-colors"><span class="std std-ref">Channels &amp; colors</span></a>.</p>
@@ -1143,8 +1152,8 @@ Flattened images may appear the same on screen, but are invariably RGB (see <a c
 <img alt="../../../_images/annotated_cyclists.png" src="../../../_images/annotated_cyclists.png" />
 </aside>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="b8a8827c-de4c-4beb-b35b-72fbfeee64fa" name="7b3d4bb0-1097-427c-a142-95bc9e596ee9" type="radio">
-</input><label class="sd-tab-label" for="b8a8827c-de4c-4beb-b35b-72fbfeee64fa">
+<input checked="checked" id="c1aa615b-1ee5-42b2-813f-f3d3be417903" name="ab4aec29-056b-4174-a206-0b321ed89e66" type="radio">
+</input><label class="sd-tab-label" for="c1aa615b-1ee5-42b2-813f-f3d3be417903">
 Practical</label><div class="sd-tab-content docutils">
 <p>Open the images <em>Annotated_Cyclists_1.tif</em> and <em>Annotated_Cyclists_2.tif</em>, which depict the 3 main cyclist characteristics I found most disconcerting as a pedestrian in Heidelberg.</p>
 <p>The images should initially look the same, but in one the text is an overlay, while in the other the image has been flattened.
@@ -1152,8 +1161,8 @@ Which is which? Try to think of several ways to investigate this.</p>
 <p><strong>Tip:</strong> Zooming in may help. So might searching the menus for overlay-related commands (aided by <kbd class="kbd docutils literal notranslate">L</kbd>).</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_1.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_2.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="c389fad5-1d2f-4e82-8f49-553e627261c5" name="7b3d4bb0-1097-427c-a142-95bc9e596ee9" type="radio">
-</input><label class="sd-tab-label" for="c389fad5-1d2f-4e82-8f49-553e627261c5">
+<input id="0b50786f-e07f-467e-8104-6699333c1e6e" name="ab4aec29-056b-4174-a206-0b321ed89e66" type="radio">
+</input><label class="sd-tab-label" for="0b50786f-e07f-467e-8104-6699333c1e6e">
 Solution</label><div class="sd-tab-content docutils">
 <p><em>Annotated_Cyclists_1.tif</em> is the one with the overlay.</p>
 <p>Five ways to determine whether an annotation is an overlay or not:</p>
@@ -1165,38 +1174,38 @@ If it remains smooth, then it is an overlay.</p></li>
 If the values are all the same where the annotation is present, but different elsewhere, then it is unlikely to be an overlay: the annotation is influencing the pixel values.</p></li>
 <li><p>Using the paintbrush <img alt="../../../_images/brush.png" src="../../../_images/brush.png" /> tool from the toolbar, try putting some other color where the annotation appears.
 If the annotation remains visible on top of where you drew, it must be on an overlay.</p></li>
-<li><p>Choose <span class="menuselection">Image ‣ Overlay ‣ Hide Overlay</span> and see if the annotation disappears.</p></li>
-<li><p>Choose <span class="menuselection">Image ‣ Overlay ‣ To ROI Manager</span> and see if anything happens at all.</p></li>
+<li><p>Choose <span class="menuselection notranslate">Image ‣ Overlay ‣ Hide Overlay</span> and see if the annotation disappears.</p></li>
+<li><p>Choose <span class="menuselection notranslate">Image ‣ Overlay ‣ To ROI Manager</span> and see if anything happens at all.</p></li>
 </ol>
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="ac6d5ae4-5789-4493-b81f-4c211b78c63c" name="e893c3f7-7f31-443d-ad17-adf94110b26e" type="radio">
-</input><label class="sd-tab-label" for="ac6d5ae4-5789-4493-b81f-4c211b78c63c">
+<input checked="checked" id="22abb254-756e-4ec0-8e1c-3a80358c298f" name="57e4184a-e291-4e1b-94a0-3fdaf90312d6" type="radio">
+</input><label class="sd-tab-label" for="22abb254-756e-4ec0-8e1c-3a80358c298f">
 Practical</label><div class="sd-tab-content docutils">
 <p>Using the cyclist image containing the overlay from the previous practical, rearrange the annotations so that they are each positioned next to different cyclists.</p>
-<p>You could do this by deleting the overlay and starting again, but there are other, faster possibilities (using a technique mentioned before, or the <span class="menuselection">Image ‣ Overlay ‣ To ROI Manager</span> command).</p>
+<p>You could do this by deleting the overlay and starting again, but there are other, faster possibilities (using a technique mentioned before, or the <span class="menuselection notranslate">Image ‣ Overlay ‣ To ROI Manager</span> command).</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_1.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/Annotated_Cyclists_2.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="9fc646d8-4a76-42ef-b7ec-06b3be190189" name="e893c3f7-7f31-443d-ad17-adf94110b26e" type="radio">
-</input><label class="sd-tab-label" for="9fc646d8-4a76-42ef-b7ec-06b3be190189">
+<input id="8dd09803-33c2-4e94-8aa0-a7e3d899103c" name="57e4184a-e291-4e1b-94a0-3fdaf90312d6" type="radio">
+</input><label class="sd-tab-label" for="8dd09803-33c2-4e94-8aa0-a7e3d899103c">
 Solution</label><div class="sd-tab-content docutils">
 <p>Click the annotation while holding down the <kbd class="kbd docutils literal notranslate">Alt</kbd> key, to bring it to life so it can be moved around again.
-This only works if certain tools are selected, e.g. <span class="guilabel">Rectangle</span> or <span class="guilabel">Text</span>, because some other tools have more overriding functions, such as zooming in or scrolling.</p>
+This only works if certain tools are selected, e.g. <span class="guilabel notranslate">Rectangle</span> or <span class="guilabel notranslate">Text</span>, because some other tools have more overriding functions, such as zooming in or scrolling.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="generating-histograms">
 <h2>Generating histograms<a class="headerlink" href="#generating-histograms" title="Permalink to this headline">#</a></h2>
-<p>Creating a histogram in ImageJ, via <span class="menuselection">Analyze ‣ Histogram</span> or simply pressing <kbd class="kbd docutils literal notranslate">H</kbd>, results in a new histogram window being created.
-Like with <span class="menuselection">Analyze ‣ Measure</span>, this will use a ROI if it is available; otherwise it will use the full image.</p>
+<p>Creating a histogram in ImageJ, via <span class="menuselection notranslate">Analyze ‣ Histogram</span> or simply pressing <kbd class="kbd docutils literal notranslate">H</kbd>, results in a new histogram window being created.
+Like with <span class="menuselection notranslate">Analyze ‣ Measure</span>, this will use a ROI if it is available; otherwise it will use the full image.</p>
 <p>An ImageJ histogram is displayed above some basic summary statistics and four intriguing buttons:</p>
 <ul class="simple">
-<li><p><span class="guilabel">List</span> – to list the actual bins and counts associated with the histogram</p></li>
-<li><p><span class="guilabel">Copy</span> – to copy the list above to the clipboard</p></li>
-<li><p><span class="guilabel">Log</span> – to change the y axis to show the log of the counts for each bin; this is helpful to distinguish between counts that are very small</p></li>
-<li><p><span class="guilabel">Live</span> – to make the histogram responsive to whatever you do with the image – including changing the LUT, or any ROI</p></li>
+<li><p><span class="guilabel notranslate">List</span> – to list the actual bins and counts associated with the histogram</p></li>
+<li><p><span class="guilabel notranslate">Copy</span> – to copy the list above to the clipboard</p></li>
+<li><p><span class="guilabel notranslate">Log</span> – to change the y axis to show the log of the counts for each bin; this is helpful to distinguish between counts that are very small</p></li>
+<li><p><span class="guilabel notranslate">Live</span> – to make the histogram responsive to whatever you do with the image – including changing the LUT, or any ROI</p></li>
 </ul>
 <figure class="align-center" id="id4">
 <a class="reference internal image-reference" href="../../../_images/measure-imagej-histogram.png"><img alt="../../../_images/measure-imagej-histogram.png" src="../../../_images/measure-imagej-histogram.png" style="width: 651.6999999999999px; height: 296.09999999999997px;" /></a>
@@ -1213,7 +1222,7 @@ We will revisit this in <a class="reference internal" href="../5-pixel_size/pixe
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="fn-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>If you have a stack, you also may need to explore <span class="guilabel">More &gt;&gt; Options…</span> to define whether all ROIs are shown on all slices, or only on the slices on which they were first created.</p>
+<dd><p>If you have a stack, you also may need to explore <span class="guilabel notranslate">More &gt;&gt; Options…</span> to define whether all ROIs are shown on all slices, or only on the slices on which they were first created.</p>
 </dd>
 </dl>
 </section>

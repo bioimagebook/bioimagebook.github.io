@@ -36,10 +36,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/design-tabs.js"></script>
@@ -49,6 +52,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://bioimagebook.github.io/chapters/2-processing/2-point_operations/imagej.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Thresholding" href="../3-thresholding/thresholding.html" />
@@ -133,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../0-preamble/disclaimer.html">
    Disclaimer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../CHANGELOG.html">
+   Changelog
   </a>
  </li>
 </ul>
@@ -787,16 +796,16 @@ It shows where to find the main point operations, including some tips (and warni
 <section id="duplicating-images">
 <h3>Duplicating images<a class="headerlink" href="#duplicating-images" title="Permalink to this headline">#</a></h3>
 <p>One of the most important ImageJ shortcuts to learn is <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">D</kbd></kbd> to <strong>duplicate the image</strong>.
-This applies the command <span class="menuselection">Image ‣ Duplicate…</span>.</p>
+This applies the command <span class="menuselection notranslate">Image ‣ Duplicate…</span>.</p>
 <p>Being able to quickly duplicate an image matters for two main reasons:</p>
 <ol class="simple">
 <li><p>We often want to process duplicates of an image in different ways, and then combine or compare the results.</p></li>
-<li><p>Mistakes happen, and <span class="menuselection">Edit ‣ Undo</span> is rather limited; it can undo <em>some</em> processing steps applied to a single image slice, but not always… and it can’t undo operations applied to image stacks</p></li>
+<li><p>Mistakes happen, and <span class="menuselection notranslate">Edit ‣ Undo</span> is rather limited; it can undo <em>some</em> processing steps applied to a single image slice, but not always… and it can’t undo operations applied to image stacks</p></li>
 </ol>
 <p>When working with an image in ImageJ, I almost always have at least one duplicate lingering around for when when things inevitably go wrong.</p>
-<p>But <span class="menuselection">Image ‣ Duplicate…</span> has an extra, hidden bonus: it’s supports extracting just a part of the image.
+<p>But <span class="menuselection notranslate">Image ‣ Duplicate…</span> has an extra, hidden bonus: it’s supports extracting just a part of the image.
 This is controlled both by any ROI and by selecting subsets of channels, z-slices or time points where relevant.
-I frequently use duplication as a way to extract the channel from an image, as a more convenient alternative to <span class="menuselection">Image ‣ Color ‣ Split Channels</span>.</p>
+I frequently use duplication as a way to extract the channel from an image, as a more convenient alternative to <span class="menuselection notranslate">Image ‣ Color ‣ Split Channels</span>.</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-points-duplicate.png"><img alt="../../../_images/imagej-points-duplicate.png" class="align-center" src="../../../_images/imagej-points-duplicate.png" style="width: 60%;" /></a>
 <div class="admonition-why-can-t-imagej-s-undo-undo-much admonition">
 <p class="admonition-title">Why can’t ImageJ’s ‘Undo’ undo much?</p>
@@ -812,22 +821,22 @@ If you suspect you might regret a processing step, then it’s best to always du
 </section>
 <section id="converting-to-32-bit">
 <h3>Converting to 32-bit<a class="headerlink" href="#converting-to-32-bit" title="Permalink to this headline">#</a></h3>
-<p>The second thing I often do when processing an image in ImageJ is to <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html#sec-bits-type"><span class="std std-ref">convert it to 32-bit floating point</span></a>, using <span class="menuselection">Image ‣ Type ‣ 32-bit</span>.</p>
+<p>The second thing I often do when processing an image in ImageJ is to <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html#sec-bits-type"><span class="std std-ref">convert it to 32-bit floating point</span></a>, using <span class="menuselection notranslate">Image ‣ Type ‣ 32-bit</span>.</p>
 <p>This isn’t <em>always</em> essential, but we will soon see examples where the type of the image makes a difference to the result.
 So you should always at least consider converting.</p>
 </section>
 </section>
 <section id="point-operations-for-single-images">
 <h2>Point operations for single images<a class="headerlink" href="#point-operations-for-single-images" title="Permalink to this headline">#</a></h2>
-<p>Many point operations for single images are found in the <span class="menuselection">Process ‣ Math ‣</span> submenu.
-At the top of the list come the arithmetic operations: <span class="menuselection">Add…</span>, <span class="menuselection">Subtract…</span>, <span class="menuselection">Multiply…</span> and <span class="menuselection">Divide…</span>.</p>
+<p>Many point operations for single images are found in the <span class="menuselection notranslate">Process ‣ Math ‣</span> submenu.
+At the top of the list come the arithmetic operations: <span class="menuselection notranslate">Add…</span>, <span class="menuselection notranslate">Subtract…</span>, <span class="menuselection notranslate">Multiply…</span> and <span class="menuselection notranslate">Divide…</span>.</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <img alt="../../../_images/spooked.png" src="../../../_images/spooked.png" />
 </aside>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="032571b8-86b3-41eb-84d6-06f14f9db2c7" name="061537af-4cdd-40c4-a4a1-0303733bc407" type="radio">
-</input><label class="sd-tab-label" for="032571b8-86b3-41eb-84d6-06f14f9db2c7">
+<input checked="checked" id="d98d29a9-a676-4c13-ae52-556e6b095b5e" name="79b62131-7f01-49cf-9f62-1dd3fc142b1a" type="radio">
+</input><label class="sd-tab-label" for="d98d29a9-a676-4c13-ae52-556e6b095b5e">
 Practical</label><div class="sd-tab-content docutils">
 <p>Open the image <em>Spooked_16-bit.tif</em>, and apply <em>only</em> the following steps:</p>
 <ul class="simple">
@@ -840,51 +849,51 @@ Practical</label><div class="sd-tab-content docutils">
 Can you explain the result?</p>
 <p><a class="reference external" href="https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-data/blob/main/images/Spooked_16-bit.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="83b4dfe2-9d90-4142-8e46-87623ad48d5f" name="061537af-4cdd-40c4-a4a1-0303733bc407" type="radio">
-</input><label class="sd-tab-label" for="83b4dfe2-9d90-4142-8e46-87623ad48d5f">
+<input id="e36b4ce1-1ef8-466a-a1ef-e77550ad3f1a" name="79b62131-7f01-49cf-9f62-1dd3fc142b1a" type="radio">
+</input><label class="sd-tab-label" for="e36b4ce1-1ef8-466a-a1ef-e77550ad3f1a">
 Solution</label><div class="sd-tab-content docutils">
 <p>Firstly, the commands you need to run are:</p>
 <ul class="simple">
-<li><p><span class="menuselection">Analyze ‣ Measure</span>, or press <kbd class="kbd docutils literal notranslate">M</kbd></p></li>
-<li><p><span class="menuselection">Process ‣ Math ‣ Subtract…</span> with the value 600</p></li>
-<li><p><span class="menuselection">Process ‣ Math ‣ Add…</span> with the value 600</p></li>
-<li><p><span class="menuselection">Analyze ‣ Measure</span>, or press <kbd class="kbd docutils literal notranslate">M</kbd></p></li>
+<li><p><span class="menuselection notranslate">Analyze ‣ Measure</span>, or press <kbd class="kbd docutils literal notranslate">M</kbd></p></li>
+<li><p><span class="menuselection notranslate">Process ‣ Math ‣ Subtract…</span> with the value 600</p></li>
+<li><p><span class="menuselection notranslate">Process ‣ Math ‣ Add…</span> with the value 600</p></li>
+<li><p><span class="menuselection notranslate">Analyze ‣ Measure</span>, or press <kbd class="kbd docutils literal notranslate">M</kbd></p></li>
 </ul>
 <p>When I do this, I get the following results table:</p>
 <img alt="../../../_images/points-spooked-subtraction.png" class="align-center" src="../../../_images/points-spooked-subtraction.png" />
 <p>The reason the mean values differ is because we have a 16-bit image.
 After subtraction, any values that were less than 600 become clipped to zero.
 All these become 600 after the addition, pushing up the overall mean.</p>
-<p>If you didn’t see this effect, then I would guess you had the foresight to run <span class="menuselection">Image ‣ Type ‣ 32-bit</span>.
+<p>If you didn’t see this effect, then I would guess you had the foresight to run <span class="menuselection notranslate">Image ‣ Type ‣ 32-bit</span>.
 If you do this, the mean values match after all.</p>
 </div>
 </div>
-<p>The <span class="menuselection">Process ‣ Math ‣ Log…</span> and <span class="menuselection">Process ‣ Math ‣ Gamma…</span> commands implement the log and gamma transforms respectively.
+<p>The <span class="menuselection notranslate">Process ‣ Math ‣ Log…</span> and <span class="menuselection notranslate">Process ‣ Math ‣ Gamma…</span> commands implement the log and gamma transforms respectively.
 The gamma transform is more common, since it contains an adjustable gamma parameter that can be used to tune the effect.</p>
 <div class="warning admonition">
 <p class="admonition-title">Beware of the bit-depth with nonlinear transforms!</p>
 <p>When applying gamma or log transforms to 8-bit or 16-bit images, ImageJ applies some additional (linear) rescaling to the result so that the output falls within the range supported by the image.</p>
 <p>This rescaling isn’t needed for 32-bit images.
 This means that if you apply either command to a 32-bit image then it can seem that the image disappears.
-You’ll need to follow up by using <span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> to reset the LUT display range to see the output properly.</p>
+You’ll need to follow up by using <span class="menuselection notranslate">Image ‣ Adjust ‣ Brightness/Contrast…</span> to reset the LUT display range to see the output properly.</p>
 </div>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <img alt="../../../_images/spooked-gamma.png" src="../../../_images/spooked-gamma.png" />
 </aside>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="f1cbc68b-a46d-419f-81ac-2b74cd141e7b" name="812a0584-ff11-4264-8bba-8d302e63e09a" type="radio">
-</input><label class="sd-tab-label" for="f1cbc68b-a46d-419f-81ac-2b74cd141e7b">
+<input checked="checked" id="35496599-70ea-4159-ab51-d880d90d97b9" name="0a602d08-08a8-4e3d-955b-643635cbadc0" type="radio">
+</input><label class="sd-tab-label" for="35496599-70ea-4159-ab51-d880d90d97b9">
 Practical</label><div class="sd-tab-content docutils">
-<p>Explore the use of <span class="menuselection">Process ‣ Math ‣ Gamma…</span> for enhancing the contrast of <em>Spooked_16-bit.tif</em>.</p>
+<p>Explore the use of <span class="menuselection notranslate">Process ‣ Math ‣ Gamma…</span> for enhancing the contrast of <em>Spooked_16-bit.tif</em>.</p>
 <p>If you want to see both the human and the ghost, should the gamma value be less than 1, equal to 1, or greater than 1?</p>
-<p><strong>Tip:</strong> To get a feeling for how the values are changing, create a histogram of the image first and press the <span class="guilabel">Live</span> button on the histogram.
-Then run the gamma command, turn on the <span class="guilabel">Preview</span> option and adjust the slider.
+<p><strong>Tip:</strong> To get a feeling for how the values are changing, create a histogram of the image first and press the <span class="guilabel notranslate">Live</span> button on the histogram.
+Then run the gamma command, turn on the <span class="guilabel notranslate">Preview</span> option and adjust the slider.
 You should now see a live update of how changing the gamma affects the pixel values.</p>
 <p><a class="reference external" href="https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-data/blob/main/images/Spooked_16-bit.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="566fac9d-80f5-43db-bc11-bc259d17739e" name="812a0584-ff11-4264-8bba-8d302e63e09a" type="radio">
-</input><label class="sd-tab-label" for="566fac9d-80f5-43db-bc11-bc259d17739e">
+<input id="a2641169-60a8-4ed6-a53e-2b1972196617" name="0a602d08-08a8-4e3d-955b-643635cbadc0" type="radio">
+</input><label class="sd-tab-label" for="a2641169-60a8-4ed6-a53e-2b1972196617">
 Solution</label><div class="sd-tab-content docutils">
 <p>The gamma needs to be less than 1.</p>
 <p>When the gamma is equal to 1, it isn’t doing anything at all.
@@ -893,37 +902,37 @@ When it is greater than 1, it’s applying a non-linear adjustment – but not o
 </div>
 <section id="image-inversion">
 <h3>Image inversion<a class="headerlink" href="#image-inversion" title="Permalink to this headline">#</a></h3>
-<p>The <span class="menuselection">Edit ‣ Invert</span> command implements image inversion.</p>
+<p>The <span class="menuselection notranslate">Edit ‣ Invert</span> command implements image inversion.</p>
 <div class="danger admonition">
 <p class="admonition-title">Inverting images or inverting LUTs?</p>
-<p><span class="menuselection">Edit ‣ Invert</span> should not be confused with the <span class="menuselection">Image ‣ Lookup Tables ‣ Invert LUT</span> command, which inverts the LUT but <em>does nothing to the pixel values!</em></p>
+<p><span class="menuselection notranslate">Edit ‣ Invert</span> should not be confused with the <span class="menuselection notranslate">Image ‣ Lookup Tables ‣ Invert LUT</span> command, which inverts the LUT but <em>does nothing to the pixel values!</em></p>
 <p>Moreover, whether the LUT is inverted can be saved inside the file – and so you could potentially open an image and find its LUT was inverted before you even started to do anything, and thereby misjudge whether structures are really brighter or darker than everything else.</p>
-<p><span class="menuselection">File ‣ Open samples ‣ Blobs</span> is an example of this.
+<p><span class="menuselection notranslate">File ‣ Open samples ‣ Blobs</span> is an example of this.
 It took a long time before I realized that the pixel values inside the blobs are higher than the background, because of the sneaky inverted LUT.
 As is often the case, the signs of an inverted LUT are evident in the text at the top of an image window.</p>
 <a class="reference internal image-reference" href="../../../_images/points-blobs-inverting.png"><img alt="../../../_images/points-blobs-inverting.png" class="align-center" src="../../../_images/points-blobs-inverting.png" style="width: 50%;" /></a>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="0469435e-6a6f-4637-8dd2-74685f4ac87c" name="eb588723-14b1-4470-9f87-26243ea413c4" type="radio">
-</input><label class="sd-tab-label" for="0469435e-6a6f-4637-8dd2-74685f4ac87c">
+<input checked="checked" id="a462e3e5-54c9-45ca-8d3e-fae9b8af3f37" name="73028055-d52e-4ffa-9ce8-49b9891980b8" type="radio">
+</input><label class="sd-tab-label" for="a462e3e5-54c9-45ca-8d3e-fae9b8af3f37">
 Practical</label><div class="sd-tab-content docutils">
-<p><span class="menuselection">Edit ‣ Invert</span> works differently when applied to different image types.
+<p><span class="menuselection notranslate">Edit ‣ Invert</span> works differently when applied to different image types.
 Like in the 8-bit case, pixel values are always subtracted from some ‘maximum’.</p>
 <p>How this maximum is determined for 16 and 32-bit images in ImageJ?</p>
 <p><strong>Note:</strong> the methods used for 16 and 32-bit images are different from one another!</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Spooked_16-bit.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/happy_cell.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="8f84eb44-3d78-4214-81f4-08b6d23c09bf" name="eb588723-14b1-4470-9f87-26243ea413c4" type="radio">
-</input><label class="sd-tab-label" for="8f84eb44-3d78-4214-81f4-08b6d23c09bf">
+<input id="b6ad822b-6757-4129-8731-1f19c9f2caed" name="73028055-d52e-4ffa-9ce8-49b9891980b8" type="radio">
+</input><label class="sd-tab-label" for="b6ad822b-6757-4129-8731-1f19c9f2caed">
 Solution</label><div class="sd-tab-content docutils">
 <p>When I first wrote this question, to invert a 16-bit image pixel were subtracted from <em>the maximum value within the original image</em>.
 This is also true for stacks: the maximum value in the entire stack is found.</p>
-<p>Since ImageJ v1.53k, the maximum value of 65535 is used… unless you happen to have a different <span class="guilabel">Unsigned 6-bit range</span> value specified via the <span class="guilabel">Set</span> button via the <em>Brightness &amp; Contrast</em> dialog.
+<p>Since ImageJ v1.53k, the maximum value of 65535 is used… unless you happen to have a different <span class="guilabel notranslate">Unsigned 6-bit range</span> value specified via the <span class="guilabel notranslate">Set</span> button via the <em>Brightness &amp; Contrast</em> dialog.
 I only know about this sneaky alternative option through the <a class="reference external" href="https://imagej.nih.gov/ij/notes.html">ImageJ release notes</a>.</p>
-<p>For 32-bit image inversion, the pixels are subtracted from the <em>display maximum</em>, i.e. whatever maximum is set in the <span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> dialog box.
+<p>For 32-bit image inversion, the pixels are subtracted from the <em>display maximum</em>, i.e. whatever maximum is set in the <span class="menuselection notranslate">Image ‣ Adjust ‣ Brightness/Contrast…</span> dialog box.
 Consequently, <em>inverting a 32-bit image can give different results each time it is applied if the contrast settings are not kept the same!</em></p>
 <p>I personally dislike this unpredictable weirdness.
-I would happily apply <span class="menuselection">Edit ‣ Invert</span> to an 8-bit image.
+I would happily apply <span class="menuselection notranslate">Edit ‣ Invert</span> to an 8-bit image.
 For anything else, I’d generally rather convert to 32-bit and multiply by -1 – so that I know the results should be repeatable, regardless of brightess &amp; contrast settings.</p>
 </div>
 </div>
@@ -931,7 +940,7 @@ For anything else, I’d generally rather convert to 32-bit and multiply by -1 �
 </section>
 <section id="the-image-calculator">
 <h2>The Image Calculator<a class="headerlink" href="#the-image-calculator" title="Permalink to this headline">#</a></h2>
-<p><span class="menuselection">Process ‣ Math ‣ Image Calculator…</span> is used to combine two images in various ways.
+<p><span class="menuselection notranslate">Process ‣ Math ‣ Image Calculator…</span> is used to combine two images in various ways.
 It is one of ImageJ’s most indispensable commands.</p>
 <figure class="align-center" id="id1">
 <img alt="../../../_images/points-image-calculator.png" src="../../../_images/points-image-calculator.png" />
@@ -940,22 +949,22 @@ It is one of ImageJ’s most indispensable commands.</p>
 </figcaption>
 </figure>
 <p>But beware of the bit-depth and type!
-If any of the original images are 8 or 16-bit, then the result might require clipping or rounding, in which case selecting the option to create a <span class="guilabel">32-bit (float) result</span> may be necessary to get the expected output.</p>
+If any of the original images are 8 or 16-bit, then the result might require clipping or rounding, in which case selecting the option to create a <span class="guilabel notranslate">32-bit (float) result</span> may be necessary to get the expected output.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="1313f70e-ca77-4daa-8a47-2eb813199340" name="6d56507d-914d-4dc1-854c-6b4157c3ee50" type="radio">
-</input><label class="sd-tab-label" for="1313f70e-ca77-4daa-8a47-2eb813199340">
+<input checked="checked" id="d23c0556-19ec-47bf-9a3f-4df5e4cc5286" name="100cbe39-f613-4f74-8d35-2d533330ddf6" type="radio">
+</input><label class="sd-tab-label" for="d23c0556-19ec-47bf-9a3f-4df5e4cc5286">
 Practical</label><div class="sd-tab-content docutils">
-<p><span class="menuselection">Process ‣ Math ‣ Image Calculator…</span> finally makes it possible for us to check whether the pixel values of two images are all identical – without relying on summary measurements or histograms.</p>
+<p><span class="menuselection notranslate">Process ‣ Math ‣ Image Calculator…</span> finally makes it possible for us to check whether the pixel values of two images are all identical – without relying on summary measurements or histograms.</p>
 <p>Use it to determine which two of the images <em>Same_1.tif</em>, <em>Same_2.tif</em> and <em>Same_3.tif</em> are identical in terms of pixel values.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Same_1.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/Same_2.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/Same_3.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="7fdd006b-cd4b-4928-bb0b-5a8d5681e6ea" name="6d56507d-914d-4dc1-854c-6b4157c3ee50" type="radio">
-</input><label class="sd-tab-label" for="7fdd006b-cd4b-4928-bb0b-5a8d5681e6ea">
+<input id="deec10f3-8e62-4368-a2c2-69cf8d63fa3d" name="100cbe39-f613-4f74-8d35-2d533330ddf6" type="radio">
+</input><label class="sd-tab-label" for="deec10f3-8e62-4368-a2c2-69cf8d63fa3d">
 Answer</label><div class="sd-tab-content docutils">
 <p>My preferred way to check this is to subtract the images from one another, making sure that the result is 32-bit (in case there are negative values). Doing this should reveal something hidden in the image <em>Same_2.tif</em>.
 Note that the contrast settings differ between <em>Same_1.tif</em> and <em>Same_3.tif</em>, so they may <em>look</em> different.</p>
-<p>(Note that the calculator’s <span class="guilabel">Difference</span> or <span class="guilabel">Divide</span> commands could also be used.
-<span class="guilabel">XOR</span> would work as well, but its output is harder to interpret since it involves comparing individual bits used to store each pixel value and gives an output where all matching bits are 0 and all non-matching bits are 1.
+<p>(Note that the calculator’s <span class="guilabel notranslate">Difference</span> or <span class="guilabel notranslate">Divide</span> commands could also be used.
+<span class="guilabel notranslate">XOR</span> would work as well, but its output is harder to interpret since it involves comparing individual bits used to store each pixel value and gives an output where all matching bits are 0 and all non-matching bits are 1.
 When converted back into actual decimal values and then to colors for us to look at, this can appear strange.
 But at least if the resulting image is not completely black then we know that the original input images were not identical.)</p>
 </div>

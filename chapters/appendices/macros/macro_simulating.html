@@ -36,10 +36,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/design-tabs.js"></script>
@@ -51,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://bioimagebook.github.io/chapters/appendices/macros/macro_simulating.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="prev" title="Difference of Gaussians" href="macro_dog.html" />
@@ -134,6 +138,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../0-preamble/disclaimer.html">
    Disclaimer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../CHANGELOG.html">
+   Changelog
   </a>
  </li>
 </ul>
@@ -895,15 +904,15 @@ After starting the macro recorder, complete the following steps to create the ma
 </figure>
 <ul class="simple">
 <li><p>Ensure the starting image is 32-bit.</p></li>
-<li><p>Run <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur…</span> using a sigma value of 2 to simulate the convolution with the PSF.</p></li>
+<li><p>Run <span class="menuselection notranslate">Process ‣ Filters ‣ Gaussian Blur…</span> using a sigma value of 2 to simulate the convolution with the PSF.</p></li>
 <li><p>Here, we will assume that there are some background photons from other sources, but around the same number at every pixel in the image.
-So we can simply add a constant to this image using <span class="menuselection">Add…</span>.
+So we can simply add a constant to this image using <span class="menuselection notranslate">Add…</span>.
 The value should be small, perhaps 10.</p></li>
 <li><p>The image now contains the ‘average rates of photon emission’ that we would normally like to have for one particular exposure time (i.e. it is noise-free).
 If we change the exposure time, we should change the pixel values similarly so that the rates remain the same.
-Because adjusting the exposure works like a multiplication, we can use the <span class="menuselection">Process ‣ Math ‣ Multiply…</span> command. Set it to a ‘default’ value of 1 for now.</p></li>
+Because adjusting the exposure works like a multiplication, we can use the <span class="menuselection notranslate">Process ‣ Math ‣ Multiply…</span> command. Set it to a ‘default’ value of 1 for now.</p></li>
 <li><p>To convert the photon emission rates into actual photon counts that we could potentially detect, we need to simulate photon noise by replacing each pixel by a random value from a Poisson distribution that that has the same <span class="math notranslate nohighlight">\(\lambda\)</span> as the rate itself.
-At the time of writing, there’s no built-in command in ImageJ or Fiji to simulate Poisson noise but we can install <em>RandomJ</em> using the instructions at <a class="reference external" href="https://imagescience.org/meijering/software/randomj/">https://imagescience.org/meijering/software/randomj/</a>. Then add noise by calling <span class="menuselection">Plugins ‣ RandomJ ‣ RandomJ Poisson</span>, making sure to set the <span class="guilabel">Insertion:</span> value to <span class="guilabel">Modulatory</span>. The <span class="guilabel">Mean</span> value will be ignored, so its setting does not matter.</p>
+At the time of writing, there’s no built-in command in ImageJ or Fiji to simulate Poisson noise but we can install <em>RandomJ</em> using the instructions at <a class="reference external" href="https://imagescience.org/meijering/software/randomj/">https://imagescience.org/meijering/software/randomj/</a>. Then add noise by calling <span class="menuselection notranslate">Plugins ‣ RandomJ ‣ RandomJ Poisson</span>, making sure to set the <span class="guilabel notranslate">Insertion:</span> value to <span class="guilabel notranslate">Modulatory</span>. The <span class="guilabel notranslate">Mean</span> value will be ignored, so its setting does not matter.</p>
 <ul>
 <li><p>Notice that all the pixels should now have integer values: you cannot detect parts of photons.</p></li>
 </ul>
@@ -912,9 +921,9 @@ At the time of writing, there’s no built-in command in ImageJ or Fiji to simul
 Make room for it by including another multiplication, although for now set the value to 1 (i.e.
 no extra gain).</p></li>
 <li><p>Simulate the detector offset by adding another constant, e.g. 100.</p></li>
-<li><p>Add read noise with <span class="menuselection">Process ‣ Noise ‣ Add Specified Noise…</span>, setting the standard deviation to 5.</p></li>
-<li><p>Clip any negative values, by running <span class="menuselection">Process ‣ Math ‣ Min…</span> and setting the value to 0.</p></li>
-<li><p>Clip any positive values that exceed the bit-depth, by running <span class="menuselection">Process ‣ Math ‣ Max…</span>. To assume an a 8-bit image, set the value to 255.</p></li>
+<li><p>Add read noise with <span class="menuselection notranslate">Process ‣ Noise ‣ Add Specified Noise…</span>, setting the standard deviation to 5.</p></li>
+<li><p>Clip any negative values, by running <span class="menuselection notranslate">Process ‣ Math ‣ Min…</span> and setting the value to 0.</p></li>
+<li><p>Clip any positive values that exceed the bit-depth, by running <span class="menuselection notranslate">Process ‣ Math ‣ Max…</span>. To assume an a 8-bit image, set the value to 255.</p></li>
 </ul>
 <p>Now is a good time to clean up the code by removing any unnecessary lines, adding suitable comments, and bringing any interesting variables up to the top of the macro so that they can be easily modified later (as in <a class="reference internal" href="macro_dog.html#chap-macro-dog"><span class="std std-ref">Difference of Gaussians</span></a>).
 We should also duplicate the image to avoid accidentally modifying the original.
@@ -982,7 +991,7 @@ To do this, we need to determine the current range of pixel values, which can be
 </div>
 <p>After running this, four variables are created giving the <code class="docutils literal notranslate"><span class="pre">mean</span></code>,
 <code class="docutils literal notranslate"><span class="pre">minimum</span></code> and <code class="docutils literal notranslate"><span class="pre">maximum</span></code> pixel values in the image, along with the total image <code class="docutils literal notranslate"><span class="pre">area</span></code>.
-Normalization is now possible using <span class="menuselection">Subtract</span> and <span class="menuselection">Divide</span> commands, and adjusting their values. In the end this gives us</p>
+Normalization is now possible using <span class="menuselection notranslate">Subtract</span> and <span class="menuselection notranslate">Divide</span> commands, and adjusting their values. In the end this gives us</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getStatistics</span><span class="p">(</span><span class="n">area</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="p">);</span>
 <span class="n">run</span><span class="p">(</span><span class="s">&quot;Subtract...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">min</span><span class="p">);</span>
 <span class="n">divisor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min</span><span class="p">;</span>
@@ -1007,7 +1016,7 @@ For a less bright sample, you will most likely need to increase the exposure tim
 <p>The main idea of <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html#sec-detectors-binning"><span class="std std-ref">binning</span></a> is that the electrons from multiple pixels are added together prior to readout, so that the number of electrons being quantified is bigger relative to the read noise.
 For
 2×2 binning this involves splitting the image into distinct 2×2 pixel blocks, and creating another image in which the value of each pixel is the sum of the values within the corresponding block.</p>
-<p>This could be done using the <span class="menuselection">Image ‣ Transform ‣ Bin</span> command, with a <span class="guilabel">shrink factor</span> of 2 and the <span class="guilabel">Sum</span> bin method.
+<p>This could be done using the <span class="menuselection notranslate">Image ‣ Transform ‣ Bin</span> command, with a <span class="guilabel notranslate">shrink factor</span> of 2 and the <span class="guilabel notranslate">Sum</span> bin method.
 The macro recorder can again be used to get the main code that is needed.
 After some modification, this becomes</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">doBinning</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
@@ -1043,7 +1052,7 @@ Now it’s easier to explore the difference between 8-bit, 12-bit and 14-bit ima
 <h3>Rounding to integer values<a class="headerlink" href="#rounding-to-integer-values" title="Permalink to this headline">#</a></h3>
 <p>The macro has already clipped the image to a specified bit-depth, but it still contains 32-bit data and so potentially has non-integer values that could not be stored in the 8 or 16-bit images a microscope typically provides as output.
 Therefore it remains to round the values to the nearest integer.</p>
-<p>There are a few ways to do this: we can convert the image using <span class="menuselection">Image ‣ Type ‣</span> commands, though then we need to be careful about whether there will be any scaling applied.
+<p>There are a few ways to do this: we can convert the image using <span class="menuselection notranslate">Image ‣ Type ‣</span> commands, though then we need to be careful about whether there will be any scaling applied.
 However, we can avoid thinking about this if we just apply the rounding ourselves.
 To do it we need to visit each pixel, extract its value, round the value to the nearest whole number, and put it back in the image.
 This requires using <strong>loops</strong>.

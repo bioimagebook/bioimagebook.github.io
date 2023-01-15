@@ -36,10 +36,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/design-tabs.js"></script>
@@ -51,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://bioimagebook.github.io/chapters/3-fluorescence/2-formation_spatial/formation_spatial.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Noise" href="../3-formation_noise/formation_noise.html" />
@@ -135,6 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../0-preamble/disclaimer.html">
    Disclaimer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../CHANGELOG.html">
+   Changelog
   </a>
  </li>
 </ul>
@@ -953,16 +962,16 @@ From the side (<strong>xz</strong> or <strong>yz</strong>), this leads to an hou
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="8dd5927b-ee8e-4bc8-994b-fdc911e1c4fa" name="708b03cb-d877-45bf-a214-ac5caade3ab0" type="radio">
-</input><label class="sd-tab-label" for="8dd5927b-ee8e-4bc8-994b-fdc911e1c4fa">
+<input checked="checked" id="6bca4cd1-53ba-4c8d-9520-9cc55ed85e48" name="ede0f264-bfc7-434f-8616-891c57b55b4f" type="radio">
+</input><label class="sd-tab-label" for="6bca4cd1-53ba-4c8d-9520-9cc55ed85e48">
 Question</label><div class="sd-tab-content docutils">
 <p>In focus, a light-emitting point looks like a small, bright blob.
 Out of focus, it’s much less bright and extends over a wider area.</p>
 <p>However, how would you expect the <em>total amount</em> of light to differ in a widefield image depending upon whether a plane is in-focus or not?
 In other words, would you expect more or less light in the focal plane than in other planes above or below it?</p>
 </div>
-<input id="6c23707f-4540-4449-9cbd-3e4026c3eb43" name="708b03cb-d877-45bf-a214-ac5caade3ab0" type="radio">
-</input><label class="sd-tab-label" for="6c23707f-4540-4449-9cbd-3e4026c3eb43">
+<input id="e0548366-eb2a-4de5-a759-e43161af9662" name="ede0f264-bfc7-434f-8616-891c57b55b4f" type="radio">
+</input><label class="sd-tab-label" for="e0548366-eb2a-4de5-a759-e43161af9662">
 Answer</label><div class="sd-tab-content docutils">
 <p>In a widefield image, every plane we can record contains in-focus light along with <em>all</em> the detectable light from <em>all</em> other planes added together.
 Therefore we should expect approximately <em>the same total amount of light</em> within each plane of a <em>z</em>-stack – just differently distributed.
@@ -1136,26 +1145,26 @@ This is is given by:</p>
 <p>The practical importance of these equations is that they reveal the key factors that influence how blurry an image will be.
 This hints at some ways we might be able to reduce blurring at the acquisition stage.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="14cb037c-a12c-404b-8746-1eeb24e07e5d" name="2b4e7f49-536f-4cf2-b817-901d827d3ac0" type="radio">
-</input><label class="sd-tab-label" for="14cb037c-a12c-404b-8746-1eeb24e07e5d">
+<input checked="checked" id="3ee5b61b-e954-4489-81e7-a2807ff106cf" name="0ede843c-308c-4097-8ebf-60160e136fc4" type="radio">
+</input><label class="sd-tab-label" for="3ee5b61b-e954-4489-81e7-a2807ff106cf">
 Question</label><div class="sd-tab-content docutils">
 <p>According to Equation <a class="reference internal" href="#equation-eqn-res-lateral">(1)</a>, the equation for the Airy disk size, what are the two variables we <em>may</em> be able to control that influence the amount of blur in our images?
 And how must they be changed (increased or decreased) for the images to have less blur?</p>
 </div>
-<input id="cefe7df0-ed3c-4eee-9f98-7b872b9fd75d" name="2b4e7f49-536f-4cf2-b817-901d827d3ac0" type="radio">
-</input><label class="sd-tab-label" for="cefe7df0-ed3c-4eee-9f98-7b872b9fd75d">
+<input id="79b8b467-526f-4561-9820-8968daac6011" name="0ede843c-308c-4097-8ebf-60160e136fc4" type="radio">
+</input><label class="sd-tab-label" for="79b8b467-526f-4561-9820-8968daac6011">
 Answer</label><div class="sd-tab-content docutils">
 <p>If the wavelength <span class="math notranslate nohighlight">\(\lambda\)</span> is <em>lower</em> or the objective NA is <em>higher</em>, <span class="math notranslate nohighlight">\(r_{airy}\)</span> decreases and we have less blur.</p>
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="411ace75-1fe4-4d6d-8520-7f43245db435" name="fabebd7e-ca5b-4d8a-a13f-bf3ecd6883ee" type="radio">
-</input><label class="sd-tab-label" for="411ace75-1fe4-4d6d-8520-7f43245db435">
+<input checked="checked" id="d2633ac3-37ea-45eb-84e5-f3b5f4e8f8e2" name="7454bb9a-b92c-4075-a088-58d3c619d73a" type="radio">
+</input><label class="sd-tab-label" for="d2633ac3-37ea-45eb-84e5-f3b5f4e8f8e2">
 Question</label><div class="sd-tab-content docutils">
 <p>Does the NA have more influence on blur in the <em>xy</em> plane, or along the <em>z</em> axis?</p>
 </div>
-<input id="7f6fc2b1-c8ff-4763-991b-de64700b33cf" name="fabebd7e-ca5b-4d8a-a13f-bf3ecd6883ee" type="radio">
-</input><label class="sd-tab-label" for="7f6fc2b1-c8ff-4763-991b-de64700b33cf">
+<input id="c4f32c3b-f10a-4222-88db-45b0107b209b" name="7454bb9a-b92c-4075-a088-58d3c619d73a" type="radio">
+</input><label class="sd-tab-label" for="c4f32c3b-f10a-4222-88db-45b0107b209b">
 Answer</label><div class="sd-tab-content docutils">
 <p>Because of the squaring, the NA has a much greater influence on blur along the <em>z</em> axis than in <em>xy</em>.
 This can be seen clearly in <a class="reference internal" href="#fig-psf-na"><span class="std std-numref">Fig. 138</span></a>.</p>
@@ -1202,8 +1211,8 @@ Therefore, matching the refractive indices of the immersion and embedding media 
 <p>For an interactive tutorial on the effect of using different NAs, see <a class="reference external" href="https://www.microscopyu.com/tutorials/imageformation-airyna">https://www.microscopyu.com/tutorials/imageformation-airyna</a>.</p>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="47a26f22-9e38-446c-9771-4c6682252047" name="47f008af-37c0-4582-a3a0-46816a627230" type="radio">
-</input><label class="sd-tab-label" for="47a26f22-9e38-446c-9771-4c6682252047">
+<input checked="checked" id="cd9c59c9-9b75-40e6-8957-c66c25d8b092" name="47d00e42-0d96-4259-a016-f4c0b5af263a" type="radio">
+</input><label class="sd-tab-label" for="cd9c59c9-9b75-40e6-8957-c66c25d8b092">
 Question</label><div class="sd-tab-content docutils">
 <p>Convince yourself that <span class="math notranslate nohighlight">\(z_{min}\)</span> will be considerably higher than <span class="math notranslate nohighlight">\(r_{airy}\)</span> using one of the following methods:</p>
 <ul class="simple">
@@ -1213,8 +1222,8 @@ This should reveal that the ratio is bigger than 1, i.e. that <span class="math 
 </ul>
 <p>What is the main implication of this observation, in terms of how separated structures need to be along different dimensions for them still to be distinguishable?</p>
 </div>
-<input id="7760c13a-f4aa-4d64-b858-6086ed52522d" name="47f008af-37c0-4582-a3a0-46816a627230" type="radio">
-</input><label class="sd-tab-label" for="7760c13a-f4aa-4d64-b858-6086ed52522d">
+<input id="61e606e0-0cea-41f7-a70d-cbc1dcc485ad" name="47d00e42-0d96-4259-a016-f4c0b5af263a" type="radio">
+</input><label class="sd-tab-label" for="61e606e0-0cea-41f7-a70d-cbc1dcc485ad">
 Answer</label><div class="sd-tab-content docutils">
 <p>The ratio is</p>
 <div class="math notranslate nohighlight">
@@ -1301,15 +1310,15 @@ In the in-focus plane, this is illustrated in <a class="reference internal" href
 <p>It should be kept in mind that the use of <span class="math notranslate nohighlight">\(r_{airy}\)</span> and <span class="math notranslate nohighlight">\(z_{min}\)</span> in the Rayleigh criterion is somewhat arbitrary – and the effects of brightness differences, finite pixel sizes and noise further complicate the situation, so that in practice a greater distance may well be required for us to confidently distinguish structures. Nevertheless, the Rayleigh criterion is helpful to give some idea of the scale of distances involved, i.e.
 hundreds of nanometers when using visible light.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="9dc793ac-6764-480e-993a-39dfcac5666c" name="867b9ad6-4338-412c-be1e-7a7cce4a2605" type="radio">
-</input><label class="sd-tab-label" for="9dc793ac-6764-480e-993a-39dfcac5666c">
+<input checked="checked" id="7e892144-336c-4bde-a281-aa625b678432" name="e9129996-4186-49bc-a6a7-ef4674edbabe" type="radio">
+</input><label class="sd-tab-label" for="7e892144-336c-4bde-a281-aa625b678432">
 Question</label><div class="sd-tab-content docutils">
 <p>Suppose the diameter of the Airy disk is around 500 nm, and you are looking at an image containing separate, well-spaced structures that are 2 nm, 20 nm and 200 nm in size.
 Assuming that you have imaged all of these exactly in focus (after all, you are a brilliant microscopist), how will these structures appear in the image?</p>
 <p><em>Note:</em> This is a particularly important question! Think of both the size and brightness.</p>
 </div>
-<input id="5d6d2d36-d360-451c-a9bd-c2fb2172628b" name="867b9ad6-4338-412c-be1e-7a7cce4a2605" type="radio">
-</input><label class="sd-tab-label" for="5d6d2d36-d360-451c-a9bd-c2fb2172628b">
+<input id="5f2b576c-c00c-4211-8364-b0ca19d91ee5" name="e9129996-4186-49bc-a6a7-ef4674edbabe" type="radio">
+</input><label class="sd-tab-label" for="5f2b576c-c00c-4211-8364-b0ca19d91ee5">
 Answer</label><div class="sd-tab-content docutils">
 <p>Because even an infinitesimally small point cannot appear smaller than the Airy disk in the recorded image, <em>potentially all 3 of these structures look the same!</em> There may be <em>some</em> increase in size visible with the 200 nm structure (because it is larger than a single point, this makes it like many different, slightly-shifted-but-mostly-overlapping Airy disks added together), but it will certainly not appear 10 or 100 times larger than the others.</p>
 <p><em>However</em>, because smaller objects typically emit fewer photons, the smaller structures may well appear less bright – if they are bright enough to be visible at all.
@@ -1322,7 +1331,7 @@ Therefore, at this scale accurate measurements of size are impossible from (conv
 <p>Knowing that the Airy disk resembles a Gaussian function is extremely useful, because any time we see an Airy disk we can fit a 2D Gaussian to it.
 The parameters of the function will then tell us the Gaussian’s center exactly, which corresponds to where the fluorescing structure really is – admittedly not with complete accuracy, but potentially still beyond the accuracy of even the pixel size (noise is the real limitation).
 This idea is fundamental to single-molecule localization techniques, including those in super-resolution microscopes like STORM and PALM, but requires that PSFs are sufficiently well-spaced that they do not interfere with one another and thereby ruin the fitting.</p>
-<p>In ImageJ, we can somewhat approximate this localization by drawing a line profile across the peak of a PSF and then running <span class="menuselection">Analyze ‣ Tools ‣ Curve Fitting…</span>.
+<p>In ImageJ, we can somewhat approximate this localization by drawing a line profile across the peak of a PSF and then running <span class="menuselection notranslate">Analyze ‣ Tools ‣ Curve Fitting…</span>.
 There we can fit a 1D Gaussian function, for which the equation used is</p>
 <div class="math notranslate nohighlight">
 \[y = a + (b-a)e^{\frac{-(x-c)^2)}{2d^2}}\]</div>

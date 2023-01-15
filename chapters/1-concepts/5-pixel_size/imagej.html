@@ -36,10 +36,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/design-tabs.js"></script>
@@ -49,6 +52,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://bioimagebook.github.io/chapters/1-concepts/5-pixel_size/imagej.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Python: Pixel size &amp; dimensions" href="python.html" />
@@ -133,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../0-preamble/disclaimer.html">
    Disclaimer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../CHANGELOG.html">
+   Changelog
   </a>
  </li>
 </ul>
@@ -867,13 +876,13 @@ Along the way, we will see how to generate scale bars and fix images where the p
 </section>
 <section id="pixel-sizes-properties">
 <h2>Pixel sizes &amp; Properties<a class="headerlink" href="#pixel-sizes-properties" title="Permalink to this headline">#</a></h2>
-<p>You can see the pixel size for an image in ImageJ under <span class="menuselection">Image ‣ Properties…</span>.
-These are provided separately as values for <span class="guilabel">Pixel width</span> and <span class="guilabel">Pixel height</span>.</p>
+<p>You can see the pixel size for an image in ImageJ under <span class="menuselection notranslate">Image ‣ Properties…</span>.
+These are provided separately as values for <span class="guilabel notranslate">Pixel width</span> and <span class="guilabel notranslate">Pixel height</span>.</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>A <strong>voxel</strong> is the 3D analogue of a pixel; a ‘volume pixel’.</p>
 </aside>
-<p>There is also an additional value, <span class="guilabel">Voxel depth</span>, which is only relevant for <em>z</em>-stacks; this gives the spacing between <em>z</em>-slices.</p>
+<p>There is also an additional value, <span class="guilabel notranslate">Voxel depth</span>, which is only relevant for <em>z</em>-stacks; this gives the spacing between <em>z</em>-slices.</p>
 <figure class="align-center" id="fig-properties-confocal">
 <a class="reference internal image-reference" href="../../../_images/confocal-properties.png"><img alt="../../../_images/confocal-properties.png" src="../../../_images/confocal-properties.png" style="width: 60%;" /></a>
 <figcaption>
@@ -891,15 +900,15 @@ Otherwise, the pixel sizes are given in the units displayed nearby in the proper
 <p>The pixel width and height are <em>usually</em> the same.
 The voxel depth (where relevant) is often different.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="e50495e2-9904-45e3-a4fc-41b6273af80e" name="181b318b-df0a-455e-b533-d01f06e03e48" type="radio">
-</input><label class="sd-tab-label" for="e50495e2-9904-45e3-a4fc-41b6273af80e">
+<input checked="checked" id="4c474551-77a5-4264-aee3-7711ac8602ec" name="b9e74d41-84d9-451c-8bde-a8d938428a9d" type="radio">
+</input><label class="sd-tab-label" for="4c474551-77a5-4264-aee3-7711ac8602ec">
 Question</label><div class="sd-tab-content docutils">
-<p>One way to check if the pixel size information is set for an image is to use <span class="menuselection">Image ‣ Properties…</span></p>
+<p>One way to check if the pixel size information is set for an image is to use <span class="menuselection notranslate">Image ‣ Properties…</span></p>
 <p>How else can you check this, even more easily?</p>
 <p><strong>Tip:</strong> The answer should already be visible in <a class="reference internal" href="#fig-properties-confocal"><span class="std std-numref">Fig. 42</span></a> and <a class="reference internal" href="#fig-properties-fluorescent"><span class="std std-numref">Fig. 43</span></a>.</p>
 </div>
-<input id="bc49c35e-eb0a-43dc-8201-fe4c12f6066f" name="181b318b-df0a-455e-b533-d01f06e03e48" type="radio">
-</input><label class="sd-tab-label" for="bc49c35e-eb0a-43dc-8201-fe4c12f6066f">
+<input id="6b702ca3-7648-4e51-828a-ca082d4de413" name="b9e74d41-84d9-451c-8bde-a8d938428a9d" type="radio">
+</input><label class="sd-tab-label" for="6b702ca3-7648-4e51-828a-ca082d4de413">
 Answer</label><div class="sd-tab-content docutils">
 <p>The size of the image is given at the top of each image window.
 If the pixel size information is available, this is given in calibrated units.
@@ -930,11 +939,11 @@ Fortunately, typing <em>um</em> works as well – ImageJ automatically converts 
 <p>If you don’t know what the pixel size should be, but you <em>do</em> know the length of some structure in your image, then you can</p>
 <ul class="simple">
 <li><p>Draw a line along the known structure with the line tool <img alt="../../../_images/line.png" src="../../../_images/line.png" /></p></li>
-<li><p>Run <span class="menuselection">Analyze ‣ Set Scale…</span>.</p></li>
+<li><p>Run <span class="menuselection notranslate">Analyze ‣ Set Scale…</span>.</p></li>
 </ul>
-<p>This will automatically populate the <span class="guilabel">Distance in pixels</span> based upon the length of the line.
-You can then input the known physical length and units, then click <span class="guilabel">OK</span>.
-You should check <span class="menuselection">Image ‣ Properties…</span> to confirm that the values have been updated sensibly.</p>
+<p>This will automatically populate the <span class="guilabel notranslate">Distance in pixels</span> based upon the length of the line.
+You can then input the known physical length and units, then click <span class="guilabel notranslate">OK</span>.
+You should check <span class="menuselection notranslate">Image ‣ Properties…</span> to confirm that the values have been updated sensibly.</p>
 <figure class="align-center" id="fig-pixels-set-scale">
 <a class="reference internal image-reference" href="../../../_images/pixels-set-scale-ruler.png"><img alt="../../../_images/pixels-set-scale-ruler.png" src="../../../_images/pixels-set-scale-ruler.png" style="width: 90%;" /></a>
 <figcaption>
@@ -943,18 +952,18 @@ You should check <span class="menuselection">Image ‣ Properties…</span> to c
 </figure>
 <div class="tip admonition">
 <p class="admonition-title">Using <em>Set Scale…</em></p>
-<p>Ideally, <span class="menuselection">Analyze ‣ Set Scale…</span> would be used with a calibration slide to establish the pixel sizes reliably.
-The values can then be transferred to other images acquired with the same settings using <span class="menuselection">Image ‣ Properties…</span> (or a <a class="reference internal" href="../../appendices/macros/macro_intro.html#chap-macro-intro"><span class="std std-ref">macro</span></a>).</p>
-<p>Beware that, if you have drawn a line as described above, the <span class="guilabel">Distance in pixels</span> value is initialized from that line – so <em>don’t</em> change that.
-Rather, <em>do</em> change the <span class="guilabel">Known distance</span> and <span class="guilabel">Unit of length</span> values according to the physical length indicated by the line.</p>
-<p>If the <span class="guilabel">Unit of length</span> should be <em>µm</em> but your keyboard lacks a <em>µ</em>, you can type <em>um</em> instead.</p>
+<p>Ideally, <span class="menuselection notranslate">Analyze ‣ Set Scale…</span> would be used with a calibration slide to establish the pixel sizes reliably.
+The values can then be transferred to other images acquired with the same settings using <span class="menuselection notranslate">Image ‣ Properties…</span> (or a <a class="reference internal" href="../../appendices/macros/macro_intro.html#chap-macro-intro"><span class="std std-ref">macro</span></a>).</p>
+<p>Beware that, if you have drawn a line as described above, the <span class="guilabel notranslate">Distance in pixels</span> value is initialized from that line – so <em>don’t</em> change that.
+Rather, <em>do</em> change the <span class="guilabel notranslate">Known distance</span> and <span class="guilabel notranslate">Unit of length</span> values according to the physical length indicated by the line.</p>
+<p>If the <span class="guilabel notranslate">Unit of length</span> should be <em>µm</em> but your keyboard lacks a <em>µ</em>, you can type <em>um</em> instead.</p>
 </div>
 </section>
 <section id="showing-a-scale-bar">
 <h3>Showing a scale bar<a class="headerlink" href="#showing-a-scale-bar" title="Permalink to this headline">#</a></h3>
 <p>It’s generally good practice to include a scalebar in any figures.
 This is only really meaningful if the pixel sizes are set correctly within the image properties.</p>
-<p>You can create a scalebar using <span class="menuselection">Analyze ‣ Tools ‣ Scale Bar…</span>.</p>
+<p>You can create a scalebar using <span class="menuselection notranslate">Analyze ‣ Tools ‣ Scale Bar…</span>.</p>
 <figure class="align-center" id="fig-scale-bar">
 <a class="reference internal image-reference" href="../../../_images/scale-bar.png"><img alt="../../../_images/scale-bar.png" src="../../../_images/scale-bar.png" style="width: 60%;" /></a>
 <figcaption>
@@ -962,11 +971,11 @@ This is only really meaningful if the pixel sizes are set correctly within the i
 </figcaption>
 </figure>
 <p>There are several options that can be used to adjust the appearance of the scalebar.
-One of the most important is the <span class="guilabel">Overlay</span> option, because this determines whether the scalebar is ‘burned in’ to the image (i.e. the pixel values are modified) or if it’s instead added as a (text) ROI as part of the image overlay.</p>
+One of the most important is the <span class="guilabel notranslate">Overlay</span> option, because this determines whether the scalebar is ‘burned in’ to the image (i.e. the pixel values are modified) or if it’s instead added as a (text) ROI as part of the image overlay.</p>
 <p>My advice is to always add the scalebar as an overlay.
 That means you can remove it again, or adjust its appearance.
 The only disadvantage is that, if you save the image immediately, it might not appear in other software.
-The solution is to <a class="reference internal" href="../4-colors/imagej.html#sec-imagej-flatten"><span class="std std-ref">generate an RGB image</span></a> that includes the overlay as a final step before saving, by using <span class="menuselection">Image ‣ Overlay ‣ Flatten</span>.</p>
+The solution is to <a class="reference internal" href="../4-colors/imagej.html#sec-imagej-flatten"><span class="std std-ref">generate an RGB image</span></a> that includes the overlay as a final step before saving, by using <span class="menuselection notranslate">Image ‣ Overlay ‣ Flatten</span>.</p>
 </section>
 </section>
 <section id="stacks-hyperstacks">
@@ -1000,23 +1009,23 @@ In the case of multichannel images (where there is a ‘channel’ dimension), a
 </section>
 <section id="correcting-dimensions">
 <h3>Correcting dimensions<a class="headerlink" href="#correcting-dimensions" title="Permalink to this headline">#</a></h3>
-<p>Like the pixel size, the dimensions of an image can found under <span class="menuselection">Image ‣ Properties…</span>.</p>
+<p>Like the pixel size, the dimensions of an image can found under <span class="menuselection notranslate">Image ‣ Properties…</span>.</p>
 <p>Sometimes the dimensions can be incorrect.
 This might happen, for example, if different <em>z</em>-slices were wrongly interpreted as time points when a file was opened, or the presence of multiple channels was not spotted.
 Misinterpreting the dimensions can not only affect the display of the image, but also some processing and measurements.</p>
-<p>It’s also possible to change the dimensions through <span class="menuselection">Image ‣ Properties…</span>, but I find that can sometimes be unreliable because of the old stack/hyperstack distinction (i.e. it doesn’t convert a stack to a hyperstack, and therefore doesn’t display all the sliders that are needed).
-A better option is to use <span class="menuselection">Image ‣ Hyperstack ‣ Stack to Hyperstack…</span> to fix dimensions.</p>
+<p>It’s also possible to change the dimensions through <span class="menuselection notranslate">Image ‣ Properties…</span>, but I find that can sometimes be unreliable because of the old stack/hyperstack distinction (i.e. it doesn’t convert a stack to a hyperstack, and therefore doesn’t display all the sliders that are needed).
+A better option is to use <span class="menuselection notranslate">Image ‣ Hyperstack ‣ Stack to Hyperstack…</span> to fix dimensions.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="87e5b037-e96a-4a37-bd30-850c7b99a445" name="9ef04f94-54e4-4ee2-9783-5a98e4d9e49e" type="radio">
-</input><label class="sd-tab-label" for="87e5b037-e96a-4a37-bd30-850c7b99a445">
+<input checked="checked" id="64cc6707-cbdb-4c34-9221-10de34647675" name="53f49f2b-4bb7-4ad5-93e0-f62cb234f4bc" type="radio">
+</input><label class="sd-tab-label" for="64cc6707-cbdb-4c34-9221-10de34647675">
 Practical</label><div class="sd-tab-content docutils">
 <p>Something terrible has befallen the file <em>lost_dimensions.tif</em>, so that it’s displayed as a 3D stack, when in reality it should have more dimensions.</p>
-<p>By inspecting the file, identify how many channels, <em>z</em>-slices and time points it originally contained, and set these using <span class="menuselection">Image ‣ Hyperstack ‣ Stack to Hyperstack…</span> so that it displays properly.
+<p>By inspecting the file, identify how many channels, <em>z</em>-slices and time points it originally contained, and set these using <span class="menuselection notranslate">Image ‣ Hyperstack ‣ Stack to Hyperstack…</span> so that it displays properly.
 What are the correct dimensions?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/lost_dimensions.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="b407d415-c2e4-4ac5-97b3-79642dfabc46" name="9ef04f94-54e4-4ee2-9783-5a98e4d9e49e" type="radio">
-</input><label class="sd-tab-label" for="b407d415-c2e4-4ac5-97b3-79642dfabc46">
+<input id="c779c2ba-b3b4-4b36-8e32-0953f16e116c" name="53f49f2b-4bb7-4ad5-93e0-f62cb234f4bc" type="radio">
+</input><label class="sd-tab-label" for="c779c2ba-b3b4-4b36-8e32-0953f16e116c">
 Solution</label><div class="sd-tab-content docutils">
 <p><em>lost_dimensions.tif</em> should contain 2 channels, 3 <em>z</em>-slices and 16 time points.</p>
 <p>The dimensions are in the default order (<em>xyczt</em>).</p>
@@ -1027,11 +1036,11 @@ Solution</label><div class="sd-tab-content docutils">
 <h3>Plots and profiles<a class="headerlink" href="#plots-and-profiles" title="Permalink to this headline">#</a></h3>
 <p>More dimensions can make data harder to visualize and interpret.
 Reducing dimensions can help.</p>
-<p><span class="menuselection">Analyze ‣ Plot Profile</span> can be used to generate a 1D plot of pixel values along a line within the image.
+<p><span class="menuselection notranslate">Analyze ‣ Plot Profile</span> can be used to generate a 1D plot of pixel values along a line within the image.
 To use it, you can first draw a line ROI <img alt="../../../_images/line.png" src="../../../_images/line.png" />.
 By default, pixel values occurring along the line will be displayed in the plot, however it’s possible to average multiple pixels perpendicular to line if needed.
-To do this, double-click on the line tool and adjust the <span class="guilabel">Line width</span> value.</p>
-<p>It’s also possible to apply <span class="menuselection">Analyze ‣ Plot Profile</span> <kbd class="kbd docutils literal notranslate">K</kbd> to a rectangle <img alt="../../../_images/rectangle.png" src="../../../_images/rectangle.png" />, in which case it will average pixels vertically (default) or horizontally (if the <kbd class="kbd docutils literal notranslate">Alt</kbd> key is pressed).</p>
+To do this, double-click on the line tool and adjust the <span class="guilabel notranslate">Line width</span> value.</p>
+<p>It’s also possible to apply <span class="menuselection notranslate">Analyze ‣ Plot Profile</span> <kbd class="kbd docutils literal notranslate">K</kbd> to a rectangle <img alt="../../../_images/rectangle.png" src="../../../_images/rectangle.png" />, in which case it will average pixels vertically (default) or horizontally (if the <kbd class="kbd docutils literal notranslate">Alt</kbd> key is pressed).</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <a class="reference internal image-reference" href="../../../_images/imagej-dimensions-z-profile.png"><img alt="../../../_images/imagej-dimensions-z-profile.png" src="../../../_images/imagej-dimensions-z-profile.png" style="width: 60%;" /></a>
@@ -1040,31 +1049,31 @@ To do this, double-click on the line tool and adjust the <span class="guilabel">
 <p class="sidebar-title"></p>
 <a class="reference internal image-reference" href="../../../_images/imagej-dimensions-t-profile.png"><img alt="../../../_images/imagej-dimensions-t-profile.png" src="../../../_images/imagej-dimensions-t-profile.png" style="width: 60%;" /></a>
 </aside>
-<p>Another option if you have a stack or hyperstack is to use <span class="menuselection">Image ‣ Stacks ‣ Plot Z-axis Profile</span> to generate a profile across the slices.
+<p>Another option if you have a stack or hyperstack is to use <span class="menuselection notranslate">Image ‣ Stacks ‣ Plot Z-axis Profile</span> to generate a profile across the slices.
 This essentially plots the mean value within any ROI (or across the whole image) for every slice in the stack.
 Perhaps unexpectedly, the same command is able to generate a profile across time points as well; when necessary, a dialog is shown to choose the dimension.</p>
-<p>In all cases, profile plots contain a <span class="guilabel">Live</span> button.
+<p>In all cases, profile plots contain a <span class="guilabel notranslate">Live</span> button.
 This means the plot data updates as any changes are made to the image, including ROIs being generated and moved around.</p>
 <figure class="align-center" id="fig-imagej-dimensions-profiles">
 <img alt="../../../_images/imagej-dimensions-profiles.png" src="../../../_images/imagej-dimensions-profiles.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 48 </span><span class="caption-text">Three different profile plots, based on a rectangle.
-<em>(Top)</em> A regular profile plot from the active 2D slice, using <span class="menuselection">Analyze ‣ Plot Profile</span>.
-<em>(Bottom)</em> Profiles generated by <span class="menuselection">Image ‣ Stacks ‣ Plot Z-axis Profile</span> along the z-axis <em>(left)</em> and across time points <em>(right)</em>.</span><a class="headerlink" href="#fig-imagej-dimensions-profiles" title="Permalink to this image">#</a></p>
+<em>(Top)</em> A regular profile plot from the active 2D slice, using <span class="menuselection notranslate">Analyze ‣ Plot Profile</span>.
+<em>(Bottom)</em> Profiles generated by <span class="menuselection notranslate">Image ‣ Stacks ‣ Plot Z-axis Profile</span> along the z-axis <em>(left)</em> and across time points <em>(right)</em>.</span><a class="headerlink" href="#fig-imagej-dimensions-profiles" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="583a9c26-2b54-4cdf-89de-bdd52adcfe45" name="9dc519f2-4d07-46cb-bdaf-3056222c0964" type="radio">
-</input><label class="sd-tab-label" for="583a9c26-2b54-4cdf-89de-bdd52adcfe45">
+<input checked="checked" id="79e2682b-e668-4d65-8679-9482c650a87d" name="80641582-bbcd-4bc1-9a52-8dee90ac48e5" type="radio">
+</input><label class="sd-tab-label" for="79e2682b-e668-4d65-8679-9482c650a87d">
 Practical</label><div class="sd-tab-content docutils">
 <p>Create a profile plot from any image, by drawing a line ROI and pressing <kbd class="kbd docutils literal notranslate">K</kbd>.</p>
 <p>As far as ImageJ is concerned, the profile plot itself is an image – albeit a strange one.
-This means you can use <span class="menuselection">Image ‣ Properties…</span> to check the pixel size <em>of the profile plot</em>.</p>
+This means you can use <span class="menuselection notranslate">Image ‣ Properties…</span> to check the pixel size <em>of the profile plot</em>.</p>
 <p>What do you notice about the pixel sizes?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="da001cd2-bfed-4391-87c7-f6a3295f0a39" name="9dc519f2-4d07-46cb-bdaf-3056222c0964" type="radio">
-</input><label class="sd-tab-label" for="da001cd2-bfed-4391-87c7-f6a3295f0a39">
+<input id="488f2179-8e9c-4ca1-9d2c-4826ef0c5454" name="80641582-bbcd-4bc1-9a52-8dee90ac48e5" type="radio">
+</input><label class="sd-tab-label" for="488f2179-8e9c-4ca1-9d2c-4826ef0c5454">
 Solution</label><div class="sd-tab-content docutils">
 <p>You will probably see that the pixel width and height are different.
 In fact, the pixel width depends upon the scaling of the x-axis and the pixel height depends upon the scaling of the y-axis.</p>
@@ -1080,7 +1089,7 @@ This forces the line to be perfectly horizontal or perfectly vertical; without <
 <h2>Displaying dimensions<a class="headerlink" href="#displaying-dimensions" title="Permalink to this headline">#</a></h2>
 <section id="z-projections">
 <h3>Z-projections<a class="headerlink" href="#z-projections" title="Permalink to this headline">#</a></h3>
-<p>The command to generate a <a class="reference internal" href="pixel_size.html#sec-dims-z-project"><span class="std std-ref"><em>z</em>-projection</span></a> in ImageJ is <span class="menuselection">Image ‣ Stacks ‣ Z Project…</span>.
+<p>The command to generate a <a class="reference internal" href="pixel_size.html#sec-dims-z-project"><span class="std std-ref"><em>z</em>-projection</span></a> in ImageJ is <span class="menuselection notranslate">Image ‣ Stacks ‣ Z Project…</span>.
 This supports several different projection types, as shown in <a class="reference internal" href="#fig-visualize-fiji-projection"><span class="std std-numref">Fig. 49</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -1102,8 +1111,8 @@ This supports several different projection types, as shown in <a class="referenc
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="6ae363a0-2631-4f29-8296-0408bd3c86de" name="5a13d433-d170-43b9-96f4-e6173bba8964" type="radio">
-</input><label class="sd-tab-label" for="6ae363a0-2631-4f29-8296-0408bd3c86de">
+<input checked="checked" id="e5baf8e6-c184-46c4-a3c2-25709f2c29b0" name="58b58401-b6dd-4eee-9265-17e239330e93" type="radio">
+</input><label class="sd-tab-label" for="e5baf8e6-c184-46c4-a3c2-25709f2c29b0">
 Question</label><div class="sd-tab-content docutils">
 <p>Imagine computing a sum and a maximum projection of a 10-slice stack containing a large, in-focus nucleus.
 How might each of these projections be affected if your stack contained:</p>
@@ -1112,8 +1121,8 @@ How might each of these projections be affected if your stack contained:</p>
 <li><p>several very bright, isolated, randomly distributed outlier pixels – with values twice what they should be (due to noise)</p></li>
 </ul>
 </div>
-<input id="85cae9c1-f367-4d0a-b8df-eb4f700b3cb3" name="5a13d433-d170-43b9-96f4-e6173bba8964" type="radio">
-</input><label class="sd-tab-label" for="85cae9c1-f367-4d0a-b8df-eb4f700b3cb3">
+<input id="09899db1-4e2c-4ee8-a778-746e91d57c85" name="58b58401-b6dd-4eee-9265-17e239330e93" type="radio">
+</input><label class="sd-tab-label" for="09899db1-4e2c-4ee8-a778-746e91d57c85">
 Answer</label><div class="sd-tab-content docutils">
 <p>Additional, out-of-focus planes will have an effect upon sum projections: increasing all the resulting pixel values.
 However, the extra planes would have minimal effects upon maximum projections, since they are unlikely to contain higher values than the in-focus planes.</p>
@@ -1126,25 +1135,25 @@ Such outliers would also influence a sum projection, but less drastically becaus
 <a class="reference internal image-reference" href="../../../_images/pixels-max-max-mitosis.png"><img alt="../../../_images/pixels-max-max-mitosis.png" src="../../../_images/pixels-max-max-mitosis.png" style="width: 60%;" /></a>
 </aside>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="f32c129b-4d11-4176-9f98-364083878828" name="8a80b53f-6de0-47d4-b04f-b93848526ba1" type="radio">
-</input><label class="sd-tab-label" for="f32c129b-4d11-4176-9f98-364083878828">
+<input checked="checked" id="a5419f5a-fc4b-4ffb-a9de-092527c90179" name="1ebb9468-7388-4c6e-8725-9c6f1c1bde67" type="radio">
+</input><label class="sd-tab-label" for="a5419f5a-fc4b-4ffb-a9de-092527c90179">
 Practical</label><div class="sd-tab-content docutils">
-<p>What happens if you calculate a maximum projection <em>twice</em> for the 5D image <span class="menuselection">File ‣ Open samples ‣ Mitosis</span>?</p>
-<p>By this I mean you run <span class="menuselection">Image ‣ Stacks ‣ Z Project…</span> on the original image, and then again on the output of the first projection.</p>
+<p>What happens if you calculate a maximum projection <em>twice</em> for the 5D image <span class="menuselection notranslate">File ‣ Open samples ‣ Mitosis</span>?</p>
+<p>By this I mean you run <span class="menuselection notranslate">Image ‣ Stacks ‣ Z Project…</span> on the original image, and then again on the output of the first projection.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/9dbe7657bb476ea457f14229e93c5862"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="6e9f464f-88f9-4fcc-9428-96f7c0296286" name="8a80b53f-6de0-47d4-b04f-b93848526ba1" type="radio">
-</input><label class="sd-tab-label" for="6e9f464f-88f9-4fcc-9428-96f7c0296286">
+<input id="9dd3b9f7-3dab-42e2-bb29-bab2a6da8335" name="1ebb9468-7388-4c6e-8725-9c6f1c1bde67" type="radio">
+</input><label class="sd-tab-label" for="9dd3b9f7-3dab-42e2-bb29-bab2a6da8335">
 Solution</label><div class="sd-tab-content docutils">
 <p>You should end up with a maximum <em>z</em>-projecton followed by a time projection!</p>
-<p>If there is a time dimension but no <em>z</em> dimension, <span class="menuselection">Image ‣ Stacks ‣ Z Project…</span> will use time instead.</p>
-<p>If there <em>is</em> a <em>z</em> dimension but you want a time projection anyway, you could try careful use of <span class="menuselection">Image ‣ Hyperstack ‣ Re-order Hyperstacks…</span> or <span class="menuselection">Image ‣ Hyperstack ‣ Stack to Hyperstack…</span> to temporarily switch the dimension names and trick ImageJ into doing what you want.</p>
+<p>If there is a time dimension but no <em>z</em> dimension, <span class="menuselection notranslate">Image ‣ Stacks ‣ Z Project…</span> will use time instead.</p>
+<p>If there <em>is</em> a <em>z</em> dimension but you want a time projection anyway, you could try careful use of <span class="menuselection notranslate">Image ‣ Hyperstack ‣ Re-order Hyperstacks…</span> or <span class="menuselection notranslate">Image ‣ Hyperstack ‣ Stack to Hyperstack…</span> to temporarily switch the dimension names and trick ImageJ into doing what you want.</p>
 </div>
 </div>
 </section>
 <section id="orthogonal-views">
 <h3>Orthogonal views<a class="headerlink" href="#orthogonal-views" title="Permalink to this headline">#</a></h3>
-<p>The command <span class="menuselection">Image ‣ Stacks ‣ Orthogonal Views</span> makes it possible to generate interactive <a class="reference internal" href="pixel_size.html#sec-dims-orthogonal"><span class="std std-ref">orthogonal slices</span></a> from an image stack.
+<p>The command <span class="menuselection notranslate">Image ‣ Stacks ‣ Orthogonal Views</span> makes it possible to generate interactive <a class="reference internal" href="pixel_size.html#sec-dims-orthogonal"><span class="std std-ref">orthogonal slices</span></a> from an image stack.
 This opens up 2 extra windows, so that when you click at any point on the original <em>xy</em> view, you are shown cross-sections through that point from each direction.</p>
 <figure class="align-center" id="fig-orthogonal-views">
 <a class="reference internal image-reference" href="../../../_images/orthogonal-views.png"><img alt="../../../_images/orthogonal-views.png" src="../../../_images/orthogonal-views.png" style="width: 60%;" /></a>
@@ -1160,19 +1169,19 @@ If you close any of the additional views then the command is deactivated, and yo
 <p>If you look closely at the orthogonal slices, you will see that they are RGB images – even if the original stack is not RGB.
 They are also locked to using the LUT and brightness/contrast settings that were active when the command was first run.</p>
 <p>This makes them a useful visualization trick, but they do not provide a rotated version of the data for analysis.</p>
-<p>If you instead want to rotate the entire stack so that you can browse through what are effectively <em>xz</em> or <em>yz</em> slices and do whatever you want to them, the command you need is <span class="menuselection">Image ‣ Stacks ‣ Reslice…</span>.</p>
+<p>If you instead want to rotate the entire stack so that you can browse through what are effectively <em>xz</em> or <em>yz</em> slices and do whatever you want to them, the command you need is <span class="menuselection notranslate">Image ‣ Stacks ‣ Reslice…</span>.</p>
 <figure class="align-center" id="fig-reslicing">
 <a class="reference internal image-reference" href="../../../_images/reslicing.png"><img alt="../../../_images/reslicing.png" src="../../../_images/reslicing.png" style="width: 90%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 51 </span><span class="caption-text">Reslicing an image.</span><a class="headerlink" href="#fig-reslicing" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>After reslicing, you can then use <span class="menuselection">Image ‣ Stacks ‣ Z Project…</span> to effectively generate orthogonal <em>z</em>-projections.</p>
+<p>After reslicing, you can then use <span class="menuselection notranslate">Image ‣ Stacks ‣ Z Project…</span> to effectively generate orthogonal <em>z</em>-projections.</p>
 <div class="tip admonition">
 <p class="admonition-title">Reslicing and interpolation</p>
 <p>Interpolation effectively means making up plausible new pixel values to fill in the gaps ‘between’ known pixels.
 In this case, interpolation handles the fact that the pixel width, pixel height and voxel depth (<em>z</em>-spacing) are seldom identical.</p>
-<p>With that in mind, if you need to reslice an image then I recommend trying it both with and without <span class="guilabel">Avoid pixel interpolation</span> selected, checking the pixel size under <span class="menuselection">Image ‣ Properties…</span> in both cases.
+<p>With that in mind, if you need to reslice an image then I recommend trying it both with and without <span class="guilabel notranslate">Avoid pixel interpolation</span> selected, checking the pixel size under <span class="menuselection notranslate">Image ‣ Properties…</span> in both cases.
 Seeing what actually happens is likely to be more informative than trying to make sense of any explanation I could try to give.</p>
 </div>
 </section>

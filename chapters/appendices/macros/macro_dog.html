@@ -36,10 +36,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/design-tabs.js"></script>
@@ -49,6 +52,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://bioimagebook.github.io/chapters/appendices/macros/macro_dog.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Simulating image formation" href="macro_simulating.html" />
@@ -133,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../0-preamble/disclaimer.html">
    Disclaimer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../CHANGELOG.html">
+   Changelog
   </a>
  </li>
 </ul>
@@ -844,25 +853,25 @@ Then you only need to fix up the result.
 The procedure is as follows:</p>
 <ul class="simple">
 <li><p>Open up an example (2D, non-color) image to use, ideally one including small spot-like or otherwise round objects.
-I have used <span class="menuselection">File ‣ Open samples ‣ HeLa Cells</span>, after extracting the red channel only.</p></li>
-<li><p>Start the <em>Macro Recorder</em> by choosing <span class="menuselection">Plugins ‣ Macros ‣ Record</span>. Make sure that <span class="guilabel">Record: Macro</span> appears at the top of this window (see the drop-down list).
+I have used <span class="menuselection notranslate">File ‣ Open samples ‣ HeLa Cells</span>, after extracting the red channel only.</p></li>
+<li><p>Start the <em>Macro Recorder</em> by choosing <span class="menuselection notranslate">Plugins ‣ Macros ‣ Record</span>. Make sure that <span class="guilabel notranslate">Record: Macro</span> appears at the top of this window (see the drop-down list).
 Every subsequent click you make that has a corresponding macro command will result in the command being added to the window.</p></li>
 <li><p>Convert your image to 32-bit. This will reduce inaccuracies due to rounding whenever the filtering is applied.</p></li>
 <li><p>Duplicate the image.</p></li>
-<li><p>Apply <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur…</span> to one of the images (it doesn’t matter if it’s the original or the duplicate), using a small sigma (e.g. 1) for noise suppression.</p></li>
-<li><p>Apply <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur…</span> to the other image, using a larger sigma (e.g. 2).</p></li>
-<li><p>Run <span class="menuselection">Process ‣ Image Calculator…</span> and subtract the second filtered image from the first.
+<li><p>Apply <span class="menuselection notranslate">Process ‣ Filters ‣ Gaussian Blur…</span> to one of the images (it doesn’t matter if it’s the original or the duplicate), using a small sigma (e.g. 1) for noise suppression.</p></li>
+<li><p>Apply <span class="menuselection notranslate">Process ‣ Filters ‣ Gaussian Blur…</span> to the other image, using a larger sigma (e.g. 2).</p></li>
+<li><p>Run <span class="menuselection notranslate">Process ‣ Image Calculator…</span> and subtract the second filtered image from the first.
 This produces the ‘difference of Gaussians’ filtered image, in which small features should appear prominently and the background is removed.</p>
 <ul>
 <li><p>Be careful to choose the correct image titles and subtraction operation in the <em>Image Calculator</em>!</p></li>
 </ul>
 </li>
-<li><p>Press the <span class="guilabel">Create</span> button on the macro recorder. This should cause a text file containing the recorded macro to be opened in Fiji’s
-<span class="menuselection">Script Editor</span> (which you can find under <span class="menuselection">File ‣ New ‣ Script…</span>).</p></li>
+<li><p>Press the <span class="guilabel notranslate">Create</span> button on the macro recorder. This should cause a text file containing the recorded macro to be opened in Fiji’s
+<span class="menuselection notranslate">Script Editor</span> (which you can find under <span class="menuselection notranslate">File ‣ New ‣ Script…</span>).</p></li>
 <li><p>Save the text file. The file name should end with the extension <code class="docutils literal notranslate"><span class="pre">.ijm</span></code> (for ‘ImageJ Macro’), and include an underscore character somewhere within it.</p></li>
 </ul>
 <p><strong>Now you have a macro!</strong></p>
-<p>You <em>could</em> try it out by pressing the tempting <span class="guilabel">Run</span> button, but this isn’t guaranteed to work (yet).
+<p>You <em>could</em> try it out by pressing the tempting <span class="guilabel notranslate">Run</span> button, but this isn’t guaranteed to work (yet).
 Our macro remains quite brittle: it depends upon exact image names and might become easily confused.
 We will fix this soon.</p>
 <p>As an alternative,</p>
@@ -872,7 +881,7 @@ We will fix this soon.</p>
 <li><p>Open the original image you used</p></li>
 <li><p>Open the macro (you can just drag it onto the ImageJ toolbar)</p></li>
 </ul>
-<p>Now the <span class="guilabel">Run</span> button will hopefully give you the same result as when you applied the commands manually.
+<p>Now the <span class="guilabel notranslate">Run</span> button will hopefully give you the same result as when you applied the commands manually.
 If not, keep reading anyway and the following steps should fix it.</p>
 </section>
 <section id="cleaning-up-the-code">
@@ -917,15 +926,15 @@ But if the command being used by <code class="docutils literal notranslate"><spa
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;title=C1-hela-cells-1.tif&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>informs the <span class="menuselection">Duplicate</span> command that the image it creates should be called <em>C1-hela-cells-1.tif</em>, and</p>
+<p>informs the <span class="menuselection notranslate">Duplicate</span> command that the image it creates should be called <em>C1-hela-cells-1.tif</em>, and</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=1&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>ensures that <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur…</span> is executed with a sigma value of 1.</p>
+<p>ensures that <span class="menuselection notranslate">Process ‣ Filters ‣ Gaussian Blur…</span> is executed with a sigma value of 1.</p>
 <p><code class="docutils literal notranslate"><span class="pre">selectWindow</span></code> is another function, added to the macro whenever you click on a particular window to activate it, and which requires the name of the image window to make active.
 From this you can see that my example file name was <em>C1-hela-cells.tif</em>.
 Without this line, the duplicated image would be filtered twice – and the original not at all.</p>
-<p>Finally, the <span class="menuselection">Image Calculator</span> command is special enough to get its own function in the macro language, <code class="docutils literal notranslate"><span class="pre">imageCalculator</span></code>.
+<p>Finally, the <span class="menuselection notranslate">Image Calculator</span> command is special enough to get its own function in the macro language, <code class="docutils literal notranslate"><span class="pre">imageCalculator</span></code>.
 The first string it is given tells it both what sort of calculation to do, and that it should <code class="docutils literal notranslate"><span class="pre">create</span></code> a new image for the result – rather than replacing one of the existing images.
 The next two strings give it the titles of the images needed for the calculation.</p>
 </section>
@@ -1004,7 +1013,7 @@ An easy way to do this is to remove the sigma value information from the <code c
 <figure class="margin align-default">
 <img alt="../../../_images/macros_gaussian_prompt.png" src="../../../_images/macros_gaussian_prompt.png" />
 </figure>
-<p>Since <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur</span> will not then know what size of filters to use, it will ask.
+<p>Since <span class="menuselection notranslate">Process ‣ Filters ‣ Gaussian Blur</span> will not then know what size of filters to use, it will ask.
 The disadvantage of this is that the user is prompted to enter sigma values at two different times as the macro runs, which is slightly more annoying than necessary.</p>
 <p>The alternative is to create a dialog box that asks for all the required settings in one go.
 To do this, update the beginning of your macro to include something like the following:</p>
@@ -1029,10 +1038,10 @@ This is documented in ImageJ’s <a class="reference external" href="https://ima
 <section id="installing-the-macro">
 <h2>Installing the macro<a class="headerlink" href="#installing-the-macro" title="Permalink to this headline">#</a></h2>
 <p>If you’d like the macro to appear as an entry in ImageJ’s menus, you have a couple of options.</p>
-<p>One is the tempting <span class="menuselection">Plugins ‣ Macros ‣ Install…</span>.
+<p>One is the tempting <span class="menuselection notranslate">Plugins ‣ Macros ‣ Install…</span>.
 This works, but whenever I tested it I found that it only retains the macro until ImageJ is restarted.</p>
-<p>More usefully, <span class="menuselection">Plugins ‣ Install…</span> will prompt you to first select the file containing your macro, and then to save it within the <em>Plugins</em> directory of ImageJ itself.
-As long as the macro file you choose has an underscore in its name, it should appear as its own entry towards the bottom of the <span class="menuselection">Plugins</span> menu – and be retained even when ImageJ is relaunched.</p>
+<p>More usefully, <span class="menuselection notranslate">Plugins ‣ Install…</span> will prompt you to first select the file containing your macro, and then to save it within the <em>Plugins</em> directory of ImageJ itself.
+As long as the macro file you choose has an underscore in its name, it should appear as its own entry towards the bottom of the <span class="menuselection notranslate">Plugins</span> menu – and be retained even when ImageJ is relaunched.</p>
 </section>
 <section id="suggested-improvements">
 <h2>Suggested improvements<a class="headerlink" href="#suggested-improvements" title="Permalink to this headline">#</a></h2>
@@ -1043,11 +1052,11 @@ For example,</p>
 <li><p>You could close any unwanted images (e.g. the original and its duplicate) by selecting their IDs, and then inserting <code class="docutils literal notranslate"><span class="pre">close();</span></code> commands afterwards.</p></li>
 <li><p>You could make the macro work on entire image stacks. If you want it to process each plane separately, this involves only inserting the words
 <code class="docutils literal notranslate"><span class="pre">stack</span></code> and <code class="docutils literal notranslate"><span class="pre">duplicate</span></code> in several places – by recording a new macro in the same way, but using a stack as your example image, you can see where to do this.
-If you want the filtering to be applied in 3D, you can use the <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur 3D…</span> command instead of <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur…</span></p></li>
+If you want the filtering to be applied in 3D, you can use the <span class="menuselection notranslate">Process ‣ Filters ‣ Gaussian Blur 3D…</span> command instead of <span class="menuselection notranslate">Process ‣ Filters ‣ Gaussian Blur…</span></p></li>
 <li><p>You could create a log of which images you have processed, possibly including the settings used.
 The log is output by including a <code class="docutils literal notranslate"><span class="pre">log(text);</span></code> line, where <code class="docutils literal notranslate"><span class="pre">text</span></code> is some string you have created, e.g. <code class="docutils literal notranslate"><span class="pre">text</span> <span class="pre">=</span> <span class="pre">Image</span> <span class="pre">name:</span>&#160; <span class="pre">+</span> <span class="pre">getTitle()</span></code>.</p></li>
-<li><p>More impressively, you could turn the macro into a full spot-detector by thresholding the DoG filtered image, and then running the <span class="menuselection">Analyze ‣ Analyze Particles…</span> command.
-If you want to measure original spot intensities, you should remember to go to <span class="menuselection">Analyze ‣ Set Measurements…</span> to make sure the measurements are redirected to the original image – which you should possibly have duplicated at the beginning.
+<li><p>More impressively, you could turn the macro into a full spot-detector by thresholding the DoG filtered image, and then running the <span class="menuselection notranslate">Analyze ‣ Analyze Particles…</span> command.
+If you want to measure original spot intensities, you should remember to go to <span class="menuselection notranslate">Analyze ‣ Set Measurements…</span> to make sure the measurements are redirected to the original image – which you should possibly have duplicated at the beginning.
 Without the duplication, the original image will have been Gaussian filtered by the time your macro reaches the measurement stage.</p></li>
 </ul>
 <p>In any case, the process of developing a macro is usually the same:</p>

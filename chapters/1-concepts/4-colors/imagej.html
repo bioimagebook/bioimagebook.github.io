@@ -36,10 +36,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/design-tabs.js"></script>
@@ -49,6 +52,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://bioimagebook.github.io/chapters/1-concepts/4-colors/imagej.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Python: Channels &amp; colors" href="python.html" />
@@ -133,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../0-preamble/disclaimer.html">
    Disclaimer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../CHANGELOG.html">
+   Changelog
   </a>
  </li>
 </ul>
@@ -766,11 +775,11 @@ This section explains the ideas, including common areas of confusion.</p>
 There are several ways to recognize that an image has the type ‘RGB’:</p>
 <ul class="simple">
 <li><p>The text <em>RGB</em> appears at the top of the image window</p></li>
-<li><p><span class="menuselection">Image ‣ Type ‣ RGB Color</span> is selected</p></li>
+<li><p><span class="menuselection notranslate">Image ‣ Type ‣ RGB Color</span> is selected</p></li>
 <li><p>When moving the cursor over the image, there are <em>three</em> values shown in the status bar (e.g. <em>value=127,127,127</em>) instead of one</p></li>
 </ul>
-<p>Multichannel images that <em>aren’t</em> RGB are recognizable because they have an extra slider at the bottom, with a small <span class="guilabel">C</span> label, which is used to switch the ‘active’ channel.
-The <span class="menuselection">Image ‣ Type ‣ </span> will be <span class="menuselection">8-bit</span>, <span class="menuselection">16-bit</span> or <span class="menuselection">32-bit</span>.</p>
+<p>Multichannel images that <em>aren’t</em> RGB are recognizable because they have an extra slider at the bottom, with a small <span class="guilabel notranslate">C</span> label, which is used to switch the ‘active’ channel.
+The <span class="menuselection notranslate">Image ‣ Type ‣ </span> will be <span class="menuselection notranslate">8-bit</span>, <span class="menuselection notranslate">16-bit</span> or <span class="menuselection notranslate">32-bit</span>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -794,27 +803,27 @@ The colors used to display the image are identical, but other aspects of the ima
 <ul class="simple">
 <li><p><strong>Multichannel images:</strong></p>
 <ul>
-<li><p><span class="menuselection">Analyze ‣ Measure</span> uses the active channel only, based on the <span class="guilabel">C</span> slider</p></li>
-<li><p><span class="menuselection">Analyze ‣ Histogram</span> uses either uses the active channel only or all channels, after prompting the user to choose</p></li>
-<li><p><span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> can be used to adjust the brightness &amp; contrast for the active channel</p></li>
+<li><p><span class="menuselection notranslate">Analyze ‣ Measure</span> uses the active channel only, based on the <span class="guilabel notranslate">C</span> slider</p></li>
+<li><p><span class="menuselection notranslate">Analyze ‣ Histogram</span> uses either uses the active channel only or all channels, after prompting the user to choose</p></li>
+<li><p><span class="menuselection notranslate">Image ‣ Adjust ‣ Brightness/Contrast…</span> can be used to adjust the brightness &amp; contrast for the active channel</p></li>
 <li><p>It is possible to change LUTs independently for each channel</p></li>
 </ul>
 </li>
 <li><p><strong>RGB images:</strong></p>
 <ul>
-<li><p><span class="menuselection">Analyze ‣ Measure</span> converts the image to have a single 8-bit channel before making measurements</p></li>
-<li><p><span class="menuselection">Analyze ‣ Histogram</span> creates a histogram after converting the image as above, but also provides an <span class="guilabel">RGB</span> button to also view separate histograms for the red, green and blue channels</p></li>
-<li><p><span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> can only be used to adjust the brightness &amp; contrast for all channels simultaneously</p></li>
+<li><p><span class="menuselection notranslate">Analyze ‣ Measure</span> converts the image to have a single 8-bit channel before making measurements</p></li>
+<li><p><span class="menuselection notranslate">Analyze ‣ Histogram</span> creates a histogram after converting the image as above, but also provides an <span class="guilabel notranslate">RGB</span> button to also view separate histograms for the red, green and blue channels</p></li>
+<li><p><span class="menuselection notranslate">Image ‣ Adjust ‣ Brightness/Contrast…</span> can only be used to adjust the brightness &amp; contrast for all channels simultaneously</p></li>
 <li><p>It is <em>not</em> possible to change LUTs per channel</p></li>
 </ul>
 </li>
 </ul>
 <p>When it comes to measuring an RGB image, the enigmatic statement above that ImageJ ‘converts the image’ is explained (in more detail than you might want) <a class="reference internal" href="#sec-colors-converts"><span class="std std-ref">at the end</span></a>.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="c8277b51-18b5-4ff2-af4c-55b96734e7dc" name="0b40c481-366e-4740-93d9-9ad65c19054f" type="radio">
-</input><label class="sd-tab-label" for="c8277b51-18b5-4ff2-af4c-55b96734e7dc">
+<input checked="checked" id="a0e18724-2200-4f7d-8ac1-5dd3281b7540" name="08e74a6a-c806-4c8e-b772-4248b9b94f15" type="radio">
+</input><label class="sd-tab-label" for="a0e18724-2200-4f7d-8ac1-5dd3281b7540">
 Practical</label><div class="sd-tab-content docutils">
-<p>Explore several of the images under <span class="menuselection">File ‣ Open Samples ‣</span> and identify which are treated by ImageJ as RGB, which as multichannel, and which have just a single channel.
+<p>Explore several of the images under <span class="menuselection notranslate">File ‣ Open Samples ‣</span> and identify which are treated by ImageJ as RGB, which as multichannel, and which have just a single channel.
 There is only one correct answer per image.</p>
 <p><strong>Note 1:</strong> Here, ‘RGB’ means that ImageJ treats the image has having the special ‘RGB’ image type.
 It’s possible for a multichannel image to have three channels with red, green and blue LUTs, but Imagej doesn’t consider it to be RGB.
@@ -830,32 +839,32 @@ Hopefully the Fiji bug will be fixed before you read this.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><span class="menuselection">Leaf</span></p></td>
+<tr class="row-even"><td><p><span class="menuselection notranslate">Leaf</span></p></td>
 <td class="text-align:center"><p>?</p></td>
 <td class="text-align:center"><p>?</p></td>
 <td class="text-align:center"><p>?</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="menuselection">Fluorescent Cells</span></p></td>
+<tr class="row-odd"><td><p><span class="menuselection notranslate">Fluorescent Cells</span></p></td>
 <td class="text-align:center"><p>?</p></td>
 <td class="text-align:center"><p>?</p></td>
 <td class="text-align:center"><p>?</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="menuselection">Cardio (RGB Dicom)</span></p></td>
+<tr class="row-even"><td><p><span class="menuselection notranslate">Cardio (RGB Dicom)</span></p></td>
 <td class="text-align:center"><p>?</p></td>
 <td class="text-align:center"><p>?</p></td>
 <td class="text-align:center"><p>?</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="menuselection">HeLa Cells (48-bit RGB)</span></p></td>
+<tr class="row-odd"><td><p><span class="menuselection notranslate">HeLa Cells (48-bit RGB)</span></p></td>
 <td class="text-align:center"><p>?</p></td>
 <td class="text-align:center"><p>?</p></td>
 <td class="text-align:center"><p>?</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="menuselection">Fly Brain</span></p></td>
+<tr class="row-even"><td><p><span class="menuselection notranslate">Fly Brain</span></p></td>
 <td class="text-align:center"><p>?</p></td>
 <td class="text-align:center"><p>?</p></td>
 <td class="text-align:center"><p>?</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="menuselection">Image with Overlay</span></p></td>
+<tr class="row-odd"><td><p><span class="menuselection notranslate">Image with Overlay</span></p></td>
 <td class="text-align:center"><p>?</p></td>
 <td class="text-align:center"><p>?</p></td>
 <td class="text-align:center"><p>?</p></td>
@@ -864,8 +873,8 @@ Hopefully the Fiji bug will be fixed before you read this.</p>
 </table>
 <p><a class="reference external" href="https://ij.imjoy.io"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="84448e1f-2785-479a-928c-435f5c7a92e0" name="0b40c481-366e-4740-93d9-9ad65c19054f" type="radio">
-</input><label class="sd-tab-label" for="84448e1f-2785-479a-928c-435f5c7a92e0">
+<input id="5832ad1e-ef23-4364-8dcb-1f2c457fc2b9" name="08e74a6a-c806-4c8e-b772-4248b9b94f15" type="radio">
+</input><label class="sd-tab-label" for="5832ad1e-ef23-4364-8dcb-1f2c457fc2b9">
 Solution</label><div class="sd-tab-content docutils">
 <table class="colwidths-auto table">
 <thead>
@@ -876,32 +885,32 @@ Solution</label><div class="sd-tab-content docutils">
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><span class="menuselection">Leaf</span></p></td>
+<tr class="row-even"><td><p><span class="menuselection notranslate">Leaf</span></p></td>
 <td class="text-align:center"><p>X</p></td>
 <td class="text-align:center"><p></p></td>
 <td class="text-align:center"><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="menuselection">Fluorescent Cells</span></p></td>
+<tr class="row-odd"><td><p><span class="menuselection notranslate">Fluorescent Cells</span></p></td>
 <td class="text-align:center"><p></p></td>
 <td class="text-align:center"><p>X</p></td>
 <td class="text-align:center"><p></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="menuselection">Cardio (RGB Dicom)</span></p></td>
+<tr class="row-even"><td><p><span class="menuselection notranslate">Cardio (RGB Dicom)</span></p></td>
 <td class="text-align:center"><p>X</p></td>
 <td class="text-align:center"><p></p></td>
 <td class="text-align:center"><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="menuselection">HeLa Cells (48-bit RGB)</span></p></td>
+<tr class="row-odd"><td><p><span class="menuselection notranslate">HeLa Cells (48-bit RGB)</span></p></td>
 <td class="text-align:center"><p></p></td>
 <td class="text-align:center"><p>X</p></td>
 <td class="text-align:center"><p></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="menuselection">Fly Brain</span></p></td>
+<tr class="row-even"><td><p><span class="menuselection notranslate">Fly Brain</span></p></td>
 <td class="text-align:center"><p>X</p></td>
 <td class="text-align:center"><p></p></td>
 <td class="text-align:center"><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="menuselection">Image with Overlay</span></p></td>
+<tr class="row-odd"><td><p><span class="menuselection notranslate">Image with Overlay</span></p></td>
 <td class="text-align:center"><p></p></td>
 <td class="text-align:center"><p></p></td>
 <td class="text-align:center"><p>X</p></td>
@@ -910,31 +919,31 @@ Solution</label><div class="sd-tab-content docutils">
 </table>
 <p>There are several awkward images:</p>
 <ul class="simple">
-<li><p><span class="menuselection">HeLa Cells (48-bit RGB)</span> is <em>not</em> treated as having the RGB type… and ImageJ doesn’t have a ‘48-bit’ type either! Here, 48-bit RGB means that we actually have three 16-bit channels with red, green and blue LUTs. For ImageJ, that’s not really an RGB image, it’s a multichannel image. Don’t expect too much consistency in naming: always check the types!</p></li>
-<li><p><span class="menuselection">Fly Brain</span> has a slider, but it doesn’t have a <span class="guilabel">C</span> label. This is because the slider isn’t for channels, but rather for <em>z</em>-slices. We will meet <em>z</em>-slices in the <a class="reference internal" href="../5-pixel_size/pixel_size.html#chap-dimensions"><span class="std std-ref">next chapter</span></a>.</p></li>
-<li><p><span class="menuselection">Image with Overlay</span> looks colorful, but the colors all come from the <a class="reference internal" href="../2-measurements/imagej.html#sec-imagej-overlay"><span class="std std-ref">overlay</span></a> – not from the image being RGB. Admittedly, the name helps here.</p></li>
+<li><p><span class="menuselection notranslate">HeLa Cells (48-bit RGB)</span> is <em>not</em> treated as having the RGB type… and ImageJ doesn’t have a ‘48-bit’ type either! Here, 48-bit RGB means that we actually have three 16-bit channels with red, green and blue LUTs. For ImageJ, that’s not really an RGB image, it’s a multichannel image. Don’t expect too much consistency in naming: always check the types!</p></li>
+<li><p><span class="menuselection notranslate">Fly Brain</span> has a slider, but it doesn’t have a <span class="guilabel notranslate">C</span> label. This is because the slider isn’t for channels, but rather for <em>z</em>-slices. We will meet <em>z</em>-slices in the <a class="reference internal" href="../5-pixel_size/pixel_size.html#chap-dimensions"><span class="std std-ref">next chapter</span></a>.</p></li>
+<li><p><span class="menuselection notranslate">Image with Overlay</span> looks colorful, but the colors all come from the <a class="reference internal" href="../2-measurements/imagej.html#sec-imagej-overlay"><span class="std std-ref">overlay</span></a> – not from the image being RGB. Admittedly, the name helps here.</p></li>
 </ul>
 </div>
 </div>
 </section>
 <section id="working-with-channels">
 <h2>Working with channels<a class="headerlink" href="#working-with-channels" title="Permalink to this headline">#</a></h2>
-<p>There are several useful commands for working with color channels under <span class="menuselection">Image ‣ Color ‣ </span>.
-Some of these, such as <span class="menuselection">Image ‣ Color ‣ Split channels</span> and <span class="menuselection">Image ‣ Color ‣ Merge channels</span> are quite intuitive, and work for both RGB and multichannel images.</p>
-<p>One of the most useful commands that requires some explanation is <span class="menuselection">Image ‣ Color ‣ Channels Tool…</span> <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">Z</kbd></kbd>.
-If you run the <span class="menuselection">Channels Tool…</span> command for an RGB image and try to do anything, ImageJ will ask</p>
+<p>There are several useful commands for working with color channels under <span class="menuselection notranslate">Image ‣ Color ‣ </span>.
+Some of these, such as <span class="menuselection notranslate">Image ‣ Color ‣ Split channels</span> and <span class="menuselection notranslate">Image ‣ Color ‣ Merge channels</span> are quite intuitive, and work for both RGB and multichannel images.</p>
+<p>One of the most useful commands that requires some explanation is <span class="menuselection notranslate">Image ‣ Color ‣ Channels Tool…</span> <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">Z</kbd></kbd>.
+If you run the <span class="menuselection notranslate">Channels Tool…</span> command for an RGB image and try to do anything, ImageJ will ask</p>
 <img alt="../../../_images/channels-tool-composite.png" class="align-center" src="../../../_images/channels-tool-composite.png" />
 <p>Agreeing to the prompt will convert the RGB image to a multichannel image.</p>
 <p>The question might be a little bit confusing because ‘composite’ and ‘multichannel’ do not quite mean the same thing, although they are sometimes used interchangeably with ImageJ.
 To be more precise, a ‘composite image’ in this context is a multichannel image that is displayed using a particular <strong>display mode</strong>.</p>
 <p>ImageJ has three main modes for displaying multichannel images, accessible from the drop-down menu of the <em>Channels Tool</em> dialog:</p>
 <ul class="simple">
-<li><p><span class="guilabel">Composite</span> – Merge some or all the channels together for display. Currently, this works with up to 7 or 8 channels (depending on software version; an extra one was added recently). Individual channels can be turned on and off.</p></li>
-<li><p><span class="guilabel">Color</span> – View the ‘active’ channel only, using its original color LUT. You can switch the channel with the slider below the image.</p></li>
-<li><p><span class="guilabel">Grayscale</span> – Similar to <span class="guilabel">Color</span>, except always using a grayscale LUT.</p></li>
+<li><p><span class="guilabel notranslate">Composite</span> – Merge some or all the channels together for display. Currently, this works with up to 7 or 8 channels (depending on software version; an extra one was added recently). Individual channels can be turned on and off.</p></li>
+<li><p><span class="guilabel notranslate">Color</span> – View the ‘active’ channel only, using its original color LUT. You can switch the channel with the slider below the image.</p></li>
+<li><p><span class="guilabel notranslate">Grayscale</span> – Similar to <span class="guilabel notranslate">Color</span>, except always using a grayscale LUT.</p></li>
 </ul>
-<p>Whenever a channel is active, the LUT can be changed using options in the <em>Channels Tool</em> dialog – or the <span class="menuselection">Image ‣ Lookup Tables ‣ </span> submenu as usual.
-Similarly, <span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> works on the active channel to update the LUT.</p>
+<p>Whenever a channel is active, the LUT can be changed using options in the <em>Channels Tool</em> dialog – or the <span class="menuselection notranslate">Image ‣ Lookup Tables ‣ </span> submenu as usual.
+Similarly, <span class="menuselection notranslate">Image ‣ Adjust ‣ Brightness/Contrast…</span> works on the active channel to update the LUT.</p>
 <div class="cell tag_remove-output tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -952,19 +961,19 @@ Similarly, <span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast�
 <img alt="../../../_images/imagej_5_02.png" src="../../../_images/imagej_5_02.png" />
 </div>
 <figcaption>
-<p><span class="caption-number">Fig. 32 </span><span class="caption-text">ImageJ multichannel image sample <em>Fluorescent Cells</em>. Using the <span class="menuselection">Image ‣ Color ‣ Channels Tool…</span> and the slider at the bottom of the window, you can view the channels individually or simultaneously.</span><a class="headerlink" href="#fig-fiji-composite" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 32 </span><span class="caption-text">ImageJ multichannel image sample <em>Fluorescent Cells</em>. Using the <span class="menuselection notranslate">Image ‣ Color ‣ Channels Tool…</span> and the slider at the bottom of the window, you can view the channels individually or simultaneously.</span><a class="headerlink" href="#fig-fiji-composite" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The way in which <span class="guilabel">Composite</span> mode works is that an RGB image is effectively created for each channel based on its LUT, and the red, green and blue values are <em>added</em> together to get the final output color (clipping at 255 if needed).</p>
+<p>The way in which <span class="guilabel notranslate">Composite</span> mode works is that an RGB image is effectively created for each channel based on its LUT, and the red, green and blue values are <em>added</em> together to get the final output color (clipping at 255 if needed).</p>
 <p>This isn’t the only way to generate a composite image, and it doesn’t work well for all LUTs – particular LUTs that map low pixel values to bright colors or white.</p>
-<p>Therefore, since ImageJ 1.53o some additional composite modes were added to the <span class="menuselection">Channels Tool…</span>, and refined over the next few releases after a long (and occasionally testy) discussion on <a class="reference external" href="http://image.sc">image.sc</a>.
+<p>Therefore, since ImageJ 1.53o some additional composite modes were added to the <span class="menuselection notranslate">Channels Tool…</span>, and refined over the next few releases after a long (and occasionally testy) discussion on <a class="reference external" href="http://image.sc">image.sc</a>.
 At the time of writing, the available modes are:</p>
 <ul class="simple">
-<li><p><span class="guilabel">Composite Max</span> – Similar to <span class="guilabel">Composite</span>, except use the <em>maximum</em> of the red, green and blue values across all channels (not the sum)</p></li>
-<li><p><span class="guilabel">Composite Min</span> – Similar to <span class="guilabel">Composite Max</span>, except use the <em>minimum</em> of the red, green and blue values across all channels (not the maximum)</p></li>
-<li><p><span class="guilabel">Composite Invert</span> – Similar to <span class="guilabel">Composite</span>, except <em>subtract</em> the red, green and blue LUT values instead of adding them</p></li>
+<li><p><span class="guilabel notranslate">Composite Max</span> – Similar to <span class="guilabel notranslate">Composite</span>, except use the <em>maximum</em> of the red, green and blue values across all channels (not the sum)</p></li>
+<li><p><span class="guilabel notranslate">Composite Min</span> – Similar to <span class="guilabel notranslate">Composite Max</span>, except use the <em>minimum</em> of the red, green and blue values across all channels (not the maximum)</p></li>
+<li><p><span class="guilabel notranslate">Composite Invert</span> – Similar to <span class="guilabel notranslate">Composite</span>, except <em>subtract</em> the red, green and blue LUT values instead of adding them</p></li>
 </ul>
-<p>Both <span class="guilabel">Composite Min</span> and <span class="guilabel">Composite Invert</span> are useful for LUTs with light backgrounds, therefore if you select one of these options ImageJ may flip a LUT to have a light background if needed.</p>
+<p>Both <span class="guilabel notranslate">Composite Min</span> and <span class="guilabel notranslate">Composite Invert</span> are useful for LUTs with light backgrounds, therefore if you select one of these options ImageJ may flip a LUT to have a light background if needed.</p>
 <div class="cell tag_remove-output tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -989,7 +998,7 @@ At the time of writing, the available modes are:</p>
 <p class="admonition-title">Be careful with composites!</p>
 <p>Any new visualization modes have the potential to cause confusion or to be abused.
 Although the new composite modes can be useful, I advise caution.</p>
-<p>The original <span class="guilabel">Composite</span> mode is really well established, and is the default.
+<p>The original <span class="guilabel notranslate">Composite</span> mode is really well established, and is the default.
 If you use any of the ‘new’ composite modes in a figure for publication, you should clearly specify which.</p>
 </div>
 <aside class="margin sidebar">
@@ -1005,7 +1014,7 @@ If you use any of the ‘new’ composite modes in a figure for publication, you
 <p>By changing the LUTs, channels can be assigned any color you like. Although red/green images are widespread, especially for colocalization, they are particularly unhelpful for colorblindness.
 More accessible images can be created by switching the LUTs of at least one channel to something more suitable (e.g.
 Red → Magenta) – although displaying both channels separately is better still.</p>
-<p>You can also test the effects of different colors using the Fiji command <span class="menuselection">Image ‣ Color ‣ Simulate Color Blindness</span> (note that this may require converting the image to RGB first).</p>
+<p>You can also test the effects of different colors using the Fiji command <span class="menuselection notranslate">Image ‣ Color ‣ Simulate Color Blindness</span> (note that this may require converting the image to RGB first).</p>
 <p>More information about generating figures with suitable colors is available at <a class="reference external" href="https://www.nature.com/articles/nmeth.1618">https://www.nature.com/articles/nmeth.1618</a>.</p>
 </div>
 </section>
@@ -1013,51 +1022,51 @@ Red → Magenta) – although displaying both channels separately is better sti
 <span id="sec-imagej-flatten"></span><h2>Converting to RGB<a class="headerlink" href="#converting-to-rgb" title="Permalink to this headline">#</a></h2>
 <p>As described in <a class="reference internal" href="colors.html#chap-colors"><span class="std std-ref">Channels &amp; colors</span></a>, one of the most important uses of RGB images is to create a compatible image for display in different software.
 We will see more about how to save such images in <a class="reference internal" href="../6-files/files.html#chap-files"><span class="std std-ref">Files &amp; file formats</span></a>.</p>
-<p>It should be possible to convert any image to RGB using <span class="menuselection">Image ‣ Type ‣ RGB Color</span>.
-However, my preferred way to create an RGB image for display is usually <span class="menuselection">Image ‣ Overlay ‣ Flatten</span> <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">F</kbd></kbd>.
+<p>It should be possible to convert any image to RGB using <span class="menuselection notranslate">Image ‣ Type ‣ RGB Color</span>.
+However, my preferred way to create an RGB image for display is usually <span class="menuselection notranslate">Image ‣ Overlay ‣ Flatten</span> <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">F</kbd></kbd>.
 This not only converts the image, but also incorporates any ROIs or overlays into the RGB version.
 Flattening is similar to taking a screenshot of the image as it currently appears, except unaffected by the current zoom level or field of view.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="5f686f0f-e2ee-4bea-a0d9-f038d290f002" name="ea942f5b-b8f2-4818-ba5f-6b748c7bd099" type="radio">
-</input><label class="sd-tab-label" for="5f686f0f-e2ee-4bea-a0d9-f038d290f002">
+<input checked="checked" id="94ae14f7-1038-4f94-ab5b-7f23f254670c" name="9fa6ddc4-005b-4909-bf90-06552a428c5c" type="radio">
+</input><label class="sd-tab-label" for="94ae14f7-1038-4f94-ab5b-7f23f254670c">
 Question</label><div class="sd-tab-content docutils">
-<p>ImageJ has two different copying commands, <span class="menuselection">Edit ‣ Copy</span> and <span class="menuselection">Edit ‣ Copy to System</span>.
+<p>ImageJ has two different copying commands, <span class="menuselection notranslate">Edit ‣ Copy</span> and <span class="menuselection notranslate">Edit ‣ Copy to System</span>.
 Why?</p>
-<p><strong>Note:</strong> When investigating this, you should explore <span class="menuselection">Edit ‣ Paste</span>, alongside two commands in the <span class="menuselection">File ‣ New ‣</span> submenu.
+<p><strong>Note:</strong> When investigating this, you should explore <span class="menuselection notranslate">Edit ‣ Paste</span>, alongside two commands in the <span class="menuselection notranslate">File ‣ New ‣</span> submenu.
 Be on the lookout for any conversions.</p>
 </div>
-<input id="407ca6ea-2780-421c-9e9f-2d8de025e319" name="ea942f5b-b8f2-4818-ba5f-6b748c7bd099" type="radio">
-</input><label class="sd-tab-label" for="407ca6ea-2780-421c-9e9f-2d8de025e319">
+<input id="3f362a9a-63e7-45a1-be43-3b31253865b9" name="9fa6ddc4-005b-4909-bf90-06552a428c5c" type="radio">
+</input><label class="sd-tab-label" for="3f362a9a-63e7-45a1-be43-3b31253865b9">
 Answer</label><div class="sd-tab-content docutils">
-<p><span class="menuselection">Edit ‣ Copy</span> allows you to copy part of an individual image slice (i.e. a 2D part of a particular color channel) and paste it into another image while exactly preserving the original image type and pixel values.
-You can also use <span class="menuselection">File ‣ New ‣ Internal Clipboard</span> to get the copied region (but <span class="menuselection">Image ‣ Duplicate…</span> is usually a better option).
+<p><span class="menuselection notranslate">Edit ‣ Copy</span> allows you to copy part of an individual image slice (i.e. a 2D part of a particular color channel) and paste it into another image while exactly preserving the original image type and pixel values.
+You can also use <span class="menuselection notranslate">File ‣ New ‣ Internal Clipboard</span> to get the copied region (but <span class="menuselection notranslate">Image ‣ Duplicate…</span> is usually a better option).
 However, this image type might well not be compatible with other software, therefore images copied in this way cannot be accessed outside ImageJ.</p>
-<p><span class="menuselection">Edit ‣ Copy to System</span> is needed if you want to copy an image to the system clipboard so that it can be pasted into other software.
+<p><span class="menuselection notranslate">Edit ‣ Copy to System</span> is needed if you want to copy an image to the system clipboard so that it can be pasted into other software.
 However, be warned that this converts the image to RGB in the process.
 If therefore preserves the image appearance, but not necessarily the pixel values.</p>
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="e610863a-5232-4c84-b3c3-199df71bdc59" name="25abd611-29ba-4ac6-a7a0-5015945166a9" type="radio">
-</input><label class="sd-tab-label" for="e610863a-5232-4c84-b3c3-199df71bdc59">
+<input checked="checked" id="587bec6c-ed34-475a-947a-2995319cf450" name="dd5be3c6-167a-404d-96bf-589e8c7ce8b8" type="radio">
+</input><label class="sd-tab-label" for="587bec6c-ed34-475a-947a-2995319cf450">
 Practical</label><div class="sd-tab-content docutils">
-<p>You can test the compatibility of composite and RGB images by opening <span class="menuselection">File ‣ Open Samples ‣ HeLa Cells</span> image, and saving it using <span class="menuselection">File ‣ Save As ‣ Tiff…</span> both before and after running <span class="menuselection">Image ‣ Type ‣ RGB Color</span> to convert the original 16-bit composite data to RGB.</p>
+<p>You can test the compatibility of composite and RGB images by opening <span class="menuselection notranslate">File ‣ Open Samples ‣ HeLa Cells</span> image, and saving it using <span class="menuselection notranslate">File ‣ Save As ‣ Tiff…</span> both before and after running <span class="menuselection notranslate">Image ‣ Type ‣ RGB Color</span> to convert the original 16-bit composite data to RGB.</p>
 <p>Try then opening both saved images in other software (e.g. Microsoft PowerPoint®) and compare their appearance.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="0d427818-26a8-4799-b2fb-1f8dc64cc4d9" name="7ea77cc9-f97d-4924-ac26-76a2d79cb48a" type="radio">
-</input><label class="sd-tab-label" for="0d427818-26a8-4799-b2fb-1f8dc64cc4d9">
+<input checked="checked" id="868c5f31-8385-4a74-8f04-9f8c0a3fe09a" name="25bd05e3-4c6f-4b9d-af2f-c57953f3ee0f" type="radio">
+</input><label class="sd-tab-label" for="868c5f31-8385-4a74-8f04-9f8c0a3fe09a">
 Practical</label><div class="sd-tab-content docutils">
 <p>Think of at least 2 ways in which converting a composite image to RGB can lose information.</p>
 <p>You can explore this by comparing the images <em>Neuron-composite.tif</em> and
 <em>Neuron-RGB.tif</em>.
-The <span class="menuselection">Image ‣ Color ‣ Split Channels</span> command should help.</p>
+The <span class="menuselection notranslate">Image ‣ Color ‣ Split Channels</span> command should help.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Neuron-composite.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/Neuron-RGB.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="d4e593cd-0013-4c71-84c5-6f0ba4a9c711" name="7ea77cc9-f97d-4924-ac26-76a2d79cb48a" type="radio">
-</input><label class="sd-tab-label" for="d4e593cd-0013-4c71-84c5-6f0ba4a9c711">
+<input id="8cc0ca33-3c30-4f0b-a542-d9fa1abad9f5" name="25bd05e3-4c6f-4b9d-af2f-c57953f3ee0f" type="radio">
+</input><label class="sd-tab-label" for="8cc0ca33-3c30-4f0b-a542-d9fa1abad9f5">
 Solution</label><div class="sd-tab-content docutils">
 <p>One way that converting an image to RGB can lose information is if the original data is 16-bit before conversion and 8-bit afterwards, causing rounding and/or clipping to occur (see <a class="reference internal" href="../3-bit_depths/bit_depths.html#chap-bit-depths"><span class="std std-ref">Types &amp; bit-depths</span></a>).</p>
 <p>Another is that during conversion the channels have been forced to be purely red, green and blue.
@@ -1077,7 +1086,7 @@ But the <em>potentially very bad</em> thing about RGB images is that creating th
 <hr class="docutils" />
 <div class="admonition-how-rgb-images-are-converted-how-i-find-out-what-i-can-t-remember admonition" id="sec-colors-converts">
 <p class="admonition-title">How RGB images are converted / How I find out what I can’t remember</p>
-<p>When describing how <span class="menuselection">Analyze ‣ Measure</span> handles RGB image, I said that it converts the image first.</p>
+<p>When describing how <span class="menuselection notranslate">Analyze ‣ Measure</span> handles RGB image, I said that it converts the image first.</p>
 <p>‘Converts the image’ is a fairly vague statement for a very good reason: I only have a vague awareness of how it works, because I’ve never needed to know it.
 RGB images aren’t good for quantification anyway, so I don’t often have any reason to measure pixel values within them.</p>
 <p>I admit this to give reassurance that there’s a good chance you don’t need to know it either.
@@ -1088,24 +1097,24 @@ I believe that a far more important skill is knowing how to investigate what is 
 <p>And so here is how I set about understanding what ‘converts the image’ means.</p>
 <p>Firstly, I created an RGB image with 50x50 pixels known values for red (0), green (100) and blue (200).</p>
 <img alt="../../../_images/blue.png" class="align-center" src="../../../_images/blue.png" />
-<p><strong>If</strong> the conversion is simply averaging the red, green and blue values then I would expect the result of running <span class="menuselection">Analyze ‣ Measure</span> to be 100 (since that is the mean of 0, 100 and 200).
+<p><strong>If</strong> the conversion is simply averaging the red, green and blue values then I would expect the result of running <span class="menuselection notranslate">Analyze ‣ Measure</span> to be 100 (since that is the mean of 0, 100 and 200).
 When I tested it, I found that was the case.
 I tried some other values, and they all behaved the same way: it appears that conversion is simply averaging the channels.</p>
-<p>I then hypothesised that I should get the same thing if I use <span class="menuselection">Image ‣ Type ‣ 8-bit</span>.
+<p>I then hypothesised that I should get the same thing if I use <span class="menuselection notranslate">Image ‣ Type ‣ 8-bit</span>.
 So I tried that out, and again it matched expectations.</p>
-<p>So I concluded that <span class="menuselection">Analyze ‣ Measure</span> was quietly calling <span class="menuselection">Image ‣ Type ‣ 8-bit</span> on a copy of the image, and then measuring <em>that</em>.</p>
-<p>Or maybe it’s calling <span class="menuselection">Image ‣ Type ‣ 32-bit</span> instead?</p>
+<p>So I concluded that <span class="menuselection notranslate">Analyze ‣ Measure</span> was quietly calling <span class="menuselection notranslate">Image ‣ Type ‣ 8-bit</span> on a copy of the image, and then measuring <em>that</em>.</p>
+<p>Or maybe it’s calling <span class="menuselection notranslate">Image ‣ Type ‣ 32-bit</span> instead?</p>
 <p>I needed a new image that would show the effects of rounding, so I added 1 to the blue channel, making its values 201.</p>
 <img alt="../../../_images/blue2.png" class="align-center" src="../../../_images/blue2.png" />
-<p>I then tried <span class="menuselection">Image ‣ Type ‣ 32-bit</span>, which gave the expected average of 100.33.
-But <span class="menuselection">Image ‣ Type ‣ 8-bit</span> still gave 100 per pixel – because it is limited to integers.
-And <span class="menuselection">Analyze ‣ Measure</span> also gave me 100 – which suggest that it converts the RGB images to 8-bit, not floating point, when making its measurements.</p>
+<p>I then tried <span class="menuselection notranslate">Image ‣ Type ‣ 32-bit</span>, which gave the expected average of 100.33.
+But <span class="menuselection notranslate">Image ‣ Type ‣ 8-bit</span> still gave 100 per pixel – because it is limited to integers.
+And <span class="menuselection notranslate">Analyze ‣ Measure</span> also gave me 100 – which suggest that it converts the RGB images to 8-bit, not floating point, when making its measurements.</p>
 <p>Finally, I remembered that ImageJ sometimes sneaks in extra options.
-So I opened <span class="menuselection">Edit ‣ Options ‣ Conversions…</span> and found a checkbox for <span class="menuselection">Weighted RGB conversion</span>.
+So I opened <span class="menuselection notranslate">Edit ‣ Options ‣ Conversions…</span> and found a checkbox for <span class="menuselection notranslate">Weighted RGB conversion</span>.
 If I selected it, and repeated the steps above I got quite different answers – because it no longer converts using a straight ‘average of the 3 channels’.
 Rather, each channel is weighted: 0.30 x Red + 0.59 x Green + 0.11 x Blue.</p>
 <p>Pondering the weights took me down a googling rabbit hole to see these are (somewhat) standard weight values for grayscale image conversion used across different software.
-But, more importantly, I saw that the <span class="menuselection">Weighted RGB conversion</span> option affected <em>both</em> measurement and conversion – supporting my suspicion that they are connected.</p>
+But, more importantly, I saw that the <span class="menuselection notranslate">Weighted RGB conversion</span> option affected <em>both</em> measurement and conversion – supporting my suspicion that they are connected.</p>
 <p>Confused?
 Me too.</p>
 <p><strong>But</strong> my main point is that mortals like me can’t predict what software is going to do.

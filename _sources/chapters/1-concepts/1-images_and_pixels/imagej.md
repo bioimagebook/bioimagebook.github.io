@@ -186,7 +186,7 @@ The search bar can also be activated using {kbd}`L` and used to find and run com
 :::{admonition} Losing control
 :class:
 
-In most software, shortcut keys often requires pressing {kbd}`Ctrl` (on Windows, Linux) or {kbd}`⌘` (Mac).
+In most software, shortcut keys often require pressing {kbd}`Ctrl` (on Windows, Linux) or {kbd}`⌘` (Mac).
 Therefore the shortcut to search for a command would be {kbd}`Ctrl + L` or {kbd}`⌘ + L`.
 
 This works in ImageJ, but isn't necessary.

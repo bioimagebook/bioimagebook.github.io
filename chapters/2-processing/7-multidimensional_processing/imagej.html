@@ -36,10 +36,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/design-tabs.js"></script>
@@ -49,6 +52,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://bioimagebook.github.io/chapters/2-processing/7-multidimensional_processing/imagej.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="From photons to pixels" href="../../3-fluorescence/1-formation_overview/formation_overview.html" />
@@ -133,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../0-preamble/disclaimer.html">
    Disclaimer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../CHANGELOG.html">
+   Changelog
   </a>
  </li>
 </ul>
@@ -825,22 +834,22 @@ It’s really just a scattered collection of thoughts for now.</p>
 <section id="point-operations-contrast-conversion">
 <h2>Point operations, contrast &amp; conversion<a class="headerlink" href="#point-operations-contrast-conversion" title="Permalink to this headline">#</a></h2>
 <p>Point operations are straightforward: they depend only on individual pixels, so the number of dimensions is unimportant.
-Image arithmetic involving a 3D stack and a 2D image can also be carried out in ImageJ using the <span class="menuselection">Process ‣ Image Calculator</span>, where the operation involving the 2D image is applied to each slice of the 3D stack in turn.
+Image arithmetic involving a 3D stack and a 2D image can also be carried out in ImageJ using the <span class="menuselection notranslate">Process ‣ Image Calculator</span>, where the operation involving the 2D image is applied to each slice of the 3D stack in turn.
 Other options, such as filtering and thresholding, are possible, but bring with them extra considerations – and often significantly higher computational costs.</p>
 <p>Setting the LUT of a 3D image requires particular care.
-The normal <span class="menuselection">Brightness/Contrast…</span> tool only takes the currently-displayed slice into consideration when pressing <span class="guilabel">Reset</span> or <span class="guilabel">Auto</span>.
-Optimizing the display for a single slice does not necessarily mean the rest of the stack will look reasonable if the brightness changes much. <span class="menuselection">Process ‣ Enhance Contrast…</span> is a better choice, since here you can specify that the information in the entire stack should be used.
+The normal <span class="menuselection notranslate">Brightness/Contrast…</span> tool only takes the currently-displayed slice into consideration when pressing <span class="guilabel notranslate">Reset</span> or <span class="guilabel notranslate">Auto</span>.
+Optimizing the display for a single slice does not necessarily mean the rest of the stack will look reasonable if the brightness changes much. <span class="menuselection notranslate">Process ‣ Enhance Contrast…</span> is a better choice, since here you can specify that the information in the entire stack should be used.
 You can also specify the percentage of pixels that should be saturated (clipped) <em>for display</em>, i.e. those that should be shown with the first or last colors in the LUT.
-So long as <span class="guilabel">Normalize</span> and <span class="guilabel">Equalize histogram</span> are not selected, the pixel values shouldn’t be changed.</p>
+So long as <span class="guilabel notranslate">Normalize</span> and <span class="guilabel notranslate">Equalize histogram</span> are not selected, the pixel values shouldn’t be changed.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="7bc3dd0c-4645-4999-8ade-c45b75289ef4" name="a514f057-b080-4ad7-ba8a-4fce4fe6d137" type="radio">
-</input><label class="sd-tab-label" for="7bc3dd0c-4645-4999-8ade-c45b75289ef4">
+<input checked="checked" id="c2c67308-190d-41f7-bd52-023acb17ae43" name="010e83af-5304-4323-bfa8-9d9ad395ef4d" type="radio">
+</input><label class="sd-tab-label" for="c2c67308-190d-41f7-bd52-023acb17ae43">
 Question</label><div class="sd-tab-content docutils">
-<p>By default, the percentage of saturated pixels in <span class="menuselection">Enhance Contrast…</span> is set to 0.4.
+<p>By default, the percentage of saturated pixels in <span class="menuselection notranslate">Enhance Contrast…</span> is set to 0.4.
 Why might this be chosen instead of 0?</p>
 </div>
-<input id="62229c29-dd23-48ec-b095-9b3bee20bd4e" name="a514f057-b080-4ad7-ba8a-4fce4fe6d137" type="radio">
-</input><label class="sd-tab-label" for="62229c29-dd23-48ec-b095-9b3bee20bd4e">
+<input id="ca8b9872-b086-493a-bdbb-badd9bd2ffa6" name="010e83af-5304-4323-bfa8-9d9ad395ef4d" type="radio">
+</input><label class="sd-tab-label" for="ca8b9872-b086-493a-bdbb-badd9bd2ffa6">
 Answer</label><div class="sd-tab-content docutils">
 <p>If the percentage of saturated pixels is 0, then the minimum and maximum pixel values throughout the image will be given the first and last LUT colors respectively, with all other colors devoted to values in between.
 This is sensitive to outliers, and often results in images that have poor contrast.
@@ -851,8 +860,8 @@ It’s usually better to accept some small amount of visual saturation, in order
 <p class="admonition-title">Converting bit-depths of multidimensional images</p>
 <p>As described in <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html#sec-bit-depths-converting"><span class="std std-ref">Types &amp; bit-depths</span></a>, the minimum and maximum display range values are used by default when reducing the bit-depth of an image.
 To minimize the information lost, these should usually be set to the minimum and maximum pixel values within the image – otherwise values will be clipped.</p>
-<p>In 2D it’s enough to press <span class="guilabel">Reset</span> in the <span class="menuselection">Brightness/Contrast</span> window, <em>but in 3D this will only work if the minimum and maximum values from the entire stack happen to appear on the current slice!</em></p>
-<p>For this reason, it’s good practice to run <span class="menuselection">Enhance Contrast…</span> prior to reducing bit-depths of stacks, setting the saturation to 0 and using the entire stack.
+<p>In 2D it’s enough to press <span class="guilabel notranslate">Reset</span> in the <span class="menuselection notranslate">Brightness/Contrast</span> window, <em>but in 3D this will only work if the minimum and maximum values from the entire stack happen to appear on the current slice!</em></p>
+<p>For this reason, it’s good practice to run <span class="menuselection notranslate">Enhance Contrast…</span> prior to reducing bit-depths of stacks, setting the saturation to 0 and using the entire stack.
 This means no pixels will be clipped in the output (although rescaling and rounding will still occur).</p>
 </div>
 </section>
@@ -862,10 +871,10 @@ This means no pixels will be clipped in the output (although rescaling and round
 For example, a 3×3 mean filter can easily become a 3×3×3 filter if averaging across slices is allowed.
 Importantly, it then replaces each pixel by the average of 27 values, rather than 9.</p>
 <p>This implies the reduction in noise is <em>somewhat</em> similar to that of applying a 5×5 filter (25 values), but with a little less blurring in 2D and a little more along the third dimension instead.
-Several 3D filters are available under the <span class="menuselection">Plugins ‣ Process ‣</span> submenu.</p>
+Several 3D filters are available under the <span class="menuselection notranslate">Plugins ‣ Process ‣</span> submenu.</p>
 <section id="fast-separable-filters">
 <h3>Fast, separable filters<a class="headerlink" href="#fast-separable-filters" title="Permalink to this headline">#</a></h3>
-<p><span class="menuselection">Process ‣ Filters ‣ Gaussian Blur 3D…</span> uses this approach.</p>
+<p><span class="menuselection notranslate">Process ‣ Filters ‣ Gaussian Blur 3D…</span> uses this approach.</p>
 <div class="info admonition">
 <p class="admonition-title">Fast filters &amp; the Fourier transform</p>
 <p>Not all linear filters are separable, and applying a large, non-separable linear filter can also be extremely time-consuming.
@@ -879,34 +888,34 @@ But for a <strong>z</strong>-stack, the spacing between slices is usually larger
 And if the third dimension is time, then it uses another scale entirely.
 Therefore more thought usually needs to be given to what sizes make most sense.</p>
 <p>In some commands (e.g.
-<span class="menuselection">Plugins ‣ Process ‣ Smooth (3D)</span>), there is a <span class="guilabel">Use calibration</span> option to determine whether the values you enter are defined in terms of the units found in the <span class="menuselection">Properties…</span> and therefore corrected for the stored pixel dimensions.
-Elsewhere (e.g. <span class="menuselection">Gaussian Blur 3D…</span>) the units are pixels, slices and time points – and so you are responsible for figuring out how to compensate for different scales and units.</p>
+<span class="menuselection notranslate">Plugins ‣ Process ‣ Smooth (3D)</span>), there is a <span class="guilabel notranslate">Use calibration</span> option to determine whether the values you enter are defined in terms of the units found in the <span class="menuselection notranslate">Properties…</span> and therefore corrected for the stored pixel dimensions.
+Elsewhere (e.g. <span class="menuselection notranslate">Gaussian Blur 3D…</span>) the units are pixels, slices and time points – and so you are responsible for figuring out how to compensate for different scales and units.</p>
 </section>
 </section>
 <section id="thresholding-multidimensional-data">
 <h2>Thresholding multidimensional data<a class="headerlink" href="#thresholding-multidimensional-data" title="Permalink to this headline">#</a></h2>
-<p>When thresholding an image with more than 2 dimensions using the <span class="menuselection">Threshold…</span> command, it is necessary to choose whether the threshold should be determined from the histogram of the entire stack, or from the currently-visible 2D slice only.
+<p>When thresholding an image with more than 2 dimensions using the <span class="menuselection notranslate">Threshold…</span> command, it is necessary to choose whether the threshold should be determined from the histogram of the entire stack, or from the currently-visible 2D slice only.
 If the latter, you will also be asked whether the same threshold should be used for every slice, or if it should be calculated anew for each slice based upon the slice histogram. In some circumstances, these choices can have a very large impact upon the result.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="35700e2f-2b72-4f7e-9b36-ff795fcf4a5e" name="6b48889b-15b1-4ad2-bead-f8ba420d8ef1" type="radio">
-</input><label class="sd-tab-label" for="35700e2f-2b72-4f7e-9b36-ff795fcf4a5e">
+<input checked="checked" id="417b5697-0b91-4398-b9fa-e02dc6eb7bd1" name="b08416a9-e07e-4521-9f32-b86182d43d8a" type="radio">
+</input><label class="sd-tab-label" for="417b5697-0b91-4398-b9fa-e02dc6eb7bd1">
 Question</label><div class="sd-tab-content docutils">
-<p>When you threshold a stack, you have an option to choose <span class="guilabel">Stack Histogram</span>. Then, when you choose <span class="guilabel">Apply</span> you are asked if you want to <span class="guilabel">Calculate Threshold for Each Image</span>.
+<p>When you threshold a stack, you have an option to choose <span class="guilabel notranslate">Stack Histogram</span>. Then, when you choose <span class="guilabel notranslate">Apply</span> you are asked if you want to <span class="guilabel notranslate">Calculate Threshold for Each Image</span>.
 What difference do you expect these two options to make, and what combinations would you use for:</p>
 <ol class="simple">
 <li><p>a stack consisting of 2D images from different color channels</p></li>
 <li><p>a <strong>z</strong>-stack</p></li>
 <li><p>a time series</p></li>
 </ol>
-<p><em>Note:</em> Have a look at what happens when you click <span class="guilabel">Auto</span> while scrolling through one channel of the stack <span class="menuselection">File ‣ Open samples ‣ Mitosis (26 MB, 5D Stack)</span>, with and without <span class="guilabel">Stack Histogram</span> selected.
+<p><em>Note:</em> Have a look at what happens when you click <span class="guilabel notranslate">Auto</span> while scrolling through one channel of the stack <span class="menuselection notranslate">File ‣ Open samples ‣ Mitosis (26 MB, 5D Stack)</span>, with and without <span class="guilabel notranslate">Stack Histogram</span> selected.
 You will have to split the channels for this because ImageJ currently refuses to threshold multichannel images with extra dimensions (which helps avoid some confusion).
-<span class="guilabel">Dark Background</span> should always be selected here.</p>
+<span class="guilabel notranslate">Dark Background</span> should always be selected here.</p>
 </div>
-<input id="b3b78be3-a65f-4fc4-9fab-d1d20ae46d8c" name="6b48889b-15b1-4ad2-bead-f8ba420d8ef1" type="radio">
-</input><label class="sd-tab-label" for="b3b78be3-a65f-4fc4-9fab-d1d20ae46d8c">
+<input id="73a6a206-83d1-4782-869a-70df77dd71af" name="b08416a9-e07e-4521-9f32-b86182d43d8a" type="radio">
+</input><label class="sd-tab-label" for="73a6a206-83d1-4782-869a-70df77dd71af">
 Answer</label><div class="sd-tab-content docutils">
-<p>If <span class="guilabel">Stack Histogram</span> is checked, the thresholds are computed from a histogram of all the pixels in the entire image stack; otherwise, the histogram of only the currently-displayed image slice is used.</p>
-<p>BUT! If <span class="guilabel">Calculate Threshold for Each Image</span> is chosen, then this is ignored: the threshold is always determined by the selected automatic method using the histogram of the corresponding slice only.</p>
+<p>If <span class="guilabel notranslate">Stack Histogram</span> is checked, the thresholds are computed from a histogram of all the pixels in the entire image stack; otherwise, the histogram of only the currently-displayed image slice is used.</p>
+<p>BUT! If <span class="guilabel notranslate">Calculate Threshold for Each Image</span> is chosen, then this is ignored: the threshold is always determined by the selected automatic method using the histogram of the corresponding slice only.</p>
 <p>Therefore, the most sensible combinations of thresholding options to use depend upon the type of data.</p>
 <ol class="simple">
 <li><p><em>color channels</em> – There is often no good reason to suppose the amount of fluorescence in different color channels will be similar, and so thresholds should be calculated from each channel independently.</p></li>
@@ -920,18 +929,18 @@ On the other hand, if images were previously normalized somehow to compensate fo
 It’s tricky.</p></li>
 </ol>
 <p>There is one other implementation issue that needs attention.
-When <span class="guilabel">Dark Background</span> is checked and an automated threshold is computed, then it is only really the low threshold that matters – the high threshold is always set to the maximum in the histogram to ensure that all brighter pixels are designated ‘foreground’ in the result.
-However, if not using <span class="guilabel">Stack Histogram</span>, then for non-8-bit images the histograms are calculated using the minimum and maximum pixels on the slice, and consequently the high threshold cannot be higher than this maximum value (look at how the high threshold value changes in <span class="menuselection">Mitosis</span> as you compute auto thresholds for different slices).
+When <span class="guilabel notranslate">Dark Background</span> is checked and an automated threshold is computed, then it is only really the low threshold that matters – the high threshold is always set to the maximum in the histogram to ensure that all brighter pixels are designated ‘foreground’ in the result.
+However, if not using <span class="guilabel notranslate">Stack Histogram</span>, then for non-8-bit images the histograms are calculated using the minimum and maximum pixels on the slice, and consequently the high threshold cannot be higher than this maximum value (look at how the high threshold value changes in <span class="menuselection notranslate">Mitosis</span> as you compute auto thresholds for different slices).
 This means that any brighter pixels will be <em>outside</em> the threshold range (and therefore ‘background’) if they occur on a different slice.
 This can cause holes to appear in the brightest parts of structures, and is probably not what you want.
-A similar situation occurs with the low threshold when <span class="guilabel">Dark Background</span> is unchecked.</p>
+A similar situation occurs with the low threshold when <span class="guilabel notranslate">Dark Background</span> is unchecked.</p>
 </div>
 </div>
 </section>
 <section id="measurements-in-3d-data">
 <h2>Measurements in 3D data<a class="headerlink" href="#measurements-in-3d-data" title="Permalink to this headline">#</a></h2>
-<p>ImageJ has good support for making measurements in 2D, particularly the <span class="menuselection">Measure</span> and <span class="menuselection">Analyze Particles…</span> commands. The latter can happily handle 3D images, but only by creating and measuring 2D ROIs independently on each slice.
-Alternatively, <span class="menuselection">Image ‣ Stacks ‣ Plot Z-axis Profile</span> is like applying <span class="menuselection">Measure</span> to each slice independently, making measurements either over the entire image or any ROI.
+<p>ImageJ has good support for making measurements in 2D, particularly the <span class="menuselection notranslate">Measure</span> and <span class="menuselection notranslate">Analyze Particles…</span> commands. The latter can happily handle 3D images, but only by creating and measuring 2D ROIs independently on each slice.
+Alternatively, <span class="menuselection notranslate">Image ‣ Stacks ‣ Plot Z-axis Profile</span> is like applying <span class="menuselection notranslate">Measure</span> to each slice independently, making measurements either over the entire image or any ROI.
 It will also plot the mean pixel values, but even if you do not particularly want this the command can still be useful.
 However, if single measurements should be made for individual objects that extend across multiple slices, neither of these options would be enough.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
@@ -946,11 +955,11 @@ However, if single measurements should be made for individual objects that exten
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="f357aaac-d188-434e-ad93-0871bc9f2a37" name="3cf9e1b9-ff12-4e10-a268-9fe0bf8a8a74" type="radio">
-</input><label class="sd-tab-label" for="f357aaac-d188-434e-ad93-0871bc9f2a37">
+<input checked="checked" id="0faeaf86-2656-4d11-b2c6-2879399f919e" name="f3817d7f-8a9b-465a-9bbd-b2edace93e55" type="radio">
+</input><label class="sd-tab-label" for="0faeaf86-2656-4d11-b2c6-2879399f919e">
 Practical</label><div class="sd-tab-content docutils">
 <p>Suppose you have a cell, nucleus or some other large 3D structure in a <strong>z</strong>-stack, and you want to draw the smallest 2D ROI that completely contains it on every slice.
-An example is shown below for the green structure in the <span class="menuselection">Confocal Series</span> sample image.</p>
+An example is shown below for the green structure in the <span class="menuselection notranslate">Confocal Series</span> sample image.</p>
 <p>How would you create such a ROI, and be confident that it is large enough for all slices?</p>
 <p><a class="reference external" href="https://ij.imjoy.io?run=https://gist.github.com/petebankhead/55b02288a529512fee0f321fee0da693"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 <figure class="align-default">
@@ -959,33 +968,33 @@ An example is shown below for the green structure in the <span class="menuselect
 </div>
 </figure>
 </div>
-<input id="bc41ad95-a4bb-4a44-b637-f9be75078fd0" name="3cf9e1b9-ff12-4e10-a268-9fe0bf8a8a74" type="radio">
-</input><label class="sd-tab-label" for="bc41ad95-a4bb-4a44-b637-f9be75078fd0">
+<input id="a4a91021-1c0d-411e-a55f-73757b1cf23e" name="f3817d7f-8a9b-465a-9bbd-b2edace93e55" type="radio">
+</input><label class="sd-tab-label" for="a4a91021-1c0d-411e-a55f-73757b1cf23e">
 Solution</label><div class="sd-tab-content docutils">
-<p>My strategy would be to create a z-projection (max intensity) and then draw the ROI on this – or, preferably, create the ROI by thresholding using <span class="menuselection">Image ‣ Adjust ‣ Threshold</span> and the <span class="guilabel">Wand</span> tool.
-This ROI can then be transferred over to the original stack, either via the ROI Manager or <span class="menuselection">Edit ‣ Selection ‣ Restore Selection</span>.</p>
+<p>My strategy would be to create a z-projection (max intensity) and then draw the ROI on this – or, preferably, create the ROI by thresholding using <span class="menuselection notranslate">Image ‣ Adjust ‣ Threshold</span> and the <span class="guilabel notranslate">Wand</span> tool.
+This ROI can then be transferred over to the original stack, either via the ROI Manager or <span class="menuselection notranslate">Edit ‣ Selection ‣ Restore Selection</span>.</p>
 </div>
 </div>
 <section id="histograms-threshold-clipping">
 <h3>Histograms &amp; threshold clipping<a class="headerlink" href="#histograms-threshold-clipping" title="Permalink to this headline">#</a></h3>
-<p>One way to measure in 3D is to use the <span class="menuselection">Histogram</span> command and specify that the entire stack should be included – this provides some basic statistics, including the total number, mean, minimum, maximum and standard deviation of the pixels <a class="footnote-reference brackets" href="#fn-2" id="id2">2</a>.
+<p>One way to measure in 3D is to use the <span class="menuselection notranslate">Histogram</span> command and specify that the entire stack should be included – this provides some basic statistics, including the total number, mean, minimum, maximum and standard deviation of the pixels <a class="footnote-reference brackets" href="#fn-2" id="id2">2</a>.
 This will respect the boundaries of a 2D ROI if one has been drawn.</p>
 <p>This is a start, but it will not adjust to changes in the object boundary on each 2D plane.
-A better approach could be to use <span class="menuselection">Image ‣ Adjust ‣ Threshold…</span> to set a threshold that identifies the object – but do <em>not</em> press <span class="guilabel">Apply</span> to generate a binary image.
-Rather, under <span class="menuselection">Analyze ‣ Set Measurements…</span> select <span class="guilabel">Limit to threshold</span>.
-Then when you compute the stack histogram (or press <span class="menuselection">Measure</span> for 2D) only above-threshold pixels will be included in the statistics.
-Just be sure to reset <span class="guilabel">Limit to threshold</span> later.</p>
+A better approach could be to use <span class="menuselection notranslate">Image ‣ Adjust ‣ Threshold…</span> to set a threshold that identifies the object – but do <em>not</em> press <span class="guilabel notranslate">Apply</span> to generate a binary image.
+Rather, under <span class="menuselection notranslate">Analyze ‣ Set Measurements…</span> select <span class="guilabel notranslate">Limit to threshold</span>.
+Then when you compute the stack histogram (or press <span class="menuselection notranslate">Measure</span> for 2D) only above-threshold pixels will be included in the statistics.
+Just be sure to reset <span class="guilabel notranslate">Limit to threshold</span> later.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="8d2e5ae9-a4d6-4773-90f7-0e326e13b530" name="ff8460b5-74d2-4d4b-8e20-e22f1faa0a38" type="radio">
-</input><label class="sd-tab-label" for="8d2e5ae9-a4d6-4773-90f7-0e326e13b530">
+<input checked="checked" id="5c6fde20-2eff-4cfc-8dc0-992c31830501" name="59a356b0-e28a-4fc6-a319-a832d0fa80ae" type="radio">
+</input><label class="sd-tab-label" for="5c6fde20-2eff-4cfc-8dc0-992c31830501">
 Question</label><div class="sd-tab-content docutils">
 <p>How can you translate the total number of pixels in an object into its volume, e.g.
 in µm<sup>3</sup>? Give some thought to how accurate your method will be.</p>
 </div>
-<input id="70b024f7-5a86-4b44-b217-894c58e62eab" name="ff8460b5-74d2-4d4b-8e20-e22f1faa0a38" type="radio">
-</input><label class="sd-tab-label" for="70b024f7-5a86-4b44-b217-894c58e62eab">
+<input id="64611ae4-d703-4e79-be56-7d31e7117b51" name="59a356b0-e28a-4fc6-a319-a832d0fa80ae" type="radio">
+</input><label class="sd-tab-label" for="64611ae4-d703-4e79-be56-7d31e7117b51">
 Answer</label><div class="sd-tab-content docutils">
-<p>You could treat each pixel as a rectangular cuboid, with a volume equal to <em>pixel width_×_pixel height_×_voxel depth</em> (as given in <span class="menuselection">Image ‣ Properties…</span>).
+<p>You could treat each pixel as a rectangular cuboid, with a volume equal to <em>pixel width_×_pixel height_×_voxel depth</em> (as given in <span class="menuselection notranslate">Image ‣ Properties…</span>).
 Then multiply this by the number of pixels within the object.
 This is what the <a class="reference internal" href="#sec-multidimensional-counter"><span class="std std-ref">3D Objects Counter</span></a>  plugin does when measuring volumes.</p>
 <p>Whenever you want to compare object sizes across images acquired with different pixel sizes, this is certainly better than just taking the raw pixel counts as measures of volume.
@@ -995,19 +1004,19 @@ They are also likely to be quite sensitive to spacing.</p>
 </div>
 <div class="info admonition">
 <p class="admonition-title">Using NaNs</p>
-<p>I am not a fan of <span class="guilabel">Limit to threshold</span>, because I am likely to forget to reset it afterwards and may subsequently measure the wrong things for days thereafter.</p>
-<p>An alternative that I prefer is to set my threshold on a 32-bit copy of the image I am working with, and then <span class="guilabel">Apply</span> the threshold using the <span class="guilabel">Set Background Pixels to NaN</span> option. Then all below-threshold pixels will automatically be excluded from any measurements I make on the result, since they are ‘no longer numbers’ (see <a class="reference internal" href="../3-thresholding/imagej.html#sec-thresholding-nans"><span class="std std-ref">Thresholding</span></a> for more details).</p>
+<p>I am not a fan of <span class="guilabel notranslate">Limit to threshold</span>, because I am likely to forget to reset it afterwards and may subsequently measure the wrong things for days thereafter.</p>
+<p>An alternative that I prefer is to set my threshold on a 32-bit copy of the image I am working with, and then <span class="guilabel notranslate">Apply</span> the threshold using the <span class="guilabel notranslate">Set Background Pixels to NaN</span> option. Then all below-threshold pixels will automatically be excluded from any measurements I make on the result, since they are ‘no longer numbers’ (see <a class="reference internal" href="../3-thresholding/imagej.html#sec-thresholding-nans"><span class="std std-ref">Thresholding</span></a> for more details).</p>
 </div>
 </section>
 <section id="the-3d-objects-counter">
 <span id="sec-multidimensional-counter"></span><h3>The 3D Objects Counter<a class="headerlink" href="#the-3d-objects-counter" title="Permalink to this headline">#</a></h3>
-<p>Currently, the closest thing to <span class="menuselection">Analyze Particles…</span> for measuring connected objects in 3D built-in to Fiji is the 3D Objects Counter (<span class="menuselection">Analyze ‣ 3D Objects Counter</span>) <a class="footnote-reference brackets" href="#fn-3" id="id3">3</a>.
-Its settings (analogous to <span class="menuselection">Set Measurements…</span>) are under <span class="menuselection">Analyze ‣ 3D OC Options</span>.
+<p>Currently, the closest thing to <span class="menuselection notranslate">Analyze Particles…</span> for measuring connected objects in 3D built-in to Fiji is the 3D Objects Counter (<span class="menuselection notranslate">Analyze ‣ 3D Objects Counter</span>) <a class="footnote-reference brackets" href="#fn-3" id="id3">3</a>.
+Its settings (analogous to <span class="menuselection notranslate">Set Measurements…</span>) are under <span class="menuselection notranslate">Analyze ‣ 3D OC Options</span>.
 In addition to various measurements, it provides labelled images as output, either of the entire objects or only their central pixels – optionally with labels, or expanded to be more visible.</p>
 <div class="info admonition">
 <p class="admonition-title">Find Connected Regions</p>
-<p><span class="menuselection">Plugins ‣ Process ‣ Find Connected Regions</span> is a command primarily for creating labelled images from thresholded 3D data, which can also give the total number of pixels per object.
-If the main thing you want is the labelled image without many more results, it may be faster than <span class="menuselection">3D Objects Counter</span>.</p>
+<p><span class="menuselection notranslate">Plugins ‣ Process ‣ Find Connected Regions</span> is a command primarily for creating labelled images from thresholded 3D data, which can also give the total number of pixels per object.
+If the main thing you want is the labelled image without many more results, it may be faster than <span class="menuselection notranslate">3D Objects Counter</span>.</p>
 </div>
 <div class="info admonition">
 <p class="admonition-title">Additional 3D tools</p>

@@ -36,10 +36,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/design-tabs.js"></script>
@@ -51,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://bioimagebook.github.io/chapters/1-concepts/6-files/imagej.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Python: Files &amp; file formats" href="python.html" />
@@ -135,6 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../0-preamble/disclaimer.html">
    Disclaimer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../CHANGELOG.html">
+   Changelog
   </a>
  </li>
 </ul>
@@ -815,27 +824,27 @@ It’s possible to drag all these onto ImageJ’s toolbar at once, but they are 
 The trick is to drag the folder containing all the images onto the toolbar instead: you should then be invited to open the images together in a single image stack.</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-files-import-sequence.png"><img alt="../../../_images/imagej-files-import-sequence.png" class="align-center" src="../../../_images/imagej-files-import-sequence.png" style="width: 30%;" /></a>
 <p>This assumes that <em>all</em> the images in the folder should be opened.
-If you need more control, then <span class="menuselection">File ‣ Import ‣ Image Sequence…</span> can help.
+If you need more control, then <span class="menuselection notranslate">File ‣ Import ‣ Image Sequence…</span> can help.
 This gives a more extensive dialog, where (among other things) you can specify a filter, i.e. some text that should be present within the filenames of images to include.</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-files-import-sequence-full.png"><img alt="../../../_images/imagej-files-import-sequence-full.png" class="align-center" src="../../../_images/imagej-files-import-sequence-full.png" style="width: 40%;" /></a>
 <div class="tip admonition">
 <p class="admonition-title">Virtual stacks for large images</p>
-<p>Both the dialogs shown above to import multiple images give an intriguing <span class="guilabel">Use Virtual Stack</span> option.
+<p>Both the dialogs shown above to import multiple images give an intriguing <span class="guilabel notranslate">Use Virtual Stack</span> option.
 This causes ImageJ to <em>only</em> open the slice of the image stack that is currently being viewed.
 This can dramatically cut down memory requirements for large stacks, and make opening much faster.</p>
 <p>The disadvantage of using a virtual stack is that it can make processing behave a bit oddly: seemingly ‘forgetting’ when a slice has been processed, or requesting that the full image is read into memory with prompts like the one below.</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-files-virtual-stack.png"><img alt="../../../_images/imagej-files-virtual-stack.png" class="align-center" src="../../../_images/imagej-files-virtual-stack.png" style="width: 40%;" /></a>
 <p>Still, virtual stacks are very handy if you want to peak into a large image without opening it all.
-If you don’t mind its limitations, you can also open an ImageJ TIFF as a virtual stack using <span class="menuselection">File ‣ Import ‣ TIFF Virtual Stack…</span>.</p>
+If you don’t mind its limitations, you can also open an ImageJ TIFF as a virtual stack using <span class="menuselection notranslate">File ‣ Import ‣ TIFF Virtual Stack…</span>.</p>
 </div>
 </section>
 <section id="saving-images-for-analysis">
 <h3>Saving images for analysis<a class="headerlink" href="#saving-images-for-analysis" title="Permalink to this headline">#</a></h3>
-<p>To save an image, <span class="menuselection">File ‣ Save As ‣ Tiff…</span> <em>might</em> be all you ever need.
+<p>To save an image, <span class="menuselection notranslate">File ‣ Save As ‣ Tiff…</span> <em>might</em> be all you ever need.
 This is ImageJ’s default format, and so preserves all the important information that it requires – including the pixel size.
 It even includes any <a class="reference internal" href="../2-measurements/imagej.html#chap-rois"><span class="std std-ref">active ROIs and overlays</span></a>.</p>
 <p>The main disadvantage with saving an ImageJ TIFF is that it’s uncompressed, and so the file size can quickly become quite large.
-One way to mitigate this is to choose <span class="menuselection">File ‣ Save As ‣ ZIP…</span>.</p>
+One way to mitigate this is to choose <span class="menuselection notranslate">File ‣ Save As ‣ ZIP…</span>.</p>
 <p>Rather than being an entirely different format, a ZIP file saved by ImageJ is really just a TIFF that has been zipped up into a smaller file using lossless compression.
 You can probably unzip the file using the tools of your operating system to reveal the TIFF inside – but you don’t have to, because ImageJ can open the zip file directly.</p>
 <p>ImageJ’s zip files are therefore good for archiving: they preserve all the same information as an ImageJ TIFF, but in a smaller file size.
@@ -849,9 +858,9 @@ Depending upon the original image, most will result in some kind of loss: for ex
 We care about appearance and compatibility, not exact pixel values.</p>
 <p>ImageJ TIFF can also be used to save an image for display, but the large file sizes can be a problem.
 If you want to do it anyway, then it is often best to <a class="reference internal" href="../4-colors/imagej.html#sec-imagej-flatten"><span class="std std-ref">convert the image to RGB first</span></a>.</p>
-<p>Alternatively, I regularly use <span class="menuselection">File ‣ Save As… ‣ PNG…</span> as my preferred option to save RGB images for display using lossless compression.</p>
-<p>If file size is still an issue, and artefacts are acceptable, then <span class="menuselection">File ‣ Save As… ‣ Jpeg…</span> can be used instead.
-The quality of the JPEG can be adjusted via <span class="menuselection">Edit ‣ Options ‣ Input/Output…</span>: increasing the JPEG quality will give (slightly) larger files, but less obvious artefacts.</p>
+<p>Alternatively, I regularly use <span class="menuselection notranslate">File ‣ Save As… ‣ PNG…</span> as my preferred option to save RGB images for display using lossless compression.</p>
+<p>If file size is still an issue, and artefacts are acceptable, then <span class="menuselection notranslate">File ‣ Save As… ‣ Jpeg…</span> can be used instead.
+The quality of the JPEG can be adjusted via <span class="menuselection notranslate">Edit ‣ Options ‣ Input/Output…</span>: increasing the JPEG quality will give (slightly) larger files, but less obvious artefacts.</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-files-options.png"><img alt="../../../_images/imagej-files-options.png" class="align-center" src="../../../_images/imagej-files-options.png" style="width: 40%;" /></a>
 </section>
 </section>
@@ -880,7 +889,7 @@ If you find yourself doing these tasks each time you open an image anyway, chang
 </section>
 <section id="saving-images">
 <h3>Saving images<a class="headerlink" href="#saving-images" title="Permalink to this headline">#</a></h3>
-<p>To save a file, you can use <span class="menuselection">Plugins ‣ Bio-Formats ‣ Bio-Formats Exporter</span>.</p>
+<p>To save a file, you can use <span class="menuselection notranslate">Plugins ‣ Bio-Formats ‣ Bio-Formats Exporter</span>.</p>
 <p>This is perhaps most useful if you want to save an OME-TIFF image.
 An OME-TIFF differs from a regular ImageJ TIFF in two main ways:</p>
 <ul class="simple">
@@ -895,7 +904,7 @@ An OME-TIFF differs from a regular ImageJ TIFF in two main ways:</p>
 <p>Sometimes you might get slightly unlucky: an image fails to open, even though it <em>could</em> be opened.</p>
 <p>This can happen whenever ImageJ optimistically <em>thinks</em> it can open a file, gives it a shot, but fails with a error-emitting whimper.
 Pride presumably wounded, ImageJ never passes the file to Bio-Formats to try.
-If this happens, then you can call on <span class="menuselection">Plugins ‣ Bio-Formats ‣ Bio-Formats Importer</span>  to force the import to use Bio-Formats, in the hope it will have more success.
+If this happens, then you can call on <span class="menuselection notranslate">Plugins ‣ Bio-Formats ‣ Bio-Formats Importer</span>  to force the import to use Bio-Formats, in the hope it will have more success.
 I’ve had to do this on rare occasions with troublesome TIFFs.</p>
 <p>At other times, you might be more unlucky: an image fails to open, and no amount of effort will get ImageJ to open it.</p>
 <p>This could be because the file format itself is unsupported, or the image is corrupt.
@@ -907,14 +916,14 @@ In that case, you might see a rather cryptic error like the one below:</p>
 <p>Although by no means obvious, this indicates that the image is too large.
 If this happens, you might want to try <a class="reference internal" href="files.html#sec-files-pyramidal"><span class="std std-ref">QuPath</span></a> instead.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="0912dc66-30eb-492a-b865-81b70f3ed921" name="db978ae7-e33f-4038-9ab7-15119340af9c" type="radio">
-</input><label class="sd-tab-label" for="0912dc66-30eb-492a-b865-81b70f3ed921">
+<input checked="checked" id="1df3a591-d7e2-41f8-824e-3b9f3e4efc43" name="3734f6d4-8234-4b68-abe5-5f15a47cf95d" type="radio">
+</input><label class="sd-tab-label" for="1df3a591-d7e2-41f8-824e-3b9f3e4efc43">
 Practical</label><div class="sd-tab-content docutils">
 <p>To get a feel for the importance of metadata, you can try opening an image in which it is completely absent.
 This is quite tricky, and requires some detective work (or some luck).</p>
 <p>Try to open the file <em>Besenfreunde.ids</em> using Fiji – it depicts an odd, and as yet unexplained, scene that I passed on my way to work soon after arriving in Heidelberg.
 This file <strong>only</strong> contains pixel values, and no metadata.
-It can still be read using the <span class="menuselection">File ‣ Import ‣ Raw…</span> command, but to do so you will need to figure out the necessary metadata and input the appropriate values.</p>
+It can still be read using the <span class="menuselection notranslate">File ‣ Import ‣ Raw…</span> command, but to do so you will need to figure out the necessary metadata and input the appropriate values.</p>
 <p>The following points may help:</p>
 <ul class="simple">
 <li><p>The file contains only a single image, and a single channel.</p></li>
@@ -923,12 +932,12 @@ It can still be read using the <span class="menuselection">File ‣ Import ‣ R
 <li><p>There are no offsets or gaps included.</p></li>
 <li><p>The total size of the file is 400 000 bytes.</p></li>
 </ul>
-<p><strong>Note:</strong> The option <span class="guilabel">Little-endian byte order</span> relates to whether the bytes of 16 or 32-bit images are arranged from the least-to-most significant, or most-to-least significant.
+<p><strong>Note:</strong> The option <span class="guilabel notranslate">Little-endian byte order</span> relates to whether the bytes of 16 or 32-bit images are arranged from the least-to-most significant, or most-to-least significant.
 Some types of computer prefer one order, some prefer another, so this is something else the metadata should contain.
 The difference is similar to how a perfectly respectable number like <strong>twenty-three</strong> is (quite ludicrously, in my view) spoken as <strong>three-and-twenty</strong> in German.</p>
 </div>
-<input id="13fc8dd0-2e7d-49ec-b7b9-21093fec9553" name="db978ae7-e33f-4038-9ab7-15119340af9c" type="radio">
-</input><label class="sd-tab-label" for="13fc8dd0-2e7d-49ec-b7b9-21093fec9553">
+<input id="4c986908-2be0-451d-9312-c4e68d02e563" name="3734f6d4-8234-4b68-abe5-5f15a47cf95d" type="radio">
+</input><label class="sd-tab-label" for="4c986908-2be0-451d-9312-c4e68d02e563">
 Solution</label><div class="sd-tab-content docutils">
 <p>The file size gives you the $<span class="math notranslate nohighlight">\( \textrm{File size (in bytes)} = \frac{\textrm{width} \times \textrm{height} \times \textrm{bit-depth}}{8} \)</span>$ where the division by 8 converts the total number of bits to bytes (since 8 bits make 1 byte).
 This can be used to make reasonable starting estimates for the width, height and bit-depth, but figuring out which are correct likely still requires some trial-and-error.
