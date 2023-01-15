@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../README.html">
+                <a class="reference internal" href="../../../index.html">
                     Introduction to Bioimage Analysis
                 </a>
             </li>
@@ -779,29 +779,29 @@ Later Python chapters in the handbook will build on these foundations.</p>
 <p>Let’s begin by loading an image in Python, and then showing it using <a class="reference external" href="https://matplotlib.org">matplotlib</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
-Read and display an image in Python.
-&quot;&quot;&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Read and display an image in Python.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-# In Python, we need to import things before we can use them
-# (And, often, google to find out what we ought to be importing,
-# then copy &amp; paste the same import statements a lot)
-import matplotlib.pyplot as plt
-from imageio import imread
+<span class="c1"># In Python, we need to import things before we can use them</span>
+<span class="c1"># (And, often, google to find out what we ought to be importing,</span>
+<span class="c1"># then copy &amp; paste the same import statements a lot)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">imageio</span> <span class="kn">import</span> <span class="n">imread</span>
 
-# Read an image - we need to know the full path to wherever it is
-im = imread(&#39;../../../images/spooked.png&#39;)
+<span class="c1"># Read an image - we need to know the full path to wherever it is</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../../images/spooked.png&#39;</span><span class="p">)</span>
 
-# Create a plot of the image using the default brightness/contrast min/max and colormap
-plt.imshow(im)
+<span class="c1"># Create a plot of the image using the default brightness/contrast min/max and colormap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
 
-# Actually show the plot (if we don&#39;t do this explicitly, it might display anyway - but not always)
-plt.show()
+<span class="c1"># Actually show the plot (if we don&#39;t do this explicitly, it might display anyway - but not always)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1892/3771718922.py:12: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1918/3771718922.py:12: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
   im = imread(&#39;../../../images/spooked.png&#39;)
 </pre></div>
 </div>
@@ -824,7 +824,7 @@ help(plt.imshow)
 <p>to display some help text.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(plt.imshow)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1039,14 +1039,14 @@ imshow(X, cmap=None, norm=None, *, aspect=None, interpolation=None, alpha=None, 
 <p>Try running the following code cells to see the effect, and try out other changes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
-Display an image with different brightness/contrast.
-(Be sure to run the cells above before this one!)
-&quot;&quot;&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Display an image with different brightness/contrast.</span>
+<span class="sd">(Be sure to run the cells above before this one!)</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-# Display the image with a grayscale colormap
-plt.imshow(im, cmap=&#39;gray&#39;)
-plt.show()
+<span class="c1"># Display the image with a grayscale colormap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1056,9 +1056,9 @@ plt.show()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create an X-ray by adding &#39;_r&#39; to &#39;reverse&#39; the colormap
-plt.imshow(im, cmap=&#39;gray_r&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an X-ray by adding &#39;_r&#39; to &#39;reverse&#39; the colormap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1068,9 +1068,9 @@ plt.show()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Display the image with a grayscale colormap and modified brightness/contrast
-plt.imshow(im, cmap=&#39;gray&#39;, vmin=100, vmax=255)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the image with a grayscale colormap and modified brightness/contrast</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1080,9 +1080,9 @@ plt.show()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Display the image with a grayscale colormap and modified brightness/contrast
-plt.imshow(im, cmap=&#39;gray&#39;, vmin=0, vmax=8)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the image with a grayscale colormap and modified brightness/contrast</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1093,9 +1093,9 @@ plt.show()
 <p>There are many more colormaps available in matplotlib – for details, see <a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Display with a &#39;perceptually uniform colormap&#39;
-plt.imshow(im, cmap=&#39;magma&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display with a &#39;perceptually uniform colormap&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1105,9 +1105,9 @@ plt.show()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Display with a colormap that is, frankly, not very helpful here
-plt.imshow(im, cmap=&#39;hsv&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display with a colormap that is, frankly, not very helpful here</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hsv&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1120,9 +1120,9 @@ plt.show()
 <p>To check this, try showing the image as we did initially - to make sure it looks the same.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Display the image as before
-plt.imshow(im)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the image as before</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1138,18 +1138,18 @@ plt.show()
 <p>The code to do this is shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Load and display an image with a title &amp; no visible axis
-im = imread(&#39;../../../images/spooked.png&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load and display an image with a title &amp; no visible axis</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../../images/spooked.png&#39;</span><span class="p">)</span>
 
-plt.imshow(im, cmap=&#39;gray&#39;)
-plt.axis(False)
-plt.title(&#39;Some kind of title&#39;)
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Some kind of title&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1892/2843473488.py:2: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1918/2843473488.py:2: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
   im = imread(&#39;../../../images/spooked.png&#39;)
 </pre></div>
 </div>
@@ -1172,25 +1172,25 @@ Then you don’t need to copy and paste the same lines of code frequently; rathe
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def my_imshow(im, title=None, cmap=&#39;gray&#39;):
-    &quot;&quot;&quot;
-    Call imshow and turn the axis off, optionally setting a title and colormap.
-    The default colormap is &#39;gray&#39;, and there is no default title.
-    &quot;&quot;&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Call imshow and turn the axis off, optionally setting a title and colormap.</span>
+<span class="sd">    The default colormap is &#39;gray&#39;, and there is no default title.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    # Show image &amp; turn off axis
-    plt.imshow(im, cmap=cmap)
-    plt.axis(False)
+    <span class="c1"># Show image &amp; turn off axis</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-    # Show a title if we have one
-    if title is not None:
-        plt.title(title)
+    <span class="c1"># Show a title if we have one</span>
+    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 
-    plt.show()
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-# Now I just need to call my function rather than customize every plot
-my_imshow(im, title=&#39;Here is my new title&#39;)
-my_imshow(im, title=&#39;Now I have inverted the colormap&#39;, cmap=&#39;gray_r&#39;)
+<span class="c1"># Now I just need to call my function rather than customize every plot</span>
+<span class="n">my_imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Here is my new title&#39;</span><span class="p">)</span>
+<span class="n">my_imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Now I have inverted the colormap&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1208,19 +1208,19 @@ They aren’t part of any wider Python library, but we can use them here to make
 Then we can use the methods such as <code class="docutils literal notranslate"><span class="pre">load_image</span></code> and <code class="docutils literal notranslate"><span class="pre">show_image</span></code> (along with companions like <code class="docutils literal notranslate"><span class="pre">show_histogram</span></code>) to display images.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Default imports (they are already included at the top of the page)
-import sys
-sys.path.append(&#39;../../../&#39;)
-from helpers import *
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Default imports (they are already included at the top of the page)</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Easier way to load and display an image, which we&#39;ll use from now on
-im = load_image(&#39;sunny_cell.tif&#39;)
-show_image(im, title=&#39;A new title&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Easier way to load and display an image, which we&#39;ll use from now on</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;sunny_cell.tif&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;A new title&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1282,7 +1282,7 @@ show_image(im, title=&#39;A new title&#39;)
   
     By Pete Bankhead<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2022-2023.<br/>
 </p>
         </footer>
     </div>

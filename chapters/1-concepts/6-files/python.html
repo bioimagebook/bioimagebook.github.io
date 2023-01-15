@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../README.html">
+                <a class="reference internal" href="../../../index.html">
                     Introduction to Bioimage Analysis
                 </a>
             </li>
@@ -789,13 +789,13 @@ You might only need to use one - but it helps to know about the existence of the
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># First, our usual default imports
-import sys
-sys.path.append(&#39;../../../&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, our usual default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
 
-from helpers import *
-import matplotlib.pyplot as plt
-import numpy as np
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -810,30 +810,30 @@ import numpy as np
 Therefore, if it’s a NumPy array that you want then you’ll need to add in a few extra lines of code to convert the images.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get an image path
-path = find_image(&#39;happy_cell.tif&#39;)[0]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get an image path</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">find_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-# Read an image and convert to a NumPy array
-from PIL import Image
-with open(path, &#39;rb&#39;) as f:
-    image = Image.open(f)
-    im = np.asarray(image)
+<span class="c1"># Read an image and convert to a NumPy array</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 
-print(f&#39;I don\&#39;t have a simple NumPy array - instead I have this:\n  {image}&#39;)
-print(f&#39;\nBut I can convert it to an NumPy array if I need to:\n{im}&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;I don</span><span class="se">\&#39;</span><span class="s1">t have a simple NumPy array - instead I have this:</span><span class="se">\n</span><span class="s1">  </span><span class="si">{</span><span class="n">image</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">But I can convert it to an NumPy array if I need to:</span><span class="se">\n</span><span class="si">{</span><span class="n">im</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-print(f&#39;Print the mean for comparison: {im.mean()}&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Print the mean for comparison: </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-plt.imshow(image)
-plt.axis(False)
-plt.title(&#39;Read with Pillow&#39;)
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Read with Pillow&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I don&#39;t have a simple NumPy array - instead I have this:
-  &lt;PIL.TiffImagePlugin.TiffImageFile image mode=F size=250x240 at 0x7FDB4CC44970&gt;
+  &lt;PIL.TiffImagePlugin.TiffImageFile image mode=F size=250x240 at 0x7F1DC7F3B490&gt;
 
 But I can convert it to an NumPy array if I need to:
 [[2. 2. 2. ... 2. 2. 2.]
@@ -859,12 +859,12 @@ This makes it easy to use for straightforward things, especially when working wi
 <p>imageio can use different backends, which includes <a class="reference external" href="https://imageio.readthedocs.io/en/stable/_autosummary/imageio.plugins.pillow.html">Pillow</a> and <a class="reference external" href="https://imageio.readthedocs.io/en/stable/_autosummary/imageio.plugins.tifffile.html">tifffile</a> - so you can potentially get the advantages of both through using imageio, while writing less code yourself.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from imageio import imread
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imageio</span> <span class="kn">import</span> <span class="n">imread</span>
 
-# Just one line!
-im = imread(path)
+<span class="c1"># Just one line!</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-print(f&#39;Print the mean for comparison: {im.mean()}&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Print the mean for comparison: </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -872,7 +872,7 @@ print(f&#39;Print the mean for comparison: {im.mean()}&#39;)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Print the mean for comparison: 23.03144645690918
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2283/452328670.py:4: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2295/452328670.py:4: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
   im = imread(path)
 </pre></div>
 </div>
@@ -884,11 +884,11 @@ print(f&#39;Print the mean for comparison: {im.mean()}&#39;)
 <p><a class="reference external" href="https://pypi.org/project/tifffile/">tifffile</a> is a small package<a class="footnote-reference brackets" href="#fn-tf" id="id1">1</a> that is very handy if you need to get into the details of reading and writing TIFF images.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import tifffile
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tifffile</span>
 
-im = tifffile.imread(path)
+<span class="n">im</span> <span class="o">=</span> <span class="n">tifffile</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-print(f&#39;Print the mean for comparison: {im.mean()}&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Print the mean for comparison: </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -978,7 +978,7 @@ It’s limited to 2D RGB data, but its big benefit is that it supports a range o
   
     By Pete Bankhead<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2022-2023.<br/>
 </p>
         </footer>
     </div>

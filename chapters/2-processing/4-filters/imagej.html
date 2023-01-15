@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../README.html">
+                <a class="reference internal" href="../../../index.html">
                     Introduction to Bioimage Analysis
                 </a>
             </li>
@@ -788,17 +788,17 @@ title="Print to PDF"
 <h1>ImageJ: Filters<a class="headerlink" href="#imagej-filters" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
-%autoreload 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
 
-# Default imports
-import sys
-sys.path.append(&#39;../../../&#39;)
-from helpers import *
-from matplotlib import pyplot as plt
-from myst_nb import glue
-import numpy as np
-from scipy import ndimage
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 </pre></div>
 </div>
 </div>
@@ -838,13 +838,13 @@ However <a class="reference internal" href="../../appendices/macros/macro_dog.ht
 If you <span class="guilabel">Normalize Kernel</span> is selected, then the coefficients are scaled so that they add to 1, by dividing by the sum of all the coefficients – unless the sum is 0, in which case requesting normalizion does nothing.</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-filters-convolve-custom.png"><img alt="../../../_images/imagej-filters-convolve-custom.png" class="align-center" src="../../../_images/imagej-filters-convolve-custom.png" style="width: 80%;" /></a>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="16ab812d-2265-43be-b50d-2f722dad2ae8" name="9018601b-f4c3-4af1-a08c-30180410eef7" type="radio">
-</input><label class="sd-tab-label" for="16ab812d-2265-43be-b50d-2f722dad2ae8">
+<input checked="checked" id="9776d858-4f2e-4928-a4c3-fcbecbdc032b" name="6114c116-6c3d-40a1-bb78-d30eb454ff20" type="radio">
+</input><label class="sd-tab-label" for="9776d858-4f2e-4928-a4c3-fcbecbdc032b">
 Question</label><div class="sd-tab-content docutils">
 <p>When defining an <em>n_×_n</em> filter kernel with <span class="menuselection">Convolve…</span>, ImageJ insists that <strong>n</strong> is an odd number. Why?</p>
 </div>
-<input id="b264a28a-6eb5-4f58-8ff1-5aeebf7489cb" name="9018601b-f4c3-4af1-a08c-30180410eef7" type="radio">
-</input><label class="sd-tab-label" for="b264a28a-6eb5-4f58-8ff1-5aeebf7489cb">
+<input id="1dd94b32-9729-492d-ab1b-442cc492e893" name="6114c116-6c3d-40a1-bb78-d30eb454ff20" type="radio">
+</input><label class="sd-tab-label" for="1dd94b32-9729-492d-ab1b-442cc492e893">
 Answer</label><div class="sd-tab-content docutils">
 <p>If <em>n</em> is an odd number, the filter has a clear central pixel.
 This makes it possible to center the filter kernel on a pixel on the image.</p>
@@ -855,8 +855,8 @@ This makes it possible to center the filter kernel on a pixel on the image.</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-filters-convolve-1.png"><img alt="../../../_images/imagej-filters-convolve-1.png" class="align-center" src="../../../_images/imagej-filters-convolve-1.png" style="width: 80%;" /></a>
 </aside>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="4cb9fb98-95aa-4639-85a8-147da3fd420a" name="7992178b-6146-48fa-a7fa-8d137a81c3ab" type="radio">
-</input><label class="sd-tab-label" for="4cb9fb98-95aa-4639-85a8-147da3fd420a">
+<input checked="checked" id="9816ec25-a9fb-433e-9780-1894611f2be3" name="834ae605-a145-49f1-872c-99366970cfde" type="radio">
+</input><label class="sd-tab-label" for="9816ec25-a9fb-433e-9780-1894611f2be3">
 Question</label><div class="sd-tab-content docutils">
 <p>Predict what happens when you convolve an image using a filter that consists of a single coefficient with a value -1 in the following cases:</p>
 <ol class="simple">
@@ -865,8 +865,8 @@ Question</label><div class="sd-tab-content docutils">
 <li><p>You have an 8-bit image, <span class="guilabel">Normalize Kernel</span> is unchecked</p></li>
 </ol>
 </div>
-<input id="5c99f229-e51c-405e-b103-32a67dea4e04" name="7992178b-6146-48fa-a7fa-8d137a81c3ab" type="radio">
-</input><label class="sd-tab-label" for="5c99f229-e51c-405e-b103-32a67dea4e04">
+<input id="1be8f345-ce6d-4f6b-9b4a-9f9652889e56" name="834ae605-a145-49f1-872c-99366970cfde" type="radio">
+</input><label class="sd-tab-label" for="1be8f345-ce6d-4f6b-9b4a-9f9652889e56">
 Answer</label><div class="sd-tab-content docutils">
 <p>The results of convolving with a single -1 coefficient in different circumstances:</p>
 <ol class="simple">
@@ -877,8 +877,8 @@ Answer</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="7922a47c-842f-46b6-8072-27929c61650e" name="cecf5400-d763-45e2-8a6c-05340b1d873c" type="radio">
-</input><label class="sd-tab-label" for="7922a47c-842f-46b6-8072-27929c61650e">
+<input checked="checked" id="9ad5771c-652c-4203-9d6c-0d85cec8a9f1" name="b63530b1-b1b9-4261-8450-92a6bfd0f02b" type="radio">
+</input><label class="sd-tab-label" for="9ad5771c-652c-4203-9d6c-0d85cec8a9f1">
 Practical</label><div class="sd-tab-content docutils">
 <p>Using any image, work out which of the methods for dealing with boundaries shown in <a class="reference internal" href="filters.html#fig-filter-boundaries"><span class="std std-numref">Fig. 84</span></a> is used by ImageJ’s <span class="menuselection">Convolve…</span> command.</p>
 <p><strong>Note:</strong> This requires a bit of creativity.
@@ -886,8 +886,8 @@ It will certainly help to use an image with some variation at the image boundary
 I used <span class="menuselection">File ‣ Open Samples ‣ Blobs</span>.</p>
 <p><a class="reference external" href="https://ij.imjoy.io?run=https://gist.github.com/petebankhead/cbbb6f210d173c8488247799efc3b970"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="cc45397e-d427-4bdf-9c41-8e9cca62e3d8" name="cecf5400-d763-45e2-8a6c-05340b1d873c" type="radio">
-</input><label class="sd-tab-label" for="cc45397e-d427-4bdf-9c41-8e9cca62e3d8">
+<input id="7a0a924f-0f41-44b5-8709-3789535f1715" name="b63530b1-b1b9-4261-8450-92a6bfd0f02b" type="radio">
+</input><label class="sd-tab-label" for="7a0a924f-0f41-44b5-8709-3789535f1715">
 Solution</label><div class="sd-tab-content docutils">
 <p>Replication of boundary pixels is the default method used by <span class="menuselection">Process ‣ Filters ‣ Convolve…</span> in ImageJ (although other filtering plugins by different authors might use different methods).</p>
 <p>My approach to test this involved using <span class="menuselection">Convolve…</span> with a filter that consisting of a 1 followed by a lot of zeros (e.g. <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0...</span></code>).
@@ -902,8 +902,8 @@ This basically shifts the image to the right, bringing whatever is outside the i
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="d62362cf-64b6-41ce-b4df-deb070a71b88" name="022d2d81-1660-41a4-a5d1-49a971ac82d3" type="radio">
-</input><label class="sd-tab-label" for="d62362cf-64b6-41ce-b4df-deb070a71b88">
+<input checked="checked" id="7cd2b3ae-cc69-46c4-a87d-bdd477279bf7" name="81ee305f-9e6d-41fa-90b7-8118661d69db" type="radio">
+</input><label class="sd-tab-label" for="7cd2b3ae-cc69-46c4-a87d-bdd477279bf7">
 Practical</label><div class="sd-tab-content docutils">
 <p>Practice using the commands we’ve met so far by determining the <strong>gradient magnitude</strong> of an image, as described <a class="reference internal" href="filters.html#sec-filters-gradient"><span class="std std-ref">here</span></a>.</p>
 <p>You will need to use</p>
@@ -918,8 +918,8 @@ Practical</label><div class="sd-tab-content docutils">
 <em>(Be sure to pay attention to the bit-depth!)</em></p>
 <p><a class="reference external" href="https://ij.imjoy.io?run=https://gist.github.com/petebankhead/cbbb6f210d173c8488247799efc3b970"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="8d324067-ba10-47b0-b098-54e5f7ca7fdd" name="022d2d81-1660-41a4-a5d1-49a971ac82d3" type="radio">
-</input><label class="sd-tab-label" for="8d324067-ba10-47b0-b098-54e5f7ca7fdd">
+<input id="7d670ee0-bd41-4d46-8a2e-b309cfadc4f5" name="81ee305f-9e6d-41fa-90b7-8118661d69db" type="radio">
+</input><label class="sd-tab-label" for="7d670ee0-bd41-4d46-8a2e-b309cfadc4f5">
 Solution</label><div class="sd-tab-content docutils">
 <p>The process to calculate the gradient magnitude is:</p>
 <ol class="simple">
@@ -931,21 +931,21 @@ Solution</label><div class="sd-tab-content docutils">
 <li><p>Compute the square root of the resulting image (<span class="menuselection">Process ‣ Math ‣ Square Root</span>)</p></li>
 </ol>
 <p>Here’s a macro that implements these steps:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span>
 
-<span class="n">id1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageID</span><span class="p">()</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">id2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageID</span><span class="p">();</span><span class="w"></span>
+<span class="n">id1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageID</span><span class="p">()</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="n">id2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageID</span><span class="p">();</span>
 
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Convolve...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text1=[-1 0 1\n] normalize&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Square&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Convolve...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text1=[-1 0 1\n] normalize&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Square&quot;</span><span class="p">);</span>
 
-<span class="n">selectImage</span><span class="p">(</span><span class="n">id1</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Convolve...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text1=-1\n0\n1\n normalize&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Square&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">selectImage</span><span class="p">(</span><span class="n">id1</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Convolve...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text1=-1\n0\n1\n normalize&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Square&quot;</span><span class="p">);</span>
 
-<span class="n">imageCalculator</span><span class="p">(</span><span class="s">&quot;Add create&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">id1</span><span class="p">,</span><span class="w"> </span><span class="n">id2</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Square Root&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">imageCalculator</span><span class="p">(</span><span class="s">&quot;Add create&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">id1</span><span class="p">,</span><span class="w"> </span><span class="n">id2</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Square Root&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The convolution results in negative values, which is why the 32-bit conversion is needed.</p>
@@ -959,8 +959,8 @@ Solution</label><div class="sd-tab-content docutils">
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="4c18e6b0-9e19-46fe-816d-78f9d13d6f33" name="fcec7b16-f5c7-485d-a468-12e87ddc833f" type="radio">
-</input><label class="sd-tab-label" for="4c18e6b0-9e19-46fe-816d-78f9d13d6f33">
+<input checked="checked" id="b9fa80b3-4d9f-4387-bfce-e2a1763133a7" name="79e6f9ab-bcb9-480f-93d7-5ca3343c5200" type="radio">
+</input><label class="sd-tab-label" for="b9fa80b3-4d9f-4387-bfce-e2a1763133a7">
 Practical</label><div class="sd-tab-content docutils">
 <p>ImageJ has a LUT called <strong>edges</strong> under <span class="menuselection">Image ‣ Lookup Tables ‣ Edges</span>.
 Applied to <span class="menuselection">File ‣ Open samples ‣ Blobs (25K)</span>, it does a rather good job of highlighting edges – without actually changing the pixels at all.</p>
@@ -968,8 +968,8 @@ Applied to <span class="menuselection">File ‣ Open samples ‣ Blobs (25K)</sp
 Does it apply a filter?</p>
 <p><a class="reference external" href="https://ij.imjoy.io?run=https://gist.github.com/petebankhead/cbbb6f210d173c8488247799efc3b970"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="e077b4a2-c05f-40d5-a27b-92d0a4192995" name="fcec7b16-f5c7-485d-a468-12e87ddc833f" type="radio">
-</input><label class="sd-tab-label" for="e077b4a2-c05f-40d5-a27b-92d0a4192995">
+<input id="446344c3-292c-425a-926a-4204c4aa64a3" name="79e6f9ab-bcb9-480f-93d7-5ca3343c5200" type="radio">
+</input><label class="sd-tab-label" for="446344c3-292c-425a-926a-4204c4aa64a3">
 Solution</label><div class="sd-tab-content docutils">
 <p>The <span class="menuselection">edges</span> LUT shows most low and high pixel values as black – and uses lighter shades of gray only for a small range of values in between (see <span class="menuselection">Image ‣ Color ‣ Edit LUT…</span>).
 In any image with a good separation of background and foreground pixels, but which still has a somewhat smooth transition between them, this means everything but the edges can appear black.</p>
@@ -1052,7 +1052,7 @@ This is a nonlinear filter that inserts median values <em>only whenever a pixel 
   
     By Pete Bankhead<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2022-2023.<br/>
 </p>
         </footer>
     </div>

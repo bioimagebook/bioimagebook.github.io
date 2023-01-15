@@ -111,7 +111,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../README.html">
+                <a class="reference internal" href="../../../index.html">
                     Introduction to Bioimage Analysis
                 </a>
             </li>
@@ -783,17 +783,17 @@ title="Print to PDF"
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
-%autoreload 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
 
-# Default imports
-import sys
-sys.path.append(&#39;../../../&#39;)
-from helpers import *
-from matplotlib import pyplot as plt
-from myst_nb import glue
-import numpy as np
-from scipy import ndimage
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 </pre></div>
 </div>
 </div>
@@ -840,124 +840,124 @@ An image with many out-of-focus slices might be thresholded differently from an 
 This should generally make the images more comparable.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im = np.zeros((64, 128, 128))
-im[32, 64, 64] = 1.0
-im = ndimage.gaussian_filter(im, sigma=(3, 32, 32))
-im = np.expand_dims(im, axis=-1)
-im = (im &gt; im.max()/2).astype(np.float32) * 6
-im = im + np.random.default_rng(100).normal(size=im.shape)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
+<span class="n">im</span><span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="p">(</span><span class="n">im</span> <span class="o">&gt;</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">6</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
-# Convert to float32 and rescale per channel (to simplify display later)
-im = im.astype(np.float32)
-for c in range(im.shape[-1]):
-    im[..., c] = im[..., c] - np.percentile(im[..., ], 0.25)
-    im[..., c] = im[..., c] / np.percentile(im[..., ], 99.75)
+<span class="c1"># Convert to float32 and rescale per channel (to simplify display later)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">],</span> <span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">],</span> <span class="mf">99.75</span><span class="p">)</span>
 
-def show_orthogonal(im, axes, loc=None, projection=None, colors=None, show_slices=False, title=None):
-    &quot;&quot;&quot;
-    Show orthogonal slices or projections.
-    &quot;&quot;&quot;
-    from mpl_toolkits.axes_grid1 import make_axes_locatable
+<span class="k">def</span> <span class="nf">show_orthogonal</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show_slices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Show orthogonal slices or projections.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
 
-    n_channels = im.shape[-1] if im.ndim &gt; 3 else 1
-    if colors is None:
-        if n_channels == 1:
-            colors = (&#39;white&#39;,)
-        elif n_channels == 2:
-            colors = (&#39;green&#39;, &#39;magenta&#39;)
-        elif n_channels == 3:
-            colors = (&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;)
-        else:
-            raise ValueException(&#39;Colors must be specified if the number of channels is &gt; 3!&#39;)
+    <span class="n">n_channels</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">im</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="k">else</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">colors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n_channels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">colors</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">,)</span>
+        <span class="k">elif</span> <span class="n">n_channels</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">colors</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;magenta&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">n_channels</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">colors</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValueException</span><span class="p">(</span><span class="s1">&#39;Colors must be specified if the number of channels is &gt; 3!&#39;</span><span class="p">)</span>
 
-    if axes is None:
-        fig = create_figure()
-        ax = fig.gca()
-    else:
-        ax = axes
+    <span class="k">if</span> <span class="n">axes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">()</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span>
 
-    if loc is None and projection is None:
-        loc = tuple(s//2 for s in im.shape)
+    <span class="k">if</span> <span class="n">loc</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">projection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">loc</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">s</span><span class="o">//</span><span class="mi">2</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
-    # Create axes for orthogonal views
-    divider = make_axes_locatable(ax)
-    ax_xz = divider.append_axes(&quot;bottom&quot;, size=&quot;50%&quot;, pad=0.1, sharex=ax)
-    ax_yz = divider.append_axes(&quot;left&quot;, size=&quot;50%&quot;, pad=0.1, sharey=ax)
+    <span class="c1"># Create axes for orthogonal views</span>
+    <span class="n">divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax_xz</span> <span class="o">=</span> <span class="n">divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax_yz</span> <span class="o">=</span> <span class="n">divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
-    # Generate slices or projections
-    if projection:
-        imxy = projection(im, axis=0)
-        imxz = projection(im, axis=2)
-        imyz = np.moveaxis(projection(im, axis=1), 0, 1)
-    else:
-        imxy = im[loc[0],...]
-        imxz = im[:, loc[1],...]
-        imyz = np.moveaxis(im[:, :, loc[2],:], 0, 1)
-
-
-    show_image(create_rgb(imyz, colors),
-                   axes=ax_yz, vmin=0, vmax=1)
-    if show_slices:
-        ax_yz.plot([loc[0], loc[0]], [0, im.shape[2]-1], &#39;w--&#39;, linewidth=1)
-    ax_yz.set_xlabel(&#39;z&#39;)
-    ax_yz.set_xticks([])
-    ax_yz.set_ylabel(&#39;y&#39;, rotation=0, va=&#39;center&#39;, ha=&#39;right&#39;)
-    ax_yz.set_yticks([])
-    ax_yz.set_axis_on()
-
-    show_image(create_rgb(imxy, colors),
-                   axes=ax,
-                   vmin=0, vmax=1)
-    if show_slices:
-        row = loc[1]
-        col = loc[2]
-        ax.plot([0, im.shape[1]-1], [row, row], &#39;w--&#39;, linewidth=1)
-        ax.plot([col, col], [0, im.shape[2]-1], &#39;w--&#39;, linewidth=1)
-
-    show_image(create_rgb(imxz, colors),
-                   axes=ax_xz,
-                   vmin=0, vmax=1)
-    if show_slices:
-        ax_xz.plot([0, im.shape[1]-1], [loc[0], loc[0]], &#39;w--&#39;, linewidth=1)
-    ax_xz.set_xlabel(&#39;x&#39;)
-    ax_xz.set_xticks([])
-    ax_xz.set_ylabel(&#39;z&#39;, rotation=0, va=&#39;center&#39;, ha=&#39;right&#39;)
-    ax_xz.set_yticks([])
-    ax_xz.set_axis_on()
-
-    plt.tight_layout()
-
-    if title:
-        ax.set_title(title)
+    <span class="c1"># Generate slices or projections</span>
+    <span class="k">if</span> <span class="n">projection</span><span class="p">:</span>
+        <span class="n">imxy</span> <span class="o">=</span> <span class="n">projection</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">imxz</span> <span class="o">=</span> <span class="n">projection</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">imyz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">projection</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">imxy</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="o">...</span><span class="p">]</span>
+        <span class="n">imxz</span> <span class="o">=</span> <span class="n">im</span><span class="p">[:,</span> <span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="o">...</span><span class="p">]</span>
+        <span class="n">imyz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">im</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">],:],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 
-im = np.expand_dims(im, axis=-1)
-im = im[..., 0]
-im_tight = im[24:-24, ...]
+    <span class="n">show_image</span><span class="p">(</span><span class="n">create_rgb</span><span class="p">(</span><span class="n">imyz</span><span class="p">,</span> <span class="n">colors</span><span class="p">),</span>
+                   <span class="n">axes</span><span class="o">=</span><span class="n">ax_yz</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">show_slices</span><span class="p">:</span>
+        <span class="n">ax_yz</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;w--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax_yz</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+    <span class="n">ax_yz</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax_yz</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+    <span class="n">ax_yz</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">ax_yz</span><span class="o">.</span><span class="n">set_axis_on</span><span class="p">()</span>
 
-fig, axes = plt.subplots(2, 3, figsize=(12, 8))
+    <span class="n">show_image</span><span class="p">(</span><span class="n">create_rgb</span><span class="p">(</span><span class="n">imxy</span><span class="p">,</span> <span class="n">colors</span><span class="p">),</span>
+                   <span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                   <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">show_slices</span><span class="p">:</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">col</span> <span class="o">=</span> <span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="p">],</span> <span class="s1">&#39;w--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">col</span><span class="p">,</span> <span class="n">col</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;w--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-from skimage.filters import threshold_triangle, threshold_otsu
+    <span class="n">show_image</span><span class="p">(</span><span class="n">create_rgb</span><span class="p">(</span><span class="n">imxz</span><span class="p">,</span> <span class="n">colors</span><span class="p">),</span>
+                   <span class="n">axes</span><span class="o">=</span><span class="n">ax_xz</span><span class="p">,</span>
+                   <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">show_slices</span><span class="p">:</span>
+        <span class="n">ax_xz</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="s1">&#39;w--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax_xz</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">ax_xz</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax_xz</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+    <span class="n">ax_xz</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">ax_xz</span><span class="o">.</span><span class="n">set_axis_on</span><span class="p">()</span>
 
-show_orthogonal(im_tight, show_slices=True, axes=axes[0, 0])
-show_orthogonal(im_tight &gt; threshold_otsu(im_tight), show_slices=True, axes=axes[0, 1])
-show_histogram(im_tight, bins=256, axes=axes[0, 2])
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
-show_orthogonal(im, show_slices=True, axes=axes[1, 0])
-show_orthogonal(im &gt; threshold_otsu(im), show_slices=True, axes=axes[1, 1])
-show_histogram(im, bins=256, axes=axes[1, 2])
+    <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 
-glue_fig(&#39;fig_multi_thresholds&#39;, fig)
 
-## Create another figure for the question below
-bw_tight_triangle = im_tight &gt; threshold_triangle(im_tight)
-bw_triangle = im &gt; threshold_triangle(im)
+<span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">im_tight</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="mi">24</span><span class="p">:</span><span class="o">-</span><span class="mi">24</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
 
-fig, axes = plt.subplots(1, 2, figsize=(12, 8))
-show_orthogonal(bw_tight_triangle, title=&#39;Tight z-stack&#39;, show_slices=True, axes=axes[0])
-show_orthogonal(bw_triangle, title=&#39;Extended z-stack&#39;, show_slices=True, axes=axes[1])
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 
-glue_fig(&#39;fig_multi_thresholds_triangle&#39;, fig)
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_triangle</span><span class="p">,</span> <span class="n">threshold_otsu</span>
+
+<span class="n">show_orthogonal</span><span class="p">(</span><span class="n">im_tight</span><span class="p">,</span> <span class="n">show_slices</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">show_orthogonal</span><span class="p">(</span><span class="n">im_tight</span> <span class="o">&gt;</span> <span class="n">threshold_otsu</span><span class="p">(</span><span class="n">im_tight</span><span class="p">),</span> <span class="n">show_slices</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im_tight</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="n">show_orthogonal</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">show_slices</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">show_orthogonal</span><span class="p">(</span><span class="n">im</span> <span class="o">&gt;</span> <span class="n">threshold_otsu</span><span class="p">(</span><span class="n">im</span><span class="p">),</span> <span class="n">show_slices</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_multi_thresholds&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+
+<span class="c1">## Create another figure for the question below</span>
+<span class="n">bw_tight_triangle</span> <span class="o">=</span> <span class="n">im_tight</span> <span class="o">&gt;</span> <span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im_tight</span><span class="p">)</span>
+<span class="n">bw_triangle</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">show_orthogonal</span><span class="p">(</span><span class="n">bw_tight_triangle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Tight z-stack&#39;</span><span class="p">,</span> <span class="n">show_slices</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">show_orthogonal</span><span class="p">(</span><span class="n">bw_triangle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Extended z-stack&#39;</span><span class="p">,</span> <span class="n">show_slices</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_multi_thresholds_triangle&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -971,13 +971,13 @@ glue_fig(&#39;fig_multi_thresholds_triangle&#39;, fig)
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="89de9e39-73cc-42a2-8c24-8aa7a0b4ca10" name="cdcba0c1-5e3b-4cc7-9e43-70122d6e305c" type="radio">
-</input><label class="sd-tab-label" for="89de9e39-73cc-42a2-8c24-8aa7a0b4ca10">
+<input checked="checked" id="fa770515-d856-4c2e-b371-cda2ab1e3a72" name="80655f45-4c0a-459d-b56d-443fb85293fc" type="radio">
+</input><label class="sd-tab-label" for="fa770515-d856-4c2e-b371-cda2ab1e3a72">
 Question</label><div class="sd-tab-content docutils">
 <p>How would you expect <a class="reference internal" href="#fig-multi-thresholds"><span class="std std-numref">Fig. 127</span></a> to differ if the <a class="reference internal" href="../3-thresholding/thresholding.html#sec-thresholds-triangle"><span class="std std-ref">triangle method</span></a> was used to determine the threshold, rather than <a class="reference internal" href="../3-thresholding/thresholding.html#sec-thresholds-otsu"><span class="std std-ref">Otsu’s method</span></a>?</p>
 </div>
-<input id="35cd1735-f449-48ad-b6a5-e2e12dcda456" name="cdcba0c1-5e3b-4cc7-9e43-70122d6e305c" type="radio">
-</input><label class="sd-tab-label" for="35cd1735-f449-48ad-b6a5-e2e12dcda456">
+<input id="dd6b149c-12ea-440d-a8bc-385ae907179f" name="80655f45-4c0a-459d-b56d-443fb85293fc" type="radio">
+</input><label class="sd-tab-label" for="dd6b149c-12ea-440d-a8bc-385ae907179f">
 Answer</label><div class="sd-tab-content docutils">
 <p>Here, the triangle method performs well.
 It sets the threshold appropriately at the foot of the background peak in both cases.</p>
@@ -1013,43 +1013,43 @@ The result of applying the filter separably should be the same as the result of 
 Some small differences may arise through the handling of <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html#chap-bit-depths"><span class="std std-ref">rounding and bit-depths</span></a>, but the improvement in performance is almost certainly worth any tiny error introduced by applying a filter separably.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
-Demonstrate how Gaussian filters may be separable.
-&quot;&quot;&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Demonstrate how Gaussian filters may be separable.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-fig = create_figure(figsize=(8, 5))
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
-import numpy as np
-from scipy import ndimage
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 
-im = load_image(&#39;happy_cell.tif&#39;).astype(np.float32)
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 
-sigma = 8
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">8</span>
 
-show_image(im, title=&quot;(A) Original image&quot;, pos=231)
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
 
-# Filter horizontally, then vertically
-im_h = ndimage.gaussian_filter1d(im, sigma, axis=1)
-show_image(im_h, title=&quot;(B) Horizontally smoothed (A)&quot;, pos=232)
+<span class="c1"># Filter horizontally, then vertically</span>
+<span class="n">im_h</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter1d</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_h</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Horizontally smoothed (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
 
-# Filter vertically, then horizontally
-im_v = ndimage.gaussian_filter1d(im, sigma, axis=0)
-show_image(im_v, title=&quot;(C) Vertically smoothed (A)&quot;, pos=233)
+<span class="c1"># Filter vertically, then horizontally</span>
+<span class="n">im_v</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter1d</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_v</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Vertically smoothed (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
 
-# Admission... the docs for gaussian_filter state that it&#39;s implemented separably -
-# so this doesn&#39;t really demonstrate that 2D filtering is the same
-# (except inasmuch as ndimage treats them equivalently)
-im_gauss = ndimage.gaussian_filter(im, sigma)
-show_image(im_gauss, title=&quot;(D) 2D Gaussian filtered (A)&quot;, pos=234)
+<span class="c1"># Admission... the docs for gaussian_filter state that it&#39;s implemented separably -</span>
+<span class="c1"># so this doesn&#39;t really demonstrate that 2D filtering is the same</span>
+<span class="c1"># (except inasmuch as ndimage treats them equivalently)</span>
+<span class="n">im_gauss</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_gauss</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) 2D Gaussian filtered (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
 
-im_hv = ndimage.gaussian_filter1d(im_h, sigma, axis=0)
-show_image(im_hv, title=&quot;(E) Vertically smoothed (B)&quot;, pos=235)
+<span class="n">im_hv</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter1d</span><span class="p">(</span><span class="n">im_h</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_hv</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(E) Vertically smoothed (B)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
 
-im_vh = ndimage.gaussian_filter1d(im_v, sigma, axis=1)
-show_image(im_vh, title=&quot;(F) Horizontally smoothed (C)&quot;, pos=236)
+<span class="n">im_vh</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter1d</span><span class="p">(</span><span class="n">im_v</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_vh</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(F) Horizontally smoothed (C)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
 
-plt.tight_layout()
-glue_fig(&#39;fig_gauss_separable&#39;, fig)
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_gauss_separable&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1078,41 +1078,41 @@ I might then choose <span class="math notranslate nohighlight">\(\sigma_x\)</spa
 </div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
-Demonstrate how minimum filters may be separable.
-&quot;&quot;&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Demonstrate how minimum filters may be separable.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-fig = create_figure(figsize=(8, 5))
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
-import numpy as np
-from scipy import ndimage
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 
-im = load_image(&#39;fixed_cells.png&#39;)
-# im = load_image(&#39;happy_cell.tif&#39;)
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;fixed_cells.png&#39;</span><span class="p">)</span>
+<span class="c1"># im = load_image(&#39;happy_cell.tif&#39;)</span>
 
-size = 15
+<span class="n">size</span> <span class="o">=</span> <span class="mi">15</span>
 
-show_image(im, title=&quot;(A) Original image&quot;, pos=231)
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
 
-# Filter horizontally, then vertically
-im_h = ndimage.minimum_filter1d(im, size, axis=1)
-show_image(im_h, title=&quot;(B) Horizontally filtered (A)&quot;, pos=232)
+<span class="c1"># Filter horizontally, then vertically</span>
+<span class="n">im_h</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">minimum_filter1d</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_h</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Horizontally filtered (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
 
-# Filter vertically, then horizontally
-im_v = ndimage.minimum_filter1d(im, size, axis=0)
-show_image(im_v, title=&quot;(C) Vertically filtered (A)&quot;, pos=233)
+<span class="c1"># Filter vertically, then horizontally</span>
+<span class="n">im_v</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">minimum_filter1d</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_v</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Vertically filtered (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
 
-im_gauss = ndimage.minimum_filter(im, (size, size))
-show_image(im_gauss, title=&quot;(D) 2D Minimum filtered (A)&quot;, pos=234)
+<span class="n">im_gauss</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">minimum_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_gauss</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) 2D Minimum filtered (A)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
 
-im_hv = ndimage.minimum_filter1d(im_h, size, axis=0)
-show_image(im_hv, title=&quot;(E) Vertically filtered (B)&quot;, pos=235)
+<span class="n">im_hv</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">minimum_filter1d</span><span class="p">(</span><span class="n">im_h</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_hv</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(E) Vertically filtered (B)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
 
-im_vh = ndimage.minimum_filter1d(im_v, size, axis=1)
-show_image(im_vh, title=&quot;(F) Horizontally filtered (C)&quot;, pos=236)
+<span class="n">im_vh</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">minimum_filter1d</span><span class="p">(</span><span class="n">im_v</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_vh</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(F) Horizontally filtered (C)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
 
-plt.tight_layout()
-glue_fig(&#39;fig_multi_min_separable&#39;, fig)
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_multi_min_separable&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1231,7 +1231,7 @@ Our performance aspirations can also be thwarted by other bottlenecks, such as r
   
     By Pete Bankhead<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2022-2023.<br/>
 </p>
         </footer>
     </div>

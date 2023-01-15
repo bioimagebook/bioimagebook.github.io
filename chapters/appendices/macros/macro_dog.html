@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../README.html">
+                <a class="reference internal" href="../../../index.html">
                     Introduction to Bioimage Analysis
                 </a>
             </li>
@@ -804,17 +804,17 @@ title="Print to PDF"
 <span id="chap-macro-dog"></span><h1>Difference of Gaussians<a class="headerlink" href="#difference-of-gaussians" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
-%autoreload 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
 
-# Default imports
-import sys
-sys.path.append(&#39;../../../&#39;)
-from helpers import *
-from matplotlib import pyplot as plt
-from myst_nb import glue
-import numpy as np
-from scipy import ndimage
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 </pre></div>
 </div>
 </div>
@@ -881,27 +881,27 @@ If not, keep reading anyway and the following steps should fix it.</p>
 It should look something like mine:</p>
 <a class="reference internal image-reference" href="../../../_images/macros_dog_editor.png"><img alt="../../../_images/macros_dog_editor.png" class="align-center" src="../../../_images/macros_dog_editor.png" style="width: 70%;" /></a>
 <p>For easier copy-and-paste, the content is below:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="c1">//run(&quot;Brightness/Contrast...&quot;);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Enhance Contrast&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;saturated=0.35&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=1&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">selectWindow</span><span class="p">(</span><span class="s">&quot;C1-hela-cells.tif&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=2&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">imageCalculator</span><span class="p">(</span><span class="s">&quot;Subtract create&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C1-hela-cells-1.tif&quot;</span><span class="p">,</span><span class="s">&quot;C1-hela-cells.tif&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">selectWindow</span><span class="p">(</span><span class="s">&quot;Result of C1-hela-cells-1.tif&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span>
+<span class="c1">//run(&quot;Brightness/Contrast...&quot;);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Enhance Contrast&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;saturated=0.35&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=1&quot;</span><span class="p">);</span>
+<span class="n">selectWindow</span><span class="p">(</span><span class="s">&quot;C1-hela-cells.tif&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=2&quot;</span><span class="p">);</span>
+<span class="n">imageCalculator</span><span class="p">(</span><span class="s">&quot;Subtract create&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C1-hela-cells-1.tif&quot;</span><span class="p">,</span><span class="s">&quot;C1-hela-cells.tif&quot;</span><span class="p">);</span>
+<span class="n">selectWindow</span><span class="p">(</span><span class="s">&quot;Result of C1-hela-cells-1.tif&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Your code is probably not identical, and may well be better.
 One problem with automatically generated macros is that they contain (almost) <em>everything</em> – often including a lot of errant clicking, or other non-essential steps.
 For example, I changed the contrast of an image, but this was only to look at it – and it does not need to be included in the macro.</p>
 <p>After deleting the unnecessary lines, I get:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;title=C1-hela-cells-1.tif&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=1&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">selectWindow</span><span class="p">(</span><span class="s">&quot;C1-hela-cells.tif&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=2&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">imageCalculator</span><span class="p">(</span><span class="s">&quot;Subtract create&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C1-hela-cells-1.tif&quot;</span><span class="p">,</span><span class="s">&quot;C1-hela-cells.tif&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;title=C1-hela-cells-1.tif&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=1&quot;</span><span class="p">);</span>
+<span class="n">selectWindow</span><span class="p">(</span><span class="s">&quot;C1-hela-cells.tif&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=2&quot;</span><span class="p">);</span>
+<span class="n">imageCalculator</span><span class="p">(</span><span class="s">&quot;Subtract create&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C1-hela-cells-1.tif&quot;</span><span class="p">,</span><span class="s">&quot;C1-hela-cells.tif&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <section id="understanding-the-code">
@@ -914,11 +914,11 @@ Notice also that each line needs to end with a semicolon so that the macro inter
 <p>Functions can require different numbers of pieces of information to do their work.
 At a minimum, <code class="docutils literal notranslate"><span class="pre">run</span></code> needs to know the name of the command and the image to which it should be applied – which here is taken to be whichever image is currently active, i.e. the one that was selected most recently.
 But if the command being used by <code class="docutils literal notranslate"><span class="pre">run</span></code> requires extra information of its own, then this is included as an extra string. Therefore</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;title=C1-hela-cells-1.tif&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;title=C1-hela-cells-1.tif&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>informs the <span class="menuselection">Duplicate</span> command that the image it creates should be called <em>C1-hela-cells-1.tif</em>, and</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=1&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=1&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>ensures that <span class="menuselection">Process ‣ Filters ‣ Gaussian Blur…</span> is executed with a sigma value of 1.</p>
@@ -935,14 +935,14 @@ The next two strings give it the titles of the images needed for the calculation
 So the next step is to remove this title dependency so that the macro can be applied to any (2D) image.</p>
 <p>There are two ways to go about this.
 One is to insert a line that tells the macro the title of the image being processed at the start, e.g.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">titleOrig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getTitle</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">titleOrig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getTitle</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">getTitle()</span></code> is an example of a function that asks for information.
 The result is then stored as a <strong>variable</strong>, so that any time we type <code class="docutils literal notranslate"><span class="pre">titleOrig</span></code> later this will be replaced by the string corresponding to the original title <a class="footnote-reference brackets" href="#fn-6" id="id1">1</a>.
 Then we just find anywhere the title appears and replace the text with our new variable name, i.e.
 in this case by writing</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">selectWindow</span><span class="p">(</span><span class="n">titleOrig</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">selectWindow</span><span class="p">(</span><span class="n">titleOrig</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>If we do this, the window we want will <em>probably</em> be activated as required.
@@ -951,14 +951,14 @@ It’s possible that we have two images open at the same time with identical tit
 A safer approach is to get a reference to the <strong>image ID</strong> rather than its title.
 The ID is a number that should be unique for each image, which is useful for ImageJ internally but which we do not normally care about unless we are programming.
 Using IDs, the updated macro code then becomes:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">idOrig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageID</span><span class="p">();</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;title=[My duplicated image]&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">idDuplicate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageID</span><span class="p">();</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=1&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">selectImage</span><span class="p">(</span><span class="n">idOrig</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=2&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">imageCalculator</span><span class="p">(</span><span class="s">&quot;Subtract create&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">idDuplicate</span><span class="p">,</span><span class="w"> </span><span class="n">idOrig</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">idOrig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageID</span><span class="p">();</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;title=[My duplicated image]&quot;</span><span class="p">);</span>
+<span class="n">idDuplicate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageID</span><span class="p">();</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=1&quot;</span><span class="p">);</span>
+<span class="n">selectImage</span><span class="p">(</span><span class="n">idOrig</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=2&quot;</span><span class="p">);</span>
+<span class="n">imageCalculator</span><span class="p">(</span><span class="s">&quot;Subtract create&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">idDuplicate</span><span class="p">,</span><span class="w"> </span><span class="n">idOrig</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>We had to change <code class="docutils literal notranslate"><span class="pre">selectWindow</span></code> to <code class="docutils literal notranslate"><span class="pre">selectImage</span></code> for the IDs to work.
@@ -979,16 +979,16 @@ These extra notes are called <strong>comments</strong>, and I will add them from
 It would be relatively easy to find the <code class="docutils literal notranslate"><span class="pre">Gaussian</span> <span class="pre">Blur</span></code> lines and change the sigma values accordingly here, but adjusting settings like this in longer, more complex macros can be awkward.
 In such cases, it’s helpful to extract the settings you might wish to change and include them at the start of the macro.</p>
 <p>To do this here, insert the following lines at the very beginning:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Store the Gaussian sigma values - </span><span class="w"></span>
-<span class="c1">// sigma1 should be less than sigma2</span><span class="w"></span>
-<span class="n">sigma1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.5</span><span class="p">;</span><span class="w"></span>
-<span class="n">sigma2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Store the Gaussian sigma values - </span>
+<span class="c1">// sigma1 should be less than sigma2</span>
+<span class="n">sigma1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.5</span><span class="p">;</span>
+<span class="n">sigma2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Then, update the later commands to:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=&quot;</span><span class="o">+</span><span class="n">sigma1</span><span class="p">);</span><span class="w"></span>
-<span class="n">selectImage</span><span class="p">(</span><span class="n">idOrig</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=&quot;</span><span class="o">+</span><span class="n">sigma2</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=&quot;</span><span class="o">+</span><span class="n">sigma1</span><span class="p">);</span>
+<span class="n">selectImage</span><span class="p">(</span><span class="n">idOrig</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=&quot;</span><span class="o">+</span><span class="n">sigma2</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>This creates two new variables, which represent the sigma values to use. Now any time you want to change <code class="docutils literal notranslate"><span class="pre">sigma1</span></code> or <code class="docutils literal notranslate"><span class="pre">sigma2</span></code> you do not need to hunt through the macro for the correct lines: you can just update the lines at the top <a class="footnote-reference brackets" href="#fn-8" id="id3">3</a>.</p>
@@ -998,7 +998,7 @@ In such cases, it’s helpful to extract the settings you might wish to change a
 <p>Usually I would stop at this point.
 Still, you might wish to share your macro with someone lacking your macro modification skills, in which case it would be useful to give this person a dialog box into which they could type the Gaussian sigma values that they wanted.
 An easy way to do this is to remove the sigma value information from the <code class="docutils literal notranslate"><span class="pre">run</span></code> command lines, giving</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <figure class="margin align-default">
@@ -1008,12 +1008,12 @@ An easy way to do this is to remove the sigma value information from the <code c
 The disadvantage of this is that the user is prompted to enter sigma values at two different times as the macro runs, which is slightly more annoying than necessary.</p>
 <p>The alternative is to create a dialog box that asks for all the required settings in one go.
 To do this, update the beginning of your macro to include something like the following:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Dialog</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;Choose DoG filters&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">Dialog</span><span class="p">.</span><span class="na">addNumber</span><span class="p">(</span><span class="s">&quot;Gaussian sigma 1&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="n">Dialog</span><span class="p">.</span><span class="na">addNumber</span><span class="p">(</span><span class="s">&quot;Gaussian sigma 2&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
-<span class="n">Dialog</span><span class="p">.</span><span class="na">show</span><span class="p">();</span><span class="w"></span>
-<span class="n">sigma1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dialog</span><span class="p">.</span><span class="na">getNumber</span><span class="p">();</span><span class="w"></span>
-<span class="n">sigma2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dialog</span><span class="p">.</span><span class="na">getNumber</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Dialog</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;Choose DoG filters&quot;</span><span class="p">);</span>
+<span class="n">Dialog</span><span class="p">.</span><span class="na">addNumber</span><span class="p">(</span><span class="s">&quot;Gaussian sigma 1&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="n">Dialog</span><span class="p">.</span><span class="na">addNumber</span><span class="p">(</span><span class="s">&quot;Gaussian sigma 2&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">Dialog</span><span class="p">.</span><span class="na">show</span><span class="p">();</span>
+<span class="n">sigma1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dialog</span><span class="p">.</span><span class="na">getNumber</span><span class="p">();</span>
+<span class="n">sigma2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dialog</span><span class="p">.</span><span class="na">getNumber</span><span class="p">();</span>
 </pre></div>
 </div>
 <figure class="margin align-default">
@@ -1125,7 +1125,7 @@ Therefore in this case the lines <code class="docutils literal notranslate"><spa
   
     By Pete Bankhead<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2022-2023.<br/>
 </p>
         </footer>
     </div>

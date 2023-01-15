@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../README.html">
+                <a class="reference internal" href="../../../index.html">
                     Introduction to Bioimage Analysis
                 </a>
             </li>
@@ -764,17 +764,17 @@ title="Print to PDF"
 <span id="chap-bit-depths-imagej"></span><h1>ImageJ: Types &amp; bit-depths<a class="headerlink" href="#imagej-types-bit-depths" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
-%autoreload 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
 
-# Default imports
-import sys
-sys.path.append(&#39;../../../&#39;)
-from helpers import *
-from matplotlib import pyplot as plt
-from myst_nb import glue
-import numpy as np
-from scipy import ndimage
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 </pre></div>
 </div>
 </div>
@@ -807,10 +807,10 @@ But since an 8-bit and 16-bit images in ImageJ are <em>always</em> unsigned inte
 But you don’t usually have to; you can also see the information at the top of the image window.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
-show_image(&#39;images/type-window-series.png&#39;, pos=121)
-show_image(&#39;images/type-window-neuron.png&#39;, pos=122)
-glue_fig(&#39;fig_types_windows&#39;, fig)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/type-window-series.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/type-window-neuron.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_types_windows&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -834,10 +834,10 @@ We will explore this in <a class="reference internal" href="../4-colors/colors.h
 <span class="menuselection">Analyze ‣ Histogram</span> is the essential command needed to diagnose if something is wrong – just press <kbd class="kbd docutils literal notranslate">H</kbd> to run it.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
-show_image(&#39;images/imagej-histogram-unclipped.png&#39;, title=&quot;Good image (no clipping)&quot;, pos=121)
-show_image(&#39;images/imagej-histogram-clipped.png&#39;, title=&quot;Clipped image&quot;, pos=122)
-glue_fig(&#39;fig_types_imagej_clipping&#39;, fig)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/imagej-histogram-unclipped.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Good image (no clipping)&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/imagej-histogram-clipped.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Clipped image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_types_imagej_clipping&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -855,14 +855,14 @@ This can take some careful inspection to distinguish from the black border that 
 <p>If you know the bit-depth and type of the image, you can figure out the range (e.g. 0-255 for an 8-bit unsigned integer image, 0-65,535 for 16-bit) and usually that gives a good indication to where the peaks would be – but it isn’t a perfect guide.
 Conceivably, we could have an image that was clipped at some other value because it has been rescaled <em>after</em> clipping.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="c1325df6-dc04-43d6-a4c6-62cf7285d3f7" name="8d6bb38d-116b-45bd-9372-bf507d5044e6" type="radio">
-</input><label class="sd-tab-label" for="c1325df6-dc04-43d6-a4c6-62cf7285d3f7">
+<input checked="checked" id="b3fc422f-9f2f-439d-8f3e-ea74cdc04ab8" name="0344fc1f-1096-40bf-8674-f14d00073d98" type="radio">
+</input><label class="sd-tab-label" for="b3fc422f-9f2f-439d-8f3e-ea74cdc04ab8">
 Question</label><div class="sd-tab-content docutils">
 <p>Does the image below show signs of having been clipped?</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-histogram-maybe.png"><img alt="../../../_images/imagej-histogram-maybe.png" class="align-center" src="../../../_images/imagej-histogram-maybe.png" style="width: 60%;" /></a>
 </div>
-<input id="a2721688-c7c8-4297-acbd-4a321fa2e394" name="8d6bb38d-116b-45bd-9372-bf507d5044e6" type="radio">
-</input><label class="sd-tab-label" for="a2721688-c7c8-4297-acbd-4a321fa2e394">
+<input id="c1110b70-0118-4a9d-a39f-5cf0e70a7ab8" name="0344fc1f-1096-40bf-8674-f14d00073d98" type="radio">
+</input><label class="sd-tab-label" for="c1110b70-0118-4a9d-a39f-5cf0e70a7ab8">
 Answer</label><div class="sd-tab-content docutils">
 <p>Yes!
 There is a small peak at the high end of the histogram, corresponding to pixel values of 4095.
@@ -943,15 +943,15 @@ Fortunately, there is an easy way to achieve this:</p>
 <p>If you <strong>really</strong> need to reduce the bit-depth of an image in ImageJ, you should usually open <span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> (<kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">C</kbd></kbd>) and press the <span class="guilabel">Reset</span> button first, to minimize the data lost to clipping or rounding.</p>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="2e9c79a3-5fdb-4e90-81fe-e3ad6d417539" name="00beda65-3d0b-469e-9a94-51e5baf34b31" type="radio">
-</input><label class="sd-tab-label" for="2e9c79a3-5fdb-4e90-81fe-e3ad6d417539">
+<input checked="checked" id="3d1f0f94-9e01-49d7-a60a-a698d2e84119" name="5111d722-d59c-4ea2-ac71-48082ff5facd" type="radio">
+</input><label class="sd-tab-label" for="3d1f0f94-9e01-49d7-a60a-a698d2e84119">
 Question</label><div class="sd-tab-content docutils">
 <p>Why is scaling usually a good thing when reducing the bit-depth, and why is a constant usually subtracted before applying this scaling?</p>
 <p><strong>Hint:</strong> As an example, consider how a 16-bit image containing values in the range 4000–5000 might be converted to 8-bit first without scaling, and then alternatively by scaling with or without the initial constant subtraction.
 What constants for subtraction and division would usually minimize the amount of information lost when converting to 8-bit image, limiting the errors to rounding only and not clipping?</p>
 </div>
-<input id="f9c70b74-d803-477b-9122-465d4899d459" name="00beda65-3d0b-469e-9a94-51e5baf34b31" type="radio">
-</input><label class="sd-tab-label" for="f9c70b74-d803-477b-9122-465d4899d459">
+<input id="9353dede-ef80-4a2a-9074-2884f2ffc286" name="5111d722-d59c-4ea2-ac71-48082ff5facd" type="radio">
+</input><label class="sd-tab-label" for="9353dede-ef80-4a2a-9074-2884f2ffc286">
 Answer</label><div class="sd-tab-content docutils">
 <p>In the example given, converting to 8-bit without any scaling would result in all pixels simply becoming 255: all useful information in the image would be lost.</p>
 <p>With scaling but without subtraction, it would make sense to divide all pixel values by the maximum in the image divided by the maximum in the new bit depth, i.e. by 5000/255.
@@ -960,16 +960,16 @@ This would then lead to an image in which pixels fall into the range 204–255. 
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="96328568-0122-4b0b-9848-387923f47a16" name="cf1b9a7e-e0e3-4aef-a4e7-5d951a2f4629" type="radio">
-</input><label class="sd-tab-label" for="96328568-0122-4b0b-9848-387923f47a16">
+<input checked="checked" id="d53b50cb-3352-4968-9c18-da0bbb0d5a42" name="97f8ed50-2077-4a35-a163-57a960436b31" type="radio">
+</input><label class="sd-tab-label" for="d53b50cb-3352-4968-9c18-da0bbb0d5a42">
 Practical</label><div class="sd-tab-content docutils">
 <p>Make sure that the <span class="guilabel">Scale When Converting</span> option is turned on (it should be by default).
 Then using a suitable 8-bit sample image, e.g. <span class="menuselection">File ‣ Open Samples ‣ Boats</span>, explore the effects of brightness/contrast settings when increasing or decreasing bit-depths.</p>
 <p>Can you destroy the image by simply 1) increasing the bit-depth, and the then 2) decreasing the bit-depth to its original value?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/6f9f451fdc0116197501ae504a57d5e7"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="89cb7f41-cc43-4ea1-bfb6-2bf476baea3c" name="cf1b9a7e-e0e3-4aef-a4e7-5d951a2f4629" type="radio">
-</input><label class="sd-tab-label" for="89cb7f41-cc43-4ea1-bfb6-2bf476baea3c">
+<input id="7bba00c4-9f3b-48ce-91a9-bbd8419b379f" name="97f8ed50-2077-4a35-a163-57a960436b31" type="radio">
+</input><label class="sd-tab-label" for="7bba00c4-9f3b-48ce-91a9-bbd8419b379f">
 Solution</label><div class="sd-tab-content docutils">
 <p>It’s generally a good idea to choose <span class="guilabel">Reset</span> in the <span class="menuselection">Brightness/Contrast…</span> window before reducing any bit-depths for 2D images (see <a class="reference internal" href="../../2-processing/7-multidimensional_processing/multidimensional_processing.html#chap-multidimensional-processing"><span class="std std-ref">Multidimensional processing</span></a> to read about special considerations related to <em>z</em>-stacks or time series).</p>
 <p>You can destroy an image by increasing its bit-depth, adjusting the brightness/contrast and then decreasing the bit-depth to the original one again.
@@ -1031,7 +1031,7 @@ But ImageJ does not know this and does not check, so it will simply do its norma
   
     By Pete Bankhead<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2022-2023.<br/>
 </p>
         </footer>
     </div>

@@ -111,7 +111,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../README.html">
+                <a class="reference internal" href="../../../index.html">
                     Introduction to Bioimage Analysis
                 </a>
             </li>
@@ -768,13 +768,13 @@ title="Print to PDF"
 We’ll look in particular at where things can go wrong when converting between bit-depths, and how to apply the tricks from previous chapters to identify problems.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># First, our usual default imports
-import sys
-sys.path.append(&#39;../../../&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, our usual default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
 
-from helpers import *
-import matplotlib.pyplot as plt
-import numpy as np
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -830,9 +830,9 @@ The code for a Numpy dtype isn’t hard to crack, with a <code class="docutils l
 <p>The <code class="docutils literal notranslate"><span class="pre">dtype</span></code> for any array is easy to check:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im = load_image(&#39;sunny_cell.tif&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;sunny_cell.tif&#39;</span><span class="p">)</span>
 
-print(im.dtype)
+<span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -846,15 +846,15 @@ print(im.dtype)
 In particular, we can check that the minimum and maximum values fall inside the expected range.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(f&#39;Mean: {im.mean():.2f}&#39;)
-print(f&#39;Minimum: {im.min()}&#39;)
-print(f&#39;Maximum: {im.max()}&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean: </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Minimum: </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum: </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-plt.imshow(im)
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-plt.hist(im.flatten(), bins=100)
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -876,7 +876,7 @@ Maximum: 2090
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im_float = im.astype(np.float32)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im_float</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -886,12 +886,12 @@ Maximum: 2090
 We can do that by showing the image and printing statistics again.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(f&#39;Mean:    {im_float.mean():.2f}&#39;)
-print(f&#39;Minimum: {im_float.min()}&#39;)
-print(f&#39;Maximum: {im_float.max()}&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean:    </span><span class="si">{</span><span class="n">im_float</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Minimum: </span><span class="si">{</span><span class="n">im_float</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum: </span><span class="si">{</span><span class="n">im_float</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-plt.imshow(im_float)
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_float</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -908,7 +908,7 @@ Maximum: 2090.0
 <p>One way we might do that is with <code class="docutils literal notranslate"><span class="pre">==</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(im == im_float)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">im</span> <span class="o">==</span> <span class="n">im_float</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -929,7 +929,7 @@ But because of the limits of what is printing, it really only shows that the pix
 <p>If we want to ensure that <em>all</em> pixels are the same, we can use <code class="docutils literal notranslate"><span class="pre">np.all</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(np.all(im == im_float))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">im</span> <span class="o">==</span> <span class="n">im_float</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -944,20 +944,20 @@ But because of the limits of what is printing, it really only shows that the pix
 So let’s check the statistics as well:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>if im.min() == im_float.min():
-    print(&#39;Minimum values are identical!&#39;)
-else:
-    print(&#39;Minimum values are different...&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">im</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">==</span> <span class="n">im_float</span><span class="o">.</span><span class="n">min</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Minimum values are identical!&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Minimum values are different...&#39;</span><span class="p">)</span>
     
-if im.max() == im_float.max():
-    print(&#39;Maximum values are identical!&#39;)
-else:
-    print(&#39;Maximum values are different...&#39;)
+<span class="k">if</span> <span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">==</span> <span class="n">im_float</span><span class="o">.</span><span class="n">max</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum values are identical!&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum values are different...&#39;</span><span class="p">)</span>
 
-if im.mean() == im_float.mean():
-    print(&#39;Mean values are identical!&#39;)
-else:
-    print(&#39;Mean values are different...&#39;)
+<span class="k">if</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">==</span> <span class="n">im_float</span><span class="o">.</span><span class="n">mean</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean values are identical!&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean values are different...&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -975,7 +975,7 @@ Mean values are different...
 We need to investigate by printing the actual values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(f&#39;Mean values are different... {im.mean()} vs {im_float.mean()}&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean values are different... </span><span class="si">{</span><span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s1"> vs </span><span class="si">{</span><span class="n">im_float</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1015,7 +1015,7 @@ Mathematically, we <em>should</em> get the same result.</p>
 We can use <code class="docutils literal notranslate"><span class="pre">np.allclose</span></code> for that.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.allclose(im.mean(), im_float.mean())
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">im_float</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1033,14 +1033,14 @@ This was fine.</p>
 <p>Time now to go the opposite direction, and again check that it works.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im_u8 = im.astype(np.uint8)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im_u8</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 
-print(f&#39;Mean:    {im_u8.mean():.2f}&#39;)
-print(f&#39;Minimum: {im_u8.min()}&#39;)
-print(f&#39;Maximum: {im_u8.max()}&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean:    </span><span class="si">{</span><span class="n">im_u8</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Minimum: </span><span class="si">{</span><span class="n">im_u8</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum: </span><span class="si">{</span><span class="n">im_u8</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-plt.imshow(im_u8)
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_u8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1064,10 +1064,10 @@ In the main text, we considered two ways that could happen: by clipping or by re
 Rather than googling or crawling around the NumPy docs, we can experiment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create an array from 0-1000 (in increments of 100)
-a = np.arange(0, 1001, 100)
-print(a.dtype)
-print(a)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an array from 0-1000 (in increments of 100)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1001</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1080,10 +1080,10 @@ print(a)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Convert to uint8 and see what happens
-b = a.astype(np.uint8)
-print(b.dtype)
-print(b)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert to uint8 and see what happens</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1096,9 +1096,9 @@ print(b)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Just to make things clearer
-# print the original values above and the new values below
-print(np.vstack([a, b]))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Just to make things clearer</span>
+<span class="c1"># print the original values above and the new values below</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -1111,11 +1111,11 @@ print(np.vstack([a, b]))
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># And, once more, lets plot lots of values against their converted-to-uint8 versions
-plt.plot(np.arange(-1000, 1000), np.arange(-1000, 1000).astype(np.uint8))
-plt.xlabel(&#39;Original values&#39;)
-plt.ylabel(&#39;uint8 values&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># And, once more, lets plot lots of values against their converted-to-uint8 versions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Original values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;uint8 values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1132,15 +1132,15 @@ To begin, let’s clip.</p>
 <p>The trick is to clip the image this <em>before</em> converting it with <code class="docutils literal notranslate"><span class="pre">astype</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im_u8_clipped = np.clip(im, 0, 255).astype(np.uint8)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im_u8_clipped</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 
-print(im_u8_clipped.dtype)
-print(f&#39;Mean:    {im_u8_clipped.mean():.2f}&#39;)
-print(f&#39;Minimum: {im_u8_clipped.min()}&#39;)
-print(f&#39;Maximum: {im_u8_clipped.max()}&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="n">im_u8_clipped</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean:    </span><span class="si">{</span><span class="n">im_u8_clipped</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Minimum: </span><span class="si">{</span><span class="n">im_u8_clipped</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum: </span><span class="si">{</span><span class="n">im_u8_clipped</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-plt.imshow(im_u8_clipped)
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_u8_clipped</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1164,11 +1164,11 @@ When we clipped, these pixels all simply became 255 - and all further distinctio
 <p>With Numpy, we can use the <code class="docutils literal notranslate"><span class="pre">**</span></code> operator for this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>max_u8 = 2**8 - 1
-print(f&#39;Maximum value for 8-bit unsigned integer: {max_u8}&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_u8</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">8</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum value for 8-bit unsigned integer: </span><span class="si">{</span><span class="n">max_u8</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-max_u16 = 2**16 - 1
-print(f&#39;Maximum value for 16-bit unsigned integer: {max_u16}&#39;)
+<span class="n">max_u16</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">16</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum value for 16-bit unsigned integer: </span><span class="si">{</span><span class="n">max_u16</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1182,16 +1182,16 @@ Maximum value for 16-bit unsigned integer: 65535
 <p>Therefore, to convert our 16-bit image to 8-bit by rescaling, we could multiply the pixel values by the ratio of these maximum values, i.e. by <span class="math notranslate nohighlight">\(\frac{255}{65535}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im_uint8_scaled = im * (255 / 65535)
-im_uint8_scaled = im_uint8_scaled.astype(np.uint8)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im_uint8_scaled</span> <span class="o">=</span> <span class="n">im</span> <span class="o">*</span> <span class="p">(</span><span class="mi">255</span> <span class="o">/</span> <span class="mi">65535</span><span class="p">)</span>
+<span class="n">im_uint8_scaled</span> <span class="o">=</span> <span class="n">im_uint8_scaled</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 
-print(im_uint8_scaled.dtype)
-print(f&#39;Mean:    {im_uint8_scaled.mean():.2f}&#39;)
-print(f&#39;Minimum: {im_uint8_scaled.min()}&#39;)
-print(f&#39;Maximum: {im_uint8_scaled.max()}&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="n">im_uint8_scaled</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean:    </span><span class="si">{</span><span class="n">im_uint8_scaled</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Minimum: </span><span class="si">{</span><span class="n">im_uint8_scaled</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum: </span><span class="si">{</span><span class="n">im_uint8_scaled</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-plt.imshow(im_uint8_scaled)
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_uint8_scaled</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1219,19 +1219,19 @@ We would like the values in our output image to fill the full range of 0-255.</p
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im_temp = im - im.min()
-im_temp = im_temp / im_temp.max()
-im_temp = im_temp * 255
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im_temp</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">im_temp</span> <span class="o">=</span> <span class="n">im_temp</span> <span class="o">/</span> <span class="n">im_temp</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">im_temp</span> <span class="o">=</span> <span class="n">im_temp</span> <span class="o">*</span> <span class="mi">255</span>
 
-im_uint8_scaled = im_temp.astype(np.uint8)
+<span class="n">im_uint8_scaled</span> <span class="o">=</span> <span class="n">im_temp</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 
-print(im_uint8_scaled.dtype)
-print(f&#39;Mean:    {im_uint8_scaled.mean():.2f}&#39;)
-print(f&#39;Minimum: {im_uint8_scaled.min()}&#39;)
-print(f&#39;Maximum: {im_uint8_scaled.max()}&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="n">im_uint8_scaled</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean:    </span><span class="si">{</span><span class="n">im_uint8_scaled</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Minimum: </span><span class="si">{</span><span class="n">im_uint8_scaled</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum: </span><span class="si">{</span><span class="n">im_uint8_scaled</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-plt.imshow(im_uint8_scaled)
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im_uint8_scaled</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1310,7 +1310,7 @@ This can help you make sure nothing is being lost along the way.</p>
   
     By Pete Bankhead<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2022-2023.<br/>
 </p>
         </footer>
     </div>

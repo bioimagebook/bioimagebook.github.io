@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../README.html">
+                <a class="reference internal" href="../../../index.html">
                     Introduction to Bioimage Analysis
                 </a>
             </li>
@@ -727,17 +727,17 @@ title="Print to PDF"
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
-%autoreload 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
 
-# Default imports
-import sys
-sys.path.append(&#39;../../../&#39;)
-from helpers import *
-from matplotlib import pyplot as plt
-from myst_nb import glue
-import numpy as np
-from scipy import ndimage
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 </pre></div>
 </div>
 </div>
@@ -772,49 +772,49 @@ We will use this approach later, but isn’t always necessary.</p>
 </ol>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create 4 images with different values that look the same
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create 4 images with different values that look the same</span>
 
-im = load_image(&#39;sunny_cell.tif&#39;)
-assert im.dtype == np.uint16
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;sunny_cell.tif&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">im</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">uint16</span>
 
-fig = create_figure(figsize=(12, 5))
-colorbar_params = dict(shrink=0.9, orientation=&#39;horizontal&#39;)
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">colorbar_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">shrink</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
 
-# Original image, with 1% clipped for display
-vmin = np.percentile(im, 1)
-vmax = np.percentile(im, 99)
-show_image(im, cmap=&#39;gray&#39;, title=&#39;Original 16-bit image&#39;, vmin=vmin, vmax=vmax, pos=241)
-add_colorbar(**colorbar_params)
+<span class="c1"># Original image, with 1% clipped for display</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Original 16-bit image&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">241</span><span class="p">)</span>
+<span class="n">add_colorbar</span><span class="p">(</span><span class="o">**</span><span class="n">colorbar_params</span><span class="p">)</span>
 
-# 32-bit, rescaled
-im2 = (im.astype(np.float32) - im.mean()) / im.std() * 50
-vmin2 = np.percentile(im2, 1)
-vmax2 = np.percentile(im2, 99)
-show_image(im2, cmap=&#39;gray&#39;, title=&#39;32-bit processed&#39;, vmin=vmin2, vmax=vmax2, pos=242)
-add_colorbar(**colorbar_params)
+<span class="c1"># 32-bit, rescaled</span>
+<span class="n">im2</span> <span class="o">=</span> <span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">-</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">im</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="mi">50</span>
+<span class="n">vmin2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">vmax2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;32-bit processed&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">242</span><span class="p">)</span>
+<span class="n">add_colorbar</span><span class="p">(</span><span class="o">**</span><span class="n">colorbar_params</span><span class="p">)</span>
 
-# 8-bit, clipped
-im3 = im.astype(np.float32)
-im3 = (im3 - vmin) / (vmax - vmin) * 255
-im3 = np.clip(im3, 0, 255)
-im3 = im3.astype(np.uint8)
-show_image(im3, cmap=&#39;gray&#39;, title=&#39;8-bit clipped&#39;, vmin=0, vmax=255, pos=243)
-add_colorbar(**colorbar_params)
+<span class="c1"># 8-bit, clipped</span>
+<span class="n">im3</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">im3</span> <span class="o">=</span> <span class="p">(</span><span class="n">im3</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">)</span> <span class="o">*</span> <span class="mi">255</span>
+<span class="n">im3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+<span class="n">im3</span> <span class="o">=</span> <span class="n">im3</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im3</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;8-bit clipped&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">243</span><span class="p">)</span>
+<span class="n">add_colorbar</span><span class="p">(</span><span class="o">**</span><span class="n">colorbar_params</span><span class="p">)</span>
 
-# 8-bit, clipped, then inverted with inverted LUT
-im4 = 255 - im3
-show_image(im4, cmap=&#39;gray_r&#39;, title=&#39;Inverted with inverted LUT&#39;, vmin=0, vmax=255, pos=244)
-add_colorbar(**colorbar_params)
+<span class="c1"># 8-bit, clipped, then inverted with inverted LUT</span>
+<span class="n">im4</span> <span class="o">=</span> <span class="mi">255</span> <span class="o">-</span> <span class="n">im3</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im4</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Inverted with inverted LUT&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">244</span><span class="p">)</span>
+<span class="n">add_colorbar</span><span class="p">(</span><span class="o">**</span><span class="n">colorbar_params</span><span class="p">)</span>
 
-# Show corresponding histograms
-bins = 128
-show_histogram(im, pos=245, stats=&#39;right&#39;, bins=bins)
-show_histogram(im2, pos=246, stats=&#39;right&#39;, bins=bins)
-show_histogram(im3, pos=247, stats=&#39;right&#39;, bins=bins)
-show_histogram(im4, pos=248, stats=&#39;left&#39;, bins=bins)
+<span class="c1"># Show corresponding histograms</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">245</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">246</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im3</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">247</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im4</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">248</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
 
-plt.tight_layout()
-glue_fig(&#39;fig_images_look_same_histograms&#39;, fig)
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_images_look_same_histograms&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -833,44 +833,44 @@ We can also see that the LUTs are different; they show the same colors (shades o
 This suggests that any analysis we perform on each of these images should give the same results, since the pixel values remain intact.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Display the same image in 4 different ways by changing the LUT/colormap
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the same image in 4 different ways by changing the LUT/colormap</span>
 
-im = load_image(&#39;sunny_cell.tif&#39;)
-assert im.dtype == np.uint16
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;sunny_cell.tif&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">im</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">uint16</span>
 
-# Create 5 images with the same values that look different
-fig = create_figure(figsize=(12, 5))
-cbar_params = dict(shrink=0.9, orientation=&#39;horizontal&#39;)
+<span class="c1"># Create 5 images with the same values that look different</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">cbar_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">shrink</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
 
-# Original image, with 1% clipped for display
-vmin = np.percentile(im, 1)
-vmax = np.percentile(im, 99)
-show_image(im, cmap=&#39;gray&#39;, title=&#39;Original 16-bit image&#39;, vmin=vmin, vmax=vmax, pos=241)
-add_colorbar(**colorbar_params)
+<span class="c1"># Original image, with 1% clipped for display</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Original 16-bit image&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">241</span><span class="p">)</span>
+<span class="n">add_colorbar</span><span class="p">(</span><span class="o">**</span><span class="n">colorbar_params</span><span class="p">)</span>
 
-# Original image, with 10% clipped for display
-vmin2 = np.percentile(im, 10)
-vmax2 = np.percentile(im, 90)
-show_image(im, cmap=&#39;gray&#39;, title=&#39;Enhanced contrast LUT&#39;, vmin=vmin2, vmax=vmax2, pos=242)
-add_colorbar(**colorbar_params)
+<span class="c1"># Original image, with 10% clipped for display</span>
+<span class="n">vmin2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">vmax2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Enhanced contrast LUT&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">242</span><span class="p">)</span>
+<span class="n">add_colorbar</span><span class="p">(</span><span class="o">**</span><span class="n">colorbar_params</span><span class="p">)</span>
 
-# Invert the LUT (in matplotlib, just add &#39;_r&#39; at the end)
-show_image(im, cmap=&#39;gray_r&#39;, title=&#39;Inverted LUT&#39;, vmin=vmin, vmax=vmax, pos=243)
-add_colorbar(**colorbar_params)
+<span class="c1"># Invert the LUT (in matplotlib, just add &#39;_r&#39; at the end)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Inverted LUT&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">243</span><span class="p">)</span>
+<span class="n">add_colorbar</span><span class="p">(</span><span class="o">**</span><span class="n">colorbar_params</span><span class="p">)</span>
 
-# Use an alternative LUT
-show_image(im, cmap=&#39;magma&#39;, title=&#39;Magma LUT&#39;, vmin=vmin, vmax=vmax, pos=244)
-add_colorbar(**colorbar_params)
+<span class="c1"># Use an alternative LUT</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Magma LUT&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">244</span><span class="p">)</span>
+<span class="n">add_colorbar</span><span class="p">(</span><span class="o">**</span><span class="n">colorbar_params</span><span class="p">)</span>
 
-# Show corresponding histograms
-bins = 128
-show_histogram(im, pos=245, stats=&#39;right&#39;, bins=bins)
-show_histogram(im, pos=246, stats=&#39;right&#39;, bins=bins)
-show_histogram(im, pos=247, stats=&#39;right&#39;, bins=bins)
-show_histogram(im, pos=248, stats=&#39;right&#39;, bins=bins)
+<span class="c1"># Show corresponding histograms</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">245</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">246</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">247</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">248</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
 
-plt.tight_layout()
-glue_fig(&#39;fig_images_look_different_histograms&#39;, fig)
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_images_look_different_histograms&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -884,13 +884,13 @@ glue_fig(&#39;fig_images_look_different_histograms&#39;, fig)
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="aa730b54-d55f-4f95-9fa1-f519a2b37f6f" name="cddc6875-28f1-424b-a5c5-3eca2ff9b603" type="radio">
-</input><label class="sd-tab-label" for="aa730b54-d55f-4f95-9fa1-f519a2b37f6f">
+<input checked="checked" id="6ee7621c-5841-4b19-b83d-4e602b583b71" name="f3d7dc9e-d2bb-4956-967b-f9aca80714a0" type="radio">
+</input><label class="sd-tab-label" for="6ee7621c-5841-4b19-b83d-4e602b583b71">
 Question</label><div class="sd-tab-content docutils">
 <p>If two images have identical histograms and summary statistics (mean, min, max, standard deviation), does this <strong>prove</strong> that the images are identical?</p>
 </div>
-<input id="8e20059b-55d9-4129-bb7d-0314ae70948b" name="cddc6875-28f1-424b-a5c5-3eca2ff9b603" type="radio">
-</input><label class="sd-tab-label" for="8e20059b-55d9-4129-bb7d-0314ae70948b">
+<input id="54a17607-d007-4b55-8033-7bead7803781" name="f3d7dc9e-d2bb-4956-967b-f9aca80714a0" type="radio">
+</input><label class="sd-tab-label" for="54a17607-d007-4b55-8033-7bead7803781">
 Answer</label><div class="sd-tab-content docutils">
 <p>No! For example, we might have the same pixel values in a different arrangement.
 If I randomly shuffle the pixels in the image then the basic statistics and histogram remain unchanged – but the image itself is very different.</p>
@@ -969,7 +969,7 @@ This can give a deeper understanding of the data, and help flag up potential pro
   
     By Pete Bankhead<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2022-2023.<br/>
 </p>
         </footer>
     </div>

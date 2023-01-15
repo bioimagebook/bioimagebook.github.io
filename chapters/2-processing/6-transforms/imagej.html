@@ -111,7 +111,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../README.html">
+                <a class="reference internal" href="../../../index.html">
                     Introduction to Bioimage Analysis
                 </a>
             </li>
@@ -766,17 +766,17 @@ title="Print to PDF"
 <h1>ImageJ: Image transforms<a class="headerlink" href="#imagej-image-transforms" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
-%autoreload 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
 
-# Default imports
-import sys
-sys.path.append(&#39;../../../&#39;)
-from helpers import *
-from matplotlib import pyplot as plt
-from myst_nb import glue
-import numpy as np
-from scipy import ndimage
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 </pre></div>
 </div>
 </div>
@@ -796,14 +796,14 @@ from scipy import ndimage
 This makes a difference, because the distance between two diagonal pixels is considered <span class="math notranslate nohighlight">\(\sqrt{2} \approx 1.414\)</span> (by Pythagoras’ theorem) – which means that a 32-bit output can give more exact straight-line distances without rounding.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
-show_image(&#39;images/imagej-blobs-binary.png&#39;, title=&quot;(A) Binary image&quot;, pos=141)
-show_image(&#39;images/imagej-blobs-distance.png&#39;, title=&quot;(B) Distance Map&quot;, pos=142)
-show_image(&#39;images/imagej-blobs-watershed.png&#39;, title=&quot;(C) Watershed&quot;, pos=143)
-show_image(&#39;images/imagej-blobs-voronoi.png&#39;, title=&quot;(D) Voronoi&quot;, pos=144)
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/imagej-blobs-binary.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Binary image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/imagej-blobs-distance.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Distance Map&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/imagej-blobs-watershed.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Watershed&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/imagej-blobs-voronoi.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Voronoi&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
 
-glue_fig(&#39;fig_distance_commands_imagej&#39;, fig)
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_distance_commands_imagej&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -826,84 +826,84 @@ But these are not simply single center points for each object; rather, they are 
 If segmentation has resulted in structures being merged together, then each distinct bulge could actually correspond to something interesting – and the number of bulges actually means more than the number of separated objects in the binary image.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
-Rather than simply paste screenshots from ImageJ, here I&#39;ve tried to use
-Python/skimage/scipy to replicate the steps taken within ImageJ.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Rather than simply paste screenshots from ImageJ, here I&#39;ve tried to use</span>
+<span class="sd">Python/skimage/scipy to replicate the steps taken within ImageJ.</span>
 
-The results aren&#39;t guaranteed to be identical, but should be close -
-and I hope more useful for learning.
-&quot;&quot;&quot;
+<span class="sd">The results aren&#39;t guaranteed to be identical, but should be close -</span>
+<span class="sd">and I hope more useful for learning.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-def read_blobs_and_threshold():
-    &quot;&quot;&quot;
-    Read the blobs.gif image &amp; convert to binary in a &#39;standardized&#39; way,
-    for consistency across figures.
-    &quot;&quot;&quot;
-    # Load &amp; invert blobs (this compensates for the inverted LUT)
-    im_blobs = 255 - load_image(&#39;blobs.gif&#39;)
+<span class="k">def</span> <span class="nf">read_blobs_and_threshold</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read the blobs.gif image &amp; convert to binary in a &#39;standardized&#39; way,</span>
+<span class="sd">    for consistency across figures.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Load &amp; invert blobs (this compensates for the inverted LUT)</span>
+    <span class="n">im_blobs</span> <span class="o">=</span> <span class="mi">255</span> <span class="o">-</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
 
-    # Threshold blobs - we don&#39;t need to be sophisticated,
-    # almost any half-sensible threshold method should work
-    bw_blobs = im_blobs &gt; im_blobs.mean()
-    return im_blobs, bw_blobs
-
-
-def approx_ultimate_points(bw, bw_dist=None):
-    &quot;&quot;&quot;
-    Find the ultimate points from a distance map of a binary image.
-    These are local maxima that are non-zero in the binary image.
-
-    This *sounds* easy: check where pixel values match the result of applying a maximum filter,
-    and those are your maxima.
-    However, in practice this can detect lots of spurious peaks / saddle-points.
-
-    ImageJ&#39;s &#39;MaximumFinder&#39; does *a lot* or work, and so generally ImageJ will give a
-    reasonable result without the user needing to know what exactly happened.
-
-    To approximate the results here, we can use h-maxima (maxima greater than a fixed threshold)
-    with a small dilation to merge maxima that are nearby.
-
-    Much as I&#39;d like to eliminate this step &amp; just use an ImageJ screenshot,
-    I&#39;ve included it to admit the awkwardness of image processing - often methods
-    need to be adapted to overcome seemingly minor issues.
-
-    Returns (y, x) tuple of coordinates.
-    &quot;&quot;&quot;
-    if bw_dist is None:
-        bw_dist = ndimage.distance_transform_edt(bw)
-
-    from skimage.morphology import extrema
-    bw_maxima = extrema.h_maxima(bw_dist, 0.5)
-    bw_maxima = ndimage.binary_dilation(bw_maxima)
-    bw_ultimate = np.bitwise_and(bw, bw_maxima)
-
-    # Reduce all ultimate point regions to a single point
-    # (Here, we take the centroids - this wouldn&#39;t be robust for weird shapes with holes,
-    # but should be ok here)
-    lab_ultimate, n = ndimage.label(bw_ultimate)
-    com = ndimage.measurements.center_of_mass(lab_ultimate, lab_ultimate, index=range(1, n+1))
-    return zip(*com)
+    <span class="c1"># Threshold blobs - we don&#39;t need to be sophisticated,</span>
+    <span class="c1"># almost any half-sensible threshold method should work</span>
+    <span class="n">bw_blobs</span> <span class="o">=</span> <span class="n">im_blobs</span> <span class="o">&gt;</span> <span class="n">im_blobs</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">im_blobs</span><span class="p">,</span> <span class="n">bw_blobs</span>
 
 
-# Load images
-im_blobs, bw_blobs = read_blobs_and_threshold()
+<span class="k">def</span> <span class="nf">approx_ultimate_points</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">bw_dist</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find the ultimate points from a distance map of a binary image.</span>
+<span class="sd">    These are local maxima that are non-zero in the binary image.</span>
 
-# Create distance transform image
-bw_dist = ndimage.distance_transform_edt(bw_blobs)
+<span class="sd">    This *sounds* easy: check where pixel values match the result of applying a maximum filter,</span>
+<span class="sd">    and those are your maxima.</span>
+<span class="sd">    However, in practice this can detect lots of spurious peaks / saddle-points.</span>
 
-# Get ultimate points
-y, x = approx_ultimate_points(bw_blobs, bw_dist)
+<span class="sd">    ImageJ&#39;s &#39;MaximumFinder&#39; does *a lot* or work, and so generally ImageJ will give a</span>
+<span class="sd">    reasonable result without the user needing to know what exactly happened.</span>
 
-# Show results
-fig = create_figure(figsize=(8, 4))
+<span class="sd">    To approximate the results here, we can use h-maxima (maxima greater than a fixed threshold)</span>
+<span class="sd">    with a small dilation to merge maxima that are nearby.</span>
 
-show_image(im_blobs, title=&quot;(A) Original image&quot;, pos=141)
-show_image(bw_blobs, title=&quot;(B) Thresholded image&quot;, pos=142)
-show_image(bw_dist, title=&quot;(C) Distance transform&quot;, pos=143)
-show_image(im_blobs, title=&quot;(D) Ultimate points&quot;, pos=144)
-plt.plot(x, y, marker=&#39;o&#39;, color=&#39;r&#39;, markersize=2, markeredgewidth=0.5, markerfacecolor=&#39;none&#39;, linewidth=0)
+<span class="sd">    Much as I&#39;d like to eliminate this step &amp; just use an ImageJ screenshot,</span>
+<span class="sd">    I&#39;ve included it to admit the awkwardness of image processing - often methods</span>
+<span class="sd">    need to be adapted to overcome seemingly minor issues.</span>
 
-glue_fig(&#39;fig_distance_transform_python&#39;, fig)
+<span class="sd">    Returns (y, x) tuple of coordinates.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">bw_dist</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bw_dist</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">distance_transform_edt</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+
+    <span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">extrema</span>
+    <span class="n">bw_maxima</span> <span class="o">=</span> <span class="n">extrema</span><span class="o">.</span><span class="n">h_maxima</span><span class="p">(</span><span class="n">bw_dist</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">bw_maxima</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_dilation</span><span class="p">(</span><span class="n">bw_maxima</span><span class="p">)</span>
+    <span class="n">bw_ultimate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span> <span class="n">bw_maxima</span><span class="p">)</span>
+
+    <span class="c1"># Reduce all ultimate point regions to a single point</span>
+    <span class="c1"># (Here, we take the centroids - this wouldn&#39;t be robust for weird shapes with holes,</span>
+    <span class="c1"># but should be ok here)</span>
+    <span class="n">lab_ultimate</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">bw_ultimate</span><span class="p">)</span>
+    <span class="n">com</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">measurements</span><span class="o">.</span><span class="n">center_of_mass</span><span class="p">(</span><span class="n">lab_ultimate</span><span class="p">,</span> <span class="n">lab_ultimate</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">com</span><span class="p">)</span>
+
+
+<span class="c1"># Load images</span>
+<span class="n">im_blobs</span><span class="p">,</span> <span class="n">bw_blobs</span> <span class="o">=</span> <span class="n">read_blobs_and_threshold</span><span class="p">()</span>
+
+<span class="c1"># Create distance transform image</span>
+<span class="n">bw_dist</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">distance_transform_edt</span><span class="p">(</span><span class="n">bw_blobs</span><span class="p">)</span>
+
+<span class="c1"># Get ultimate points</span>
+<span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">approx_ultimate_points</span><span class="p">(</span><span class="n">bw_blobs</span><span class="p">,</span> <span class="n">bw_dist</span><span class="p">)</span>
+
+<span class="c1"># Show results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_blobs</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw_blobs</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Thresholded image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">bw_dist</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Distance transform&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_blobs</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Ultimate points&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_distance_transform_python&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -949,16 +949,16 @@ The effect of the command is therefore to split ‘roundish’ objects.</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-blobs-surroundings.png"><img alt="../../../_images/imagej-blobs-surroundings.png" src="../../../_images/imagej-blobs-surroundings.png" style="width: 75%;" /></a>
 </aside>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="de21febe-7cdb-4c6d-8f1f-cc5d7dfab10c" name="236587d2-4857-4721-bdc3-f3c0b699c366" type="radio">
-</input><label class="sd-tab-label" for="de21febe-7cdb-4c6d-8f1f-cc5d7dfab10c">
+<input checked="checked" id="1f469688-3aa4-4315-aa66-7bf494d6cde4" name="e8aed275-8dd8-42a5-956a-ac06ce76f890" type="radio">
+</input><label class="sd-tab-label" for="1f469688-3aa4-4315-aa66-7bf494d6cde4">
 Question</label><div class="sd-tab-content docutils">
 <p>Imagine you have created a binary image containing detected cells, but you are only interested in the region inside the cell that is close to the membrane, i.e. within 5 pixels of the edge of each detected object.
 Any pixels outside the objects or closer to their centers do not matter.</p>
 <p>How would you go about finding these regions using ImageJ and the distance transform?</p>
 <p><strong>Note:</strong> There other ways to do this using techniques we’ve discussed, although these don’t necessarily give identical results.</p>
 </div>
-<input id="02b61b02-8ee8-42df-b153-c613aa5a9bd7" name="236587d2-4857-4721-bdc3-f3c0b699c366" type="radio">
-</input><label class="sd-tab-label" for="02b61b02-8ee8-42df-b153-c613aa5a9bd7">
+<input id="d400fa5b-d6aa-4a23-bf62-52ffb03ac408" name="e8aed275-8dd8-42a5-956a-ac06ce76f890" type="radio">
+</input><label class="sd-tab-label" for="d400fa5b-d6aa-4a23-bf62-52ffb03ac408">
 Answer</label><div class="sd-tab-content docutils">
 <p>This is the approach I was thinking of:</p>
 <ol class="simple">
@@ -1043,7 +1043,7 @@ Depending upon which options are selected, this includes finding structures usin
   
     By Pete Bankhead<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2022-2023.<br/>
 </p>
         </footer>
     </div>

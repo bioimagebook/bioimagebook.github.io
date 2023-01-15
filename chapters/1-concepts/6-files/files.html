@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../README.html">
+                <a class="reference internal" href="../../../index.html">
                     Introduction to Bioimage Analysis
                 </a>
             </li>
@@ -818,17 +818,17 @@ title="Print to PDF"
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
-%autoreload 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
 
-# Default imports
-import sys
-sys.path.append(&#39;../../../&#39;)
-from helpers import *
-from matplotlib import pyplot as plt
-from myst_nb import glue
-import numpy as np
-from scipy import ndimage
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 </pre></div>
 </div>
 </div>
@@ -958,53 +958,53 @@ This can result in dramatically smaller file sizes, but at a loss of information
 Technically, this approximation involves the ‘discrete cosine transform’; for our purposes, it’s enough to know that JPEG artefacts tend to look 8x8 pixel squares, each containing wavy patterns, which are most evident when zooming in and/or cranking up the brightness and contrast to an extreme level (<a class="reference internal" href="#fig-files-lossy"><span class="std std-numref">Fig. 52</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Load image
-im = load_image(&#39;spooked.png&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;spooked.png&#39;</span><span class="p">)</span>
 
-# Re-save as a JPEG; we do need to set the JPEG compression quite low to make the artefacts obvious
-from imageio import imread, imwrite
-bytes_jpg = imwrite(&quot;&lt;bytes&gt;&quot;, im, plugin=&#39;pillow&#39;, format=&quot;JPEG&quot;, quality=20)
-im_jpg = imread(bytes_jpg)
+<span class="c1"># Re-save as a JPEG; we do need to set the JPEG compression quite low to make the artefacts obvious</span>
+<span class="kn">from</span> <span class="nn">imageio</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imwrite</span>
+<span class="n">bytes_jpg</span> <span class="o">=</span> <span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;&lt;bytes&gt;&quot;</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;pillow&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;JPEG&quot;</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">im_jpg</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">bytes_jpg</span><span class="p">)</span>
 
-# Re-save as a PNG
-bytes_png = imwrite(&quot;&lt;bytes&gt;&quot;, im, format=&quot;PNG&quot;)
-im_png = imread(bytes_png)
+<span class="c1"># Re-save as a PNG</span>
+<span class="n">bytes_png</span> <span class="o">=</span> <span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;&lt;bytes&gt;&quot;</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;PNG&quot;</span><span class="p">)</span>
+<span class="n">im_png</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">bytes_png</span><span class="p">)</span>
 
-# Re-save as an uncompressed TIFF
-bytes_tif = imwrite(&quot;&lt;bytes&gt;&quot;, im, format=&quot;TIFF&quot;)
-im_tif = imread(bytes_tif)
+<span class="c1"># Re-save as an uncompressed TIFF</span>
+<span class="n">bytes_tif</span> <span class="o">=</span> <span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;&lt;bytes&gt;&quot;</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;TIFF&quot;</span><span class="p">)</span>
+<span class="n">im_tif</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">bytes_tif</span><span class="p">)</span>
 
-def add_rectangle(x, y, width, height, axes=None, linewidth=1, edgecolor=&#39;r&#39;, facecolor=&#39;none&#39;, **kwargs):
-    &quot;&quot;&quot;
-    Add rectangle to highlight selected region.
-    &quot;&quot;&quot;
-    import matplotlib.patches as patches
-    rect = patches.Rectangle((x, y), width, height, linewidth=1, edgecolor=&#39;r&#39;, facecolor=&#39;none&#39;)
-    if axes is None:
-        axes = plt.gca()
-    axes.add_patch(rect)
+<span class="k">def</span> <span class="nf">add_rectangle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add rectangle to highlight selected region.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
+    <span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">axes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
 
-# Show image &amp; details
-fig = create_figure(figsize=(9, 5))
-show_image(im_tif, pos=231, title=f&#39;(A) TIFF uncompressed ({len(bytes_tif)/1024.0:.1f} KB)&#39;)
-show_image(im_png, pos=232, title=f&#39;(B) PNG compressed ({len(bytes_png)/1024.0:.1f} KB)&#39;)
-show_image(im_jpg, pos=233, title=f&#39;(C) JPEG compressed ({len(bytes_jpg)/1024.0:.1f} KB)&#39;)
+<span class="c1"># Show image &amp; details</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_tif</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;(A) TIFF uncompressed (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">bytes_tif</span><span class="p">)</span><span class="o">/</span><span class="mf">1024.0</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> KB)&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_png</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;(B) PNG compressed (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">bytes_png</span><span class="p">)</span><span class="o">/</span><span class="mf">1024.0</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> KB)&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_jpg</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;(C) JPEG compressed (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">bytes_jpg</span><span class="p">)</span><span class="o">/</span><span class="mf">1024.0</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> KB)&#39;</span><span class="p">)</span>
 
-r = 200
-c = 200
-w = 50
-h = 38
-show_image(im_tif[r:r+h, c:c+w], pos=234)
-show_image(im_png[r:r+h, c:c+w], pos=235)
-show_image(im_jpg[r:r+h, c:c+w], pos=236)
+<span class="n">r</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">w</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">38</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_tif</span><span class="p">[</span><span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span><span class="n">c</span><span class="o">+</span><span class="n">w</span><span class="p">],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_png</span><span class="p">[</span><span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span><span class="n">c</span><span class="o">+</span><span class="n">w</span><span class="p">],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_jpg</span><span class="p">[</span><span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span><span class="n">c</span><span class="o">+</span><span class="n">w</span><span class="p">],</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
 
-# Add rectangle to highlight detail area
-for ax in fig.axes:
-    add_rectangle(c, r, w, h, axes=ax)
+<span class="c1"># Add rectangle to highlight detail area</span>
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">:</span>
+    <span class="n">add_rectangle</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
 
-plt.tight_layout()
-glue_fig(&#39;fig_files_lossy&#39;, fig)
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_files_lossy&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1044,15 +1044,15 @@ A TIFF image could contain uncompressed data, or data compressed using a variety
 To determine if a TIFF image has used lossy compression, more detective work may be needed (e.g. zooming in and hunting for artefacts, comparing pixel statistics with the original data file, or using software to check for metadata).</p>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="0fd85220-cdcc-44bd-b08e-b05a2a1a49b1" name="45f1c8aa-9762-4d26-850e-edfc6ca07f89" type="radio">
-</input><label class="sd-tab-label" for="0fd85220-cdcc-44bd-b08e-b05a2a1a49b1">
+<input checked="checked" id="86e25ba5-efee-47fb-862d-cbf34c8e7ad9" name="2fe84323-c63e-4215-9a57-1be25d59240f" type="radio">
+</input><label class="sd-tab-label" for="86e25ba5-efee-47fb-862d-cbf34c8e7ad9">
 Question</label><div class="sd-tab-content docutils">
 <p>It takes approximately 1 MB to store (1,000,000 bytes) an 8-bit uncompressed image with 1,000,000 pixels.</p>
 <p>How much memory does it take to store a 16-bit image with the same number of pixels?</p>
 <p><em>You can ignore the tiny bit of extra space needed to store any associated metadata.</em></p>
 </div>
-<input id="d90bc3b0-e652-4c00-8f05-24a9e8bea85d" name="45f1c8aa-9762-4d26-850e-edfc6ca07f89" type="radio">
-</input><label class="sd-tab-label" for="d90bc3b0-e652-4c00-8f05-24a9e8bea85d">
+<input id="d2cafd76-8187-46ca-bafc-042e294cda26" name="2fe84323-c63e-4215-9a57-1be25d59240f" type="radio">
+</input><label class="sd-tab-label" for="d2cafd76-8187-46ca-bafc-042e294cda26">
 Answer</label><div class="sd-tab-content docutils">
 <p>2 MB.</p>
 <p>8 bits corresponds to 1 byte, so 16 bits correspond to 2 bytes.
@@ -1060,16 +1060,16 @@ We multiply the number of bytes per pixel by the number of pixels to get the min
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="4806466a-d446-4019-ac28-883ad6217d62" name="5c021546-5808-43e7-b686-980ce0d61454" type="radio">
-</input><label class="sd-tab-label" for="4806466a-d446-4019-ac28-883ad6217d62">
+<input checked="checked" id="b673b2cf-3f8f-4b8b-ba53-ece82dbe55b8" name="c4652d6d-b1cc-4d50-9dfa-0eabfd57f306" type="radio">
+</input><label class="sd-tab-label" for="b673b2cf-3f8f-4b8b-ba53-ece82dbe55b8">
 Question</label><div class="sd-tab-content docutils">
 <p>Suppose you have an original image in TIFF format (no compression).
 First, you save it as JPEG (lossy compression) to reduce the file size, then close it and throw away the TIFF.</p>
 <p>Upon hearing JPEG is bad, you reopen the image and save it as TIFF  once more (no compression), throwing away the JPEG.
 How does your final TIFF image look, and what is its file size?</p>
 </div>
-<input id="607b391c-44d8-4350-aaf8-a1768af70a0c" name="5c021546-5808-43e7-b686-980ce0d61454" type="radio">
-</input><label class="sd-tab-label" for="607b391c-44d8-4350-aaf8-a1768af70a0c">
+<input id="db1891a8-dd54-4ef2-9623-511700a10643" name="c4652d6d-b1cc-4d50-9dfa-0eabfd57f306" type="radio">
+</input><label class="sd-tab-label" for="db1891a8-dd54-4ef2-9623-511700a10643">
 Answer</label><div class="sd-tab-content docutils">
 <p>The final image will look exactly like the JPEG version, <em>but with the same file size as the original TIFF!</em>
 As such, it has ‘the worst of both worlds’.</p>
@@ -1083,28 +1083,28 @@ A few core pieces of metadata <em>must</em> be stored alongside these bits to in
 If this information is missing – or wrong – then the image usually either cannot be read, or looks strange in some way (<a class="reference internal" href="#fig-files-core-metadata"><span class="std std-numref">Fig. 53</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Load image
-im = load_image(&#39;happy_cell.tif&#39;)
-assert im.ndim == 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">im</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span>
 
-# Store the &#39;true&#39; shape &amp; byte array for the pixel values
-shape = im.shape
-raw_bytes = im.tobytes()
-raw_dtype = im.dtype
+<span class="c1"># Store the &#39;true&#39; shape &amp; byte array for the pixel values</span>
+<span class="n">shape</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">raw_bytes</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+<span class="n">raw_dtype</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">dtype</span>
 
-# Generate new images from the raw byte arrays... some right, some wrong
-im_correct = np.frombuffer(raw_bytes, dtype=raw_dtype).reshape(shape)
-im_wrong_shape = np.frombuffer(raw_bytes, dtype=raw_dtype).reshape(shape[::-1])
-im_wrong_type = np.frombuffer(raw_bytes, dtype=np.uint32).reshape(shape)
-im_wrong_bits = np.frombuffer(raw_bytes, dtype=np.uint8).reshape([s * 2 for s in shape])
+<span class="c1"># Generate new images from the raw byte arrays... some right, some wrong</span>
+<span class="n">im_correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_bytes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">raw_dtype</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">im_wrong_shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_bytes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">raw_dtype</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">im_wrong_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_bytes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">im_wrong_bits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_bytes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="n">s</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">])</span>
 
-fig = create_figure(figsize=(12, 6))
-show_image(im_correct, pos=141, title=&#39;Correct metadata&#39;)
-show_image(im_wrong_shape, pos=142, title=&#39;Wrong shape\n(Width &amp; height swapped)&#39;)
-show_image(im_wrong_type, pos=143, title=f&#39;Wrong type\n({im_wrong_type.dtype}, not {raw_dtype})&#39;)
-show_image(im_wrong_bits, pos=144, title=f&#39;Wrong type &amp; bit-depth\n({im_wrong_bits.dtype}, not {raw_dtype})&#39;)
+<span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_correct</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Correct metadata&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_wrong_shape</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Wrong shape</span><span class="se">\n</span><span class="s1">(Width &amp; height swapped)&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_wrong_type</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Wrong type</span><span class="se">\n</span><span class="s1">(</span><span class="si">{</span><span class="n">im_wrong_type</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s1">, not </span><span class="si">{</span><span class="n">raw_dtype</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_wrong_bits</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Wrong type &amp; bit-depth</span><span class="se">\n</span><span class="s1">(</span><span class="si">{</span><span class="n">im_wrong_bits</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s1">, not </span><span class="si">{</span><span class="n">raw_dtype</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
-glue_fig(&#39;fig_files_core_metadata&#39;, fig)
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_files_core_metadata&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1219,11 +1219,11 @@ JPEG artifacts can look especially ugly in such cases, while PNG can compress th
 </ul>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
-show_image(&#39;images/vb_scientist_orig.png&#39;, title=&#39;(A) Vector image or bitmap?&#39;, pos=131)
-show_image(&#39;images/vb_scientist_vector_labelled.png&#39;, title=&#39;(B) Enlargement of vector image)&#39;, pos=132)
-show_image(&#39;images/vb_scientist_bitmap_labelled.png&#39;, title=&#39;(C) Enlargement of bitmap)&#39;, pos=133)
-glue_fig(&#39;fig_files_vector_bitmap&#39;, fig)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/vb_scientist_orig.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(A) Vector image or bitmap?&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/vb_scientist_vector_labelled.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(B) Enlargement of vector image)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/vb_scientist_bitmap_labelled.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;(C) Enlargement of bitmap)&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_files_vector_bitmap&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1337,7 +1337,7 @@ Although QuPath can do a lot of things on its own, it can also be used <a class=
   
     By Pete Bankhead<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2022-2023.<br/>
 </p>
         </footer>
     </div>

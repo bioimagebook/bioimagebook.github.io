@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../README.html">
+                <a class="reference internal" href="../../../index.html">
                     Introduction to Bioimage Analysis
                 </a>
             </li>
@@ -740,17 +740,17 @@ title="Print to PDF"
 <span id="chap-imagej-colors"></span><h1>ImageJ: Channels &amp; colors<a class="headerlink" href="#imagej-channels-colors" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
-%autoreload 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
 
-# Default imports
-import sys
-sys.path.append(&#39;../../../&#39;)
-from helpers import *
-from matplotlib import pyplot as plt
-from myst_nb import glue
-import numpy as np
-from scipy import ndimage
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 </pre></div>
 </div>
 </div>
@@ -773,10 +773,10 @@ There are several ways to recognize that an image has the type ‘RGB’:</p>
 The <span class="menuselection">Image ‣ Type ‣ </span> will be <span class="menuselection">8-bit</span>, <span class="menuselection">16-bit</span> or <span class="menuselection">32-bit</span>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
-show_image(&#39;images/neuron-composite.png&#39;, pos=121)
-show_image(&#39;images/neuron-rgb.png&#39;, pos=122)
-glue_fig(&#39;fig_color_neuron&#39;, fig)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/neuron-composite.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/neuron-rgb.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_color_neuron&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -811,8 +811,8 @@ The colors used to display the image are identical, but other aspects of the ima
 </ul>
 <p>When it comes to measuring an RGB image, the enigmatic statement above that ImageJ ‘converts the image’ is explained (in more detail than you might want) <a class="reference internal" href="#sec-colors-converts"><span class="std std-ref">at the end</span></a>.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="a72d515d-1db6-4978-84c7-c433736d3ee9" name="7e554580-3d16-4e59-9e95-f126af73bcbb" type="radio">
-</input><label class="sd-tab-label" for="a72d515d-1db6-4978-84c7-c433736d3ee9">
+<input checked="checked" id="c8277b51-18b5-4ff2-af4c-55b96734e7dc" name="0b40c481-366e-4740-93d9-9ad65c19054f" type="radio">
+</input><label class="sd-tab-label" for="c8277b51-18b5-4ff2-af4c-55b96734e7dc">
 Practical</label><div class="sd-tab-content docutils">
 <p>Explore several of the images under <span class="menuselection">File ‣ Open Samples ‣</span> and identify which are treated by ImageJ as RGB, which as multichannel, and which have just a single channel.
 There is only one correct answer per image.</p>
@@ -864,8 +864,8 @@ Hopefully the Fiji bug will be fixed before you read this.</p>
 </table>
 <p><a class="reference external" href="https://ij.imjoy.io"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="4f527f4b-7d41-46c8-a7eb-0610ac70496f" name="7e554580-3d16-4e59-9e95-f126af73bcbb" type="radio">
-</input><label class="sd-tab-label" for="4f527f4b-7d41-46c8-a7eb-0610ac70496f">
+<input id="84448e1f-2785-479a-928c-435f5c7a92e0" name="0b40c481-366e-4740-93d9-9ad65c19054f" type="radio">
+</input><label class="sd-tab-label" for="84448e1f-2785-479a-928c-435f5c7a92e0">
 Solution</label><div class="sd-tab-content docutils">
 <table class="colwidths-auto table">
 <thead>
@@ -937,12 +937,12 @@ To be more precise, a ‘composite image’ in this context is a multichannel im
 Similarly, <span class="menuselection">Image ‣ Adjust ‣ Brightness/Contrast…</span> works on the active channel to update the LUT.</p>
 <div class="cell tag_remove-output tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
-show_image(&#39;images/composite_all.jpg&#39;, title=&#39;Composite image&#39;, pos=141)
-show_image(&#39;images/composite_red.jpg&#39;, title=&#39;Red channel&#39;, pos=142)
-show_image(&#39;images/composite_green.jpg&#39;, title=&#39;Green channel&#39;, pos=143)
-show_image(&#39;images/composite_blue.jpg&#39;, title=&#39;Blue channel&#39;, pos=144)
-glue_fig(&#39;fig_color_composite&#39;, fig)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_all.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Composite image&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_red.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Red channel&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_green.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Green channel&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_blue.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Blue channel&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_color_composite&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -967,12 +967,12 @@ At the time of writing, the available modes are:</p>
 <p>Both <span class="guilabel">Composite Min</span> and <span class="guilabel">Composite Invert</span> are useful for LUTs with light backgrounds, therefore if you select one of these options ImageJ may flip a LUT to have a light background if needed.</p>
 <div class="cell tag_remove-output tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
-show_image(&#39;images/composite_neuron_default.jpg&#39;, title=&#39;Composite&#39;, pos=141)
-show_image(&#39;images/composite_neuron_max.jpg&#39;, title=&#39;Composite Max&#39;, pos=142)
-show_image(&#39;images/composite_neuron_min.jpg&#39;, title=&#39;Composite Min&#39;, pos=143)
-show_image(&#39;images/composite_neuron_invert.jpg&#39;, title=&#39;Composite Invert&#39;, pos=144)
-glue_fig(&#39;fig_color_composite_new&#39;, fig)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_neuron_default.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Composite&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_neuron_max.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Composite Max&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_neuron_min.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Composite Min&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/composite_neuron_invert.jpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Composite Invert&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_color_composite_new&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1018,16 +1018,16 @@ However, my preferred way to create an RGB image for display is usually <span cl
 This not only converts the image, but also incorporates any ROIs or overlays into the RGB version.
 Flattening is similar to taking a screenshot of the image as it currently appears, except unaffected by the current zoom level or field of view.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="125c4d2d-3bdc-415c-80e9-04c202371a88" name="1d00f27c-4b1d-49b1-842f-c4ddb547f7f0" type="radio">
-</input><label class="sd-tab-label" for="125c4d2d-3bdc-415c-80e9-04c202371a88">
+<input checked="checked" id="5f686f0f-e2ee-4bea-a0d9-f038d290f002" name="ea942f5b-b8f2-4818-ba5f-6b748c7bd099" type="radio">
+</input><label class="sd-tab-label" for="5f686f0f-e2ee-4bea-a0d9-f038d290f002">
 Question</label><div class="sd-tab-content docutils">
 <p>ImageJ has two different copying commands, <span class="menuselection">Edit ‣ Copy</span> and <span class="menuselection">Edit ‣ Copy to System</span>.
 Why?</p>
 <p><strong>Note:</strong> When investigating this, you should explore <span class="menuselection">Edit ‣ Paste</span>, alongside two commands in the <span class="menuselection">File ‣ New ‣</span> submenu.
 Be on the lookout for any conversions.</p>
 </div>
-<input id="65739120-0250-4fa9-8ebb-04e830d7a96b" name="1d00f27c-4b1d-49b1-842f-c4ddb547f7f0" type="radio">
-</input><label class="sd-tab-label" for="65739120-0250-4fa9-8ebb-04e830d7a96b">
+<input id="407ca6ea-2780-421c-9e9f-2d8de025e319" name="ea942f5b-b8f2-4818-ba5f-6b748c7bd099" type="radio">
+</input><label class="sd-tab-label" for="407ca6ea-2780-421c-9e9f-2d8de025e319">
 Answer</label><div class="sd-tab-content docutils">
 <p><span class="menuselection">Edit ‣ Copy</span> allows you to copy part of an individual image slice (i.e. a 2D part of a particular color channel) and paste it into another image while exactly preserving the original image type and pixel values.
 You can also use <span class="menuselection">File ‣ New ‣ Internal Clipboard</span> to get the copied region (but <span class="menuselection">Image ‣ Duplicate…</span> is usually a better option).
@@ -1038,8 +1038,8 @@ If therefore preserves the image appearance, but not necessarily the pixel value
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="205da4cb-3d9c-4f98-9033-8ca83184c4aa" name="228de79e-def2-4766-a8cf-b8c999c1713c" type="radio">
-</input><label class="sd-tab-label" for="205da4cb-3d9c-4f98-9033-8ca83184c4aa">
+<input checked="checked" id="e610863a-5232-4c84-b3c3-199df71bdc59" name="25abd611-29ba-4ac6-a7a0-5015945166a9" type="radio">
+</input><label class="sd-tab-label" for="e610863a-5232-4c84-b3c3-199df71bdc59">
 Practical</label><div class="sd-tab-content docutils">
 <p>You can test the compatibility of composite and RGB images by opening <span class="menuselection">File ‣ Open Samples ‣ HeLa Cells</span> image, and saving it using <span class="menuselection">File ‣ Save As ‣ Tiff…</span> both before and after running <span class="menuselection">Image ‣ Type ‣ RGB Color</span> to convert the original 16-bit composite data to RGB.</p>
 <p>Try then opening both saved images in other software (e.g. Microsoft PowerPoint®) and compare their appearance.</p>
@@ -1047,8 +1047,8 @@ Practical</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="db32664f-5a41-458e-9475-709a63fa16aa" name="8cc85979-6ac3-4900-bd1d-bfe366e8e898" type="radio">
-</input><label class="sd-tab-label" for="db32664f-5a41-458e-9475-709a63fa16aa">
+<input checked="checked" id="0d427818-26a8-4799-b2fb-1f8dc64cc4d9" name="7ea77cc9-f97d-4924-ac26-76a2d79cb48a" type="radio">
+</input><label class="sd-tab-label" for="0d427818-26a8-4799-b2fb-1f8dc64cc4d9">
 Practical</label><div class="sd-tab-content docutils">
 <p>Think of at least 2 ways in which converting a composite image to RGB can lose information.</p>
 <p>You can explore this by comparing the images <em>Neuron-composite.tif</em> and
@@ -1056,8 +1056,8 @@ Practical</label><div class="sd-tab-content docutils">
 The <span class="menuselection">Image ‣ Color ‣ Split Channels</span> command should help.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/Neuron-composite.tif&amp;open=https://github.com/bioimagebook/practical-data/blob/main/images/Neuron-RGB.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="3e79dc43-81b0-44e5-8b23-1bd20e5c2e04" name="8cc85979-6ac3-4900-bd1d-bfe366e8e898" type="radio">
-</input><label class="sd-tab-label" for="3e79dc43-81b0-44e5-8b23-1bd20e5c2e04">
+<input id="d4e593cd-0013-4c71-84c5-6f0ba4a9c711" name="7ea77cc9-f97d-4924-ac26-76a2d79cb48a" type="radio">
+</input><label class="sd-tab-label" for="d4e593cd-0013-4c71-84c5-6f0ba4a9c711">
 Solution</label><div class="sd-tab-content docutils">
 <p>One way that converting an image to RGB can lose information is if the original data is 16-bit before conversion and 8-bit afterwards, causing rounding and/or clipping to occur (see <a class="reference internal" href="../3-bit_depths/bit_depths.html#chap-bit-depths"><span class="std std-ref">Types &amp; bit-depths</span></a>).</p>
 <p>Another is that during conversion the channels have been forced to be purely red, green and blue.
@@ -1167,7 +1167,7 @@ We can learn enough about the software to know how to test what it is doing.</p>
   
     By Pete Bankhead<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2022-2023.<br/>
 </p>
         </footer>
     </div>

@@ -110,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../README.html">
+                <a class="reference internal" href="../../../index.html">
                     Introduction to Bioimage Analysis
                 </a>
             </li>
@@ -819,17 +819,17 @@ title="Print to PDF"
 <span id="chap-macro-simulating"></span><h1>Simulating image formation<a class="headerlink" href="#simulating-image-formation" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
-%autoreload 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
 
-# Default imports
-import sys
-sys.path.append(&#39;../../../&#39;)
-from helpers import *
-from matplotlib import pyplot as plt
-from myst_nb import glue
-import numpy as np
-from scipy import ndimage
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 </pre></div>
 </div>
 </div>
@@ -919,52 +919,52 @@ no extra gain).</p></li>
 <p>Now is a good time to clean up the code by removing any unnecessary lines, adding suitable comments, and bringing any interesting variables up to the top of the macro so that they can be easily modified later (as in <a class="reference internal" href="macro_dog.html#chap-macro-dog"><span class="std std-ref">Difference of Gaussians</span></a>).
 We should also duplicate the image to avoid accidentally modifying the original.
 The end result should look something like this:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Variables to change</span><span class="w"></span>
-<span class="n">psfSigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<span class="n">backgroundPhotons</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
-<span class="n">exposureTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="n">readStdDev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
-<span class="n">detectorGain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="n">detectorOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Variables to change</span>
+<span class="n">psfSigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">backgroundPhotons</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">exposureTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">readStdDev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="n">detectorGain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">detectorOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
 <span class="n">maxVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span><span class="w"> </span>
 
-<span class="c1">// Duplicate the image, to avoid changing the original</span><span class="w"></span>
-<span class="c1">// Including &quot; &quot; means the default name will be used &amp; </span><span class="w"></span>
-<span class="c1">// we don&#39;t need to specify any other</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Duplicate the image, to avoid changing the original</span>
+<span class="c1">// Including &quot; &quot; means the default name will be used &amp; </span>
+<span class="c1">// we don&#39;t need to specify any other</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
 
-<span class="c1">// Retain a reference so we can close the duplicate at the end </span><span class="w"></span>
-<span class="c1">// (since RandomJ Poisson creates another new window)</span><span class="w"></span>
-<span class="n">idTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageID</span><span class="p">();</span><span class="w"></span>
+<span class="c1">// Retain a reference so we can close the duplicate at the end </span>
+<span class="c1">// (since RandomJ Poisson creates another new window)</span>
+<span class="n">idTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageID</span><span class="p">();</span>
 
-<span class="c1">// Ensure image is 32-bit</span><span class="w"></span>
+<span class="c1">// Ensure image is 32-bit</span>
 <span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span><span class="w"> </span>
 
-<span class="c1">// Simulate PSF blurring</span><span class="w"></span>
+<span class="c1">// Simulate PSF blurring</span>
 <span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=&quot;</span><span class="o">+</span><span class="n">psfSigma</span><span class="p">);</span><span class="w"> </span>
 
-<span class="c1">// Add background photons</span><span class="w"></span>
+<span class="c1">// Add background photons</span>
 <span class="n">run</span><span class="p">(</span><span class="s">&quot;Add...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">backgroundPhotons</span><span class="p">);</span><span class="w"> </span>
 
-<span class="c1">// Multiply by the exposure time</span><span class="w"></span>
+<span class="c1">// Multiply by the exposure time</span>
 <span class="n">run</span><span class="p">(</span><span class="s">&quot;Multiply...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">exposureTime</span><span class="p">);</span><span class="w"> </span>
 
-<span class="c1">// Simulate photon noise</span><span class="w"></span>
+<span class="c1">// Simulate photon noise</span>
 <span class="n">run</span><span class="p">(</span><span class="s">&quot;RandomJ Poisson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;mean=1.0 insertion=modulatory&quot;</span><span class="p">);</span><span class="w"> </span>
 
-<span class="c1">// Simulate the detector gain</span><span class="w"></span>
+<span class="c1">// Simulate the detector gain</span>
 <span class="n">run</span><span class="p">(</span><span class="s">&quot;Multiply...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">detectorGain</span><span class="p">);</span><span class="w"> </span>
 
-<span class="c1">// Simulate the detector offset</span><span class="w"></span>
+<span class="c1">// Simulate the detector offset</span>
 <span class="n">run</span><span class="p">(</span><span class="s">&quot;Add...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">detectorOffset</span><span class="p">);</span><span class="w"> </span>
 
-<span class="c1">// Simulate read noise</span><span class="w"></span>
+<span class="c1">// Simulate read noise</span>
 <span class="n">run</span><span class="p">(</span><span class="s">&quot;Add Specified Noise...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;standard=&quot;</span><span class="o">+</span><span class="n">readStdDev</span><span class="p">);</span><span class="w"> </span>
 
-<span class="c1">// Clip any negative values</span><span class="w"></span>
+<span class="c1">// Clip any negative values</span>
 <span class="n">run</span><span class="p">(</span><span class="s">&quot;Min...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=0&quot;</span><span class="p">);</span><span class="w"> </span>
 
-<span class="c1">// Clip the maximum values based on the bit-depth </span><span class="w"></span>
+<span class="c1">// Clip the maximum values based on the bit-depth </span>
 <span class="n">un</span><span class="p">(</span><span class="s">&quot;Max...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">maxVal</span><span class="p">);</span><span class="w"> </span>
 </pre></div>
 </div>
@@ -983,9 +983,9 @@ To do this, we need to determine the current range of pixel values, which can be
 <p>After running this, four variables are created giving the <code class="docutils literal notranslate"><span class="pre">mean</span></code>,
 <code class="docutils literal notranslate"><span class="pre">minimum</span></code> and <code class="docutils literal notranslate"><span class="pre">maximum</span></code> pixel values in the image, along with the total image <code class="docutils literal notranslate"><span class="pre">area</span></code>.
 Normalization is now possible using <span class="menuselection">Subtract</span> and <span class="menuselection">Divide</span> commands, and adjusting their values. In the end this gives us</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getStatistics</span><span class="p">(</span><span class="n">area</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Subtract...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">min</span><span class="p">);</span><span class="w"></span>
-<span class="n">divisor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getStatistics</span><span class="p">(</span><span class="n">area</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Subtract...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">min</span><span class="p">);</span>
+<span class="n">divisor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min</span><span class="p">;</span>
 <span class="n">run</span><span class="p">(</span><span class="s">&quot;Divide...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">divisor</span><span class="p">);</span><span class="w"> </span>
 </pre></div>
 </div>
@@ -1011,7 +1011,7 @@ For
 The macro recorder can again be used to get the main code that is needed.
 After some modification, this becomes</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">doBinning</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">   </span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Bin...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;x=2 y=2 bin=Sum&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Bin...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;x=2 y=2 bin=Sum&quot;</span><span class="p">);</span>
 <span class="w"> </span><span class="p">}</span><span class="w"> </span>
 </pre></div>
 </div>
@@ -1032,7 +1032,7 @@ The lines of code that perform the binning should be inserted <em>before</em> th
 <p>Varying the simulated bit-depths by changing the maximum value allowed in the image takes a little work: you need to know that the maximum value in an 8-bit image is 255, while for a 12-bit image it is 4095 and so on.
 It is more intuitive to just change the image bit-depth and have the macro do the calculation for you.
 To do this, you can replace the <code class="docutils literal notranslate"><span class="pre">maxVal</span> <span class="pre">=</span> <span class="pre">255;</span></code> variable at the start of the macro with <code class="docutils literal notranslate"><span class="pre">nBits</span> <span class="pre">=</span> <span class="pre">8;</span></code> and then update the later clipping code to become</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">maxVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">nBits</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">maxVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">nBits</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="n">run</span><span class="p">(</span><span class="s">&quot;Max...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">maxVal</span><span class="p">);</span><span class="w"> </span>
 </pre></div>
 </div>
@@ -1048,16 +1048,16 @@ However, we can avoid thinking about this if we just apply the rounding ourselve
 To do it we need to visit each pixel, extract its value, round the value to the nearest whole number, and put it back in the image.
 This requires using <strong>loops</strong>.
 The code, which should be added at the end of the macro, looks like this:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Get the image dimensions</span><span class="w"></span>
-<span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getWidth</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Get the image dimensions</span>
+<span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getWidth</span><span class="p">();</span>
 <span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getHeight</span><span class="p">();</span><span class="w"> </span>
 
-<span class="c1">// Loop through all the rows of pixels</span><span class="w"></span>
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">height</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Loop through all the columns of pixels</span><span class="w"></span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">width</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Extract the pixel value at coordinate (x, y)</span><span class="w"></span>
-<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// Round the pixel value to the nearest integer</span><span class="w"></span>
-<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"> </span><span class="c1">// Replace the pixel value in the image</span><span class="w"></span>
-<span class="w">    </span><span class="n">setPixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Loop through all the rows of pixels</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">height</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Loop through all the columns of pixels</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">width</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Extract the pixel value at coordinate (x, y)</span>
+<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// Round the pixel value to the nearest integer</span>
+<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"> </span><span class="c1">// Replace the pixel value in the image</span>
+<span class="w">    </span><span class="n">setPixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span><span class="w"> </span>
 <span class="p">}</span><span class="w"> </span>
 </pre></div>
@@ -1073,95 +1073,95 @@ This continues until <code class="docutils literal notranslate"><span class="pre
 <section id="final-code">
 <h3>Final code<a class="headerlink" href="#final-code" title="Permalink to this headline">#</a></h3>
 <p>The final code of my version of the macro is given below:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Variables to change</span><span class="w"></span>
-<span class="n">psfSigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<span class="n">backgroundPhotons</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
-<span class="n">exposureTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
-<span class="n">readStdDev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
-<span class="n">detectorGain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="n">detectorOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"></span>
-<span class="n">nBits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
-<span class="n">maxPhotonEmission</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
-<span class="n">doBinning</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Variables to change</span>
+<span class="n">psfSigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">backgroundPhotons</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">exposureTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">readStdDev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="n">detectorGain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">detectorOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="n">nBits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="n">maxPhotonEmission</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">doBinning</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
 
-<span class="c1">// Duplicate the image, to avoid changing the original</span><span class="w"></span>
-<span class="c1">// Including &quot; &quot; means the default name will be used &amp; </span><span class="w"></span>
-<span class="c1">// we don&#39;t need to specify any other</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Duplicate the image, to avoid changing the original</span>
+<span class="c1">// Including &quot; &quot; means the default name will be used &amp; </span>
+<span class="c1">// we don&#39;t need to specify any other</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Duplicate...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
 
-<span class="c1">// Retain a reference so we can close the duplicate at the end </span><span class="w"></span>
-<span class="c1">// (since RandomJ Poisson creates another new window)</span><span class="w"></span>
-<span class="n">idTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageID</span><span class="p">();</span><span class="w"></span>
+<span class="c1">// Retain a reference so we can close the duplicate at the end </span>
+<span class="c1">// (since RandomJ Poisson creates another new window)</span>
+<span class="n">idTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageID</span><span class="p">();</span>
 
-<span class="c1">// Ensure image is 32-bit</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Ensure image is 32-bit</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;32-bit&quot;</span><span class="p">);</span>
 
-<span class="c1">// Normalize the image to the range 0-1</span><span class="w"></span>
-<span class="n">getStatistics</span><span class="p">(</span><span class="n">area</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="p">);</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Subtract...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">min</span><span class="p">);</span><span class="w"></span>
-<span class="n">divisor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min</span><span class="p">;</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Divide...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">divisor</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Normalize the image to the range 0-1</span>
+<span class="n">getStatistics</span><span class="p">(</span><span class="n">area</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="p">);</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Subtract...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">min</span><span class="p">);</span>
+<span class="n">divisor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min</span><span class="p">;</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Divide...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">divisor</span><span class="p">);</span>
 
-<span class="c1">// Define the photon emission at the brightest point</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Multiply...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">maxPhotonEmission</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Define the photon emission at the brightest point</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Multiply...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">maxPhotonEmission</span><span class="p">);</span>
 
-<span class="c1">// Simulate PSF blurring</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=&quot;</span><span class="o">+</span><span class="n">psfSigma</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Simulate PSF blurring</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=&quot;</span><span class="o">+</span><span class="n">psfSigma</span><span class="p">);</span>
 
-<span class="c1">// Add background photons</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Add...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">backgroundPhotons</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Add background photons</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Add...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">backgroundPhotons</span><span class="p">);</span>
 
-<span class="c1">// Multiply by the exposure time</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Multiply...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">exposureTime</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Multiply by the exposure time</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Multiply...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">exposureTime</span><span class="p">);</span>
 
-<span class="c1">// Simulate photon noise</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;RandomJ Poisson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;mean=1.0 insertion=modulatory&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Simulate photon noise</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;RandomJ Poisson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;mean=1.0 insertion=modulatory&quot;</span><span class="p">);</span>
 
-<span class="c1">// Simulate the detector gain</span><span class="w"></span>
-<span class="c1">// (note this should really add Poisson noise too!)</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Multiply...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">detectorGain</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Simulate the detector gain</span>
+<span class="c1">// (note this should really add Poisson noise too!)</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Multiply...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">detectorGain</span><span class="p">);</span>
 
-<span class="c1">// Simulate binning (optional)</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">doBinning</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w"> </span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Bin...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;x=2 y=2 bin=Sum&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="c1">// Simulate binning (optional)</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">doBinning</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="n">run</span><span class="p">(</span><span class="s">&quot;Bin...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;x=2 y=2 bin=Sum&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="c1">// Simulate the detector offset</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Add...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">detectorOffset</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Simulate the detector offset</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Add...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">detectorOffset</span><span class="p">);</span>
 
-<span class="c1">// Simulate read noise</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Add Specified Noise...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;standard=&quot;</span><span class="o">+</span><span class="n">readStdDev</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Simulate read noise</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Add Specified Noise...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;standard=&quot;</span><span class="o">+</span><span class="n">readStdDev</span><span class="p">);</span>
 
-<span class="c1">// Clip any negative values</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Min...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=0&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Clip any negative values</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Min...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=0&quot;</span><span class="p">);</span>
 
-<span class="c1">// Clip the maximum values based on the bit-depth</span><span class="w"></span>
-<span class="n">maxVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">nBits</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="n">run</span><span class="p">(</span><span class="s">&quot;Max...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">maxVal</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Clip the maximum values based on the bit-depth</span>
+<span class="n">maxVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">nBits</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">run</span><span class="p">(</span><span class="s">&quot;Max...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value=&quot;</span><span class="o">+</span><span class="n">maxVal</span><span class="p">);</span>
 
-<span class="c1">// Get the image dimensions</span><span class="w"></span>
-<span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getWidth</span><span class="p">();</span><span class="w"></span>
-<span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getHeight</span><span class="p">();</span><span class="w"></span>
+<span class="c1">// Get the image dimensions</span>
+<span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getWidth</span><span class="p">();</span>
+<span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getHeight</span><span class="p">();</span>
 
-<span class="c1">// Round the pixels to integer values</span><span class="w"></span>
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">height</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">   </span><span class="c1">// Loop through all the columns of pixels</span><span class="w"></span>
-<span class="w">   </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">width</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">       </span><span class="c1">// Extract the pixel value at coordinate (x, y)</span><span class="w"></span>
-<span class="w">       </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"></span>
-<span class="w">       </span><span class="c1">// Round the pixel value to the nearest integer</span><span class="w"></span>
-<span class="w">       </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"></span>
-<span class="w">       </span><span class="c1">// Replace the pixel value in the image</span><span class="w"></span>
-<span class="w">       </span><span class="n">setPixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w"></span>
-<span class="w">   </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="c1">// Round the pixels to integer values</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">height</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// Loop through all the columns of pixels</span>
+<span class="w">   </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">width</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="c1">// Extract the pixel value at coordinate (x, y)</span>
+<span class="w">       </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">       </span><span class="c1">// Round the pixel value to the nearest integer</span>
+<span class="w">       </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+<span class="w">       </span><span class="c1">// Replace the pixel value in the image</span>
+<span class="w">       </span><span class="n">setPixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="c1">// Reset the display range (i.e. image contrast)</span><span class="w"></span>
-<span class="n">resetMinAndMax</span><span class="p">();</span><span class="w"></span>
+<span class="c1">// Reset the display range (i.e. image contrast)</span>
+<span class="n">resetMinAndMax</span><span class="p">();</span>
 
-<span class="c1">// Close the temporary image</span><span class="w"></span>
-<span class="n">selectImage</span><span class="p">(</span><span class="n">idTemp</span><span class="p">);</span><span class="w"></span>
-<span class="n">close</span><span class="p">();</span><span class="w"></span>
+<span class="c1">// Close the temporary image</span>
+<span class="n">selectImage</span><span class="p">(</span><span class="n">idTemp</span><span class="p">);</span>
+<span class="n">close</span><span class="p">();</span>
 </pre></div>
 </div>
 </section>
@@ -1244,7 +1244,7 @@ Reading through some online tutorials for the ImageJ macro language or for-loops
   
     By Pete Bankhead<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2022-2023.<br/>
 </p>
         </footer>
     </div>

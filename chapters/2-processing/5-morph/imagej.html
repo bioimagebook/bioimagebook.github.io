@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../README.html">
+                <a class="reference internal" href="../../../index.html">
                     Introduction to Bioimage Analysis
                 </a>
             </li>
@@ -740,17 +740,17 @@ title="Print to PDF"
 <h1>ImageJ: Morphological operations<a class="headerlink" href="#imagej-morphological-operations" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext autoreload
-%autoreload 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
 
-# Default imports
-import sys
-sys.path.append(&#39;../../../&#39;)
-from helpers import *
-from matplotlib import pyplot as plt
-from myst_nb import glue
-import numpy as np
-from scipy import ndimage
+<span class="c1"># Default imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 </pre></div>
 </div>
 </div>
@@ -784,28 +784,28 @@ By default they work with fixed 3×3 pixel neighborhoods, but they <em>could</em
 </div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = create_figure(figsize=(8, 4))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
-# There are different ways to generate outlines, depending upon how thick they should be
-# and whether we get the &#39;inner&#39; or &#39;outer&#39;.
-bw_outline = load_image(&#39;images/outline.png&#39;) &gt; 0
-bw_outlined = ndimage.binary_dilation(bw_outline) ^ bw_outline
+<span class="c1"># There are different ways to generate outlines, depending upon how thick they should be</span>
+<span class="c1"># and whether we get the &#39;inner&#39; or &#39;outer&#39;.</span>
+<span class="n">bw_outline</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/outline.png&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="n">bw_outlined</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_dilation</span><span class="p">(</span><span class="n">bw_outline</span><span class="p">)</span> <span class="o">^</span> <span class="n">bw_outline</span>
 
-# Fill holes
-bw_fill = load_image(&#39;images/fill_holes.png&#39;) &gt; 0
-bw_filled = ndimage.binary_fill_holes(bw_fill)
+<span class="c1"># Fill holes</span>
+<span class="n">bw_fill</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/fill_holes.png&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="n">bw_filled</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_fill_holes</span><span class="p">(</span><span class="n">bw_fill</span><span class="p">)</span>
 
-# ndimage doesn&#39;t include skeletonize - so use skimage instead
-# (Note that different skeletonize algorithms might give different results)
-from skimage.morphology import skeletonize
-bw_skeletonize = load_image(&#39;images/skeletonize.png&#39;) &gt; 0
-bw_skeletonized = skeletonize(bw_skeletonize)
+<span class="c1"># ndimage doesn&#39;t include skeletonize - so use skimage instead</span>
+<span class="c1"># (Note that different skeletonize algorithms might give different results)</span>
+<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">skeletonize</span>
+<span class="n">bw_skeletonize</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/skeletonize.png&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="n">bw_skeletonized</span> <span class="o">=</span> <span class="n">skeletonize</span><span class="p">(</span><span class="n">bw_skeletonize</span><span class="p">)</span>
 
-# Show original concatenated with the filtered images
-show_image(np.vstack((bw_outline, bw_outlined)), title=&quot;(A) Outline&quot;, pos=131)
-show_image(np.vstack((bw_fill, bw_filled)), title=&quot;(B) Fill holes&quot;, pos=132)
-show_image(np.vstack((bw_skeletonize, bw_skeletonized)), title=&quot;(C) Skeletonize&quot;, pos=133)
-glue_fig(&#39;fig_outline_fill_skeleton&#39;, fig)
+<span class="c1"># Show original concatenated with the filtered images</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">bw_outline</span><span class="p">,</span> <span class="n">bw_outlined</span><span class="p">)),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Outline&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">bw_fill</span><span class="p">,</span> <span class="n">bw_filled</span><span class="p">)),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Fill holes&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">bw_skeletonize</span><span class="p">,</span> <span class="n">bw_skeletonized</span><span class="p">)),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Skeletonize&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_outline_fill_skeleton&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -819,14 +819,14 @@ glue_fig(&#39;fig_outline_fill_skeleton&#39;, fig)
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="286bccff-4490-42c7-ae50-5ff50e163810" name="353447c5-7721-45b5-a09b-0c86f759d5f9" type="radio">
-</input><label class="sd-tab-label" for="286bccff-4490-42c7-ae50-5ff50e163810">
+<input checked="checked" id="b92e9633-1c91-4e75-aa7f-c2da7728b3a1" name="83d7087b-5e5d-437d-9b34-a2651bc998c8" type="radio">
+</input><label class="sd-tab-label" for="b92e9633-1c91-4e75-aa7f-c2da7728b3a1">
 Question</label><div class="sd-tab-content docutils">
 <p>The outline of an object in a binary image can also be determined by applying one other morphological operation to a duplicate of the image, and then using the <span class="menuselection">Image Calculator</span>.
 How?</p>
 </div>
-<input id="1fd509f9-6a86-468d-8d00-9d077da1c42c" name="353447c5-7721-45b5-a09b-0c86f759d5f9" type="radio">
-</input><label class="sd-tab-label" for="1fd509f9-6a86-468d-8d00-9d077da1c42c">
+<input id="39b1b9c7-6a29-4b5b-9c26-d8e299131559" name="83d7087b-5e5d-437d-9b34-a2651bc998c8" type="radio">
+</input><label class="sd-tab-label" for="39b1b9c7-6a29-4b5b-9c26-d8e299131559">
 Answer</label><div class="sd-tab-content docutils">
 <p>To outline the objects in a binary image, you can simply calculate the difference between the original image and an eroded (or dilated, if you want the pixels just beyond the objects) duplicate of the image.</p>
 </div>
@@ -890,7 +890,7 @@ Answer</label><div class="sd-tab-content docutils">
   
     By Pete Bankhead<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2022-2023.<br/>
 </p>
         </footer>
     </div>
