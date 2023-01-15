@@ -6,4 +6,4 @@
 
 This book tries explain the main ideas of bioimage analysis in a practical and engaging way.
 
-You're currently looking at the ReadMe - for that actual book, see https://bioimagebook.github.io
+You're currently looking at the ReadMe - for the actual book, see https://bioimagebook.github.io
