@@ -5,9 +5,9 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.11.5
+    jupytext_version: 1.14.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -625,7 +625,6 @@ show_image(im_max - im_min)
 glue_fig('fig_filters_max_minus_min', fig)
 ```
 
-
 `````{tab-set}
 
 ```{tab-item} Question
@@ -720,7 +719,7 @@ $\sigma$ is equivalent to the standard deviation of a normal (i.e. Gaussian) dis
 Create a surface plot of a 2D Gaussian function.
 """
 
-from matplotlib import cm
+from matplotlib import colormaps
 from matplotlib.colors import LightSource
 
 n = 50
@@ -733,7 +732,7 @@ z = np.exp(-(x*x + y*y)/(2*sigma*sigma))
 
 ls = LightSource()
 z = z / z.max()
-rgb = ls.shade(z, cmap=cm.get_cmap('plasma'), blend_mode='soft')
+rgb = ls.shade(z, cmap=colormaps['plasma'], blend_mode='soft')
 
 # Create surface plots
 surf_args = dict(
@@ -745,6 +744,8 @@ surf_args = dict(
     cstride = 1
 )
 fig, ax = plt.subplots(1, 1, subplot_kw=dict(projection='3d', elev=30), dpi=200, figsize=(4, 3))
+fig.patch.set_alpha(0.0)
+ax.patch.set_alpha(0.0)
 ax.plot_surface(x, y, z, **surf_args)
 ax.axis(False)
 
@@ -1000,7 +1001,7 @@ def gaussian_kernel(shape, sigma: float):
     return ndimage.gaussian_filter(filt, sigma)
 
 
-from matplotlib import cm
+from matplotlib import colormaps
 
 n = 25
 x = np.arange(-n, n+1, 1)
@@ -1018,7 +1019,7 @@ gauss_diff = gauss_small - gauss_large
 
 # Create surface plots
 surf_args = dict(
-    cmap = cm.get_cmap('plasma'),
+    cmap = colormaps['plasma'],
     antialiased = False,
 )
 fig, ax = plt.subplots(1, 3, dpi=200, subplot_kw=dict(projection='3d', elev=25), figsize=(15, 5))

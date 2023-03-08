@@ -196,7 +196,7 @@ The search bar can also be activated using {kbd}`L` and used to find and run com
 :class: tip
 
 In most software, shortcut keys often require pressing {kbd}`Ctrl` (on Windows, Linux) or {kbd}`⌘` (Mac).
-Therefore the shortcut to search for a command would be {kbd}`Ctrl + L` or {kbd}`⌘ + L`.
+Therefore the shortcut to search for a command would be {kbd}`Ctrl+L` or {kbd}`⌘ + L`.
 
 This works in ImageJ, but isn't necessary.
 Under {menuselection}`Edit --> Options --> Misc...`, you can specify whether the {kbd}`Ctrl` or {kbd}`⌘` key is needed along with the letter for the shortcut.
@@ -287,7 +287,7 @@ The origin of the image is at the top left, i.e. the top left pixel is identifie
 ```
 
 The main command to change the brightness of an image is {menuselection}`Image --> Adjust --> Brightness/Contrast...`.
-Since you're likely to use it a lot, it is worth learning the shortcut: {kbd}`Shift + C`.
+Since you're likely to use it a lot, it is worth learning the shortcut: {kbd}`Shift+C`.
 
 The Brightness/Contrast dialog has four sliders: {guilabel}`Minimum`, {guilabel}`Maximum`, {guilabel}`Brightness` & {guilabel}`Contrast`.
 They are linked together: changing either of the first two also results in a change to the last two, and vice versa.

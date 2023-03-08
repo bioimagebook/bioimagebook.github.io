@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.13.8
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -142,12 +142,12 @@ If you invert your images first, then the structures become bright -- and your d
 Comparing inverting images and colormaps.
 """
 
-from matplotlib.cm import get_cmap
+from matplotlib import colormaps
 
 fig = create_figure(figsize=(6, 4.5))
 
 im = load_image('sunny_cell.tif')
-lut = get_cmap('gray')
+lut = colormaps['gray']
 
 # Ensure the image is 8-bit with sensible contrast
 im = im.astype(np.float32)
@@ -390,8 +390,6 @@ with np.errstate(divide='ignore', invalid='ignore'):
 glue_fig("fig_points_masking_output", fig2)
 ```
 
-+++
-
 `````{tab-set}
 
 ````{tab-item} Question
@@ -417,10 +415,6 @@ align: center
 ---
 ```
 
-`````
-
-+++
-
 Dividing has a similar effect, except that instead of becoming zero the masked-out pixels will take one of three results, depending upon the original pixel's value in the left image:
 
 * if it was _positive_, the result is $+\infty$ (shown here as yellow)
@@ -429,6 +423,8 @@ Dividing has a similar effect, except that instead of becoming zero the masked-o
 
 These are special values that can be contained in floating point images, but not images with integer types.
 ````
+`````
+
 
 ```{code-cell} ipython3
 :tags: [hide-input, remove-output]
@@ -486,7 +482,3 @@ Despite the fact that noise is undesirable, adding noise images can be extremely
 We can use it to create simulations in which the noise behaves statistically just like real noise, and add it to clean images.
 Using these simulations we can figure out things like how processing steps or changes during acquisition will affect or reduce the noise, or how sensitive our measurement strategies are to changes in image quality (see {ref}`chap_filters`, {ref}`chap_formation_noise` and {ref}`chap_macro_simulating`).
 ::::
-
-```{code-cell} ipython3
-
-```

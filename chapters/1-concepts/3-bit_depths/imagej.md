@@ -209,7 +209,7 @@ Fortunately, there is an easy way to achieve this:
 :::{admonition} Reset the Brightness/Contrast range before reducing the bit-depth
 :class: tip
 
-If you **really** need to reduce the bit-depth of an image in ImageJ, you should usually open {menuselection}`Image --> Adjust --> Brightness/Contrast...` ({kbd}`Shift + C`) and press the {guilabel}`Reset` button first, to minimize the data lost to clipping or rounding.
+If you **really** need to reduce the bit-depth of an image in ImageJ, you should usually open {menuselection}`Image --> Adjust --> Brightness/Contrast...` ({kbd}`Shift+C`) and press the {guilabel}`Reset` button first, to minimize the data lost to clipping or rounding.
 :::
 
 ````{tab-set}

@@ -12,6 +12,7 @@ kernelspec:
   name: python3
 ---
 
+(how-to-read-this-book)=
 # How to read this book
 
 :::{admonition} Practical data
@@ -48,18 +49,20 @@ You can always return to work through the Python sections later.
 However, be warned that the Python code is intended for people who already reasonably comfortable with programming, so if the language is entirely new to you then you might want to work through an introductory Python course first.
 :::
 
-
+(interactivity)=
 ## Interactivity
 
 It is *strongly* recommended to not only read the text, but also to put what you read into practice by exploring and experimenting.
 
 This handbook is designed to be interactive in two main ways:
 
-1. [Questions & practicals](#questions-and-practicals)
-2. [Jupyter notebooks](#jupyter-notebooks)
+- [How to read this book](how-to-read-this-book)
+  - [Interactivity](interactivity)
+    - [Questions \& practicals](questions-and-practicals)
+    - [Live Jupyter notebooks ](sec-live-notebooks)
 
-
-### Questions & practicals <a name="questions-and-practicals" />
+(questions-and-practicals)=
+### Questions & practicals
 
 Various questions and practical exercises are scattered throughout the text.
 To make the most of these, please follow the instructions below.
@@ -92,7 +95,7 @@ You can activate a 'Live' version by clicking on the rocket icon on the top righ
 It will take a bit of time to start up Binder, but once it's ready you should see that the page is divided into different sections, called 'cells'.
 
 Some of these cells contain explanations (like this one), and some contain code.
-You can run each cell by clicking inside it and either a) clicking the *Run* button in the live toolbar, or b) pressing *Shift + Enter*.
+You can run each cell by clicking inside it and either a) clicking the *Run* button in the live toolbar, or b) pressing {kbd}`Shift+Enter`.
 
 This is how the Python sections should be used.
 With live Jupyter notebooks, you can run all the code yourself interactively.

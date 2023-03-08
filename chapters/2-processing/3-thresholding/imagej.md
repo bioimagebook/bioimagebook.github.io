@@ -37,7 +37,7 @@ We will also confront some of the associated complications.
 
 ## Global thresholding
 
-The main thresholding command in ImageJ is {menuselection}`Image --> Adjust --> Threshold...`, with the shortcut {kbd}`Shift + T`.
+The main thresholding command in ImageJ is {menuselection}`Image --> Adjust --> Threshold...`, with the shortcut {kbd}`Shift+T`.
 
 This opens a *Threshold* dialog that allows you to identify pixels above a threshold, below a threshold, or falling between two thresholds.
 These options are controlled using a combination of the threshold sliders and the {guilabel}`Dark background` checkbox.
