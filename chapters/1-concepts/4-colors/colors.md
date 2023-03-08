@@ -194,7 +194,7 @@ from matplotlib import colormaps
 
 im = load_image('sunny_cell.tif')
 bins = 128
-color_map = colormaps.colormaps['gray']
+color_map = colormaps['gray']
 
 fig = create_figure(figsize=(6, 3))
 vmax = np.percentile(im, 99)
