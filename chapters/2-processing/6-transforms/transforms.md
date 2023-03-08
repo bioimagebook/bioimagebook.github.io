@@ -153,8 +153,6 @@ To understand how the watershed transform works, picture the image as an uneven 
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
 
-from matplotlib import cm
-
 def load_watershed_image():
     im = load_image('hela-cells.zip')[:, :, 0].astype(np.float32)
     im = ndimage.gaussian_filter(im, sigma=1.5)

@@ -257,9 +257,9 @@ def demo_airy_disk(radius=10, size=128):
     result[r != 0] = (2 * j1(r[r != 0]) / r[r != 0])**2
     return result, y, x
 
-from matplotlib import cm
+from matplotlib import colormaps
 
-cmap = cm.get_cmap('inferno')
+cmap = colormaps['inferno']
 im_airy, y, x = demo_airy_disk(radius = 10, size = 65)
 
 fig = create_figure(figsize=(8, 2.5))
@@ -543,7 +543,7 @@ im_airy_0_5 = shift_horizontal(im_airy, -int(radius*0.25)) + shift_horizontal(im
 fig = create_figure(figsize=(8, 4))
 
 img_args = dict(
-    cmap=cm.get_cmap('magma'),
+    cmap=colormaps['magma'],
     vmin=0,
     vmax=1
 )

@@ -44,7 +44,7 @@ This section adds a little more information about their implementation in ImageJ
 ### Mean filters
 
 The easiest way to apply a 3×3 mean filter in ImageJ is through the {menuselection}`Process --> Smooth` command.
-The fact that the shortcut is {kbd}`Shift + S` can almost make this *too* easy, as I find myself accidentally smoothing when I really wanted to save my image.
+The fact that the shortcut is {kbd}`Shift+S` can almost make this *too* easy, as I find myself accidentally smoothing when I really wanted to save my image.
 Take care.
 
 To apply larger mean filters, the command is {menuselection}`Process --> Filters --> Mean...`.

@@ -315,7 +315,7 @@ This is another reason why choosing {guilabel}`Display label` under {menuselecti
 :::{admonition} Transferring individual ROIs
 :class: tip
 
-A faster way to transfer a single ROI between images without using the ROI Manager is to click on the second image and press {kbd}`Shift + E` (the shortcut for {menuselection}`Edit --> Selection --> Restore Selection`)
+A faster way to transfer a single ROI between images without using the ROI Manager is to click on the second image and press {kbd}`Shift+E` (the shortcut for {menuselection}`Edit --> Selection --> Restore Selection`)
 :::
 
 +++
@@ -514,6 +514,7 @@ An ImageJ histogram is displayed above some basic summary statistics and four in
 ---
 scale: 70%
 align: center
+class: dark-light
 ---
 An image with its histogram in ImageJ.
 ```

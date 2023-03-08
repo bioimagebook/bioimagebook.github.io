@@ -29,7 +29,7 @@ Before we embark on processing pixels, there are a couple of things we need to k
 
 ### Duplicating images
 
-One of the most important ImageJ shortcuts to learn is {kbd}`Shift + D` to **duplicate the image**.
+One of the most important ImageJ shortcuts to learn is {kbd}`Shift+D` to **duplicate the image**.
 This applies the command {menuselection}`Image --> Duplicate...`.
 
 Being able to quickly duplicate an image matters for two main reasons:
@@ -57,7 +57,7 @@ But for big images (say, 1 GB or more), duplicating that much data could *signif
 
 ImageJ provides some very limited undo support for 2D slices, but it's best not to rely on it.
 In general, it's left up to the user to decide when duplicating is necessary.
-If you suspect you might regret a processing step, then it's best to always duplicate the image beforehand with {kbd}`Shift + D`.
+If you suspect you might regret a processing step, then it's best to always duplicate the image beforehand with {kbd}`Shift+D`.
 :::
 
 +++

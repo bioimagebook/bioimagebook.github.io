@@ -4,7 +4,8 @@ Preface
 **I find bioimage analysis hard.**
 
 ````{margin}
-```{image} images/good-bad-analysis.jpg
+```{image} images/good-bad-analysis.png
+:class: dark-light
 :width: 90%
 ````
 
@@ -47,7 +48,7 @@ At a different spatial and temporal resolution.
 To answer a different question.
 In short, I have a very different computational challenge from the one described in the paper -- even if the shared theme of 'tracking cells' initially made it sound similar.
 
-2. **Bioimage analysis involves a lot of disciplines**. Analysing images in a scientifically justifiable way typically requires (at least a bit of) knowledge across a lot of domains.
+1. **Bioimage analysis involves a lot of disciplines**. Analysing images in a scientifically justifiable way typically requires (at least a bit of) knowledge across a lot of domains.
 Of course it's necessary to know about the scientific question, e.g. the biology.
 But to really understand the data, you also need to know about the experimental setup, the imaging hardware, fundamental limits like noise and diffraction, and also how digital images are represented, stored and (sometimes) compressed.
 Then there are a plethora of image processing techniques that might help answer your scientific questions.
