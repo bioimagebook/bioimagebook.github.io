@@ -1,50 +1,62 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Thresholding &#8212; Introduction to Bioimage Analysis</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script data-domain="bioimagebook.github.io" defer="defer" src="https://plausible.io/js/script.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -54,65 +66,94 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/2-processing/3-thresholding/thresholding';</script>
     <link rel="canonical" href="https://bioimagebook.github.io/chapters/2-processing/3-thresholding/thresholding.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="ImageJ: Thresholding" href="imagej.html" />
     <link rel="prev" title="ImageJ: Point operations" href="../2-point_operations/imagej.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script defer data-domain="bioimagebook.github.io" src="https://plausible.io/js/plausible.js"></script>
-<meta name="google-site-verification" content="Aem87SvFh5w_cCS2z43mVgKmnIdYgMBOapUPZ_SQWVY" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -121,757 +162,341 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Front matter
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
-   Acknowledgements
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../CHANGELOG.html">
-   Changelog
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Before we begin
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Before we begin</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/preface/preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/reading/reading.html">
-   How to read this book
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/preface/preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/reading/reading.html">How to read this book</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introducing images
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducing images</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">
-   Images &amp; pixels
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">
-     ImageJ: Images &amp; pixels
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">
-     Python: Images &amp; pixels
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">
-   Measurements &amp; histograms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">
-     ImageJ: Measurements &amp; histograms
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/2-measurements/python.html">
-     Python: Measurements &amp; histograms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">
-   Types &amp; bit-depths
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">
-     ImageJ: Types &amp; bit-depths
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">
-     Python: Types &amp; bit-depths
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/4-colors/colors.html">
-   Channels &amp; colors
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/4-colors/imagej.html">
-     ImageJ: Channels &amp; colors
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/4-colors/python.html">
-     Python: Channels &amp; colors
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">
-   Pixel size &amp; dimensions
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">
-     ImageJ:  Pixel size &amp; dimensions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">
-     Python:  Pixel size &amp; dimensions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/6-files/files.html">
-   Files &amp; file formats
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/6-files/imagej.html">
-     ImageJ: Files &amp; file formats
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/6-files/python.html">
-     Python: Files &amp; file formats
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">Images &amp; pixels</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">ImageJ: Images &amp; pixels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">Python: Images &amp; pixels</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Processing &amp; analysis
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">Measurements &amp; histograms</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">ImageJ: Measurements &amp; histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/2-measurements/python.html">Python: Measurements &amp; histograms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">Types &amp; bit-depths</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">ImageJ: Types &amp; bit-depths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">Python: Types &amp; bit-depths</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/4-colors/colors.html">Channels &amp; colors</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/4-colors/imagej.html">ImageJ: Channels &amp; colors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/4-colors/python.html">Python: Channels &amp; colors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">Pixel size &amp; dimensions</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">ImageJ:  Pixel size &amp; dimensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">Python:  Pixel size &amp; dimensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/6-files/files.html">Files &amp; file formats</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/6-files/imagej.html">ImageJ: Files &amp; file formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/6-files/python.html">Python: Files &amp; file formats</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Processing &amp; analysis</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">
-   Image processing &amp; analysis
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../2-point_operations/point_operations.html">
-   Point operations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2-point_operations/imagej.html">
-     ImageJ: Point operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
-   Thresholding
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="imagej.html">
-     ImageJ: Thresholding
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../4-filters/filters.html">
-   Filters
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../4-filters/imagej.html">
-     ImageJ: Filters
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../5-morph/morph.html">
-   Morphological operations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../5-morph/imagej.html">
-     ImageJ: Morphological operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../6-transforms/transforms.html">
-   Image transforms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../6-transforms/imagej.html">
-     ImageJ: Image transforms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../7-multidimensional_processing/multidimensional_processing.html">
-   Multidimensional processing
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../7-multidimensional_processing/imagej.html">
-     ImageJ: Multidimensional processing
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">Image processing &amp; analysis</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2-point_operations/point_operations.html">Point operations</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2-point_operations/imagej.html">ImageJ: Point operations</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Fluorescence microscopy
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
-   From photons to pixels
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
-   Blur &amp; the PSF
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
-   Noise
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
-   Microscopes &amp; detectors
-  </a>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Thresholding</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="imagej.html">ImageJ: Thresholding</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendices
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4-filters/filters.html">Filters</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4-filters/imagej.html">ImageJ: Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../5-morph/morph.html">Morphological operations</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../5-morph/imagej.html">ImageJ: Morphological operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../6-transforms/transforms.html">Image transforms</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../6-transforms/imagej.html">ImageJ: Image transforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../7-multidimensional_processing/multidimensional_processing.html">Multidimensional processing</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../7-multidimensional_processing/imagej.html">ImageJ: Multidimensional processing</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fluorescence microscopy</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
-   Beyond this book
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/python/python.html">
-   Python Primer
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
-   ImageJ: Writing macros
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
-     Difference of Gaussians
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
-     Simulating image formation
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">From photons to pixels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">Blur &amp; the PSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">Noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">Microscopes &amp; detectors</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/next_steps/next_steps.html">Beyond this book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/python/python.html">Python Primer</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../appendices/macros/macro_intro.html">ImageJ: Writing macros</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_dog.html">Difference of Gaussians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_simulating.html">Simulating image formation</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/3-thresholding/thresholding.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/3-thresholding/thresholding.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../../_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/chapters/2-processing/3-thresholding/thresholding.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../../_sources/chapters/2-processing/3-thresholding/thresholding.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../../_sources/chapters/2-processing/3-thresholding/thresholding.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../../../_sources/chapters/2-processing/3-thresholding/thresholding.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#binary-labeled-images">
-   Binary &amp; labeled images
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#global-thresholding">
-   Global thresholding
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#thresholding-using-histograms">
-     Thresholding using histograms
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-importance-of-the-threshold-choice">
-     The importance of the threshold choice
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#automated-thresholds">
-   Automated thresholds
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#otsu-s-method">
-     Otsu’s method
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#minimum-method">
-     Minimum method
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#triangle-method">
-     Triangle method
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mean-method">
-     Mean method
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mean-standard-deviation">
-     Mean &amp; Standard deviation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#median-median-absolute-deviation">
-     Median &amp; Median Absolute Deviation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#thresholding-difficult-data">
-   Thresholding difficult data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#thresholding-noisy-data">
-     Thresholding noisy data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#local-thresholding">
-     Local thresholding
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Thresholding</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#binary-labeled-images">
-   Binary &amp; labeled images
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#global-thresholding">
-   Global thresholding
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#thresholding-using-histograms">
-     Thresholding using histograms
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-importance-of-the-threshold-choice">
-     The importance of the threshold choice
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#automated-thresholds">
-   Automated thresholds
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#otsu-s-method">
-     Otsu’s method
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#minimum-method">
-     Minimum method
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#triangle-method">
-     Triangle method
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mean-method">
-     Mean method
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mean-standard-deviation">
-     Mean &amp; Standard deviation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#median-median-absolute-deviation">
-     Median &amp; Median Absolute Deviation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#thresholding-difficult-data">
-   Thresholding difficult data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#thresholding-noisy-data">
-     Thresholding noisy data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#local-thresholding">
-     Local thresholding
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Thresholding</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-labeled-images">Binary &amp; labeled images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-thresholding">Global thresholding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thresholding-using-histograms">Thresholding using histograms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-importance-of-the-threshold-choice">The importance of the threshold choice</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automated-thresholds">Automated thresholds</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otsu-s-method">Otsu’s method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimum-method">Minimum method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triangle-method">Triangle method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-method">Mean method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-standard-deviation">Mean &amp; Standard deviation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-median-absolute-deviation">Median &amp; Median Absolute Deviation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thresholding-difficult-data">Thresholding difficult data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thresholding-noisy-data">Thresholding noisy data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-thresholding">Local thresholding</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="thresholding">
-<span id="chap-thresholding"></span><h1>Thresholding<a class="headerlink" href="#thresholding" title="Permalink to this headline">#</a></h1>
+<span id="chap-thresholding"></span><h1>Thresholding<a class="headerlink" href="#thresholding" title="Permalink to this heading">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -883,6 +508,11 @@ title="Print to PDF"
 </ul>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
 <span class="o">%</span><span class="k">autoreload</span> 2
@@ -898,9 +528,10 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Before we can measure anything in an image, we first need to detect it.</p>
 <p>Sometimes, ‘detection’ might involve <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html#chap-rois"><span class="std std-ref">manually drawing regions of interest (ROIs)</span></a>.
 However, this laborious process does not scale very well.
@@ -911,7 +542,7 @@ An ‘object’ is something we want to detect; depending upon the application, 
 If we can automate image segmentation, this is not only likely to be much faster than manually annotating regions but should also give more reproducible results.</p>
 </section>
 <section id="binary-labeled-images">
-<span id="sec-binary-labeled"></span><h2>Binary &amp; labeled images<a class="headerlink" href="#binary-labeled-images" title="Permalink to this headline">#</a></h2>
+<span id="sec-binary-labeled"></span><h2>Binary &amp; labeled images<a class="headerlink" href="#binary-labeled-images" title="Permalink to this heading">#</a></h2>
 <p>Image objects are commonly represented using <strong>binary images</strong>.</p>
 <p>Each pixel in a binary image can have one of two values.
 Usually, these values are 0 and 1.
@@ -924,6 +555,11 @@ By labeling connected components, we get a <strong>labeled image</strong> in whi
 All the pixels with the same value belong either to the background (if the value is 0) or to the same object.</p>
 <p>If required, we can then trace the boundaries of each labeled object to create <strong>regions of interest (ROIs)</strong>, such as those used to make measurement in ImageJ and other software.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Show binary image, ROIs and labelled image.</span>
@@ -947,13 +583,12 @@ All the pixels with the same value belong either to the background (if the value
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-blobs-binary-label">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_4_0.png" src="../../../_images/thresholding_4_0.png" />
-</div>
+<img alt="../../../_images/66542bd5185b6d43ae4d73ba835d92f85db6be5b6015d1b44281063e651f54e2.png" src="../../../_images/66542bd5185b6d43ae4d73ba835d92f85db6be5b6015d1b44281063e651f54e2.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 61 </span><span class="caption-text">Examples of a grayscale (blobs.gif), binary and labelled image.
+<p><span class="caption-number">Fig. 63 </span><span class="caption-text">Examples of a grayscale (blobs.gif), binary and labelled image.
 In (C), each label has been assigned a unique color for display.
 In (D), ROIs have been generated from (C) and superimposed on top of (A).
 It is common to use a LUT for labeled images that assigns a different color to each pixel value.</span><a class="headerlink" href="#fig-blobs-binary-label" title="Permalink to this image">#</a></p>
@@ -962,6 +597,11 @@ It is common to use a LUT for labeled images that assigns a different color to e
 <p>For that reason, a lot of image analysis workflows involve binary images along the way.
 Most of this chapter will explore the most common way of generating a binary image: <strong>thresholding</strong>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Compare 4-connectivity and 8-connectivity</span>
@@ -982,13 +622,12 @@ Most of this chapter will explore the most common way of generating a binary ima
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <figure class="align-center" style="width: 60%">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_6_0.png" src="../../../_images/thresholding_6_0.png" />
-</div>
+<img alt="../../../_images/c78d6583b9a1fc8776a8a54733e10733274194bb7fb981b145e4928c54885250.png" src="../../../_images/c78d6583b9a1fc8776a8a54733e10733274194bb7fb981b145e4928c54885250.png" />
 </figure>
 </aside>
 <div class="info admonition" id="sec-thresholds-connectivity">
@@ -1000,13 +639,13 @@ Pixels are <em>4-connected</em> if they are horizontally or vertically adjacent,
 <p>The choice of connectivity can make a big difference in the number and sizes of objects found, as the example on the right shows (distinct objects are shown in different colors).</p>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="67f55b42-7593-4ad5-a188-9ee1870656b3" name="0012c197-fd0b-4e74-aa29-ebbb7d019693" type="radio">
-</input><label class="sd-tab-label" for="67f55b42-7593-4ad5-a188-9ee1870656b3">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
 Question</label><div class="sd-tab-content docutils">
 <p>What do you suppose <em>6-connectivity</em> and <em>26-connectivity</em> refer to?</p>
 </div>
-<input id="e42497df-3331-46de-a832-90ac925060de" name="0012c197-fd0b-4e74-aa29-ebbb7d019693" type="radio">
-</input><label class="sd-tab-label" for="e42497df-3331-46de-a832-90ac925060de">
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
 Answer</label><div class="sd-tab-content docutils">
 <p>6-connectivity is similar to 4-connectivity, but in 3D.
 If all 3D diagonals are considered, we end up with each pixel having 26 neighbors.</p>
@@ -1014,17 +653,22 @@ If all 3D diagonals are considered, we end up with each pixel having 26 neighbor
 </div>
 </section>
 <section id="global-thresholding">
-<h2>Global thresholding<a class="headerlink" href="#global-thresholding" title="Permalink to this headline">#</a></h2>
+<h2>Global thresholding<a class="headerlink" href="#global-thresholding" title="Permalink to this heading">#</a></h2>
 <p>The easiest way to segment an image is by applying a <strong>global threshold</strong>.
 This identifies pixels that are above or below a fixed threshold value, giving a binary image as the output.</p>
 <p>Global thresholding can be thought of as a <a class="reference internal" href="../2-point_operations/point_operations.html#chap-point-operations"><span class="std std-ref">point operation</span></a> because the output is based solely on the value of each pixel, and not its location or its neighbors.
 For a global threshold to work, the pixels inside objects need to have higher or lower values than the other pixels.
 We will look at image processing tricks to overcome this limitation later, but for now we will focus on examples where we want to detect objects have values that are clearly distinct from the background – and so global thresholding could potentially work.</p>
 <section id="thresholding-using-histograms">
-<h3>Thresholding using histograms<a class="headerlink" href="#thresholding-using-histograms" title="Permalink to this headline">#</a></h3>
+<h3>Thresholding using histograms<a class="headerlink" href="#thresholding-using-histograms" title="Permalink to this heading">#</a></h3>
 <p>It’s possible to tell quite a lot about an image just by looking at its histogram.</p>
 <p>Take the following example:</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert_to_uint8</span><span class="p">(</span><span class="n">im</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
     <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
@@ -1052,11 +696,10 @@ We will look at image processing tricks to overcome this limitation later, but f
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-nuclei-histogram-only" style="width: 50%">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_11_0.png" src="../../../_images/thresholding_11_0.png" />
-</div>
+<img alt="../../../_images/48c9f9ea5ebf84a3167168a422a286c3495461a94d32d0fc8460b5891b1bfabe.png" src="../../../_images/48c9f9ea5ebf84a3167168a422a286c3495461a94d32d0fc8460b5891b1bfabe.png" />
 </figure>
 <p>Even without seeing the image, we can make some educated guesses about its contents.</p>
 <p>Firstly, there is a large peak to the left and a much shallower peak to the right.
@@ -1066,6 +709,11 @@ Since the background of an image tends to contain many pixes with similar values
 <p>If we then look at the image, we can see that we have in fact got a fluorescence image depicting two nuclei.
 Applying a threshold of 20 does achieve a good separation of the nuclei from the background: a successful segmentation.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load image &amp; set threshold</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">load_nuclei</span><span class="p">()</span>
@@ -1085,18 +733,22 @@ Applying a threshold of 20 does achieve a good separation of the nuclei from the
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-nuclei-histogram">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_13_0.png" src="../../../_images/thresholding_13_0.png" />
-</div>
+<img alt="../../../_images/a5903bc12f0a61f57a6de34e7e873987b449e56c0580ac39fd76d974f5ea2e5c.png" src="../../../_images/a5903bc12f0a61f57a6de34e7e873987b449e56c0580ac39fd76d974f5ea2e5c.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 62 </span><span class="caption-text">A simple fluorescence image containing two nuclei. We could determine a potentially useful threshold based only on looking at the histogram.</span><a class="headerlink" href="#fig-thresholds-nuclei-histogram" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 64 </span><span class="caption-text">A simple fluorescence image containing two nuclei. We could determine a potentially useful threshold based only on looking at the histogram.</span><a class="headerlink" href="#fig-thresholds-nuclei-histogram" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Admittedly, that was a particularly easy example.
 We should try a slightly harder one.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_leaf</span><span class="p">():</span>
     <span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;leaf.jpg&#39;</span><span class="p">)[</span><span class="mi">80</span><span class="p">:,</span> <span class="o">...</span><span class="p">]</span>
@@ -1112,11 +764,10 @@ We should try a slightly harder one.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-leaf-histogram-only" style="width: 40%">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_16_0.png" src="../../../_images/thresholding_16_0.png" />
-</div>
+<img alt="../../../_images/eb5c6e152d334f89d56ebb873825eac60b8b9956fd480c925c94ad44b6564b11.png" src="../../../_images/eb5c6e152d334f89d56ebb873825eac60b8b9956fd480c925c94ad44b6564b11.png" />
 </figure>
 <p>We still have a large peak, but this time it is towards the right.
 So I would guess a light background rather than a dark one.</p>
@@ -1129,6 +780,11 @@ It isn’t clear.</p>
 Even then, there is no unambiguously ‘correct’ threshold.
 Rather, the one we choose depends upon whether our goal is to identify the entire leaf or rather just the darkest region.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load image &amp; set threshold</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">load_leaf</span><span class="p">()</span>
@@ -1152,13 +808,12 @@ Rather, the one we choose depends upon whether our goal is to identify the entir
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-leaf-histogram">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_18_0.png" src="../../../_images/thresholding_18_0.png" />
-</div>
+<img alt="../../../_images/d5695a6fc6586e9d23ed8f2d3e189e615d430a2fb5f5f27bd5e1cff1b66ffdaf.png" src="../../../_images/d5695a6fc6586e9d23ed8f2d3e189e615d430a2fb5f5f27bd5e1cff1b66ffdaf.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 63 </span><span class="caption-text">An image where evaluating the histogram suggests two candidate thresholds.
+<p><span class="caption-number">Fig. 65 </span><span class="caption-text">An image where evaluating the histogram suggests two candidate thresholds.
 The ‘correct’ threshold depends upon the desired outcome. Note that here we identify pixels <em>below</em> the threshold value, rather than above, because the background is ligher.</span><a class="headerlink" href="#fig-thresholds-leaf-histogram" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
@@ -1168,14 +823,19 @@ The ‘correct’ threshold depends upon the desired outcome. Note that here we 
 </div>
 </section>
 <section id="the-importance-of-the-threshold-choice">
-<h3>The importance of the threshold choice<a class="headerlink" href="#the-importance-of-the-threshold-choice" title="Permalink to this headline">#</a></h3>
+<h3>The importance of the threshold choice<a class="headerlink" href="#the-importance-of-the-threshold-choice" title="Permalink to this heading">#</a></h3>
 <p>We’ve seen that histograms can help us identify suitable thresholds, but they don’t absolve us of the need to think.
 This is particularly evident when objects are not very distinct.
 The exact choice of threshold can then be crucial.</p>
-<p><a class="reference internal" href="#fig-thresholds-manual"><span class="std std-numref">Fig. 64</span></a> shows an example where the goal is to detect the bright spots (lysosomes).
+<p><a class="reference internal" href="#fig-thresholds-manual"><span class="std std-numref">Fig. 66</span></a> shows an example where the goal is to detect the bright spots (lysosomes).
 No single global threshold can give us perfect results, but at first glance many different thresholds can appear to give <em>somewhat</em> sensible results.
 The histogram gives, at best, a vague hint where a good threshold may lurk.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 <span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
@@ -1230,16 +890,15 @@ The histogram gives, at best, a vague hint where a good threshold may lurk.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-manual">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_21_1.png" src="../../../_images/thresholding_21_1.png" />
-</div>
+<img alt="../../../_images/41a1e740731e55335e6aae6f402f4906e64c8139d39a7bca3948d4e8cde7b191.png" src="../../../_images/41a1e740731e55335e6aae6f402f4906e64c8139d39a7bca3948d4e8cde7b191.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 64 </span><span class="caption-text">Applying different manually-chosen thresholds to the same image can give quite different results.</span><a class="headerlink" href="#fig-thresholds-manual" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 66 </span><span class="caption-text">Applying different manually-chosen thresholds to the same image can give quite different results.</span><a class="headerlink" href="#fig-thresholds-manual" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>I would like to convey three main messages from <a class="reference internal" href="#fig-thresholds-manual"><span class="std std-numref">Fig. 64</span></a>:</p>
+<p>I would like to convey three main messages from <a class="reference internal" href="#fig-thresholds-manual"><span class="std std-numref">Fig. 66</span></a>:</p>
 <ul class="simple">
 <li><p>The <strong>choice of threshold is crucial</strong>, influencing the numbers <em>and</em> areas of spots</p>
 <ul>
@@ -1252,14 +911,12 @@ The histogram gives, at best, a vague hint where a good threshold may lurk.</p>
 </ul>
 <p>A fourth point I would like to make is that <strong>visualization matters too</strong>.
 Looking only at the binary images, it is difficult to really evaluate <em>any</em> of the results.
-It helps enormously to overlay the detected regions on top of the original image (<a class="reference internal" href="#fig-thresholds-manual-overlays"><span class="std std-numref">Fig. 65</span></a>).
+It helps enormously to overlay the detected regions on top of the original image (<a class="reference internal" href="#fig-thresholds-manual-overlays"><span class="std std-numref">Fig. 67</span></a>).
 From this we can see much more clearly that none of the results are terribly good: every threshold we tried misses some spots and merges others.</p>
 <figure class="align-center" id="fig-thresholds-manual-overlays">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_21_3.png" src="../../../_images/thresholding_21_3.png" />
-</div>
+<img alt="../../../_images/35ac715c5ddef0796fb169f95265fdf342ab7e5be616fd008b83be62a87562fb.png" src="../../../_images/35ac715c5ddef0796fb169f95265fdf342ab7e5be616fd008b83be62a87562fb.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 65 </span><span class="caption-text">The binary images of <a class="reference internal" href="#fig-thresholds-manual"><span class="std std-numref">Fig. 64</span></a> viewed as overlays instead.</span><a class="headerlink" href="#fig-thresholds-manual-overlays" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 67 </span><span class="caption-text">The binary images of <a class="reference internal" href="#fig-thresholds-manual"><span class="std std-numref">Fig. 66</span></a> viewed as overlays instead.</span><a class="headerlink" href="#fig-thresholds-manual-overlays" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="danger admonition">
@@ -1282,7 +939,7 @@ But first we’ll consider how to automate the threshold choice.</p>
 </section>
 </section>
 <section id="automated-thresholds">
-<h2>Automated thresholds<a class="headerlink" href="#automated-thresholds" title="Permalink to this headline">#</a></h2>
+<h2>Automated thresholds<a class="headerlink" href="#automated-thresholds" title="Permalink to this heading">#</a></h2>
 <p>We don’t want to choose thresholds manually if we can avoid it, because it affords so much room for bias.
 On the other hand, there’s no always-applicable strategy to determine a threshold automatically; images vary too much.</p>
 <p>Nevertheless, there are some widely-used techniques capable of determining reasonable thresholds for many images based upon the histogram.
@@ -1296,6 +953,11 @@ Each image exhibits a different kind of histogram that is commonly found in bioi
 <li><p><strong>Dominant background:</strong> one large background peak, with a long tail of foreground pixels</p></li>
 </ul>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_spots</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="n">n_spots</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">spot_intensity</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">to_uint8</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
@@ -1344,18 +1006,17 @@ Each image exhibits a different kind of histogram that is commonly found in bioi
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-histogram-types">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_25_0.png" src="../../../_images/thresholding_25_0.png" />
-</div>
+<img alt="../../../_images/04448507b5c0d987082f8730018a31ada6b6e19ed4a09ac64204f4ad8b4ef73c.png" src="../../../_images/04448507b5c0d987082f8730018a31ada6b6e19ed4a09ac64204f4ad8b4ef73c.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 66 </span><span class="caption-text">Images with three different types of histogram.</span><a class="headerlink" href="#fig-thresholds-histogram-types" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 68 </span><span class="caption-text">Images with three different types of histogram.</span><a class="headerlink" href="#fig-thresholds-histogram-types" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="otsu-s-method">
-<span id="sec-thresholds-otsu"></span><h3>Otsu’s method<a class="headerlink" href="#otsu-s-method" title="Permalink to this headline">#</a></h3>
-<p>By its nature, global thresholding assumes that there are two classes of pixel in the image – those that belong to interesting objects, and those that do not – and pixels in each class have different intensity values <a class="footnote-reference brackets" href="#fn-2" id="id1">1</a>.
+<span id="sec-thresholds-otsu"></span><h3>Otsu’s method<a class="headerlink" href="#otsu-s-method" title="Permalink to this heading">#</a></h3>
+<p>By its nature, global thresholding assumes that there are two classes of pixel in the image – those that belong to interesting objects, and those that do not – and pixels in each class have different intensity values <a class="footnote-reference brackets" href="#fn-2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 In principle, if we could identify the pixels for each of the two classes, we could calculate statistics such as the mean and variance (i.e. standard deviation squared) for them both separately.</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -1369,6 +1030,11 @@ The threshold that is selected is the one for which the sum of the variances is 
 <p>Otsu’s method performs very well on data with a bimodal histogram, with a deep valley in between.
 Unfortunately, a lot of microscopy images don’t have clearly bimodal histograms, and so the method may not be such a good choice.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im_cell</span><span class="p">,</span> <span class="n">im_spots</span><span class="p">,</span> <span class="n">im_nuclei</span> <span class="o">=</span> <span class="n">create_threshold_images</span><span class="p">()</span>
 
@@ -1390,26 +1056,30 @@ Unfortunately, a lot of microscopy images don’t have clearly bimodal histogram
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-method-otsu">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_28_0.png" src="../../../_images/thresholding_28_0.png" />
-</div>
+<img alt="../../../_images/a67221853865c4c830d4ce772780c24930986dff9d9e49f722d754dc6e1e4657.png" src="../../../_images/a67221853865c4c830d4ce772780c24930986dff9d9e49f722d754dc6e1e4657.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 67 </span><span class="caption-text">Thresholding using Otsu’s method. This performs best on the cell image with a bimodal histogram. For the spots image, there is no separation between peaks to find; as a result, approximately half the pixels are identified as foreground. The method also performs quite poorly for the nucleus image, despite this previously being identified as an ‘easier’ image for thresholding.</span><a class="headerlink" href="#fig-thresholds-method-otsu" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 69 </span><span class="caption-text">Thresholding using Otsu’s method. This performs best on the cell image with a bimodal histogram. For the spots image, there is no separation between peaks to find; as a result, approximately half the pixels are identified as foreground. The method also performs quite poorly for the nucleus image, despite this previously being identified as an ‘easier’ image for thresholding.</span><a class="headerlink" href="#fig-thresholds-method-otsu" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="minimum-method">
-<h3>Minimum method<a class="headerlink" href="#minimum-method" title="Permalink to this headline">#</a></h3>
+<h3>Minimum method<a class="headerlink" href="#minimum-method" title="Permalink to this heading">#</a></h3>
 <p>The <strong>Minimum method</strong> provides an alternative threshold that also assumes a bimodal histogram.</p>
 <p>The starting point is the image histogram.
-As can be seen in <a class="reference internal" href="#fig-thresholds-histogram-types"><span class="std std-numref">Fig. 66</span></a>, the counts tend to be somewhat ‘noisy’ with lots of tiny spurious peaks.
+As can be seen in <a class="reference internal" href="#fig-thresholds-histogram-types"><span class="std std-numref">Fig. 68</span></a>, the counts tend to be somewhat ‘noisy’ with lots of tiny spurious peaks.
 The Minimum method operates by smoothing the histogram, replacing each count value with the average of itself and the neighboring counts.
 By repeating this process, eventually the spurious peaks are removed until (hopefully) precisely two peaks remain.
 The threshold is then the location of the deepest point in the valley between those peaks.</p>
-<p>The result of this process is illustrated in <a class="reference internal" href="#fig-thresholds-method-minimum"><span class="std std-numref">Fig. 68</span></a>.</p>
+<p>The result of this process is illustrated in <a class="reference internal" href="#fig-thresholds-method-minimum"><span class="std std-numref">Fig. 70</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_minimum_threshold</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">pos</span><span class="p">:</span>
@@ -1484,13 +1154,12 @@ The threshold is then the location of the deepest point in the valley between th
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-method-minimum">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_31_0.png" src="../../../_images/thresholding_31_0.png" />
-</div>
+<img alt="../../../_images/cd7d6604c1ff77e5811be4310eb46598ea01a2d70235c5f354eb1e2178b67a80.png" src="../../../_images/cd7d6604c1ff77e5811be4310eb46598ea01a2d70235c5f354eb1e2178b67a80.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 68 </span><span class="caption-text">Thresholding using the Minimum method. The smoothed histograms used in the calculation are shown in red, with the original histograms shown (faintly) in gray. A line connecting the two final peaks is also included, and the threshold marked with a dot. <br/>
+<p><span class="caption-number">Fig. 70 </span><span class="caption-text">Thresholding using the Minimum method. The smoothed histograms used in the calculation are shown in red, with the original histograms shown (faintly) in gray. A line connecting the two final peaks is also included, and the threshold marked with a dot. <br/>
 This works well on the cells image and quite well on the nuclei image. However it fails badly on the spots image, where almost everything is detected as foreground. This is a case where the method converges (due to the image being noisy, so having lots of small peaks in the histogram) even though we might prefer it had not.</span><a class="headerlink" href="#fig-thresholds-method-minimum" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
@@ -1500,14 +1169,19 @@ It is entirely possible that no amount of smoothing will result in a histogram w
 However, in most real images we cannot count on the method not converging: it often <em>does</em> converge, even if it does not necessarily converge to any desirable value.</p>
 </section>
 <section id="triangle-method">
-<span id="sec-thresholds-triangle"></span><h3>Triangle method<a class="headerlink" href="#triangle-method" title="Permalink to this headline">#</a></h3>
+<span id="sec-thresholds-triangle"></span><h3>Triangle method<a class="headerlink" href="#triangle-method" title="Permalink to this heading">#</a></h3>
 <p>The ‘triangle method’ is a popular approach to determining a threshold that works especially well in images where there is one dominant background peak, and the ideal threshold should be at the base of that peak.</p>
 <p>The general idea is that a a line is drawn from the peak of the histogram to the last bin that contains any pixels.
 Then a perpendicular line is plotted to the histogram itself, and the distance to the histogram maximized.
 The direction of the line depends upon whether the peak is toward the left or the right of the histogram; all counts on the other side are ignored.</p>
 <p>The width and height of the histogram are normalized to deal with the fact that pixel values and intensity counts are in completely different units, and therefore in completely different scales.</p>
-<p>The explanation is confusing, but hopefully <a class="reference internal" href="#fig-thresholds-method-triangle"><span class="std std-numref">Fig. 69</span></a> depicts it more clearly – and provides an intuition for when and why it might be appropriate.</p>
+<p>The explanation is confusing, but hopefully <a class="reference internal" href="#fig-thresholds-method-triangle"><span class="std std-numref">Fig. 71</span></a> depicts it more clearly – and provides an intuition for when and why it might be appropriate.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_triangle</span>
 
@@ -1594,24 +1268,28 @@ The direction of the line depends upon whether the peak is toward the left or th
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-method-triangle">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_34_0.png" src="../../../_images/thresholding_34_0.png" />
-</div>
+<img alt="../../../_images/14acff9f9b6ca57cf4e9c72f455b59829c0106ebf0eb71ceb06f78d36ce86336.png" src="../../../_images/14acff9f9b6ca57cf4e9c72f455b59829c0106ebf0eb71ceb06f78d36ce86336.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 69 </span><span class="caption-text">Thresholding using the Triangle method. Because all example histograms have a dominant peak, this performs quite well in all cases – although tends to detect more foreground pixels in the cell image than other methods (because the threshold is at the base of the peak rather than between the two modes). <br/>
+<p><span class="caption-number">Fig. 71 </span><span class="caption-text">Thresholding using the Triangle method. Because all example histograms have a dominant peak, this performs quite well in all cases – although tends to detect more foreground pixels in the cell image than other methods (because the threshold is at the base of the peak rather than between the two modes). <br/>
 The histograms depict the triangles that give the method its name.
 They have been normalized and truncated to include only the relevant part.</span><a class="headerlink" href="#fig-thresholds-method-triangle" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="mean-method">
-<h3>Mean method<a class="headerlink" href="#mean-method" title="Permalink to this headline">#</a></h3>
+<h3>Mean method<a class="headerlink" href="#mean-method" title="Permalink to this heading">#</a></h3>
 <p>An alternative simple approach is to skip the histogram altogether, and just use the mean of all pixel values.</p>
 <p>This can actually give quite good reasons on many real-world images – although this may be more through luck than design.
 It’s not a method I typically use myself.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">threshold_mean</span><span class="p">(</span><span class="n">im</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -1636,23 +1314,27 @@ It’s not a method I typically use myself.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-method-mean">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_37_0.png" src="../../../_images/thresholding_37_0.png" />
-</div>
+<img alt="../../../_images/adce36dc5929d1f922a5dc4820ee4da5c6ed4e292e816a5b58b340f49bdb625c.png" src="../../../_images/adce36dc5929d1f922a5dc4820ee4da5c6ed4e292e816a5b58b340f49bdb625c.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 70 </span><span class="caption-text">Thresholding using the Mean method.</span><a class="headerlink" href="#fig-thresholds-method-mean" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 72 </span><span class="caption-text">Thresholding using the Mean method.</span><a class="headerlink" href="#fig-thresholds-method-mean" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="mean-standard-deviation">
-<h3>Mean &amp; Standard deviation<a class="headerlink" href="#mean-standard-deviation" title="Permalink to this headline">#</a></h3>
+<h3>Mean &amp; Standard deviation<a class="headerlink" href="#mean-standard-deviation" title="Permalink to this heading">#</a></h3>
 <p>We can add a bit more to the <em>Mean method</em> by incorporating the standard deviation, scaled by a constant.
 The threshold becomes <em>mean + k x standard.deviation</em>, where we can adjust <em>k</em> based upon our attitude towards sensitivity vs. specificity.</p>
 <p>The main advantage of this approach is that it should not fail catastropically in cases where we have an image that is mostly just noise (assuming <em>k</em> is large enough), unlike methods that require a bimodal histogram.
 However the disadvantage is that it is not robust: the threshold can be pulled higher or lower by outliers, or by foreground values being very different from background values.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">threshold_mean_std</span><span class="p">(</span><span class="n">im</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="n">k</span> <span class="o">*</span> <span class="n">im</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
@@ -1678,22 +1360,21 @@ However the disadvantage is that it is not robust: the threshold can be pulled h
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-method-mean-std">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_40_0.png" src="../../../_images/thresholding_40_0.png" />
-</div>
+<img alt="../../../_images/ac61fe37c656c3fafec694f2ade3dd5bf3b06cb7efe5802034b2ae8f74c9e7e7.png" src="../../../_images/ac61fe37c656c3fafec694f2ade3dd5bf3b06cb7efe5802034b2ae8f74c9e7e7.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 71 </span><span class="caption-text">Thresholding using the Mean + k x std.dev. method, with k = 3.</span><a class="headerlink" href="#fig-thresholds-method-mean-std" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 73 </span><span class="caption-text">Thresholding using the Mean + k x std.dev. method, with k = 3.</span><a class="headerlink" href="#fig-thresholds-method-mean-std" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="median-median-absolute-deviation">
-<h3>Median &amp; Median Absolute Deviation<a class="headerlink" href="#median-median-absolute-deviation" title="Permalink to this headline">#</a></h3>
+<h3>Median &amp; Median Absolute Deviation<a class="headerlink" href="#median-median-absolute-deviation" title="Permalink to this heading">#</a></h3>
 <p>A more robust alternative to using the mean and standard deviation is to use the <strong>median and median absolute deviation (MAD)</strong> to determine a threshold.</p>
 <p>If the pixel values of an image were to be sorted, the <strong>median</strong> is the value that would be in the middle.
 The <strong>MAD</strong> is calculated as follows:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Subtract the median from all pixels</p></li>
 <li><p>Compute the absolute value of the result of (1) (i.e. flip the sign of negative values, so that all are positive)</p></li>
 <li><p>Compute the median of the result of (2)</p></li>
@@ -1711,6 +1392,11 @@ The three main requirements for this method to work are:</p>
 </ul>
 <p>The last point is not always an issue: we can calculate the median much more quickly if we use a histogram, although we may lose some precision due to the binning required when building the histogram.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">threshold_mad</span><span class="p">(</span><span class="n">im</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
     <span class="n">med</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
@@ -1738,13 +1424,12 @@ The three main requirements for this method to work are:</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-method-mad">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_43_0.png" src="../../../_images/thresholding_43_0.png" />
-</div>
+<img alt="../../../_images/e63cdfd144451eec6732e500a84d5365ade297380d7391726f4fecfadd9eb7b6.png" src="../../../_images/e63cdfd144451eec6732e500a84d5365ade297380d7391726f4fecfadd9eb7b6.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 72 </span><span class="caption-text">Thresholding using the MAD method, with <em>k = 3</em>. This is a strong candiate to be my preferred method for the ‘spots’ image, because it is effective when looking for small signals buried in noise.</span><a class="headerlink" href="#fig-thresholds-method-mad" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 74 </span><span class="caption-text">Thresholding using the MAD method, with <em>k = 3</em>. This is a strong candiate to be my preferred method for the ‘spots’ image, because it is effective when looking for small signals buried in noise.</span><a class="headerlink" href="#fig-thresholds-method-mad" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="danger admonition">
@@ -1763,18 +1448,23 @@ A bad automated threshold can easily introduce a systematic bias that is much wo
 </section>
 </section>
 <section id="thresholding-difficult-data">
-<span id="sec-thresholding-difficult"></span><h2>Thresholding difficult data<a class="headerlink" href="#thresholding-difficult-data" title="Permalink to this headline">#</a></h2>
+<span id="sec-thresholding-difficult"></span><h2>Thresholding difficult data<a class="headerlink" href="#thresholding-difficult-data" title="Permalink to this heading">#</a></h2>
 <p>Applying global thresholds is all well and good in easy images for which a threshold clearly exists, but in practice things are rarely so straightforward – and often no threshold, manual or automatic, produces useable results.
 This section anticipates the next chapter on filters by showing that, with some extra processing, thresholding can be redeemed even if it initially seems to perform badly.</p>
 <section id="thresholding-noisy-data">
-<h3>Thresholding noisy data<a class="headerlink" href="#thresholding-noisy-data" title="Permalink to this headline">#</a></h3>
+<h3>Thresholding noisy data<a class="headerlink" href="#thresholding-noisy-data" title="Permalink to this heading">#</a></h3>
 <p>Noise is one problem that affects thresholds, especially in live cell imaging.</p>
-<p>The top half of <a class="reference internal" href="#fig-thresholds-noisy"><span class="std std-numref">Fig. 73</span></a> reproduces the nuclei from <a class="reference internal" href="#fig-thresholds-nuclei-histogram"><span class="std std-numref">Fig. 62</span></a> but with extra noise added to simulate less than ideal imaging conditions.
+<p>The top half of <a class="reference internal" href="#fig-thresholds-noisy"><span class="std std-numref">Fig. 75</span></a> reproduces the nuclei from <a class="reference internal" href="#fig-thresholds-nuclei-histogram"><span class="std std-numref">Fig. 64</span></a> but with extra noise added to simulate less than ideal imaging conditions.
 Although the nuclei are still clearly visible in the image (A), the two classes of pixels (which were previously easy to separate) have now been merged together in the histogram (B).
 The triangle threshold method, which had performed well before, now gives less attractive results (C), because the noise has caused the ranges of background and nuclei pixels to overlap.</p>
 <p><em>However,</em> if we apply a Gaussian filter to smooth the image, a lot of the the random noise is reduced (see <a class="reference internal" href="../4-filters/filters.html#chap-filters"><span class="std std-ref">Filters</span></a>).
 This results in a histogram dramatically more similar to that in the original, (almost) noise-free image, and the threshold is again quite successful (F).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
@@ -1813,20 +1503,19 @@ This results in a histogram dramatically more similar to that in the original, (
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-noisy">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_47_0.png" src="../../../_images/thresholding_47_0.png" />
-</div>
+<img alt="../../../_images/d9815347a1ab1ad42fa86562797e0b58a455722ff4702662effff8bddd541d08.png" src="../../../_images/d9815347a1ab1ad42fa86562797e0b58a455722ff4702662effff8bddd541d08.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 73 </span><span class="caption-text">Noise can affect thresholding. After the addition of simulated noise to the image in <a class="reference internal" href="#fig-thresholds-nuclei-histogram"><span class="std std-numref">Fig. 62</span></a>, the distinction between nuclei and non-nuclei pixels is much harder to identify in the histogram (B). Any threshold would result in a large number of incorrectly-identified pixels. However, applying a Gaussian filter (here, <span class="math notranslate nohighlight">\(\sigma = 2\)</span>) to reduce noise can dramatically improve the situation (E). Thresholds in (C) and (F) were computed using the triangle method.</span><a class="headerlink" href="#fig-thresholds-noisy" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 75 </span><span class="caption-text">Noise can affect thresholding. After the addition of simulated noise to the image in <a class="reference internal" href="#fig-thresholds-nuclei-histogram"><span class="std std-numref">Fig. 64</span></a>, the distinction between nuclei and non-nuclei pixels is much harder to identify in the histogram (B). Any threshold would result in a large number of incorrectly-identified pixels. However, applying a Gaussian filter (here, <span class="math notranslate nohighlight">\(\sigma = 2\)</span>) to reduce noise can dramatically improve the situation (E). Thresholds in (C) and (F) were computed using the triangle method.</span><a class="headerlink" href="#fig-thresholds-noisy" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="local-thresholding">
-<h3>Local thresholding<a class="headerlink" href="#local-thresholding" title="Permalink to this headline">#</a></h3>
+<h3>Local thresholding<a class="headerlink" href="#local-thresholding" title="Permalink to this heading">#</a></h3>
 <p>Another common problem is that the structures that should be detected appear on top of a background that itself varies in brightness.
-This was the reason no threshold performed very well in <a class="reference internal" href="#fig-thresholds-manual"><span class="std std-numref">Fig. 64</span></a>.</p>
+This was the reason no threshold performed very well in <a class="reference internal" href="#fig-thresholds-manual"><span class="std std-numref">Fig. 66</span></a>.</p>
 <p>Ideally, we would like to apply a threshold that varies relative to the local background.</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -1836,12 +1525,17 @@ This was the reason no threshold performed very well in <a class="reference inte
 This calculates the mean and standard deviation of pixels <em>in a local window around each pixel</em>, for example a square of 25 x 25 pixels.</p>
 <p>A separate threshold is then generated for every pixel,defined as <em>local_mean - k x local_std.dev</em>.
 Note the sign: <em>-k</em> is used, because the original definition was focussed on recognizing dark text on a light background, but <em>k</em> itself can be a negative number if needed.</p>
-<p>An example is shown in <a class="reference internal" href="#fig-thresholds-local-niblack"><span class="std std-numref">Fig. 74</span></a>.</p>
+<p>An example is shown in <a class="reference internal" href="#fig-thresholds-local-niblack"><span class="std std-numref">Fig. 76</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_niblack</span>
 <span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">disk</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colormaps</span>
 
 <span class="c1"># Load image</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="mi">50</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">450</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
@@ -1855,7 +1549,7 @@ Note the sign: <em>-k</em> is used, because the original definition was focussed
 
 <span class="c1"># Show, using an alternative colormap to boost contrast</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">colormaps</span><span class="p">[</span><span class="s1">&#39;magma&#39;</span><span class="p">]</span>
 
 <span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
 <span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Histogram of (A)&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
@@ -1867,13 +1561,12 @@ Note the sign: <em>-k</em> is used, because the original definition was focussed
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-local-niblack">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_49_0.png" src="../../../_images/thresholding_49_0.png" />
-</div>
+<img alt="../../../_images/04c88529dbb470798cde9a7b4e15f385f16b3352e79a06aee5e6b675bf8a50dd.png" src="../../../_images/04c88529dbb470798cde9a7b4e15f385f16b3352e79a06aee5e6b675bf8a50dd.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 74 </span><span class="caption-text">Local thresholding to detect spots using Niblack’s method.</span><a class="headerlink" href="#fig-thresholds-local-niblack" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 76 </span><span class="caption-text">Local thresholding to detect spots using Niblack’s method.</span><a class="headerlink" href="#fig-thresholds-local-niblack" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>To be honest, I don’t tend to use this approach for bioimages.
@@ -1883,12 +1576,16 @@ I find the window size and <em>k</em> parameters difficult to tune, and it suffe
 If we simply <em>subtract</em> this second image from the first, we can then apply a global threshold of 0 to detect what we want.</p>
 <p>Alternatively, we could subtract an image with values that aren’t exactly equal to the local thresholds, but similar enough to effectively flatten out the background so that a global threshold can be applied.
 This then provides us access to all global automated thresholding methods, and an intuition of how the histograms ought to look for the methods to be appropriate.
-<a class="reference internal" href="#fig-thresholds-local"><span class="std std-numref">Fig. 75</span></a> shows this in action.</p>
+<a class="reference internal" href="#fig-thresholds-local"><span class="std std-numref">Fig. 77</span></a> shows this in action.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_triangle</span><span class="p">,</span> <span class="n">median</span>
 <span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">disk</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
 
 <span class="c1"># Load image</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="mi">50</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">450</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
@@ -1901,7 +1598,7 @@ This then provides us access to all global automated thresholding methods, and a
 <span class="n">bw_triangle</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">threshold_triangle</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
 
 <span class="c1"># Apply large median filter</span>
-<span class="n">im_median</span> <span class="o">=</span> <span class="n">median</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">selem</span><span class="o">=</span><span class="n">disk</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">im_median</span> <span class="o">=</span> <span class="n">median</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">footprint</span><span class="o">=</span><span class="n">disk</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
 
 <span class="c1"># Subtract median-filtered image and now try triangle threshold again</span>
 <span class="n">im_diff</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">-</span> <span class="n">im_median</span>
@@ -1909,7 +1606,7 @@ This then provides us access to all global automated thresholding methods, and a
 
 <span class="c1"># Show, using an alternative colormap to boost contrast</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">colormaps</span><span class="p">[</span><span class="s1">&#39;magma&#39;</span><span class="p">]</span>
 
 <span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
 <span class="n">show_histogram</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Histogram of (A)&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
@@ -1926,23 +1623,21 @@ This then provides us access to all global automated thresholding methods, and a
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-thresholds-local">
-<div class="cell_output docutils container">
-<img alt="../../../_images/thresholding_51_1.png" src="../../../_images/thresholding_51_1.png" />
-</div>
+<img alt="../../../_images/cc818c1c25a29be4227f23286128a53398110fc238b19e77796d1e34f025da97.png" src="../../../_images/cc818c1c25a29be4227f23286128a53398110fc238b19e77796d1e34f025da97.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 75 </span><span class="caption-text">Thresholding to detect structures appearing on a varying background. No global threshold may be sufficiently selective <em>(top row)</em>. However, if a ‘background image’ can be created, (here using a large median filter), and then subtracted, a single threshold can give much better results <em>(bottom row)</em>. This is equivalent to applying a varying threshold to the original image.</span><a class="headerlink" href="#fig-thresholds-local" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 77 </span><span class="caption-text">Thresholding to detect structures appearing on a varying background. No global threshold may be sufficiently selective <em>(top row)</em>. However, if a ‘background image’ can be created, (here using a large median filter), and then subtracted, a single threshold can give much better results <em>(bottom row)</em>. This is equivalent to applying a varying threshold to the original image.</span><a class="headerlink" href="#fig-thresholds-local" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The difficult part is creating the second image.
 Filters are the key, and the subject of the <a class="reference internal" href="../4-filters/filters.html#chap-filters"><span class="std std-ref">next chapter</span></a>.</p>
 <hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="fn-2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Of course there may be multiple classes for different kinds of objects, and perhaps multiple thresholds would make more sense. There is a variation of Otsu’s method for identifying multiple thresholds.</p>
-</dd>
-</dl>
+<aside class="footnote brackets" id="fn-2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Of course there may be multiple classes for different kinds of objects, and perhaps multiple thresholds would make more sense. There is a variation of Otsu’s method for identifying multiple thresholds.</p>
+</aside>
 </section>
 </section>
 <div class="toctree-wrapper compound">
@@ -1961,7 +1656,7 @@ Filters are the key, and the subject of the <a class="reference internal" href="
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chapters/2-processing/3-thresholding"
         },
         predefinedOutput: true
@@ -1969,50 +1664,119 @@ Filters are the key, and the subject of the <a class="reference internal" href="
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../2-point_operations/imagej.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">ImageJ: Point operations</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../2-point_operations/imagej.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ImageJ: Point operations</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="imagej.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="imagej.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">ImageJ: Thresholding</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-labeled-images">Binary &amp; labeled images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-thresholding">Global thresholding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thresholding-using-histograms">Thresholding using histograms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-importance-of-the-threshold-choice">The importance of the threshold choice</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automated-thresholds">Automated thresholds</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otsu-s-method">Otsu’s method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimum-method">Minimum method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triangle-method">Triangle method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-method">Mean method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-standard-deviation">Mean &amp; Standard deviation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-median-absolute-deviation">Median &amp; Median Absolute Deviation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thresholding-difficult-data">Thresholding difficult data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thresholding-noisy-data">Thresholding noisy data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-thresholding">Local thresholding</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By Pete Bankhead<br/>
-  
-      &copy; Copyright 2022-2023.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By Pete Bankhead
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022-2023.
+      <br/>
+    
+  </p>
 
-      </div>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

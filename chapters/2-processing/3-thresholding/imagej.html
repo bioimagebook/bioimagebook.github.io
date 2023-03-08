@@ -1,50 +1,62 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>ImageJ: Thresholding &#8212; Introduction to Bioimage Analysis</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script data-domain="bioimagebook.github.io" defer="defer" src="https://plausible.io/js/script.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,65 +64,94 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/2-processing/3-thresholding/imagej';</script>
     <link rel="canonical" href="https://bioimagebook.github.io/chapters/2-processing/3-thresholding/imagej.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Filters" href="../4-filters/filters.html" />
     <link rel="prev" title="Thresholding" href="thresholding.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script defer data-domain="bioimagebook.github.io" src="https://plausible.io/js/plausible.js"></script>
-<meta name="google-site-verification" content="Aem87SvFh5w_cCS2z43mVgKmnIdYgMBOapUPZ_SQWVY" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -119,694 +160,339 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Front matter
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
-   Acknowledgements
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../CHANGELOG.html">
-   Changelog
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Before we begin
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Before we begin</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/preface/preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/reading/reading.html">
-   How to read this book
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/preface/preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/reading/reading.html">How to read this book</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introducing images
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducing images</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">
-   Images &amp; pixels
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">
-     ImageJ: Images &amp; pixels
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">
-     Python: Images &amp; pixels
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">
-   Measurements &amp; histograms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">
-     ImageJ: Measurements &amp; histograms
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/2-measurements/python.html">
-     Python: Measurements &amp; histograms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">
-   Types &amp; bit-depths
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">
-     ImageJ: Types &amp; bit-depths
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">
-     Python: Types &amp; bit-depths
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/4-colors/colors.html">
-   Channels &amp; colors
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/4-colors/imagej.html">
-     ImageJ: Channels &amp; colors
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/4-colors/python.html">
-     Python: Channels &amp; colors
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">
-   Pixel size &amp; dimensions
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">
-     ImageJ:  Pixel size &amp; dimensions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">
-     Python:  Pixel size &amp; dimensions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/6-files/files.html">
-   Files &amp; file formats
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/6-files/imagej.html">
-     ImageJ: Files &amp; file formats
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/6-files/python.html">
-     Python: Files &amp; file formats
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">Images &amp; pixels</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">ImageJ: Images &amp; pixels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">Python: Images &amp; pixels</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Processing &amp; analysis
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">Measurements &amp; histograms</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">ImageJ: Measurements &amp; histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/2-measurements/python.html">Python: Measurements &amp; histograms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">Types &amp; bit-depths</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">ImageJ: Types &amp; bit-depths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">Python: Types &amp; bit-depths</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/4-colors/colors.html">Channels &amp; colors</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/4-colors/imagej.html">ImageJ: Channels &amp; colors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/4-colors/python.html">Python: Channels &amp; colors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">Pixel size &amp; dimensions</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">ImageJ:  Pixel size &amp; dimensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">Python:  Pixel size &amp; dimensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/6-files/files.html">Files &amp; file formats</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/6-files/imagej.html">ImageJ: Files &amp; file formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/6-files/python.html">Python: Files &amp; file formats</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Processing &amp; analysis</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">
-   Image processing &amp; analysis
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../2-point_operations/point_operations.html">
-   Point operations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2-point_operations/imagej.html">
-     ImageJ: Point operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="thresholding.html">
-   Thresholding
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     ImageJ: Thresholding
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../4-filters/filters.html">
-   Filters
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../4-filters/imagej.html">
-     ImageJ: Filters
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../5-morph/morph.html">
-   Morphological operations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../5-morph/imagej.html">
-     ImageJ: Morphological operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../6-transforms/transforms.html">
-   Image transforms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../6-transforms/imagej.html">
-     ImageJ: Image transforms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../7-multidimensional_processing/multidimensional_processing.html">
-   Multidimensional processing
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../7-multidimensional_processing/imagej.html">
-     ImageJ: Multidimensional processing
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">Image processing &amp; analysis</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2-point_operations/point_operations.html">Point operations</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2-point_operations/imagej.html">ImageJ: Point operations</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Fluorescence microscopy
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
-   From photons to pixels
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
-   Blur &amp; the PSF
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
-   Noise
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
-   Microscopes &amp; detectors
-  </a>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="thresholding.html">Thresholding</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">ImageJ: Thresholding</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendices
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4-filters/filters.html">Filters</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4-filters/imagej.html">ImageJ: Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../5-morph/morph.html">Morphological operations</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../5-morph/imagej.html">ImageJ: Morphological operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../6-transforms/transforms.html">Image transforms</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../6-transforms/imagej.html">ImageJ: Image transforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../7-multidimensional_processing/multidimensional_processing.html">Multidimensional processing</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../7-multidimensional_processing/imagej.html">ImageJ: Multidimensional processing</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fluorescence microscopy</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
-   Beyond this book
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/python/python.html">
-   Python Primer
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
-   ImageJ: Writing macros
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
-     Difference of Gaussians
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
-     Simulating image formation
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">From photons to pixels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">Blur &amp; the PSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">Noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">Microscopes &amp; detectors</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/next_steps/next_steps.html">Beyond this book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/python/python.html">Python Primer</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../appendices/macros/macro_intro.html">ImageJ: Writing macros</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_dog.html">Difference of Gaussians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_simulating.html">Simulating image formation</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/3-thresholding/imagej.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/3-thresholding/imagej.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../../_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/chapters/2-processing/3-thresholding/imagej.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../../_sources/chapters/2-processing/3-thresholding/imagej.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../../_sources/chapters/2-processing/3-thresholding/imagej.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../../../_sources/chapters/2-processing/3-thresholding/imagej.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#global-thresholding">
-   Global thresholding
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-objects">
-   Creating objects
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#generating-measuring-rois">
-     Generating &amp; measuring ROIs
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#generating-labeled-images">
-     Generating labeled images
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#local-thresholding">
-   Local thresholding
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#addendum-practical-issues">
-   Addendum: Practical issues
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-nans">
-     Using NaNs
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#histogram-binning">
-     Histogram binning
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>ImageJ: Thresholding</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#global-thresholding">
-   Global thresholding
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-objects">
-   Creating objects
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#generating-measuring-rois">
-     Generating &amp; measuring ROIs
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#generating-labeled-images">
-     Generating labeled images
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#local-thresholding">
-   Local thresholding
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#addendum-practical-issues">
-   Addendum: Practical issues
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-nans">
-     Using NaNs
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#histogram-binning">
-     Histogram binning
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ImageJ: Thresholding</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-thresholding">Global thresholding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-objects">Creating objects</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-measuring-rois">Generating &amp; measuring ROIs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-labeled-images">Generating labeled images</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-thresholding">Local thresholding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#addendum-practical-issues">Addendum: Practical issues</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-nans">Using NaNs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram-binning">Histogram binning</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="imagej-thresholding">
-<h1>ImageJ: Thresholding<a class="headerlink" href="#imagej-thresholding" title="Permalink to this headline">#</a></h1>
+<h1>ImageJ: Thresholding<a class="headerlink" href="#imagej-thresholding" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
 <span class="o">%</span><span class="k">autoreload</span> 2
@@ -822,15 +508,16 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Here, we will explore some ImageJ’s methods to apply thresholds to images, generating binary images, labeled images and ROIs.
 We will also confront some of the associated complications.</p>
 </section>
 <section id="global-thresholding">
-<h2>Global thresholding<a class="headerlink" href="#global-thresholding" title="Permalink to this headline">#</a></h2>
-<p>The main thresholding command in ImageJ is <span class="menuselection notranslate">Image ‣ Adjust ‣ Threshold…</span>, with the shortcut <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate"></kbd>+<kbd class="kbd docutils literal notranslate"></kbd> <kbd class="kbd docutils literal notranslate">T</kbd></kbd>.</p>
+<h2>Global thresholding<a class="headerlink" href="#global-thresholding" title="Permalink to this heading">#</a></h2>
+<p>The main thresholding command in ImageJ is <span class="menuselection notranslate">Image ‣ Adjust ‣ Threshold…</span>, with the shortcut <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">T</kbd></kbd>.</p>
 <p>This opens a <em>Threshold</em> dialog that allows you to identify pixels above a threshold, below a threshold, or falling between two thresholds.
 These options are controlled using a combination of the threshold sliders and the <span class="guilabel notranslate">Dark background</span> checkbox.
 There is also a drop-down menu allowing you to select from a list of automated thresholding methods.</p>
@@ -865,10 +552,10 @@ Therefore if you find that any processing of binary images gives odd results, be
 </div>
 </section>
 <section id="creating-objects">
-<h2>Creating objects<a class="headerlink" href="#creating-objects" title="Permalink to this headline">#</a></h2>
+<h2>Creating objects<a class="headerlink" href="#creating-objects" title="Permalink to this heading">#</a></h2>
 <p>Once we have a binary image, the next step is to identify objects for further exploration.</p>
 <section id="generating-measuring-rois">
-<h3>Generating &amp; measuring ROIs<a class="headerlink" href="#generating-measuring-rois" title="Permalink to this headline">#</a></h3>
+<h3>Generating &amp; measuring ROIs<a class="headerlink" href="#generating-measuring-rois" title="Permalink to this heading">#</a></h3>
 <p>ROIs are a good way to represent objects in ImageJ, because they are easy to measure.
 In 2D, there are several options to generate ROIs from a thresholded image, each with slightly different applications:</p>
 <ul class="simple">
@@ -910,7 +597,7 @@ This meant that if you would measure the ROIs later you could get different resu
 <figure class="align-center" id="id1" style="width: 90%">
 <img alt="../../../_images/imagej-thresholds-analyze-holes.png" src="../../../_images/imagej-thresholds-analyze-holes.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 76 </span><span class="caption-text">Different results when using <span class="menuselection notranslate">Analyze ‣ Analyze Particles…</span> directly, and then subsequently measuring the ROI that it generated. The image is binary, so the mean value should be 255 if only the above-threshold pixels are measured.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 78 </span><span class="caption-text">Different results when using <span class="menuselection notranslate">Analyze ‣ Analyze Particles…</span> directly, and then subsequently measuring the ROI that it generated. The image is binary, so the mean value should be 255 if only the above-threshold pixels are measured.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p><strong>However</strong>, there is a solution – which I only learned when writing about it here.
@@ -919,7 +606,7 @@ If this is turned <strong>on</strong>, then ROIs with holes are generated as exp
 <figure class="align-center" id="id2" style="width: 90%">
 <img alt="../../../_images/imagej-thresholds-analyze-composite.png" src="../../../_images/imagej-thresholds-analyze-composite.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 77 </span><span class="caption-text">Fixing the problem with holey regions by using <span class="guilabel notranslate">Composite ROIs</span>.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 79 </span><span class="caption-text">Fixing the problem with holey regions by using <span class="guilabel notranslate">Composite ROIs</span>.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>This demonstrates the need to be cautious with any image analysis software, and to check out the various options associated with even common commands.
@@ -927,20 +614,20 @@ They aren’t <em>always</em> doing what you might expect.</p>
 </div>
 </section>
 <section id="generating-labeled-images">
-<h3>Generating labeled images<a class="headerlink" href="#generating-labeled-images" title="Permalink to this headline">#</a></h3>
+<h3>Generating labeled images<a class="headerlink" href="#generating-labeled-images" title="Permalink to this heading">#</a></h3>
 <p>ROIs are not the only way to represent image objects: sometimes labeled images are more useful.</p>
 <p><span class="menuselection notranslate">Analyze ‣ Analyze Particles…</span> can generate labeled images by using the <span class="guilabel notranslate">Show: Count Masks</span> option.
 This will generate a new image in which each pixel has a unique integer value indicating the number of the object it is part of – or zero if it is in the background.
-With a suitably colorful LUT (often <span class="menuselection notranslate">Image ‣ Lookup Tables ‣ Glasbey</span>), this can create a helpful and cheerful display of objects (<a class="reference internal" href="thresholding.html#fig-blobs-binary-label"><span class="std std-numref">Fig. 61</span></a>).</p>
+With a suitably colorful LUT (often <span class="menuselection notranslate">Image ‣ Lookup Tables ‣ Glasbey</span>), this can create a helpful and cheerful display of objects (<a class="reference internal" href="thresholding.html#fig-blobs-binary-label"><span class="std std-numref">Fig. 63</span></a>).</p>
 <figure class="align-center" id="id3" style="width: 90%">
 <img alt="../../../_images/imagej-thresholds-analyze-labels.png" src="../../../_images/imagej-thresholds-analyze-labels.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 78 </span><span class="caption-text">Creating a labeled image with <span class="menuselection notranslate">Analyze ‣ Analyze Particles</span>.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 80 </span><span class="caption-text">Creating a labeled image with <span class="menuselection notranslate">Analyze ‣ Analyze Particles</span>.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="d6316e92-3001-481e-b4c7-9d5c84084e27" name="575aea9c-61bf-4ace-9d36-b620ef7d7f04" type="radio">
-</input><label class="sd-tab-label" for="d6316e92-3001-481e-b4c7-9d5c84084e27">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
 Practical</label><div class="sd-tab-content docutils">
 <p><a class="reference internal" href="thresholding.html#sec-thresholds-connectivity"><span class="std std-ref">Connectivity</span></a> (4 or 8) is an important consideration when converting a binary image to objects, since it can have a major impact on the number and size of objects.</p>
 <p>Work out what kind of connectivity is used by</p>
@@ -952,8 +639,8 @@ Practical</label><div class="sd-tab-content docutils">
 One way to do this is by thresholding a suitable image, another is to use the <em>Brush tool</em> <img alt="../../../_images/brush.png" src="../../../_images/brush.png" /> to draw your own pixels in the binary image.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="91e82b23-bcee-47ad-9225-c823a9e72402" name="575aea9c-61bf-4ace-9d36-b620ef7d7f04" type="radio">
-</input><label class="sd-tab-label" for="91e82b23-bcee-47ad-9225-c823a9e72402">
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
 Solution</label><div class="sd-tab-content docutils">
 <p>At the time of writing, <span class="menuselection notranslate">Analyze ‣ Analyze Particles…</span> uses 8-connectivity.</p>
 <p>For the <em>Wand tool</em> the right answer will depend upon the setting you see if you double-click the tool.
@@ -964,7 +651,7 @@ There are three options: 4-connectivity, 8-connectivity and ‘legacy’ (where 
 </section>
 </section>
 <section id="local-thresholding">
-<h2>Local thresholding<a class="headerlink" href="#local-thresholding" title="Permalink to this headline">#</a></h2>
+<h2>Local thresholding<a class="headerlink" href="#local-thresholding" title="Permalink to this heading">#</a></h2>
 <p>A few methods to perform local thresholding can be found under <span class="menuselection notranslate">Image ‣ Adjust ‣ Auto Local Threshold</span>.
 The dialog again provides the option to try all of them.</p>
 <figure class="align-center" id="fig-thresholds-imagej-local-dialog">
@@ -976,8 +663,8 @@ What these mean in each case is described at <a class="reference external" href=
 This should be done with some caution, since it can involve surreptitiously incorporating the <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html#sec-bit-depths-converting"><span class="std std-ref">brightness &amp; contrast settings</span></a> into the thresholding.</p>
 <p>For these reasons, I tend to avoid local thresholding.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="83aff978-5fc8-47f9-a3ea-d49f705491b4" name="a3bb501f-9093-4660-a4bc-ba61ee051168" type="radio">
-</input><label class="sd-tab-label" for="83aff978-5fc8-47f9-a3ea-d49f705491b4">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
 Practical</label><div class="sd-tab-content docutils">
 <p>Explore several automated methods of thresholding the different channels of <span class="menuselection notranslate">File ‣ Open samples ‣ HeLa Cells</span>, using both local and global automated thresholds, to draw your own conclusions about which methods you might prefer for different images.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
@@ -985,10 +672,10 @@ Practical</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="addendum-practical-issues">
-<h2>Addendum: Practical issues<a class="headerlink" href="#addendum-practical-issues" title="Permalink to this headline">#</a></h2>
+<h2>Addendum: Practical issues<a class="headerlink" href="#addendum-practical-issues" title="Permalink to this heading">#</a></h2>
 <p>We end this section with a brief discussion of a few non-obvious practical issues that impact thresholding, related to bit-depths and image types.</p>
 <section id="using-nans">
-<span id="sec-thresholding-nans"></span><h3>Using NaNs<a class="headerlink" href="#using-nans" title="Permalink to this headline">#</a></h3>
+<span id="sec-thresholding-nans"></span><h3>Using NaNs<a class="headerlink" href="#using-nans" title="Permalink to this heading">#</a></h3>
 <p>The first issue appears when you click <span class="guilabel notranslate">Apply</span> in the <span class="menuselection notranslate">Image ‣ Adjust ‣ Threshold…</span> dialog box for a 32-bit image.
 This leads to a prompt asking whether to <span class="guilabel notranslate">Set Background Pixels to NaN</span>.</p>
 <p>If this is chosen, a binary image is no longer created.
@@ -998,15 +685,15 @@ It is therefore used to mask out regions, while preserving meaningful pixel valu
 <p>This is an advanced option that is <em>potentially</em> useful, but can be a bit challenging to work with.
 You have to be extra cautious when using an image containing NaNs, since some commands might behave in surprising ways.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="c226c862-a9d7-4273-b192-1a27f79c2c87" name="31a9f4af-4b6d-4bb5-a742-78466e1fad43" type="radio">
-</input><label class="sd-tab-label" for="c226c862-a9d7-4273-b192-1a27f79c2c87">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
 Practical</label><div class="sd-tab-content docutils">
 <p>Create an image including NaN pixels, then measure some ROIs drawn on it.
 Are area measurements affected by whether NaNs are present or not?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="b795f2eb-741c-46bf-9279-12c55a85457f" name="31a9f4af-4b6d-4bb5-a742-78466e1fad43" type="radio">
-</input><label class="sd-tab-label" for="b795f2eb-741c-46bf-9279-12c55a85457f">
+<input id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
 Solution</label><div class="sd-tab-content docutils">
 <p>They are!
 If you measure the area of an image containing NaNs, the result is less than if you measure the area of the same image converted to 8-bit – since only the non-NaN parts are included.
@@ -1014,13 +701,13 @@ If you measure a region containing NaNs only, the area is 0.</p>
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="83d3b54f-05af-44b8-bf0b-8ad84a949d5f" name="dcb06299-d820-4118-b4e9-38d3818719ae" type="radio">
-</input><label class="sd-tab-label" for="83d3b54f-05af-44b8-bf0b-8ad84a949d5f">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
 Question</label><div class="sd-tab-content docutils">
 <p>Through experiment or guesswork, what do you suppose happens to NaNs with a 32-bit image is converted to 8-bit or 16-bit?</p>
 </div>
-<input id="e71a5fc3-d3a3-466b-a6c8-628537d6f5fd" name="dcb06299-d820-4118-b4e9-38d3818719ae" type="radio">
-</input><label class="sd-tab-label" for="e71a5fc3-d3a3-466b-a6c8-628537d6f5fd">
+<input id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
 Answer</label><div class="sd-tab-content docutils">
 <p>Since NaN is not an integer, it cannot be stored in an 8-bit or 16-bit unsigned integer image.
 Instead, all NaNs simply become zero.</p>
@@ -1028,7 +715,7 @@ Instead, all NaNs simply become zero.</p>
 </div>
 </section>
 <section id="histogram-binning">
-<h3>Histogram binning<a class="headerlink" href="#histogram-binning" title="Permalink to this headline">#</a></h3>
+<h3>Histogram binning<a class="headerlink" href="#histogram-binning" title="Permalink to this heading">#</a></h3>
 <p>The second way in which bit-depths and types matter is that histograms of images &gt; 8-bit involve <em>binning</em> the data.
 For example, with a 32-bit image it would probably not make sense to create a histogram that has separate counts for all possible pixel values: in addition to counts for pixels with exact values 1 and 2, we would have thousands of counts for pixels with fractions in between and most of these counts would be 0.</p>
 <p>Instead, the histogram is generated by dividing the total data range (maximum – minimum pixel values) into 256 separate <em>bins</em> with equal widths, and counting how many pixels have values falling into the range of each bin.
@@ -1044,8 +731,8 @@ And what makes things worse is that ImageJ’s behavior in this regard has chang
 <p>I know I’m not alone in being confused, since this has been the subject of a <a class="reference external" href="https://forum.image.sc/t/auto-threshold-calculation-and-bright-and-contrast-auto-adjust-issue/19301">long discussion on the image.sc forum</a>.
 So the main message is: be aware that binning happens, and keep on the lookout for any unexpected effects that the brightness/contrast sliders might sneakily have on thresholding.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="75f2bb8a-888d-40da-b888-bdc6ee59218b" name="d27c70d5-2e10-48c7-8423-2694f6b337d9" type="radio">
-</input><label class="sd-tab-label" for="75f2bb8a-888d-40da-b888-bdc6ee59218b">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
 Practical</label><div class="sd-tab-content docutils">
 <p>Explore setting thresholds with and without <span class="guilabel notranslate">Don’t reset range</span> selected for the image <span class="menuselection notranslate">File ‣ Open Samples ‣ M51 Galaxy (16-bits)</span>, and pressing the <span class="guilabel notranslate">Auto</span> button to determine a threshold.</p>
 <p>Keep <span class="menuselection notranslate">Image ‣ Adjust ‣ Brightness/Contrast…</span> open as you explore, so you can make adjustments before calculating the thresholds.</p>
@@ -1054,23 +741,21 @@ Practical</label><div class="sd-tab-content docutils">
 </figure>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/c5d2075777c458c70c69a1f2c8b37391"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="a66456ef-3718-499a-a163-dc2a20ecedac" name="d27c70d5-2e10-48c7-8423-2694f6b337d9" type="radio">
-</input><label class="sd-tab-label" for="a66456ef-3718-499a-a163-dc2a20ecedac">
+<input id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
 Solution</label><div class="sd-tab-content docutils">
 <p>This image shows a potential use of the <span class="guilabel notranslate">Don’t reset range</span> option – used cautiously.</p>
 <figure class="align-center" id="id4">
-<div class="cell_output docutils container">
-<img alt="../../../_images/imagej_7_01.png" src="../../../_images/imagej_7_01.png" />
-</div>
+<img alt="../../../_images/0f763729e4e6314dbe5aca5ffbe33d77a0847cd2011a21349d6f0ef8c5a7f61b.png" src="../../../_images/0f763729e4e6314dbe5aca5ffbe33d77a0847cd2011a21349d6f0ef8c5a7f61b.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 79 </span><span class="caption-text">Thresholding a 16-bit image with and without ‘Don’t reset range’ selected.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 81 </span><span class="caption-text">Thresholding a 16-bit image with and without ‘Don’t reset range’ selected.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="0911bf1b-79db-4bd1-af7f-4a39b20d9443" name="69f3332a-f10e-4a66-b1f0-49d24b4b26b4" type="radio">
-</input><label class="sd-tab-label" for="0911bf1b-79db-4bd1-af7f-4a39b20d9443">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
 Practical</label><div class="sd-tab-content docutils">
 <p>What are the implications of using a 256-bin histogram for thresholding a 32-bit image?</p>
 <p>In particular, how might any outlier pixels affect the accuracy with which you can define a threshold – automatically or manually?</p>
@@ -1079,8 +764,8 @@ Practical</label><div class="sd-tab-content docutils">
 <p><strong>Note:</strong> <span class="menuselection notranslate">Analyze ‣ Histogram</span> lets you investigate the image histogram with different numbers of bins – but any changes you make here will not be reflected in the histogram actually used for thresholding.</p>
 <p><a class="reference external" href="https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-data/blob/main/images/cell_outlier.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="0dc43c15-3f0b-4cf6-9a53-c8826a75c55e" name="69f3332a-f10e-4a66-b1f0-49d24b4b26b4" type="radio">
-</input><label class="sd-tab-label" for="0dc43c15-3f0b-4cf6-9a53-c8826a75c55e">
+<input id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
 Solution</label><div class="sd-tab-content docutils">
 <p>First, a positive implication of using a 256-bit histogram for thresholding is that it can be fast: more bins add to the computations involved.
 Also, creating too many bins has the result of making most of them zero – potentially causing some automated threshold-determination algorithms to fail.</p>
@@ -1092,7 +777,7 @@ A single extreme pixel – which might occur when a pixel in a CCD camera is som
 Then the histogram resolution might really be too small for reasonable thresholding.</p>
 <p>It’s a sufficiently obscure problem that hopefully it won’t bother you.
 However, if you do experience the issue then two possible ways to overcome it are:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Adjust the brightness/contrast sliders and ensure that <span class="guilabel notranslate">Don’t reset range</span> <strong>is</strong> selected. This is the benefit of the option existing.</p></li>
 <li><p>Convert the image to 8-bit manually yourself. This allows you to effectively choose the range of the histogram bins (using <span class="menuselection notranslate">Brightness/Contrast…</span>; see <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html#sec-bit-depths-converting"><span class="std std-ref">Types &amp; bit-depths</span></a>) Since the threshold is made using 256 bins, you are not really losing any information that was not going to be lost anyway.</p></li>
 </ol>
@@ -1114,7 +799,7 @@ However, if you do experience the issue then two possible ways to overcome it ar
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chapters/2-processing/3-thresholding"
         },
         predefinedOutput: true
@@ -1122,50 +807,111 @@ However, if you do experience the issue then two possible ways to overcome it ar
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="thresholding.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Thresholding</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="thresholding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Thresholding</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../4-filters/filters.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../4-filters/filters.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Filters</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-thresholding">Global thresholding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-objects">Creating objects</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-measuring-rois">Generating &amp; measuring ROIs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-labeled-images">Generating labeled images</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-thresholding">Local thresholding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#addendum-practical-issues">Addendum: Practical issues</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-nans">Using NaNs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram-binning">Histogram binning</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By Pete Bankhead<br/>
-  
-      &copy; Copyright 2022-2023.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By Pete Bankhead
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022-2023.
+      <br/>
+    
+  </p>
 
-      </div>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

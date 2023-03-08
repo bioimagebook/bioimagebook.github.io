@@ -1,50 +1,62 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>ImageJ: Multidimensional processing &#8212; Introduction to Bioimage Analysis</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script data-domain="bioimagebook.github.io" defer="defer" src="https://plausible.io/js/script.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,65 +64,94 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/2-processing/7-multidimensional_processing/imagej';</script>
     <link rel="canonical" href="https://bioimagebook.github.io/chapters/2-processing/7-multidimensional_processing/imagej.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="From photons to pixels" href="../../3-fluorescence/1-formation_overview/formation_overview.html" />
     <link rel="prev" title="Multidimensional processing" href="multidimensional_processing.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script defer data-domain="bioimagebook.github.io" src="https://plausible.io/js/plausible.js"></script>
-<meta name="google-site-verification" content="Aem87SvFh5w_cCS2z43mVgKmnIdYgMBOapUPZ_SQWVY" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -119,699 +160,344 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Front matter
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
-   Acknowledgements
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../CHANGELOG.html">
-   Changelog
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Before we begin
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Before we begin</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/preface/preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/reading/reading.html">
-   How to read this book
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/preface/preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/reading/reading.html">How to read this book</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introducing images
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducing images</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">
-   Images &amp; pixels
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">
-     ImageJ: Images &amp; pixels
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">
-     Python: Images &amp; pixels
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">
-   Measurements &amp; histograms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">
-     ImageJ: Measurements &amp; histograms
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/2-measurements/python.html">
-     Python: Measurements &amp; histograms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">
-   Types &amp; bit-depths
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">
-     ImageJ: Types &amp; bit-depths
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">
-     Python: Types &amp; bit-depths
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/4-colors/colors.html">
-   Channels &amp; colors
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/4-colors/imagej.html">
-     ImageJ: Channels &amp; colors
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/4-colors/python.html">
-     Python: Channels &amp; colors
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">
-   Pixel size &amp; dimensions
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">
-     ImageJ:  Pixel size &amp; dimensions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">
-     Python:  Pixel size &amp; dimensions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/6-files/files.html">
-   Files &amp; file formats
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/6-files/imagej.html">
-     ImageJ: Files &amp; file formats
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/6-files/python.html">
-     Python: Files &amp; file formats
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">Images &amp; pixels</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">ImageJ: Images &amp; pixels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">Python: Images &amp; pixels</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Processing &amp; analysis
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">Measurements &amp; histograms</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">ImageJ: Measurements &amp; histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/2-measurements/python.html">Python: Measurements &amp; histograms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">Types &amp; bit-depths</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">ImageJ: Types &amp; bit-depths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">Python: Types &amp; bit-depths</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/4-colors/colors.html">Channels &amp; colors</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/4-colors/imagej.html">ImageJ: Channels &amp; colors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/4-colors/python.html">Python: Channels &amp; colors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">Pixel size &amp; dimensions</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">ImageJ:  Pixel size &amp; dimensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">Python:  Pixel size &amp; dimensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/6-files/files.html">Files &amp; file formats</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/6-files/imagej.html">ImageJ: Files &amp; file formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/6-files/python.html">Python: Files &amp; file formats</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Processing &amp; analysis</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">
-   Image processing &amp; analysis
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../2-point_operations/point_operations.html">
-   Point operations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2-point_operations/imagej.html">
-     ImageJ: Point operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../3-thresholding/thresholding.html">
-   Thresholding
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../3-thresholding/imagej.html">
-     ImageJ: Thresholding
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../4-filters/filters.html">
-   Filters
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../4-filters/imagej.html">
-     ImageJ: Filters
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../5-morph/morph.html">
-   Morphological operations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../5-morph/imagej.html">
-     ImageJ: Morphological operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../6-transforms/transforms.html">
-   Image transforms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../6-transforms/imagej.html">
-     ImageJ: Image transforms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="multidimensional_processing.html">
-   Multidimensional processing
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     ImageJ: Multidimensional processing
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">Image processing &amp; analysis</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2-point_operations/point_operations.html">Point operations</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2-point_operations/imagej.html">ImageJ: Point operations</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Fluorescence microscopy
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
-   From photons to pixels
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
-   Blur &amp; the PSF
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
-   Noise
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
-   Microscopes &amp; detectors
-  </a>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3-thresholding/thresholding.html">Thresholding</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3-thresholding/imagej.html">ImageJ: Thresholding</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendices
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4-filters/filters.html">Filters</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4-filters/imagej.html">ImageJ: Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../5-morph/morph.html">Morphological operations</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../5-morph/imagej.html">ImageJ: Morphological operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../6-transforms/transforms.html">Image transforms</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../6-transforms/imagej.html">ImageJ: Image transforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="multidimensional_processing.html">Multidimensional processing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">ImageJ: Multidimensional processing</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fluorescence microscopy</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
-   Beyond this book
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/python/python.html">
-   Python Primer
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
-   ImageJ: Writing macros
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
-     Difference of Gaussians
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
-     Simulating image formation
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">From photons to pixels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">Blur &amp; the PSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">Noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">Microscopes &amp; detectors</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/next_steps/next_steps.html">Beyond this book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/python/python.html">Python Primer</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../appendices/macros/macro_intro.html">ImageJ: Writing macros</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_dog.html">Difference of Gaussians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_simulating.html">Simulating image formation</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/7-multidimensional_processing/imagej.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/7-multidimensional_processing/imagej.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../../_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/chapters/2-processing/7-multidimensional_processing/imagej.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../../_sources/chapters/2-processing/7-multidimensional_processing/imagej.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../../_sources/chapters/2-processing/7-multidimensional_processing/imagej.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../../../_sources/chapters/2-processing/7-multidimensional_processing/imagej.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#point-operations-contrast-conversion">
-   Point operations, contrast &amp; conversion
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#d-filtering">
-   3D filtering
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#fast-separable-filters">
-     Fast, separable filters
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dimensions-isotropy">
-     Dimensions &amp; isotropy
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#thresholding-multidimensional-data">
-   Thresholding multidimensional data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#measurements-in-3d-data">
-   Measurements in 3D data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#histograms-threshold-clipping">
-     Histograms &amp; threshold clipping
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-3d-objects-counter">
-     The 3D Objects Counter
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>ImageJ: Multidimensional processing</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#point-operations-contrast-conversion">
-   Point operations, contrast &amp; conversion
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#d-filtering">
-   3D filtering
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#fast-separable-filters">
-     Fast, separable filters
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dimensions-isotropy">
-     Dimensions &amp; isotropy
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#thresholding-multidimensional-data">
-   Thresholding multidimensional data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#measurements-in-3d-data">
-   Measurements in 3D data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#histograms-threshold-clipping">
-     Histograms &amp; threshold clipping
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-3d-objects-counter">
-     The 3D Objects Counter
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ImageJ: Multidimensional processing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-operations-contrast-conversion">Point operations, contrast &amp; conversion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-filtering">3D filtering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-separable-filters">Fast, separable filters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensions-isotropy">Dimensions &amp; isotropy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thresholding-multidimensional-data">Thresholding multidimensional data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurements-in-3d-data">Measurements in 3D data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms-threshold-clipping">Histograms &amp; threshold clipping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-3d-objects-counter">The 3D Objects Counter</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="imagej-multidimensional-processing">
-<h1>ImageJ: Multidimensional processing<a class="headerlink" href="#imagej-multidimensional-processing" title="Permalink to this headline">#</a></h1>
+<h1>ImageJ: Multidimensional processing<a class="headerlink" href="#imagej-multidimensional-processing" title="Permalink to this heading">#</a></h1>
 <div class="warning admonition">
 <p class="admonition-title">Work in progress!</p>
 <p>This section isn’t complete yet.
 It’s really just a scattered collection of thoughts for now.</p>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
 <span class="o">%</span><span class="k">autoreload</span> 2
@@ -827,13 +513,14 @@ It’s really just a scattered collection of thoughts for now.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>This section gives a brief overview of some things to think about when working with z-stacks and time series in ImageJ.</p>
 </section>
 <section id="point-operations-contrast-conversion">
-<h2>Point operations, contrast &amp; conversion<a class="headerlink" href="#point-operations-contrast-conversion" title="Permalink to this headline">#</a></h2>
+<h2>Point operations, contrast &amp; conversion<a class="headerlink" href="#point-operations-contrast-conversion" title="Permalink to this heading">#</a></h2>
 <p>Point operations are straightforward: they depend only on individual pixels, so the number of dimensions is unimportant.
 Image arithmetic involving a 3D stack and a 2D image can also be carried out in ImageJ using the <span class="menuselection notranslate">Process ‣ Image Calculator</span>, where the operation involving the 2D image is applied to each slice of the 3D stack in turn.
 Other options, such as filtering and thresholding, are possible, but bring with them extra considerations – and often significantly higher computational costs.</p>
@@ -843,14 +530,14 @@ Optimizing the display for a single slice does not necessarily mean the rest of 
 You can also specify the percentage of pixels that should be saturated (clipped) <em>for display</em>, i.e. those that should be shown with the first or last colors in the LUT.
 So long as <span class="guilabel notranslate">Normalize</span> and <span class="guilabel notranslate">Equalize histogram</span> are not selected, the pixel values shouldn’t be changed.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="d3044b98-9f4e-421a-b124-16340f5dd956" name="58311cab-fee3-4a17-b1e6-97932f238320" type="radio">
-</input><label class="sd-tab-label" for="d3044b98-9f4e-421a-b124-16340f5dd956">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
 Question</label><div class="sd-tab-content docutils">
 <p>By default, the percentage of saturated pixels in <span class="menuselection notranslate">Enhance Contrast…</span> is set to 0.4.
 Why might this be chosen instead of 0?</p>
 </div>
-<input id="94071161-78ea-429b-9ccc-04825fdeb8c9" name="58311cab-fee3-4a17-b1e6-97932f238320" type="radio">
-</input><label class="sd-tab-label" for="94071161-78ea-429b-9ccc-04825fdeb8c9">
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
 Answer</label><div class="sd-tab-content docutils">
 <p>If the percentage of saturated pixels is 0, then the minimum and maximum pixel values throughout the image will be given the first and last LUT colors respectively, with all other colors devoted to values in between.
 This is sensitive to outliers, and often results in images that have poor contrast.
@@ -867,14 +554,14 @@ This means no pixels will be clipped in the output (although rescaling and round
 </div>
 </section>
 <section id="d-filtering">
-<h2>3D filtering<a class="headerlink" href="#d-filtering" title="Permalink to this headline">#</a></h2>
+<h2>3D filtering<a class="headerlink" href="#d-filtering" title="Permalink to this heading">#</a></h2>
 <p>Many filters naturally lend themselves to being applied to as many dimensions as are required.
 For example, a 3×3 mean filter can easily become a 3×3×3 filter if averaging across slices is allowed.
 Importantly, it then replaces each pixel by the average of 27 values, rather than 9.</p>
 <p>This implies the reduction in noise is <em>somewhat</em> similar to that of applying a 5×5 filter (25 values), but with a little less blurring in 2D and a little more along the third dimension instead.
 Several 3D filters are available under the <span class="menuselection notranslate">Plugins ‣ Process ‣</span> submenu.</p>
 <section id="fast-separable-filters">
-<h3>Fast, separable filters<a class="headerlink" href="#fast-separable-filters" title="Permalink to this headline">#</a></h3>
+<h3>Fast, separable filters<a class="headerlink" href="#fast-separable-filters" title="Permalink to this heading">#</a></h3>
 <p><span class="menuselection notranslate">Process ‣ Filters ‣ Gaussian Blur 3D…</span> uses this approach.</p>
 <div class="info admonition">
 <p class="admonition-title">Fast filters &amp; the Fourier transform</p>
@@ -883,7 +570,7 @@ However, when this is the case a whole other method can be used to get the same 
 </div>
 </section>
 <section id="dimensions-isotropy">
-<h3>Dimensions &amp; isotropy<a class="headerlink" href="#dimensions-isotropy" title="Permalink to this headline">#</a></h3>
+<h3>Dimensions &amp; isotropy<a class="headerlink" href="#dimensions-isotropy" title="Permalink to this heading">#</a></h3>
 <p>If applying a filter in 3D instead of 2D, it may seem natural to define it as having the same size in the third dimension as in the original two.
 But for a <strong>z</strong>-stack, the spacing between slices is usually larger than the width and height of a pixel.
 And if the third dimension is time, then it uses another scale entirely.
@@ -894,16 +581,16 @@ Elsewhere (e.g. <span class="menuselection notranslate">Gaussian Blur 3D…</spa
 </section>
 </section>
 <section id="thresholding-multidimensional-data">
-<h2>Thresholding multidimensional data<a class="headerlink" href="#thresholding-multidimensional-data" title="Permalink to this headline">#</a></h2>
+<h2>Thresholding multidimensional data<a class="headerlink" href="#thresholding-multidimensional-data" title="Permalink to this heading">#</a></h2>
 <p>When thresholding an image with more than 2 dimensions using the <span class="menuselection notranslate">Threshold…</span> command, it is necessary to choose whether the threshold should be determined from the histogram of the entire stack, or from the currently-visible 2D slice only.
 If the latter, you will also be asked whether the same threshold should be used for every slice, or if it should be calculated anew for each slice based upon the slice histogram. In some circumstances, these choices can have a very large impact upon the result.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="987945da-9bac-4985-92c8-9876b10d6101" name="097c6cf3-dd2f-49a8-a98e-26a60022aaae" type="radio">
-</input><label class="sd-tab-label" for="987945da-9bac-4985-92c8-9876b10d6101">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
 Question</label><div class="sd-tab-content docutils">
 <p>When you threshold a stack, you have an option to choose <span class="guilabel notranslate">Stack Histogram</span>. Then, when you choose <span class="guilabel notranslate">Apply</span> you are asked if you want to <span class="guilabel notranslate">Calculate Threshold for Each Image</span>.
 What difference do you expect these two options to make, and what combinations would you use for:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>a stack consisting of 2D images from different color channels</p></li>
 <li><p>a <strong>z</strong>-stack</p></li>
 <li><p>a time series</p></li>
@@ -912,13 +599,13 @@ What difference do you expect these two options to make, and what combinations w
 You will have to split the channels for this because ImageJ currently refuses to threshold multichannel images with extra dimensions (which helps avoid some confusion).
 <span class="guilabel notranslate">Dark Background</span> should always be selected here.</p>
 </div>
-<input id="a24ed2e9-03a4-4aae-8e1d-18e668cc22db" name="097c6cf3-dd2f-49a8-a98e-26a60022aaae" type="radio">
-</input><label class="sd-tab-label" for="a24ed2e9-03a4-4aae-8e1d-18e668cc22db">
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
 Answer</label><div class="sd-tab-content docutils">
 <p>If <span class="guilabel notranslate">Stack Histogram</span> is checked, the thresholds are computed from a histogram of all the pixels in the entire image stack; otherwise, the histogram of only the currently-displayed image slice is used.</p>
 <p>BUT! If <span class="guilabel notranslate">Calculate Threshold for Each Image</span> is chosen, then this is ignored: the threshold is always determined by the selected automatic method using the histogram of the corresponding slice only.</p>
 <p>Therefore, the most sensible combinations of thresholding options to use depend upon the type of data.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><em>color channels</em> – There is often no good reason to suppose the amount of fluorescence in different color channels will be similar, and so thresholds should be calculated from each channel independently.</p></li>
 <li><p><em>z-Stacks</em> – It is normally a good idea to use the stack histogram with <strong>z</strong>-stacks.
 If you do not, then your threshold will be affected by whatever slice you happen to be viewing at the time of thresholding – introducing a potentially weird source of variability in the results.
@@ -926,7 +613,7 @@ It is probably <em>not</em> a good idea to calculate a new threshold for each sl
 But in the outer slices there may well only be blur and noise – in which case nothing <em>should</em> be detected!</p></li>
 <li><p><em>Time series</em> – In a time series, bleaching can sometimes cause the image to darken over time.
 In such a case, using the stack histogram might cause fewer pixels to exceed the threshold at later time points simply for this reason, and recalculating the threshold for each image may be better.
-On the other hand, if images were previously normalized somehow to compensate for bleaching <a class="footnote-reference brackets" href="#fn-1" id="id1">1</a>, then the stack threshold might be preferable again.
+On the other hand, if images were previously normalized somehow to compensate for bleaching <a class="footnote-reference brackets" href="#fn-1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, then the stack threshold might be preferable again.
 It’s tricky.</p></li>
 </ol>
 <p>There is one other implementation issue that needs attention.
@@ -939,12 +626,17 @@ A similar situation occurs with the low threshold when <span class="guilabel not
 </div>
 </section>
 <section id="measurements-in-3d-data">
-<h2>Measurements in 3D data<a class="headerlink" href="#measurements-in-3d-data" title="Permalink to this headline">#</a></h2>
+<h2>Measurements in 3D data<a class="headerlink" href="#measurements-in-3d-data" title="Permalink to this heading">#</a></h2>
 <p>ImageJ has good support for making measurements in 2D, particularly the <span class="menuselection notranslate">Measure</span> and <span class="menuselection notranslate">Analyze Particles…</span> commands. The latter can happily handle 3D images, but only by creating and measuring 2D ROIs independently on each slice.
 Alternatively, <span class="menuselection notranslate">Image ‣ Stacks ‣ Plot Z-axis Profile</span> is like applying <span class="menuselection notranslate">Measure</span> to each slice independently, making measurements either over the entire image or any ROI.
 It will also plot the mean pixel values, but even if you do not particularly want this the command can still be useful.
 However, if single measurements should be made for individual objects that extend across multiple slices, neither of these options would be enough.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/widest_roi_1.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
@@ -954,31 +646,30 @@ However, if single measurements should be made for individual objects that exten
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="92e0e6c0-c6cd-4a71-b4d8-966bde4aebfc" name="616ace26-2c50-4dee-bd04-1e55c3e37e43" type="radio">
-</input><label class="sd-tab-label" for="92e0e6c0-c6cd-4a71-b4d8-966bde4aebfc">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
 Practical</label><div class="sd-tab-content docutils">
 <p>Suppose you have a cell, nucleus or some other large 3D structure in a <strong>z</strong>-stack, and you want to draw the smallest 2D ROI that completely contains it on every slice.
 An example is shown below for the green structure in the <span class="menuselection notranslate">Confocal Series</span> sample image.</p>
 <p>How would you create such a ROI, and be confident that it is large enough for all slices?</p>
 <p><a class="reference external" href="https://ij.imjoy.io?run=https://gist.github.com/petebankhead/55b02288a529512fee0f321fee0da693"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 <figure class="align-default">
-<div class="cell_output docutils container">
-<img alt="../../../_images/imagej_10_0.png" src="../../../_images/imagej_10_0.png" />
-</div>
+<img alt="../../../_images/f0de675528b2c535737487a09615927f3b44ff56b9d6a81623c091c838f4dd45.png" src="../../../_images/f0de675528b2c535737487a09615927f3b44ff56b9d6a81623c091c838f4dd45.png" />
 </figure>
 </div>
-<input id="a76ddb4d-2443-4535-9d00-54695d62129d" name="616ace26-2c50-4dee-bd04-1e55c3e37e43" type="radio">
-</input><label class="sd-tab-label" for="a76ddb4d-2443-4535-9d00-54695d62129d">
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
 Solution</label><div class="sd-tab-content docutils">
 <p>My strategy would be to create a z-projection (max intensity) and then draw the ROI on this – or, preferably, create the ROI by thresholding using <span class="menuselection notranslate">Image ‣ Adjust ‣ Threshold</span> and the <span class="guilabel notranslate">Wand</span> tool.
 This ROI can then be transferred over to the original stack, either via the ROI Manager or <span class="menuselection notranslate">Edit ‣ Selection ‣ Restore Selection</span>.</p>
 </div>
 </div>
 <section id="histograms-threshold-clipping">
-<h3>Histograms &amp; threshold clipping<a class="headerlink" href="#histograms-threshold-clipping" title="Permalink to this headline">#</a></h3>
-<p>One way to measure in 3D is to use the <span class="menuselection notranslate">Histogram</span> command and specify that the entire stack should be included – this provides some basic statistics, including the total number, mean, minimum, maximum and standard deviation of the pixels <a class="footnote-reference brackets" href="#fn-2" id="id2">2</a>.
+<h3>Histograms &amp; threshold clipping<a class="headerlink" href="#histograms-threshold-clipping" title="Permalink to this heading">#</a></h3>
+<p>One way to measure in 3D is to use the <span class="menuselection notranslate">Histogram</span> command and specify that the entire stack should be included – this provides some basic statistics, including the total number, mean, minimum, maximum and standard deviation of the pixels <a class="footnote-reference brackets" href="#fn-2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
 This will respect the boundaries of a 2D ROI if one has been drawn.</p>
 <p>This is a start, but it will not adjust to changes in the object boundary on each 2D plane.
 A better approach could be to use <span class="menuselection notranslate">Image ‣ Adjust ‣ Threshold…</span> to set a threshold that identifies the object – but do <em>not</em> press <span class="guilabel notranslate">Apply</span> to generate a binary image.
@@ -986,14 +677,14 @@ Rather, under <span class="menuselection notranslate">Analyze ‣ Set Measuremen
 Then when you compute the stack histogram (or press <span class="menuselection notranslate">Measure</span> for 2D) only above-threshold pixels will be included in the statistics.
 Just be sure to reset <span class="guilabel notranslate">Limit to threshold</span> later.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="e59e37cb-dd26-4b2a-8025-f59726662b62" name="33b9ecd7-7b69-4be8-b157-c495db03aabd" type="radio">
-</input><label class="sd-tab-label" for="e59e37cb-dd26-4b2a-8025-f59726662b62">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
 Question</label><div class="sd-tab-content docutils">
 <p>How can you translate the total number of pixels in an object into its volume, e.g.
 in µm<sup>3</sup>? Give some thought to how accurate your method will be.</p>
 </div>
-<input id="dd6928ce-836d-4c1b-9e98-62717a951c48" name="33b9ecd7-7b69-4be8-b157-c495db03aabd" type="radio">
-</input><label class="sd-tab-label" for="dd6928ce-836d-4c1b-9e98-62717a951c48">
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
 Answer</label><div class="sd-tab-content docutils">
 <p>You could treat each pixel as a rectangular cuboid, with a volume equal to <em>pixel width_×_pixel height_×_voxel depth</em> (as given in <span class="menuselection notranslate">Image ‣ Properties…</span>).
 Then multiply this by the number of pixels within the object.
@@ -1010,8 +701,8 @@ They are also likely to be quite sensitive to spacing.</p>
 </div>
 </section>
 <section id="the-3d-objects-counter">
-<span id="sec-multidimensional-counter"></span><h3>The 3D Objects Counter<a class="headerlink" href="#the-3d-objects-counter" title="Permalink to this headline">#</a></h3>
-<p>Currently, the closest thing to <span class="menuselection notranslate">Analyze Particles…</span> for measuring connected objects in 3D built-in to Fiji is the 3D Objects Counter (<span class="menuselection notranslate">Analyze ‣ 3D Objects Counter</span>) <a class="footnote-reference brackets" href="#fn-3" id="id3">3</a>.
+<span id="sec-multidimensional-counter"></span><h3>The 3D Objects Counter<a class="headerlink" href="#the-3d-objects-counter" title="Permalink to this heading">#</a></h3>
+<p>Currently, the closest thing to <span class="menuselection notranslate">Analyze Particles…</span> for measuring connected objects in 3D built-in to Fiji is the 3D Objects Counter (<span class="menuselection notranslate">Analyze ‣ 3D Objects Counter</span>) <a class="footnote-reference brackets" href="#fn-3" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.
 Its settings (analogous to <span class="menuselection notranslate">Set Measurements…</span>) are under <span class="menuselection notranslate">Analyze ‣ 3D OC Options</span>.
 In addition to various measurements, it provides labelled images as output, either of the entire objects or only their central pixels – optionally with labels, or expanded to be more visible.</p>
 <div class="info admonition">
@@ -1026,19 +717,20 @@ his not only includes a range of fast filters and commands for segmentation, but
 <p>While created for bone image analysis, <em>BoneJ</em> (<a class="reference external" href="https://bonej.org">https://bonej.org</a>) also includes some components that are useful for general applications –- including a fast <a class="reference external" href="https://bonej.org/particles">3D Particle Analyser</a> (another alternative to the 3D Objects Counter) and a tool to <a class="reference external" href="https://bonej.org/utilities">interpolate ROIs across image slices</a>.</p>
 </div>
 <hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="fn-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>See <a class="reference external" href="https://imagej.net/Bleach_Correction">https://imagej.net/Bleach_Correction</a></p>
-</dd>
-<dt class="label" id="fn-2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>Be careful! If you have multiple channels, these should be split first</p>
-</dd>
-<dt class="label" id="fn-3"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
-<dd><p>See See S Bolte and F P Cordelières.
+<aside class="footnote brackets" id="fn-1" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>See <a class="reference external" href="https://imagej.net/Bleach_Correction">https://imagej.net/Bleach_Correction</a></p>
+</aside>
+<aside class="footnote brackets" id="fn-2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Be careful! If you have multiple channels, these should be split first</p>
+</aside>
+<aside class="footnote brackets" id="fn-3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>See See S Bolte and F P Cordelières.
 “A guided tour into subcellular colocalization analysis in light microscopy.” Journal of Microscopy <a class="reference external" href="http://224.Pt">224.Pt</a> 3 (Dec. 2006), pp. 213–32.
 url: <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/17210054/">https://pubmed.ncbi.nlm.nih.gov/17210054/</a></p>
-</dd>
-</dl>
+</aside>
 </section>
 </section>
 </section>
@@ -1055,7 +747,7 @@ url: <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/1721005
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chapters/2-processing/7-multidimensional_processing"
         },
         predefinedOutput: true
@@ -1063,50 +755,111 @@ url: <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/1721005
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="multidimensional_processing.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Multidimensional processing</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="multidimensional_processing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Multidimensional processing</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../../3-fluorescence/1-formation_overview/formation_overview.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../../3-fluorescence/1-formation_overview/formation_overview.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">From photons to pixels</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-operations-contrast-conversion">Point operations, contrast &amp; conversion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-filtering">3D filtering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-separable-filters">Fast, separable filters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensions-isotropy">Dimensions &amp; isotropy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thresholding-multidimensional-data">Thresholding multidimensional data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurements-in-3d-data">Measurements in 3D data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms-threshold-clipping">Histograms &amp; threshold clipping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-3d-objects-counter">The 3D Objects Counter</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By Pete Bankhead<br/>
-  
-      &copy; Copyright 2022-2023.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By Pete Bankhead
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022-2023.
+      <br/>
+    
+  </p>
 
-      </div>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

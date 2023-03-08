@@ -1,50 +1,62 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Image transforms &#8212; Introduction to Bioimage Analysis</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script data-domain="bioimagebook.github.io" defer="defer" src="https://plausible.io/js/script.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,65 +64,94 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/2-processing/6-transforms/transforms';</script>
     <link rel="canonical" href="https://bioimagebook.github.io/chapters/2-processing/6-transforms/transforms.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="ImageJ: Image transforms" href="imagej.html" />
     <link rel="prev" title="ImageJ: Morphological operations" href="../5-morph/imagej.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script defer data-domain="bioimagebook.github.io" src="https://plausible.io/js/plausible.js"></script>
-<meta name="google-site-verification" content="Aem87SvFh5w_cCS2z43mVgKmnIdYgMBOapUPZ_SQWVY" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -119,669 +160,329 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Front matter
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
-   Acknowledgements
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../CHANGELOG.html">
-   Changelog
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Before we begin
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Before we begin</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/preface/preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/reading/reading.html">
-   How to read this book
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/preface/preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/reading/reading.html">How to read this book</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introducing images
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducing images</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">
-   Images &amp; pixels
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">
-     ImageJ: Images &amp; pixels
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">
-     Python: Images &amp; pixels
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">
-   Measurements &amp; histograms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">
-     ImageJ: Measurements &amp; histograms
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/2-measurements/python.html">
-     Python: Measurements &amp; histograms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">
-   Types &amp; bit-depths
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">
-     ImageJ: Types &amp; bit-depths
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">
-     Python: Types &amp; bit-depths
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/4-colors/colors.html">
-   Channels &amp; colors
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/4-colors/imagej.html">
-     ImageJ: Channels &amp; colors
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/4-colors/python.html">
-     Python: Channels &amp; colors
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">
-   Pixel size &amp; dimensions
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">
-     ImageJ:  Pixel size &amp; dimensions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">
-     Python:  Pixel size &amp; dimensions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/6-files/files.html">
-   Files &amp; file formats
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/6-files/imagej.html">
-     ImageJ: Files &amp; file formats
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/6-files/python.html">
-     Python: Files &amp; file formats
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">Images &amp; pixels</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">ImageJ: Images &amp; pixels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">Python: Images &amp; pixels</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Processing &amp; analysis
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">Measurements &amp; histograms</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">ImageJ: Measurements &amp; histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/2-measurements/python.html">Python: Measurements &amp; histograms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">Types &amp; bit-depths</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">ImageJ: Types &amp; bit-depths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">Python: Types &amp; bit-depths</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/4-colors/colors.html">Channels &amp; colors</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/4-colors/imagej.html">ImageJ: Channels &amp; colors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/4-colors/python.html">Python: Channels &amp; colors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">Pixel size &amp; dimensions</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">ImageJ:  Pixel size &amp; dimensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">Python:  Pixel size &amp; dimensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/6-files/files.html">Files &amp; file formats</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/6-files/imagej.html">ImageJ: Files &amp; file formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/6-files/python.html">Python: Files &amp; file formats</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Processing &amp; analysis</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">
-   Image processing &amp; analysis
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../2-point_operations/point_operations.html">
-   Point operations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2-point_operations/imagej.html">
-     ImageJ: Point operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../3-thresholding/thresholding.html">
-   Thresholding
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../3-thresholding/imagej.html">
-     ImageJ: Thresholding
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../4-filters/filters.html">
-   Filters
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../4-filters/imagej.html">
-     ImageJ: Filters
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../5-morph/morph.html">
-   Morphological operations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../5-morph/imagej.html">
-     ImageJ: Morphological operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
-   Image transforms
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="imagej.html">
-     ImageJ: Image transforms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../7-multidimensional_processing/multidimensional_processing.html">
-   Multidimensional processing
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../7-multidimensional_processing/imagej.html">
-     ImageJ: Multidimensional processing
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">Image processing &amp; analysis</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2-point_operations/point_operations.html">Point operations</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2-point_operations/imagej.html">ImageJ: Point operations</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Fluorescence microscopy
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
-   From photons to pixels
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
-   Blur &amp; the PSF
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
-   Noise
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
-   Microscopes &amp; detectors
-  </a>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3-thresholding/thresholding.html">Thresholding</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3-thresholding/imagej.html">ImageJ: Thresholding</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendices
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4-filters/filters.html">Filters</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4-filters/imagej.html">ImageJ: Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../5-morph/morph.html">Morphological operations</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../5-morph/imagej.html">ImageJ: Morphological operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Image transforms</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="imagej.html">ImageJ: Image transforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../7-multidimensional_processing/multidimensional_processing.html">Multidimensional processing</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../7-multidimensional_processing/imagej.html">ImageJ: Multidimensional processing</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fluorescence microscopy</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
-   Beyond this book
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/python/python.html">
-   Python Primer
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
-   ImageJ: Writing macros
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
-     Difference of Gaussians
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
-     Simulating image formation
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">From photons to pixels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">Blur &amp; the PSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">Noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">Microscopes &amp; detectors</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/next_steps/next_steps.html">Beyond this book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/python/python.html">Python Primer</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../appendices/macros/macro_intro.html">ImageJ: Writing macros</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_dog.html">Difference of Gaussians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_simulating.html">Simulating image formation</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/6-transforms/transforms.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/6-transforms/transforms.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../../_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/chapters/2-processing/6-transforms/transforms.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../../_sources/chapters/2-processing/6-transforms/transforms.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../../_sources/chapters/2-processing/6-transforms/transforms.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../../../_sources/chapters/2-processing/6-transforms/transforms.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-distance-transform">
-   The distance transform
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-watershed-transform">
-   The watershed transform
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#combining-transforms">
-   Combining transforms
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#splitting-round-objects">
-     Splitting round objects
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#partitioning-images-with-voronoi">
-     Partitioning images with Voronoi
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expanding-without-overlaps">
-     Expanding without overlaps
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Image transforms</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-distance-transform">
-   The distance transform
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-watershed-transform">
-   The watershed transform
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#combining-transforms">
-   Combining transforms
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#splitting-round-objects">
-     Splitting round objects
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#partitioning-images-with-voronoi">
-     Partitioning images with Voronoi
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expanding-without-overlaps">
-     Expanding without overlaps
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Image transforms</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-distance-transform">The distance transform</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-watershed-transform">The watershed transform</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-transforms">Combining transforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-round-objects">Splitting round objects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partitioning-images-with-voronoi">Partitioning images with Voronoi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expanding-without-overlaps">Expanding without overlaps</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="image-transforms">
-<span id="chap-transforms"></span><h1>Image transforms<a class="headerlink" href="#image-transforms" title="Permalink to this headline">#</a></h1>
+<span id="chap-transforms"></span><h1>Image transforms<a class="headerlink" href="#image-transforms" title="Permalink to this heading">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -791,6 +492,11 @@ title="Print to PDF"
 </ul>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
 <span class="o">%</span><span class="k">autoreload</span> 2
@@ -806,20 +512,26 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>An <strong>image transform</strong> converts an image into some other form, in which the pixel values can have a (sometimes very) different interpretation.</p>
 <p>There are lots of ways to transform an image.
 We will focus on two that are especially useful for bioimage segmentation and analysis: the distance transform and the watershed transform.
 We will briefly introduce both, before then showing how they can be used in combination.</p>
 </section>
 <section id="the-distance-transform">
-<h2>The distance transform<a class="headerlink" href="#the-distance-transform" title="Permalink to this headline">#</a></h2>
+<h2>The distance transform<a class="headerlink" href="#the-distance-transform" title="Permalink to this heading">#</a></h2>
 <p>The <strong>distance transform</strong> (sometimes called the <strong>Euclidean distance transform</strong>) replaces each pixel of a binary image with the distance to the closest background pixel.
 If the pixel itself is already part of the background then this is zero.
 The result is an image called a <strong>distance map</strong>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
@@ -844,13 +556,12 @@ The result is an image called a <strong>distance map</strong>.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-morph-distance-detail">
-<div class="cell_output docutils container">
-<img alt="../../../_images/transforms_4_0.png" src="../../../_images/transforms_4_0.png" />
-</div>
+<img alt="../../../_images/a4b1bd40248a193763d72890c527be2ba8f43bbba181ecab4af8295aa9a2ebc7.png" src="../../../_images/a4b1bd40248a193763d72890c527be2ba8f43bbba181ecab4af8295aa9a2ebc7.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 115 </span><span class="caption-text">A binary image and its corresponding distance map, including pixel values as an overlay.</span><a class="headerlink" href="#fig-morph-distance-detail" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 117 </span><span class="caption-text">A binary image and its corresponding distance map, including pixel values as an overlay.</span><a class="headerlink" href="#fig-morph-distance-detail" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>A natural question when considering the distance transform is: <em>why</em>?</p>
@@ -859,6 +570,11 @@ The result is an image called a <strong>distance map</strong>.</p>
 However, erosion and dilation can be computed from a distance map very efficiently simply by applying a global threshold.
 This can be much faster in practice.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
 <span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&lt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -882,13 +598,12 @@ This can be much faster in practice.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-morph-distance">
-<div class="cell_output docutils container">
-<img alt="../../../_images/transforms_7_0.png" src="../../../_images/transforms_7_0.png" />
-</div>
+<img alt="../../../_images/638e69fd45be74bdf7926d804c0eabc9fc75bef7847020f8c5d73c111575bb68.png" src="../../../_images/638e69fd45be74bdf7926d804c0eabc9fc75bef7847020f8c5d73c111575bb68.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 116 </span><span class="caption-text">Implementing erosion (C) and dilation (F) of binary images by thresholding distance maps.</span><a class="headerlink" href="#fig-morph-distance" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 118 </span><span class="caption-text">Implementing erosion (C) and dilation (F) of binary images by thresholding distance maps.</span><a class="headerlink" href="#fig-morph-distance" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>But the distance map contains useful information that we can use in other ways.</p>
@@ -899,15 +614,18 @@ The distance map values corresponding to foreground pixels in the thinned image 
 <p>However, the distance transform can become even more useful if we combine it with other transforms.</p>
 </section>
 <section id="the-watershed-transform">
-<h2>The watershed transform<a class="headerlink" href="#the-watershed-transform" title="Permalink to this headline">#</a></h2>
+<h2>The watershed transform<a class="headerlink" href="#the-watershed-transform" title="Permalink to this heading">#</a></h2>
 <p>The <strong>watershed transform</strong> is an example of a <strong>region growing</strong> method: beginning from some <strong>seed regions</strong>, the seeds are progressively expanded into larger regions until all the pixels of the image have been processed.
 This provides an alternative to straightforward thresholding, which can be <em>extremely</em> useful when need to partition an image into many different objects.</p>
 <p>To understand how the watershed transform works, picture the image as an uneven landscape in which the value of each pixel corresponds to a height.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
-
-<span class="k">def</span> <span class="nf">load_watershed_image</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_watershed_image</span><span class="p">():</span>
     <span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
     <span class="n">im</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
     <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -943,13 +661,12 @@ This provides an alternative to straightforward thresholding, which can be <em>e
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-transform-surface">
-<div class="cell_output docutils container">
-<img alt="../../../_images/transforms_11_0.png" src="../../../_images/transforms_11_0.png" />
-</div>
+<img alt="../../../_images/6c5be9b3fe23d762108fb5f8337ad7c72003bcd1c3b28941b7796a17593da4ae.png" src="../../../_images/6c5be9b3fe23d762108fb5f8337ad7c72003bcd1c3b28941b7796a17593da4ae.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 117 </span><span class="caption-text">Visualizing an image as a landscape, using surface plots. Higher pixel values are generally viewed as peaks, although can easily switched to become valleys by inverting the image before plotting. This may be useful when providing input to the watershed transform.</span><a class="headerlink" href="#fig-transform-surface" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 119 </span><span class="caption-text">Visualizing an image as a landscape, using surface plots. Higher pixel values are generally viewed as peaks, although can easily switched to become valleys by inverting the image before plotting. This may be useful when providing input to the watershed transform.</span><a class="headerlink" href="#fig-transform-surface" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Now imagine water falling evenly upon this surface and slowly flooding it.
@@ -958,13 +675,18 @@ These define the <strong>seeds</strong> of the watershed transform; we can think
 <p>As the water level rises across the image, occasionally it will reach a ridge between two basins – and, in reality, water could spill from one basin into the other.
 However, in the watershed transform this is not permitted; rather a dam is constructed at such ridges.
 The water then continues to rise, with dams being built as needed, until in the end every pixel is either part of a basin or a ridge, and there are exactly the same number of basins afterwards as there were at first.</p>
-<p>The operation of the watershed transform is illustrated in the video below and example output shown in <a class="reference internal" href="#fig-transform-surface-watershed"><span class="std std-numref">Fig. 118</span></a>.</p>
+<p>The operation of the watershed transform is illustrated in the video below and example output shown in <a class="reference internal" href="#fig-transform-surface-watershed"><span class="std std-numref">Fig. 120</span></a>.</p>
 <video autoplay loop playsinline controls muted>
   <source src="../../../_static/videos/watershed.mp4" type="video/mp4">
 </video>
 <!-- <div class=video-container>
 <iframe width="1042" height="586" src="https://www.youtube.com/embed/yywoAgJzje8?loop=1&playlist=yywoAgJzje8&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div> --><div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
 <span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
@@ -997,28 +719,27 @@ The water then continues to rise, with dams being built as needed, until in the 
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-transform-surface-watershed">
-<div class="cell_output docutils container">
-<img alt="../../../_images/transforms_15_1.png" src="../../../_images/transforms_15_1.png" />
-</div>
+<img alt="../../../_images/21be6fc78b5ce9f0a264ac2527d0d6ed5b10138a39eb662b076f8a86a09bdb47.png" src="../../../_images/21be6fc78b5ce9f0a264ac2527d0d6ed5b10138a39eb662b076f8a86a09bdb47.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 118 </span><span class="caption-text">Applying the watershed transform to an image. Here, we passed the inverted image to the watershed transform because we want to identify bright spots rather than dark ones. The full watershed transform will expand the seeds to create a labeled image including all pixels, but we can optionally mask the expansion to prevent it filling the background. Here, we defined the mask by applying a global threshold using the triangle method. Note that the masked watershed segmentation is able to split some spots that were merged using the global threshold alone.</span><a class="headerlink" href="#fig-transform-surface-watershed" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 120 </span><span class="caption-text">Applying the watershed transform to an image. Here, we passed the inverted image to the watershed transform because we want to identify bright spots rather than dark ones. The full watershed transform will expand the seeds to create a labeled image including all pixels, but we can optionally mask the expansion to prevent it filling the background. Here, we defined the mask by applying a global threshold using the triangle method. Note that the masked watershed segmentation is able to split some spots that were merged using the global threshold alone.</span><a class="headerlink" href="#fig-transform-surface-watershed" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Crucially, as the seeds are expanded during the watershed transform, regions are not allowed to overlap.
 Furthermore, once a pixel has been assigned to a region then it cannot be moved to become part of any other region.</p>
 <p>Using the ‘rain falling on a surface’ analogy, the seeds would be <strong>regional minima</strong> in an image, i.e. pixels with values that are lower than all neighboring pixels.
 This is where the water would gather first.</p>
-<p>In practice, we often need to have more control over the seeds rather than accepting all regional minima (to see why too many local minima could be a problem, observe that <a class="reference internal" href="#fig-transform-surface-watershed"><span class="std std-numref">Fig. 118</span></a> contains more regions that we probably would want).
+<p>In practice, we often need to have more control over the seeds rather than accepting all regional minima (to see why too many local minima could be a problem, observe that <a class="reference internal" href="#fig-transform-surface-watershed"><span class="std std-numref">Fig. 120</span></a> contains more regions that we probably would want).
 This variation is called the <strong>seeded watershed transform</strong>: the idea is the same, but we simply provide the seeds explicitly in the form of a labeled image, and the regions grow from these.
 We can generate seeds using other processing steps, such as by identifying <a class="reference internal" href="../5-morph/morph.html#sec-h-extrema"><span class="std std-ref">H-minima</span></a>.</p>
 </section>
 <section id="combining-transforms">
-<h2>Combining transforms<a class="headerlink" href="#combining-transforms" title="Permalink to this headline">#</a></h2>
+<h2>Combining transforms<a class="headerlink" href="#combining-transforms" title="Permalink to this heading">#</a></h2>
 <p>The watershed transform can be applied to any image, but it has some particularly interesting applications when it is applied to an image that is a distance map.</p>
 <section id="splitting-round-objects">
-<h3>Splitting round objects<a class="headerlink" href="#splitting-round-objects" title="Permalink to this headline">#</a></h3>
+<h3>Splitting round objects<a class="headerlink" href="#splitting-round-objects" title="Permalink to this heading">#</a></h3>
 <p>A distance map has regional maxima whenever a foreground pixel is further from the background than any of its neighbors.</p>
 <p>This tends to occur towards the center of objects: particularly round objects that don’t contain any holes.
 Importantly, regional maxima can still be present even if the ‘round objects’ are connected to one another in the binary image used to generate the distance map originally.</p>
@@ -1030,6 +751,11 @@ The process is as follows:</p>
 <li><p>Apply the watershed transform, starting from the regional minima of the inverted distance map</p></li>
 </ul>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">disk</span><span class="p">,</span> <span class="n">dilation</span>
 <span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
@@ -1052,18 +778,22 @@ The process is as follows:</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-morph-distance-split-small">
-<div class="cell_output docutils container">
-<img alt="../../../_images/transforms_18_0.png" src="../../../_images/transforms_18_0.png" />
-</div>
+<img alt="../../../_images/9bc5ce3a348c64db1a9752cf4efc9f127e758e6a48d8759e6cd4a63c050553f2.png" src="../../../_images/9bc5ce3a348c64db1a9752cf4efc9f127e758e6a48d8759e6cd4a63c050553f2.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 119 </span><span class="caption-text">Splitting round objects using the distance and watershed transforms.</span><a class="headerlink" href="#fig-morph-distance-split-small" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 121 </span><span class="caption-text">Splitting round objects using the distance and watershed transforms.</span><a class="headerlink" href="#fig-morph-distance-split-small" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The objects to be split do not have to be perfectly round.
 The only requirement is that there are clearly distinct regional maxima in the distance transform – or, alternatively, we can define suitable seeds using other processing steps.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
 <span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
@@ -1100,13 +830,12 @@ The only requirement is that there are clearly distinct regional maxima in the d
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-morph-distance-split">
-<div class="cell_output docutils container">
-<img alt="../../../_images/transforms_20_0.png" src="../../../_images/transforms_20_0.png" />
-</div>
+<img alt="../../../_images/946998e43cedeeacf75b9a6f7e96eded6648395ca76a93a96598f2dc5fc2160c.png" src="../../../_images/946998e43cedeeacf75b9a6f7e96eded6648395ca76a93a96598f2dc5fc2160c.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 120 </span><span class="caption-text">Splitting merged blobs based on ‘roundness’ using the distance and watershed transforms.
+<p><span class="caption-number">Fig. 122 </span><span class="caption-text">Splitting merged blobs based on ‘roundness’ using the distance and watershed transforms.
 Because there are many small regional maxima in the distance transform, here we define seeds using H-maxima followed by a 3×3 dilation to avoid excessive splitting.</span><a class="headerlink" href="#fig-morph-distance-split" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
@@ -1119,11 +848,16 @@ In Python code using scikit-image, that means we are using the <code class="docu
 </div>
 </section>
 <section id="partitioning-images-with-voronoi">
-<h3>Partitioning images with Voronoi<a class="headerlink" href="#partitioning-images-with-voronoi" title="Permalink to this headline">#</a></h3>
+<h3>Partitioning images with Voronoi<a class="headerlink" href="#partitioning-images-with-voronoi" title="Permalink to this heading">#</a></h3>
 <p>Calculating the distance transform of an <em>inverted</em> binary image gives a distance map in which each pixel gives the distance to the closest foreground object.</p>
 <p>If we apply a watershed transform to this distance map, using the objects in the binary image as seeds, we effectively partition the image into different regions according to the closest object in the binary image.</p>
 <p>This is sometimes called the <strong>Voronoi transform</strong> of the image.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
 <span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
@@ -1148,23 +882,22 @@ In Python code using scikit-image, that means we are using the <code class="docu
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-morph-voronoi-expand">
-<div class="cell_output docutils container">
-<img alt="../../../_images/transforms_23_0.png" src="../../../_images/transforms_23_0.png" />
-</div>
+<img alt="../../../_images/0e49a37b9ae4ed40ae631401c2f3e616e622af59df92f570db3a1e0cc0f4bf6c.png" src="../../../_images/0e49a37b9ae4ed40ae631401c2f3e616e622af59df92f570db3a1e0cc0f4bf6c.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 121 </span><span class="caption-text">Expanding blobs to compute the Voronoi transform of a labeled image, partitioning it into different regions according to the closest seed object.</span><a class="headerlink" href="#fig-morph-voronoi-expand" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 123 </span><span class="caption-text">Expanding blobs to compute the Voronoi transform of a labeled image, partitioning it into different regions according to the closest seed object.</span><a class="headerlink" href="#fig-morph-voronoi-expand" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="expanding-without-overlaps">
-<h3>Expanding without overlaps<a class="headerlink" href="#expanding-without-overlaps" title="Permalink to this headline">#</a></h3>
+<h3>Expanding without overlaps<a class="headerlink" href="#expanding-without-overlaps" title="Permalink to this heading">#</a></h3>
 <p>Building upon the Vononoi idea in the last section, we can expand the objects themselves in such a way that they don’t overlap.</p>
 <figure class="margin align-default" id="id1">
 <img alt="../../../_images/qupath_cells.png" src="../../../_images/qupath_cells.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 122 </span><span class="caption-text">QuPath’s cell detection, based upon nucleus detection + watershed expansion.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 124 </span><span class="caption-text">QuPath’s cell detection, based upon nucleus detection + watershed expansion.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Our goal is to dilate each object in the image by 10 pixels, but without merging.
@@ -1174,6 +907,11 @@ This technique may be used to approximate a cell boundary based upon detected nu
 We can’t simply dilate a labeled image with a maximum filter, because there’s nothing to prevent regions merging into one another.
 When seeds are close together, the higher label will ‘win’ the expansion race in every case, dominating the output.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
 <span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
@@ -1195,21 +933,25 @@ When seeds are close together, the higher label will ‘win’ the expansion rac
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-morph-bad-expand">
-<div class="cell_output docutils container">
-<img alt="../../../_images/transforms_26_0.png" src="../../../_images/transforms_26_0.png" />
-</div>
+<img alt="../../../_images/bb7445d5cde1f7235730a32d7cfffae7d0a0ec780b3de37fe8f5c8dad5372942.png" src="../../../_images/bb7445d5cde1f7235730a32d7cfffae7d0a0ec780b3de37fe8f5c8dad5372942.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 123 </span><span class="caption-text">Expanding blobs using a maximum filter only. This approach is too simple; it results in overlapping labels and a lot of confusion.</span><a class="headerlink" href="#fig-morph-bad-expand" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 125 </span><span class="caption-text">Expanding blobs using a maximum filter only. This approach is too simple; it results in overlapping labels and a lot of confusion.</span><a class="headerlink" href="#fig-morph-bad-expand" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Instead, we need to build upon the Voronoi approach shown in <a class="reference internal" href="#fig-morph-voronoi-expand"><span class="std std-numref">Fig. 121</span></a>.
+<p>Instead, we need to build upon the Voronoi approach shown in <a class="reference internal" href="#fig-morph-voronoi-expand"><span class="std std-numref">Fig. 123</span></a>.
 The only difference we need to incorporate is that we prevent the watershed expansion from growing beyond 10 pixels.</p>
 <p>Fortunately, this criterion is easy to set: our distance map already gives us the distance to every seed object.
 We can threshold that to define a binary mask that indicates where regions should no longer expand.
 If we update our watershed output to have background pixels at the same locations where our binary mask has background pixels, we have achieved a constrained expansion of 10 pixels without overlap.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
 <span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
@@ -1241,13 +983,12 @@ If we update our watershed output to have background pixels at the same location
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-morph-distance-expand">
-<div class="cell_output docutils container">
-<img alt="../../../_images/transforms_29_0.png" src="../../../_images/transforms_29_0.png" />
-</div>
+<img alt="../../../_images/9e2a1ff5400599c0cd7007a7dac1fd3bc1d69a829f36b8877b15046d3506c06c.png" src="../../../_images/9e2a1ff5400599c0cd7007a7dac1fd3bc1d69a829f36b8877b15046d3506c06c.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 124 </span><span class="caption-text">Using distance and watershed transforms to expand regions by a fixed distance, without overlap. The final output (F) is obtained using information from all images (A) - (E).</span><a class="headerlink" href="#fig-morph-distance-expand" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 126 </span><span class="caption-text">Using distance and watershed transforms to expand regions by a fixed distance, without overlap. The final output (F) is obtained using information from all images (A) - (E).</span><a class="headerlink" href="#fig-morph-distance-expand" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1268,7 +1009,7 @@ If we update our watershed output to have background pixels at the same location
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chapters/2-processing/6-transforms"
         },
         predefinedOutput: true
@@ -1276,50 +1017,107 @@ If we update our watershed output to have background pixels at the same location
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../5-morph/imagej.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">ImageJ: Morphological operations</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../5-morph/imagej.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ImageJ: Morphological operations</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="imagej.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="imagej.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">ImageJ: Image transforms</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-distance-transform">The distance transform</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-watershed-transform">The watershed transform</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-transforms">Combining transforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-round-objects">Splitting round objects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partitioning-images-with-voronoi">Partitioning images with Voronoi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expanding-without-overlaps">Expanding without overlaps</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By Pete Bankhead<br/>
-  
-      &copy; Copyright 2022-2023.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By Pete Bankhead
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022-2023.
+      <br/>
+    
+  </p>
 
-      </div>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

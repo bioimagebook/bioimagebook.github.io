@@ -5,9 +5,9 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.11.5
+    jupytext_version: 1.14.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -69,7 +69,7 @@ In the case of a grayscale LUT, the red, green and blue values are all the same:
 
 import pandas as pd
 import numpy as np
-from matplotlib import cm
+from matplotlib import colormaps
 from matplotlib.colors import LinearSegmentedColormap
 
 def colormap_style(s):
@@ -87,7 +87,7 @@ def show_colormap(name: str, n_colors: int, caption = None):
     Display colormap in a pandas dataframe.
     """
     # Select a colormap & convert it to 8-bit
-    cmap = cm.get_cmap(name)
+    cmap = colormaps[name]
     color_inds = np.linspace(0, 255, n_colors).astype(np.uint32)
     colors = np.vstack([np.asarray(cmap(ind)[:3]) for ind in color_inds])
     colors = (colors * 255).astype(np.uint32)
@@ -108,19 +108,19 @@ def show_colormap(name: str, n_colors: int, caption = None):
 
 # Create standard red, green & blue colormaps
 cm_reds = LinearSegmentedColormap.from_list('reds', [(0,0,0), (1,0,0)])
-cm.register_cmap('reds', cm_reds)
+colormaps.register(cm_reds)
 cm_greens = LinearSegmentedColormap.from_list('greens', [(0,0,0), (0,1,0)])
-cm.register_cmap('greens', cm_greens)
+colormaps.register(cm_greens)
 cm_blues = LinearSegmentedColormap.from_list('blues', [(0,0,0), (0,0,1)])
-cm.register_cmap('blues', cm_blues)
+colormaps.register(cm_blues)
 
 # Create additional colormaps
 cm_cyans = LinearSegmentedColormap.from_list('cyans', [(0,0,0), (0,1,1)])
-cm.register_cmap('cyans', cm_cyans)
+colormaps.register(cm_cyans)
 cm_yellows = LinearSegmentedColormap.from_list('yellows', [(0,0,0), (1,1,0)])
-cm.register_cmap('yellows', cm_yellows)
+colormaps.register(cm_yellows)
 cm_magentas = LinearSegmentedColormap.from_list('magentas', [(0,0,0), (1,0,1)])
-cm.register_cmap('magentas', cm_magentas)
+colormaps.register(cm_magentas)
 
 
 show_colormap('gray', 16, 'Grayscale LUT')
@@ -190,11 +190,11 @@ In general, it's not possible to recover the original pixel values from the RGB 
 :tags: [hide-cell, remove-output]
 
 # Show an image with a colormap, and its histogram (unchanged by the colormap)
-from matplotlib import cm
+from matplotlib import colormaps
 
 im = load_image('sunny_cell.tif')
 bins = 128
-color_map = cm.get_cmap('gray')
+color_map = colormaps['gray']
 
 fig = create_figure(figsize=(6, 3))
 vmax = np.percentile(im, 99)
@@ -259,11 +259,11 @@ Again, it would not be possible to recover the original pixel values from the RG
 :tags: [hide-cell, remove-output]
 
 # Show an image with a colormap, and its histogram (unchanged by the colormap)
-from matplotlib import cm
+from matplotlib import colormaps
 
 im = load_image('sunny_cell.tif')
 bins = 128
-color_map = cm.get_cmap('viridis')
+color_map = colormaps['viridis']
 
 fig = create_figure(figsize=(6, 3))
 vmax = np.percentile(im, 99)

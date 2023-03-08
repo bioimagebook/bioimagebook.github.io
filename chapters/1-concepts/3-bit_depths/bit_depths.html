@@ -1,50 +1,62 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Types &amp; bit-depths &#8212; Introduction to Bioimage Analysis</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script data-domain="bioimagebook.github.io" defer="defer" src="https://plausible.io/js/script.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -54,65 +66,94 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/1-concepts/3-bit_depths/bit_depths';</script>
     <link rel="canonical" href="https://bioimagebook.github.io/chapters/1-concepts/3-bit_depths/bit_depths.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="ImageJ: Types &amp; bit-depths" href="imagej.html" />
     <link rel="prev" title="Python: Measurements &amp; histograms" href="../2-measurements/python.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script defer data-domain="bioimagebook.github.io" src="https://plausible.io/js/plausible.js"></script>
-<meta name="google-site-verification" content="Aem87SvFh5w_cCS2z43mVgKmnIdYgMBOapUPZ_SQWVY" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -121,669 +162,329 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Front matter
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
-   Acknowledgements
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../CHANGELOG.html">
-   Changelog
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Before we begin
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Before we begin</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/preface/preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/reading/reading.html">
-   How to read this book
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/preface/preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/reading/reading.html">How to read this book</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introducing images
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducing images</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html">
-   Images &amp; pixels
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../1-images_and_pixels/imagej.html">
-     ImageJ: Images &amp; pixels
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../1-images_and_pixels/python.html">
-     Python: Images &amp; pixels
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../2-measurements/measurements.html">
-   Measurements &amp; histograms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2-measurements/imagej.html">
-     ImageJ: Measurements &amp; histograms
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2-measurements/python.html">
-     Python: Measurements &amp; histograms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
-   Types &amp; bit-depths
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="imagej.html">
-     ImageJ: Types &amp; bit-depths
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="python.html">
-     Python: Types &amp; bit-depths
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../4-colors/colors.html">
-   Channels &amp; colors
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../4-colors/imagej.html">
-     ImageJ: Channels &amp; colors
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../4-colors/python.html">
-     Python: Channels &amp; colors
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../5-pixel_size/pixel_size.html">
-   Pixel size &amp; dimensions
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../5-pixel_size/imagej.html">
-     ImageJ:  Pixel size &amp; dimensions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../5-pixel_size/python.html">
-     Python:  Pixel size &amp; dimensions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../6-files/files.html">
-   Files &amp; file formats
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../6-files/imagej.html">
-     ImageJ: Files &amp; file formats
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../6-files/python.html">
-     Python: Files &amp; file formats
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html">Images &amp; pixels</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1-images_and_pixels/imagej.html">ImageJ: Images &amp; pixels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-images_and_pixels/python.html">Python: Images &amp; pixels</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Processing &amp; analysis
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../2-processing/1-processing_and_analysis/processing_and_analysis.html">
-   Image processing &amp; analysis
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html">
-   Point operations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../2-processing/2-point_operations/imagej.html">
-     ImageJ: Point operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html">
-   Thresholding
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../2-processing/3-thresholding/imagej.html">
-     ImageJ: Thresholding
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../2-processing/4-filters/filters.html">
-   Filters
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../2-processing/4-filters/imagej.html">
-     ImageJ: Filters
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../2-processing/5-morph/morph.html">
-   Morphological operations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../2-processing/5-morph/imagej.html">
-     ImageJ: Morphological operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../2-processing/6-transforms/transforms.html">
-   Image transforms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../2-processing/6-transforms/imagej.html">
-     ImageJ: Image transforms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../2-processing/7-multidimensional_processing/multidimensional_processing.html">
-   Multidimensional processing
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../2-processing/7-multidimensional_processing/imagej.html">
-     ImageJ: Multidimensional processing
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2-measurements/measurements.html">Measurements &amp; histograms</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2-measurements/imagej.html">ImageJ: Measurements &amp; histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-measurements/python.html">Python: Measurements &amp; histograms</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Fluorescence microscopy
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
-   From photons to pixels
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
-   Blur &amp; the PSF
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
-   Noise
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
-   Microscopes &amp; detectors
-  </a>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Types &amp; bit-depths</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="imagej.html">ImageJ: Types &amp; bit-depths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python: Types &amp; bit-depths</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendices
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4-colors/colors.html">Channels &amp; colors</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4-colors/imagej.html">ImageJ: Channels &amp; colors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-colors/python.html">Python: Channels &amp; colors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../5-pixel_size/pixel_size.html">Pixel size &amp; dimensions</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../5-pixel_size/imagej.html">ImageJ:  Pixel size &amp; dimensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../5-pixel_size/python.html">Python:  Pixel size &amp; dimensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../6-files/files.html">Files &amp; file formats</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../6-files/imagej.html">ImageJ: Files &amp; file formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-files/python.html">Python: Files &amp; file formats</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Processing &amp; analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
-   Beyond this book
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/python/python.html">
-   Python Primer
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
-   ImageJ: Writing macros
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
-     Difference of Gaussians
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
-     Simulating image formation
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../2-processing/1-processing_and_analysis/processing_and_analysis.html">Image processing &amp; analysis</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html">Point operations</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2-processing/2-point_operations/imagej.html">ImageJ: Point operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html">Thresholding</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2-processing/3-thresholding/imagej.html">ImageJ: Thresholding</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2-processing/4-filters/filters.html">Filters</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2-processing/4-filters/imagej.html">ImageJ: Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2-processing/5-morph/morph.html">Morphological operations</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2-processing/5-morph/imagej.html">ImageJ: Morphological operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2-processing/6-transforms/transforms.html">Image transforms</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2-processing/6-transforms/imagej.html">ImageJ: Image transforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2-processing/7-multidimensional_processing/multidimensional_processing.html">Multidimensional processing</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2-processing/7-multidimensional_processing/imagej.html">ImageJ: Multidimensional processing</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fluorescence microscopy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">From photons to pixels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">Blur &amp; the PSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">Noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">Microscopes &amp; detectors</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/next_steps/next_steps.html">Beyond this book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/python/python.html">Python Primer</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../appendices/macros/macro_intro.html">ImageJ: Writing macros</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_dog.html">Difference of Gaussians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_simulating.html">Simulating image formation</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/1-concepts/3-bit_depths/bit_depths.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/1-concepts/3-bit_depths/bit_depths.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../../_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/chapters/1-concepts/3-bit_depths/bit_depths.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../../_sources/chapters/1-concepts/3-bit_depths/bit_depths.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../../_sources/chapters/1-concepts/3-bit_depths/bit_depths.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../../../_sources/chapters/1-concepts/3-bit_depths/bit_depths.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#representing-numbers-with-bits">
-   Representing numbers with bits
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#image-bit-depth">
-   Image bit-depth
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#image-type">
-   Image type
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#when-bits-go-bad">
-   When bits go bad
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-clipping">
-     Data clipping
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rounding-errors">
-     Rounding errors
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Types & bit-depths</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#representing-numbers-with-bits">
-   Representing numbers with bits
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#image-bit-depth">
-   Image bit-depth
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#image-type">
-   Image type
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#when-bits-go-bad">
-   When bits go bad
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-clipping">
-     Data clipping
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rounding-errors">
-     Rounding errors
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Types & bit-depths</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representing-numbers-with-bits">Representing numbers with bits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-bit-depth">Image bit-depth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-type">Image type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-bits-go-bad">When bits go bad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-clipping">Data clipping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rounding-errors">Rounding errors</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="types-bit-depths">
-<span id="chap-bit-depths"></span><h1>Types &amp; bit-depths<a class="headerlink" href="#types-bit-depths" title="Permalink to this headline">#</a></h1>
+<span id="chap-bit-depths"></span><h1>Types &amp; bit-depths<a class="headerlink" href="#types-bit-depths" title="Permalink to this heading">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -795,6 +496,11 @@ title="Print to PDF"
 </ul>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
 <span class="o">%</span><span class="k">autoreload</span> 2
@@ -810,9 +516,10 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>As described in <a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html#chap-pixels"><span class="std std-ref">Images &amp; pixels</span></a>, each pixel has a numerical value – but a pixel cannot typically have just <em>any</em> numerical value it likes.
 Instead, it works under the constraints of the image <strong>type</strong> and <strong>bit-depth</strong>.</p>
 <p>Ultimately the pixels are stored in some binary format: a sequence of <strong>bits</strong> (<strong>bi</strong>nary digi<strong>ts</strong>), i.e. ones and zeros.
@@ -820,17 +527,22 @@ The bit-depth determines how many of these ones and zeros are available to store
 The type determines how these bits are interpreted.</p>
 </section>
 <section id="representing-numbers-with-bits">
-<h2>Representing numbers with bits<a class="headerlink" href="#representing-numbers-with-bits" title="Permalink to this headline">#</a></h2>
+<h2>Representing numbers with bits<a class="headerlink" href="#representing-numbers-with-bits" title="Permalink to this heading">#</a></h2>
 <figure class="margin align-default" id="id1">
 <a class="reference internal image-reference" href="../../../_images/bobs-code.png"><img alt="../../../_images/bobs-code.png" src="../../../_images/bobs-code.png" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Bob devising his code.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Bob devising his code.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Suppose Bob is developing a secret code to store numbers, but in which he is only allowed to write ones and zeros.
 If he is only allowed a single one or zero (i.e. a single bit), he doesn’t have many options.</p>
 <p>Assuming he wants his encoded numbers to be consecutive integers starting from zero, this means he can only represent two different numbers: one and zero.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -840,24 +552,25 @@ If he is only allowed a single one or zero (i.e. a single bit), he doesn’t hav
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_4e648">
+<table id="T_90193">
   <thead>
     <tr>
-      <th id="T_4e648_level0_col0" class="col_heading level0 col0" >Decimal</th>
-      <th id="T_4e648_level0_col1" class="col_heading level0 col1" >Binary</th>
+      <th id="T_90193_level0_col0" class="col_heading level0 col0" >Decimal</th>
+      <th id="T_90193_level0_col1" class="col_heading level0 col1" >Binary</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_4e648_row0_col0" class="data row0 col0" >0</td>
-      <td id="T_4e648_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_90193_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_90193_row0_col1" class="data row0 col1" >0</td>
     </tr>
     <tr>
-      <td id="T_4e648_row1_col0" class="data row1 col0" >1</td>
-      <td id="T_4e648_row1_col1" class="data row1 col1" >1</td>
+      <td id="T_90193_row1_col0" class="data row1 col0" >1</td>
+      <td id="T_90193_row1_col1" class="data row1 col1" >1</td>
     </tr>
   </tbody>
 </table>
@@ -865,6 +578,11 @@ If he is only allowed a single one or zero (i.e. a single bit), he doesn’t hav
 </div>
 <p>If he is allowed an extra bit, suddenly he can represent 4 numbers by combining the ones and zeros differently.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -874,32 +592,33 @@ If he is only allowed a single one or zero (i.e. a single bit), he doesn’t hav
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_ccf93">
+<table id="T_1442f">
   <thead>
     <tr>
-      <th id="T_ccf93_level0_col0" class="col_heading level0 col0" >Decimal</th>
-      <th id="T_ccf93_level0_col1" class="col_heading level0 col1" >Binary</th>
+      <th id="T_1442f_level0_col0" class="col_heading level0 col0" >Decimal</th>
+      <th id="T_1442f_level0_col1" class="col_heading level0 col1" >Binary</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_ccf93_row0_col0" class="data row0 col0" >0</td>
-      <td id="T_ccf93_row0_col1" class="data row0 col1" >00</td>
+      <td id="T_1442f_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_1442f_row0_col1" class="data row0 col1" >00</td>
     </tr>
     <tr>
-      <td id="T_ccf93_row1_col0" class="data row1 col0" >1</td>
-      <td id="T_ccf93_row1_col1" class="data row1 col1" >01</td>
+      <td id="T_1442f_row1_col0" class="data row1 col0" >1</td>
+      <td id="T_1442f_row1_col1" class="data row1 col1" >01</td>
     </tr>
     <tr>
-      <td id="T_ccf93_row2_col0" class="data row2 col0" >2</td>
-      <td id="T_ccf93_row2_col1" class="data row2 col1" >10</td>
+      <td id="T_1442f_row2_col0" class="data row2 col0" >2</td>
+      <td id="T_1442f_row2_col1" class="data row2 col1" >10</td>
     </tr>
     <tr>
-      <td id="T_ccf93_row3_col0" class="data row3 col0" >3</td>
-      <td id="T_ccf93_row3_col1" class="data row3 col1" >11</td>
+      <td id="T_1442f_row3_col0" class="data row3 col0" >3</td>
+      <td id="T_1442f_row3_col1" class="data row3 col1" >11</td>
     </tr>
   </tbody>
 </table>
@@ -908,6 +627,11 @@ If he is only allowed a single one or zero (i.e. a single bit), he doesn’t hav
 <p>Clearly, the more bits Bob is allowed, the more unique combinations he can have – and therefore the more different numbers he can represent in his code.</p>
 <p>With 8 bits are his disposal, Bob can combine the bits in 256 different ways to represent 256 different numbers.</p>
 <div class="cell tag_hide-input tag_output_scroll docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -917,1040 +641,1041 @@ If he is only allowed a single one or zero (i.e. a single bit), he doesn’t hav
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_c321f">
+<table id="T_4642a">
   <thead>
     <tr>
-      <th id="T_c321f_level0_col0" class="col_heading level0 col0" >Decimal</th>
-      <th id="T_c321f_level0_col1" class="col_heading level0 col1" >Binary</th>
+      <th id="T_4642a_level0_col0" class="col_heading level0 col0" >Decimal</th>
+      <th id="T_4642a_level0_col1" class="col_heading level0 col1" >Binary</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_c321f_row0_col0" class="data row0 col0" >0</td>
-      <td id="T_c321f_row0_col1" class="data row0 col1" >00000000</td>
+      <td id="T_4642a_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_4642a_row0_col1" class="data row0 col1" >00000000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row1_col0" class="data row1 col0" >1</td>
-      <td id="T_c321f_row1_col1" class="data row1 col1" >00000001</td>
+      <td id="T_4642a_row1_col0" class="data row1 col0" >1</td>
+      <td id="T_4642a_row1_col1" class="data row1 col1" >00000001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row2_col0" class="data row2 col0" >2</td>
-      <td id="T_c321f_row2_col1" class="data row2 col1" >00000010</td>
+      <td id="T_4642a_row2_col0" class="data row2 col0" >2</td>
+      <td id="T_4642a_row2_col1" class="data row2 col1" >00000010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row3_col0" class="data row3 col0" >3</td>
-      <td id="T_c321f_row3_col1" class="data row3 col1" >00000011</td>
+      <td id="T_4642a_row3_col0" class="data row3 col0" >3</td>
+      <td id="T_4642a_row3_col1" class="data row3 col1" >00000011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row4_col0" class="data row4 col0" >4</td>
-      <td id="T_c321f_row4_col1" class="data row4 col1" >00000100</td>
+      <td id="T_4642a_row4_col0" class="data row4 col0" >4</td>
+      <td id="T_4642a_row4_col1" class="data row4 col1" >00000100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row5_col0" class="data row5 col0" >5</td>
-      <td id="T_c321f_row5_col1" class="data row5 col1" >00000101</td>
+      <td id="T_4642a_row5_col0" class="data row5 col0" >5</td>
+      <td id="T_4642a_row5_col1" class="data row5 col1" >00000101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row6_col0" class="data row6 col0" >6</td>
-      <td id="T_c321f_row6_col1" class="data row6 col1" >00000110</td>
+      <td id="T_4642a_row6_col0" class="data row6 col0" >6</td>
+      <td id="T_4642a_row6_col1" class="data row6 col1" >00000110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row7_col0" class="data row7 col0" >7</td>
-      <td id="T_c321f_row7_col1" class="data row7 col1" >00000111</td>
+      <td id="T_4642a_row7_col0" class="data row7 col0" >7</td>
+      <td id="T_4642a_row7_col1" class="data row7 col1" >00000111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row8_col0" class="data row8 col0" >8</td>
-      <td id="T_c321f_row8_col1" class="data row8 col1" >00001000</td>
+      <td id="T_4642a_row8_col0" class="data row8 col0" >8</td>
+      <td id="T_4642a_row8_col1" class="data row8 col1" >00001000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row9_col0" class="data row9 col0" >9</td>
-      <td id="T_c321f_row9_col1" class="data row9 col1" >00001001</td>
+      <td id="T_4642a_row9_col0" class="data row9 col0" >9</td>
+      <td id="T_4642a_row9_col1" class="data row9 col1" >00001001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row10_col0" class="data row10 col0" >10</td>
-      <td id="T_c321f_row10_col1" class="data row10 col1" >00001010</td>
+      <td id="T_4642a_row10_col0" class="data row10 col0" >10</td>
+      <td id="T_4642a_row10_col1" class="data row10 col1" >00001010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row11_col0" class="data row11 col0" >11</td>
-      <td id="T_c321f_row11_col1" class="data row11 col1" >00001011</td>
+      <td id="T_4642a_row11_col0" class="data row11 col0" >11</td>
+      <td id="T_4642a_row11_col1" class="data row11 col1" >00001011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row12_col0" class="data row12 col0" >12</td>
-      <td id="T_c321f_row12_col1" class="data row12 col1" >00001100</td>
+      <td id="T_4642a_row12_col0" class="data row12 col0" >12</td>
+      <td id="T_4642a_row12_col1" class="data row12 col1" >00001100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row13_col0" class="data row13 col0" >13</td>
-      <td id="T_c321f_row13_col1" class="data row13 col1" >00001101</td>
+      <td id="T_4642a_row13_col0" class="data row13 col0" >13</td>
+      <td id="T_4642a_row13_col1" class="data row13 col1" >00001101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row14_col0" class="data row14 col0" >14</td>
-      <td id="T_c321f_row14_col1" class="data row14 col1" >00001110</td>
+      <td id="T_4642a_row14_col0" class="data row14 col0" >14</td>
+      <td id="T_4642a_row14_col1" class="data row14 col1" >00001110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row15_col0" class="data row15 col0" >15</td>
-      <td id="T_c321f_row15_col1" class="data row15 col1" >00001111</td>
+      <td id="T_4642a_row15_col0" class="data row15 col0" >15</td>
+      <td id="T_4642a_row15_col1" class="data row15 col1" >00001111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row16_col0" class="data row16 col0" >16</td>
-      <td id="T_c321f_row16_col1" class="data row16 col1" >00010000</td>
+      <td id="T_4642a_row16_col0" class="data row16 col0" >16</td>
+      <td id="T_4642a_row16_col1" class="data row16 col1" >00010000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row17_col0" class="data row17 col0" >17</td>
-      <td id="T_c321f_row17_col1" class="data row17 col1" >00010001</td>
+      <td id="T_4642a_row17_col0" class="data row17 col0" >17</td>
+      <td id="T_4642a_row17_col1" class="data row17 col1" >00010001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row18_col0" class="data row18 col0" >18</td>
-      <td id="T_c321f_row18_col1" class="data row18 col1" >00010010</td>
+      <td id="T_4642a_row18_col0" class="data row18 col0" >18</td>
+      <td id="T_4642a_row18_col1" class="data row18 col1" >00010010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row19_col0" class="data row19 col0" >19</td>
-      <td id="T_c321f_row19_col1" class="data row19 col1" >00010011</td>
+      <td id="T_4642a_row19_col0" class="data row19 col0" >19</td>
+      <td id="T_4642a_row19_col1" class="data row19 col1" >00010011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row20_col0" class="data row20 col0" >20</td>
-      <td id="T_c321f_row20_col1" class="data row20 col1" >00010100</td>
+      <td id="T_4642a_row20_col0" class="data row20 col0" >20</td>
+      <td id="T_4642a_row20_col1" class="data row20 col1" >00010100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row21_col0" class="data row21 col0" >21</td>
-      <td id="T_c321f_row21_col1" class="data row21 col1" >00010101</td>
+      <td id="T_4642a_row21_col0" class="data row21 col0" >21</td>
+      <td id="T_4642a_row21_col1" class="data row21 col1" >00010101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row22_col0" class="data row22 col0" >22</td>
-      <td id="T_c321f_row22_col1" class="data row22 col1" >00010110</td>
+      <td id="T_4642a_row22_col0" class="data row22 col0" >22</td>
+      <td id="T_4642a_row22_col1" class="data row22 col1" >00010110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row23_col0" class="data row23 col0" >23</td>
-      <td id="T_c321f_row23_col1" class="data row23 col1" >00010111</td>
+      <td id="T_4642a_row23_col0" class="data row23 col0" >23</td>
+      <td id="T_4642a_row23_col1" class="data row23 col1" >00010111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row24_col0" class="data row24 col0" >24</td>
-      <td id="T_c321f_row24_col1" class="data row24 col1" >00011000</td>
+      <td id="T_4642a_row24_col0" class="data row24 col0" >24</td>
+      <td id="T_4642a_row24_col1" class="data row24 col1" >00011000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row25_col0" class="data row25 col0" >25</td>
-      <td id="T_c321f_row25_col1" class="data row25 col1" >00011001</td>
+      <td id="T_4642a_row25_col0" class="data row25 col0" >25</td>
+      <td id="T_4642a_row25_col1" class="data row25 col1" >00011001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row26_col0" class="data row26 col0" >26</td>
-      <td id="T_c321f_row26_col1" class="data row26 col1" >00011010</td>
+      <td id="T_4642a_row26_col0" class="data row26 col0" >26</td>
+      <td id="T_4642a_row26_col1" class="data row26 col1" >00011010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row27_col0" class="data row27 col0" >27</td>
-      <td id="T_c321f_row27_col1" class="data row27 col1" >00011011</td>
+      <td id="T_4642a_row27_col0" class="data row27 col0" >27</td>
+      <td id="T_4642a_row27_col1" class="data row27 col1" >00011011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row28_col0" class="data row28 col0" >28</td>
-      <td id="T_c321f_row28_col1" class="data row28 col1" >00011100</td>
+      <td id="T_4642a_row28_col0" class="data row28 col0" >28</td>
+      <td id="T_4642a_row28_col1" class="data row28 col1" >00011100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row29_col0" class="data row29 col0" >29</td>
-      <td id="T_c321f_row29_col1" class="data row29 col1" >00011101</td>
+      <td id="T_4642a_row29_col0" class="data row29 col0" >29</td>
+      <td id="T_4642a_row29_col1" class="data row29 col1" >00011101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row30_col0" class="data row30 col0" >30</td>
-      <td id="T_c321f_row30_col1" class="data row30 col1" >00011110</td>
+      <td id="T_4642a_row30_col0" class="data row30 col0" >30</td>
+      <td id="T_4642a_row30_col1" class="data row30 col1" >00011110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row31_col0" class="data row31 col0" >31</td>
-      <td id="T_c321f_row31_col1" class="data row31 col1" >00011111</td>
+      <td id="T_4642a_row31_col0" class="data row31 col0" >31</td>
+      <td id="T_4642a_row31_col1" class="data row31 col1" >00011111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row32_col0" class="data row32 col0" >32</td>
-      <td id="T_c321f_row32_col1" class="data row32 col1" >00100000</td>
+      <td id="T_4642a_row32_col0" class="data row32 col0" >32</td>
+      <td id="T_4642a_row32_col1" class="data row32 col1" >00100000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row33_col0" class="data row33 col0" >33</td>
-      <td id="T_c321f_row33_col1" class="data row33 col1" >00100001</td>
+      <td id="T_4642a_row33_col0" class="data row33 col0" >33</td>
+      <td id="T_4642a_row33_col1" class="data row33 col1" >00100001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row34_col0" class="data row34 col0" >34</td>
-      <td id="T_c321f_row34_col1" class="data row34 col1" >00100010</td>
+      <td id="T_4642a_row34_col0" class="data row34 col0" >34</td>
+      <td id="T_4642a_row34_col1" class="data row34 col1" >00100010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row35_col0" class="data row35 col0" >35</td>
-      <td id="T_c321f_row35_col1" class="data row35 col1" >00100011</td>
+      <td id="T_4642a_row35_col0" class="data row35 col0" >35</td>
+      <td id="T_4642a_row35_col1" class="data row35 col1" >00100011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row36_col0" class="data row36 col0" >36</td>
-      <td id="T_c321f_row36_col1" class="data row36 col1" >00100100</td>
+      <td id="T_4642a_row36_col0" class="data row36 col0" >36</td>
+      <td id="T_4642a_row36_col1" class="data row36 col1" >00100100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row37_col0" class="data row37 col0" >37</td>
-      <td id="T_c321f_row37_col1" class="data row37 col1" >00100101</td>
+      <td id="T_4642a_row37_col0" class="data row37 col0" >37</td>
+      <td id="T_4642a_row37_col1" class="data row37 col1" >00100101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row38_col0" class="data row38 col0" >38</td>
-      <td id="T_c321f_row38_col1" class="data row38 col1" >00100110</td>
+      <td id="T_4642a_row38_col0" class="data row38 col0" >38</td>
+      <td id="T_4642a_row38_col1" class="data row38 col1" >00100110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row39_col0" class="data row39 col0" >39</td>
-      <td id="T_c321f_row39_col1" class="data row39 col1" >00100111</td>
+      <td id="T_4642a_row39_col0" class="data row39 col0" >39</td>
+      <td id="T_4642a_row39_col1" class="data row39 col1" >00100111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row40_col0" class="data row40 col0" >40</td>
-      <td id="T_c321f_row40_col1" class="data row40 col1" >00101000</td>
+      <td id="T_4642a_row40_col0" class="data row40 col0" >40</td>
+      <td id="T_4642a_row40_col1" class="data row40 col1" >00101000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row41_col0" class="data row41 col0" >41</td>
-      <td id="T_c321f_row41_col1" class="data row41 col1" >00101001</td>
+      <td id="T_4642a_row41_col0" class="data row41 col0" >41</td>
+      <td id="T_4642a_row41_col1" class="data row41 col1" >00101001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row42_col0" class="data row42 col0" >42</td>
-      <td id="T_c321f_row42_col1" class="data row42 col1" >00101010</td>
+      <td id="T_4642a_row42_col0" class="data row42 col0" >42</td>
+      <td id="T_4642a_row42_col1" class="data row42 col1" >00101010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row43_col0" class="data row43 col0" >43</td>
-      <td id="T_c321f_row43_col1" class="data row43 col1" >00101011</td>
+      <td id="T_4642a_row43_col0" class="data row43 col0" >43</td>
+      <td id="T_4642a_row43_col1" class="data row43 col1" >00101011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row44_col0" class="data row44 col0" >44</td>
-      <td id="T_c321f_row44_col1" class="data row44 col1" >00101100</td>
+      <td id="T_4642a_row44_col0" class="data row44 col0" >44</td>
+      <td id="T_4642a_row44_col1" class="data row44 col1" >00101100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row45_col0" class="data row45 col0" >45</td>
-      <td id="T_c321f_row45_col1" class="data row45 col1" >00101101</td>
+      <td id="T_4642a_row45_col0" class="data row45 col0" >45</td>
+      <td id="T_4642a_row45_col1" class="data row45 col1" >00101101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row46_col0" class="data row46 col0" >46</td>
-      <td id="T_c321f_row46_col1" class="data row46 col1" >00101110</td>
+      <td id="T_4642a_row46_col0" class="data row46 col0" >46</td>
+      <td id="T_4642a_row46_col1" class="data row46 col1" >00101110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row47_col0" class="data row47 col0" >47</td>
-      <td id="T_c321f_row47_col1" class="data row47 col1" >00101111</td>
+      <td id="T_4642a_row47_col0" class="data row47 col0" >47</td>
+      <td id="T_4642a_row47_col1" class="data row47 col1" >00101111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row48_col0" class="data row48 col0" >48</td>
-      <td id="T_c321f_row48_col1" class="data row48 col1" >00110000</td>
+      <td id="T_4642a_row48_col0" class="data row48 col0" >48</td>
+      <td id="T_4642a_row48_col1" class="data row48 col1" >00110000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row49_col0" class="data row49 col0" >49</td>
-      <td id="T_c321f_row49_col1" class="data row49 col1" >00110001</td>
+      <td id="T_4642a_row49_col0" class="data row49 col0" >49</td>
+      <td id="T_4642a_row49_col1" class="data row49 col1" >00110001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row50_col0" class="data row50 col0" >50</td>
-      <td id="T_c321f_row50_col1" class="data row50 col1" >00110010</td>
+      <td id="T_4642a_row50_col0" class="data row50 col0" >50</td>
+      <td id="T_4642a_row50_col1" class="data row50 col1" >00110010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row51_col0" class="data row51 col0" >51</td>
-      <td id="T_c321f_row51_col1" class="data row51 col1" >00110011</td>
+      <td id="T_4642a_row51_col0" class="data row51 col0" >51</td>
+      <td id="T_4642a_row51_col1" class="data row51 col1" >00110011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row52_col0" class="data row52 col0" >52</td>
-      <td id="T_c321f_row52_col1" class="data row52 col1" >00110100</td>
+      <td id="T_4642a_row52_col0" class="data row52 col0" >52</td>
+      <td id="T_4642a_row52_col1" class="data row52 col1" >00110100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row53_col0" class="data row53 col0" >53</td>
-      <td id="T_c321f_row53_col1" class="data row53 col1" >00110101</td>
+      <td id="T_4642a_row53_col0" class="data row53 col0" >53</td>
+      <td id="T_4642a_row53_col1" class="data row53 col1" >00110101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row54_col0" class="data row54 col0" >54</td>
-      <td id="T_c321f_row54_col1" class="data row54 col1" >00110110</td>
+      <td id="T_4642a_row54_col0" class="data row54 col0" >54</td>
+      <td id="T_4642a_row54_col1" class="data row54 col1" >00110110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row55_col0" class="data row55 col0" >55</td>
-      <td id="T_c321f_row55_col1" class="data row55 col1" >00110111</td>
+      <td id="T_4642a_row55_col0" class="data row55 col0" >55</td>
+      <td id="T_4642a_row55_col1" class="data row55 col1" >00110111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row56_col0" class="data row56 col0" >56</td>
-      <td id="T_c321f_row56_col1" class="data row56 col1" >00111000</td>
+      <td id="T_4642a_row56_col0" class="data row56 col0" >56</td>
+      <td id="T_4642a_row56_col1" class="data row56 col1" >00111000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row57_col0" class="data row57 col0" >57</td>
-      <td id="T_c321f_row57_col1" class="data row57 col1" >00111001</td>
+      <td id="T_4642a_row57_col0" class="data row57 col0" >57</td>
+      <td id="T_4642a_row57_col1" class="data row57 col1" >00111001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row58_col0" class="data row58 col0" >58</td>
-      <td id="T_c321f_row58_col1" class="data row58 col1" >00111010</td>
+      <td id="T_4642a_row58_col0" class="data row58 col0" >58</td>
+      <td id="T_4642a_row58_col1" class="data row58 col1" >00111010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row59_col0" class="data row59 col0" >59</td>
-      <td id="T_c321f_row59_col1" class="data row59 col1" >00111011</td>
+      <td id="T_4642a_row59_col0" class="data row59 col0" >59</td>
+      <td id="T_4642a_row59_col1" class="data row59 col1" >00111011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row60_col0" class="data row60 col0" >60</td>
-      <td id="T_c321f_row60_col1" class="data row60 col1" >00111100</td>
+      <td id="T_4642a_row60_col0" class="data row60 col0" >60</td>
+      <td id="T_4642a_row60_col1" class="data row60 col1" >00111100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row61_col0" class="data row61 col0" >61</td>
-      <td id="T_c321f_row61_col1" class="data row61 col1" >00111101</td>
+      <td id="T_4642a_row61_col0" class="data row61 col0" >61</td>
+      <td id="T_4642a_row61_col1" class="data row61 col1" >00111101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row62_col0" class="data row62 col0" >62</td>
-      <td id="T_c321f_row62_col1" class="data row62 col1" >00111110</td>
+      <td id="T_4642a_row62_col0" class="data row62 col0" >62</td>
+      <td id="T_4642a_row62_col1" class="data row62 col1" >00111110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row63_col0" class="data row63 col0" >63</td>
-      <td id="T_c321f_row63_col1" class="data row63 col1" >00111111</td>
+      <td id="T_4642a_row63_col0" class="data row63 col0" >63</td>
+      <td id="T_4642a_row63_col1" class="data row63 col1" >00111111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row64_col0" class="data row64 col0" >64</td>
-      <td id="T_c321f_row64_col1" class="data row64 col1" >01000000</td>
+      <td id="T_4642a_row64_col0" class="data row64 col0" >64</td>
+      <td id="T_4642a_row64_col1" class="data row64 col1" >01000000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row65_col0" class="data row65 col0" >65</td>
-      <td id="T_c321f_row65_col1" class="data row65 col1" >01000001</td>
+      <td id="T_4642a_row65_col0" class="data row65 col0" >65</td>
+      <td id="T_4642a_row65_col1" class="data row65 col1" >01000001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row66_col0" class="data row66 col0" >66</td>
-      <td id="T_c321f_row66_col1" class="data row66 col1" >01000010</td>
+      <td id="T_4642a_row66_col0" class="data row66 col0" >66</td>
+      <td id="T_4642a_row66_col1" class="data row66 col1" >01000010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row67_col0" class="data row67 col0" >67</td>
-      <td id="T_c321f_row67_col1" class="data row67 col1" >01000011</td>
+      <td id="T_4642a_row67_col0" class="data row67 col0" >67</td>
+      <td id="T_4642a_row67_col1" class="data row67 col1" >01000011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row68_col0" class="data row68 col0" >68</td>
-      <td id="T_c321f_row68_col1" class="data row68 col1" >01000100</td>
+      <td id="T_4642a_row68_col0" class="data row68 col0" >68</td>
+      <td id="T_4642a_row68_col1" class="data row68 col1" >01000100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row69_col0" class="data row69 col0" >69</td>
-      <td id="T_c321f_row69_col1" class="data row69 col1" >01000101</td>
+      <td id="T_4642a_row69_col0" class="data row69 col0" >69</td>
+      <td id="T_4642a_row69_col1" class="data row69 col1" >01000101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row70_col0" class="data row70 col0" >70</td>
-      <td id="T_c321f_row70_col1" class="data row70 col1" >01000110</td>
+      <td id="T_4642a_row70_col0" class="data row70 col0" >70</td>
+      <td id="T_4642a_row70_col1" class="data row70 col1" >01000110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row71_col0" class="data row71 col0" >71</td>
-      <td id="T_c321f_row71_col1" class="data row71 col1" >01000111</td>
+      <td id="T_4642a_row71_col0" class="data row71 col0" >71</td>
+      <td id="T_4642a_row71_col1" class="data row71 col1" >01000111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row72_col0" class="data row72 col0" >72</td>
-      <td id="T_c321f_row72_col1" class="data row72 col1" >01001000</td>
+      <td id="T_4642a_row72_col0" class="data row72 col0" >72</td>
+      <td id="T_4642a_row72_col1" class="data row72 col1" >01001000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row73_col0" class="data row73 col0" >73</td>
-      <td id="T_c321f_row73_col1" class="data row73 col1" >01001001</td>
+      <td id="T_4642a_row73_col0" class="data row73 col0" >73</td>
+      <td id="T_4642a_row73_col1" class="data row73 col1" >01001001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row74_col0" class="data row74 col0" >74</td>
-      <td id="T_c321f_row74_col1" class="data row74 col1" >01001010</td>
+      <td id="T_4642a_row74_col0" class="data row74 col0" >74</td>
+      <td id="T_4642a_row74_col1" class="data row74 col1" >01001010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row75_col0" class="data row75 col0" >75</td>
-      <td id="T_c321f_row75_col1" class="data row75 col1" >01001011</td>
+      <td id="T_4642a_row75_col0" class="data row75 col0" >75</td>
+      <td id="T_4642a_row75_col1" class="data row75 col1" >01001011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row76_col0" class="data row76 col0" >76</td>
-      <td id="T_c321f_row76_col1" class="data row76 col1" >01001100</td>
+      <td id="T_4642a_row76_col0" class="data row76 col0" >76</td>
+      <td id="T_4642a_row76_col1" class="data row76 col1" >01001100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row77_col0" class="data row77 col0" >77</td>
-      <td id="T_c321f_row77_col1" class="data row77 col1" >01001101</td>
+      <td id="T_4642a_row77_col0" class="data row77 col0" >77</td>
+      <td id="T_4642a_row77_col1" class="data row77 col1" >01001101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row78_col0" class="data row78 col0" >78</td>
-      <td id="T_c321f_row78_col1" class="data row78 col1" >01001110</td>
+      <td id="T_4642a_row78_col0" class="data row78 col0" >78</td>
+      <td id="T_4642a_row78_col1" class="data row78 col1" >01001110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row79_col0" class="data row79 col0" >79</td>
-      <td id="T_c321f_row79_col1" class="data row79 col1" >01001111</td>
+      <td id="T_4642a_row79_col0" class="data row79 col0" >79</td>
+      <td id="T_4642a_row79_col1" class="data row79 col1" >01001111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row80_col0" class="data row80 col0" >80</td>
-      <td id="T_c321f_row80_col1" class="data row80 col1" >01010000</td>
+      <td id="T_4642a_row80_col0" class="data row80 col0" >80</td>
+      <td id="T_4642a_row80_col1" class="data row80 col1" >01010000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row81_col0" class="data row81 col0" >81</td>
-      <td id="T_c321f_row81_col1" class="data row81 col1" >01010001</td>
+      <td id="T_4642a_row81_col0" class="data row81 col0" >81</td>
+      <td id="T_4642a_row81_col1" class="data row81 col1" >01010001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row82_col0" class="data row82 col0" >82</td>
-      <td id="T_c321f_row82_col1" class="data row82 col1" >01010010</td>
+      <td id="T_4642a_row82_col0" class="data row82 col0" >82</td>
+      <td id="T_4642a_row82_col1" class="data row82 col1" >01010010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row83_col0" class="data row83 col0" >83</td>
-      <td id="T_c321f_row83_col1" class="data row83 col1" >01010011</td>
+      <td id="T_4642a_row83_col0" class="data row83 col0" >83</td>
+      <td id="T_4642a_row83_col1" class="data row83 col1" >01010011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row84_col0" class="data row84 col0" >84</td>
-      <td id="T_c321f_row84_col1" class="data row84 col1" >01010100</td>
+      <td id="T_4642a_row84_col0" class="data row84 col0" >84</td>
+      <td id="T_4642a_row84_col1" class="data row84 col1" >01010100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row85_col0" class="data row85 col0" >85</td>
-      <td id="T_c321f_row85_col1" class="data row85 col1" >01010101</td>
+      <td id="T_4642a_row85_col0" class="data row85 col0" >85</td>
+      <td id="T_4642a_row85_col1" class="data row85 col1" >01010101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row86_col0" class="data row86 col0" >86</td>
-      <td id="T_c321f_row86_col1" class="data row86 col1" >01010110</td>
+      <td id="T_4642a_row86_col0" class="data row86 col0" >86</td>
+      <td id="T_4642a_row86_col1" class="data row86 col1" >01010110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row87_col0" class="data row87 col0" >87</td>
-      <td id="T_c321f_row87_col1" class="data row87 col1" >01010111</td>
+      <td id="T_4642a_row87_col0" class="data row87 col0" >87</td>
+      <td id="T_4642a_row87_col1" class="data row87 col1" >01010111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row88_col0" class="data row88 col0" >88</td>
-      <td id="T_c321f_row88_col1" class="data row88 col1" >01011000</td>
+      <td id="T_4642a_row88_col0" class="data row88 col0" >88</td>
+      <td id="T_4642a_row88_col1" class="data row88 col1" >01011000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row89_col0" class="data row89 col0" >89</td>
-      <td id="T_c321f_row89_col1" class="data row89 col1" >01011001</td>
+      <td id="T_4642a_row89_col0" class="data row89 col0" >89</td>
+      <td id="T_4642a_row89_col1" class="data row89 col1" >01011001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row90_col0" class="data row90 col0" >90</td>
-      <td id="T_c321f_row90_col1" class="data row90 col1" >01011010</td>
+      <td id="T_4642a_row90_col0" class="data row90 col0" >90</td>
+      <td id="T_4642a_row90_col1" class="data row90 col1" >01011010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row91_col0" class="data row91 col0" >91</td>
-      <td id="T_c321f_row91_col1" class="data row91 col1" >01011011</td>
+      <td id="T_4642a_row91_col0" class="data row91 col0" >91</td>
+      <td id="T_4642a_row91_col1" class="data row91 col1" >01011011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row92_col0" class="data row92 col0" >92</td>
-      <td id="T_c321f_row92_col1" class="data row92 col1" >01011100</td>
+      <td id="T_4642a_row92_col0" class="data row92 col0" >92</td>
+      <td id="T_4642a_row92_col1" class="data row92 col1" >01011100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row93_col0" class="data row93 col0" >93</td>
-      <td id="T_c321f_row93_col1" class="data row93 col1" >01011101</td>
+      <td id="T_4642a_row93_col0" class="data row93 col0" >93</td>
+      <td id="T_4642a_row93_col1" class="data row93 col1" >01011101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row94_col0" class="data row94 col0" >94</td>
-      <td id="T_c321f_row94_col1" class="data row94 col1" >01011110</td>
+      <td id="T_4642a_row94_col0" class="data row94 col0" >94</td>
+      <td id="T_4642a_row94_col1" class="data row94 col1" >01011110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row95_col0" class="data row95 col0" >95</td>
-      <td id="T_c321f_row95_col1" class="data row95 col1" >01011111</td>
+      <td id="T_4642a_row95_col0" class="data row95 col0" >95</td>
+      <td id="T_4642a_row95_col1" class="data row95 col1" >01011111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row96_col0" class="data row96 col0" >96</td>
-      <td id="T_c321f_row96_col1" class="data row96 col1" >01100000</td>
+      <td id="T_4642a_row96_col0" class="data row96 col0" >96</td>
+      <td id="T_4642a_row96_col1" class="data row96 col1" >01100000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row97_col0" class="data row97 col0" >97</td>
-      <td id="T_c321f_row97_col1" class="data row97 col1" >01100001</td>
+      <td id="T_4642a_row97_col0" class="data row97 col0" >97</td>
+      <td id="T_4642a_row97_col1" class="data row97 col1" >01100001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row98_col0" class="data row98 col0" >98</td>
-      <td id="T_c321f_row98_col1" class="data row98 col1" >01100010</td>
+      <td id="T_4642a_row98_col0" class="data row98 col0" >98</td>
+      <td id="T_4642a_row98_col1" class="data row98 col1" >01100010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row99_col0" class="data row99 col0" >99</td>
-      <td id="T_c321f_row99_col1" class="data row99 col1" >01100011</td>
+      <td id="T_4642a_row99_col0" class="data row99 col0" >99</td>
+      <td id="T_4642a_row99_col1" class="data row99 col1" >01100011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row100_col0" class="data row100 col0" >100</td>
-      <td id="T_c321f_row100_col1" class="data row100 col1" >01100100</td>
+      <td id="T_4642a_row100_col0" class="data row100 col0" >100</td>
+      <td id="T_4642a_row100_col1" class="data row100 col1" >01100100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row101_col0" class="data row101 col0" >101</td>
-      <td id="T_c321f_row101_col1" class="data row101 col1" >01100101</td>
+      <td id="T_4642a_row101_col0" class="data row101 col0" >101</td>
+      <td id="T_4642a_row101_col1" class="data row101 col1" >01100101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row102_col0" class="data row102 col0" >102</td>
-      <td id="T_c321f_row102_col1" class="data row102 col1" >01100110</td>
+      <td id="T_4642a_row102_col0" class="data row102 col0" >102</td>
+      <td id="T_4642a_row102_col1" class="data row102 col1" >01100110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row103_col0" class="data row103 col0" >103</td>
-      <td id="T_c321f_row103_col1" class="data row103 col1" >01100111</td>
+      <td id="T_4642a_row103_col0" class="data row103 col0" >103</td>
+      <td id="T_4642a_row103_col1" class="data row103 col1" >01100111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row104_col0" class="data row104 col0" >104</td>
-      <td id="T_c321f_row104_col1" class="data row104 col1" >01101000</td>
+      <td id="T_4642a_row104_col0" class="data row104 col0" >104</td>
+      <td id="T_4642a_row104_col1" class="data row104 col1" >01101000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row105_col0" class="data row105 col0" >105</td>
-      <td id="T_c321f_row105_col1" class="data row105 col1" >01101001</td>
+      <td id="T_4642a_row105_col0" class="data row105 col0" >105</td>
+      <td id="T_4642a_row105_col1" class="data row105 col1" >01101001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row106_col0" class="data row106 col0" >106</td>
-      <td id="T_c321f_row106_col1" class="data row106 col1" >01101010</td>
+      <td id="T_4642a_row106_col0" class="data row106 col0" >106</td>
+      <td id="T_4642a_row106_col1" class="data row106 col1" >01101010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row107_col0" class="data row107 col0" >107</td>
-      <td id="T_c321f_row107_col1" class="data row107 col1" >01101011</td>
+      <td id="T_4642a_row107_col0" class="data row107 col0" >107</td>
+      <td id="T_4642a_row107_col1" class="data row107 col1" >01101011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row108_col0" class="data row108 col0" >108</td>
-      <td id="T_c321f_row108_col1" class="data row108 col1" >01101100</td>
+      <td id="T_4642a_row108_col0" class="data row108 col0" >108</td>
+      <td id="T_4642a_row108_col1" class="data row108 col1" >01101100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row109_col0" class="data row109 col0" >109</td>
-      <td id="T_c321f_row109_col1" class="data row109 col1" >01101101</td>
+      <td id="T_4642a_row109_col0" class="data row109 col0" >109</td>
+      <td id="T_4642a_row109_col1" class="data row109 col1" >01101101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row110_col0" class="data row110 col0" >110</td>
-      <td id="T_c321f_row110_col1" class="data row110 col1" >01101110</td>
+      <td id="T_4642a_row110_col0" class="data row110 col0" >110</td>
+      <td id="T_4642a_row110_col1" class="data row110 col1" >01101110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row111_col0" class="data row111 col0" >111</td>
-      <td id="T_c321f_row111_col1" class="data row111 col1" >01101111</td>
+      <td id="T_4642a_row111_col0" class="data row111 col0" >111</td>
+      <td id="T_4642a_row111_col1" class="data row111 col1" >01101111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row112_col0" class="data row112 col0" >112</td>
-      <td id="T_c321f_row112_col1" class="data row112 col1" >01110000</td>
+      <td id="T_4642a_row112_col0" class="data row112 col0" >112</td>
+      <td id="T_4642a_row112_col1" class="data row112 col1" >01110000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row113_col0" class="data row113 col0" >113</td>
-      <td id="T_c321f_row113_col1" class="data row113 col1" >01110001</td>
+      <td id="T_4642a_row113_col0" class="data row113 col0" >113</td>
+      <td id="T_4642a_row113_col1" class="data row113 col1" >01110001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row114_col0" class="data row114 col0" >114</td>
-      <td id="T_c321f_row114_col1" class="data row114 col1" >01110010</td>
+      <td id="T_4642a_row114_col0" class="data row114 col0" >114</td>
+      <td id="T_4642a_row114_col1" class="data row114 col1" >01110010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row115_col0" class="data row115 col0" >115</td>
-      <td id="T_c321f_row115_col1" class="data row115 col1" >01110011</td>
+      <td id="T_4642a_row115_col0" class="data row115 col0" >115</td>
+      <td id="T_4642a_row115_col1" class="data row115 col1" >01110011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row116_col0" class="data row116 col0" >116</td>
-      <td id="T_c321f_row116_col1" class="data row116 col1" >01110100</td>
+      <td id="T_4642a_row116_col0" class="data row116 col0" >116</td>
+      <td id="T_4642a_row116_col1" class="data row116 col1" >01110100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row117_col0" class="data row117 col0" >117</td>
-      <td id="T_c321f_row117_col1" class="data row117 col1" >01110101</td>
+      <td id="T_4642a_row117_col0" class="data row117 col0" >117</td>
+      <td id="T_4642a_row117_col1" class="data row117 col1" >01110101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row118_col0" class="data row118 col0" >118</td>
-      <td id="T_c321f_row118_col1" class="data row118 col1" >01110110</td>
+      <td id="T_4642a_row118_col0" class="data row118 col0" >118</td>
+      <td id="T_4642a_row118_col1" class="data row118 col1" >01110110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row119_col0" class="data row119 col0" >119</td>
-      <td id="T_c321f_row119_col1" class="data row119 col1" >01110111</td>
+      <td id="T_4642a_row119_col0" class="data row119 col0" >119</td>
+      <td id="T_4642a_row119_col1" class="data row119 col1" >01110111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row120_col0" class="data row120 col0" >120</td>
-      <td id="T_c321f_row120_col1" class="data row120 col1" >01111000</td>
+      <td id="T_4642a_row120_col0" class="data row120 col0" >120</td>
+      <td id="T_4642a_row120_col1" class="data row120 col1" >01111000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row121_col0" class="data row121 col0" >121</td>
-      <td id="T_c321f_row121_col1" class="data row121 col1" >01111001</td>
+      <td id="T_4642a_row121_col0" class="data row121 col0" >121</td>
+      <td id="T_4642a_row121_col1" class="data row121 col1" >01111001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row122_col0" class="data row122 col0" >122</td>
-      <td id="T_c321f_row122_col1" class="data row122 col1" >01111010</td>
+      <td id="T_4642a_row122_col0" class="data row122 col0" >122</td>
+      <td id="T_4642a_row122_col1" class="data row122 col1" >01111010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row123_col0" class="data row123 col0" >123</td>
-      <td id="T_c321f_row123_col1" class="data row123 col1" >01111011</td>
+      <td id="T_4642a_row123_col0" class="data row123 col0" >123</td>
+      <td id="T_4642a_row123_col1" class="data row123 col1" >01111011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row124_col0" class="data row124 col0" >124</td>
-      <td id="T_c321f_row124_col1" class="data row124 col1" >01111100</td>
+      <td id="T_4642a_row124_col0" class="data row124 col0" >124</td>
+      <td id="T_4642a_row124_col1" class="data row124 col1" >01111100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row125_col0" class="data row125 col0" >125</td>
-      <td id="T_c321f_row125_col1" class="data row125 col1" >01111101</td>
+      <td id="T_4642a_row125_col0" class="data row125 col0" >125</td>
+      <td id="T_4642a_row125_col1" class="data row125 col1" >01111101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row126_col0" class="data row126 col0" >126</td>
-      <td id="T_c321f_row126_col1" class="data row126 col1" >01111110</td>
+      <td id="T_4642a_row126_col0" class="data row126 col0" >126</td>
+      <td id="T_4642a_row126_col1" class="data row126 col1" >01111110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row127_col0" class="data row127 col0" >127</td>
-      <td id="T_c321f_row127_col1" class="data row127 col1" >01111111</td>
+      <td id="T_4642a_row127_col0" class="data row127 col0" >127</td>
+      <td id="T_4642a_row127_col1" class="data row127 col1" >01111111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row128_col0" class="data row128 col0" >128</td>
-      <td id="T_c321f_row128_col1" class="data row128 col1" >10000000</td>
+      <td id="T_4642a_row128_col0" class="data row128 col0" >128</td>
+      <td id="T_4642a_row128_col1" class="data row128 col1" >10000000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row129_col0" class="data row129 col0" >129</td>
-      <td id="T_c321f_row129_col1" class="data row129 col1" >10000001</td>
+      <td id="T_4642a_row129_col0" class="data row129 col0" >129</td>
+      <td id="T_4642a_row129_col1" class="data row129 col1" >10000001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row130_col0" class="data row130 col0" >130</td>
-      <td id="T_c321f_row130_col1" class="data row130 col1" >10000010</td>
+      <td id="T_4642a_row130_col0" class="data row130 col0" >130</td>
+      <td id="T_4642a_row130_col1" class="data row130 col1" >10000010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row131_col0" class="data row131 col0" >131</td>
-      <td id="T_c321f_row131_col1" class="data row131 col1" >10000011</td>
+      <td id="T_4642a_row131_col0" class="data row131 col0" >131</td>
+      <td id="T_4642a_row131_col1" class="data row131 col1" >10000011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row132_col0" class="data row132 col0" >132</td>
-      <td id="T_c321f_row132_col1" class="data row132 col1" >10000100</td>
+      <td id="T_4642a_row132_col0" class="data row132 col0" >132</td>
+      <td id="T_4642a_row132_col1" class="data row132 col1" >10000100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row133_col0" class="data row133 col0" >133</td>
-      <td id="T_c321f_row133_col1" class="data row133 col1" >10000101</td>
+      <td id="T_4642a_row133_col0" class="data row133 col0" >133</td>
+      <td id="T_4642a_row133_col1" class="data row133 col1" >10000101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row134_col0" class="data row134 col0" >134</td>
-      <td id="T_c321f_row134_col1" class="data row134 col1" >10000110</td>
+      <td id="T_4642a_row134_col0" class="data row134 col0" >134</td>
+      <td id="T_4642a_row134_col1" class="data row134 col1" >10000110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row135_col0" class="data row135 col0" >135</td>
-      <td id="T_c321f_row135_col1" class="data row135 col1" >10000111</td>
+      <td id="T_4642a_row135_col0" class="data row135 col0" >135</td>
+      <td id="T_4642a_row135_col1" class="data row135 col1" >10000111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row136_col0" class="data row136 col0" >136</td>
-      <td id="T_c321f_row136_col1" class="data row136 col1" >10001000</td>
+      <td id="T_4642a_row136_col0" class="data row136 col0" >136</td>
+      <td id="T_4642a_row136_col1" class="data row136 col1" >10001000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row137_col0" class="data row137 col0" >137</td>
-      <td id="T_c321f_row137_col1" class="data row137 col1" >10001001</td>
+      <td id="T_4642a_row137_col0" class="data row137 col0" >137</td>
+      <td id="T_4642a_row137_col1" class="data row137 col1" >10001001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row138_col0" class="data row138 col0" >138</td>
-      <td id="T_c321f_row138_col1" class="data row138 col1" >10001010</td>
+      <td id="T_4642a_row138_col0" class="data row138 col0" >138</td>
+      <td id="T_4642a_row138_col1" class="data row138 col1" >10001010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row139_col0" class="data row139 col0" >139</td>
-      <td id="T_c321f_row139_col1" class="data row139 col1" >10001011</td>
+      <td id="T_4642a_row139_col0" class="data row139 col0" >139</td>
+      <td id="T_4642a_row139_col1" class="data row139 col1" >10001011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row140_col0" class="data row140 col0" >140</td>
-      <td id="T_c321f_row140_col1" class="data row140 col1" >10001100</td>
+      <td id="T_4642a_row140_col0" class="data row140 col0" >140</td>
+      <td id="T_4642a_row140_col1" class="data row140 col1" >10001100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row141_col0" class="data row141 col0" >141</td>
-      <td id="T_c321f_row141_col1" class="data row141 col1" >10001101</td>
+      <td id="T_4642a_row141_col0" class="data row141 col0" >141</td>
+      <td id="T_4642a_row141_col1" class="data row141 col1" >10001101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row142_col0" class="data row142 col0" >142</td>
-      <td id="T_c321f_row142_col1" class="data row142 col1" >10001110</td>
+      <td id="T_4642a_row142_col0" class="data row142 col0" >142</td>
+      <td id="T_4642a_row142_col1" class="data row142 col1" >10001110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row143_col0" class="data row143 col0" >143</td>
-      <td id="T_c321f_row143_col1" class="data row143 col1" >10001111</td>
+      <td id="T_4642a_row143_col0" class="data row143 col0" >143</td>
+      <td id="T_4642a_row143_col1" class="data row143 col1" >10001111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row144_col0" class="data row144 col0" >144</td>
-      <td id="T_c321f_row144_col1" class="data row144 col1" >10010000</td>
+      <td id="T_4642a_row144_col0" class="data row144 col0" >144</td>
+      <td id="T_4642a_row144_col1" class="data row144 col1" >10010000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row145_col0" class="data row145 col0" >145</td>
-      <td id="T_c321f_row145_col1" class="data row145 col1" >10010001</td>
+      <td id="T_4642a_row145_col0" class="data row145 col0" >145</td>
+      <td id="T_4642a_row145_col1" class="data row145 col1" >10010001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row146_col0" class="data row146 col0" >146</td>
-      <td id="T_c321f_row146_col1" class="data row146 col1" >10010010</td>
+      <td id="T_4642a_row146_col0" class="data row146 col0" >146</td>
+      <td id="T_4642a_row146_col1" class="data row146 col1" >10010010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row147_col0" class="data row147 col0" >147</td>
-      <td id="T_c321f_row147_col1" class="data row147 col1" >10010011</td>
+      <td id="T_4642a_row147_col0" class="data row147 col0" >147</td>
+      <td id="T_4642a_row147_col1" class="data row147 col1" >10010011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row148_col0" class="data row148 col0" >148</td>
-      <td id="T_c321f_row148_col1" class="data row148 col1" >10010100</td>
+      <td id="T_4642a_row148_col0" class="data row148 col0" >148</td>
+      <td id="T_4642a_row148_col1" class="data row148 col1" >10010100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row149_col0" class="data row149 col0" >149</td>
-      <td id="T_c321f_row149_col1" class="data row149 col1" >10010101</td>
+      <td id="T_4642a_row149_col0" class="data row149 col0" >149</td>
+      <td id="T_4642a_row149_col1" class="data row149 col1" >10010101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row150_col0" class="data row150 col0" >150</td>
-      <td id="T_c321f_row150_col1" class="data row150 col1" >10010110</td>
+      <td id="T_4642a_row150_col0" class="data row150 col0" >150</td>
+      <td id="T_4642a_row150_col1" class="data row150 col1" >10010110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row151_col0" class="data row151 col0" >151</td>
-      <td id="T_c321f_row151_col1" class="data row151 col1" >10010111</td>
+      <td id="T_4642a_row151_col0" class="data row151 col0" >151</td>
+      <td id="T_4642a_row151_col1" class="data row151 col1" >10010111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row152_col0" class="data row152 col0" >152</td>
-      <td id="T_c321f_row152_col1" class="data row152 col1" >10011000</td>
+      <td id="T_4642a_row152_col0" class="data row152 col0" >152</td>
+      <td id="T_4642a_row152_col1" class="data row152 col1" >10011000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row153_col0" class="data row153 col0" >153</td>
-      <td id="T_c321f_row153_col1" class="data row153 col1" >10011001</td>
+      <td id="T_4642a_row153_col0" class="data row153 col0" >153</td>
+      <td id="T_4642a_row153_col1" class="data row153 col1" >10011001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row154_col0" class="data row154 col0" >154</td>
-      <td id="T_c321f_row154_col1" class="data row154 col1" >10011010</td>
+      <td id="T_4642a_row154_col0" class="data row154 col0" >154</td>
+      <td id="T_4642a_row154_col1" class="data row154 col1" >10011010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row155_col0" class="data row155 col0" >155</td>
-      <td id="T_c321f_row155_col1" class="data row155 col1" >10011011</td>
+      <td id="T_4642a_row155_col0" class="data row155 col0" >155</td>
+      <td id="T_4642a_row155_col1" class="data row155 col1" >10011011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row156_col0" class="data row156 col0" >156</td>
-      <td id="T_c321f_row156_col1" class="data row156 col1" >10011100</td>
+      <td id="T_4642a_row156_col0" class="data row156 col0" >156</td>
+      <td id="T_4642a_row156_col1" class="data row156 col1" >10011100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row157_col0" class="data row157 col0" >157</td>
-      <td id="T_c321f_row157_col1" class="data row157 col1" >10011101</td>
+      <td id="T_4642a_row157_col0" class="data row157 col0" >157</td>
+      <td id="T_4642a_row157_col1" class="data row157 col1" >10011101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row158_col0" class="data row158 col0" >158</td>
-      <td id="T_c321f_row158_col1" class="data row158 col1" >10011110</td>
+      <td id="T_4642a_row158_col0" class="data row158 col0" >158</td>
+      <td id="T_4642a_row158_col1" class="data row158 col1" >10011110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row159_col0" class="data row159 col0" >159</td>
-      <td id="T_c321f_row159_col1" class="data row159 col1" >10011111</td>
+      <td id="T_4642a_row159_col0" class="data row159 col0" >159</td>
+      <td id="T_4642a_row159_col1" class="data row159 col1" >10011111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row160_col0" class="data row160 col0" >160</td>
-      <td id="T_c321f_row160_col1" class="data row160 col1" >10100000</td>
+      <td id="T_4642a_row160_col0" class="data row160 col0" >160</td>
+      <td id="T_4642a_row160_col1" class="data row160 col1" >10100000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row161_col0" class="data row161 col0" >161</td>
-      <td id="T_c321f_row161_col1" class="data row161 col1" >10100001</td>
+      <td id="T_4642a_row161_col0" class="data row161 col0" >161</td>
+      <td id="T_4642a_row161_col1" class="data row161 col1" >10100001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row162_col0" class="data row162 col0" >162</td>
-      <td id="T_c321f_row162_col1" class="data row162 col1" >10100010</td>
+      <td id="T_4642a_row162_col0" class="data row162 col0" >162</td>
+      <td id="T_4642a_row162_col1" class="data row162 col1" >10100010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row163_col0" class="data row163 col0" >163</td>
-      <td id="T_c321f_row163_col1" class="data row163 col1" >10100011</td>
+      <td id="T_4642a_row163_col0" class="data row163 col0" >163</td>
+      <td id="T_4642a_row163_col1" class="data row163 col1" >10100011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row164_col0" class="data row164 col0" >164</td>
-      <td id="T_c321f_row164_col1" class="data row164 col1" >10100100</td>
+      <td id="T_4642a_row164_col0" class="data row164 col0" >164</td>
+      <td id="T_4642a_row164_col1" class="data row164 col1" >10100100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row165_col0" class="data row165 col0" >165</td>
-      <td id="T_c321f_row165_col1" class="data row165 col1" >10100101</td>
+      <td id="T_4642a_row165_col0" class="data row165 col0" >165</td>
+      <td id="T_4642a_row165_col1" class="data row165 col1" >10100101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row166_col0" class="data row166 col0" >166</td>
-      <td id="T_c321f_row166_col1" class="data row166 col1" >10100110</td>
+      <td id="T_4642a_row166_col0" class="data row166 col0" >166</td>
+      <td id="T_4642a_row166_col1" class="data row166 col1" >10100110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row167_col0" class="data row167 col0" >167</td>
-      <td id="T_c321f_row167_col1" class="data row167 col1" >10100111</td>
+      <td id="T_4642a_row167_col0" class="data row167 col0" >167</td>
+      <td id="T_4642a_row167_col1" class="data row167 col1" >10100111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row168_col0" class="data row168 col0" >168</td>
-      <td id="T_c321f_row168_col1" class="data row168 col1" >10101000</td>
+      <td id="T_4642a_row168_col0" class="data row168 col0" >168</td>
+      <td id="T_4642a_row168_col1" class="data row168 col1" >10101000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row169_col0" class="data row169 col0" >169</td>
-      <td id="T_c321f_row169_col1" class="data row169 col1" >10101001</td>
+      <td id="T_4642a_row169_col0" class="data row169 col0" >169</td>
+      <td id="T_4642a_row169_col1" class="data row169 col1" >10101001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row170_col0" class="data row170 col0" >170</td>
-      <td id="T_c321f_row170_col1" class="data row170 col1" >10101010</td>
+      <td id="T_4642a_row170_col0" class="data row170 col0" >170</td>
+      <td id="T_4642a_row170_col1" class="data row170 col1" >10101010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row171_col0" class="data row171 col0" >171</td>
-      <td id="T_c321f_row171_col1" class="data row171 col1" >10101011</td>
+      <td id="T_4642a_row171_col0" class="data row171 col0" >171</td>
+      <td id="T_4642a_row171_col1" class="data row171 col1" >10101011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row172_col0" class="data row172 col0" >172</td>
-      <td id="T_c321f_row172_col1" class="data row172 col1" >10101100</td>
+      <td id="T_4642a_row172_col0" class="data row172 col0" >172</td>
+      <td id="T_4642a_row172_col1" class="data row172 col1" >10101100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row173_col0" class="data row173 col0" >173</td>
-      <td id="T_c321f_row173_col1" class="data row173 col1" >10101101</td>
+      <td id="T_4642a_row173_col0" class="data row173 col0" >173</td>
+      <td id="T_4642a_row173_col1" class="data row173 col1" >10101101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row174_col0" class="data row174 col0" >174</td>
-      <td id="T_c321f_row174_col1" class="data row174 col1" >10101110</td>
+      <td id="T_4642a_row174_col0" class="data row174 col0" >174</td>
+      <td id="T_4642a_row174_col1" class="data row174 col1" >10101110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row175_col0" class="data row175 col0" >175</td>
-      <td id="T_c321f_row175_col1" class="data row175 col1" >10101111</td>
+      <td id="T_4642a_row175_col0" class="data row175 col0" >175</td>
+      <td id="T_4642a_row175_col1" class="data row175 col1" >10101111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row176_col0" class="data row176 col0" >176</td>
-      <td id="T_c321f_row176_col1" class="data row176 col1" >10110000</td>
+      <td id="T_4642a_row176_col0" class="data row176 col0" >176</td>
+      <td id="T_4642a_row176_col1" class="data row176 col1" >10110000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row177_col0" class="data row177 col0" >177</td>
-      <td id="T_c321f_row177_col1" class="data row177 col1" >10110001</td>
+      <td id="T_4642a_row177_col0" class="data row177 col0" >177</td>
+      <td id="T_4642a_row177_col1" class="data row177 col1" >10110001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row178_col0" class="data row178 col0" >178</td>
-      <td id="T_c321f_row178_col1" class="data row178 col1" >10110010</td>
+      <td id="T_4642a_row178_col0" class="data row178 col0" >178</td>
+      <td id="T_4642a_row178_col1" class="data row178 col1" >10110010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row179_col0" class="data row179 col0" >179</td>
-      <td id="T_c321f_row179_col1" class="data row179 col1" >10110011</td>
+      <td id="T_4642a_row179_col0" class="data row179 col0" >179</td>
+      <td id="T_4642a_row179_col1" class="data row179 col1" >10110011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row180_col0" class="data row180 col0" >180</td>
-      <td id="T_c321f_row180_col1" class="data row180 col1" >10110100</td>
+      <td id="T_4642a_row180_col0" class="data row180 col0" >180</td>
+      <td id="T_4642a_row180_col1" class="data row180 col1" >10110100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row181_col0" class="data row181 col0" >181</td>
-      <td id="T_c321f_row181_col1" class="data row181 col1" >10110101</td>
+      <td id="T_4642a_row181_col0" class="data row181 col0" >181</td>
+      <td id="T_4642a_row181_col1" class="data row181 col1" >10110101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row182_col0" class="data row182 col0" >182</td>
-      <td id="T_c321f_row182_col1" class="data row182 col1" >10110110</td>
+      <td id="T_4642a_row182_col0" class="data row182 col0" >182</td>
+      <td id="T_4642a_row182_col1" class="data row182 col1" >10110110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row183_col0" class="data row183 col0" >183</td>
-      <td id="T_c321f_row183_col1" class="data row183 col1" >10110111</td>
+      <td id="T_4642a_row183_col0" class="data row183 col0" >183</td>
+      <td id="T_4642a_row183_col1" class="data row183 col1" >10110111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row184_col0" class="data row184 col0" >184</td>
-      <td id="T_c321f_row184_col1" class="data row184 col1" >10111000</td>
+      <td id="T_4642a_row184_col0" class="data row184 col0" >184</td>
+      <td id="T_4642a_row184_col1" class="data row184 col1" >10111000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row185_col0" class="data row185 col0" >185</td>
-      <td id="T_c321f_row185_col1" class="data row185 col1" >10111001</td>
+      <td id="T_4642a_row185_col0" class="data row185 col0" >185</td>
+      <td id="T_4642a_row185_col1" class="data row185 col1" >10111001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row186_col0" class="data row186 col0" >186</td>
-      <td id="T_c321f_row186_col1" class="data row186 col1" >10111010</td>
+      <td id="T_4642a_row186_col0" class="data row186 col0" >186</td>
+      <td id="T_4642a_row186_col1" class="data row186 col1" >10111010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row187_col0" class="data row187 col0" >187</td>
-      <td id="T_c321f_row187_col1" class="data row187 col1" >10111011</td>
+      <td id="T_4642a_row187_col0" class="data row187 col0" >187</td>
+      <td id="T_4642a_row187_col1" class="data row187 col1" >10111011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row188_col0" class="data row188 col0" >188</td>
-      <td id="T_c321f_row188_col1" class="data row188 col1" >10111100</td>
+      <td id="T_4642a_row188_col0" class="data row188 col0" >188</td>
+      <td id="T_4642a_row188_col1" class="data row188 col1" >10111100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row189_col0" class="data row189 col0" >189</td>
-      <td id="T_c321f_row189_col1" class="data row189 col1" >10111101</td>
+      <td id="T_4642a_row189_col0" class="data row189 col0" >189</td>
+      <td id="T_4642a_row189_col1" class="data row189 col1" >10111101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row190_col0" class="data row190 col0" >190</td>
-      <td id="T_c321f_row190_col1" class="data row190 col1" >10111110</td>
+      <td id="T_4642a_row190_col0" class="data row190 col0" >190</td>
+      <td id="T_4642a_row190_col1" class="data row190 col1" >10111110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row191_col0" class="data row191 col0" >191</td>
-      <td id="T_c321f_row191_col1" class="data row191 col1" >10111111</td>
+      <td id="T_4642a_row191_col0" class="data row191 col0" >191</td>
+      <td id="T_4642a_row191_col1" class="data row191 col1" >10111111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row192_col0" class="data row192 col0" >192</td>
-      <td id="T_c321f_row192_col1" class="data row192 col1" >11000000</td>
+      <td id="T_4642a_row192_col0" class="data row192 col0" >192</td>
+      <td id="T_4642a_row192_col1" class="data row192 col1" >11000000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row193_col0" class="data row193 col0" >193</td>
-      <td id="T_c321f_row193_col1" class="data row193 col1" >11000001</td>
+      <td id="T_4642a_row193_col0" class="data row193 col0" >193</td>
+      <td id="T_4642a_row193_col1" class="data row193 col1" >11000001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row194_col0" class="data row194 col0" >194</td>
-      <td id="T_c321f_row194_col1" class="data row194 col1" >11000010</td>
+      <td id="T_4642a_row194_col0" class="data row194 col0" >194</td>
+      <td id="T_4642a_row194_col1" class="data row194 col1" >11000010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row195_col0" class="data row195 col0" >195</td>
-      <td id="T_c321f_row195_col1" class="data row195 col1" >11000011</td>
+      <td id="T_4642a_row195_col0" class="data row195 col0" >195</td>
+      <td id="T_4642a_row195_col1" class="data row195 col1" >11000011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row196_col0" class="data row196 col0" >196</td>
-      <td id="T_c321f_row196_col1" class="data row196 col1" >11000100</td>
+      <td id="T_4642a_row196_col0" class="data row196 col0" >196</td>
+      <td id="T_4642a_row196_col1" class="data row196 col1" >11000100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row197_col0" class="data row197 col0" >197</td>
-      <td id="T_c321f_row197_col1" class="data row197 col1" >11000101</td>
+      <td id="T_4642a_row197_col0" class="data row197 col0" >197</td>
+      <td id="T_4642a_row197_col1" class="data row197 col1" >11000101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row198_col0" class="data row198 col0" >198</td>
-      <td id="T_c321f_row198_col1" class="data row198 col1" >11000110</td>
+      <td id="T_4642a_row198_col0" class="data row198 col0" >198</td>
+      <td id="T_4642a_row198_col1" class="data row198 col1" >11000110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row199_col0" class="data row199 col0" >199</td>
-      <td id="T_c321f_row199_col1" class="data row199 col1" >11000111</td>
+      <td id="T_4642a_row199_col0" class="data row199 col0" >199</td>
+      <td id="T_4642a_row199_col1" class="data row199 col1" >11000111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row200_col0" class="data row200 col0" >200</td>
-      <td id="T_c321f_row200_col1" class="data row200 col1" >11001000</td>
+      <td id="T_4642a_row200_col0" class="data row200 col0" >200</td>
+      <td id="T_4642a_row200_col1" class="data row200 col1" >11001000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row201_col0" class="data row201 col0" >201</td>
-      <td id="T_c321f_row201_col1" class="data row201 col1" >11001001</td>
+      <td id="T_4642a_row201_col0" class="data row201 col0" >201</td>
+      <td id="T_4642a_row201_col1" class="data row201 col1" >11001001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row202_col0" class="data row202 col0" >202</td>
-      <td id="T_c321f_row202_col1" class="data row202 col1" >11001010</td>
+      <td id="T_4642a_row202_col0" class="data row202 col0" >202</td>
+      <td id="T_4642a_row202_col1" class="data row202 col1" >11001010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row203_col0" class="data row203 col0" >203</td>
-      <td id="T_c321f_row203_col1" class="data row203 col1" >11001011</td>
+      <td id="T_4642a_row203_col0" class="data row203 col0" >203</td>
+      <td id="T_4642a_row203_col1" class="data row203 col1" >11001011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row204_col0" class="data row204 col0" >204</td>
-      <td id="T_c321f_row204_col1" class="data row204 col1" >11001100</td>
+      <td id="T_4642a_row204_col0" class="data row204 col0" >204</td>
+      <td id="T_4642a_row204_col1" class="data row204 col1" >11001100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row205_col0" class="data row205 col0" >205</td>
-      <td id="T_c321f_row205_col1" class="data row205 col1" >11001101</td>
+      <td id="T_4642a_row205_col0" class="data row205 col0" >205</td>
+      <td id="T_4642a_row205_col1" class="data row205 col1" >11001101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row206_col0" class="data row206 col0" >206</td>
-      <td id="T_c321f_row206_col1" class="data row206 col1" >11001110</td>
+      <td id="T_4642a_row206_col0" class="data row206 col0" >206</td>
+      <td id="T_4642a_row206_col1" class="data row206 col1" >11001110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row207_col0" class="data row207 col0" >207</td>
-      <td id="T_c321f_row207_col1" class="data row207 col1" >11001111</td>
+      <td id="T_4642a_row207_col0" class="data row207 col0" >207</td>
+      <td id="T_4642a_row207_col1" class="data row207 col1" >11001111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row208_col0" class="data row208 col0" >208</td>
-      <td id="T_c321f_row208_col1" class="data row208 col1" >11010000</td>
+      <td id="T_4642a_row208_col0" class="data row208 col0" >208</td>
+      <td id="T_4642a_row208_col1" class="data row208 col1" >11010000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row209_col0" class="data row209 col0" >209</td>
-      <td id="T_c321f_row209_col1" class="data row209 col1" >11010001</td>
+      <td id="T_4642a_row209_col0" class="data row209 col0" >209</td>
+      <td id="T_4642a_row209_col1" class="data row209 col1" >11010001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row210_col0" class="data row210 col0" >210</td>
-      <td id="T_c321f_row210_col1" class="data row210 col1" >11010010</td>
+      <td id="T_4642a_row210_col0" class="data row210 col0" >210</td>
+      <td id="T_4642a_row210_col1" class="data row210 col1" >11010010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row211_col0" class="data row211 col0" >211</td>
-      <td id="T_c321f_row211_col1" class="data row211 col1" >11010011</td>
+      <td id="T_4642a_row211_col0" class="data row211 col0" >211</td>
+      <td id="T_4642a_row211_col1" class="data row211 col1" >11010011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row212_col0" class="data row212 col0" >212</td>
-      <td id="T_c321f_row212_col1" class="data row212 col1" >11010100</td>
+      <td id="T_4642a_row212_col0" class="data row212 col0" >212</td>
+      <td id="T_4642a_row212_col1" class="data row212 col1" >11010100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row213_col0" class="data row213 col0" >213</td>
-      <td id="T_c321f_row213_col1" class="data row213 col1" >11010101</td>
+      <td id="T_4642a_row213_col0" class="data row213 col0" >213</td>
+      <td id="T_4642a_row213_col1" class="data row213 col1" >11010101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row214_col0" class="data row214 col0" >214</td>
-      <td id="T_c321f_row214_col1" class="data row214 col1" >11010110</td>
+      <td id="T_4642a_row214_col0" class="data row214 col0" >214</td>
+      <td id="T_4642a_row214_col1" class="data row214 col1" >11010110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row215_col0" class="data row215 col0" >215</td>
-      <td id="T_c321f_row215_col1" class="data row215 col1" >11010111</td>
+      <td id="T_4642a_row215_col0" class="data row215 col0" >215</td>
+      <td id="T_4642a_row215_col1" class="data row215 col1" >11010111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row216_col0" class="data row216 col0" >216</td>
-      <td id="T_c321f_row216_col1" class="data row216 col1" >11011000</td>
+      <td id="T_4642a_row216_col0" class="data row216 col0" >216</td>
+      <td id="T_4642a_row216_col1" class="data row216 col1" >11011000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row217_col0" class="data row217 col0" >217</td>
-      <td id="T_c321f_row217_col1" class="data row217 col1" >11011001</td>
+      <td id="T_4642a_row217_col0" class="data row217 col0" >217</td>
+      <td id="T_4642a_row217_col1" class="data row217 col1" >11011001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row218_col0" class="data row218 col0" >218</td>
-      <td id="T_c321f_row218_col1" class="data row218 col1" >11011010</td>
+      <td id="T_4642a_row218_col0" class="data row218 col0" >218</td>
+      <td id="T_4642a_row218_col1" class="data row218 col1" >11011010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row219_col0" class="data row219 col0" >219</td>
-      <td id="T_c321f_row219_col1" class="data row219 col1" >11011011</td>
+      <td id="T_4642a_row219_col0" class="data row219 col0" >219</td>
+      <td id="T_4642a_row219_col1" class="data row219 col1" >11011011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row220_col0" class="data row220 col0" >220</td>
-      <td id="T_c321f_row220_col1" class="data row220 col1" >11011100</td>
+      <td id="T_4642a_row220_col0" class="data row220 col0" >220</td>
+      <td id="T_4642a_row220_col1" class="data row220 col1" >11011100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row221_col0" class="data row221 col0" >221</td>
-      <td id="T_c321f_row221_col1" class="data row221 col1" >11011101</td>
+      <td id="T_4642a_row221_col0" class="data row221 col0" >221</td>
+      <td id="T_4642a_row221_col1" class="data row221 col1" >11011101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row222_col0" class="data row222 col0" >222</td>
-      <td id="T_c321f_row222_col1" class="data row222 col1" >11011110</td>
+      <td id="T_4642a_row222_col0" class="data row222 col0" >222</td>
+      <td id="T_4642a_row222_col1" class="data row222 col1" >11011110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row223_col0" class="data row223 col0" >223</td>
-      <td id="T_c321f_row223_col1" class="data row223 col1" >11011111</td>
+      <td id="T_4642a_row223_col0" class="data row223 col0" >223</td>
+      <td id="T_4642a_row223_col1" class="data row223 col1" >11011111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row224_col0" class="data row224 col0" >224</td>
-      <td id="T_c321f_row224_col1" class="data row224 col1" >11100000</td>
+      <td id="T_4642a_row224_col0" class="data row224 col0" >224</td>
+      <td id="T_4642a_row224_col1" class="data row224 col1" >11100000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row225_col0" class="data row225 col0" >225</td>
-      <td id="T_c321f_row225_col1" class="data row225 col1" >11100001</td>
+      <td id="T_4642a_row225_col0" class="data row225 col0" >225</td>
+      <td id="T_4642a_row225_col1" class="data row225 col1" >11100001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row226_col0" class="data row226 col0" >226</td>
-      <td id="T_c321f_row226_col1" class="data row226 col1" >11100010</td>
+      <td id="T_4642a_row226_col0" class="data row226 col0" >226</td>
+      <td id="T_4642a_row226_col1" class="data row226 col1" >11100010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row227_col0" class="data row227 col0" >227</td>
-      <td id="T_c321f_row227_col1" class="data row227 col1" >11100011</td>
+      <td id="T_4642a_row227_col0" class="data row227 col0" >227</td>
+      <td id="T_4642a_row227_col1" class="data row227 col1" >11100011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row228_col0" class="data row228 col0" >228</td>
-      <td id="T_c321f_row228_col1" class="data row228 col1" >11100100</td>
+      <td id="T_4642a_row228_col0" class="data row228 col0" >228</td>
+      <td id="T_4642a_row228_col1" class="data row228 col1" >11100100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row229_col0" class="data row229 col0" >229</td>
-      <td id="T_c321f_row229_col1" class="data row229 col1" >11100101</td>
+      <td id="T_4642a_row229_col0" class="data row229 col0" >229</td>
+      <td id="T_4642a_row229_col1" class="data row229 col1" >11100101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row230_col0" class="data row230 col0" >230</td>
-      <td id="T_c321f_row230_col1" class="data row230 col1" >11100110</td>
+      <td id="T_4642a_row230_col0" class="data row230 col0" >230</td>
+      <td id="T_4642a_row230_col1" class="data row230 col1" >11100110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row231_col0" class="data row231 col0" >231</td>
-      <td id="T_c321f_row231_col1" class="data row231 col1" >11100111</td>
+      <td id="T_4642a_row231_col0" class="data row231 col0" >231</td>
+      <td id="T_4642a_row231_col1" class="data row231 col1" >11100111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row232_col0" class="data row232 col0" >232</td>
-      <td id="T_c321f_row232_col1" class="data row232 col1" >11101000</td>
+      <td id="T_4642a_row232_col0" class="data row232 col0" >232</td>
+      <td id="T_4642a_row232_col1" class="data row232 col1" >11101000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row233_col0" class="data row233 col0" >233</td>
-      <td id="T_c321f_row233_col1" class="data row233 col1" >11101001</td>
+      <td id="T_4642a_row233_col0" class="data row233 col0" >233</td>
+      <td id="T_4642a_row233_col1" class="data row233 col1" >11101001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row234_col0" class="data row234 col0" >234</td>
-      <td id="T_c321f_row234_col1" class="data row234 col1" >11101010</td>
+      <td id="T_4642a_row234_col0" class="data row234 col0" >234</td>
+      <td id="T_4642a_row234_col1" class="data row234 col1" >11101010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row235_col0" class="data row235 col0" >235</td>
-      <td id="T_c321f_row235_col1" class="data row235 col1" >11101011</td>
+      <td id="T_4642a_row235_col0" class="data row235 col0" >235</td>
+      <td id="T_4642a_row235_col1" class="data row235 col1" >11101011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row236_col0" class="data row236 col0" >236</td>
-      <td id="T_c321f_row236_col1" class="data row236 col1" >11101100</td>
+      <td id="T_4642a_row236_col0" class="data row236 col0" >236</td>
+      <td id="T_4642a_row236_col1" class="data row236 col1" >11101100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row237_col0" class="data row237 col0" >237</td>
-      <td id="T_c321f_row237_col1" class="data row237 col1" >11101101</td>
+      <td id="T_4642a_row237_col0" class="data row237 col0" >237</td>
+      <td id="T_4642a_row237_col1" class="data row237 col1" >11101101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row238_col0" class="data row238 col0" >238</td>
-      <td id="T_c321f_row238_col1" class="data row238 col1" >11101110</td>
+      <td id="T_4642a_row238_col0" class="data row238 col0" >238</td>
+      <td id="T_4642a_row238_col1" class="data row238 col1" >11101110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row239_col0" class="data row239 col0" >239</td>
-      <td id="T_c321f_row239_col1" class="data row239 col1" >11101111</td>
+      <td id="T_4642a_row239_col0" class="data row239 col0" >239</td>
+      <td id="T_4642a_row239_col1" class="data row239 col1" >11101111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row240_col0" class="data row240 col0" >240</td>
-      <td id="T_c321f_row240_col1" class="data row240 col1" >11110000</td>
+      <td id="T_4642a_row240_col0" class="data row240 col0" >240</td>
+      <td id="T_4642a_row240_col1" class="data row240 col1" >11110000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row241_col0" class="data row241 col0" >241</td>
-      <td id="T_c321f_row241_col1" class="data row241 col1" >11110001</td>
+      <td id="T_4642a_row241_col0" class="data row241 col0" >241</td>
+      <td id="T_4642a_row241_col1" class="data row241 col1" >11110001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row242_col0" class="data row242 col0" >242</td>
-      <td id="T_c321f_row242_col1" class="data row242 col1" >11110010</td>
+      <td id="T_4642a_row242_col0" class="data row242 col0" >242</td>
+      <td id="T_4642a_row242_col1" class="data row242 col1" >11110010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row243_col0" class="data row243 col0" >243</td>
-      <td id="T_c321f_row243_col1" class="data row243 col1" >11110011</td>
+      <td id="T_4642a_row243_col0" class="data row243 col0" >243</td>
+      <td id="T_4642a_row243_col1" class="data row243 col1" >11110011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row244_col0" class="data row244 col0" >244</td>
-      <td id="T_c321f_row244_col1" class="data row244 col1" >11110100</td>
+      <td id="T_4642a_row244_col0" class="data row244 col0" >244</td>
+      <td id="T_4642a_row244_col1" class="data row244 col1" >11110100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row245_col0" class="data row245 col0" >245</td>
-      <td id="T_c321f_row245_col1" class="data row245 col1" >11110101</td>
+      <td id="T_4642a_row245_col0" class="data row245 col0" >245</td>
+      <td id="T_4642a_row245_col1" class="data row245 col1" >11110101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row246_col0" class="data row246 col0" >246</td>
-      <td id="T_c321f_row246_col1" class="data row246 col1" >11110110</td>
+      <td id="T_4642a_row246_col0" class="data row246 col0" >246</td>
+      <td id="T_4642a_row246_col1" class="data row246 col1" >11110110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row247_col0" class="data row247 col0" >247</td>
-      <td id="T_c321f_row247_col1" class="data row247 col1" >11110111</td>
+      <td id="T_4642a_row247_col0" class="data row247 col0" >247</td>
+      <td id="T_4642a_row247_col1" class="data row247 col1" >11110111</td>
     </tr>
     <tr>
-      <td id="T_c321f_row248_col0" class="data row248 col0" >248</td>
-      <td id="T_c321f_row248_col1" class="data row248 col1" >11111000</td>
+      <td id="T_4642a_row248_col0" class="data row248 col0" >248</td>
+      <td id="T_4642a_row248_col1" class="data row248 col1" >11111000</td>
     </tr>
     <tr>
-      <td id="T_c321f_row249_col0" class="data row249 col0" >249</td>
-      <td id="T_c321f_row249_col1" class="data row249 col1" >11111001</td>
+      <td id="T_4642a_row249_col0" class="data row249 col0" >249</td>
+      <td id="T_4642a_row249_col1" class="data row249 col1" >11111001</td>
     </tr>
     <tr>
-      <td id="T_c321f_row250_col0" class="data row250 col0" >250</td>
-      <td id="T_c321f_row250_col1" class="data row250 col1" >11111010</td>
+      <td id="T_4642a_row250_col0" class="data row250 col0" >250</td>
+      <td id="T_4642a_row250_col1" class="data row250 col1" >11111010</td>
     </tr>
     <tr>
-      <td id="T_c321f_row251_col0" class="data row251 col0" >251</td>
-      <td id="T_c321f_row251_col1" class="data row251 col1" >11111011</td>
+      <td id="T_4642a_row251_col0" class="data row251 col0" >251</td>
+      <td id="T_4642a_row251_col1" class="data row251 col1" >11111011</td>
     </tr>
     <tr>
-      <td id="T_c321f_row252_col0" class="data row252 col0" >252</td>
-      <td id="T_c321f_row252_col1" class="data row252 col1" >11111100</td>
+      <td id="T_4642a_row252_col0" class="data row252 col0" >252</td>
+      <td id="T_4642a_row252_col1" class="data row252 col1" >11111100</td>
     </tr>
     <tr>
-      <td id="T_c321f_row253_col0" class="data row253 col0" >253</td>
-      <td id="T_c321f_row253_col1" class="data row253 col1" >11111101</td>
+      <td id="T_4642a_row253_col0" class="data row253 col0" >253</td>
+      <td id="T_4642a_row253_col1" class="data row253 col1" >11111101</td>
     </tr>
     <tr>
-      <td id="T_c321f_row254_col0" class="data row254 col0" >254</td>
-      <td id="T_c321f_row254_col1" class="data row254 col1" >11111110</td>
+      <td id="T_4642a_row254_col0" class="data row254 col0" >254</td>
+      <td id="T_4642a_row254_col1" class="data row254 col1" >11111110</td>
     </tr>
     <tr>
-      <td id="T_c321f_row255_col0" class="data row255 col0" >255</td>
-      <td id="T_c321f_row255_col1" class="data row255 col1" >11111111</td>
+      <td id="T_4642a_row255_col0" class="data row255 col0" >255</td>
+      <td id="T_4642a_row255_col1" class="data row255 col1" >11111111</td>
     </tr>
   </tbody>
 </table>
@@ -1960,12 +1685,17 @@ If he is only allowed a single one or zero (i.e. a single bit), he doesn’t hav
 Each possible value is represented in binary as a unique combination of bits.</p>
 </section>
 <section id="image-bit-depth">
-<h2>Image bit-depth<a class="headerlink" href="#image-bit-depth" title="Permalink to this headline">#</a></h2>
+<h2>Image bit-depth<a class="headerlink" href="#image-bit-depth" title="Permalink to this heading">#</a></h2>
 <p>The <strong>bit-depth</strong> of an image is the number of bits used to represent each pixel.
 A bit-depth of 8 would indicate that 8 bits are used to represent a single pixel value.</p>
 <p>The bit-depth imposes a limit upon the pixel values that are possible.
 A lower bit-depth implies that fewer different pixel values are available, which can result in an image that contains less information.</p>
 <div class="cell tag_hide-input tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
@@ -1997,16 +1727,15 @@ A lower bit-depth implies that fewer different pixel values are available, which
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-default" id="fig-bit-depths-demo">
-<div class="cell_output docutils container">
-<img alt="../../../_images/bit_depths_11_0.png" src="../../../_images/bit_depths_11_0.png" />
-</div>
+<img alt="../../../_images/74196a140ed1c307e8d79371854e497156861733d72e13ffee4acf45c1479e37.png" src="../../../_images/74196a140ed1c307e8d79371854e497156861733d72e13ffee4acf45c1479e37.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Representing an image using different bit-depths.</span><a class="headerlink" href="#fig-bit-depths-demo" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Representing an image using different bit-depths.</span><a class="headerlink" href="#fig-bit-depths-demo" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>As shown in <a class="reference internal" href="#fig-bit-depths-demo"><span class="std std-numref">Fig. 20</span></a>, a 1-bit image can contain only two values: here, shown as black or white pixels.
+<p>As shown in <a class="reference internal" href="#fig-bit-depths-demo"><span class="std std-numref">Fig. 21</span></a>, a 1-bit image can contain only two values: here, shown as black or white pixels.
 Such <strong>binary images</strong> are extremely limited in the information that they can contain, although will turn out to be <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html#chap-thresholding"><span class="std std-ref">very useful later</span></a> when processing images.</p>
 <p>A 2-bit image is not much better, containing at most only 4 different values.
 A 4-bit image can have 16 values.
@@ -2017,15 +1746,15 @@ However, the histograms reveal that the 8-bit image contains more fine-grained i
 Microscopes that acquire 8-bit images are still reasonably common, and these permit 2<sup>8</sup> = 256 different pixel values, which fall in the range 0–255.
 The next step up is a 16-bit image, which can contain 2<sup>16</sup> = 65536 values: a dramatic improvement (0–65535).</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="c1a95e22-83c2-49cb-85eb-ebcb58c6f0de" name="23cb3f8f-281c-494e-8130-d7ae322da46b" type="radio">
-</input><label class="sd-tab-label" for="c1a95e22-83c2-49cb-85eb-ebcb58c6f0de">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
 Question</label><div class="sd-tab-content docutils">
 <p>What impact would you expect bit-depth to have on the file size of a saved image?</p>
 <p>For example, would you expect an 8-bit image to have a larger, smaller or (roughly) equivalent file size to a 16-bit image of the same scene?
 You can assume the two images have the same number of pixels.</p>
 </div>
-<input id="2f76b2fc-9504-456f-92f6-df29752fb2f1" name="23cb3f8f-281c-494e-8130-d7ae322da46b" type="radio">
-</input><label class="sd-tab-label" for="2f76b2fc-9504-456f-92f6-df29752fb2f1">
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
 Answer</label><div class="sd-tab-content docutils">
 <p>In general, the file size required to store an image is expected to be higher with a higher bit-depth.</p>
 <p>Assuming that the image isn’t <a class="reference internal" href="../6-files/files.html#sec-files-compression"><span class="std std-ref">compressed</span></a>, a 16-bit image would require roughly twice as much storage space as a corresponding 8-bit image.</p>
@@ -2035,7 +1764,7 @@ The corresponding 16-bit image would require approximately 2 MB.</p>
 </div>
 </section>
 <section id="image-type">
-<span id="sec-bits-type"></span><h2>Image type<a class="headerlink" href="#image-type" title="Permalink to this headline">#</a></h2>
+<span id="sec-bits-type"></span><h2>Image type<a class="headerlink" href="#image-type" title="Permalink to this heading">#</a></h2>
 <p>At this point, you  might be wondering: what about fractions?
 Or negative numbers?</p>
 <p>In reality, the bit-depth is only part of the story.
@@ -2082,8 +1811,8 @@ Unless otherwise specified, any 8-bit or 16-bit image is most likely to use unsi
 <img alt="../../../_images/pixel_types.png" class="align-right" src="../../../_images/pixel_types.png" />
 </aside>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="df31dcef-2fc3-47e5-8223-70d478a5d3a8" name="5bfe326e-3ad9-4456-bd06-eb331488f4f6" type="radio">
-</input><label class="sd-tab-label" for="df31dcef-2fc3-47e5-8223-70d478a5d3a8">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
 Question</label><div class="sd-tab-content docutils">
 <p>The pixels shown on the right all belong to different images.</p>
 <p>In each case, identify what <em>possible</em> type an image could have in order to represent the value of the pixel.
@@ -2095,11 +1824,11 @@ There can be more than one possible type for each pixel.</p>
 <li><p>Floating point</p></li>
 </ul>
 </div>
-<input id="bda954d8-61c5-4d7d-a56a-38c46f30b044" name="5bfe326e-3ad9-4456-bd06-eb331488f4f6" type="radio">
-</input><label class="sd-tab-label" for="bda954d8-61c5-4d7d-a56a-38c46f30b044">
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
 Answer</label><div class="sd-tab-content docutils">
 <p>The possible image types, from left to right:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Signed integer or floating point</p></li>
 <li><p>Unsigned integer, signed integer or floating point</p></li>
 <li><p>Floating point</p></li>
@@ -2108,25 +1837,25 @@ Answer</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="4c333aa0-23f3-47c0-9699-1e7432cbb825" name="527c2c32-0d41-43e9-95cf-54436771a205" type="radio">
-</input><label class="sd-tab-label" for="4c333aa0-23f3-47c0-9699-1e7432cbb825">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
 Question</label><div class="sd-tab-content docutils">
 <p>What is the maximum pixel value that can be stored in a <em>16-bit, unsigned integer</em> image?</p>
 </div>
-<input id="f00d95f2-a1f0-4da8-8de0-55cf7c2a95a9" name="527c2c32-0d41-43e9-95cf-54436771a205" type="radio">
-</input><label class="sd-tab-label" for="f00d95f2-a1f0-4da8-8de0-55cf7c2a95a9">
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
 Answer</label><div class="sd-tab-content docutils">
 <p>The maximum value that can be stored in a 16-bit, unsigned integer image is 2<sup>16</sup>-1 = 65535.</p>
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="5aa14f84-645c-46e4-89cb-75c8b3124487" name="aacb373e-7bf7-4f74-8472-50abc1b2f2aa" type="radio">
-</input><label class="sd-tab-label" for="5aa14f84-645c-46e4-89cb-75c8b3124487">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
 Question</label><div class="sd-tab-content docutils">
 <p>What would be the maximum pixel value that can be stored in a <em>16-bit, signed integer</em> image?</p>
 </div>
-<input id="717be169-ffb2-4faa-a36c-fbf0b4dcd65d" name="aacb373e-7bf7-4f74-8472-50abc1b2f2aa" type="radio">
-</input><label class="sd-tab-label" for="717be169-ffb2-4faa-a36c-fbf0b4dcd65d">
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
 Answer</label><div class="sd-tab-content docutils">
 <p>The maximum value that can be stored in a 16-bit, signed integer image is 2<sup>15</sup>-1 = 32767 (since one of the bits is used for the sign, we have 15 remaining).</p>
 </div>
@@ -2136,31 +1865,36 @@ Answer</label><div class="sd-tab-content docutils">
 <p>You may recall how <a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html#fig-image-array"><span class="std std-numref">Fig. 3</span></a> showed an image as being a matrix of numbers.
 That is already a slightly high level abstraction of how the image is actually represented.
 It’s more accurate to see the image (or, indeed, any digital data) as simply being a long stream of ones and zeros, such as</p>
-<p><span class="pasted-inline"><code class="output text_plain docutils literal notranslate"><span class="pre">'00011001000111110010111100111101001000000010000000011010001000000010001100101110001001000010100000101010010010000011001000011000001001000100001000111011001010110001111000100110000111010100000100110100000111100011001000100100001111000010101000110001001000010010001001001110010000110001011100100011001101000011001100110111001010100011111001010011001011110010100000110000001010100011111100111010010010100100011001010000001111010101111101011101011011000101010110010100101011011110110000111110010001110100111000101101...'</span></code></span></p>
+<p><span class="output text_plain">‘00011001000111110010111100111101001000000010000000011010001000000010001100101110001001000010100000101010010010000011001000011000001001000100001000111011001010110001111000100110000111010100000100110100000111100011001000100100001111000010101000110001001000010010001001001110010000110001011100100011001101000011001100110111001010100011111001010011001011110010100000110000001010100011111100111010010010100100011001010000001111010101111101011101011011000101010110010100101011011110110000111110010001110100111000101101…’</span></p>
 <p>More information is needed about how the pixel values of the image are encoded to interpret these ones and zeros.
 This includes how should the ones and zeros be split up to represent different values (e.g. in chunks of 8, 16, or some other number?).</p>
 <p>The bit-depth is what tells us how big the chunks are, and the type tells us how to convert each chunk into a decimal number.</p>
 </div>
 </section>
 <section id="when-bits-go-bad">
-<h2>When bits go bad<a class="headerlink" href="#when-bits-go-bad" title="Permalink to this headline">#</a></h2>
+<h2>When bits go bad<a class="headerlink" href="#when-bits-go-bad" title="Permalink to this heading">#</a></h2>
 <p>We’re now ready to discuss why you absolutely do need to know the basics of bit-depths and image types when working with scientific images.</p>
 <p>The main point of <a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html#chap-pixels"><span class="std std-ref">Images &amp; pixels</span></a> is that we need to
 keep control of our pixel values so that our final analysis is justifiable.
 There are two main bit-related things that can go wrong when trying to store a pixel value in an image:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><strong>Clipping:</strong> We try to store a number outside the range supported, so that the closest valid value is stored instead. For example, if we try to store -10 in an 8-bit unsigned integer image then the closest value we can actually store is 0. Similarly, if we try to store 500 then the closest valid value is 255.</p></li>
 <li><p><strong>Rounding:</strong> We try to store a number that cannot be represented exactly, and so it must be rounded to the closest possible value. For example, if we want to store 6.4 in an 8-bit unsigned integer image then this is not possible; rather, we would need to store 6 instead.</p></li>
 </ol>
 <section id="data-clipping">
-<span id="sec-bit-depths-clipping"></span><h3>Data clipping<a class="headerlink" href="#data-clipping" title="Permalink to this headline">#</a></h3>
-<p>Of the two problems, clipping is usually the more serious, as shown in <a class="reference internal" href="#fig-bits-clipping"><span class="std std-numref">Fig. 21</span></a>.
+<span id="sec-bit-depths-clipping"></span><h3>Data clipping<a class="headerlink" href="#data-clipping" title="Permalink to this heading">#</a></h3>
+<p>Of the two problems, clipping is usually the more serious, as shown in <a class="reference internal" href="#fig-bits-clipping"><span class="std std-numref">Fig. 22</span></a>.
 A clipped image contains pixels with values equal to the maximum or minimum supported by that bit-depth, and it’s no longer possible to tell what values those pixels <em>should</em> have.
 <strong>The information is irretrievably lost.</strong></p>
 <p>Clipping often occurs whenever an image is converted to have a lower bit-depth.
 During this conversion, not all the original pixel values may be preserved – in which case they must be somehow transformed into the range permitted by the output bit-depth.</p>
 <p>This transformation could simply involve clipping the unsupported values (usually very bad), or it could involve rescaling the pixel values first (usually less bad).</p>
 <div class="cell tag_hide-input tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span>  <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 
@@ -2237,13 +1971,12 @@ During this conversion, not all the original pixel values may be preserved – i
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-default" id="fig-bits-clipping" style="width: 90%">
-<div class="cell_output docutils container">
-<img alt="../../../_images/bit_depths_21_0.png" src="../../../_images/bit_depths_21_0.png" />
-</div>
+<img alt="../../../_images/76f7842686d37c4750e58ae84d5412460b11e5511675a203691a6b36b8a01c91.png" src="../../../_images/76f7842686d37c4750e58ae84d5412460b11e5511675a203691a6b36b8a01c91.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Storing an image using a lower bit-depth, either by clipping or by scaling the values.
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">Storing an image using a lower bit-depth, either by clipping or by scaling the values.
 The top row shows all images with the same minimum and maximum values to determine the contrast, while the second row shows shows the same images with the maximum set to the highest pixel value actually present (the images are the same, only the LUTs are different).
 The bottom rows show both a plot of the pixel values through the center of each image and histograms of all the image pixel values.
 One may infer that information has been lost in both of the 8-bit images, but more much horrifically when clipping was applied.
@@ -2256,7 +1989,7 @@ Scaling squeezes the data into a narrow range, which might result in some roundi
 </aside>
 <p>However, it’s important to know that <strong>clipping can already occur during image acquisition</strong>.
 In fluorescence microscopy, this depends upon three main factors:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><strong>The amount of light being emitted.</strong> Because pixel values depend upon how much light is detected, a sample emitting very little light is less likely to require the ability to store very large values. Although it still <em>might</em> because of…</p></li>
 <li><p><strong>The gain of the microscope.</strong> Quantifying very tiny amounts of light accurately has practical difficulties. A microscope’s gain effectively amplifies the amount of detected light to help overcome this before turning it into a pixel value (see <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html#chap-microscope-types"><span class="std std-ref">Microscopes &amp; detectors</span></a>). However, if the gain is too high, even a small number of detected photons could end up being over-amplified until clipping occurs.</p></li>
 <li><p><strong>The offset of the microscope.</strong> This effectively acts as a constant being added to every pixel. If this is too high, or even negative, it can also push the pixels outside the permissible range.</p></li>
@@ -2267,13 +2000,13 @@ In fluorescence microscopy, this depends upon three main factors:</p>
 Therefore <strong>during image acquisition, any available controls should be adjusted to make sure clipping is avoided.</strong></p>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="89404c81-39f6-4148-86ca-6b74cdabd884" name="02f3db2d-2bcb-4eeb-b461-ce9603273ae3" type="radio">
-</input><label class="sd-tab-label" for="89404c81-39f6-4148-86ca-6b74cdabd884">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
 Question</label><div class="sd-tab-content docutils">
 <p>When acquiring an 8-bit unsigned integer image, is it fair to say your data is fine so long as your minimum pixel value is 0 and your maximum value is 255?</p>
 </div>
-<input id="278854b9-2ea5-4e1e-907e-46d21ada6e34" name="02f3db2d-2bcb-4eeb-b461-ce9603273ae3" type="radio">
-</input><label class="sd-tab-label" for="278854b9-2ea5-4e1e-907e-46d21ada6e34">
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
 Answer</label><div class="sd-tab-content docutils">
 <p>No! At least, not really.</p>
 <p>You <em>cannot</em> store pixels outside the range 0–255.
@@ -2283,16 +2016,16 @@ To be confident your 8-bit data is not clipped, the maximum range would be 1–2
 </div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="cfc8fef2-8a58-4025-9e18-01536ecf18bd" name="9fb14f65-a4cf-43c8-9421-148c86f8cb47" type="radio">
-</input><label class="sd-tab-label" for="cfc8fef2-8a58-4025-9e18-01536ecf18bd">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
 Question</label><div class="sd-tab-content docutils">
 <p>The bit-depth of an image is probably some multiple of 8, but the bit-depth that a <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html#chap-microscope-types"><span class="std std-ref">detector (e.g. CCD)</span></a> can support might not be.</p>
 <p>For example, what is the maximum value in a 16-bit image that was acquired using a camera with a 12-bit output?</p>
 <p>And what is the maximum value in a 8-bit image acquired using a camera with a 14-bit output?</p>
 <p>Assume unsigned integers are used in both cases.</p>
 </div>
-<input id="9066feba-0b8b-4fcb-a649-dcd2d6f32022" name="9fb14f65-a4cf-43c8-9421-148c86f8cb47" type="radio">
-</input><label class="sd-tab-label" for="9066feba-0b8b-4fcb-a649-dcd2d6f32022">
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-11">
 Answer</label><div class="sd-tab-content docutils">
 <p>The maximum value of a 16-bit image obtained using a 12-bit camera is 4095 (i.e. 2<sup>12</sup>-1).</p>
 <p>The maximum value of an 8-bit image obtained using a 14-bit camera is 255 – the extra bits of the camera do not change this.
@@ -2303,7 +2036,7 @@ The lower bit-depth will dominate.</p>
 </div>
 </section>
 <section id="rounding-errors">
-<h3>Rounding errors<a class="headerlink" href="#rounding-errors" title="Permalink to this headline">#</a></h3>
+<h3>Rounding errors<a class="headerlink" href="#rounding-errors" title="Permalink to this heading">#</a></h3>
 <p>Rounding is a more subtle problem than clipping.
 Again it is relevant as early as acquisition.</p>
 <p>For example, suppose you are acquiring an image in which there really are 1000 distinct and quantifiable levels of light being emitted from different parts of a sample.
@@ -2324,12 +2057,12 @@ We can write 0.3333333 but our level of precision will depend upon our willingne
 <div class="tip admonition">
 <p class="admonition-title">More bits are better (usually)</p>
 <p>From considering both clipping and rounding, the simple rule of bit-depths emerges: if you want the maximum information and precision in your images, more bits are better.
-This is depicted in <a class="reference internal" href="#fig-blocks-and-bits"><span class="std std-numref">Fig. 22</span></a>.</p>
+This is depicted in <a class="reference internal" href="#fig-blocks-and-bits"><span class="std std-numref">Fig. 23</span></a>.</p>
 <p>When given the option of acquiring a 16-bit or 8-bit image, most of the time you should opt for the former.</p>
 <figure class="align-center" id="fig-blocks-and-bits">
 <img alt="../../../_images/blocks_and_bits.jpg" src="../../../_images/blocks_and_bits.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 22 </span><span class="caption-text"><strong>Illustration of the comparative accuracy of <em>(left to right)</em> 8-bit, 16-bit and 32-bit images.</strong>
+<p><span class="caption-number">Fig. 23 </span><span class="caption-text"><strong>Illustration of the comparative accuracy of <em>(left to right)</em> 8-bit, 16-bit and 32-bit images.</strong>
 If an 8-bit image is like creating a sculpture out of large building blocks, a 16-bit image is more like using Lego and a 32-bit floating point image resembles using clay.
 Anything that can be created with the blocks can also be made from the Lego; anything made from the Lego can also be made from the clay.
 This does not work in reverse: some complex creations can only be represented properly by clay, and building blocks permit only a crude approximation at best.
@@ -2339,14 +2072,14 @@ And, from a very great distance, it might be hard to tell the difference.</span>
 </figure>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="a89088ba-3346-41ae-9775-4a71501524b9" name="7632f7a9-7914-4749-bf7d-17630c8830f1" type="radio">
-</input><label class="sd-tab-label" for="a89088ba-3346-41ae-9775-4a71501524b9">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-12">
 Question</label><div class="sd-tab-content docutils">
 <p>Although <em>more bits are better</em> is a simple rule of thumb we can share with those who do not know the subtleties of bit-depths, it should not be held completely rigorously.</p>
 <p>Can you think of any circumstances when more bits might <em>not</em> be better?</p>
 </div>
-<input id="954981de-086e-4a79-80e6-78bcc8f095cf" name="7632f7a9-7914-4749-bf7d-17630c8830f1" type="radio">
-</input><label class="sd-tab-label" for="954981de-086e-4a79-80e6-78bcc8f095cf">
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-13">
 Answer</label><div class="sd-tab-content docutils">
 <p>Reasons why a lower bit depth is <em>sometimes</em> preferable to a higher one include:</p>
 <ul class="simple">
@@ -2374,7 +2107,7 @@ Answer</label><div class="sd-tab-content docutils">
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chapters/1-concepts/3-bit_depths"
         },
         predefinedOutput: true
@@ -2382,50 +2115,107 @@ Answer</label><div class="sd-tab-content docutils">
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../2-measurements/python.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Python: Measurements &amp; histograms</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../2-measurements/python.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Python: Measurements &amp; histograms</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="imagej.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="imagej.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">ImageJ: Types &amp; bit-depths</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representing-numbers-with-bits">Representing numbers with bits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-bit-depth">Image bit-depth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-type">Image type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-bits-go-bad">When bits go bad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-clipping">Data clipping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rounding-errors">Rounding errors</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By Pete Bankhead<br/>
-  
-      &copy; Copyright 2022-2023.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By Pete Bankhead
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022-2023.
+      <br/>
+    
+  </p>
 
-      </div>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.13.8
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -75,7 +75,7 @@ This makes it easy to use for straightforward things, especially when working wi
 imageio can use different backends, which includes [Pillow](https://imageio.readthedocs.io/en/stable/_autosummary/imageio.plugins.pillow.html) and [tifffile](https://imageio.readthedocs.io/en/stable/_autosummary/imageio.plugins.tifffile.html) - so you can potentially get the advantages of both through using imageio, while writing less code yourself.
 
 ```{code-cell} ipython3
-from imageio import imread
+from imageio.v3 import imread
 
 # Just one line!
 im = imread(path)

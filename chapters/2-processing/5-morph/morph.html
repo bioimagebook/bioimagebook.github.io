@@ -1,50 +1,62 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Morphological operations &#8212; Introduction to Bioimage Analysis</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script data-domain="bioimagebook.github.io" defer="defer" src="https://plausible.io/js/script.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,65 +64,94 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/2-processing/5-morph/morph';</script>
     <link rel="canonical" href="https://bioimagebook.github.io/chapters/2-processing/5-morph/morph.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="ImageJ: Morphological operations" href="imagej.html" />
     <link rel="prev" title="ImageJ: Filters" href="../4-filters/imagej.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script defer data-domain="bioimagebook.github.io" src="https://plausible.io/js/plausible.js"></script>
-<meta name="google-site-verification" content="Aem87SvFh5w_cCS2z43mVgKmnIdYgMBOapUPZ_SQWVY" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -119,747 +160,340 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Front matter
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
-   Acknowledgements
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../CHANGELOG.html">
-   Changelog
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Before we begin
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Before we begin</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/preface/preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/reading/reading.html">
-   How to read this book
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/preface/preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/reading/reading.html">How to read this book</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introducing images
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducing images</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">
-   Images &amp; pixels
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">
-     ImageJ: Images &amp; pixels
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">
-     Python: Images &amp; pixels
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">
-   Measurements &amp; histograms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">
-     ImageJ: Measurements &amp; histograms
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/2-measurements/python.html">
-     Python: Measurements &amp; histograms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">
-   Types &amp; bit-depths
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">
-     ImageJ: Types &amp; bit-depths
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">
-     Python: Types &amp; bit-depths
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/4-colors/colors.html">
-   Channels &amp; colors
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/4-colors/imagej.html">
-     ImageJ: Channels &amp; colors
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/4-colors/python.html">
-     Python: Channels &amp; colors
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">
-   Pixel size &amp; dimensions
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">
-     ImageJ:  Pixel size &amp; dimensions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">
-     Python:  Pixel size &amp; dimensions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../1-concepts/6-files/files.html">
-   Files &amp; file formats
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/6-files/imagej.html">
-     ImageJ: Files &amp; file formats
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../1-concepts/6-files/python.html">
-     Python: Files &amp; file formats
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html">Images &amp; pixels</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/imagej.html">ImageJ: Images &amp; pixels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/1-images_and_pixels/python.html">Python: Images &amp; pixels</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Processing &amp; analysis
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/2-measurements/measurements.html">Measurements &amp; histograms</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/2-measurements/imagej.html">ImageJ: Measurements &amp; histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/2-measurements/python.html">Python: Measurements &amp; histograms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/3-bit_depths/bit_depths.html">Types &amp; bit-depths</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/3-bit_depths/imagej.html">ImageJ: Types &amp; bit-depths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/3-bit_depths/python.html">Python: Types &amp; bit-depths</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/4-colors/colors.html">Channels &amp; colors</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/4-colors/imagej.html">ImageJ: Channels &amp; colors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/4-colors/python.html">Python: Channels &amp; colors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/5-pixel_size/pixel_size.html">Pixel size &amp; dimensions</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/5-pixel_size/imagej.html">ImageJ:  Pixel size &amp; dimensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/5-pixel_size/python.html">Python:  Pixel size &amp; dimensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-concepts/6-files/files.html">Files &amp; file formats</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/6-files/imagej.html">ImageJ: Files &amp; file formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-concepts/6-files/python.html">Python: Files &amp; file formats</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Processing &amp; analysis</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">
-   Image processing &amp; analysis
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../2-point_operations/point_operations.html">
-   Point operations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2-point_operations/imagej.html">
-     ImageJ: Point operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../3-thresholding/thresholding.html">
-   Thresholding
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../3-thresholding/imagej.html">
-     ImageJ: Thresholding
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../4-filters/filters.html">
-   Filters
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../4-filters/imagej.html">
-     ImageJ: Filters
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
-   Morphological operations
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="imagej.html">
-     ImageJ: Morphological operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../6-transforms/transforms.html">
-   Image transforms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../6-transforms/imagej.html">
-     ImageJ: Image transforms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../7-multidimensional_processing/multidimensional_processing.html">
-   Multidimensional processing
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../7-multidimensional_processing/imagej.html">
-     ImageJ: Multidimensional processing
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../1-processing_and_analysis/processing_and_analysis.html">Image processing &amp; analysis</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2-point_operations/point_operations.html">Point operations</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2-point_operations/imagej.html">ImageJ: Point operations</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Fluorescence microscopy
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
-   From photons to pixels
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
-   Blur &amp; the PSF
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
-   Noise
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
-   Microscopes &amp; detectors
-  </a>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3-thresholding/thresholding.html">Thresholding</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3-thresholding/imagej.html">ImageJ: Thresholding</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendices
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4-filters/filters.html">Filters</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4-filters/imagej.html">ImageJ: Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Morphological operations</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="imagej.html">ImageJ: Morphological operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../6-transforms/transforms.html">Image transforms</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../6-transforms/imagej.html">ImageJ: Image transforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../7-multidimensional_processing/multidimensional_processing.html">Multidimensional processing</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../7-multidimensional_processing/imagej.html">ImageJ: Multidimensional processing</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fluorescence microscopy</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
-   Beyond this book
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/python/python.html">
-   Python Primer
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
-   ImageJ: Writing macros
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
-     Difference of Gaussians
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
-     Simulating image formation
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">From photons to pixels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">Blur &amp; the PSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">Noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">Microscopes &amp; detectors</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/next_steps/next_steps.html">Beyond this book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/python/python.html">Python Primer</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../appendices/macros/macro_intro.html">ImageJ: Writing macros</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_dog.html">Difference of Gaussians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_simulating.html">Simulating image formation</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/5-morph/morph.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/5-morph/morph.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../../_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/chapters/2-processing/5-morph/morph.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../../_sources/chapters/2-processing/5-morph/morph.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../../_sources/chapters/2-processing/5-morph/morph.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../../../_sources/chapters/2-processing/5-morph/morph.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#morphological-operations-using-rank-filters">
-   Morphological operations using rank filters
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#erosion-dilation">
-     Erosion &amp; dilation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#opening-closing">
-     Opening &amp; closing
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#boundaries-outlines">
-     Boundaries &amp; outlines
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#finding-local-minima-maxima">
-     Finding local minima &amp; maxima
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#more-morphological-operations">
-   More morphological operations
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#area-opening">
-     Area opening
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#filling-holes">
-     Filling holes
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#thinning-skeletonization">
-     Thinning &amp; skeletonization
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#morphological-reconstruction">
-   Morphological reconstruction
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hysteresis-thresholding">
-     Hysteresis thresholding
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#h-maxima-h-minima">
-     H-Maxima &amp; H-Minima
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#opening-closing-by-reconstruction">
-     Opening &amp; closing by reconstruction
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Morphological operations</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#morphological-operations-using-rank-filters">
-   Morphological operations using rank filters
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#erosion-dilation">
-     Erosion &amp; dilation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#opening-closing">
-     Opening &amp; closing
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#boundaries-outlines">
-     Boundaries &amp; outlines
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#finding-local-minima-maxima">
-     Finding local minima &amp; maxima
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#more-morphological-operations">
-   More morphological operations
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#area-opening">
-     Area opening
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#filling-holes">
-     Filling holes
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#thinning-skeletonization">
-     Thinning &amp; skeletonization
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#morphological-reconstruction">
-   Morphological reconstruction
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hysteresis-thresholding">
-     Hysteresis thresholding
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#h-maxima-h-minima">
-     H-Maxima &amp; H-Minima
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#opening-closing-by-reconstruction">
-     Opening &amp; closing by reconstruction
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Morphological operations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-operations-using-rank-filters">Morphological operations using rank filters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erosion-dilation">Erosion &amp; dilation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-closing">Opening &amp; closing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundaries-outlines">Boundaries &amp; outlines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-local-minima-maxima">Finding local minima &amp; maxima</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-morphological-operations">More morphological operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#area-opening">Area opening</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-holes">Filling holes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thinning-skeletonization">Thinning &amp; skeletonization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-reconstruction">Morphological reconstruction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hysteresis-thresholding">Hysteresis thresholding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-maxima-h-minima">H-Maxima &amp; H-Minima</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-closing-by-reconstruction">Opening &amp; closing by reconstruction</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="morphological-operations">
-<span id="chap-morph"></span><span id="chap-binary"></span><h1>Morphological operations<a class="headerlink" href="#morphological-operations" title="Permalink to this headline">#</a></h1>
+<span id="chap-morph"></span><span id="chap-binary"></span><h1>Morphological operations<a class="headerlink" href="#morphological-operations" title="Permalink to this heading">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -869,6 +503,11 @@ title="Print to PDF"
 </ul>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
 <span class="o">%</span><span class="k">autoreload</span> 2
@@ -884,17 +523,23 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Image filters and thresholds enable us to detect structures of various shapes and sizes for different applications.
 Nevertheless, despite our best efforts, the binary images produced by our thresholds often still contain inaccurate or undesirable detected regions.
 They could benefit from some extra cleaning up.</p>
 <p>At this stage, we are primarily working with shapes – morphology – so most of the techniques we describe here are often called <strong>morphological operations</strong>.</p>
 </section>
 <section id="morphological-operations-using-rank-filters">
-<h2>Morphological operations using rank filters<a class="headerlink" href="#morphological-operations-using-rank-filters" title="Permalink to this headline">#</a></h2>
+<h2>Morphological operations using rank filters<a class="headerlink" href="#morphological-operations-using-rank-filters" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Show morphological operations.</span>
@@ -945,18 +590,17 @@ They could benefit from some extra cleaning up.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-erode-dilate-open">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_4_0.png" src="../../../_images/morph_4_0.png" />
-</div>
+<img alt="../../../_images/ce72ad0d9ae58de131b4ab23e24ec96aa0684c008d9c60a3cadd2989b3f7dbfd.png" src="../../../_images/ce72ad0d9ae58de131b4ab23e24ec96aa0684c008d9c60a3cadd2989b3f7dbfd.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 100 </span><span class="caption-text">Overview of erosion, dilation, opening and closing.
+<p><span class="caption-number">Fig. 102 </span><span class="caption-text">Overview of erosion, dilation, opening and closing.
 The original image is shown at the top, while the processed part is at the bottom in each case.</span><a class="headerlink" href="#fig-erode-dilate-open" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="erosion-dilation">
-<h3>Erosion &amp; dilation<a class="headerlink" href="#erosion-dilation" title="Permalink to this headline">#</a></h3>
+<h3>Erosion &amp; dilation<a class="headerlink" href="#erosion-dilation" title="Permalink to this heading">#</a></h3>
 <p>Our first two morphological operations, <strong>erosion</strong> and <strong>dilation</strong>, are actually identical to minimum and maximum filtering respectively, described <a class="reference internal" href="../4-filters/filters.html#sec-filters-rank"><span class="std std-ref">in the previous chapter</span></a>.
 The names erosion and dilation are used more often when speaking of binary images, but the operations are the same irrespective of the kind of image.</p>
 <div class="admonition-structuring-elements admonition">
@@ -973,6 +617,11 @@ This can split single objects into multiple pieces.</p>
 <p>Conversely, <strong>dilation</strong> makes objects bigger, since the presence of a single foreground pixel anywhere in the neighborhood will result in a foreground output.
 This can also cause objects to merge.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_spots</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="mi">50</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">450</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
@@ -1021,18 +670,17 @@ This can also cause objects to merge.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-erode-dilate-spots">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_6_0.png" src="../../../_images/morph_6_0.png" />
-</div>
+<img alt="../../../_images/47d1eeb3cd825adb052278f012e8167d67812c05540d62089e9face361e13997.png" src="../../../_images/47d1eeb3cd825adb052278f012e8167d67812c05540d62089e9face361e13997.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 101 </span><span class="caption-text">The effects of erosion and dilation on a binary image of small structures.</span><a class="headerlink" href="#fig-erode-dilate-spots" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 103 </span><span class="caption-text">The effects of erosion and dilation on a binary image of small structures.</span><a class="headerlink" href="#fig-erode-dilate-spots" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="opening-closing">
-<span id="sec-morph-opening-closing"></span><h3>Opening &amp; closing<a class="headerlink" href="#opening-closing" title="Permalink to this headline">#</a></h3>
+<span id="sec-morph-opening-closing"></span><h3>Opening &amp; closing<a class="headerlink" href="#opening-closing" title="Permalink to this heading">#</a></h3>
 <p>The fact that erosion and dilation alone affect sizes can be a problem: we may like their abilities to merge, separate or remove objects, but prefer that they had less impact upon areas and volumes.
 Combining both operations helps achieve this.</p>
 <p><strong>Opening</strong> consists of an erosion followed by a dilation.
@@ -1044,6 +692,11 @@ Barely-connected objects separated by erosion are also not reconnected by the di
 The dilation can cause almost-connected objects to merge, and these often then remain merged after the erosion step.
 If you wish to count objects, but they are wrongly subdivided in the segmentation, closing may help make the counts more accurate.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define radius (change this to update the figure!)</span>
 <span class="n">radius</span> <span class="o">=</span> <span class="mi">2</span>
@@ -1068,18 +721,17 @@ If you wish to count objects, but they are wrongly subdivided in the segmentatio
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-open-close-spots">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_9_0.png" src="../../../_images/morph_9_0.png" />
-</div>
+<img alt="../../../_images/8a271764b19de63e9fe76749d42b19579e1f6d207fe852cb11fc5f76cdff50f8.png" src="../../../_images/8a271764b19de63e9fe76749d42b19579e1f6d207fe852cb11fc5f76cdff50f8.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 102 </span><span class="caption-text">The effects of opening and closing on a binary image of small structures. Unlike when using erosion or dilation alone, the sizes of objects are largely preserved although the contours are modified. Opening has the effect of completely removing the smallest or thinnest objects.</span><a class="headerlink" href="#fig-open-close-spots" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 104 </span><span class="caption-text">The effects of opening and closing on a binary image of small structures. Unlike when using erosion or dilation alone, the sizes of objects are largely preserved although the contours are modified. Opening has the effect of completely removing the smallest or thinnest objects.</span><a class="headerlink" href="#fig-open-close-spots" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="boundaries-outlines">
-<h3>Boundaries &amp; outlines<a class="headerlink" href="#boundaries-outlines" title="Permalink to this headline">#</a></h3>
+<h3>Boundaries &amp; outlines<a class="headerlink" href="#boundaries-outlines" title="Permalink to this heading">#</a></h3>
 <p>We can make use of the operations above to identify outlines in a binary image.
 To do this, we first need a clear definition of what we mean by ‘outline’.</p>
 <p>The <strong>inner boundary</strong> may be defined as <em>the foreground pixels that are adjacent to background pixels</em>.
@@ -1105,6 +757,11 @@ We might also subtract an eroded image from a dilated image to identify a thicke
 This makes it possible to make measurements that are likely to be within the cytoplasm, just outside the nucleus, without the task of identifying the full area of the cell – which is often difficult if the cell or membrane are not clearly visible.</p>
 </div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define radius (change this to update the figure!)</span>
 <span class="n">radius</span> <span class="o">=</span> <span class="mi">3</span>
@@ -1129,18 +786,17 @@ This makes it possible to make measurements that are likely to be within the cyt
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-binary-outlines">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_12_0.png" src="../../../_images/morph_12_0.png" />
-</div>
+<img alt="../../../_images/74770bfeb92500c32cfe37be4e2821721161dc3f44b8934b7021156c3aaa44a5.png" src="../../../_images/74770bfeb92500c32cfe37be4e2821721161dc3f44b8934b7021156c3aaa44a5.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 103 </span><span class="caption-text">Calculating inner and outer boundaries, using erosion or dilation. The radius of the structuring element can be used to tune the boundary thickness.</span><a class="headerlink" href="#fig-binary-outlines" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 105 </span><span class="caption-text">Calculating inner and outer boundaries, using erosion or dilation. The radius of the structuring element can be used to tune the boundary thickness.</span><a class="headerlink" href="#fig-binary-outlines" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="finding-local-minima-maxima">
-<h3>Finding local minima &amp; maxima<a class="headerlink" href="#finding-local-minima-maxima" title="Permalink to this headline">#</a></h3>
+<h3>Finding local minima &amp; maxima<a class="headerlink" href="#finding-local-minima-maxima" title="Permalink to this heading">#</a></h3>
 <p>Erosion and dilation can be used to find pixels that are <strong>local maxima</strong> or <strong>local minima</strong> very easily, with the caveat that the results are inexact and often unusable.
 Nevertheless, the trick works ‘well enough’ sufficiently often to be worth knowing.</p>
 <p>Here, we focus on maxima; the process for detecting local minima is identical, except that either the image should be inverted or erosion used instead of dilation.</p>
@@ -1148,8 +804,13 @@ Nevertheless, the trick works ‘well enough’ sufficiently often to be worth k
 An easy way to detect these pixels is to dilate the image with 3×3 maximum filter, and check for pixel values that are unchanged (i.e. where the pixel was already a maximum within its neighborhood).</p>
 <p>This is inexact because it does not <em>only</em> identify maxima; it also detections some ‘plateaus’ where pixels have identical values to their neighbors.
 In practice, this is not always a problem because noise can make plateaus virtually non-existent for many real-world images (at least ones that haven’t been clipped).</p>
-<p>A bigger problem is that the approach often identifies far too many maxima to be useful (<a class="reference internal" href="#fig-morph-simple-maxima"><span class="std std-numref">Fig. 104</span></a>).</p>
+<p>A bigger problem is that the approach often identifies far too many maxima to be useful (<a class="reference internal" href="#fig-morph-simple-maxima"><span class="std std-numref">Fig. 106</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span> <span class="k">as</span> <span class="n">filters</span>
@@ -1176,19 +837,23 @@ In practice, this is not always a problem because noise can make plateaus virtua
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-morph-simple-maxima">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_15_0.png" src="../../../_images/morph_15_0.png" />
-</div>
+<img alt="../../../_images/172389c75aca501c47657b7079203c36c824a741bb063ff53ef81904d4179c45.png" src="../../../_images/172389c75aca501c47657b7079203c36c824a741bb063ff53ef81904d4179c45.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 104 </span><span class="caption-text">Identifying local maxima with the help of a 3×3 dilation tends to find too many maxima to be useful.</span><a class="headerlink" href="#fig-morph-simple-maxima" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 106 </span><span class="caption-text">Identifying local maxima with the help of a 3×3 dilation tends to find too many maxima to be useful.</span><a class="headerlink" href="#fig-morph-simple-maxima" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>We can reduce these by either increasing the size of the maximum filter (therefore requiring pixels to be maximal across a larger region), or by pre-smoothing the image (usually with a <a class="reference internal" href="../4-filters/filters.html#sec-filters-gaussian"><span class="std std-ref">Gaussian filter</span></a>).
 However, tuning the parameters becomes difficult.</p>
 <p>We will see an alternative approach that is often more intuitive in <a class="reference internal" href="#sec-h-extrema"><span class="std std-ref">H-Maxima &amp; H-Minima</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show original concatenated with the filtered images</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
@@ -1211,21 +876,20 @@ However, tuning the parameters becomes difficult.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-morph-simple-maxima-bigger">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_17_0.png" src="../../../_images/morph_17_0.png" />
-</div>
+<img alt="../../../_images/36f5261cc493fb6bef42ad444924ff891d7376fef3ff7f7d25b490fd406bce2c.png" src="../../../_images/36f5261cc493fb6bef42ad444924ff891d7376fef3ff7f7d25b490fd406bce2c.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 105 </span><span class="caption-text">Identifying local maxima with the help of a larger dilation (here, 7×7 pixels) can sometimes give better results than using a smaller dilation <a class="reference internal" href="#fig-morph-simple-maxima"><span class="std std-numref">Fig. 104</span></a>.</span><a class="headerlink" href="#fig-morph-simple-maxima-bigger" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 107 </span><span class="caption-text">Identifying local maxima with the help of a larger dilation (here, 7×7 pixels) can sometimes give better results than using a smaller dilation <a class="reference internal" href="#fig-morph-simple-maxima"><span class="std std-numref">Fig. 106</span></a>.</span><a class="headerlink" href="#fig-morph-simple-maxima-bigger" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 </section>
 <section id="more-morphological-operations">
-<h2>More morphological operations<a class="headerlink" href="#more-morphological-operations" title="Permalink to this headline">#</a></h2>
+<h2>More morphological operations<a class="headerlink" href="#more-morphological-operations" title="Permalink to this heading">#</a></h2>
 <section id="area-opening">
-<h3>Area opening<a class="headerlink" href="#area-opening" title="Permalink to this headline">#</a></h3>
+<h3>Area opening<a class="headerlink" href="#area-opening" title="Permalink to this heading">#</a></h3>
 <p><strong>Area opening</strong> is similar to <em>opening</em>, except it avoids the need for any kind of maximum or minimum filtering.</p>
 <p>It works by identifying <a class="reference internal" href="../3-thresholding/thresholding.html#sec-binary-labeled"><span class="std std-ref"><strong>connected components</strong> in the binary image</span></a>, which are contiguous regions of foreground pixels.
 For each connected component, the number of pixels is counted to give an area in px².
@@ -1233,6 +897,11 @@ If the area of a component falls below a specified area threshold, the pixels fo
 <p><em>Area opening</em> is often preferable to <em>opening</em>, because it has <em>no impact</em> on the shape of any structures larger than the area threshold.
 It simply applies a minimum area threshold, removing everything smaller.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define areas (change this to update the figure!)</span>
 <span class="n">small_area</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1257,22 +926,26 @@ It simply applies a minimum area threshold, removing everything smaller.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-area-open-spots">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_19_0.png" src="../../../_images/morph_19_0.png" />
-</div>
+<img alt="../../../_images/0a6c6512617278511ee19b0d32795dd7ff8905448a4967da075cf7f57b51a7b9.png" src="../../../_images/0a6c6512617278511ee19b0d32795dd7ff8905448a4967da075cf7f57b51a7b9.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 106 </span><span class="caption-text">Using area opening to remove small objects.</span><a class="headerlink" href="#fig-area-open-spots" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 108 </span><span class="caption-text">Using area opening to remove small objects.</span><a class="headerlink" href="#fig-area-open-spots" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="filling-holes">
-<h3>Filling holes<a class="headerlink" href="#filling-holes" title="Permalink to this headline">#</a></h3>
+<h3>Filling holes<a class="headerlink" href="#filling-holes" title="Permalink to this heading">#</a></h3>
 <p><strong>Filling holes</strong> involves identifying connected components of <em>background pixels</em> that are entirely surrounded by foreground pixels.
 These components are then ‘flipped’ to become foreground pixels instead.</p>
 <p>Should we then want to identify the holes themselves, we can subtract the original image from the filled image.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
 
@@ -1293,16 +966,20 @@ These components are then ‘flipped’ to become foreground pixels instead.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-fill-holes-cell">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_22_0.png" src="../../../_images/morph_22_0.png" />
-</div>
+<img alt="../../../_images/53d627f595a7df50bab4d833fccdae2e1eca81f41c8946666cf121b84569d4ac.png" src="../../../_images/53d627f595a7df50bab4d833fccdae2e1eca81f41c8946666cf121b84569d4ac.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 107 </span><span class="caption-text">Filling holes in a binary image. Image subtraction makes it possible to extract the holes themselves.</span><a class="headerlink" href="#fig-fill-holes-cell" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 109 </span><span class="caption-text">Filling holes in a binary image. Image subtraction makes it possible to extract the holes themselves.</span><a class="headerlink" href="#fig-fill-holes-cell" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code to selective fill small holes</span>
 
@@ -1319,25 +996,24 @@ These components are then ‘flipped’ to become foreground pixels instead.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="margin align-default" id="id1">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_24_0.png" src="../../../_images/morph_24_0.png" />
-</div>
+<img alt="../../../_images/20b8b3cc650b04e35cee0dd421db7a7192fbb3e210e5d7624f78b5d6c7ca998e.png" src="../../../_images/20b8b3cc650b04e35cee0dd421db7a7192fbb3e210e5d7624f78b5d6c7ca998e.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 108 </span><span class="caption-text">Small holes filled.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 110 </span><span class="caption-text">Small holes filled.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="6eb68b18-f2ce-48f4-b4af-fb0fc3a5d746" name="a5f9c4c4-3e41-4494-a968-0a7251da15f4" type="radio">
-</input><label class="sd-tab-label" for="6eb68b18-f2ce-48f4-b4af-fb0fc3a5d746">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
 Question</label><div class="sd-tab-content docutils">
 <p>We don’t always want to fill <em>all</em> the holes within a binary image, but rather only the smaller ones.
 Can you think of a way to fill <em>only holes smaller than 1000 px²</em>, using area opening?</p>
 <p>You’ll need at least one operation described in previous chapter.</p>
 </div>
-<input id="0946534f-b2d0-429f-9478-410bceacb30b" name="a5f9c4c4-3e41-4494-a968-0a7251da15f4" type="radio">
-</input><label class="sd-tab-label" for="0946534f-b2d0-429f-9478-410bceacb30b">
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
 Answer</label><div class="sd-tab-content docutils">
 <p>One way to fill holes below a fixed size:</p>
 <ul class="simple">
@@ -1349,10 +1025,15 @@ Answer</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="thinning-skeletonization">
-<h3>Thinning &amp; skeletonization<a class="headerlink" href="#thinning-skeletonization" title="Permalink to this headline">#</a></h3>
+<h3>Thinning &amp; skeletonization<a class="headerlink" href="#thinning-skeletonization" title="Permalink to this heading">#</a></h3>
 <p><strong>Thinning</strong> and <strong>skeletonization</strong> are related operations that aim to ‘thin down’ objects in a binary image to just their centerlines.
 They are particularly useful with filamental or tube-like structures, such as axons or blood vessels.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
 <span class="n">bw</span> <span class="o">=</span> <span class="n">im</span> <span class="o">&gt;</span> <span class="n">im</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -1373,13 +1054,12 @@ They are particularly useful with filamental or tube-like structures, such as ax
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-binary-thinning">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_27_0.png" src="../../../_images/morph_27_0.png" />
-</div>
+<img alt="../../../_images/6dc5b422927921738fdcc4f7051f4ddf87220e3965055ed7f08c3600a5e51377.png" src="../../../_images/6dc5b422927921738fdcc4f7051f4ddf87220e3965055ed7f08c3600a5e51377.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 109 </span><span class="caption-text">The effects of thinning and skeletonization on a binary image.</span><a class="headerlink" href="#fig-binary-thinning" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 111 </span><span class="caption-text">The effects of thinning and skeletonization on a binary image.</span><a class="headerlink" href="#fig-binary-thinning" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="info admonition">
@@ -1393,7 +1073,7 @@ It’s worth trying any thinning/skeletonization methods available to see which 
 </section>
 </section>
 <section id="morphological-reconstruction">
-<h2>Morphological reconstruction<a class="headerlink" href="#morphological-reconstruction" title="Permalink to this headline">#</a></h2>
+<h2>Morphological reconstruction<a class="headerlink" href="#morphological-reconstruction" title="Permalink to this heading">#</a></h2>
 <p><strong>Morphological reconstruction</strong> is a somewhat advanced technique that underpins several powerful image processing operations.
 It’s useful with both grayscale and binary images.</p>
 <p>Morphological reconstruction requires two images of the same size: a <strong>marker</strong> image and a <strong>mask</strong> image.
@@ -1404,7 +1084,7 @@ The output is the new marker image, after all the dilations have been performed.
 <p>Some examples will help demonstrate how this works and why it’s useful.
 The crucial difference in the methods below is how the marker and mask images are created.</p>
 <section id="hysteresis-thresholding">
-<h3>Hysteresis thresholding<a class="headerlink" href="#hysteresis-thresholding" title="Permalink to this headline">#</a></h3>
+<h3>Hysteresis thresholding<a class="headerlink" href="#hysteresis-thresholding" title="Permalink to this heading">#</a></h3>
 <p>One use of morphological reconstruction is to implement a <strong>double threshold</strong>, also known as <strong>hysteresis thresholding</strong>.</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -1417,6 +1097,11 @@ However, a region is discarded from the binary image if it does not also contain
 The markers will expand to fill the mask regions that contain them.
 But any mask regions that don’t contain marker pixels are simply ignored.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
 
@@ -1439,18 +1124,17 @@ But any mask regions that don’t contain marker pixels are simply ignored.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-hysteresis-threshold-spots">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_30_0.png" src="../../../_images/morph_30_0.png" />
-</div>
+<img alt="../../../_images/918bd555c48c2225f46ce2980829304bb2480650a198a47b0a194a8d1d83ede6.png" src="../../../_images/918bd555c48c2225f46ce2980829304bb2480650a198a47b0a194a8d1d83ede6.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 110 </span><span class="caption-text">Applying a hysteresis threshold to an image. The size and area of the objects detected by this method are determined by the low threshold, but at least one of the pixel values within the object must exceed the high threshold. This slightly mitigates the problem of a single global threshold having <a class="reference internal" href="../3-thresholding/thresholding.html#chap-thresholding"><span class="std std-ref">a huge impact on analysis results</span></a>, by the same threshold simultaneously influencing both what is detected and its size.</span><a class="headerlink" href="#fig-hysteresis-threshold-spots" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 112 </span><span class="caption-text">Applying a hysteresis threshold to an image. The size and area of the objects detected by this method are determined by the low threshold, but at least one of the pixel values within the object must exceed the high threshold. This slightly mitigates the problem of a single global threshold having <a class="reference internal" href="../3-thresholding/thresholding.html#chap-thresholding"><span class="std std-ref">a huge impact on analysis results</span></a>, by the same threshold simultaneously influencing both what is detected and its size.</span><a class="headerlink" href="#fig-hysteresis-threshold-spots" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="h-maxima-h-minima">
-<span id="sec-h-extrema"></span><h3>H-Maxima &amp; H-Minima<a class="headerlink" href="#h-maxima-h-minima" title="Permalink to this headline">#</a></h3>
+<span id="sec-h-extrema"></span><h3>H-Maxima &amp; H-Minima<a class="headerlink" href="#h-maxima-h-minima" title="Permalink to this heading">#</a></h3>
 <p>We <a class="reference internal" href="#fig-morph-simple-maxima"><span class="std std-ref">saw previously</span></a> that we could (kind of) identify local maxima in a very simple way using an image dilation, but the results are often too inaccurate to be useful.</p>
 <p><strong>H-Maxima</strong> and <strong>H-Minima</strong> can help us overcome this.
 These operations both require only one intuitive parameter: they enable us to identify maxima or minima using a local intensity threshold <em>H</em>.</p>
@@ -1463,9 +1147,14 @@ For H-maxima, the process is:</p>
 <li><p>Subtract the reconstruction result from the <em>mask</em></p></li>
 <li><p>Threshold the subtracted image with a global threshold of <em>H</em></p></li>
 </ul>
-<p>The main steps are illustrated in <a class="reference internal" href="#fig-morph-h-maxima"><span class="std std-numref">Fig. 111</span></a>.
+<p>The main steps are illustrated in <a class="reference internal" href="#fig-morph-h-maxima"><span class="std std-numref">Fig. 113</span></a>.
 We can apply the same process to an inverted image to find <em>H-minima</em>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span> <span class="k">as</span> <span class="n">filters</span>
@@ -1494,18 +1183,17 @@ We can apply the same process to an inverted image to find <em>H-minima</em>.</p
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-morph-h-maxima">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_33_0.png" src="../../../_images/morph_33_0.png" />
-</div>
+<img alt="../../../_images/dad4b8bd652912b3aa5983de45a45a92388f2a85d8d7e05032a37fe1bba41e0a.png" src="../../../_images/dad4b8bd652912b3aa5983de45a45a92388f2a85d8d7e05032a37fe1bba41e0a.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 111 </span><span class="caption-text">Calculating H-maxima using morphological reconstruction. Here, <em>H</em> is set (arbitrarily) to be the image standard deviation.</span><a class="headerlink" href="#fig-morph-h-maxima" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 113 </span><span class="caption-text">Calculating H-maxima using morphological reconstruction. Here, <em>H</em> is set (arbitrarily) to be the image standard deviation.</span><a class="headerlink" href="#fig-morph-h-maxima" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="opening-closing-by-reconstruction">
-<h3>Opening &amp; closing by reconstruction<a class="headerlink" href="#opening-closing-by-reconstruction" title="Permalink to this headline">#</a></h3>
+<h3>Opening &amp; closing by reconstruction<a class="headerlink" href="#opening-closing-by-reconstruction" title="Permalink to this heading">#</a></h3>
 <p>H-maxima and H-minima use morphological reconstruction to effectively generate a background image that can be subtracted from the original.
 We do this by subtracting a constant <em>H</em>, which acts as a local intensity threshold.</p>
 <p>We can also use morphological reconstruction to generate a background image based upon spatial information, rather than an intensity threshold <em>H</em>, by using <strong>opening by reconstruction</strong>.
@@ -1515,6 +1203,11 @@ This effectively introduces a size component into our local threshold.
 This defines the marker image.
 The original image is used as the mask.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
 
@@ -1538,13 +1231,12 @@ The original image is used as the mask.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-morph-reconstruct-opening">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_36_0.png" src="../../../_images/morph_36_0.png" />
-</div>
+<img alt="../../../_images/e48caf23333d06ae39dd274b1d574b0e83eb72dcc2f55905fc63db3c93a852f5.png" src="../../../_images/e48caf23333d06ae39dd274b1d574b0e83eb72dcc2f55905fc63db3c93a852f5.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 112 </span><span class="caption-text">Using opening by reconstruction to obtain a background estimate. The estimate can be subtracted from an image before applying a global threshold.</span><a class="headerlink" href="#fig-morph-reconstruct-opening" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 114 </span><span class="caption-text">Using opening by reconstruction to obtain a background estimate. The estimate can be subtracted from an image before applying a global threshold.</span><a class="headerlink" href="#fig-morph-reconstruct-opening" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>As before, opening alone removes structures that are smaller than the structuring element, while slightly affecting the shapes of everything else.
@@ -1553,6 +1245,11 @@ This can make opening by reconstruction more attractive for generating backgroun
 <p>Opening by reconstruction can also be applied to binary images as an alternative to <em>opening</em> and <em>area opening</em>.
 Like area opening, opening by reconstruction is able to remove some objects while retaining the shapes of larger objects exactly.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">morphology</span> <span class="k">as</span> <span class="n">morph</span>
 
@@ -1575,13 +1272,12 @@ Like area opening, opening by reconstruction is able to remove some objects whil
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-morph-reconstruct-opening-binary">
-<div class="cell_output docutils container">
-<img alt="../../../_images/morph_38_0.png" src="../../../_images/morph_38_0.png" />
-</div>
+<img alt="../../../_images/7201b384551caa6282d94648f5f5aba1f9187c09195bf451f1ffa3467628c38a.png" src="../../../_images/7201b384551caa6282d94648f5f5aba1f9187c09195bf451f1ffa3467628c38a.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 113 </span><span class="caption-text">Using opening by reconstruction to remove small (and thin) objects from a binary image, while retaining the original shape of everything that remains.</span><a class="headerlink" href="#fig-morph-reconstruct-opening-binary" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 115 </span><span class="caption-text">Using opening by reconstruction to remove small (and thin) objects from a binary image, while retaining the original shape of everything that remains.</span><a class="headerlink" href="#fig-morph-reconstruct-opening-binary" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1602,7 +1298,7 @@ Like area opening, opening by reconstruction is able to remove some objects whil
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chapters/2-processing/5-morph"
         },
         predefinedOutput: true
@@ -1610,50 +1306,118 @@ Like area opening, opening by reconstruction is able to remove some objects whil
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../4-filters/imagej.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">ImageJ: Filters</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../4-filters/imagej.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ImageJ: Filters</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="imagej.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="imagej.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">ImageJ: Morphological operations</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-operations-using-rank-filters">Morphological operations using rank filters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erosion-dilation">Erosion &amp; dilation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-closing">Opening &amp; closing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundaries-outlines">Boundaries &amp; outlines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-local-minima-maxima">Finding local minima &amp; maxima</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-morphological-operations">More morphological operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#area-opening">Area opening</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-holes">Filling holes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thinning-skeletonization">Thinning &amp; skeletonization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-reconstruction">Morphological reconstruction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hysteresis-thresholding">Hysteresis thresholding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-maxima-h-minima">H-Maxima &amp; H-Minima</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-closing-by-reconstruction">Opening &amp; closing by reconstruction</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By Pete Bankhead<br/>
-  
-      &copy; Copyright 2022-2023.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By Pete Bankhead
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022-2023.
+      <br/>
+    
+  </p>
 
-      </div>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

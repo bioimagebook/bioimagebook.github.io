@@ -1082,7 +1082,7 @@ An example is shown in {numref}`fig-thresholds_local_niblack`.
 
 from skimage.filters import threshold_niblack
 from skimage.morphology import disk
-from matplotlib import cm
+from matplotlib import colormaps
 
 # Load image
 im = load_image('hela-cells.zip')[50:400, 50:450, 0].astype(np.float32)
@@ -1096,7 +1096,7 @@ bw_niblack = im > threshold_niblack(im, window_size=25, k=-1.5)
 
 # Show, using an alternative colormap to boost contrast
 fig = create_figure(figsize=(8, 2.5))
-cmap = cm.get_cmap('magma')
+cmap = colormaps['magma']
 
 show_image(im, title="(A) Original image", clip_percentile=0.5, cmap=cmap, pos=131)
 show_histogram(im, title="(B) Histogram of (A)", bins=np.arange(0, 100), pos=132)
@@ -1132,7 +1132,6 @@ This then provides us access to all global automated thresholding methods, and a
 
 from skimage.filters import threshold_triangle, median
 from skimage.morphology import disk
-from matplotlib import cm
 
 # Load image
 im = load_image('hela-cells.zip')[50:400, 50:450, 0].astype(np.float32)
@@ -1145,7 +1144,7 @@ im = (im * 255).astype(np.uint8)
 bw_triangle = im > threshold_triangle(im)
 
 # Apply large median filter
-im_median = median(im, selem=disk(8))
+im_median = median(im, footprint=disk(8))
 
 # Subtract median-filtered image and now try triangle threshold again
 im_diff = im.astype(np.float32) - im_median
@@ -1153,7 +1152,7 @@ bw_diff = im_diff > threshold_triangle(im_diff)
 
 # Show, using an alternative colormap to boost contrast
 fig = create_figure(figsize=(8, 5))
-cmap = cm.get_cmap('magma')
+cmap = colormaps['magma']
 
 show_image(im, title="(A) Original image", clip_percentile=0.5, cmap=cmap, pos=231)
 show_histogram(im, title="(B) Histogram of (A)", bins=np.arange(0, 100), pos=232)

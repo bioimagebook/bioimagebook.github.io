@@ -1,50 +1,62 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>ImageJ: Pixel size &amp; dimensions &#8212; Introduction to Bioimage Analysis</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mycss.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script data-domain="bioimagebook.github.io" defer="defer" src="https://plausible.io/js/script.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,65 +64,94 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/1-concepts/5-pixel_size/imagej';</script>
     <link rel="canonical" href="https://bioimagebook.github.io/chapters/1-concepts/5-pixel_size/imagej.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Python: Pixel size &amp; dimensions" href="python.html" />
     <link rel="prev" title="Pixel size &amp; dimensions" href="pixel_size.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script defer data-domain="bioimagebook.github.io" src="https://plausible.io/js/plausible.js"></script>
-<meta name="google-site-verification" content="Aem87SvFh5w_cCS2z43mVgKmnIdYgMBOapUPZ_SQWVY" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../_static/book-logo-smaller.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Introduction to Bioimage Analysis</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -119,742 +160,347 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Front matter
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">
-   Acknowledgements
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../CHANGELOG.html">
-   Changelog
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Before we begin
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Before we begin</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/preface/preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../0-preamble/reading/reading.html">
-   How to read this book
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/preface/preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/reading/reading.html">How to read this book</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introducing images
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducing images</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html">
-   Images &amp; pixels
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../1-images_and_pixels/imagej.html">
-     ImageJ: Images &amp; pixels
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../1-images_and_pixels/python.html">
-     Python: Images &amp; pixels
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../2-measurements/measurements.html">
-   Measurements &amp; histograms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2-measurements/imagej.html">
-     ImageJ: Measurements &amp; histograms
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../2-measurements/python.html">
-     Python: Measurements &amp; histograms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../3-bit_depths/bit_depths.html">
-   Types &amp; bit-depths
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../3-bit_depths/imagej.html">
-     ImageJ: Types &amp; bit-depths
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../3-bit_depths/python.html">
-     Python: Types &amp; bit-depths
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../4-colors/colors.html">
-   Channels &amp; colors
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../4-colors/imagej.html">
-     ImageJ: Channels &amp; colors
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../4-colors/python.html">
-     Python: Channels &amp; colors
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="pixel_size.html">
-   Pixel size &amp; dimensions
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     ImageJ:  Pixel size &amp; dimensions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="python.html">
-     Python:  Pixel size &amp; dimensions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../6-files/files.html">
-   Files &amp; file formats
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../6-files/imagej.html">
-     ImageJ: Files &amp; file formats
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../6-files/python.html">
-     Python: Files &amp; file formats
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html">Images &amp; pixels</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1-images_and_pixels/imagej.html">ImageJ: Images &amp; pixels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-images_and_pixels/python.html">Python: Images &amp; pixels</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Processing &amp; analysis
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../2-processing/1-processing_and_analysis/processing_and_analysis.html">
-   Image processing &amp; analysis
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html">
-   Point operations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../2-processing/2-point_operations/imagej.html">
-     ImageJ: Point operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html">
-   Thresholding
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../2-processing/3-thresholding/imagej.html">
-     ImageJ: Thresholding
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../2-processing/4-filters/filters.html">
-   Filters
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../2-processing/4-filters/imagej.html">
-     ImageJ: Filters
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../2-processing/5-morph/morph.html">
-   Morphological operations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../2-processing/5-morph/imagej.html">
-     ImageJ: Morphological operations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../2-processing/6-transforms/transforms.html">
-   Image transforms
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../2-processing/6-transforms/imagej.html">
-     ImageJ: Image transforms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../2-processing/7-multidimensional_processing/multidimensional_processing.html">
-   Multidimensional processing
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../2-processing/7-multidimensional_processing/imagej.html">
-     ImageJ: Multidimensional processing
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2-measurements/measurements.html">Measurements &amp; histograms</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2-measurements/imagej.html">ImageJ: Measurements &amp; histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-measurements/python.html">Python: Measurements &amp; histograms</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Fluorescence microscopy
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">
-   From photons to pixels
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">
-   Blur &amp; the PSF
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">
-   Noise
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">
-   Microscopes &amp; detectors
-  </a>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3-bit_depths/bit_depths.html">Types &amp; bit-depths</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3-bit_depths/imagej.html">ImageJ: Types &amp; bit-depths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3-bit_depths/python.html">Python: Types &amp; bit-depths</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendices
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4-colors/colors.html">Channels &amp; colors</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4-colors/imagej.html">ImageJ: Channels &amp; colors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-colors/python.html">Python: Channels &amp; colors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="pixel_size.html">Pixel size &amp; dimensions</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">ImageJ:  Pixel size &amp; dimensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python:  Pixel size &amp; dimensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../6-files/files.html">Files &amp; file formats</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../6-files/imagej.html">ImageJ: Files &amp; file formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-files/python.html">Python: Files &amp; file formats</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Processing &amp; analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/next_steps/next_steps.html">
-   Beyond this book
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../appendices/python/python.html">
-   Python Primer
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../appendices/macros/macro_intro.html">
-   ImageJ: Writing macros
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_dog.html">
-     Difference of Gaussians
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../appendices/macros/macro_simulating.html">
-     Simulating image formation
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../2-processing/1-processing_and_analysis/processing_and_analysis.html">Image processing &amp; analysis</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html">Point operations</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2-processing/2-point_operations/imagej.html">ImageJ: Point operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html">Thresholding</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2-processing/3-thresholding/imagej.html">ImageJ: Thresholding</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2-processing/4-filters/filters.html">Filters</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2-processing/4-filters/imagej.html">ImageJ: Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2-processing/5-morph/morph.html">Morphological operations</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2-processing/5-morph/imagej.html">ImageJ: Morphological operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2-processing/6-transforms/transforms.html">Image transforms</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2-processing/6-transforms/imagej.html">ImageJ: Image transforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2-processing/7-multidimensional_processing/multidimensional_processing.html">Multidimensional processing</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2-processing/7-multidimensional_processing/imagej.html">ImageJ: Multidimensional processing</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fluorescence microscopy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/1-formation_overview/formation_overview.html">From photons to pixels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/2-formation_spatial/formation_spatial.html">Blur &amp; the PSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html">Noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html">Microscopes &amp; detectors</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/next_steps/next_steps.html">Beyond this book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/python/python.html">Python Primer</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../appendices/macros/macro_intro.html">ImageJ: Writing macros</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_dog.html">Difference of Gaussians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/macros/macro_simulating.html">Simulating image formation</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/1-concepts/5-pixel_size/imagej.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/1-concepts/5-pixel_size/imagej.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../../_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/chapters/1-concepts/5-pixel_size/imagej.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../../_sources/chapters/1-concepts/5-pixel_size/imagej.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../../_sources/chapters/1-concepts/5-pixel_size/imagej.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../../../_sources/chapters/1-concepts/5-pixel_size/imagej.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pixel-sizes-properties">
-   Pixel sizes &amp; Properties
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pixel-sizes-measurements">
-     Pixel sizes &amp; measurements
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setting-the-pixel-size">
-     Setting the pixel size
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#showing-a-scale-bar">
-     Showing a scale bar
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#stacks-hyperstacks">
-   Stacks &amp; Hyperstacks
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#navigating-dimensions">
-     Navigating dimensions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#correcting-dimensions">
-     Correcting dimensions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plots-and-profiles">
-     Plots and profiles
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#displaying-dimensions">
-   Displaying dimensions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#z-projections">
-     Z-projections
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#orthogonal-views">
-     Orthogonal views
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#reslicing">
-       Reslicing
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>ImageJ:  Pixel size & dimensions</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pixel-sizes-properties">
-   Pixel sizes &amp; Properties
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pixel-sizes-measurements">
-     Pixel sizes &amp; measurements
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setting-the-pixel-size">
-     Setting the pixel size
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#showing-a-scale-bar">
-     Showing a scale bar
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#stacks-hyperstacks">
-   Stacks &amp; Hyperstacks
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#navigating-dimensions">
-     Navigating dimensions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#correcting-dimensions">
-     Correcting dimensions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plots-and-profiles">
-     Plots and profiles
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#displaying-dimensions">
-   Displaying dimensions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#z-projections">
-     Z-projections
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#orthogonal-views">
-     Orthogonal views
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#reslicing">
-       Reslicing
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ImageJ:  Pixel size & dimensions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pixel-sizes-properties">Pixel sizes &amp; Properties</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pixel-sizes-measurements">Pixel sizes &amp; measurements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-pixel-size">Setting the pixel size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#showing-a-scale-bar">Showing a scale bar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stacks-hyperstacks">Stacks &amp; Hyperstacks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#navigating-dimensions">Navigating dimensions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correcting-dimensions">Correcting dimensions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-and-profiles">Plots and profiles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#displaying-dimensions">Displaying dimensions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-projections">Z-projections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-views">Orthogonal views</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reslicing">Reslicing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="imagej-pixel-size-dimensions">
-<h1>ImageJ:  Pixel size &amp; dimensions<a class="headerlink" href="#imagej-pixel-size-dimensions" title="Permalink to this headline">#</a></h1>
+<h1>ImageJ:  Pixel size &amp; dimensions<a class="headerlink" href="#imagej-pixel-size-dimensions" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
 <span class="o">%</span><span class="k">autoreload</span> 2
@@ -869,14 +515,15 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>This section will explore pixel sizes and dimensions in ImageJ.
 Along the way, we will see how to generate scale bars and fix images where the pixel size or dimensions are incorrect – at least whenever we know what the correct values are.</p>
 </section>
 <section id="pixel-sizes-properties">
-<h2>Pixel sizes &amp; Properties<a class="headerlink" href="#pixel-sizes-properties" title="Permalink to this headline">#</a></h2>
+<h2>Pixel sizes &amp; Properties<a class="headerlink" href="#pixel-sizes-properties" title="Permalink to this heading">#</a></h2>
 <p>You can see the pixel size for an image in ImageJ under <span class="menuselection notranslate">Image ‣ Properties…</span>.
 These are provided separately as values for <span class="guilabel notranslate">Pixel width</span> and <span class="guilabel notranslate">Pixel height</span>.</p>
 <aside class="margin sidebar">
@@ -887,7 +534,7 @@ These are provided separately as values for <span class="guilabel notranslate">P
 <figure class="align-center" id="fig-properties-confocal">
 <a class="reference internal image-reference" href="../../../_images/confocal-properties.png"><img alt="../../../_images/confocal-properties.png" src="../../../_images/confocal-properties.png" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 42 </span><span class="caption-text">Image properties for the <em>Confocal Series</em> sample, which include the pixel size.</span><a class="headerlink" href="#fig-properties-confocal" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 43 </span><span class="caption-text">Image properties for the <em>Confocal Series</em> sample, which include the pixel size.</span><a class="headerlink" href="#fig-properties-confocal" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>If the pixel size information is unavailable, the pixel sizes are given as 1 pixel: not terribly informative.
@@ -895,21 +542,21 @@ Otherwise, the pixel sizes are given in the units displayed nearby in the proper
 <figure class="align-center" id="fig-properties-fluorescent">
 <a class="reference internal image-reference" href="../../../_images/fluorescent-properties.png"><img alt="../../../_images/fluorescent-properties.png" src="../../../_images/fluorescent-properties.png" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 43 </span><span class="caption-text">Image properties for the <em>Fluorescent Cells</em> sample, which do not include useful pixel size information.</span><a class="headerlink" href="#fig-properties-fluorescent" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 44 </span><span class="caption-text">Image properties for the <em>Fluorescent Cells</em> sample, which do not include useful pixel size information.</span><a class="headerlink" href="#fig-properties-fluorescent" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The pixel width and height are <em>usually</em> the same.
 The voxel depth (where relevant) is often different.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="e029313c-4458-483b-b801-276c4b991afa" name="660afc6b-2ef7-4095-b73b-f8d2f77271e1" type="radio">
-</input><label class="sd-tab-label" for="e029313c-4458-483b-b801-276c4b991afa">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
 Question</label><div class="sd-tab-content docutils">
 <p>One way to check if the pixel size information is set for an image is to use <span class="menuselection notranslate">Image ‣ Properties…</span></p>
 <p>How else can you check this, even more easily?</p>
-<p><strong>Tip:</strong> The answer should already be visible in <a class="reference internal" href="#fig-properties-confocal"><span class="std std-numref">Fig. 42</span></a> and <a class="reference internal" href="#fig-properties-fluorescent"><span class="std std-numref">Fig. 43</span></a>.</p>
+<p><strong>Tip:</strong> The answer should already be visible in <a class="reference internal" href="#fig-properties-confocal"><span class="std std-numref">Fig. 43</span></a> and <a class="reference internal" href="#fig-properties-fluorescent"><span class="std std-numref">Fig. 44</span></a>.</p>
 </div>
-<input id="76625ea6-2b86-461a-bedf-9770830ef1d6" name="660afc6b-2ef7-4095-b73b-f8d2f77271e1" type="radio">
-</input><label class="sd-tab-label" for="76625ea6-2b86-461a-bedf-9770830ef1d6">
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
 Answer</label><div class="sd-tab-content docutils">
 <p>The size of the image is given at the top of each image window.
 If the pixel size information is available, this is given in calibrated units.
@@ -917,20 +564,20 @@ Otherwise, it is given only in pixels.</p>
 </div>
 </div>
 <section id="pixel-sizes-measurements">
-<h3>Pixel sizes &amp; measurements<a class="headerlink" href="#pixel-sizes-measurements" title="Permalink to this headline">#</a></h3>
+<h3>Pixel sizes &amp; measurements<a class="headerlink" href="#pixel-sizes-measurements" title="Permalink to this heading">#</a></h3>
 <p>As <a class="reference internal" href="../2-measurements/imagej.html#sec-imagej-measure-calibration"><span class="std std-ref">described before</span></a>, the pixel size influences measurements in ImageJ – but the units don’t appear anywhere in the <em>Results table</em>.
 Furthermore, once a measurement is added to the <em>Results table</em> it is fixed: it won’t automatically update if the pixel sizes are changed later.</p>
 <p>For that reason, you need to be careful to check pixel sizes <em>before</em> making any measurements and make sure it’s clear to you which units have been used.</p>
 <figure class="align-center" id="fig-imagej-pixel-size-measure">
 <a class="reference internal image-reference" href="../../../_images/imagej-pixel-size-measure.png"><img alt="../../../_images/imagej-pixel-size-measure.png" src="../../../_images/imagej-pixel-size-measure.png" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 44 </span><span class="caption-text">The same ROI (here, a 100 x 100 pixel square) can appear to have a different area if it is measured on images that have different pixel sizes.
+<p><span class="caption-number">Fig. 45 </span><span class="caption-text">The same ROI (here, a 100 x 100 pixel square) can appear to have a different area if it is measured on images that have different pixel sizes.
 The measurement is converted before being added to the <em>Results table</em>, but the units are not included.</span><a class="headerlink" href="#fig-imagej-pixel-size-measure" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="setting-the-pixel-size">
-<h3>Setting the pixel size<a class="headerlink" href="#setting-the-pixel-size" title="Permalink to this headline">#</a></h3>
+<h3>Setting the pixel size<a class="headerlink" href="#setting-the-pixel-size" title="Permalink to this heading">#</a></h3>
 <p>If the pixel size information is missing, but you know what it should be, you can simply enter the required width and height values in the <em>Properties…</em> dialog box.</p>
 <div class="tip admonition">
 <p class="admonition-title">Typing µm</p>
@@ -948,7 +595,7 @@ You should check <span class="menuselection notranslate">Image ‣ Properties…
 <figure class="align-center" id="fig-pixels-set-scale">
 <a class="reference internal image-reference" href="../../../_images/pixels-set-scale-ruler.png"><img alt="../../../_images/pixels-set-scale-ruler.png" src="../../../_images/pixels-set-scale-ruler.png" style="width: 90%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 45 </span><span class="caption-text">Setting the pixel size in an image by inserting the length of a known structure.</span><a class="headerlink" href="#fig-pixels-set-scale" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 46 </span><span class="caption-text">Setting the pixel size in an image by inserting the length of a known structure.</span><a class="headerlink" href="#fig-pixels-set-scale" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="tip admonition">
@@ -961,14 +608,14 @@ Rather, <em>do</em> change the <span class="guilabel notranslate">Known distance
 </div>
 </section>
 <section id="showing-a-scale-bar">
-<h3>Showing a scale bar<a class="headerlink" href="#showing-a-scale-bar" title="Permalink to this headline">#</a></h3>
+<h3>Showing a scale bar<a class="headerlink" href="#showing-a-scale-bar" title="Permalink to this heading">#</a></h3>
 <p>It’s generally good practice to include a scalebar in any figures.
 This is only really meaningful if the pixel sizes are set correctly within the image properties.</p>
 <p>You can create a scalebar using <span class="menuselection notranslate">Analyze ‣ Tools ‣ Scale Bar…</span>.</p>
 <figure class="align-center" id="fig-scale-bar">
 <a class="reference internal image-reference" href="../../../_images/scale-bar.png"><img alt="../../../_images/scale-bar.png" src="../../../_images/scale-bar.png" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 46 </span><span class="caption-text">Setting a scale bar as an overlay.</span><a class="headerlink" href="#fig-scale-bar" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 47 </span><span class="caption-text">Setting a scale bar as an overlay.</span><a class="headerlink" href="#fig-scale-bar" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>There are several options that can be used to adjust the appearance of the scalebar.
@@ -980,7 +627,7 @@ The solution is to <a class="reference internal" href="../4-colors/imagej.html#s
 </section>
 </section>
 <section id="stacks-hyperstacks">
-<h2>Stacks &amp; Hyperstacks<a class="headerlink" href="#stacks-hyperstacks" title="Permalink to this headline">#</a></h2>
+<h2>Stacks &amp; Hyperstacks<a class="headerlink" href="#stacks-hyperstacks" title="Permalink to this heading">#</a></h2>
 <p>2D images have been around since the beginning.
 Then ImageJ supported <strong>stacks</strong>, which allowed an extra dimension that could either include different time points or <em>z</em>-slices – but not both.
 Nowadays, <strong>hyperstacks</strong> are the more flexible derivative of stacks, and can (currently) store up to 5 dimensions without getting them confused.</p>
@@ -997,19 +644,19 @@ Nevertheless, it helps to have a historical perspective to understand why both t
 <p>It may also help if you encounter some very old plugin that was written for stacks but that doesn’t handle hyperstacks properly.</p>
 </div>
 <section id="navigating-dimensions">
-<h3>Navigating dimensions<a class="headerlink" href="#navigating-dimensions" title="Permalink to this headline">#</a></h3>
+<h3>Navigating dimensions<a class="headerlink" href="#navigating-dimensions" title="Permalink to this heading">#</a></h3>
 <p>With a stack or hyperstack, only a single 2D <strong>slice</strong> is ‘active’ at any one time.
 A (hyper)stack image window can have up to 3 sliders, used to navigate the <strong>channels</strong>, <strong>z</strong> and <strong>time</strong> dimensions and select the active slice.
 In the case of multichannel images (where there is a ‘channel’ dimension), any changes to lookup tables are made for all the slices on the currently-active channel.</p>
 <figure class="align-center" id="fig-imagej-dimensions-mitosis">
 <a class="reference internal image-reference" href="../../../_images/imagej-dimensions-mitosis.png"><img alt="../../../_images/imagej-dimensions-mitosis.png" src="../../../_images/imagej-dimensions-mitosis.png" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 47 </span><span class="caption-text">A 5D image viewed in ImageJ.</span><a class="headerlink" href="#fig-imagej-dimensions-mitosis" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 48 </span><span class="caption-text">A 5D image viewed in ImageJ.</span><a class="headerlink" href="#fig-imagej-dimensions-mitosis" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="correcting-dimensions">
-<h3>Correcting dimensions<a class="headerlink" href="#correcting-dimensions" title="Permalink to this headline">#</a></h3>
+<h3>Correcting dimensions<a class="headerlink" href="#correcting-dimensions" title="Permalink to this heading">#</a></h3>
 <p>Like the pixel size, the dimensions of an image can found under <span class="menuselection notranslate">Image ‣ Properties…</span>.</p>
 <p>Sometimes the dimensions can be incorrect.
 This might happen, for example, if different <em>z</em>-slices were wrongly interpreted as time points when a file was opened, or the presence of multiple channels was not spotted.
@@ -1017,16 +664,16 @@ Misinterpreting the dimensions can not only affect the display of the image, but
 <p>It’s also possible to change the dimensions through <span class="menuselection notranslate">Image ‣ Properties…</span>, but I find that can sometimes be unreliable because of the old stack/hyperstack distinction (i.e. it doesn’t convert a stack to a hyperstack, and therefore doesn’t display all the sliders that are needed).
 A better option is to use <span class="menuselection notranslate">Image ‣ Hyperstack ‣ Stack to Hyperstack…</span> to fix dimensions.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="9a49d240-e839-49be-8ce8-8ea3e5c697cf" name="67ca24cc-1f76-4bca-bcba-ebb4efaee31f" type="radio">
-</input><label class="sd-tab-label" for="9a49d240-e839-49be-8ce8-8ea3e5c697cf">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
 Practical</label><div class="sd-tab-content docutils">
 <p>Something terrible has befallen the file <em>lost_dimensions.tif</em>, so that it’s displayed as a 3D stack, when in reality it should have more dimensions.</p>
 <p>By inspecting the file, identify how many channels, <em>z</em>-slices and time points it originally contained, and set these using <span class="menuselection notranslate">Image ‣ Hyperstack ‣ Stack to Hyperstack…</span> so that it displays properly.
 What are the correct dimensions?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-data/blob/main/images/lost_dimensions.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="ddaf8ccf-13c5-46bb-8907-3df0992b3692" name="67ca24cc-1f76-4bca-bcba-ebb4efaee31f" type="radio">
-</input><label class="sd-tab-label" for="ddaf8ccf-13c5-46bb-8907-3df0992b3692">
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
 Solution</label><div class="sd-tab-content docutils">
 <p><em>lost_dimensions.tif</em> should contain 2 channels, 3 <em>z</em>-slices and 16 time points.</p>
 <p>The dimensions are in the default order (<em>xyczt</em>).</p>
@@ -1034,7 +681,7 @@ Solution</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="plots-and-profiles">
-<h3>Plots and profiles<a class="headerlink" href="#plots-and-profiles" title="Permalink to this headline">#</a></h3>
+<h3>Plots and profiles<a class="headerlink" href="#plots-and-profiles" title="Permalink to this heading">#</a></h3>
 <p>More dimensions can make data harder to visualize and interpret.
 Reducing dimensions can help.</p>
 <p><span class="menuselection notranslate">Analyze ‣ Plot Profile</span> can be used to generate a 1D plot of pixel values along a line within the image.
@@ -1058,14 +705,14 @@ This means the plot data updates as any changes are made to the image, including
 <figure class="align-center" id="fig-imagej-dimensions-profiles">
 <img alt="../../../_images/imagej-dimensions-profiles.png" src="../../../_images/imagej-dimensions-profiles.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 48 </span><span class="caption-text">Three different profile plots, based on a rectangle.
+<p><span class="caption-number">Fig. 49 </span><span class="caption-text">Three different profile plots, based on a rectangle.
 <em>(Top)</em> A regular profile plot from the active 2D slice, using <span class="menuselection notranslate">Analyze ‣ Plot Profile</span>.
 <em>(Bottom)</em> Profiles generated by <span class="menuselection notranslate">Image ‣ Stacks ‣ Plot Z-axis Profile</span> along the z-axis <em>(left)</em> and across time points <em>(right)</em>.</span><a class="headerlink" href="#fig-imagej-dimensions-profiles" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="792b6d91-9b42-4852-89fb-e1d28e0ce89d" name="e9104070-fd77-4228-a05d-173ddde55fc8" type="radio">
-</input><label class="sd-tab-label" for="792b6d91-9b42-4852-89fb-e1d28e0ce89d">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
 Practical</label><div class="sd-tab-content docutils">
 <p>Create a profile plot from any image, by drawing a line ROI and pressing <kbd class="kbd docutils literal notranslate">K</kbd>.</p>
 <p>As far as ImageJ is concerned, the profile plot itself is an image – albeit a strange one.
@@ -1073,8 +720,8 @@ This means you can use <span class="menuselection notranslate">Image ‣ Propert
 <p>What do you notice about the pixel sizes?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="e9d879e5-ad5a-4d7e-9947-0a2cb36bc70c" name="e9104070-fd77-4228-a05d-173ddde55fc8" type="radio">
-</input><label class="sd-tab-label" for="e9d879e5-ad5a-4d7e-9947-0a2cb36bc70c">
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
 Solution</label><div class="sd-tab-content docutils">
 <p>You will probably see that the pixel width and height are different.
 In fact, the pixel width depends upon the scaling of the x-axis and the pixel height depends upon the scaling of the y-axis.</p>
@@ -1087,12 +734,17 @@ This forces the line to be perfectly horizontal or perfectly vertical; without <
 </section>
 </section>
 <section id="displaying-dimensions">
-<h2>Displaying dimensions<a class="headerlink" href="#displaying-dimensions" title="Permalink to this headline">#</a></h2>
+<h2>Displaying dimensions<a class="headerlink" href="#displaying-dimensions" title="Permalink to this heading">#</a></h2>
 <section id="z-projections">
-<h3>Z-projections<a class="headerlink" href="#z-projections" title="Permalink to this headline">#</a></h3>
+<h3>Z-projections<a class="headerlink" href="#z-projections" title="Permalink to this heading">#</a></h3>
 <p>The command to generate a <a class="reference internal" href="pixel_size.html#sec-dims-z-project"><span class="std std-ref"><em>z</em>-projection</span></a> in ImageJ is <span class="menuselection notranslate">Image ‣ Stacks ‣ Z Project…</span>.
-This supports several different projection types, as shown in <a class="reference internal" href="#fig-visualize-fiji-projection"><span class="std std-numref">Fig. 49</span></a>.</p>
+This supports several different projection types, as shown in <a class="reference internal" href="#fig-visualize-fiji-projection"><span class="std std-numref">Fig. 50</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">show_image</span><span class="p">(</span><span class="s1">&#39;images/z-project-sum.png&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Sum projection&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
@@ -1102,18 +754,17 @@ This supports several different projection types, as shown in <a class="referenc
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <figure class="align-center" id="fig-visualize-fiji-projection">
-<div class="cell_output docutils container">
-<img alt="../../../_images/imagej_3_02.png" src="../../../_images/imagej_3_02.png" />
-</div>
+<img alt="../../../_images/59cd4330f9c56b4d623d94856f9e3a6583cb0988f5ca2ecf9fa9e616add82b97.png" src="../../../_images/59cd4330f9c56b4d623d94856f9e3a6583cb0988f5ca2ecf9fa9e616add82b97.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 49 </span><span class="caption-text">Three projections of a <em>z</em>-stack. Sum projections often look similar to maximum projections, but less sharp.</span><a class="headerlink" href="#fig-visualize-fiji-projection" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 50 </span><span class="caption-text">Three projections of a <em>z</em>-stack. Sum projections often look similar to maximum projections, but less sharp.</span><a class="headerlink" href="#fig-visualize-fiji-projection" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="05da64cf-1fa7-4605-b6b2-1136fb32a696" name="d67761ab-6854-436d-9ae4-ebd7368dbacd" type="radio">
-</input><label class="sd-tab-label" for="05da64cf-1fa7-4605-b6b2-1136fb32a696">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
 Question</label><div class="sd-tab-content docutils">
 <p>Imagine computing a sum and a maximum projection of a 10-slice stack containing a large, in-focus nucleus.
 How might each of these projections be affected if your stack contained:</p>
@@ -1122,8 +773,8 @@ How might each of these projections be affected if your stack contained:</p>
 <li><p>several very bright, isolated, randomly distributed outlier pixels – with values twice what they should be (due to noise)</p></li>
 </ul>
 </div>
-<input id="94d3b1aa-2abd-460e-aa09-f14fc29e87c1" name="d67761ab-6854-436d-9ae4-ebd7368dbacd" type="radio">
-</input><label class="sd-tab-label" for="94d3b1aa-2abd-460e-aa09-f14fc29e87c1">
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
 Answer</label><div class="sd-tab-content docutils">
 <p>Additional, out-of-focus planes will have an effect upon sum projections: increasing all the resulting pixel values.
 However, the extra planes would have minimal effects upon maximum projections, since they are unlikely to contain higher values than the in-focus planes.</p>
@@ -1136,15 +787,15 @@ Such outliers would also influence a sum projection, but less drastically becaus
 <a class="reference internal image-reference" href="../../../_images/pixels-max-max-mitosis.png"><img alt="../../../_images/pixels-max-max-mitosis.png" src="../../../_images/pixels-max-max-mitosis.png" style="width: 60%;" /></a>
 </aside>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="9a698257-8cac-4c1f-b53e-fd809da4b0a3" name="52928c92-c002-419d-9fbb-6beaa9c16398" type="radio">
-</input><label class="sd-tab-label" for="9a698257-8cac-4c1f-b53e-fd809da4b0a3">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
 Practical</label><div class="sd-tab-content docutils">
 <p>What happens if you calculate a maximum projection <em>twice</em> for the 5D image <span class="menuselection notranslate">File ‣ Open samples ‣ Mitosis</span>?</p>
 <p>By this I mean you run <span class="menuselection notranslate">Image ‣ Stacks ‣ Z Project…</span> on the original image, and then again on the output of the first projection.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/9dbe7657bb476ea457f14229e93c5862"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
-<input id="bbb81bf6-9961-49d3-8bdb-d6c0619306d5" name="52928c92-c002-419d-9fbb-6beaa9c16398" type="radio">
-</input><label class="sd-tab-label" for="bbb81bf6-9961-49d3-8bdb-d6c0619306d5">
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
 Solution</label><div class="sd-tab-content docutils">
 <p>You should end up with a maximum <em>z</em>-projecton followed by a time projection!</p>
 <p>If there is a time dimension but no <em>z</em> dimension, <span class="menuselection notranslate">Image ‣ Stacks ‣ Z Project…</span> will use time instead.</p>
@@ -1153,20 +804,20 @@ Solution</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="orthogonal-views">
-<h3>Orthogonal views<a class="headerlink" href="#orthogonal-views" title="Permalink to this headline">#</a></h3>
+<h3>Orthogonal views<a class="headerlink" href="#orthogonal-views" title="Permalink to this heading">#</a></h3>
 <p>The command <span class="menuselection notranslate">Image ‣ Stacks ‣ Orthogonal Views</span> makes it possible to generate interactive <a class="reference internal" href="pixel_size.html#sec-dims-orthogonal"><span class="std std-ref">orthogonal slices</span></a> from an image stack.
 This opens up 2 extra windows, so that when you click at any point on the original <em>xy</em> view, you are shown cross-sections through that point from each direction.</p>
 <figure class="align-center" id="fig-orthogonal-views">
 <a class="reference internal image-reference" href="../../../_images/orthogonal-views.png"><img alt="../../../_images/orthogonal-views.png" src="../../../_images/orthogonal-views.png" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 50 </span><span class="caption-text">Orthogonal views in ImageJ.</span><a class="headerlink" href="#fig-orthogonal-views" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 51 </span><span class="caption-text">Orthogonal views in ImageJ.</span><a class="headerlink" href="#fig-orthogonal-views" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Note that when viewing the orthogonal slices, clicks on the image are intercepted.
 This makes it difficult to interact with the image normally or create new ROIs.
 If you close any of the additional views then the command is deactivated, and you can go back to working with the image as before.</p>
 <section id="reslicing">
-<h4>Reslicing<a class="headerlink" href="#reslicing" title="Permalink to this headline">#</a></h4>
+<h4>Reslicing<a class="headerlink" href="#reslicing" title="Permalink to this heading">#</a></h4>
 <p>If you look closely at the orthogonal slices, you will see that they are RGB images – even if the original stack is not RGB.
 They are also locked to using the LUT and brightness/contrast settings that were active when the command was first run.</p>
 <p>This makes them a useful visualization trick, but they do not provide a rotated version of the data for analysis.</p>
@@ -1174,7 +825,7 @@ They are also locked to using the LUT and brightness/contrast settings that were
 <figure class="align-center" id="fig-reslicing">
 <a class="reference internal image-reference" href="../../../_images/reslicing.png"><img alt="../../../_images/reslicing.png" src="../../../_images/reslicing.png" style="width: 90%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 51 </span><span class="caption-text">Reslicing an image.</span><a class="headerlink" href="#fig-reslicing" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 52 </span><span class="caption-text">Reslicing an image.</span><a class="headerlink" href="#fig-reslicing" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>After reslicing, you can then use <span class="menuselection notranslate">Image ‣ Stacks ‣ Z Project…</span> to effectively generate orthogonal <em>z</em>-projections.</p>
@@ -1202,7 +853,7 @@ Seeing what actually happens is likely to be more informative than trying to mak
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chapters/1-concepts/5-pixel_size"
         },
         predefinedOutput: true
@@ -1210,50 +861,119 @@ Seeing what actually happens is likely to be more informative than trying to mak
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="pixel_size.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Pixel size &amp; dimensions</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pixel_size.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pixel size &amp; dimensions</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="python.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="python.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Python:  Pixel size &amp; dimensions</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pixel-sizes-properties">Pixel sizes &amp; Properties</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pixel-sizes-measurements">Pixel sizes &amp; measurements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-pixel-size">Setting the pixel size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#showing-a-scale-bar">Showing a scale bar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stacks-hyperstacks">Stacks &amp; Hyperstacks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#navigating-dimensions">Navigating dimensions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correcting-dimensions">Correcting dimensions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-and-profiles">Plots and profiles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#displaying-dimensions">Displaying dimensions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-projections">Z-projections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-views">Orthogonal views</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reslicing">Reslicing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By Pete Bankhead<br/>
-  
-      &copy; Copyright 2022-2023.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By Pete Bankhead
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022-2023.
+      <br/>
+    
+  </p>
 
-      </div>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

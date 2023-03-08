@@ -50,7 +50,7 @@ Three of the most important ones for our purposes are:
 
 #### 1. ImageJ
 
-<img src="../../../images/logos/imagej-logo.png" align="right" width=10% />
+<img src="../../../images/logos/imagej-logo.png" align="right" width=10% class="dark-light" />
 
 **Download from https://imagej.nih.gov/ij/**
 
@@ -62,7 +62,7 @@ Including Java makes the download bigger, but makes the application self-contain
 
 #### 2. Fiji
 
-<img src="../../../images/logos/fiji-logo.png" align="right" width=10% />
+<img src="../../../images/logos/fiji-logo.png" align="right" width=10% class="dark-light" />
 
 **Download from https://fiji.sc/**
 
@@ -71,7 +71,7 @@ It also has a powerful script editor that helps a lot when developing macros or 
 
 #### 3. ImageJ.JS
 
-<img src="../../../images/logos/imagej.js-logo.png" align="right" width=10% />
+<img src="../../../images/logos/imagej.js-logo.png" align="right" width=10% class="dark-light" />
 
 **Run at https://ij.imjoy.io**
 
@@ -139,6 +139,15 @@ Everything else (images, histograms, measurement tables, dialogs) appears within
 ```{figure} images/imagej-gui.png
 :align: center
 :width: 100%
+:class: only-light
+
+The main ImageJ user interface.
+```
+
+```{figure} images/imagej-gui-dark.png
+:align: center
+:width: 100%
+:class: only-dark dark-filter-less
 
 The main ImageJ user interface.
 ```
@@ -184,10 +193,10 @@ The search bar can also be activated using {kbd}`L` and used to find and run com
 ```
 
 :::{admonition} Losing control
-:class:
+:class: tip
 
 In most software, shortcut keys often require pressing {kbd}`Ctrl` (on Windows, Linux) or {kbd}`⌘` (Mac).
-Therefore the shortcut to search for a command would be {kbd}`Ctrl + L` or {kbd}`⌘ + L`.
+Therefore the shortcut to search for a command would be {kbd}`Ctrl+L` or {kbd}`⌘ + L`.
 
 This works in ImageJ, but isn't necessary.
 Under {menuselection}`Edit --> Options --> Misc...`, you can specify whether the {kbd}`Ctrl` or {kbd}`⌘` key is needed along with the letter for the shortcut.
@@ -278,7 +287,7 @@ The origin of the image is at the top left, i.e. the top left pixel is identifie
 ```
 
 The main command to change the brightness of an image is {menuselection}`Image --> Adjust --> Brightness/Contrast...`.
-Since you're likely to use it a lot, it is worth learning the shortcut: {kbd}`Shift + C`.
+Since you're likely to use it a lot, it is worth learning the shortcut: {kbd}`Shift+C`.
 
 The Brightness/Contrast dialog has four sliders: {guilabel}`Minimum`, {guilabel}`Maximum`, {guilabel}`Brightness` & {guilabel}`Contrast`.
 They are linked together: changing either of the first two also results in a change to the last two, and vice versa.

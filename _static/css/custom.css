@@ -1,0 +1,70 @@
+html[data-theme="light"] {
+    --question-bg: #F8F8F8F8;
+}
+
+/* anything related to the dark theme */
+html[data-theme="dark"] {
+    --question-bg: #F8F8F808;
+}
+
+div.cell div.cell_input, div.cell details.above-input>summary {
+    background-color: var(--question-bg);
+}
+
+.question {
+    padding: 0 2% 0 2%;
+}
+.sd-tab-set {
+    background-color: var(--question-bg);
+    padding: 0 2% 0 2%;
+}
+
+.solution {
+    font-weight: bold;
+}
+
+/* Apply similar filter to that applied to 
+   regular images viewed in dark mode */
+.dark-filter {
+    filter: brightness(.8) contrast(1.2);
+}
+
+.dark-filter-less {
+    filter: brightness(.9) contrast(1.1);
+}
+
+/*
+* Default video styling for responsive size
+*/
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+/*--------------------------------------------------------------------*\
+Styling for Embedded Videos (iframes)
+- Ensures that videos can resize to suit the screen the book is read from.
+- Also ensures that videos are horizontally centered.
+From https://github.com/alan-turing-institute/the-turing-way/blob/328d54a75adae02090bd017d169a6dd79beea4de/book/website/_static/book-stylesheet.css
+\*--------------------------------------------------------------------*/
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 35px;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+iframe {
+    margin: auto;
+    display:block;
+}
