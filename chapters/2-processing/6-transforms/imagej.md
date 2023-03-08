@@ -170,7 +170,7 @@ Although conceptually straightforward, and easy to use in ImageJ, implementing '
 Here, I've tried to replicate it in Python.
 The results aren't necessarily identical to ImageJ's implementation, but should be pretty close.
 
-Select to {guilabel}`Click to show` above to see how it works.
+Select to {guilabel}`Show code cell contents` above to see how it works.
 
 ```{glue:figure} fig_distance_transform_python
 ---
@@ -202,7 +202,7 @@ The effect of the command is therefore to split 'roundish' objects.
 ````
 
 :::{admonition} Watching the distance transform
-:class:
+:class: tip
 
 If you click the {guilabel}`Dev` toolbar button and select {menuselection}`Debug Mode` from the drop-down menu, then running {menuselection}`Process --> Binary --> Watershed` will generate an image stack that visualizes how the seeds expanded during the watershed processing.
 

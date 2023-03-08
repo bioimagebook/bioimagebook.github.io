@@ -1145,7 +1145,7 @@ im = (im * 255).astype(np.uint8)
 bw_triangle = im > threshold_triangle(im)
 
 # Apply large median filter
-im_median = median(im, selem=disk(8))
+im_median = median(im, footprint=disk(8))
 
 # Subtract median-filtered image and now try triangle threshold again
 im_diff = im.astype(np.float32) - im_median

@@ -5,9 +5,9 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.11.5
+    jupytext_version: 1.14.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -606,7 +606,7 @@ fig = create_figure(figsize=(8, 4))
 r = 100
 c = 100
 s = 256
-im = load_image('Rat_Hippocampal_Neuron.zip').astype(np.float32)[r:r+s, c:c+s]
+im = load_image('Rat_Hippocampal_Neuron.zip').astype(np.float32)[0, r:r+s, c:c+s]
 
 im2 = ndimage.gaussian_filter(im, sigma=0.25)
 im_diff = im - im2

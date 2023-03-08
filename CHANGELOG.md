@@ -4,6 +4,14 @@ Changelog
 This page summarizes the main changes.
 To see all changes, check out the [commit log](https://github.com/bioimagebook/bioimagebook.github.io/commits/main).
 
+## 8 March 2023
+
+* Update dependencies
+* Dark mode support!
+  * Possible thanks to [JupyterBook](https://jupyterbook.org/en/stable/intro.html) & especially [pydata-sphinx-theme](https://pydata-sphinx-theme.readthedocs.io/)
+* Minor fixes
+  * Rename `selem` to `footprint` for median filtering with scikit-image
+
 ## 15 January 2023
 
 * Add this changelog
