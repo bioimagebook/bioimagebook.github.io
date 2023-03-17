@@ -18,4 +18,4 @@ It's a work in progress, and probably always will be, but I hope you find it use
 
 > You can download the images used in the practical exercises [here](https://github.com/bioimagebook/practical-data/archive/refs/heads/main.zip).
 
-<img src="./images/title_cells_with_alpha.png" alt="Title image" max-width="70%" align="center" class="dark-light" />
+<img src="./images/title_cells_with_alpha.png" alt="Title image" width="70%" class="dark-light align-center" />
