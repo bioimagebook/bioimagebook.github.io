@@ -207,7 +207,7 @@ Unfortunately, we don't know precisely what the random values $N_p$ and $N_r$ ar
 
 Finally, some useful maths:
 * Suppose we add two random noisy values together. Both are independent and drawn from distributions (Gaussian or Poisson) with standard deviations $\sigma_1$ and $\sigma_2$.
-The result is a third random value, drawn from a distribution with a standard deviation $\sqrt{\sigma_1 + \sigma_2}$.
+The result is a third random value, drawn from a distribution with a standard deviation $\sqrt{\sigma_1^2 + \sigma_2^2}$.
 * If we multiply a noisy value from a distribution with a standard deviation $\sigma_1$ by $k$, the result is noise from a distribution with a standard deviation $k\sigma_1$.
 
 These are all my most important noise facts, upon which the rest of this chapter is built.
