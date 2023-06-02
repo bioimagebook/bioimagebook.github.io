@@ -4,6 +4,13 @@ Changelog
 This page summarizes the main changes.
 To see all changes, check out the [commit log](https://github.com/bioimagebook/bioimagebook.github.io/commits/main).
 
+## 2 June 2023
+
+* Switch to using `conda` and `environment.yml`
+* Update dependencies (and fix the various errors this caused)
+* Use imageio.v3
+* Introduce aiscsimageio
+
 ## 8 March 2023
 
 * Update dependencies

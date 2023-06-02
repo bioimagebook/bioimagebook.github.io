@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.13.8
+    jupytext_version: 1.14.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -41,33 +41,39 @@ We can request the metadata when loading it from `imageio`.
 # im, metadata = load_image('Rat_Hippocampal_Neuron.zip', volume=True, metadata=True)
 
 # The awkward way using imageio directly
-import imageio
+import imageio.v3 as iio
 
-# Get the path to the image & unzip it (the unzipping isn't needed for .tif images generally)
-path = find_image('Rat_Hippocampal_Neuron.zip')[0]
-with ZipFile(path, 'r') as zf:
-    names = zf.namelist()
-    with zf.open(names[0]) as entry:
-        image_bytes = entry.read()
+# Get the path to the image
+path = find_image('Rat_Hippocampal_Neuron.tif')[0]
 
-# Usually you can just pass the path here, instead of image_bytes
-reader = imageio.get_reader(image_bytes, format='.tif')
-metadata = reader.get_meta_data()
+# Read the image with ImageIO, then read the metadata
+im = iio.imread(path)
+metadata = iio.immeta(path)
 print(metadata)
 ```
 
-Printing that a little more nicely, we get:
+Printing that a little more nicely (and skipping the LUTs), we get:
 
 ```{code-cell} ipython3
 for k, v in metadata.items():
-    print(f'{k}: {v}')
+    if not 'LUTs' in k:
+        print(f'{k}: {v}')
 ```
 
 This metadata is actually quite ImageJ-specific, and other TIFFs may give quite different metadata.
 
 We can see the version of ImageJ that wrote the file, but picking out the key thing we want - the pixel size - is not so easy.
 
-Seeing `unit=um` is encouraging, but the most relevant-looking other value we have is `resolution: (6.25, 6.25, 'NONE')`.
+Seeing `unit=um` is encouraging, but we still don't have the pixel size.
+
+We can explore a bit more with 'properties', which ImageIO provides as ['a curated set of standardized metadata'](https://imageio.readthedocs.io/en/v2.30.0/reference/userapi.html#metadata).
+
+```{code-cell} ipython3
+properties = iio.improps(path, extension=".tif")
+print(properties)
+```
+
+Here, the `spacing=(6.25, 6.25)` seems promising.
 
 It's tempting to suppose that means the pixel width and height are both 6.25 µm - *however* if I check the same image in ImageJ itself, I see the pixel width and height are actually 0.16 µm... which happens to equal 1.0/6.25 µm.
 
@@ -77,19 +83,40 @@ print(1.0 / 6.25)
 
 Therefore the information **is** in the metadata, but it's very easy to misinterpret - and it isn't even guaranteed to be correct if the image was written by some other software.
 
-I'd like to give you a solution to this problem, but at the time of writing I don't have a good one.
-
-My best idea is to check out [**AICSImageIO**](https://github.com/AllenCellModeling/aicsimageio) - which is a really interesting-looking Python library that standardized reading and writing multiple file formats.
-
-Alas, I have the misfortunate to be unable to install it right now because I'm currently using an Apple Silicon Mac and my attempts have been thwarted by mysterious errors.
-So I can't say a great deal more about it for now.
-
 +++
+
+
+### Using AICSImageIO
+
+The best solution I know is to use [**AICSImageIO**](https://github.com/AllenCellModeling/aicsimageio) - which is a really interesting Python library that standardized reading and writing multiple file formats.
+
+It takes a little more work to get used to AICSImageIO's alternative way of doing things - but the benefits are clear pretty quickly.
+
+Although it's possible to use a version of `imread` with AICSImageIO, you can get more out of creating an `AICSImage` object.
+
+```{code-cell} ipython3
+from aicsimageio.aics_image import AICSImage
+
+# Create an AICSImage
+img = AICSImage(path)
+
+# Print its main attributes
+print(img)
+for d in dir(img):
+    if not d.startswith('_'):
+        print(d)
+```
+
+From this, we can immediately see the attribute that will provide us with pixel sizes directly.
+
+```{code-cell} ipython3
+print(img.physical_pixel_sizes)
+```
 
 ## Dimensions
 
 I have a strong suspicion that **AICSImageIO** might also be the key to working effectively with multidimensional images.
-But for now, we'll persist with `imageio`.
+But for until I update these docs, we'll persist with `imageio`.
 
 ```{code-cell} ipython3
 im, metadata = load_image('confocal-series.zip', volume=True, metadata=True)
@@ -195,8 +222,4 @@ plt.title('Middle column')
 
 plt.tight_layout()
 plt.show()
-```
-
-```{code-cell} ipython3
-
 ```
