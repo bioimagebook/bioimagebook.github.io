@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Python: Measurements &amp; histograms &#8212; Introduction to Bioimage Analysis</title>
   
@@ -45,7 +45,6 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -479,7 +478,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="python-measurements-histograms">
-<h1>Python: Measurements &amp; histograms<a class="headerlink" href="#python-measurements-histograms" title="Permalink to this heading">#</a></h1>
+<h1>Python: Measurements &amp; histograms<a class="headerlink" href="#python-measurements-histograms" title="Permalink to this headline">#</a></h1>
 <p>Here, we will explore how to make measurements and generate histograms with Python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -500,11 +499,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/72f85c31c216bab1310d43fcfaf982405649067f5fd039f98a4c9cf50d9b0f84.png" src="../../../_images/72f85c31c216bab1310d43fcfaf982405649067f5fd039f98a4c9cf50d9b0f84.png" />
+<img alt="../../../_images/5a55af9f169379b3da578f1b217c5e7d58175ec03acda816b72e11e1286549cc.png" src="../../../_images/5a55af9f169379b3da578f1b217c5e7d58175ec03acda816b72e11e1286549cc.png" />
 </div>
 </div>
 <section id="introduction-to-numpy-arrays">
-<h2>Introduction to NumPy arrays<a class="headerlink" href="#introduction-to-numpy-arrays" title="Permalink to this heading">#</a></h2>
+<h2>Introduction to NumPy arrays<a class="headerlink" href="#introduction-to-numpy-arrays" title="Permalink to this headline">#</a></h2>
 <p>The images we are working with in Python are <strong>NumPy arrays</strong> - <a class="reference external" href="https://numpy.org">https://numpy.org</a></p>
 <p>Rather than plotting the image with <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code>, we can also simply print its values.
 Since there can be a <em>lot</em> of values (i.e. millions of pixels per image), only a few are shown by default.</p>
@@ -554,12 +553,12 @@ Since there can be a <em>lot</em> of values (i.e. millions of pixels per image),
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(250, 240)
 </pre></div>
 </div>
-<img alt="../../../_images/0f39a75d41a44fe39a129d57eefd3d100da316ed3a0c64a70d4eb733e65f4a8a.png" src="../../../_images/0f39a75d41a44fe39a129d57eefd3d100da316ed3a0c64a70d4eb733e65f4a8a.png" />
+<img alt="../../../_images/6a468cff7b890bddc0300b22fe4ffefe7d9d1528d39213540d4ddec86f879dfa.png" src="../../../_images/6a468cff7b890bddc0300b22fe4ffefe7d9d1528d39213540d4ddec86f879dfa.png" />
 </div>
 </div>
 </section>
 <section id="calculating-statistics">
-<h2>Calculating statistics<a class="headerlink" href="#calculating-statistics" title="Permalink to this heading">#</a></h2>
+<h2>Calculating statistics<a class="headerlink" href="#calculating-statistics" title="Permalink to this headline">#</a></h2>
 <p>A more meaningful benefit of working with NumPy arrays, for our purposes at least, is that they enable us to calculate some summary statistics <em>extremely</em> easily.</p>
 <p>For example, to compute the average (mean) pixel value we can simply use <code class="docutils literal notranslate"><span class="pre">im.mean()</span></code>.</p>
 <div class="cell docutils container">
@@ -595,7 +594,7 @@ Since there can be a <em>lot</em> of values (i.e. millions of pixels per image),
 </div>
 </div>
 <section id="formatting-output">
-<h3>Formatting output<a class="headerlink" href="#formatting-output" title="Permalink to this heading">#</a></h3>
+<h3>Formatting output<a class="headerlink" href="#formatting-output" title="Permalink to this headline">#</a></h3>
 <p>Things become more readable if we add some extra text, rather than just printing numbers.</p>
 <p>One of the easiest ways to do this is to use an ‘f-string’, which is in the form <code class="docutils literal notranslate"><span class="pre">f'Some</span> <span class="pre">text</span> <span class="pre">{some_variable}</span></code>.</p>
 <p>The part between the braces <code class="docutils literal notranslate"><span class="pre">{}</span></code> can be a calculation, and if you add <code class="docutils literal notranslate"><span class="pre">:.2f</span></code> at the end this will optionally limit the number of decimal places (here, to two).</p>
@@ -620,7 +619,7 @@ Std.dev.: 27.156
 </section>
 </section>
 <section id="generating-histograms">
-<h2>Generating histograms<a class="headerlink" href="#generating-histograms" title="Permalink to this heading">#</a></h2>
+<h2>Generating histograms<a class="headerlink" href="#generating-histograms" title="Permalink to this headline">#</a></h2>
 <p>We can now try to generate image histograms, using <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code>.</p>
 <p>You might expect <code class="docutils literal notranslate"><span class="pre">plt.hist(im)</span></code> to work, just as <code class="docutils literal notranslate"><span class="pre">plt.imshow(im)</span></code> did previously.
 However, the result can be a bit surprising.</p>
@@ -632,7 +631,7 @@ However, the result can be a bit surprising.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/5819e3a627579e6c2e09d52e6c49f4fbb510e73782a140ff799affe0560f7ae7.png" src="../../../_images/5819e3a627579e6c2e09d52e6c49f4fbb510e73782a140ff799affe0560f7ae7.png" />
+<img alt="../../../_images/0e591e2f7d38897899411754e5c72a0c36338403d651b932ef127571d60e7af2.png" src="../../../_images/0e591e2f7d38897899411754e5c72a0c36338403d651b932ef127571d60e7af2.png" />
 </div>
 </div>
 <p>The problem is that the image is 2D, and <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code> is expecting just a single 1D list of values.
@@ -660,7 +659,7 @@ Shape after flatten(): (60000,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/2c203de3f9d43ddae8dc1b434ee4dccdd76cea5cdad06a4ebc1b53051c62f8f7.png" src="../../../_images/2c203de3f9d43ddae8dc1b434ee4dccdd76cea5cdad06a4ebc1b53051c62f8f7.png" />
+<img alt="../../../_images/b9c080460f559668533fd873de5d71a0454ff8943043b9702d18cedd246b1a03.png" src="../../../_images/b9c080460f559668533fd873de5d71a0454ff8943043b9702d18cedd246b1a03.png" />
 </div>
 </div>
 <p>As with <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code>, we have lots of options to customize the histogram.
@@ -673,7 +672,7 @@ This includes the ability to set the color or number of histogram bins.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/9cedf2874bd073ce161b532eb79097cd020effda002a6f8fd359fcef4d3e44ac.png" src="../../../_images/9cedf2874bd073ce161b532eb79097cd020effda002a6f8fd359fcef4d3e44ac.png" />
+<img alt="../../../_images/e0dba599dd31d51922b850781b48a66ba1d265a4f85f649493bf58e990629264.png" src="../../../_images/e0dba599dd31d51922b850781b48a66ba1d265a4f85f649493bf58e990629264.png" />
 </div>
 </div>
 <blockquote>

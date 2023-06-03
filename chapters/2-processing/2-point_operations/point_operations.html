@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Point operations &#8212; Introduction to Bioimage Analysis</title>
   
@@ -45,7 +45,6 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -483,7 +482,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="point-operations">
-<span id="chap-point-operations"></span><h1>Point operations<a class="headerlink" href="#point-operations" title="Permalink to this heading">#</a></h1>
+<span id="chap-point-operations"></span><h1>Point operations<a class="headerlink" href="#point-operations" title="Permalink to this headline">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -516,7 +515,7 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>A step used to process an image in some way can be called an <strong>operation</strong>.</p>
 <p>The simplest operations are <strong>point operations</strong>, which act on individual pixels.
 Point operations change each pixel in a way that depends upon its own value, but not upon where it is in the image nor upon the values of other pixels.
@@ -534,9 +533,9 @@ That way you can always return to the original data if you need to.</p>
 </div>
 </section>
 <section id="point-operations-for-single-images">
-<h2>Point operations for single images<a class="headerlink" href="#point-operations-for-single-images" title="Permalink to this heading">#</a></h2>
+<h2>Point operations for single images<a class="headerlink" href="#point-operations-for-single-images" title="Permalink to this headline">#</a></h2>
 <section id="arithmetic">
-<h3>Arithmetic<a class="headerlink" href="#arithmetic" title="Permalink to this heading">#</a></h3>
+<h3>Arithmetic<a class="headerlink" href="#arithmetic" title="Permalink to this headline">#</a></h3>
 <p>Pixel values are just numbers.
 When we have numbers, we can do arithmetic.</p>
 <p>It should therefore come as no surprise that we can take our pixel values and change them by adding, subtracting, multiplying or dividing by some other value.
@@ -586,14 +585,14 @@ Therefore the first step of any image processing is often to convert the image t
 </div>
 </section>
 <section id="image-inversion">
-<span id="sec-points-inversion"></span><h3>Image inversion<a class="headerlink" href="#image-inversion" title="Permalink to this heading">#</a></h3>
+<span id="sec-points-inversion"></span><h3>Image inversion<a class="headerlink" href="#image-inversion" title="Permalink to this headline">#</a></h3>
 <p>Inverting an image effectively involves ‘flipping’ the intensities: making the higher values lower, and the lower values higher.</p>
 <p>In the case of 8-bit images, inverted pixel values can be easily computed simply by subtracting the original values from the maximum possible – i.e. from 255.</p>
 <p>Why is inversion useful?</p>
 <p>Suppose you have a good strategy designed to detect bright structures, but it doesn’t work for you because your images contain dark structures.
 If you invert your images first, then the structures become bright – and your detection strategy might now succeed.</p>
 <figure class="align-center" id="fig-image-inversion" style="width: 85%">
-<img alt="../../../_images/72ef2247c9452639846f51a3c9bf0cc256fd671e7e5fd97c2dc01f9a9c6cfaca.png" src="../../../_images/72ef2247c9452639846f51a3c9bf0cc256fd671e7e5fd97c2dc01f9a9c6cfaca.png" />
+<img alt="../../../_images/9e549079d9a3a3a68881a23d1a481008bf2a9379f1fb59d18ab593334945ab4a.png" src="../../../_images/9e549079d9a3a3a68881a23d1a481008bf2a9379f1fb59d18ab593334945ab4a.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 58 </span><span class="caption-text">The effect of image and LUT inversion. Note that each histogram appears to be a mirror image of the other. Also, the image is clipped (sorry).</span><a class="headerlink" href="#fig-image-inversion" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -609,7 +608,7 @@ This retains the key properties of image inversion: it flips the high and low va
 </div>
 </section>
 <section id="nonlinear-contrast-enhancement">
-<h3>Nonlinear contrast enhancement<a class="headerlink" href="#nonlinear-contrast-enhancement" title="Permalink to this heading">#</a></h3>
+<h3>Nonlinear contrast enhancement<a class="headerlink" href="#nonlinear-contrast-enhancement" title="Permalink to this headline">#</a></h3>
 <p>With arithmetic operations we change the pixel values, usefully or otherwise, but (assuming we have not clipped our image in the process) we have done so in a <strong>linear</strong> way.
 At most it would take another multiplication and/or addition to get us back to where we were.
 Because a similar relationship between pixel values exists, we could also adjust the brightness and contrast LUT so that it does not <em>look</em> like we have done anything at all.</p>
@@ -676,7 +675,7 @@ An easier approach is to duplicate the image and apply any non-linear adjustment
 </details>
 </div>
 <figure class="align-center" id="fig-nonlinear-contrast">
-<img alt="../../../_images/7a8eeaea22b58b58f6faf8bb69f302e2f9ef6fcd0761b929c593b7c88406f746.png" src="../../../_images/7a8eeaea22b58b58f6faf8bb69f302e2f9ef6fcd0761b929c593b7c88406f746.png" />
+<img alt="../../../_images/59a78a0382c395079782bfafa625758bdc5f5e96102b937fe240d8498c6d9d5c.png" src="../../../_images/59a78a0382c395079782bfafa625758bdc5f5e96102b937fe240d8498c6d9d5c.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 59 </span><span class="caption-text">Nonlinear transforms applied to a simple ‘ramp’ image, consisting of linearly increasing pixel values.
 Replacing each pixel with its log or gamma-adjusted value has the effect of compressing either the lower or higher intensities closer together to free up more gray levels for the others. Note that, here we assume an 8-bit input image and have incorporated some necessary rescaling for an 8-bit output (based on the approach used by ImageJ).</span><a class="headerlink" href="#fig-nonlinear-contrast" title="Permalink to this image">#</a></p>
@@ -729,7 +728,7 @@ However, log or gamma transforms make this possible.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-point-gamma-spooked">
-<img alt="../../../_images/311714af635d43aaeaf0418d90905eced4b487207dcfcbc521ecf143f5416d91.png" src="../../../_images/311714af635d43aaeaf0418d90905eced4b487207dcfcbc521ecf143f5416d91.png" />
+<img alt="../../../_images/409649c99bcdee9847a2d3cdcaff667f507381a7b5a72002241544de3ef7259d.png" src="../../../_images/409649c99bcdee9847a2d3cdcaff667f507381a7b5a72002241544de3ef7259d.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 60 </span><span class="caption-text">The application of nonlinear contrast enhancement to an image with a wide range of values.
 <em>(Top row)</em> In the original image, it’s not possible to see details in both the foreground and background simultaneously.
@@ -745,7 +744,7 @@ However, log or gamma transforms make this possible.</p>
 </section>
 </section>
 <section id="point-operations-multiple-images">
-<h2>Point operations &amp; multiple images<a class="headerlink" href="#point-operations-multiple-images" title="Permalink to this heading">#</a></h2>
+<h2>Point operations &amp; multiple images<a class="headerlink" href="#point-operations-multiple-images" title="Permalink to this headline">#</a></h2>
 <p>Instead of applying arithmetic using an image and a constant, we could also use two images of the same size.
 These can readily be added, subtracted, multiplied or divided by applying the operations to the corresponding pixels.</p>
 <p>This is a technique that is used <em>all the time</em> in image processing.
@@ -763,7 +762,7 @@ Applications include:</p>
 Question</label><div class="sd-tab-content docutils">
 <p>In the two 32-bit images shown here, white pixels have values of one and black pixels have values of zero (gray pixels have values somewhere in between).</p>
 <figure class="align-center">
-<img alt="../../../_images/aa2bf6c16d81520df53608902d13b83c8b9ab1de4141ba44330be442e5b3ebf9.png" src="../../../_images/aa2bf6c16d81520df53608902d13b83c8b9ab1de4141ba44330be442e5b3ebf9.png" />
+<img alt="../../../_images/ab499f894f082adf515b3e8791a039e521547d7351ae43642c788d40a06f8ee4.png" src="../../../_images/ab499f894f082adf515b3e8791a039e521547d7351ae43642c788d40a06f8ee4.png" />
 </figure>
 <p>What would be the result of multiplying the images together?
 And what would be the result of dividing the left image by the right image?</p>
@@ -773,7 +772,7 @@ And what would be the result of dividing the left image by the right image?</p>
 Answer</label><div class="sd-tab-content docutils">
 <p>Multiplying the images effectively results in everything outside the white region in the right image being removed from the left image (i.e. set to zero).</p>
 <figure class="align-center">
-<img alt="../../../_images/71bc79315e11f6b1a1e4f3418fc08a2e5498953d048305e766dfe80cf898b5b8.png" src="../../../_images/71bc79315e11f6b1a1e4f3418fc08a2e5498953d048305e766dfe80cf898b5b8.png" />
+<img alt="../../../_images/8196cfa7e6fa780f5959b6b92d41c2a378ccd10170131ad59d2ee08c08b1eb54.png" src="../../../_images/8196cfa7e6fa780f5959b6b92d41c2a378ccd10170131ad59d2ee08c08b1eb54.png" />
 </figure>
 <p>Dividing has a similar effect, except that instead of becoming zero the masked-out pixels will take one of three results, depending upon the original pixel’s value in the left image:</p>
 <ul class="simple">
@@ -831,7 +830,7 @@ The noise appears as a graininess throughout the image, which can be seen as ari
 <p>This is equivalent to adding a separate ‘noise image’ to the non-existent cleaner image that we would prefer to have recorded.
 If we knew the pixels in the noise image then we could simply subtract it to get the clean result – but, in practice, their randomness means that we do not.</p>
 <figure class="align-center" id="fig-points-noise-added">
-<img alt="../../../_images/7e81662e128ba204efa05ae1d384ad8293a5a39c392db2deb8a8a409ad01b5cb.png" src="../../../_images/7e81662e128ba204efa05ae1d384ad8293a5a39c392db2deb8a8a409ad01b5cb.png" />
+<img alt="../../../_images/3bcc164647ecbf21f0d443bc040840e5f58ca3bcc6635fa8b8b18629ecfc156d.png" src="../../../_images/3bcc164647ecbf21f0d443bc040840e5f58ca3bcc6635fa8b8b18629ecfc156d.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 61 </span><span class="caption-text">Simulating imperfect image acquisition by adding noise to an ‘ideal’ image.</span><a class="headerlink" href="#fig-points-noise-added" title="Permalink to this image">#</a></p>
 </figcaption>

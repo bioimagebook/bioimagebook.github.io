@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Blur &amp; the PSF &#8212; Introduction to Bioimage Analysis</title>
   
@@ -45,7 +45,6 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -490,7 +489,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="blur-the-psf">
-<span id="chap-formation-spatial"></span><h1>Blur &amp; the PSF<a class="headerlink" href="#blur-the-psf" title="Permalink to this heading">#</a></h1>
+<span id="chap-formation-spatial"></span><h1>Blur &amp; the PSF<a class="headerlink" href="#blur-the-psf" title="Permalink to this headline">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -526,7 +525,7 @@ It’s better in <em>xy</em> than along the <em>z</em> dimension.</p></li>
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Microscopy images normally look blurry because light originating from one point in the sample is not all detected at a single pixel: usually it is detected over several pixels and <em>z</em>-slices.
 This is <em>not</em> simply because we cannot use perfect lenses; rather, it’s caused by a fundamental limit imposed by the nature of light.
 The end result is as if the light that we detect is redistributed slightly throughout our data (<a class="reference internal" href="#fig-castles"><span class="std std-numref">Fig. 133</span></a>).</p>
@@ -547,7 +546,7 @@ The end result is as if the light that we detect is redistributed slightly throu
 </details>
 </div>
 <figure class="align-center" id="fig-castles">
-<img alt="../../../_images/564f3ee1596843ea188a06fc7212205405ef05e254b614dc3bf6519a32e071f9.png" src="../../../_images/564f3ee1596843ea188a06fc7212205405ef05e254b614dc3bf6519a32e071f9.png" />
+<img alt="../../../_images/24e5202462668ff10c55d997af0f71adf9ea74b9ad9b743752adffad731f7b51.png" src="../../../_images/24e5202462668ff10c55d997af0f71adf9ea74b9ad9b743752adffad731f7b51.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 133 </span><span class="caption-text">Schematic diagram showing the effects of blur. Think of the sand as photons, and the <a class="reference internal" href="../../2-processing/6-transforms/transforms.html#fig-transform-surface"><span class="std std-ref">height of the sandcastle as the intensity values of pixels</span></a> (a greater height indicates more photons, and thus a brighter pixel). The ideal data would be sharp and could contain fine details (A), but after blurring it’s not only harder to discriminate details, but intensities in the brighter regions have been reduced and sizes increased (B). If we then wish to determine the size or height of one of the sandcastle’s towers, for example, we need to remember that any results we get by measuring (B) will differ from those we would have got if we could have measured (A) itself. Note, however, that approximately the same <em>amount</em> of signal (sand or photons) is present in both cases –- only the arrangement has been changed.</span><a class="headerlink" href="#fig-castles" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -574,7 +573,7 @@ Detailed optics and threatening integrals are not included, although several equ
 Fortunately for the mathematically unenthusiastic, these are both short and useful.</p>
 </section>
 <section id="blur-convolution">
-<h2>Blur &amp; convolution<a class="headerlink" href="#blur-convolution" title="Permalink to this heading">#</a></h2>
+<h2>Blur &amp; convolution<a class="headerlink" href="#blur-convolution" title="Permalink to this headline">#</a></h2>
 <p>As stated above, the fundamental cause of blur is that light originating from an infinitesimally small point cannot then be detected at a similar point, no matter how great our lenses or detectors might be.
 Rather, it ends up being focused to some larger volume known as the PSF, which has a minimum size dependent upon both the light’s wavelength and the lens being used.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
@@ -596,7 +595,7 @@ Rather, it ends up being focused to some larger volume known as the PSF, which h
 </details>
 </div>
 <figure class="align-center" id="fig-psf-sizes">
-<img alt="../../../_images/971b125344833748411703a85b8db51d9479b815cee52cfcc3df7ed8efb65098.png" src="../../../_images/971b125344833748411703a85b8db51d9479b815cee52cfcc3df7ed8efb65098.png" />
+<img alt="../../../_images/3d2f99a4ec2d0c680d3ede4f182e8efea899130cb4ee8e5707f6a7ea83b61d52.png" src="../../../_images/3d2f99a4ec2d0c680d3ede4f182e8efea899130cb4ee8e5707f6a7ea83b61d52.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 134 </span><span class="caption-text">Although it might not be obvious at low magnification (A), an image can be viewed as composed of small points (B). This gives us a useful way to understand what has happened in a blurred image: each point has simply been replaced by a more diffuse blob, the PSF. Images appear more or less blurred depending upon how large the blobby PSFs are (C) and (D). This is equivalent to applying the PSF to an image as a linear filter.</span><a class="headerlink" href="#fig-psf-sizes" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -610,7 +609,7 @@ Exactly how blurry this causes the image to be depends upon the size of the PSF 
 Because every point is blurred in the same way (at least in the ideal case; extra aberrations can cause some variations), this means that if we know the PSF then we can characterize the blur throughout the entire image – and thereby make inferences about the extent to which blurring will impact upon anything we measure.</p>
 </section>
 <section id="the-shape-of-the-psf">
-<h2>The shape of the PSF<a class="headerlink" href="#the-shape-of-the-psf" title="Permalink to this heading">#</a></h2>
+<h2>The shape of the PSF<a class="headerlink" href="#the-shape-of-the-psf" title="Permalink to this headline">#</a></h2>
 <p>We can gain an initial impression of a microscope’s PSF by recording a <em>z</em>-stack of a small, fluorescent bead, which represents an ideal light-emitting point.
 <a class="reference internal" href="#fig-psf-bead"><span class="std std-numref">Fig. 135</span></a> shows that, for a widefield microscope, the bead appears like a bright blob when it is in focus.
 More curiously, when viewed from the side (<strong>xz</strong> or <strong>yz</strong>), it has a somewhat hourglass-like appearance – albeit with some extra patterns.
@@ -633,7 +632,7 @@ This exact shape is well enough understood that PSFs can also be generated theor
 </details>
 </div>
 <figure class="align-center" id="fig-psf-bead">
-<img alt="../../../_images/7e719233017476756601eec400a833a31bebe7af1760eb45dd7c681ceadd68ac.png" src="../../../_images/7e719233017476756601eec400a833a31bebe7af1760eb45dd7c681ceadd68ac.png" />
+<img alt="../../../_images/47fe493042f6ecf658d272057e818f0733a92139f5278dff27f724a0caa4d817.png" src="../../../_images/47fe493042f6ecf658d272057e818f0733a92139f5278dff27f724a0caa4d817.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 135 </span><span class="caption-text">PSFs for a widefield microscope. (A) and (B) are from z-stacks acquired of a small fluorescent bead, displayed using linear contrast and after applying a gamma transform to make fainter details easier to discern (see <a class="reference internal" href="../../2-processing/2-point_operations/point_operations.html#chap-point-operations"><span class="std std-ref">Point operations</span></a> for more information). (C) shows a theoretical PSF for a similar microscope. It differs in appearance partly because the bead is not really an infinitesimally small point, and partly because the real microscope’s objective lens is less than perfect. Nevertheless, the overall shapes are similar.</span><a class="headerlink" href="#fig-psf-bead" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -647,7 +646,7 @@ This exact shape is well enough understood that PSFs can also be generated theor
 </ul>
 </div>
 <section id="in-out-of-focus">
-<h3>In &amp; out of focus<a class="headerlink" href="#in-out-of-focus" title="Permalink to this heading">#</a></h3>
+<h3>In &amp; out of focus<a class="headerlink" href="#in-out-of-focus" title="Permalink to this headline">#</a></h3>
 <p><a class="reference internal" href="#fig-psf-planes"><span class="std std-numref">Fig. 136</span></a> attempts to show that the hourglass aspect of the PSF is really perfectly intuitive.
 When recording a <em>z</em>-stack of a light-emitting point, we would <em>prefer</em> that the light ended up at a single pixel in a single slice.
 But the light itself is oblivious to our wishes, and will cheerfully be detected if it happens to strike a detector, no matter where that is.
@@ -680,7 +679,7 @@ In practice, if the light originates from a location so out-of-focus that its li
 </div>
 </section>
 <section id="the-appearance-of-interference">
-<h3>The appearance of interference<a class="headerlink" href="#the-appearance-of-interference" title="Permalink to this heading">#</a></h3>
+<h3>The appearance of interference<a class="headerlink" href="#the-appearance-of-interference" title="Permalink to this headline">#</a></h3>
 <p><a class="reference internal" href="#fig-psf-planes"><span class="std std-numref">Fig. 136</span></a> is quite limited in what it shows: it doesn’t begin to explain the extra patterns of the PSF, which appear on each 2D plane as concentric rings (see <a class="reference internal" href="#fig-bead-slices"><span class="std std-numref">Fig. 137</span></a>) nor why the PSF doesn’t shrink to a single point in the focal plane.
 These factors relate to the interference of light waves.
 While it’s important to know that the rings occur – if only to avoid ever misinterpreting them as extra ring-like structures being really present in a sample – they have limited influence upon any analysis because the central region of the PSF is overwhelmingly brighter.
@@ -709,7 +708,7 @@ Therefore for our purposes they can mostly be disregarded.</p>
 </figcaption>
 </figure>
 <section id="the-airy-disk">
-<h4>The Airy disk<a class="headerlink" href="#the-airy-disk" title="Permalink to this heading">#</a></h4>
+<h4>The Airy disk<a class="headerlink" href="#the-airy-disk" title="Permalink to this headline">#</a></h4>
 <p>Finally for this section, the PSF in the focal plane is important enough to deserve some attention, since we tend to want to measure things where they are most in-focus.
 This entire <em>xy</em> plane, including its interfering ripples, is called an <strong>Airy pattern</strong>, while the bright central part alone is the <strong>Airy disk</strong> (<a class="reference internal" href="#fig-airy"><span class="std std-numref">Fig. 138</span></a>).
 In the best possible case, when all the light in a 2D image comes from in-focus structures, what we can image would already have been blurred by a filter that looks like this.</p>
@@ -761,7 +760,7 @@ In the best possible case, when all the light in a 2D image comes from in-focus 
 </details>
 </div>
 <figure class="align-center" id="fig-airy">
-<img alt="../../../_images/5ad2b31460f0e4f19453c3432ce432f9aaa7babc943380c04f9361a50cd2eaf6.png" src="../../../_images/5ad2b31460f0e4f19453c3432ce432f9aaa7babc943380c04f9361a50cd2eaf6.png" />
+<img alt="../../../_images/441981bc8ba8e10ca951a8f3da01cd4a036650175743868f13a08231db9a5c81.png" src="../../../_images/441981bc8ba8e10ca951a8f3da01cd4a036650175743868f13a08231db9a5c81.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 138 </span><span class="caption-text">George Biddell Airy and the Airy pattern. (A) During his schooldays, Airy had been renowned for being skilled <em>‘in the construction of peashooters and other such devices’</em> (see <a class="reference external" href="https://mathshistory.st-andrews.ac.uk/Biographies/Airy/">https://mathshistory.st-andrews.ac.uk/Biographies/Airy/</a>).
 The rings surrounding the Airy disk have been likened to the ripples on a pond.
@@ -828,7 +827,7 @@ Therefore <em>the blur of a microscope in 2D is similar to applying a Gaussian f
 </details>
 </div>
 <figure class="align-center" id="fig-psf-surface">
-<img alt="../../../_images/72265c87606621764fc8d26e86192103d238aed12f4a8aa3be90e0724d5d7b4e.png" src="../../../_images/72265c87606621764fc8d26e86192103d238aed12f4a8aa3be90e0724d5d7b4e.png" />
+<img alt="../../../_images/79ac8ec12c6335ed4e32c94fb7d6c69c6bc5141b7c627b5518b28e19c5ca9431.png" src="../../../_images/79ac8ec12c6335ed4e32c94fb7d6c69c6bc5141b7c627b5518b28e19c5ca9431.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 139 </span><span class="caption-text">Comparison of an Airy disk and a Gaussian of a similar size, using two wireframe plots and a correspnding 1D cross-section.
 The Gaussian is a <em>very</em> close match to the Airy disk, apart from the faint ripples at the sides, so we can often approximate the blur of a PSF using a Gaussian filter.</span><a class="headerlink" href="#fig-psf-surface" title="Permalink to this image">#</a></p>
@@ -838,7 +837,7 @@ The Gaussian is a <em>very</em> close match to the Airy disk, apart from the fai
 </section>
 </section>
 <section id="the-size-of-the-psf">
-<h2>The size of the PSF<a class="headerlink" href="#the-size-of-the-psf" title="Permalink to this heading">#</a></h2>
+<h2>The size of the PSF<a class="headerlink" href="#the-size-of-the-psf" title="Permalink to this headline">#</a></h2>
 <p>So much for appearances.
 To judge how the blurring will affect what we can see and measure, we need to know the <em>size</em> of the PSF.
 Because we don’t tend to want our images to be blurry, smaller would be preferable.</p>
@@ -847,7 +846,7 @@ One approach for characterizing the Airy disk size is to consider its radius <sp
 This is is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-res-lateral">
 <span class="eqno">(1)<a class="headerlink" href="#equation-eqn-res-lateral" title="Permalink to this equation">#</a></span>\[r_{airy} = \frac{0.61 \lambda}{\textrm{NA}}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is the light wavelength and NA is the numerical aperture of the objective lens <a class="footnote-reference brackets" href="#fn-1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is the light wavelength and NA is the numerical aperture of the objective lens <a class="footnote-reference brackets" href="#fn-1" id="id1">1</a>.</p>
 <p>A comparable measurement to <span class="math notranslate nohighlight">\(r_{airy}\)</span> between the center and first minimum along the <em>z</em> axis is:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-res-axial">
 <span class="eqno">(2)<a class="headerlink" href="#equation-eqn-res-axial" title="Permalink to this equation">#</a></span>\[z_{min} = \frac{2 \lambda \times \eta}{\textrm{NA}^2}\]</div>
@@ -900,7 +899,7 @@ This can be seen clearly in <a class="reference internal" href="#fig-psf-na"><sp
 </details>
 </div>
 <figure class="align-center" id="fig-psf-na">
-<img alt="../../../_images/45d24279ac98398e6ff2cf45f0d279a42b7c54c9064d106fc4af069d6ba1b4be.png" src="../../../_images/45d24279ac98398e6ff2cf45f0d279a42b7c54c9064d106fc4af069d6ba1b4be.png" />
+<img alt="../../../_images/002eb4db27a5a8789c67ea690c375a3c4a5b7ad428d593e7caaab6bccd1006a6.png" src="../../../_images/002eb4db27a5a8789c67ea690c375a3c4a5b7ad428d593e7caaab6bccd1006a6.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 140 </span><span class="caption-text">Examples of theoretical PSFs generated with different Numerical Apertures.</span><a class="headerlink" href="#fig-psf-na" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -950,7 +949,7 @@ If you really need information along the <em>z</em>-dimension more than anywhere
 </div>
 </div>
 <section id="spatial-resolution">
-<h3>Spatial resolution<a class="headerlink" href="#spatial-resolution" title="Permalink to this heading">#</a></h3>
+<h3>Spatial resolution<a class="headerlink" href="#spatial-resolution" title="Permalink to this headline">#</a></h3>
 <p><strong>Spatial resolution</strong> is concerned with how close two structures can be while they are still distinguishable.
 This is a somewhat subjective and fuzzy idea, but one way to define it is by the <strong>Rayleigh Criterion</strong>, according to which two equally bright spots are said to be resolved (i.e. distinguishable) if they are separated by the distances calculated in the lateral <a class="reference internal" href="#equation-eqn-res-lateral">(1)</a> and axial <a class="reference internal" href="#equation-eqn-res-axial">(2)</a> equations above.
 If the spots are closer than this, they are likely to be seen as one.
@@ -1020,7 +1019,7 @@ In the in-focus plane, this is illustrated in <a class="reference internal" href
 </details>
 </div>
 <figure class="align-center" id="fig-rayleigh">
-<img alt="../../../_images/158dc82d2db052c434be450680e89e26212abde431a940fb2013c5b77bd61569.png" src="../../../_images/158dc82d2db052c434be450680e89e26212abde431a940fb2013c5b77bd61569.png" />
+<img alt="../../../_images/2e0c4f1aeeb5f36210f26ffcb98e327ae072109acbf9118d1d2c9a348c7e0a29.png" src="../../../_images/2e0c4f1aeeb5f36210f26ffcb98e327ae072109acbf9118d1d2c9a348c7e0a29.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 141 </span><span class="caption-text">Airy patterns separated by different distances, defined in terms of Airy disk radii. The top row contains the patterns themselves, while the bottom row shows intensity profiles computed across the centers of the patterns. Two distinct spots are clearly visible whenever separated by at least one disk radius, and there is a dip apparent in the profile. However, if the separation is less than one radius, the contrast rapidly decreases until only one structure is apparent. By a separation of 0.5 radii, the two structures appear indistinguishable as a single, brighter structure.</span><a class="headerlink" href="#fig-rayleigh" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1045,7 +1044,7 @@ Therefore, at this scale accurate measurements of size are impossible from (conv
 </div>
 </section>
 <section id="measuring-psfs-small-structures">
-<h3>Measuring PSFs &amp; small structures<a class="headerlink" href="#measuring-psfs-small-structures" title="Permalink to this heading">#</a></h3>
+<h3>Measuring PSFs &amp; small structures<a class="headerlink" href="#measuring-psfs-small-structures" title="Permalink to this headline">#</a></h3>
 <p>Knowing that the Airy disk resembles a Gaussian function is extremely useful, because any time we see an Airy disk we can fit a 2D Gaussian to it.
 The parameters of the function will then tell us the Gaussian’s center exactly, which corresponds to where the fluorescing structure really is – admittedly not with complete accuracy, but potentially still beyond the accuracy of even the pixel size (noise is the real limitation).
 This idea is fundamental to single-molecule localization techniques, including those in super-resolution microscopes like STORM and PALM, but requires that PSFs are sufficiently well-spaced that they do not interfere with one another and thereby ruin the fitting.</p>
@@ -1059,11 +1058,12 @@ But potentially the most useful parameter here is <span class="math notranslate 
 So if you know this value for a PSF, you can approximate the same amount of blurring with a Gaussian filter.
 This may come in useful in <a class="reference internal" href="../../appendices/macros/macro_simulating.html#chap-macro-simulating"><span class="std std-ref">Simulating image formation</span></a>.</p>
 <hr class="footnotes docutils" />
-<aside class="footnote brackets" id="fn-1" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>Note that this is the <em>limit</em> of the Airy disk size, and assumes that the system is free of any aberrations.
+<dl class="footnote brackets">
+<dt class="label" id="fn-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Note that this is the <em>limit</em> of the Airy disk size, and assumes that the system is free of any aberrations.
 In other words, this is the best that we can hope for: the Airy disk cannot be made smaller simply by better focusing, although it could easily be made worse by a less-than-perfect objective lens</p>
-</aside>
+</dd>
+</dl>
 </section>
 </section>
 </section>

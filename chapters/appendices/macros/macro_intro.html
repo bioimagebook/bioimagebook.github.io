@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>ImageJ: Writing macros &#8212; Introduction to Bioimage Analysis</title>
   
@@ -45,7 +45,6 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -477,7 +476,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="imagej-writing-macros">
-<span id="chap-macro-intro"></span><h1>ImageJ: Writing macros<a class="headerlink" href="#imagej-writing-macros" title="Permalink to this heading">#</a></h1>
+<span id="chap-macro-intro"></span><h1>ImageJ: Writing macros<a class="headerlink" href="#imagej-writing-macros" title="Permalink to this headline">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline </p>
 <ul class="simple">
@@ -510,7 +509,7 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>It’s one thing to figure out steps that enable you to analyze an image, it’s quite another to implement these steps for several – and perhaps many – different images.
 Without automation, the analysis might never happen;
 all the mouse-moving and clicking would just be too time-consuming, error-prone or boring, and momentarily lapses in concentration could require starting over again.</p>
@@ -519,10 +518,10 @@ In some straightforward cases (e.g.
 converting file formats, applying projections or filters, or making measurements across entire images), this can already be done in ImageJ using the commands in the <span class="menuselection notranslate">Process ‣ Batch ‣</span> submenu and no programming whatsoever.
 But it’s also very worthwhile to get some experience in producing macros, scripts or plugins, after which you can add your own new commands to the menus and carry out customized algorithms with a single click of a button or press of a key.</p>
 <section id="what-s-a-macro">
-<h3>What’s a macro?<a class="headerlink" href="#what-s-a-macro" title="Permalink to this heading">#</a></h3>
+<h3>What’s a macro?<a class="headerlink" href="#what-s-a-macro" title="Permalink to this headline">#</a></h3>
 <p>Macros are basically sequences of commands, written in some programming language (here ImageJ’s own macro language), which can be run automatically to make processing faster and easier.</p>
 <p>The following sections are far from an extensive introduction to macro-writing, but rather aim to introduce the main ideas quickly using two worked examples.
-Should you wish to delve deeper into the subject, there’s an <a class="reference external" href="https://imagej.net/developer/macro/macros.html">introduction to the language on the ImageJ website</a> <a class="footnote-reference brackets" href="#fn-1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, and a <a class="reference external" href="https://imagej.net/Introduction_into_Macro_Programming">very helpful tutorial on the ImageJ wiki</a> <a class="footnote-reference brackets" href="#fn-2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, while the list of <a class="reference external" href="https://imagej.net/developer/macro/functions.html">built-in macro functions</a> is an indispensable reference <a class="footnote-reference brackets" href="#fn-3" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
+Should you wish to delve deeper into the subject, there’s an <a class="reference external" href="https://imagej.net/developer/macro/macros.html">introduction to the language on the ImageJ website</a> <a class="footnote-reference brackets" href="#fn-1" id="id1">1</a>, and a <a class="reference external" href="https://imagej.net/Introduction_into_Macro_Programming">very helpful tutorial on the ImageJ wiki</a> <a class="footnote-reference brackets" href="#fn-2" id="id2">2</a>, while the list of <a class="reference external" href="https://imagej.net/developer/macro/functions.html">built-in macro functions</a> is an indispensable reference <a class="footnote-reference brackets" href="#fn-3" id="id3">3</a>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Use Fiji’s ‘Script editor’</p>
 <p>Although it’s possible to use ImageJ rather than Fiji to create macros, Fiji’s script editor makes the process <em>much</em> easier by coloring text according to what it does.
@@ -535,18 +534,17 @@ These can be somewhat more difficult to learn, but reward the effort with the ab
 Links to help with this are available at <a class="reference external" href="https://imagej.net/Scripting">https://imagej.net/Scripting</a>.</p>
 </div>
 <hr class="footnotes docutils" />
-<aside class="footnote brackets" id="fn-1" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p><a class="reference external" href="https://imagej.net/developer/macro/macros.html">https://imagej.net/developer/macro/macros.html</a></p>
-</aside>
-<aside class="footnote brackets" id="fn-2" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
-<p><a class="reference external" href="https://imagej.net/Introduction_into_Macro_Programming">https://imagej.net/Introduction_into_Macro_Programming</a></p>
-</aside>
-<aside class="footnote brackets" id="fn-3" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
-<p><a class="reference external" href="https://imagej.net/developer/macro/functions.html">https://imagej.net/developer/macro/functions.html</a></p>
-</aside>
+<dl class="footnote brackets">
+<dt class="label" id="fn-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://imagej.net/developer/macro/macros.html">https://imagej.net/developer/macro/macros.html</a></p>
+</dd>
+<dt class="label" id="fn-2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://imagej.net/Introduction_into_Macro_Programming">https://imagej.net/Introduction_into_Macro_Programming</a></p>
+</dd>
+<dt class="label" id="fn-3"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p><a class="reference external" href="https://imagej.net/developer/macro/functions.html">https://imagej.net/developer/macro/functions.html</a></p>
+</dd>
+</dl>
 </section>
 </section>
 <div class="toctree-wrapper compound">

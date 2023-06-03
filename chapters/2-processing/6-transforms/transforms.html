@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Image transforms &#8212; Introduction to Bioimage Analysis</title>
   
@@ -45,7 +45,6 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -482,7 +481,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="image-transforms">
-<span id="chap-transforms"></span><h1>Image transforms<a class="headerlink" href="#image-transforms" title="Permalink to this heading">#</a></h1>
+<span id="chap-transforms"></span><h1>Image transforms<a class="headerlink" href="#image-transforms" title="Permalink to this headline">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -515,14 +514,14 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>An <strong>image transform</strong> converts an image into some other form, in which the pixel values can have a (sometimes very) different interpretation.</p>
 <p>There are lots of ways to transform an image.
 We will focus on two that are especially useful for bioimage segmentation and analysis: the distance transform and the watershed transform.
 We will briefly introduce both, before then showing how they can be used in combination.</p>
 </section>
 <section id="the-distance-transform">
-<h2>The distance transform<a class="headerlink" href="#the-distance-transform" title="Permalink to this heading">#</a></h2>
+<h2>The distance transform<a class="headerlink" href="#the-distance-transform" title="Permalink to this headline">#</a></h2>
 <p>The <strong>distance transform</strong> (sometimes called the <strong>Euclidean distance transform</strong>) replaces each pixel of a binary image with the distance to the closest background pixel.
 If the pixel itself is already part of the background then this is zero.
 The result is an image called a <strong>distance map</strong>.</p>
@@ -559,7 +558,7 @@ The result is an image called a <strong>distance map</strong>.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-morph-distance-detail">
-<img alt="../../../_images/a4b1bd40248a193763d72890c527be2ba8f43bbba181ecab4af8295aa9a2ebc7.png" src="../../../_images/a4b1bd40248a193763d72890c527be2ba8f43bbba181ecab4af8295aa9a2ebc7.png" />
+<img alt="../../../_images/4f4e0e67de8bbb245e60d885091289a8ff7b597f13cbfc4450039ffe8265c303.png" src="../../../_images/4f4e0e67de8bbb245e60d885091289a8ff7b597f13cbfc4450039ffe8265c303.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 117 </span><span class="caption-text">A binary image and its corresponding distance map, including pixel values as an overlay.</span><a class="headerlink" href="#fig-morph-distance-detail" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -601,7 +600,7 @@ This can be much faster in practice.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-morph-distance">
-<img alt="../../../_images/638e69fd45be74bdf7926d804c0eabc9fc75bef7847020f8c5d73c111575bb68.png" src="../../../_images/638e69fd45be74bdf7926d804c0eabc9fc75bef7847020f8c5d73c111575bb68.png" />
+<img alt="../../../_images/3a76d249a54221edee7eaddf4ed633dd66ce5c3c18bf263cf95d672acbd0c213.png" src="../../../_images/3a76d249a54221edee7eaddf4ed633dd66ce5c3c18bf263cf95d672acbd0c213.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 118 </span><span class="caption-text">Implementing erosion (C) and dilation (F) of binary images by thresholding distance maps.</span><a class="headerlink" href="#fig-morph-distance" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -614,7 +613,7 @@ The distance map values corresponding to foreground pixels in the thinned image 
 <p>However, the distance transform can become even more useful if we combine it with other transforms.</p>
 </section>
 <section id="the-watershed-transform">
-<h2>The watershed transform<a class="headerlink" href="#the-watershed-transform" title="Permalink to this heading">#</a></h2>
+<h2>The watershed transform<a class="headerlink" href="#the-watershed-transform" title="Permalink to this headline">#</a></h2>
 <p>The <strong>watershed transform</strong> is an example of a <strong>region growing</strong> method: beginning from some <strong>seed regions</strong>, the seeds are progressively expanded into larger regions until all the pixels of the image have been processed.
 This provides an alternative to straightforward thresholding, which can be <em>extremely</em> useful when need to partition an image into many different objects.</p>
 <p>To understand how the watershed transform works, picture the image as an uneven landscape in which the value of each pixel corresponds to a height.</p>
@@ -664,7 +663,7 @@ This provides an alternative to straightforward thresholding, which can be <em>e
 </details>
 </div>
 <figure class="align-center" id="fig-transform-surface">
-<img alt="../../../_images/6c5be9b3fe23d762108fb5f8337ad7c72003bcd1c3b28941b7796a17593da4ae.png" src="../../../_images/6c5be9b3fe23d762108fb5f8337ad7c72003bcd1c3b28941b7796a17593da4ae.png" />
+<img alt="../../../_images/6b8f09d2e220172298fb03b5c767234d392012cfdc3d544fa6569d31186c9a05.png" src="../../../_images/6b8f09d2e220172298fb03b5c767234d392012cfdc3d544fa6569d31186c9a05.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 119 </span><span class="caption-text">Visualizing an image as a landscape, using surface plots. Higher pixel values are generally viewed as peaks, although can easily switched to become valleys by inverting the image before plotting. This may be useful when providing input to the watershed transform.</span><a class="headerlink" href="#fig-transform-surface" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -722,7 +721,7 @@ The water then continues to rise, with dams being built as needed, until in the 
 </details>
 </div>
 <figure class="align-center" id="fig-transform-surface-watershed">
-<img alt="../../../_images/21be6fc78b5ce9f0a264ac2527d0d6ed5b10138a39eb662b076f8a86a09bdb47.png" src="../../../_images/21be6fc78b5ce9f0a264ac2527d0d6ed5b10138a39eb662b076f8a86a09bdb47.png" />
+<img alt="../../../_images/0d0ff585e27785c19c385ea5313dee35e80e57e7b1258e7168bd4fb6cacccc14.png" src="../../../_images/0d0ff585e27785c19c385ea5313dee35e80e57e7b1258e7168bd4fb6cacccc14.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 120 </span><span class="caption-text">Applying the watershed transform to an image. Here, we passed the inverted image to the watershed transform because we want to identify bright spots rather than dark ones. The full watershed transform will expand the seeds to create a labeled image including all pixels, but we can optionally mask the expansion to prevent it filling the background. Here, we defined the mask by applying a global threshold using the triangle method. Note that the masked watershed segmentation is able to split some spots that were merged using the global threshold alone.</span><a class="headerlink" href="#fig-transform-surface-watershed" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -736,10 +735,10 @@ This variation is called the <strong>seeded watershed transform</strong>: the id
 We can generate seeds using other processing steps, such as by identifying <a class="reference internal" href="../5-morph/morph.html#sec-h-extrema"><span class="std std-ref">H-minima</span></a>.</p>
 </section>
 <section id="combining-transforms">
-<h2>Combining transforms<a class="headerlink" href="#combining-transforms" title="Permalink to this heading">#</a></h2>
+<h2>Combining transforms<a class="headerlink" href="#combining-transforms" title="Permalink to this headline">#</a></h2>
 <p>The watershed transform can be applied to any image, but it has some particularly interesting applications when it is applied to an image that is a distance map.</p>
 <section id="splitting-round-objects">
-<h3>Splitting round objects<a class="headerlink" href="#splitting-round-objects" title="Permalink to this heading">#</a></h3>
+<h3>Splitting round objects<a class="headerlink" href="#splitting-round-objects" title="Permalink to this headline">#</a></h3>
 <p>A distance map has regional maxima whenever a foreground pixel is further from the background than any of its neighbors.</p>
 <p>This tends to occur towards the center of objects: particularly round objects that don’t contain any holes.
 Importantly, regional maxima can still be present even if the ‘round objects’ are connected to one another in the binary image used to generate the distance map originally.</p>
@@ -781,7 +780,7 @@ The process is as follows:</p>
 </details>
 </div>
 <figure class="align-center" id="fig-morph-distance-split-small">
-<img alt="../../../_images/9bc5ce3a348c64db1a9752cf4efc9f127e758e6a48d8759e6cd4a63c050553f2.png" src="../../../_images/9bc5ce3a348c64db1a9752cf4efc9f127e758e6a48d8759e6cd4a63c050553f2.png" />
+<img alt="../../../_images/e0538c1f8ebcb1295b0a15adc2256cc0d59e355c12a7bbf9168b6259f0d8a1c8.png" src="../../../_images/e0538c1f8ebcb1295b0a15adc2256cc0d59e355c12a7bbf9168b6259f0d8a1c8.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 121 </span><span class="caption-text">Splitting round objects using the distance and watershed transforms.</span><a class="headerlink" href="#fig-morph-distance-split-small" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -833,7 +832,7 @@ The only requirement is that there are clearly distinct regional maxima in the d
 </details>
 </div>
 <figure class="align-center" id="fig-morph-distance-split">
-<img alt="../../../_images/946998e43cedeeacf75b9a6f7e96eded6648395ca76a93a96598f2dc5fc2160c.png" src="../../../_images/946998e43cedeeacf75b9a6f7e96eded6648395ca76a93a96598f2dc5fc2160c.png" />
+<img alt="../../../_images/535d766bef49bfd6fe9146bbdfd56ee604e4435c51bc2a00c04e8c7a05d17391.png" src="../../../_images/535d766bef49bfd6fe9146bbdfd56ee604e4435c51bc2a00c04e8c7a05d17391.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 122 </span><span class="caption-text">Splitting merged blobs based on ‘roundness’ using the distance and watershed transforms.
 Because there are many small regional maxima in the distance transform, here we define seeds using H-maxima followed by a 3×3 dilation to avoid excessive splitting.</span><a class="headerlink" href="#fig-morph-distance-split" title="Permalink to this image">#</a></p>
@@ -848,7 +847,7 @@ In Python code using scikit-image, that means we are using the <code class="docu
 </div>
 </section>
 <section id="partitioning-images-with-voronoi">
-<h3>Partitioning images with Voronoi<a class="headerlink" href="#partitioning-images-with-voronoi" title="Permalink to this heading">#</a></h3>
+<h3>Partitioning images with Voronoi<a class="headerlink" href="#partitioning-images-with-voronoi" title="Permalink to this headline">#</a></h3>
 <p>Calculating the distance transform of an <em>inverted</em> binary image gives a distance map in which each pixel gives the distance to the closest foreground object.</p>
 <p>If we apply a watershed transform to this distance map, using the objects in the binary image as seeds, we effectively partition the image into different regions according to the closest object in the binary image.</p>
 <p>This is sometimes called the <strong>Voronoi transform</strong> of the image.</p>
@@ -885,14 +884,14 @@ In Python code using scikit-image, that means we are using the <code class="docu
 </details>
 </div>
 <figure class="align-center" id="fig-morph-voronoi-expand">
-<img alt="../../../_images/0e49a37b9ae4ed40ae631401c2f3e616e622af59df92f570db3a1e0cc0f4bf6c.png" src="../../../_images/0e49a37b9ae4ed40ae631401c2f3e616e622af59df92f570db3a1e0cc0f4bf6c.png" />
+<img alt="../../../_images/faf5f71c284ed03e06a155bb3fc3a5ba81be521392341c4288139cb220074489.png" src="../../../_images/faf5f71c284ed03e06a155bb3fc3a5ba81be521392341c4288139cb220074489.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 123 </span><span class="caption-text">Expanding blobs to compute the Voronoi transform of a labeled image, partitioning it into different regions according to the closest seed object.</span><a class="headerlink" href="#fig-morph-voronoi-expand" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="expanding-without-overlaps">
-<h3>Expanding without overlaps<a class="headerlink" href="#expanding-without-overlaps" title="Permalink to this heading">#</a></h3>
+<h3>Expanding without overlaps<a class="headerlink" href="#expanding-without-overlaps" title="Permalink to this headline">#</a></h3>
 <p>Building upon the Vononoi idea in the last section, we can expand the objects themselves in such a way that they don’t overlap.</p>
 <figure class="margin align-default" id="id1">
 <img alt="../../../_images/qupath_cells.png" src="../../../_images/qupath_cells.png" />
@@ -936,7 +935,7 @@ When seeds are close together, the higher label will ‘win’ the expansion rac
 </details>
 </div>
 <figure class="align-center" id="fig-morph-bad-expand">
-<img alt="../../../_images/bb7445d5cde1f7235730a32d7cfffae7d0a0ec780b3de37fe8f5c8dad5372942.png" src="../../../_images/bb7445d5cde1f7235730a32d7cfffae7d0a0ec780b3de37fe8f5c8dad5372942.png" />
+<img alt="../../../_images/0c64e6506aa9af53bc66d7269429235185b048792f589be8ca8c50934246c902.png" src="../../../_images/0c64e6506aa9af53bc66d7269429235185b048792f589be8ca8c50934246c902.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 125 </span><span class="caption-text">Expanding blobs using a maximum filter only. This approach is too simple; it results in overlapping labels and a lot of confusion.</span><a class="headerlink" href="#fig-morph-bad-expand" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -986,7 +985,7 @@ If we update our watershed output to have background pixels at the same location
 </details>
 </div>
 <figure class="align-center" id="fig-morph-distance-expand">
-<img alt="../../../_images/9e2a1ff5400599c0cd7007a7dac1fd3bc1d69a829f36b8877b15046d3506c06c.png" src="../../../_images/9e2a1ff5400599c0cd7007a7dac1fd3bc1d69a829f36b8877b15046d3506c06c.png" />
+<img alt="../../../_images/86d8fec830614cca113bd0dc0b343cfdd6e58db7e56531ec4f39e67e4f832f53.png" src="../../../_images/86d8fec830614cca113bd0dc0b343cfdd6e58db7e56531ec4f39e67e4f832f53.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 126 </span><span class="caption-text">Using distance and watershed transforms to expand regions by a fixed distance, without overlap. The final output (F) is obtained using information from all images (A) - (E).</span><a class="headerlink" href="#fig-morph-distance-expand" title="Permalink to this image">#</a></p>
 </figcaption>

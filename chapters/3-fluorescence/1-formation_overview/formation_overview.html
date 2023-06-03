@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>From photons to pixels &#8212; Introduction to Bioimage Analysis</title>
   
@@ -45,7 +45,6 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -479,7 +478,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="from-photons-to-pixels">
-<span id="chap-formation-overview"></span><h1>From photons to pixels<a class="headerlink" href="#from-photons-to-pixels" title="Permalink to this heading">#</a></h1>
+<span id="chap-formation-overview"></span><h1>From photons to pixels<a class="headerlink" href="#from-photons-to-pixels" title="Permalink to this headline">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline </p>
 <ul class="simple">
@@ -511,14 +510,14 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>One of the most common imaging modalities associated with bioimage analysis is fluorescence microscopy.
 Applying the analysis techniques described in this book meaningfully to fluorescence images involves understanding a bit about the imaging process.</p>
 <p>Part III aim to provide an introduction to the main ideas, along with some useful mental models to help relate analysis techniques to imaging realities.
 These ideas can help with figuring out how to acquire and analyze fluorescence microscopy data in scientifically justifiable ways.</p>
 </section>
 <section id="the-big-picture-of-fluorescence-imaging">
-<h2>The big picture of fluorescence imaging<a class="headerlink" href="#the-big-picture-of-fluorescence-imaging" title="Permalink to this heading">#</a></h2>
+<h2>The big picture of fluorescence imaging<a class="headerlink" href="#the-big-picture-of-fluorescence-imaging" title="Permalink to this headline">#</a></h2>
 <p>Images in fluorescence microscopy are formed by detecting light.
 The amounts of light involved are so small that they can be thought of in terms of individual photons.</p>
 <p>The photons are emitted from fluorescent molecules within the sample being imaged.
@@ -528,10 +527,10 @@ From this information we make our interpretations, such as about the presence of
 But in no case are we <em>seeing</em> the feature, structure or molecule directly in the recorded images: we only have measurements of the numbers of photons we could detect, encoded in pixel values.</p>
 <p>We won’t give much attention here to what any particular number of photons emanating from a sample really indicates from a biological point of view – this would depend too much upon the design and details of the experiment, i.e. on the cells, stains and other substances involved.
 We can, however, often make general assumptions.
-One such assumption is that if we were to see (on average) twice as many photons originating from one region as from another, the number of fluorescing molecules must be around twice as high in the first region <a class="footnote-reference brackets" href="#fn-1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+One such assumption is that if we were to see (on average) twice as many photons originating from one region as from another, the number of fluorescing molecules must be around twice as high in the first region <a class="footnote-reference brackets" href="#fn-1" id="id1">1</a>.
 But before we can worry about such things, we should consider how accurately we can even determine the number and origins of photons being emitted from the sample in the first place, given the limited quality of the images we can actually record.</p>
 <section id="recording-images">
-<h3>Recording images<a class="headerlink" href="#recording-images" title="Permalink to this heading">#</a></h3>
+<h3>Recording images<a class="headerlink" href="#recording-images" title="Permalink to this headline">#</a></h3>
 <p>We already introduced a simple model of fluorescence image formation in <a class="reference internal" href="../../1-concepts/1-images_and_pixels/images_and_pixels.html#chap-pixels"><span class="std std-ref">Images &amp; pixels</span></a> with two animations.
 The first animation shows the overall process:</p>
 <video autoplay loop playsinline controls muted>
@@ -554,7 +553,7 @@ When a photon strikes the detector, it is registered as a ‘hit’ by the relea
 </ol>
 </section>
 <section id="errors-and-imprecisions">
-<h3>Errors and imprecisions<a class="headerlink" href="#errors-and-imprecisions" title="Permalink to this heading">#</a></h3>
+<h3>Errors and imprecisions<a class="headerlink" href="#errors-and-imprecisions" title="Permalink to this headline">#</a></h3>
 <p>From the above summary, it’s clear that we are quite some distance away from knowing exactly how much light is emitted from the sample: most photons do not reach the detector, and many that do are still not registered.
 But since we can expect to always lose track of a similar proportion of emitted light – perhaps as much as 90% – this does not matter much: we can expect all parts of the image to be similarly affected, so relative differences in brightness would still be reflected in our pixel values.</p>
 <p>However, this isn’t our only limit.
@@ -654,7 +653,7 @@ This means that even if we could detect every photon perfectly we would <em>stil
 </details>
 </div>
 <figure class="align-center" id="fig-colored-spots">
-<img alt="../../../_images/2a0379980464fd92dce72bc9953d6ea70d0f98acf5e593667f7ffdf1ab3c86c9.png" src="../../../_images/2a0379980464fd92dce72bc9953d6ea70d0f98acf5e593667f7ffdf1ab3c86c9.png" />
+<img alt="../../../_images/1ec330753e1d8688005b103e773ece102ed69931d790a783ed52b4236fea1431.png" src="../../../_images/1ec330753e1d8688005b103e773ece102ed69931d790a783ed52b4236fea1431.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 132 </span><span class="caption-text">The difference between what we might wish to image, and what we actually can image. <em>(Top)</em> Ideally, the small colored spots in reality would directly map to colored spots of a related size and separation in the image. This would make measuring the structures relatively straightforward: whatever we measure in the image accurately corresponds to the reality. <em>(Bottom)</em> In practice, the light emitted from our real structures would actually end up producing larger, blurry objects in the image with noise added on top. The <em>Blurred + Noisy</em> image then represents what we can <em>actually</em> acquire with a light microscope. For analysis, we need to use this decidedly imperfect image to try to figure out what the measurements of the real structures should be.</span><a class="headerlink" href="#fig-colored-spots" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -669,10 +668,11 @@ In such cases, the effects of blur and noise can’t be ignored.</p>
 However, we need to understand the problem so that we can choose appropriate processing techniques to apply.
 For that reason, the next two chapters will describe blur and noise in more detail – and point towards ways we can deal with them.</p>
 <hr class="footnotes docutils" />
-<aside class="footnote brackets" id="fn-1" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>This assumes a linear relationship, which does not always hold (e.g. if there’s dye saturation, or high laser powers are used for illumination).</p>
-</aside>
+<dl class="footnote brackets">
+<dt class="label" id="fn-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>This assumes a linear relationship, which does not always hold (e.g. if there’s dye saturation, or high laser powers are used for illumination).</p>
+</dd>
+</dl>
 </section>
 </section>
 </section>

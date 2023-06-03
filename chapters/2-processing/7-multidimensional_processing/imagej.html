@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>ImageJ: Multidimensional processing &#8212; Introduction to Bioimage Analysis</title>
   
@@ -45,7 +45,6 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -486,7 +485,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="imagej-multidimensional-processing">
-<h1>ImageJ: Multidimensional processing<a class="headerlink" href="#imagej-multidimensional-processing" title="Permalink to this heading">#</a></h1>
+<h1>ImageJ: Multidimensional processing<a class="headerlink" href="#imagej-multidimensional-processing" title="Permalink to this headline">#</a></h1>
 <div class="warning admonition">
 <p class="admonition-title">Work in progress!</p>
 <p>This section isn’t complete yet.
@@ -516,11 +515,11 @@ It’s really just a scattered collection of thoughts for now.</p>
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>This section gives a brief overview of some things to think about when working with z-stacks and time series in ImageJ.</p>
 </section>
 <section id="point-operations-contrast-conversion">
-<h2>Point operations, contrast &amp; conversion<a class="headerlink" href="#point-operations-contrast-conversion" title="Permalink to this heading">#</a></h2>
+<h2>Point operations, contrast &amp; conversion<a class="headerlink" href="#point-operations-contrast-conversion" title="Permalink to this headline">#</a></h2>
 <p>Point operations are straightforward: they depend only on individual pixels, so the number of dimensions is unimportant.
 Image arithmetic involving a 3D stack and a 2D image can also be carried out in ImageJ using the <span class="menuselection notranslate">Process ‣ Image Calculator</span>, where the operation involving the 2D image is applied to each slice of the 3D stack in turn.
 Other options, such as filtering and thresholding, are possible, but bring with them extra considerations – and often significantly higher computational costs.</p>
@@ -554,14 +553,14 @@ This means no pixels will be clipped in the output (although rescaling and round
 </div>
 </section>
 <section id="d-filtering">
-<h2>3D filtering<a class="headerlink" href="#d-filtering" title="Permalink to this heading">#</a></h2>
+<h2>3D filtering<a class="headerlink" href="#d-filtering" title="Permalink to this headline">#</a></h2>
 <p>Many filters naturally lend themselves to being applied to as many dimensions as are required.
 For example, a 3×3 mean filter can easily become a 3×3×3 filter if averaging across slices is allowed.
 Importantly, it then replaces each pixel by the average of 27 values, rather than 9.</p>
 <p>This implies the reduction in noise is <em>somewhat</em> similar to that of applying a 5×5 filter (25 values), but with a little less blurring in 2D and a little more along the third dimension instead.
 Several 3D filters are available under the <span class="menuselection notranslate">Plugins ‣ Process ‣</span> submenu.</p>
 <section id="fast-separable-filters">
-<h3>Fast, separable filters<a class="headerlink" href="#fast-separable-filters" title="Permalink to this heading">#</a></h3>
+<h3>Fast, separable filters<a class="headerlink" href="#fast-separable-filters" title="Permalink to this headline">#</a></h3>
 <p><span class="menuselection notranslate">Process ‣ Filters ‣ Gaussian Blur 3D…</span> uses this approach.</p>
 <div class="info admonition">
 <p class="admonition-title">Fast filters &amp; the Fourier transform</p>
@@ -570,7 +569,7 @@ However, when this is the case a whole other method can be used to get the same 
 </div>
 </section>
 <section id="dimensions-isotropy">
-<h3>Dimensions &amp; isotropy<a class="headerlink" href="#dimensions-isotropy" title="Permalink to this heading">#</a></h3>
+<h3>Dimensions &amp; isotropy<a class="headerlink" href="#dimensions-isotropy" title="Permalink to this headline">#</a></h3>
 <p>If applying a filter in 3D instead of 2D, it may seem natural to define it as having the same size in the third dimension as in the original two.
 But for a <strong>z</strong>-stack, the spacing between slices is usually larger than the width and height of a pixel.
 And if the third dimension is time, then it uses another scale entirely.
@@ -581,7 +580,7 @@ Elsewhere (e.g. <span class="menuselection notranslate">Gaussian Blur 3D…</spa
 </section>
 </section>
 <section id="thresholding-multidimensional-data">
-<h2>Thresholding multidimensional data<a class="headerlink" href="#thresholding-multidimensional-data" title="Permalink to this heading">#</a></h2>
+<h2>Thresholding multidimensional data<a class="headerlink" href="#thresholding-multidimensional-data" title="Permalink to this headline">#</a></h2>
 <p>When thresholding an image with more than 2 dimensions using the <span class="menuselection notranslate">Threshold…</span> command, it is necessary to choose whether the threshold should be determined from the histogram of the entire stack, or from the currently-visible 2D slice only.
 If the latter, you will also be asked whether the same threshold should be used for every slice, or if it should be calculated anew for each slice based upon the slice histogram. In some circumstances, these choices can have a very large impact upon the result.</p>
 <div class="sd-tab-set docutils">
@@ -613,7 +612,7 @@ It is probably <em>not</em> a good idea to calculate a new threshold for each sl
 But in the outer slices there may well only be blur and noise – in which case nothing <em>should</em> be detected!</p></li>
 <li><p><em>Time series</em> – In a time series, bleaching can sometimes cause the image to darken over time.
 In such a case, using the stack histogram might cause fewer pixels to exceed the threshold at later time points simply for this reason, and recalculating the threshold for each image may be better.
-On the other hand, if images were previously normalized somehow to compensate for bleaching <a class="footnote-reference brackets" href="#fn-1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, then the stack threshold might be preferable again.
+On the other hand, if images were previously normalized somehow to compensate for bleaching <a class="footnote-reference brackets" href="#fn-1" id="id1">1</a>, then the stack threshold might be preferable again.
 It’s tricky.</p></li>
 </ol>
 <p>There is one other implementation issue that needs attention.
@@ -626,7 +625,7 @@ A similar situation occurs with the low threshold when <span class="guilabel not
 </div>
 </section>
 <section id="measurements-in-3d-data">
-<h2>Measurements in 3D data<a class="headerlink" href="#measurements-in-3d-data" title="Permalink to this heading">#</a></h2>
+<h2>Measurements in 3D data<a class="headerlink" href="#measurements-in-3d-data" title="Permalink to this headline">#</a></h2>
 <p>ImageJ has good support for making measurements in 2D, particularly the <span class="menuselection notranslate">Measure</span> and <span class="menuselection notranslate">Analyze Particles…</span> commands. The latter can happily handle 3D images, but only by creating and measuring 2D ROIs independently on each slice.
 Alternatively, <span class="menuselection notranslate">Image ‣ Stacks ‣ Plot Z-axis Profile</span> is like applying <span class="menuselection notranslate">Measure</span> to each slice independently, making measurements either over the entire image or any ROI.
 It will also plot the mean pixel values, but even if you do not particularly want this the command can still be useful.
@@ -668,8 +667,8 @@ This ROI can then be transferred over to the original stack, either via the ROI 
 </div>
 </div>
 <section id="histograms-threshold-clipping">
-<h3>Histograms &amp; threshold clipping<a class="headerlink" href="#histograms-threshold-clipping" title="Permalink to this heading">#</a></h3>
-<p>One way to measure in 3D is to use the <span class="menuselection notranslate">Histogram</span> command and specify that the entire stack should be included – this provides some basic statistics, including the total number, mean, minimum, maximum and standard deviation of the pixels <a class="footnote-reference brackets" href="#fn-2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
+<h3>Histograms &amp; threshold clipping<a class="headerlink" href="#histograms-threshold-clipping" title="Permalink to this headline">#</a></h3>
+<p>One way to measure in 3D is to use the <span class="menuselection notranslate">Histogram</span> command and specify that the entire stack should be included – this provides some basic statistics, including the total number, mean, minimum, maximum and standard deviation of the pixels <a class="footnote-reference brackets" href="#fn-2" id="id2">2</a>.
 This will respect the boundaries of a 2D ROI if one has been drawn.</p>
 <p>This is a start, but it will not adjust to changes in the object boundary on each 2D plane.
 A better approach could be to use <span class="menuselection notranslate">Image ‣ Adjust ‣ Threshold…</span> to set a threshold that identifies the object – but do <em>not</em> press <span class="guilabel notranslate">Apply</span> to generate a binary image.
@@ -701,8 +700,8 @@ They are also likely to be quite sensitive to spacing.</p>
 </div>
 </section>
 <section id="the-3d-objects-counter">
-<span id="sec-multidimensional-counter"></span><h3>The 3D Objects Counter<a class="headerlink" href="#the-3d-objects-counter" title="Permalink to this heading">#</a></h3>
-<p>Currently, the closest thing to <span class="menuselection notranslate">Analyze Particles…</span> for measuring connected objects in 3D built-in to Fiji is the 3D Objects Counter (<span class="menuselection notranslate">Analyze ‣ 3D Objects Counter</span>) <a class="footnote-reference brackets" href="#fn-3" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.
+<span id="sec-multidimensional-counter"></span><h3>The 3D Objects Counter<a class="headerlink" href="#the-3d-objects-counter" title="Permalink to this headline">#</a></h3>
+<p>Currently, the closest thing to <span class="menuselection notranslate">Analyze Particles…</span> for measuring connected objects in 3D built-in to Fiji is the 3D Objects Counter (<span class="menuselection notranslate">Analyze ‣ 3D Objects Counter</span>) <a class="footnote-reference brackets" href="#fn-3" id="id3">3</a>.
 Its settings (analogous to <span class="menuselection notranslate">Set Measurements…</span>) are under <span class="menuselection notranslate">Analyze ‣ 3D OC Options</span>.
 In addition to various measurements, it provides labelled images as output, either of the entire objects or only their central pixels – optionally with labels, or expanded to be more visible.</p>
 <div class="info admonition">
@@ -717,20 +716,19 @@ his not only includes a range of fast filters and commands for segmentation, but
 <p>While created for bone image analysis, <em>BoneJ</em> (<a class="reference external" href="https://bonej.org">https://bonej.org</a>) also includes some components that are useful for general applications –- including a fast <a class="reference external" href="https://bonej.org/particles">3D Particle Analyser</a> (another alternative to the 3D Objects Counter) and a tool to <a class="reference external" href="https://bonej.org/utilities">interpolate ROIs across image slices</a>.</p>
 </div>
 <hr class="footnotes docutils" />
-<aside class="footnote brackets" id="fn-1" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>See <a class="reference external" href="https://imagej.net/Bleach_Correction">https://imagej.net/Bleach_Correction</a></p>
-</aside>
-<aside class="footnote brackets" id="fn-2" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
-<p>Be careful! If you have multiple channels, these should be split first</p>
-</aside>
-<aside class="footnote brackets" id="fn-3" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
-<p>See See S Bolte and F P Cordelières.
+<dl class="footnote brackets">
+<dt class="label" id="fn-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>See <a class="reference external" href="https://imagej.net/Bleach_Correction">https://imagej.net/Bleach_Correction</a></p>
+</dd>
+<dt class="label" id="fn-2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Be careful! If you have multiple channels, these should be split first</p>
+</dd>
+<dt class="label" id="fn-3"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>See See S Bolte and F P Cordelières.
 “A guided tour into subcellular colocalization analysis in light microscopy.” Journal of Microscopy <a class="reference external" href="http://224.Pt">224.Pt</a> 3 (Dec. 2006), pp. 213–32.
 url: <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/17210054/">https://pubmed.ncbi.nlm.nih.gov/17210054/</a></p>
-</aside>
+</dd>
+</dl>
 </section>
 </section>
 </section>

@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>ImageJ: Image transforms &#8212; Introduction to Bioimage Analysis</title>
   
@@ -45,7 +45,6 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -483,7 +482,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="imagej-image-transforms">
-<h1>ImageJ: Image transforms<a class="headerlink" href="#imagej-image-transforms" title="Permalink to this heading">#</a></h1>
+<h1>ImageJ: Image transforms<a class="headerlink" href="#imagej-image-transforms" title="Permalink to this headline">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -508,11 +507,11 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>ImageJ has excellent 2D distance and watershed transforms… although not necessarily everything about them is quite what you might expect.</p>
 </section>
 <section id="distance-transform">
-<h2>Distance transform<a class="headerlink" href="#distance-transform" title="Permalink to this heading">#</a></h2>
+<h2>Distance transform<a class="headerlink" href="#distance-transform" title="Permalink to this headline">#</a></h2>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <a class="reference internal image-reference" href="../../../_images/imagej-binary-options.png"><img alt="../../../_images/imagej-binary-options.png" src="../../../_images/imagej-binary-options.png" style="width: 75%;" /></a>
@@ -541,13 +540,13 @@ This makes a difference, because the distance between two diagonal pixels is con
 </details>
 </div>
 <figure class="align-center" id="fig-distance-commands-imagej">
-<img alt="../../../_images/aee2aabf6ca2a38e37d7d838be69aec6d7a3fa58f13ff194f7d4562842595bbf.png" src="../../../_images/aee2aabf6ca2a38e37d7d838be69aec6d7a3fa58f13ff194f7d4562842595bbf.png" />
+<img alt="../../../_images/9cba270335b7f6452906dc9fc31931398315de9734ca77786c55ebee2f87892c.png" src="../../../_images/9cba270335b7f6452906dc9fc31931398315de9734ca77786c55ebee2f87892c.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 127 </span><span class="caption-text">Outputs from several distance transform-related commands in ImageJ.</span><a class="headerlink" href="#fig-distance-commands-imagej" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="ultimate-points">
-<h3>Ultimate points<a class="headerlink" href="#ultimate-points" title="Permalink to this heading">#</a></h3>
+<h3>Ultimate points<a class="headerlink" href="#ultimate-points" title="Permalink to this headline">#</a></h3>
 <p><span class="menuselection notranslate">Process ‣ Binary ‣ Ultimate Points</span> is a related command.
 It uses the distance transform to identify the last points that would be removed if the objects would be eroded until they disappear.
 In other words, it identifies centers.
@@ -651,7 +650,7 @@ Here, I’ve tried to replicate it in Python.
 The results aren’t necessarily identical to ImageJ’s implementation, but should be pretty close.</p>
 <p>Select to <span class="guilabel notranslate">Show code cell contents</span> above to see how it works.</p>
 <figure class="align-center" id="fig-distance-transform-python">
-<img alt="../../../_images/205b1f8ab62b7cd545bb43cb39e996de0fadfb157018cf0817d9e67381aa9420.png" src="../../../_images/205b1f8ab62b7cd545bb43cb39e996de0fadfb157018cf0817d9e67381aa9420.png" />
+<img alt="../../../_images/b7f12703893ebd3287e28de757ebfeeccb1ae6db8c73bed036a6f010104fb0f9.png" src="../../../_images/b7f12703893ebd3287e28de757ebfeeccb1ae6db8c73bed036a6f010104fb0f9.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 128 </span><span class="caption-text">Computing the ultimate points from a binary image can be an effective step towards counting the objects in the image – even if these have been merged. It works best when the true objects are round in shape.</span><a class="headerlink" href="#fig-distance-transform-python" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -659,7 +658,7 @@ The results aren’t necessarily identical to ImageJ’s implementation, but sho
 </div>
 </section>
 <section id="watershed-after-distance-transform">
-<h3>Watershed (after distance transform)<a class="headerlink" href="#watershed-after-distance-transform" title="Permalink to this heading">#</a></h3>
+<h3>Watershed (after distance transform)<a class="headerlink" href="#watershed-after-distance-transform" title="Permalink to this headline">#</a></h3>
 <p>As the name suggests, ImageJ’s <span class="menuselection notranslate">Process ‣ Binary ‣ Watershed</span> command applies a watershed transform.</p>
 <p>However, as the name conceals, the watershed transform is always applied to a distance map – which is calculated automatically in the background.</p>
 <p>The clue to this is only that it appears in a <span class="menuselection notranslate">Process ‣ Binary</span> submenu, and therefore requires a binary image as input; a ‘regular’ watershed transform isn’t normally applied to a binary image.</p>
@@ -675,7 +674,7 @@ The effect of the command is therefore to split ‘roundish’ objects.</p>
 </div>
 </section>
 <section id="voronoi">
-<h3>Voronoi<a class="headerlink" href="#voronoi" title="Permalink to this heading">#</a></h3>
+<h3>Voronoi<a class="headerlink" href="#voronoi" title="Permalink to this headline">#</a></h3>
 <p><span class="menuselection notranslate">Process ‣ Binary ‣ Voronoi</span> is another distance-and-watershed-based command for binary images.</p>
 <p>It will partition the image into different regions so that the separation lines have an equal distance to the nearest foreground objects.</p>
 <aside class="margin sidebar">
@@ -708,7 +707,7 @@ The distance transform is also likely to be much faster for large distances, and
 </section>
 </section>
 <section id="watershed-transform">
-<h2>Watershed transform<a class="headerlink" href="#watershed-transform" title="Permalink to this heading">#</a></h2>
+<h2>Watershed transform<a class="headerlink" href="#watershed-transform" title="Permalink to this headline">#</a></h2>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <a class="reference internal image-reference" href="../../../_images/imagej-find-maxima.png"><img alt="../../../_images/imagej-find-maxima.png" src="../../../_images/imagej-find-maxima.png" style="width: 75%;" /></a>

@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Python: Channels &amp; colors &#8212; Introduction to Bioimage Analysis</title>
   
@@ -45,7 +45,6 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -490,7 +489,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="python-channels-colors">
-<h1>Python: Channels &amp; colors<a class="headerlink" href="#python-channels-colors" title="Permalink to this heading">#</a></h1>
+<h1>Python: Channels &amp; colors<a class="headerlink" href="#python-channels-colors" title="Permalink to this headline">#</a></h1>
 <p>This section gives a brief overview of some color-related considerations when using Python.</p>
 <blockquote>
 <div><p>See the <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.color.html">scikit-image color module</a> for a lot more useful info.</p>
@@ -509,7 +508,7 @@ document.write(`
 </div>
 </div>
 <section id="rgb-images">
-<h2>RGB images<a class="headerlink" href="#rgb-images" title="Permalink to this heading">#</a></h2>
+<h2>RGB images<a class="headerlink" href="#rgb-images" title="Permalink to this headline">#</a></h2>
 <p>Let’s begin by reading the RGB image used on the title page of this book.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -539,13 +538,13 @@ document.write(`
 </div>
 </div>
 <section id="rgb-to-single-channel">
-<h3>RGB to single-channel<a class="headerlink" href="#rgb-to-single-channel" title="Permalink to this heading">#</a></h3>
+<h3>RGB to single-channel<a class="headerlink" href="#rgb-to-single-channel" title="Permalink to this headline">#</a></h3>
 <p>We can convert an RGB image to a single-channel image in lots of ways.</p>
 <blockquote>
 <div><p>A single-channel image is often referred to as <strong>grayscale</strong> - although whether it is actually displayed using shades of gray or not depends upon the colormap.</p>
 </div></blockquote>
 <section id="split-channels">
-<h4>Split channels<a class="headerlink" href="#split-channels" title="Permalink to this heading">#</a></h4>
+<h4>Split channels<a class="headerlink" href="#split-channels" title="Permalink to this headline">#</a></h4>
 <p>One option is to split the RGB channels to give three separate single-channel images.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -569,12 +568,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/929c1233bb51ab2e2c3ac0d5b7bb436fe82fe49c6e1e3a56ece8b95a3d3f0e6a.png" src="../../../_images/929c1233bb51ab2e2c3ac0d5b7bb436fe82fe49c6e1e3a56ece8b95a3d3f0e6a.png" />
+<img alt="../../../_images/9ff0d89601b844fe12acee0e2fb7dede9319a160154a035463ac201c11a50b84.png" src="../../../_images/9ff0d89601b844fe12acee0e2fb7dede9319a160154a035463ac201c11a50b84.png" />
 </div>
 </div>
 </section>
 <section id="averaging-channels">
-<h4>Averaging channels<a class="headerlink" href="#averaging-channels" title="Permalink to this heading">#</a></h4>
+<h4>Averaging channels<a class="headerlink" href="#averaging-channels" title="Permalink to this headline">#</a></h4>
 <p>A second easy option is to simply calculate the average (mean) of the RGB values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -667,12 +666,12 @@ So we do need to be on the lookout for sneaky conversions.</p>
 </section>
 </section>
 <section id="multichannel-images">
-<h2>Multichannel images<a class="headerlink" href="#multichannel-images" title="Permalink to this heading">#</a></h2>
+<h2>Multichannel images<a class="headerlink" href="#multichannel-images" title="Permalink to this headline">#</a></h2>
 <p>Working with multichannel (non-RGB) images in Python is extremely easy in some ways, and very awkward in others.</p>
 <p>Although because most of the awkward stuff comes at the start, that will dominate the rest of this section.</p>
 <p>For example, even just opening the data properly can be a challenge.</p>
 <section id="reading-multichannel-images">
-<h3>Reading multichannel images<a class="headerlink" href="#reading-multichannel-images" title="Permalink to this heading">#</a></h3>
+<h3>Reading multichannel images<a class="headerlink" href="#reading-multichannel-images" title="Permalink to this headline">#</a></h3>
 <p>I like using <a class="reference external" href="https://imageio.readthedocs.io/en/v2.9.0/userapi.html">imageio</a> to read images for its simplicity.
 However, if we rely upon <code class="docutils literal notranslate"><span class="pre">imageio.imread</span></code> for a multichannel tiff, we tend to just get the first channel.</p>
 <blockquote>
@@ -735,7 +734,7 @@ Channels last shape:	 (512, 512, 5)
 </div>
 </section>
 <section id="displaying-multichannel-images">
-<h3>Displaying multichannel images<a class="headerlink" href="#displaying-multichannel-images" title="Permalink to this heading">#</a></h3>
+<h3>Displaying multichannel images<a class="headerlink" href="#displaying-multichannel-images" title="Permalink to this headline">#</a></h3>
 <p>Unfortunately, you can’t easily show any arbitrary multichannel image using either channels-first or channels-last.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -753,10 +752,12 @@ Channels last shape:	 (512, 512, 5)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I knew this wouldn&#39;t work! Invalid shape (5, 512, 512) for image data
-And this doesn&#39;t work either! Invalid shape (512, 512, 5) for image data
 </pre></div>
 </div>
-<img alt="../../../_images/af9341b35147173de1c8dddf8ddc10d9b8035ef9dcd585339261e3cfd9348f2f.png" src="../../../_images/af9341b35147173de1c8dddf8ddc10d9b8035ef9dcd585339261e3cfd9348f2f.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>And this doesn&#39;t work either! Invalid shape (512, 512, 5) for image data
+</pre></div>
+</div>
+<img alt="../../../_images/7b6d36ec72883bc2d65879f632dd1baea2ade53db5b70a1a2cd86ad653b1e890.png" src="../../../_images/7b6d36ec72883bc2d65879f632dd1baea2ade53db5b70a1a2cd86ad653b1e890.png" />
 </div>
 </div>
 <p>Let’s focus on channels-last, since it’s more similar to how the RGB images behaved.</p>
@@ -786,7 +787,7 @@ And this doesn&#39;t work either! Invalid shape (512, 512, 5) for image data
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/354d39770eb7f6597ccf6d37a002f088f6c0076ed5d7bd437d02e11850c42a7d.png" src="../../../_images/354d39770eb7f6597ccf6d37a002f088f6c0076ed5d7bd437d02e11850c42a7d.png" />
+<img alt="../../../_images/9c0b807345e7a27a2d7b861aeb3859caefd8c86ad58f480710351fd84004bd6a.png" src="../../../_images/9c0b807345e7a27a2d7b861aeb3859caefd8c86ad58f480710351fd84004bd6a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -801,12 +802,12 @@ And this doesn&#39;t work either! Invalid shape (512, 512, 5) for image data
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/0cb820b581f9cb3b6af118ea909d60dce416b314a0f038da9c138f64b0304aef.png" src="../../../_images/0cb820b581f9cb3b6af118ea909d60dce416b314a0f038da9c138f64b0304aef.png" />
+<img alt="../../../_images/44647fb91a39b7f32c504eac4e4a61cd6ed8f87069e47cdfa75efeb3d461fdac.png" src="../../../_images/44647fb91a39b7f32c504eac4e4a61cd6ed8f87069e47cdfa75efeb3d461fdac.png" />
 </div>
 </div>
 </section>
 <section id="adding-color">
-<h3>Adding color<a class="headerlink" href="#adding-color" title="Permalink to this heading">#</a></h3>
+<h3>Adding color<a class="headerlink" href="#adding-color" title="Permalink to this headline">#</a></h3>
 <p>Unfortunately, we don’t currently have any of the color information that could be used to display each channel.
 We can just choose a colormap, like with any other single-channel image, but we can’t easily visualize channels merged together (at least with matplotlib… as far as I know).</p>
 <p>But one this we <em>can</em> do is convert each of our channels to RGB, using a fixed color.
@@ -850,13 +851,13 @@ Here is a helper function to do that.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/568f4592003b87c7a1d8748820069e8b4f58651b98a103a4763913c9698be357.png" src="../../../_images/568f4592003b87c7a1d8748820069e8b4f58651b98a103a4763913c9698be357.png" />
-<img alt="../../../_images/76eb66dd308e7191502456dacdb1a2849ae5be6f89cfa42d8124b79d4854d593.png" src="../../../_images/76eb66dd308e7191502456dacdb1a2849ae5be6f89cfa42d8124b79d4854d593.png" />
+<img alt="../../../_images/519e5d0ecf005922a7bb1413838562ada6ae675175c43a4aca329ceacdcd8db7.png" src="../../../_images/519e5d0ecf005922a7bb1413838562ada6ae675175c43a4aca329ceacdcd8db7.png" />
+<img alt="../../../_images/1995666059543a16fe7e1bf35401391477cee2e7f58ada951e3a5605929fa255.png" src="../../../_images/1995666059543a16fe7e1bf35401391477cee2e7f58ada951e3a5605929fa255.png" />
 </div>
 </div>
 </section>
 <section id="creating-composites">
-<h3>Creating composites<a class="headerlink" href="#creating-composites" title="Permalink to this heading">#</a></h3>
+<h3>Creating composites<a class="headerlink" href="#creating-composites" title="Permalink to this headline">#</a></h3>
 <p>Having done that, we can simply add our RGB images together to create a composite image - remembering to clip the result, so that we keep inside the range 0-1.</p>
 <blockquote>
 <div><p><strong>Important!</strong> We’ve moved away from colormaps here to change pixel values when creating RGB images. This gives us more control, but we need to remember that none of these modified images are suitable for quantitative analysis.</p>
@@ -872,7 +873,7 @@ Here is a helper function to do that.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/e8e98d79725c9c5a69e0e3d69f8721fcec4a56a848e9b9752207952e62127064.png" src="../../../_images/e8e98d79725c9c5a69e0e3d69f8721fcec4a56a848e9b9752207952e62127064.png" />
+<img alt="../../../_images/0c901320e7a57d284b5208818aeee7d031ca908bbf323b960f5da6ac3f446c71.png" src="../../../_images/0c901320e7a57d284b5208818aeee7d031ca908bbf323b960f5da6ac3f446c71.png" />
 </div>
 </div>
 </section>
