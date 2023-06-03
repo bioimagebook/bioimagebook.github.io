@@ -4,7 +4,7 @@ import os
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
-from imageio import imread, volread, get_reader
+import imageio.v3 as iio
 from pathlib import Path
 from myst_nb import glue
 from typing import Dict, List, Tuple, Union, IO, Iterable, Sequence
@@ -65,7 +65,7 @@ def show_image(im, pos=None, axis=False, title=None, axes=None, cmap='gray', cli
         else:
             plt.subplot(*pos)
     if type(im) in [str, bytes, Path]:
-        im = imread(im)
+        im = _load_image(im)
     if clip_percentile:
         kwargs = dict(kwargs)
         if not 'vmin' in kwargs:
@@ -239,7 +239,7 @@ def load_image(name: Union[str, os.PathLike], volume: bool=False, metadata: bool
                     if len(names) > 1:
                         print(f'Found {len(names)} entries in zip file - I will only try to read the first')
                     with zf.open(names[0]) as entry:
-                        return _load_image(entry.read(), format='tif', volume=volume, metadata=metadata, **kwargs)
+                        return _load_image(entry.read(), extension='.tif', volume=volume, metadata=metadata, **kwargs)
             else:
                 return _load_image(potential_path, volume=volume, metadata=metadata, **kwargs)
         except Exception as err:
@@ -343,11 +343,18 @@ def create_rgb(im: np.ndarray,
         return np.clip(im_merged, 0, 1.0)
 
 
-def _load_image(data, volume:bool, metadata:bool, **kwargs):
+def _load_image(data, volume:bool = False, metadata:bool = False, **kwargs):
+
     if metadata:
-        reader = get_reader(data, **kwargs)
-        return _load_image(data, volume=volume, metadata=False, **kwargs), reader.get_meta_data()
-    if volume:
-        return volread(data, **kwargs)
+        return _load_image(data, metadata=False, **kwargs), iio.immeta(data, **kwargs)
     else:
-        return imread(data, **kwargs)
+        im = iio.imread(data, **kwargs)
+        if volume:
+            return im
+        else:
+            # If we don't want a volume image, try to squeeze down to the minimum
+            # This is partly due to blobs.gif having a shape (1, ?, ?, 3) when it should really be single-channel grayscale
+            im = np.squeeze(im)
+            if im.ndim == 3 and im.shape[2] == 3 and np.array_equal(im[..., 0], im[..., 1]) and np.array_equal(im[..., 0], im[..., 2]):
+                return im[..., 0]
+            return im
