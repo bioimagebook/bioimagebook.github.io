@@ -99,9 +99,11 @@ print(f'Print the mean for comparison: {im.mean()}')
 
 ### AICSImageIO
 
-[AICSImageIO](https://github.com/AllenCellModeling/aicsimageio) looks to be an excellent package for reading lots of image formats in Python - and is particularly strong when it comes to reading multidimensional images and metadata.
+[AICSImageIO](https://github.com/AllenCellModeling/aicsimageio) is an excellent package for reading lots of image formats in Python - and is particularly strong when it comes to reading multidimensional images and metadata.
 
 It can even handle a variety of microscopy formats, and optionally use [Bio-Formats](https://www.openmicroscopy.org/bio-formats/).
+
+These features, alongside its consistent way of handling pixel sizes and dimensions, make it my main choice for scientific images.
 
 +++
 
