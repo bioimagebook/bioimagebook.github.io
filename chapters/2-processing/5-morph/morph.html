@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Morphological operations &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -79,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -139,13 +150,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -162,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -422,10 +434,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -433,7 +445,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -492,7 +504,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="morphological-operations">
-<span id="chap-morph"></span><span id="chap-binary"></span><h1>Morphological operations<a class="headerlink" href="#morphological-operations" title="Permalink to this headline">#</a></h1>
+<span id="chap-morph"></span><span id="chap-binary"></span><h1>Morphological operations<a class="headerlink" href="#morphological-operations" title="Permalink to this heading">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -525,14 +537,14 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Image filters and thresholds enable us to detect structures of various shapes and sizes for different applications.
 Nevertheless, despite our best efforts, the binary images produced by our thresholds often still contain inaccurate or undesirable detected regions.
 They could benefit from some extra cleaning up.</p>
 <p>At this stage, we are primarily working with shapes – morphology – so most of the techniques we describe here are often called <strong>morphological operations</strong>.</p>
 </section>
 <section id="morphological-operations-using-rank-filters">
-<h2>Morphological operations using rank filters<a class="headerlink" href="#morphological-operations-using-rank-filters" title="Permalink to this headline">#</a></h2>
+<h2>Morphological operations using rank filters<a class="headerlink" href="#morphological-operations-using-rank-filters" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -592,14 +604,14 @@ They could benefit from some extra cleaning up.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-erode-dilate-open">
-<img alt="../../../_images/82c4c5290fcb3b959ba6e3536524fc0c5b826b836f94a325a4d49effe8dbb922.png" src="../../../_images/82c4c5290fcb3b959ba6e3536524fc0c5b826b836f94a325a4d49effe8dbb922.png" />
+<img alt="../../../_images/3541e782c96646e8723db43da4797ba7b392883a529ad48c10b006f42e043d6f.png" src="../../../_images/3541e782c96646e8723db43da4797ba7b392883a529ad48c10b006f42e043d6f.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 102 </span><span class="caption-text">Overview of erosion, dilation, opening and closing.
 The original image is shown at the top, while the processed part is at the bottom in each case.</span><a class="headerlink" href="#fig-erode-dilate-open" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="erosion-dilation">
-<h3>Erosion &amp; dilation<a class="headerlink" href="#erosion-dilation" title="Permalink to this headline">#</a></h3>
+<h3>Erosion &amp; dilation<a class="headerlink" href="#erosion-dilation" title="Permalink to this heading">#</a></h3>
 <p>Our first two morphological operations, <strong>erosion</strong> and <strong>dilation</strong>, are actually identical to minimum and maximum filtering respectively, described <a class="reference internal" href="../4-filters/filters.html#sec-filters-rank"><span class="std std-ref">in the previous chapter</span></a>.
 The names erosion and dilation are used more often when speaking of binary images, but the operations are the same irrespective of the kind of image.</p>
 <div class="admonition-structuring-elements admonition">
@@ -672,14 +684,14 @@ This can also cause objects to merge.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-erode-dilate-spots">
-<img alt="../../../_images/6b37405bc936a67308cf204c5014c2867e07737beeb91e5e91beb8d4bdff34af.png" src="../../../_images/6b37405bc936a67308cf204c5014c2867e07737beeb91e5e91beb8d4bdff34af.png" />
+<img alt="../../../_images/2998dd1636ace0bd0533e370d4a8c80dddf7464985a7556ce99b4fd4d9b74d38.png" src="../../../_images/2998dd1636ace0bd0533e370d4a8c80dddf7464985a7556ce99b4fd4d9b74d38.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 103 </span><span class="caption-text">The effects of erosion and dilation on a binary image of small structures.</span><a class="headerlink" href="#fig-erode-dilate-spots" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="opening-closing">
-<span id="sec-morph-opening-closing"></span><h3>Opening &amp; closing<a class="headerlink" href="#opening-closing" title="Permalink to this headline">#</a></h3>
+<span id="sec-morph-opening-closing"></span><h3>Opening &amp; closing<a class="headerlink" href="#opening-closing" title="Permalink to this heading">#</a></h3>
 <p>The fact that erosion and dilation alone affect sizes can be a problem: we may like their abilities to merge, separate or remove objects, but prefer that they had less impact upon areas and volumes.
 Combining both operations helps achieve this.</p>
 <p><strong>Opening</strong> consists of an erosion followed by a dilation.
@@ -723,14 +735,14 @@ If you wish to count objects, but they are wrongly subdivided in the segmentatio
 </details>
 </div>
 <figure class="align-center" id="fig-open-close-spots">
-<img alt="../../../_images/d1caec32c26dcbfb362c57dddbe9f6f50a1c810f3df6a5b6dd4fde0cf3e280c9.png" src="../../../_images/d1caec32c26dcbfb362c57dddbe9f6f50a1c810f3df6a5b6dd4fde0cf3e280c9.png" />
+<img alt="../../../_images/bfec77d6199868f0f039f25e58e1a9a8f5ff933f760c44ed50bb70b37bb133df.png" src="../../../_images/bfec77d6199868f0f039f25e58e1a9a8f5ff933f760c44ed50bb70b37bb133df.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 104 </span><span class="caption-text">The effects of opening and closing on a binary image of small structures. Unlike when using erosion or dilation alone, the sizes of objects are largely preserved although the contours are modified. Opening has the effect of completely removing the smallest or thinnest objects.</span><a class="headerlink" href="#fig-open-close-spots" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="boundaries-outlines">
-<h3>Boundaries &amp; outlines<a class="headerlink" href="#boundaries-outlines" title="Permalink to this headline">#</a></h3>
+<h3>Boundaries &amp; outlines<a class="headerlink" href="#boundaries-outlines" title="Permalink to this heading">#</a></h3>
 <p>We can make use of the operations above to identify outlines in a binary image.
 To do this, we first need a clear definition of what we mean by ‘outline’.</p>
 <p>The <strong>inner boundary</strong> may be defined as <em>the foreground pixels that are adjacent to background pixels</em>.
@@ -788,14 +800,14 @@ This makes it possible to make measurements that are likely to be within the cyt
 </details>
 </div>
 <figure class="align-center" id="fig-binary-outlines">
-<img alt="../../../_images/574203288b0bb851af9a5046d5e3aee8d1935b60a9510aba34ce65f497cff2dd.png" src="../../../_images/574203288b0bb851af9a5046d5e3aee8d1935b60a9510aba34ce65f497cff2dd.png" />
+<img alt="../../../_images/eb25de83aa6edf40c49966ae79f223d8dfe420752ba74ffadc540fa55cde911f.png" src="../../../_images/eb25de83aa6edf40c49966ae79f223d8dfe420752ba74ffadc540fa55cde911f.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 105 </span><span class="caption-text">Calculating inner and outer boundaries, using erosion or dilation. The radius of the structuring element can be used to tune the boundary thickness.</span><a class="headerlink" href="#fig-binary-outlines" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="finding-local-minima-maxima">
-<h3>Finding local minima &amp; maxima<a class="headerlink" href="#finding-local-minima-maxima" title="Permalink to this headline">#</a></h3>
+<h3>Finding local minima &amp; maxima<a class="headerlink" href="#finding-local-minima-maxima" title="Permalink to this heading">#</a></h3>
 <p>Erosion and dilation can be used to find pixels that are <strong>local maxima</strong> or <strong>local minima</strong> very easily, with the caveat that the results are inexact and often unusable.
 Nevertheless, the trick works ‘well enough’ sufficiently often to be worth knowing.</p>
 <p>Here, we focus on maxima; the process for detecting local minima is identical, except that either the image should be inverted or erosion used instead of dilation.</p>
@@ -839,7 +851,7 @@ In practice, this is not always a problem because noise can make plateaus virtua
 </details>
 </div>
 <figure class="align-center" id="fig-morph-simple-maxima">
-<img alt="../../../_images/60809298a50b4d5444d746555ec5933f4e0eca87b76fdf3032598675168b7741.png" src="../../../_images/60809298a50b4d5444d746555ec5933f4e0eca87b76fdf3032598675168b7741.png" />
+<img alt="../../../_images/0d68ce394718e8961566b07ab77292c0ccf99abad5ffa5b44affdd20c4bfe903.png" src="../../../_images/0d68ce394718e8961566b07ab77292c0ccf99abad5ffa5b44affdd20c4bfe903.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 106 </span><span class="caption-text">Identifying local maxima with the help of a 3×3 dilation tends to find too many maxima to be useful.</span><a class="headerlink" href="#fig-morph-simple-maxima" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -878,7 +890,7 @@ However, tuning the parameters becomes difficult.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-morph-simple-maxima-bigger">
-<img alt="../../../_images/9f4e2dc5c032f822f095c451a2a668226a83ebe1585c7173ac8dfcd66d42bb37.png" src="../../../_images/9f4e2dc5c032f822f095c451a2a668226a83ebe1585c7173ac8dfcd66d42bb37.png" />
+<img alt="../../../_images/5c6dd8b38c57edc6d1fef0d33dc5395acfe371ca419c19561344a7c6daa8e8bc.png" src="../../../_images/5c6dd8b38c57edc6d1fef0d33dc5395acfe371ca419c19561344a7c6daa8e8bc.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 107 </span><span class="caption-text">Identifying local maxima with the help of a larger dilation (here, 7×7 pixels) can sometimes give better results than using a smaller dilation <a class="reference internal" href="#fig-morph-simple-maxima"><span class="std std-numref">Fig. 106</span></a>.</span><a class="headerlink" href="#fig-morph-simple-maxima-bigger" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -886,9 +898,9 @@ However, tuning the parameters becomes difficult.</p>
 </section>
 </section>
 <section id="more-morphological-operations">
-<h2>More morphological operations<a class="headerlink" href="#more-morphological-operations" title="Permalink to this headline">#</a></h2>
+<h2>More morphological operations<a class="headerlink" href="#more-morphological-operations" title="Permalink to this heading">#</a></h2>
 <section id="area-opening">
-<h3>Area opening<a class="headerlink" href="#area-opening" title="Permalink to this headline">#</a></h3>
+<h3>Area opening<a class="headerlink" href="#area-opening" title="Permalink to this heading">#</a></h3>
 <p><strong>Area opening</strong> is similar to <em>opening</em>, except it avoids the need for any kind of maximum or minimum filtering.</p>
 <p>It works by identifying <a class="reference internal" href="../3-thresholding/thresholding.html#sec-binary-labeled"><span class="std std-ref"><strong>connected components</strong> in the binary image</span></a>, which are contiguous regions of foreground pixels.
 For each connected component, the number of pixels is counted to give an area in px².
@@ -928,14 +940,14 @@ It simply applies a minimum area threshold, removing everything smaller.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-area-open-spots">
-<img alt="../../../_images/e2a8409dc63838ec2c2ba52f4d61bb317e19c8dab7458aa106ed65489dea67e2.png" src="../../../_images/e2a8409dc63838ec2c2ba52f4d61bb317e19c8dab7458aa106ed65489dea67e2.png" />
+<img alt="../../../_images/b88df6fcabcb63df781f839641784b60f89fc3a2a211b8b778eb4663db1ba852.png" src="../../../_images/b88df6fcabcb63df781f839641784b60f89fc3a2a211b8b778eb4663db1ba852.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 108 </span><span class="caption-text">Using area opening to remove small objects.</span><a class="headerlink" href="#fig-area-open-spots" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="filling-holes">
-<h3>Filling holes<a class="headerlink" href="#filling-holes" title="Permalink to this headline">#</a></h3>
+<h3>Filling holes<a class="headerlink" href="#filling-holes" title="Permalink to this heading">#</a></h3>
 <p><strong>Filling holes</strong> involves identifying connected components of <em>background pixels</em> that are entirely surrounded by foreground pixels.
 These components are then ‘flipped’ to become foreground pixels instead.</p>
 <p>Should we then want to identify the holes themselves, we can subtract the original image from the filled image.</p>
@@ -968,7 +980,7 @@ These components are then ‘flipped’ to become foreground pixels instead.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-fill-holes-cell">
-<img alt="../../../_images/afcc0ae440a935f5a82dea19028c30f506091c9209327b9cbd5f2d1fd5ba1cb6.png" src="../../../_images/afcc0ae440a935f5a82dea19028c30f506091c9209327b9cbd5f2d1fd5ba1cb6.png" />
+<img alt="../../../_images/dfe8164dbf2fbb28ea9ba05f9349a702d341ac1b71c9f119d5c25f5a938c386c.png" src="../../../_images/dfe8164dbf2fbb28ea9ba05f9349a702d341ac1b71c9f119d5c25f5a938c386c.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 109 </span><span class="caption-text">Filling holes in a binary image. Image subtraction makes it possible to extract the holes themselves.</span><a class="headerlink" href="#fig-fill-holes-cell" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -998,7 +1010,7 @@ These components are then ‘flipped’ to become foreground pixels instead.</p>
 </details>
 </div>
 <figure class="margin align-default" id="id1">
-<img alt="../../../_images/20b8b3cc650b04e35cee0dd421db7a7192fbb3e210e5d7624f78b5d6c7ca998e.png" src="../../../_images/20b8b3cc650b04e35cee0dd421db7a7192fbb3e210e5d7624f78b5d6c7ca998e.png" />
+<img alt="../../../_images/9c719f35a1c0d1da3966bfabc23ddb8b4fd8300cba15fabd740a160b09bff407.png" src="../../../_images/9c719f35a1c0d1da3966bfabc23ddb8b4fd8300cba15fabd740a160b09bff407.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 110 </span><span class="caption-text">Small holes filled.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1024,7 +1036,7 @@ Answer</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="thinning-skeletonization">
-<h3>Thinning &amp; skeletonization<a class="headerlink" href="#thinning-skeletonization" title="Permalink to this headline">#</a></h3>
+<h3>Thinning &amp; skeletonization<a class="headerlink" href="#thinning-skeletonization" title="Permalink to this heading">#</a></h3>
 <p><strong>Thinning</strong> and <strong>skeletonization</strong> are related operations that aim to ‘thin down’ objects in a binary image to just their centerlines.
 They are particularly useful with filamental or tube-like structures, such as axons or blood vessels.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
@@ -1056,7 +1068,7 @@ They are particularly useful with filamental or tube-like structures, such as ax
 </details>
 </div>
 <figure class="align-center" id="fig-binary-thinning">
-<img alt="../../../_images/9ed230079dc7309bc7327ceb31bc431a7da4bd75badc479d529caf1a29238d7f.png" src="../../../_images/9ed230079dc7309bc7327ceb31bc431a7da4bd75badc479d529caf1a29238d7f.png" />
+<img alt="../../../_images/c3b8aab1c6b188698bc25fc8331fb1771052950fcbf06779316c18f68c56293c.png" src="../../../_images/c3b8aab1c6b188698bc25fc8331fb1771052950fcbf06779316c18f68c56293c.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 111 </span><span class="caption-text">The effects of thinning and skeletonization on a binary image.</span><a class="headerlink" href="#fig-binary-thinning" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1072,7 +1084,7 @@ It’s worth trying any thinning/skeletonization methods available to see which 
 </section>
 </section>
 <section id="morphological-reconstruction">
-<h2>Morphological reconstruction<a class="headerlink" href="#morphological-reconstruction" title="Permalink to this headline">#</a></h2>
+<h2>Morphological reconstruction<a class="headerlink" href="#morphological-reconstruction" title="Permalink to this heading">#</a></h2>
 <p><strong>Morphological reconstruction</strong> is a somewhat advanced technique that underpins several powerful image processing operations.
 It’s useful with both grayscale and binary images.</p>
 <p>Morphological reconstruction requires two images of the same size: a <strong>marker</strong> image and a <strong>mask</strong> image.
@@ -1083,7 +1095,7 @@ The output is the new marker image, after all the dilations have been performed.
 <p>Some examples will help demonstrate how this works and why it’s useful.
 The crucial difference in the methods below is how the marker and mask images are created.</p>
 <section id="hysteresis-thresholding">
-<h3>Hysteresis thresholding<a class="headerlink" href="#hysteresis-thresholding" title="Permalink to this headline">#</a></h3>
+<h3>Hysteresis thresholding<a class="headerlink" href="#hysteresis-thresholding" title="Permalink to this heading">#</a></h3>
 <p>One use of morphological reconstruction is to implement a <strong>double threshold</strong>, also known as <strong>hysteresis thresholding</strong>.</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -1126,14 +1138,14 @@ But any mask regions that don’t contain marker pixels are simply ignored.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-hysteresis-threshold-spots">
-<img alt="../../../_images/bcd7dea6c3911190e3b22506b3f5b80239acb7dbb8010eab2ffb3d34e0c109b4.png" src="../../../_images/bcd7dea6c3911190e3b22506b3f5b80239acb7dbb8010eab2ffb3d34e0c109b4.png" />
+<img alt="../../../_images/78487e375c7805ebd282d3d4f3f1904de9bef3d3396baafa7bc913e6b455daae.png" src="../../../_images/78487e375c7805ebd282d3d4f3f1904de9bef3d3396baafa7bc913e6b455daae.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 112 </span><span class="caption-text">Applying a hysteresis threshold to an image. The size and area of the objects detected by this method are determined by the low threshold, but at least one of the pixel values within the object must exceed the high threshold. This slightly mitigates the problem of a single global threshold having <a class="reference internal" href="../3-thresholding/thresholding.html#chap-thresholding"><span class="std std-ref">a huge impact on analysis results</span></a>, by the same threshold simultaneously influencing both what is detected and its size.</span><a class="headerlink" href="#fig-hysteresis-threshold-spots" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="h-maxima-h-minima">
-<span id="sec-h-extrema"></span><h3>H-Maxima &amp; H-Minima<a class="headerlink" href="#h-maxima-h-minima" title="Permalink to this headline">#</a></h3>
+<span id="sec-h-extrema"></span><h3>H-Maxima &amp; H-Minima<a class="headerlink" href="#h-maxima-h-minima" title="Permalink to this heading">#</a></h3>
 <p>We <a class="reference internal" href="#fig-morph-simple-maxima"><span class="std std-ref">saw previously</span></a> that we could (kind of) identify local maxima in a very simple way using an image dilation, but the results are often too inaccurate to be useful.</p>
 <p><strong>H-Maxima</strong> and <strong>H-Minima</strong> can help us overcome this.
 These operations both require only one intuitive parameter: they enable us to identify maxima or minima using a local intensity threshold <em>H</em>.</p>
@@ -1185,14 +1197,14 @@ We can apply the same process to an inverted image to find <em>H-minima</em>.</p
 </details>
 </div>
 <figure class="align-center" id="fig-morph-h-maxima">
-<img alt="../../../_images/beee354c3e2c9e855fc01b7bfb2bb989e6ca292de96d864d32302ed9d1046568.png" src="../../../_images/beee354c3e2c9e855fc01b7bfb2bb989e6ca292de96d864d32302ed9d1046568.png" />
+<img alt="../../../_images/f0a2cd1fa16aaaa100e0fb53c23c702b393e2532e705c9126d685f2cbfc88ff1.png" src="../../../_images/f0a2cd1fa16aaaa100e0fb53c23c702b393e2532e705c9126d685f2cbfc88ff1.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 113 </span><span class="caption-text">Calculating H-maxima using morphological reconstruction. Here, <em>H</em> is set (arbitrarily) to be the image standard deviation.</span><a class="headerlink" href="#fig-morph-h-maxima" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="opening-closing-by-reconstruction">
-<h3>Opening &amp; closing by reconstruction<a class="headerlink" href="#opening-closing-by-reconstruction" title="Permalink to this headline">#</a></h3>
+<h3>Opening &amp; closing by reconstruction<a class="headerlink" href="#opening-closing-by-reconstruction" title="Permalink to this heading">#</a></h3>
 <p>H-maxima and H-minima use morphological reconstruction to effectively generate a background image that can be subtracted from the original.
 We do this by subtracting a constant <em>H</em>, which acts as a local intensity threshold.</p>
 <p>We can also use morphological reconstruction to generate a background image based upon spatial information, rather than an intensity threshold <em>H</em>, by using <strong>opening by reconstruction</strong>.
@@ -1233,7 +1245,7 @@ The original image is used as the mask.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-morph-reconstruct-opening">
-<img alt="../../../_images/0bde02a2396aae97adf2bae4512c067c63e8bdaccb1577ba4fc05c763de24bde.png" src="../../../_images/0bde02a2396aae97adf2bae4512c067c63e8bdaccb1577ba4fc05c763de24bde.png" />
+<img alt="../../../_images/8bc91eae79aed16344a39067152f8e4f209bd17e9ab2a09d0b2c86bacf22faac.png" src="../../../_images/8bc91eae79aed16344a39067152f8e4f209bd17e9ab2a09d0b2c86bacf22faac.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 114 </span><span class="caption-text">Using opening by reconstruction to obtain a background estimate. The estimate can be subtracted from an image before applying a global threshold.</span><a class="headerlink" href="#fig-morph-reconstruct-opening" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1274,7 +1286,7 @@ Like area opening, opening by reconstruction is able to remove some objects whil
 </details>
 </div>
 <figure class="align-center" id="fig-morph-reconstruct-opening-binary">
-<img alt="../../../_images/e57ee0cdd8331f9e9e32bc6eff516d37cf79dcdee9bcc68835647dbbcb173446.png" src="../../../_images/e57ee0cdd8331f9e9e32bc6eff516d37cf79dcdee9bcc68835647dbbcb173446.png" />
+<img alt="../../../_images/7a9784878c999cf7745966b240f6fdf5d8ab2bb3e9d8dcf873ca1c46760e7e25.png" src="../../../_images/7a9784878c999cf7745966b240f6fdf5d8ab2bb3e9d8dcf873ca1c46760e7e25.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 115 </span><span class="caption-text">Using opening by reconstruction to remove small (and thin) objects from a binary image, while retaining the original shape of everything that remains.</span><a class="headerlink" href="#fig-morph-reconstruct-opening-binary" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1310,11 +1322,10 @@ Like area opening, opening by reconstruction is able to remove some objects whil
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../4-filters/imagej.html"
@@ -1334,10 +1345,7 @@ Like area opening, opening by reconstruction is able to remove some objects whil
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1408,6 +1416,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -1419,8 +1434,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

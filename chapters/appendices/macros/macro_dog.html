@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Difference of Gaussians &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -79,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -139,13 +150,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -162,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -422,10 +434,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -433,7 +445,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -484,7 +496,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="difference-of-gaussians">
-<span id="chap-macro-dog"></span><h1>Difference of Gaussians<a class="headerlink" href="#difference-of-gaussians" title="Permalink to this headline">#</a></h1>
+<span id="chap-macro-dog"></span><h1>Difference of Gaussians<a class="headerlink" href="#difference-of-gaussians" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -509,13 +521,13 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p><a class="reference internal" href="../../2-processing/4-filters/filters.html#sec-filters-dog"><span class="std std-ref">Difference of Gaussians (DoG) filtering</span></a> is a very useful technique for enhancing the appearance of small spots and edges in an image.
 It’s quite straightforward, but time consuming to apply manually very often – and you might need to experiment with different filter sizes to get good results.
 This makes it an excellent candidate for a macro.</p>
 </section>
 <section id="recording-a-macro">
-<h2>Recording a macro<a class="headerlink" href="#recording-a-macro" title="Permalink to this headline">#</a></h2>
+<h2>Recording a macro<a class="headerlink" href="#recording-a-macro" title="Permalink to this heading">#</a></h2>
 <figure class="margin align-default" id="id4">
 <img alt="../../../_images/macros_spots_orig.png" src="../../../_images/macros_spots_orig.png" />
 <figcaption>
@@ -565,7 +577,7 @@ We will fix this soon.</p>
 If not, keep reading anyway and the following steps should fix it.</p>
 </section>
 <section id="cleaning-up-the-code">
-<h2>Cleaning up the code<a class="headerlink" href="#cleaning-up-the-code" title="Permalink to this headline">#</a></h2>
+<h2>Cleaning up the code<a class="headerlink" href="#cleaning-up-the-code" title="Permalink to this heading">#</a></h2>
 <p>Now reopen your macro in the <em>Script Editor</em>.
 It should look something like mine:</p>
 <a class="reference internal image-reference" href="../../../_images/macros_dog_editor.png"><img alt="../../../_images/macros_dog_editor.png" class="align-center" src="../../../_images/macros_dog_editor.png" style="width: 70%;" /></a>
@@ -594,7 +606,7 @@ For example, I changed the contrast of an image, but this was only to look at it
 </pre></div>
 </div>
 <section id="understanding-the-code">
-<h3>Understanding the code<a class="headerlink" href="#understanding-the-code" title="Permalink to this headline">#</a></h3>
+<h3>Understanding the code<a class="headerlink" href="#understanding-the-code" title="Permalink to this heading">#</a></h3>
 <p>You can most likely work out what the macro is doing, if not necessarily the terminology, just by looking at it.
 Taking the first line, <code class="docutils literal notranslate"><span class="pre">run</span></code> is a **function_ that tells ImageJ to execute a command, while <code class="docutils literal notranslate"><span class="pre">32-bit</span></code> is a piece of text (called a <strong>string</strong>) that tells it which command.
 Functions always tell ImageJ to do something or give you information, and can be recognized because they are normally followed by parentheses.
@@ -619,7 +631,7 @@ The first string it is given tells it both what sort of calculation to do, and t
 The next two strings give it the titles of the images needed for the calculation.</p>
 </section>
 <section id="removing-title-dependancies">
-<h3>Removing title dependancies<a class="headerlink" href="#removing-title-dependancies" title="Permalink to this headline">#</a></h3>
+<h3>Removing title dependancies<a class="headerlink" href="#removing-title-dependancies" title="Permalink to this heading">#</a></h3>
 <p>The fact that the original image title appears in the above macro is a problem: if you try to run it on another image, you are likely to find that it does not work because <code class="docutils literal notranslate"><span class="pre">selectWindow</span></code> cannot find what it’s looking for.
 So the next step is to remove this title dependency so that the macro can be applied to any (2D) image.</p>
 <p>There are two ways to go about this.
@@ -628,7 +640,7 @@ One is to insert a line that tells the macro the title of the image being proces
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">getTitle()</span></code> is an example of a function that asks for information.
-The result is then stored as a <strong>variable</strong>, so that any time we type <code class="docutils literal notranslate"><span class="pre">titleOrig</span></code> later this will be replaced by the string corresponding to the original title <a class="footnote-reference brackets" href="#fn-6" id="id1">1</a>.
+The result is then stored as a <strong>variable</strong>, so that any time we type <code class="docutils literal notranslate"><span class="pre">titleOrig</span></code> later this will be replaced by the string corresponding to the original title <a class="footnote-reference brackets" href="#fn-6" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 Then we just find anywhere the title appears and replace the text with our new variable name, i.e.
 in this case by writing</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">selectWindow</span><span class="p">(</span><span class="n">titleOrig</span><span class="p">);</span>
@@ -651,19 +663,19 @@ Using IDs, the updated macro code then becomes:</p>
 </pre></div>
 </div>
 <p>We had to change <code class="docutils literal notranslate"><span class="pre">selectWindow</span></code> to <code class="docutils literal notranslate"><span class="pre">selectImage</span></code> for the IDs to work.
-I also changed the title of the duplicated image to something more meaninglessly general – which required square brackets, because it includes spaces that would otherwise mess things up <a class="footnote-reference brackets" href="#fn-7" id="id2">2</a>.
+I also changed the title of the duplicated image to something more meaninglessly general – which required square brackets, because it includes spaces that would otherwise mess things up <a class="footnote-reference brackets" href="#fn-7" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
 Also, because the duplicated image will be active immediately after it was created, I ask ImageJ for its ID at that point. This lets me then pass the two IDs (rather than titles) to the
 <code class="docutils literal notranslate"><span class="pre">imageCalculator</span></code> command when necessary.</p>
 </section>
 <section id="adding-comments">
-<h3>Adding comments<a class="headerlink" href="#adding-comments" title="Permalink to this headline">#</a></h3>
+<h3>Adding comments<a class="headerlink" href="#adding-comments" title="Permalink to this heading">#</a></h3>
 <p>Whenever macros become more complicated, it can be hard to remember exactly what all the parts do and why.
 It’s then a <em>very</em> good idea to add in some extra notes and explanations.
 This is done by prefixing a line with <code class="docutils literal notranslate"><span class="pre">//</span></code>, after which we can write whatever we like because the macro interpreter will ignore it.
 These extra notes are called <strong>comments</strong>, and I will add them from now on.</p>
 </section>
 <section id="customizing-sigma-values">
-<h3>Customizing sigma values<a class="headerlink" href="#customizing-sigma-values" title="Permalink to this headline">#</a></h3>
+<h3>Customizing sigma values<a class="headerlink" href="#customizing-sigma-values" title="Permalink to this heading">#</a></h3>
 <p>By changing the size of the Gaussian filters, the macro can be tailored to detecting structures of different sizes.
 It would be relatively easy to find the <code class="docutils literal notranslate"><span class="pre">Gaussian</span> <span class="pre">Blur</span></code> lines and change the sigma values accordingly here, but adjusting settings like this in longer, more complex macros can be awkward.
 In such cases, it’s helpful to extract the settings you might wish to change and include them at the start of the macro.</p>
@@ -680,10 +692,10 @@ In such cases, it’s helpful to extract the settings you might wish to change a
 <span class="n">run</span><span class="p">(</span><span class="s">&quot;Gaussian Blur...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sigma=&quot;</span><span class="o">+</span><span class="n">sigma2</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>This creates two new variables, which represent the sigma values to use. Now any time you want to change <code class="docutils literal notranslate"><span class="pre">sigma1</span></code> or <code class="docutils literal notranslate"><span class="pre">sigma2</span></code> you do not need to hunt through the macro for the correct lines: you can just update the lines at the top <a class="footnote-reference brackets" href="#fn-8" id="id3">3</a>.</p>
+<p>This creates two new variables, which represent the sigma values to use. Now any time you want to change <code class="docutils literal notranslate"><span class="pre">sigma1</span></code> or <code class="docutils literal notranslate"><span class="pre">sigma2</span></code> you do not need to hunt through the macro for the correct lines: you can just update the lines at the top <a class="footnote-reference brackets" href="#fn-8" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
 </section>
 <section id="adding-interactivity">
-<h3>Adding interactivity<a class="headerlink" href="#adding-interactivity" title="Permalink to this headline">#</a></h3>
+<h3>Adding interactivity<a class="headerlink" href="#adding-interactivity" title="Permalink to this heading">#</a></h3>
 <p>Usually I would stop at this point.
 Still, you might wish to share your macro with someone lacking your macro modification skills, in which case it would be useful to give this person a dialog box into which they could type the Gaussian sigma values that they wanted.
 An easy way to do this is to remove the sigma value information from the <code class="docutils literal notranslate"><span class="pre">run</span></code> command lines, giving</p>
@@ -716,7 +728,7 @@ This is documented in ImageJ’s <a class="reference external" href="https://ima
 </section>
 </section>
 <section id="installing-the-macro">
-<h2>Installing the macro<a class="headerlink" href="#installing-the-macro" title="Permalink to this headline">#</a></h2>
+<h2>Installing the macro<a class="headerlink" href="#installing-the-macro" title="Permalink to this heading">#</a></h2>
 <p>If you’d like the macro to appear as an entry in ImageJ’s menus, you have a couple of options.</p>
 <p>One is the tempting <span class="menuselection notranslate">Plugins ‣ Macros ‣ Install…</span>.
 This works, but whenever I tested it I found that it only retains the macro until ImageJ is restarted.</p>
@@ -724,7 +736,7 @@ This works, but whenever I tested it I found that it only retains the macro unti
 As long as the macro file you choose has an underscore in its name, it should appear as its own entry towards the bottom of the <span class="menuselection notranslate">Plugins</span> menu – and be retained even when ImageJ is relaunched.</p>
 </section>
 <section id="suggested-improvements">
-<h2>Suggested improvements<a class="headerlink" href="#suggested-improvements" title="Permalink to this headline">#</a></h2>
+<h2>Suggested improvements<a class="headerlink" href="#suggested-improvements" title="Permalink to this heading">#</a></h2>
 <p>You should now have a macro that does something vaguely useful, and which will work on most 2D images.
 It could nevertheless still be enhanced in many ways.
 For example,</p>
@@ -748,19 +760,20 @@ Without the duplication, the original image will have been Gaussian filtered by 
 <li><p>Track down bugs and make improvements</p></li>
 </ol>
 <hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="fn-6"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>There is nothing special about <code class="docutils literal notranslate"><span class="pre">titleOrig</span></code> – this text can be changed to any variable name you like, so long as it’s one word and does not contain special characters.</p>
-</dd>
-<dt class="label" id="fn-7"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>In ImageJ’s macro language, spaces in the string telling a command what to do are used to indicate that a separate piece of information is being given.
+<aside class="footnote brackets" id="fn-6" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>There is nothing special about <code class="docutils literal notranslate"><span class="pre">titleOrig</span></code> – this text can be changed to any variable name you like, so long as it’s one word and does not contain special characters.</p>
+</aside>
+<aside class="footnote brackets" id="fn-7" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>In ImageJ’s macro language, spaces in the string telling a command what to do are used to indicate that a separate piece of information is being given.
 So titles or file names that require spaces need to be put inside square brackets.</p>
-</dd>
-<dt class="label" id="fn-8"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
-<dd><p>Note that <code class="docutils literal notranslate"><span class="pre">+</span></code> is used to join multiple strings into one, converting numbers into strings as needed.
+</aside>
+<aside class="footnote brackets" id="fn-8" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">+</span></code> is used to join multiple strings into one, converting numbers into strings as needed.
 Therefore in this case the lines <code class="docutils literal notranslate"><span class="pre">sigma=+2</span></code> and <code class="docutils literal notranslate"><span class="pre">sigma=+sigma2</span></code> would each give us the same result: one longer string with the extra part appended at the end, i.e.<code class="docutils literal notranslate"><span class="pre">sigma=2</span></code>.</p>
-</dd>
-</dl>
+</aside>
 </section>
 </section>
 
@@ -789,11 +802,10 @@ Therefore in this case the lines <code class="docutils literal notranslate"><spa
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="macro_intro.html"
@@ -813,10 +825,7 @@ Therefore in this case the lines <code class="docutils literal notranslate"><spa
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -879,6 +888,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -890,8 +906,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

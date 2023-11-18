@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>ImageJ: Channels &amp; colors &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -79,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -139,13 +150,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -162,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -422,10 +434,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -433,7 +445,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -476,7 +488,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="imagej-channels-colors">
-<span id="chap-imagej-colors"></span><h1>ImageJ: Channels &amp; colors<a class="headerlink" href="#imagej-channels-colors" title="Permalink to this headline">#</a></h1>
+<span id="chap-imagej-colors"></span><h1>ImageJ: Channels &amp; colors<a class="headerlink" href="#imagej-channels-colors" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -501,12 +513,12 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>ImageJ has good support for both RGB and multichannel images, but the behavior is not always obvious.
 This section explains the ideas, including common areas of confusion.</p>
 </section>
 <section id="rgb-vs-multichannel">
-<h2>RGB vs. Multichannel<a class="headerlink" href="#rgb-vs-multichannel" title="Permalink to this headline">#</a></h2>
+<h2>RGB vs. Multichannel<a class="headerlink" href="#rgb-vs-multichannel" title="Permalink to this heading">#</a></h2>
 <p>ImageJ treats RGB as a special image type, even though it is still <a class="reference internal" href="../3-bit_depths/imagej.html#chap-bit-depths-imagej"><span class="std std-ref">8-bit unsigned integer</span></a>.
 There are several ways to recognize that an image has the type ‘RGB’:</p>
 <ul class="simple">
@@ -533,7 +545,7 @@ The <span class="menuselection notranslate">Image ‣ Type ‣ </span> will be <
 </details>
 </div>
 <figure class="align-center" id="fig-color-neuron">
-<img alt="../../../_images/6c0d00a06d90dd0a29eacf4b6494cbce44d27abaf3bf3ddce279a6e1a446275f.png" src="../../../_images/6c0d00a06d90dd0a29eacf4b6494cbce44d27abaf3bf3ddce279a6e1a446275f.png" />
+<img alt="../../../_images/b11bc041ffa341708617e17fc5a0f1863992d87bd1947dad9b6014430736299a.png" src="../../../_images/b11bc041ffa341708617e17fc5a0f1863992d87bd1947dad9b6014430736299a.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 32 </span><span class="caption-text">A multichannel image (left) and RGB image (right).
 The colors used to display the image are identical, but other aspects of the image window indicate that the images themselves are quite different.</span><a class="headerlink" href="#fig-color-neuron" title="Permalink to this image">#</a></p>
@@ -570,12 +582,12 @@ It’s possible for a multichannel image to have three channels with red, green 
 You should therefore use the rules given above to distinguish images RGB from multichannel.</p>
 <p><strong>Note 2:</strong> At the time I write this, the sample images don’t work for me properly in Fiji – but they do work in ImageJ.
 Hopefully the Fiji bug will be fixed before you read this.</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Image</p></th>
-<th class="text-center head"><p>RGB</p></th>
-<th class="text-center head"><p>Multichannel</p></th>
-<th class="text-center head"><p>Single channel</p></th>
+<th class="head text-center"><p>RGB</p></th>
+<th class="head text-center"><p>Multichannel</p></th>
+<th class="head text-center"><p>Single channel</p></th>
 </tr>
 </thead>
 <tbody>
@@ -616,12 +628,12 @@ Hopefully the Fiji bug will be fixed before you read this.</p>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-1">
 Solution</label><div class="sd-tab-content docutils">
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Image</p></th>
-<th class="text-center head"><p>RGB</p></th>
-<th class="text-center head"><p>Multichannel</p></th>
-<th class="text-center head"><p>Single channel</p></th>
+<th class="head text-center"><p>RGB</p></th>
+<th class="head text-center"><p>Multichannel</p></th>
+<th class="head text-center"><p>Single channel</p></th>
 </tr>
 </thead>
 <tbody>
@@ -667,7 +679,7 @@ Solution</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="working-with-channels">
-<h2>Working with channels<a class="headerlink" href="#working-with-channels" title="Permalink to this headline">#</a></h2>
+<h2>Working with channels<a class="headerlink" href="#working-with-channels" title="Permalink to this heading">#</a></h2>
 <p>There are several useful commands for working with color channels under <span class="menuselection notranslate">Image ‣ Color ‣ </span>.
 Some of these, such as <span class="menuselection notranslate">Image ‣ Color ‣ Split channels</span> and <span class="menuselection notranslate">Image ‣ Color ‣ Merge channels</span> are quite intuitive, and work for both RGB and multichannel images.</p>
 <p>One of the most useful commands that requires some explanation is <span class="menuselection notranslate">Image ‣ Color ‣ Channels Tool…</span> <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">Z</kbd></kbd>.
@@ -703,7 +715,7 @@ Similarly, <span class="menuselection notranslate">Image ‣ Adjust ‣ Brightne
 </details>
 </div>
 <figure class="align-center" id="fig-fiji-composite">
-<img alt="../../../_images/7a86aab4035594699bc72171a6257b698ade4ce0644b0214becebd2e9d054b77.png" src="../../../_images/7a86aab4035594699bc72171a6257b698ade4ce0644b0214becebd2e9d054b77.png" />
+<img alt="../../../_images/0a5ec7f7528d891dd94547e61a7ae9f9d47857e5941a442846bc2de228f9800e.png" src="../../../_images/0a5ec7f7528d891dd94547e61a7ae9f9d47857e5941a442846bc2de228f9800e.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 33 </span><span class="caption-text">ImageJ multichannel image sample <em>Fluorescent Cells</em>. Using the <span class="menuselection notranslate">Image ‣ Color ‣ Channels Tool…</span> and the slider at the bottom of the window, you can view the channels individually or simultaneously.</span><a class="headerlink" href="#fig-fiji-composite" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -737,7 +749,7 @@ At the time of writing, the available modes are:</p>
 </details>
 </div>
 <figure class="align-center" id="fig-fiji-composite-new">
-<img alt="../../../_images/15e11543ed2d6f2c4423da74317251e33df0caff2ec9a7da10c290e26f50ca54.png" src="../../../_images/15e11543ed2d6f2c4423da74317251e33df0caff2ec9a7da10c290e26f50ca54.png" />
+<img alt="../../../_images/364736a42bf57adc133abc8ca13555810d1d4e965b211a0be61a20c098ab045a.png" src="../../../_images/364736a42bf57adc133abc8ca13555810d1d4e965b211a0be61a20c098ab045a.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 34 </span><span class="caption-text">Visualizing the new composite modes.</span><a class="headerlink" href="#fig-fiji-composite-new" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -767,7 +779,7 @@ Red → Magenta) – although displaying both channels separately is better sti
 </div>
 </section>
 <section id="converting-to-rgb">
-<span id="sec-imagej-flatten"></span><h2>Converting to RGB<a class="headerlink" href="#converting-to-rgb" title="Permalink to this headline">#</a></h2>
+<span id="sec-imagej-flatten"></span><h2>Converting to RGB<a class="headerlink" href="#converting-to-rgb" title="Permalink to this heading">#</a></h2>
 <p>As described in <a class="reference internal" href="colors.html#chap-colors"><span class="std std-ref">Channels &amp; colors</span></a>, one of the most important uses of RGB images is to create a compatible image for display in different software.
 We will see more about how to save such images in <a class="reference internal" href="../6-files/files.html#chap-files"><span class="std std-ref">Files &amp; file formats</span></a>.</p>
 <p>It should be possible to convert any image to RGB using <span class="menuselection notranslate">Image ‣ Type ‣ RGB Color</span>.
@@ -899,11 +911,10 @@ We can learn enough about the software to know how to test what it is doing.</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="colors.html"
@@ -923,10 +934,7 @@ We can learn enough about the software to know how to test what it is doing.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -981,6 +989,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -992,8 +1007,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

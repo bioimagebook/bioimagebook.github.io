@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>ImageJ: Filters &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -79,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -139,13 +150,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -162,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -422,10 +434,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -433,7 +445,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -484,7 +496,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="imagej-filters">
-<h1>ImageJ: Filters<a class="headerlink" href="#imagej-filters" title="Permalink to this headline">#</a></h1>
+<h1>ImageJ: Filters<a class="headerlink" href="#imagej-filters" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -509,14 +521,14 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Most of the filters we’ve considered are available through the <span class="menuselection notranslate">Process ‣ Filters</span> submenu.
 This section adds a little more information about their implementation in ImageJ, and asks a few questions.</p>
 </section>
 <section id="linear-filters">
-<h2>Linear filters<a class="headerlink" href="#linear-filters" title="Permalink to this headline">#</a></h2>
+<h2>Linear filters<a class="headerlink" href="#linear-filters" title="Permalink to this heading">#</a></h2>
 <section id="mean-filters">
-<h3>Mean filters<a class="headerlink" href="#mean-filters" title="Permalink to this headline">#</a></h3>
+<h3>Mean filters<a class="headerlink" href="#mean-filters" title="Permalink to this heading">#</a></h3>
 <p>The easiest way to apply a 3×3 mean filter in ImageJ is through the <span class="menuselection notranslate">Process ‣ Smooth</span> command.
 The fact that the shortcut is <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">S</kbd></kbd> can almost make this <em>too</em> easy, as I find myself accidentally smoothing when I really wanted to save my image.
 Take care.</p>
@@ -527,7 +539,7 @@ If you happen to choose <em>Radius = 1</em>, you get a 3×3 filter – and the s
 <a class="reference internal image-reference" href="../../../_images/imagej-filters-masks.png"><img alt="../../../_images/imagej-filters-masks.png" class="align-center" src="../../../_images/imagej-filters-masks.png" style="width: 35%;" /></a>
 </section>
 <section id="gaussian-filters">
-<h3>Gaussian filters<a class="headerlink" href="#gaussian-filters" title="Permalink to this headline">#</a></h3>
+<h3>Gaussian filters<a class="headerlink" href="#gaussian-filters" title="Permalink to this heading">#</a></h3>
 <p><span class="menuselection notranslate">Process ‣ Filters ‣ Gaussian Blur…</span> is the command that implements a Gaussian filter.</p>
 <p>In the event that you want a Gaussian filter that isn’t isotropic (i.e. has a different size along different dimensions), <span class="menuselection notranslate">Process ‣ Filters ‣ Gaussian Blur 3D…</span> can be used.</p>
 <p>Although not <em>really</em> recommended, unsharp masking is available through <span class="menuselection notranslate">Process ‣ Filters ‣ Unsharp mask…</span>.</p>
@@ -538,7 +550,7 @@ However <a class="reference internal" href="../../appendices/macros/macro_dog.ht
 </div>
 </section>
 <section id="custom-linear-filters">
-<h3>Custom linear filters<a class="headerlink" href="#custom-linear-filters" title="Permalink to this headline">#</a></h3>
+<h3>Custom linear filters<a class="headerlink" href="#custom-linear-filters" title="Permalink to this heading">#</a></h3>
 <p><span class="menuselection notranslate">Process ‣ Filters ‣ Convolve…</span> makes it possible to define any custom linear filter by entering the values of the desired coefficients, separated by spaces and arranged in rows and columns.
 If you <span class="guilabel notranslate">Normalize Kernel</span> is selected, then the coefficients are scaled so that they add to 1, by dividing by the sum of all the coefficients – unless the sum is 0, in which case requesting normalizion does nothing.</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-filters-convolve-custom.png"><img alt="../../../_images/imagej-filters-convolve-custom.png" class="align-center" src="../../../_images/imagej-filters-convolve-custom.png" style="width: 80%;" /></a>
@@ -684,9 +696,9 @@ In any image with a good separation of background and foreground pixels, but whi
 </section>
 </section>
 <section id="nonlinear-filters">
-<h2>Nonlinear filters<a class="headerlink" href="#nonlinear-filters" title="Permalink to this headline">#</a></h2>
+<h2>Nonlinear filters<a class="headerlink" href="#nonlinear-filters" title="Permalink to this heading">#</a></h2>
 <section id="rank-filters">
-<h3>Rank filters<a class="headerlink" href="#rank-filters" title="Permalink to this headline">#</a></h3>
+<h3>Rank filters<a class="headerlink" href="#rank-filters" title="Permalink to this heading">#</a></h3>
 <p>The main rank filters are to be found exactly where you might expect them:</p>
 <ul class="simple">
 <li><p><span class="menuselection notranslate">Process ‣ Filters ‣ Median…</span></p></li>
@@ -697,7 +709,7 @@ In any image with a good separation of background and foreground pixels, but whi
 We will meet these filters again in <a class="reference internal" href="../5-morph/morph.html#chap-morph"><span class="std std-ref">Morphological operations</span></a>.</p>
 </section>
 <section id="removing-outliers">
-<h3>Removing outliers<a class="headerlink" href="#removing-outliers" title="Permalink to this headline">#</a></h3>
+<h3>Removing outliers<a class="headerlink" href="#removing-outliers" title="Permalink to this heading">#</a></h3>
 <p><a class="reference internal" href="filters.html#fig-processing-filters-speckled"><span class="std std-numref">Fig. 88</span></a> shows that median filtering is much better than mean filtering for removing outliers.
 We might encounter this if something in the microscope is not quite functioning as expected or if dark noise is a problem, but otherwise we expect the noise in fluorescence microscopy images to produce few really extreme values (see <a class="reference internal" href="../../3-fluorescence/3-formation_noise/formation_noise.html#chap-formation-noise"><span class="std std-ref">Noise</span></a>).</p>
 <p>Nevertheless, <span class="menuselection notranslate">Process ‣ Noise ‣ Remove Outliers…</span> provides an alternative if isolated bright values are present.
@@ -732,11 +744,10 @@ This is a nonlinear filter that inserts median values <em>only whenever a pixel 
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="filters.html"
@@ -756,10 +767,7 @@ This is a nonlinear filter that inserts median values <em>only whenever a pixel 
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -822,6 +830,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -833,8 +848,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

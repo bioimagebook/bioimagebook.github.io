@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Python: Types &amp; bit-depths &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -81,6 +83,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -141,13 +152,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -164,7 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -424,10 +436,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -435,7 +447,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -482,7 +494,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="python-types-bit-depths">
-<h1>Python: Types &amp; bit-depths<a class="headerlink" href="#python-types-bit-depths" title="Permalink to this headline">#</a></h1>
+<h1>Python: Types &amp; bit-depths<a class="headerlink" href="#python-types-bit-depths" title="Permalink to this heading">#</a></h1>
 <p>In this section, we will explore how bit-depths and image types are represented in Python.
 We’ll look in particular at where things can go wrong when converting between bit-depths, and how to apply the tricks from previous chapters to identify problems.</p>
 <div class="cell docutils container">
@@ -499,12 +511,12 @@ We’ll look in particular at where things can go wrong when converting between 
 </div>
 </div>
 <section id="bit-depths-and-dtype">
-<h2>Bit-depths and dtype<a class="headerlink" href="#bit-depths-and-dtype" title="Permalink to this headline">#</a></h2>
+<h2>Bit-depths and dtype<a class="headerlink" href="#bit-depths-and-dtype" title="Permalink to this heading">#</a></h2>
 <p>The bit-depth of a <strong>NumPy array</strong> is encoded in its <strong>data type</strong> - or <strong>dtype</strong> for short.</p>
 <p>ImageJ is focussed on on 8-bit and 16-bit unsigned integer images, as well as 32-bit floating point images.</p>
 <p>NumPy, on the other hand, offers a much wider range of data types.
 The code for a Numpy dtype isn’t hard to crack, with a <code class="docutils literal notranslate"><span class="pre">uint</span></code> standing for ‘unsigned integer’ and <code class="docutils literal notranslate"><span class="pre">float</span></code> for floating-point.</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Type</p></th>
 <th class="head"><p>Bit-depth</p></th>
@@ -583,12 +595,12 @@ Minimum: 239
 Maximum: 2090
 </pre></div>
 </div>
-<img alt="../../../_images/992982eb9e83e988167e099b856dbfaf9f0a08a161394dc82026315aaf717669.png" src="../../../_images/992982eb9e83e988167e099b856dbfaf9f0a08a161394dc82026315aaf717669.png" />
-<img alt="../../../_images/97150ac88d52cdf42457f4d75de7b214e8918d8482544e0c7f7d70c7c21afc1a.png" src="../../../_images/97150ac88d52cdf42457f4d75de7b214e8918d8482544e0c7f7d70c7c21afc1a.png" />
+<img alt="../../../_images/fe056878a0235550e28759dabc126d39a02b8a4cb8d72a03aadfd7db36c75728.png" src="../../../_images/fe056878a0235550e28759dabc126d39a02b8a4cb8d72a03aadfd7db36c75728.png" />
+<img alt="../../../_images/2567dc34e0bc2144392f6013bc357195865daba595f37580107bbb557dd3e7e3.png" src="../../../_images/2567dc34e0bc2144392f6013bc357195865daba595f37580107bbb557dd3e7e3.png" />
 </div>
 </div>
 <section id="fun-with-float32">
-<h3>Fun with float32<a class="headerlink" href="#fun-with-float32" title="Permalink to this headline">#</a></h3>
+<h3>Fun with float32<a class="headerlink" href="#fun-with-float32" title="Permalink to this heading">#</a></h3>
 <p>If we want to change the type, that is easy to do as well.</p>
 <blockquote>
 <div><p>This makes use of the line <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code> to give us access to more NumPy properties &amp; functions.</p>
@@ -620,7 +632,7 @@ Minimum: 239.0
 Maximum: 2090.0
 </pre></div>
 </div>
-<img alt="../../../_images/992982eb9e83e988167e099b856dbfaf9f0a08a161394dc82026315aaf717669.png" src="../../../_images/992982eb9e83e988167e099b856dbfaf9f0a08a161394dc82026315aaf717669.png" />
+<img alt="../../../_images/fe056878a0235550e28759dabc126d39a02b8a4cb8d72a03aadfd7db36c75728.png" src="../../../_images/fe056878a0235550e28759dabc126d39a02b8a4cb8d72a03aadfd7db36c75728.png" />
 </div>
 </div>
 <p>That looks fine to me, but let’s be extra careful and have NumPy check if the values are really identical.</p>
@@ -746,7 +758,7 @@ We can use <code class="docutils literal notranslate"><span class="pre">np.allcl
 </div>
 </section>
 <section id="towards-8-bit">
-<h3>Towards 8-bit<a class="headerlink" href="#towards-8-bit" title="Permalink to this headline">#</a></h3>
+<h3>Towards 8-bit<a class="headerlink" href="#towards-8-bit" title="Permalink to this heading">#</a></h3>
 <p>Previously, we had an image with a low bit depth and we increased the bit-depth.
 This was fine.</p>
 <p>Time now to go the opposite direction, and again check that it works.</p>
@@ -769,7 +781,7 @@ Minimum: 0
 Maximum: 255
 </pre></div>
 </div>
-<img alt="../../../_images/9b157fc30578369f256c9fa63a4a52281026e9eec491ecbc512c851bbab1e641.png" src="../../../_images/9b157fc30578369f256c9fa63a4a52281026e9eec491ecbc512c851bbab1e641.png" />
+<img alt="../../../_images/5628b3972c765db472ad954943babf34baa7cb7ecb7813d5bbda32ea9d17152d.png" src="../../../_images/5628b3972c765db472ad954943babf34baa7cb7ecb7813d5bbda32ea9d17152d.png" />
 </div>
 </div>
 <p>Oh dear.
@@ -839,7 +851,7 @@ Rather than googling or crawling around the NumPy docs, we can experiment.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/0bc75671281c865fa03a608da76b4f44029b1f386520e8733c0da68033d08480.png" src="../../../_images/0bc75671281c865fa03a608da76b4f44029b1f386520e8733c0da68033d08480.png" />
+<img alt="../../../_images/224c0f3925dad67bdc130fdd738ad473084c7b8145b36171bd7ca8d283da0f49.png" src="../../../_images/224c0f3925dad67bdc130fdd738ad473084c7b8145b36171bd7ca8d283da0f49.png" />
 </div>
 </div>
 <p>So it seems that NumPy <em>wraps around</em>: when converting 256 to <code class="docutils literal notranslate"><span class="pre">uint8</span></code> it becomes 0, 257 becomes 1 and so on.</p>
@@ -847,7 +859,7 @@ Rather than googling or crawling around the NumPy docs, we can experiment.</p>
 To begin, let’s clip.</p>
 </section>
 <section id="converting-with-clipping">
-<h3>Converting with clipping<a class="headerlink" href="#converting-with-clipping" title="Permalink to this headline">#</a></h3>
+<h3>Converting with clipping<a class="headerlink" href="#converting-with-clipping" title="Permalink to this heading">#</a></h3>
 <p>The trick is to clip the image this <em>before</em> converting it with <code class="docutils literal notranslate"><span class="pre">astype</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -870,7 +882,7 @@ Minimum: 239
 Maximum: 255
 </pre></div>
 </div>
-<img alt="../../../_images/309f4fc34b7db2160c5853ce4385870118cfab9ad2a5ce477f9b326952406bfd.png" src="../../../_images/309f4fc34b7db2160c5853ce4385870118cfab9ad2a5ce477f9b326952406bfd.png" />
+<img alt="../../../_images/aeab6442c735b7d29aa5aae13a1da73a43c79c3141063ed3fc4160daccc36110.png" src="../../../_images/aeab6442c735b7d29aa5aae13a1da73a43c79c3141063ed3fc4160daccc36110.png" />
 </div>
 </div>
 <p>This has worked in a sense, but not a very good one.
@@ -878,7 +890,7 @@ Our pixels are in the range 0-255, but recall from the histogram above that almo
 When we clipped, these pixels all simply became 255 - and all further distinction was lost.</p>
 </section>
 <section id="converting-with-rescaling">
-<h3>Converting with rescaling<a class="headerlink" href="#converting-with-rescaling" title="Permalink to this headline">#</a></h3>
+<h3>Converting with rescaling<a class="headerlink" href="#converting-with-rescaling" title="Permalink to this heading">#</a></h3>
 <p>We can calculate the maximum possible value of an unsigned integer for a specific bit depth <span class="math notranslate nohighlight">\(N\)</span> as <span class="math notranslate nohighlight">\(2^{N}-1\)</span>.</p>
 <p>With Numpy, we can use the <code class="docutils literal notranslate"><span class="pre">**</span></code> operator for this.</p>
 <div class="cell docutils container">
@@ -921,7 +933,7 @@ Minimum: 0
 Maximum: 8
 </pre></div>
 </div>
-<img alt="../../../_images/4d57a09cdb5d1b30cc0a7fd8a9b4e0a852e04c5554023f02bf2385002435e324.png" src="../../../_images/4d57a09cdb5d1b30cc0a7fd8a9b4e0a852e04c5554023f02bf2385002435e324.png" />
+<img alt="../../../_images/82aa6ab18598da2543074c7e5d6e167882765672fe3e27675c0250839683fc70.png" src="../../../_images/82aa6ab18598da2543074c7e5d6e167882765672fe3e27675c0250839683fc70.png" />
 </div>
 </div>
 <p>This has <em>kind of</em> worked, but note that the maximum pixel value is very low.
@@ -961,7 +973,7 @@ Minimum: 0
 Maximum: 255
 </pre></div>
 </div>
-<img alt="../../../_images/d19da71f28f90e43b44aa00a829c943b5d56e8b974172ddd351536e271fcfa83.png" src="../../../_images/d19da71f28f90e43b44aa00a829c943b5d56e8b974172ddd351536e271fcfa83.png" />
+<img alt="../../../_images/baa02371f50693c1aff7b72f79c1e17841c2d13ac7b56e6eaf87b193e98b0ef6.png" src="../../../_images/baa02371f50693c1aff7b72f79c1e17841c2d13ac7b56e6eaf87b193e98b0ef6.png" />
 </div>
 </div>
 <p>As conversions to 8-bit go, rescaling certainly looks like it was more successful than simply clipping, and the output fills the full range available.</p>
@@ -970,7 +982,7 @@ Maximum: 255
 </section>
 </section>
 <section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
 <p><strong>The key message here is that it is very easy to change the bit-depth and type of an image - but also very easy for things to go wrong.</strong></p>
 <p>Sometimes these are small precision errors.
 Sometimes they are big, data, destroying errors.</p>
@@ -1004,11 +1016,10 @@ This can help you make sure nothing is being lost along the way.</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="imagej.html"
@@ -1028,10 +1039,7 @@ This can help you make sure nothing is being lost along the way.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1090,6 +1098,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -1101,8 +1116,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

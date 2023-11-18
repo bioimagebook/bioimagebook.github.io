@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>ImageJ: Types &amp; bit-depths &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -79,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -139,13 +150,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -162,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -422,10 +434,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -433,7 +445,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -480,7 +492,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="imagej-types-bit-depths">
-<span id="chap-bit-depths-imagej"></span><h1>ImageJ: Types &amp; bit-depths<a class="headerlink" href="#imagej-types-bit-depths" title="Permalink to this headline">#</a></h1>
+<span id="chap-bit-depths-imagej"></span><h1>ImageJ: Types &amp; bit-depths<a class="headerlink" href="#imagej-types-bit-depths" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -505,7 +517,7 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>The bit-depth and type of an image is determined before it is opened in ImageJ.
 If the data is clipped, it’s already wrong before we begin – and no amount of ImageJ wizardry will get the information back.</p>
 <p>Here, we will explore how to:</p>
@@ -516,7 +528,7 @@ If the data is clipped, it’s already wrong before we begin – and no amount o
 </ul>
 </section>
 <section id="checking-the-bit-depth-type">
-<h2>Checking the bit-depth &amp; type<a class="headerlink" href="#checking-the-bit-depth-type" title="Permalink to this headline">#</a></h2>
+<h2>Checking the bit-depth &amp; type<a class="headerlink" href="#checking-the-bit-depth-type" title="Permalink to this heading">#</a></h2>
 <p>Bit-depth and type are related to one another: both are needed to convert binary data into pixel values.
 ImageJ does not always make a careful distinction between the two.</p>
 <p>The full list of image types supported by ImageJ is found in the <span class="menuselection notranslate">Image ‣ Type ‣ </span> submenu.
@@ -547,7 +559,7 @@ But you don’t usually have to; you can also see the information at the top of 
 </details>
 </div>
 <figure class="align-center" id="fig-types-windows">
-<img alt="../../../_images/a37ab69db91718bbe3e3ad7796109c70f5669fc5dc68d4f923fb402299d82a3d.png" src="../../../_images/a37ab69db91718bbe3e3ad7796109c70f5669fc5dc68d4f923fb402299d82a3d.png" />
+<img alt="../../../_images/b822e2ed286306a4650dc24614ba735b04b857d39bef123d8b89e8b1c412cae0.png" src="../../../_images/b822e2ed286306a4650dc24614ba735b04b857d39bef123d8b89e8b1c412cae0.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 24 </span><span class="caption-text">The text at the top of each image window provides useful information.
 Here, the image on the left is 8-bit and the image on the right is 16-bit.</span><a class="headerlink" href="#fig-types-windows" title="Permalink to this image">#</a></p>
@@ -558,7 +570,7 @@ These are less different than they first appear: an RGB image is really an 8-bit
 We will explore this in <a class="reference internal" href="../4-colors/colors.html#chap-colors"><span class="std std-ref">Channels &amp; colors</span></a>.</p>
 </section>
 <section id="diagnosing-problems">
-<h2>Diagnosing problems<a class="headerlink" href="#diagnosing-problems" title="Permalink to this headline">#</a></h2>
+<h2>Diagnosing problems<a class="headerlink" href="#diagnosing-problems" title="Permalink to this heading">#</a></h2>
 <p>The biggest problem associated with an image’s bit-depth and type is clipping.
 <span class="menuselection notranslate">Analyze ‣ Histogram</span> is the essential command needed to diagnose if something is wrong – just press <kbd class="kbd docutils literal notranslate">H</kbd> to run it.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
@@ -578,7 +590,7 @@ We will explore this in <a class="reference internal" href="../4-colors/colors.h
 </details>
 </div>
 <figure class="align-center" id="fig-types-imagej-clipping">
-<img alt="../../../_images/17a05e2f809472fe35310a62abafe3c08e8da4e9bb3f9eaef042709a1791be95.png" src="../../../_images/17a05e2f809472fe35310a62abafe3c08e8da4e9bb3f9eaef042709a1791be95.png" />
+<img alt="../../../_images/1f5f9306ecdbcd1fa4225d6792cfd4d2c0095a3ec0d219ab488e0b303ee78f9e.png" src="../../../_images/1f5f9306ecdbcd1fa4225d6792cfd4d2c0095a3ec0d219ab488e0b303ee78f9e.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 25 </span><span class="caption-text">Two similar-looking images and their histograms: one clipped, one not.</span><a class="headerlink" href="#fig-types-imagej-clipping" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -607,7 +619,7 @@ But it’s better to avoid clipping altogether when possible.</p>
 </div>
 </section>
 <section id="converting-images">
-<span id="sec-bit-depths-converting"></span><h2>Converting images<a class="headerlink" href="#converting-images" title="Permalink to this headline">#</a></h2>
+<span id="sec-bit-depths-converting"></span><h2>Converting images<a class="headerlink" href="#converting-images" title="Permalink to this heading">#</a></h2>
 <p>There are three main scenarios when you might need to convert the type or bit-depth of an image:</p>
 <ul class="simple">
 <li><p><strong>Reducing the file size</strong></p></li>
@@ -627,7 +639,7 @@ The clipped data is gone for good.</p>
 <p>However, you can still introduce clipping after acquisition by making ill-advised conversions – with all the unfortunate consequences of that.
 Therefore it’s important to know how ImageJ’s type conversion works.</p>
 <section id="increasing-the-bit-depth">
-<h3>Increasing the bit-depth<a class="headerlink" href="#increasing-the-bit-depth" title="Permalink to this headline">#</a></h3>
+<h3>Increasing the bit-depth<a class="headerlink" href="#increasing-the-bit-depth" title="Permalink to this heading">#</a></h3>
 <p>Let’s start with the easy case: <em>increasing</em> the bit-depth of an image.</p>
 <p>In principle, we can convert an image just by choosing the type we want from the <span class="menuselection notranslate">Image ‣ Type ‣</span> submenu.</p>
 <p>In ImageJ, there are only really three bit-depths and associated types.
@@ -651,7 +663,7 @@ It’s so easy to measure images (press <kbd class="kbd docutils literal notrans
 </div>
 </section>
 <section id="reducing-the-bit-depth">
-<h3>Reducing the bit-depth<a class="headerlink" href="#reducing-the-bit-depth" title="Permalink to this headline">#</a></h3>
+<h3>Reducing the bit-depth<a class="headerlink" href="#reducing-the-bit-depth" title="Permalink to this heading">#</a></h3>
 <p>Reducing the bit-depth is where the biggest dangers lurk.
 Then not all values from a higher bit-depth image fit into an image with a lower bit-depth.</p>
 <p>The process is the same: choose the type you want from the <span class="menuselection notranslate">Image ‣ Type ‣</span> submenu.</p>
@@ -739,11 +751,10 @@ But ImageJ does not know this and does not check, so it will simply do its norma
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="bit_depths.html"
@@ -763,10 +774,7 @@ But ImageJ does not know this and does not check, so it will simply do its norma
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -825,6 +833,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -836,8 +851,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

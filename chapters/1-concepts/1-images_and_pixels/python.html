@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Python: Images &amp; pixels &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -79,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -139,13 +150,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -162,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -422,10 +434,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -433,7 +445,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -479,7 +491,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="python-images-pixels">
-<h1>Python: Images &amp; pixels<a class="headerlink" href="#python-images-pixels" title="Permalink to this headline">#</a></h1>
+<h1>Python: Images &amp; pixels<a class="headerlink" href="#python-images-pixels" title="Permalink to this heading">#</a></h1>
 <p>The goal of these sections is to provide an interactive illustration of image analysis concepts through the popular <a class="reference external" href="https://www.python.org">Python</a> programming language.</p>
 <div class="tip admonition">
 <p class="admonition-title">Feel free to skip this!</p>
@@ -499,7 +511,7 @@ Later Python chapters in the handbook will build on these foundations.</p>
 <p>For lots more, see Robert Haase’s <a class="reference external" href="https://haesleinhuepf.github.io/BioImageAnalysisNotebooks/">Bio-image Analysis Notebooks</a>.</p>
 </div>
 <section id="read-show-an-image-using-python-a-name-show-image-in-python">
-<h2>Read &amp; show an image using Python <a name="show-image-in-python" /><a class="headerlink" href="#read-show-an-image-using-python-a-name-show-image-in-python" title="Permalink to this headline">#</a></h2>
+<h2>Read &amp; show an image using Python <a name="show-image-in-python" /><a class="headerlink" href="#read-show-an-image-using-python-a-name-show-image-in-python" title="Permalink to this heading">#</a></h2>
 <p>Let’s begin by loading an image in Python, and then showing it using <a class="reference external" href="https://matplotlib.org">matplotlib</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -525,15 +537,15 @@ Later Python chapters in the handbook will build on these foundations.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3843/3771718922.py:12: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5795/3771718922.py:12: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
   im = imread(&#39;../../../images/spooked.png&#39;)
 </pre></div>
 </div>
-<img alt="../../../_images/75933c267f1ee38b3c71cc1ac85320629c2aee5b6dc112e40dcdc4ef141ae05b.png" src="../../../_images/75933c267f1ee38b3c71cc1ac85320629c2aee5b6dc112e40dcdc4ef141ae05b.png" />
+<img alt="../../../_images/e98a439121facf0e668f686aac3dc4b3093429c16c25b4b16abc4ffc86dd99fc.png" src="../../../_images/e98a439121facf0e668f686aac3dc4b3093429c16c25b4b16abc4ffc86dd99fc.png" />
 </div>
 </div>
 <section id="changing-lookup-tables">
-<h3>Changing lookup tables<a class="headerlink" href="#changing-lookup-tables" title="Permalink to this headline">#</a></h3>
+<h3>Changing lookup tables<a class="headerlink" href="#changing-lookup-tables" title="Permalink to this heading">#</a></h3>
 <p>The key method here is <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code>.
 We can pass additional parameters to customize the display in many ways.</p>
 <p>To see what is possible, I usually start to type the name and then press <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">Tab</kbd></kbd> to prompt some documentation to appear.</p>
@@ -642,11 +654,15 @@ imshow(X, cmap=None, norm=None, *, aspect=None, interpolation=None, alpha=None, 
         &#39;kaiser&#39;, &#39;quadric&#39;, &#39;catrom&#39;, &#39;gaussian&#39;, &#39;bessel&#39;, &#39;mitchell&#39;,
         &#39;sinc&#39;, &#39;lanczos&#39;, &#39;blackman&#39;.
     
-        If *interpolation* is &#39;none&#39;, then no interpolation is performed
-        on the Agg, ps, pdf and svg backends. Other backends will fall back
-        to &#39;nearest&#39;. Note that most SVG renderers perform interpolation at
-        rendering and that the default interpolation method they implement
-        may differ.
+        The data *X* is resampled to the pixel size of the image on the
+        figure canvas, using the interpolation method to either up- or
+        downsample the data.
+    
+        If *interpolation* is &#39;none&#39;, then for the ps, pdf, and svg
+        backends no down- or upsampling occurs, and the image data is
+        passed to the backend as a native image.  Note that different ps,
+        pdf, and svg viewers may display these raw pixels differently. On
+        other backends, &#39;none&#39; is the same as &#39;nearest&#39;.
     
         If *interpolation* is the default &#39;antialiased&#39;, then &#39;nearest&#39;
         interpolation is used if the image is upsampled by more than a
@@ -790,7 +806,7 @@ imshow(X, cmap=None, norm=None, *, aspect=None, interpolation=None, alpha=None, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/bebd0e1be6740e97e96b33650aff109033f79cfadc509f5bb100d61f3c7bc8aa.png" src="../../../_images/bebd0e1be6740e97e96b33650aff109033f79cfadc509f5bb100d61f3c7bc8aa.png" />
+<img alt="../../../_images/61dfb49e3d172d53716eba241717f84692c9d7649fa1cd3bc5017428298eb320.png" src="../../../_images/61dfb49e3d172d53716eba241717f84692c9d7649fa1cd3bc5017428298eb320.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -802,7 +818,7 @@ imshow(X, cmap=None, norm=None, *, aspect=None, interpolation=None, alpha=None, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/a1b0b68032869fb00d12d46b6ab0a5f8c64733e5f1a383d77f5ac382cbfdb528.png" src="../../../_images/a1b0b68032869fb00d12d46b6ab0a5f8c64733e5f1a383d77f5ac382cbfdb528.png" />
+<img alt="../../../_images/1eb5d67b6b7c36a5bf60ded3d0874593f73d745b25dd7d0455276ac57da6bf5e.png" src="../../../_images/1eb5d67b6b7c36a5bf60ded3d0874593f73d745b25dd7d0455276ac57da6bf5e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -814,7 +830,7 @@ imshow(X, cmap=None, norm=None, *, aspect=None, interpolation=None, alpha=None, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/b594596d860e6b7d6cb6577e2aef502ff2077ac744327319a8519f53cb9186ee.png" src="../../../_images/b594596d860e6b7d6cb6577e2aef502ff2077ac744327319a8519f53cb9186ee.png" />
+<img alt="../../../_images/e24dde60713175ca076da723178729d89a70cd64aa1cc30ea82c609030103e14.png" src="../../../_images/e24dde60713175ca076da723178729d89a70cd64aa1cc30ea82c609030103e14.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -826,7 +842,7 @@ imshow(X, cmap=None, norm=None, *, aspect=None, interpolation=None, alpha=None, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/345c613740d601544768d2f2ad281f130821dc6a901cecead40f65db7f8d0a9d.png" src="../../../_images/345c613740d601544768d2f2ad281f130821dc6a901cecead40f65db7f8d0a9d.png" />
+<img alt="../../../_images/9ea5d635e4eb7cc495fed03eee421931e2f48166cb02e0e9487f0983259b5586.png" src="../../../_images/9ea5d635e4eb7cc495fed03eee421931e2f48166cb02e0e9487f0983259b5586.png" />
 </div>
 </div>
 <p>There are many more colormaps available in matplotlib – for details, see <a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a></p>
@@ -839,7 +855,7 @@ imshow(X, cmap=None, norm=None, *, aspect=None, interpolation=None, alpha=None, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/62f25791a0a1cc3592958f6685c835b2f4fbdd6645ed81d911178b584a806acd.png" src="../../../_images/62f25791a0a1cc3592958f6685c835b2f4fbdd6645ed81d911178b584a806acd.png" />
+<img alt="../../../_images/98302ce80307f992da9e6e1fdefd60fcadd5452bccfc905b1b4d92ecda5c740a.png" src="../../../_images/98302ce80307f992da9e6e1fdefd60fcadd5452bccfc905b1b4d92ecda5c740a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -851,7 +867,7 @@ imshow(X, cmap=None, norm=None, *, aspect=None, interpolation=None, alpha=None, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/8e1032fc99c0ff8ad1265b8a4ec9917e3af6f0d334c1cecfdb6ea7fe8c3c0561.png" src="../../../_images/8e1032fc99c0ff8ad1265b8a4ec9917e3af6f0d334c1cecfdb6ea7fe8c3c0561.png" />
+<img alt="../../../_images/d0f968acd86c7aa1106bdad07d7f091c36f8fca8ace610aa78a2ac0a91e621e4.png" src="../../../_images/d0f968acd86c7aa1106bdad07d7f091c36f8fca8ace610aa78a2ac0a91e621e4.png" />
 </div>
 </div>
 <p>As you can see, the image may look <em>very</em> different depending upon the colormap and min/max values used.</p>
@@ -866,12 +882,12 @@ imshow(X, cmap=None, norm=None, *, aspect=None, interpolation=None, alpha=None, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/75933c267f1ee38b3c71cc1ac85320629c2aee5b6dc112e40dcdc4ef141ae05b.png" src="../../../_images/75933c267f1ee38b3c71cc1ac85320629c2aee5b6dc112e40dcdc4ef141ae05b.png" />
+<img alt="../../../_images/e98a439121facf0e668f686aac3dc4b3093429c16c25b4b16abc4ffc86dd99fc.png" src="../../../_images/e98a439121facf0e668f686aac3dc4b3093429c16c25b4b16abc4ffc86dd99fc.png" />
 </div>
 </div>
 </section>
 <section id="further-customizing-image-display">
-<h3>Further customizing image display<a class="headerlink" href="#further-customizing-image-display" title="Permalink to this headline">#</a></h3>
+<h3>Further customizing image display<a class="headerlink" href="#further-customizing-image-display" title="Permalink to this heading">#</a></h3>
 <p>Lots more can be done to customize appearance.</p>
 <p>In order to standardize things throughout this book, I normally turn off the outer axis (numbers around the boundary), set an image title, and use a grayscale lookup table.</p>
 <p>The code to do this is shown below.</p>
@@ -888,16 +904,16 @@ imshow(X, cmap=None, norm=None, *, aspect=None, interpolation=None, alpha=None, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3843/2843473488.py:2: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5795/2843473488.py:2: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
   im = imread(&#39;../../../images/spooked.png&#39;)
 </pre></div>
 </div>
-<img alt="../../../_images/d26af95a9a6b2efa975bff630cd8788270cc9a16dc4e2b75302733c037a00dff.png" src="../../../_images/d26af95a9a6b2efa975bff630cd8788270cc9a16dc4e2b75302733c037a00dff.png" />
+<img alt="../../../_images/c08d56e69f9543853e1ed24d32766079b78635095cf98080778909b76c388704.png" src="../../../_images/c08d56e69f9543853e1ed24d32766079b78635095cf98080778909b76c388704.png" />
 </div>
 </div>
 </section>
 <section id="writing-functions">
-<h3>Writing functions<a class="headerlink" href="#writing-functions" title="Permalink to this headline">#</a></h3>
+<h3>Writing functions<a class="headerlink" href="#writing-functions" title="Permalink to this heading">#</a></h3>
 <p>If you use the same customizations frequently, it helps to <strong>define a function</strong> that applies them.
 Then you don’t need to copy and paste the same lines of code frequently; rather, you just call the function instead.</p>
 <blockquote>
@@ -934,13 +950,13 @@ Then you don’t need to copy and paste the same lines of code frequently; rathe
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/db892e7feb3d8241d1a96b3c47c27a0dfb553b45017b83832e77515f6184c7a3.png" src="../../../_images/db892e7feb3d8241d1a96b3c47c27a0dfb553b45017b83832e77515f6184c7a3.png" />
-<img alt="../../../_images/0c2f2b16d5e44aaf4108d94db85cf1a608ec48fd3dd420d3c22ff4c616015795.png" src="../../../_images/0c2f2b16d5e44aaf4108d94db85cf1a608ec48fd3dd420d3c22ff4c616015795.png" />
+<img alt="../../../_images/47446d246dce8aaa7abdcb8c493ad2777afaca14ff4ac607060a042927f667db.png" src="../../../_images/47446d246dce8aaa7abdcb8c493ad2777afaca14ff4ac607060a042927f667db.png" />
+<img alt="../../../_images/2050819cd2259c3d59c8ee184d593d035c3b13107f190512acb00ac87054146c.png" src="../../../_images/2050819cd2259c3d59c8ee184d593d035c3b13107f190512acb00ac87054146c.png" />
 </div>
 </div>
 </section>
 <section id="helper-functions-in-this-book">
-<h3>Helper functions in this book<a class="headerlink" href="#helper-functions-in-this-book" title="Permalink to this headline">#</a></h3>
+<h3>Helper functions in this book<a class="headerlink" href="#helper-functions-in-this-book" title="Permalink to this heading">#</a></h3>
 <p>I’ve written several helper functions to standardize image display throughout this handbook.
 They aren’t part of any wider Python library, but we can use them here to make our scripts shorter and focus on the more important concepts.</p>
 <p>To use these helper functions, we need to import them once per Jupyter notebook.
@@ -964,7 +980,7 @@ Then we can use the methods such as <code class="docutils literal notranslate"><
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15fb7cd65ffae5ef722388010a3fec28ebc7dc4dc04b02a1fede879734e6372f.png" src="../../../_images/15fb7cd65ffae5ef722388010a3fec28ebc7dc4dc04b02a1fede879734e6372f.png" />
+<img alt="../../../_images/9caa86efa6f24be311a7b4a3792f9d4011551748606b7d33d3ff5b4c7e4225e4.png" src="../../../_images/9caa86efa6f24be311a7b4a3792f9d4011551748606b7d33d3ff5b4c7e4225e4.png" />
 </div>
 </div>
 </section>
@@ -996,11 +1012,10 @@ Then we can use the methods such as <code class="docutils literal notranslate"><
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="imagej.html"
@@ -1020,10 +1035,7 @@ Then we can use the methods such as <code class="docutils literal notranslate"><
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1081,6 +1093,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -1092,8 +1111,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

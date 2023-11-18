@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>ImageJ: Thresholding &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -79,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -139,13 +150,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -162,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -422,10 +434,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -433,7 +445,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -485,7 +497,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="imagej-thresholding">
-<h1>ImageJ: Thresholding<a class="headerlink" href="#imagej-thresholding" title="Permalink to this headline">#</a></h1>
+<h1>ImageJ: Thresholding<a class="headerlink" href="#imagej-thresholding" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -510,12 +522,12 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Here, we will explore some ImageJ’s methods to apply thresholds to images, generating binary images, labeled images and ROIs.
 We will also confront some of the associated complications.</p>
 </section>
 <section id="global-thresholding">
-<h2>Global thresholding<a class="headerlink" href="#global-thresholding" title="Permalink to this headline">#</a></h2>
+<h2>Global thresholding<a class="headerlink" href="#global-thresholding" title="Permalink to this heading">#</a></h2>
 <p>The main thresholding command in ImageJ is <span class="menuselection notranslate">Image ‣ Adjust ‣ Threshold…</span>, with the shortcut <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">T</kbd></kbd>.</p>
 <p>This opens a <em>Threshold</em> dialog that allows you to identify pixels above a threshold, below a threshold, or falling between two thresholds.
 These options are controlled using a combination of the threshold sliders and the <span class="guilabel notranslate">Dark background</span> checkbox.
@@ -551,10 +563,10 @@ Therefore if you find that any processing of binary images gives odd results, be
 </div>
 </section>
 <section id="creating-objects">
-<h2>Creating objects<a class="headerlink" href="#creating-objects" title="Permalink to this headline">#</a></h2>
+<h2>Creating objects<a class="headerlink" href="#creating-objects" title="Permalink to this heading">#</a></h2>
 <p>Once we have a binary image, the next step is to identify objects for further exploration.</p>
 <section id="generating-measuring-rois">
-<h3>Generating &amp; measuring ROIs<a class="headerlink" href="#generating-measuring-rois" title="Permalink to this headline">#</a></h3>
+<h3>Generating &amp; measuring ROIs<a class="headerlink" href="#generating-measuring-rois" title="Permalink to this heading">#</a></h3>
 <p>ROIs are a good way to represent objects in ImageJ, because they are easy to measure.
 In 2D, there are several options to generate ROIs from a thresholded image, each with slightly different applications:</p>
 <ul class="simple">
@@ -613,7 +625,7 @@ They aren’t <em>always</em> doing what you might expect.</p>
 </div>
 </section>
 <section id="generating-labeled-images">
-<h3>Generating labeled images<a class="headerlink" href="#generating-labeled-images" title="Permalink to this headline">#</a></h3>
+<h3>Generating labeled images<a class="headerlink" href="#generating-labeled-images" title="Permalink to this heading">#</a></h3>
 <p>ROIs are not the only way to represent image objects: sometimes labeled images are more useful.</p>
 <p><span class="menuselection notranslate">Analyze ‣ Analyze Particles…</span> can generate labeled images by using the <span class="guilabel notranslate">Show: Count Masks</span> option.
 This will generate a new image in which each pixel has a unique integer value indicating the number of the object it is part of – or zero if it is in the background.
@@ -650,7 +662,7 @@ There are three options: 4-connectivity, 8-connectivity and ‘legacy’ (where 
 </section>
 </section>
 <section id="local-thresholding">
-<h2>Local thresholding<a class="headerlink" href="#local-thresholding" title="Permalink to this headline">#</a></h2>
+<h2>Local thresholding<a class="headerlink" href="#local-thresholding" title="Permalink to this heading">#</a></h2>
 <p>A few methods to perform local thresholding can be found under <span class="menuselection notranslate">Image ‣ Adjust ‣ Auto Local Threshold</span>.
 The dialog again provides the option to try all of them.</p>
 <figure class="align-center" id="fig-thresholds-imagej-local-dialog">
@@ -671,10 +683,10 @@ Practical</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="addendum-practical-issues">
-<h2>Addendum: Practical issues<a class="headerlink" href="#addendum-practical-issues" title="Permalink to this headline">#</a></h2>
+<h2>Addendum: Practical issues<a class="headerlink" href="#addendum-practical-issues" title="Permalink to this heading">#</a></h2>
 <p>We end this section with a brief discussion of a few non-obvious practical issues that impact thresholding, related to bit-depths and image types.</p>
 <section id="using-nans">
-<span id="sec-thresholding-nans"></span><h3>Using NaNs<a class="headerlink" href="#using-nans" title="Permalink to this headline">#</a></h3>
+<span id="sec-thresholding-nans"></span><h3>Using NaNs<a class="headerlink" href="#using-nans" title="Permalink to this heading">#</a></h3>
 <p>The first issue appears when you click <span class="guilabel notranslate">Apply</span> in the <span class="menuselection notranslate">Image ‣ Adjust ‣ Threshold…</span> dialog box for a 32-bit image.
 This leads to a prompt asking whether to <span class="guilabel notranslate">Set Background Pixels to NaN</span>.</p>
 <p>If this is chosen, a binary image is no longer created.
@@ -714,7 +726,7 @@ Instead, all NaNs simply become zero.</p>
 </div>
 </section>
 <section id="histogram-binning">
-<h3>Histogram binning<a class="headerlink" href="#histogram-binning" title="Permalink to this headline">#</a></h3>
+<h3>Histogram binning<a class="headerlink" href="#histogram-binning" title="Permalink to this heading">#</a></h3>
 <p>The second way in which bit-depths and types matter is that histograms of images &gt; 8-bit involve <em>binning</em> the data.
 For example, with a 32-bit image it would probably not make sense to create a histogram that has separate counts for all possible pixel values: in addition to counts for pixels with exact values 1 and 2, we would have thousands of counts for pixels with fractions in between and most of these counts would be 0.</p>
 <p>Instead, the histogram is generated by dividing the total data range (maximum – minimum pixel values) into 256 separate <em>bins</em> with equal widths, and counting how many pixels have values falling into the range of each bin.
@@ -745,7 +757,7 @@ Practical</label><div class="sd-tab-content docutils">
 Solution</label><div class="sd-tab-content docutils">
 <p>This image shows a potential use of the <span class="guilabel notranslate">Don’t reset range</span> option – used cautiously.</p>
 <figure class="align-center" id="id4">
-<img alt="../../../_images/db2b775a3d5ea76220a2adccbede5c06f73dadc922fc656e47a312fab4642c00.png" src="../../../_images/db2b775a3d5ea76220a2adccbede5c06f73dadc922fc656e47a312fab4642c00.png" />
+<img alt="../../../_images/2d5cd8f18eeff765e3a3a6e95fff4a84c907318c92bdfb67cab6745156cd5c10.png" src="../../../_images/2d5cd8f18eeff765e3a3a6e95fff4a84c907318c92bdfb67cab6745156cd5c10.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 81 </span><span class="caption-text">Thresholding a 16-bit image with and without ‘Don’t reset range’ selected.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -811,11 +823,10 @@ However, if you do experience the issue then two possible ways to overcome it ar
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="thresholding.html"
@@ -835,10 +846,7 @@ However, if you do experience the issue then two possible ways to overcome it ar
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -902,6 +910,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -913,8 +928,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

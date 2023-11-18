@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>ImageJ: Files &amp; file formats &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -81,6 +83,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -141,13 +152,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -164,7 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -424,10 +436,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -435,7 +447,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -487,17 +499,17 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="imagej-files-file-formats">
-<h1>ImageJ: Files &amp; file formats<a class="headerlink" href="#imagej-files-file-formats" title="Permalink to this headline">#</a></h1>
+<h1>ImageJ: Files &amp; file formats<a class="headerlink" href="#imagej-files-file-formats" title="Permalink to this heading">#</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>On its own, ImageJ can read and write a range of common – and a few not-so-common – file formats.
 With Bio-Formats, it can handle a lot more.</p>
 <p>This section describes some of the most useful file formats for bioimage analysis and how to work with them effectively in ImageJ, along with a few tricks that may help if files are causing you trouble.</p>
 </section>
 <section id="file-formats-in-imagej-only">
-<h2>File formats in ImageJ (only)<a class="headerlink" href="#file-formats-in-imagej-only" title="Permalink to this headline">#</a></h2>
+<h2>File formats in ImageJ (only)<a class="headerlink" href="#file-formats-in-imagej-only" title="Permalink to this heading">#</a></h2>
 <section id="opening-images">
-<h3>Opening images<a class="headerlink" href="#opening-images" title="Permalink to this headline">#</a></h3>
+<h3>Opening images<a class="headerlink" href="#opening-images" title="Permalink to this heading">#</a></h3>
 <p>As described in <a class="reference internal" href="../1-images_and_pixels/imagej.html#chap-imagej-pixels"><span class="std std-ref">ImageJ: Images &amp; pixels</span></a>, the general approach to open an image is to drag the file on top of the ImageJ toolbar and hope for the best.
 Assuming ImageJ supports the file format, then it will usually just work.</p>
 <p>One occasion when that might <em>seem</em> insufficient is whenever you have a large number of image files in the same folder, which really are different slices or time points of the same image.
@@ -520,7 +532,7 @@ If you don’t mind its limitations, you can also open an ImageJ TIFF as a virtu
 </div>
 </section>
 <section id="saving-images-for-analysis">
-<h3>Saving images for analysis<a class="headerlink" href="#saving-images-for-analysis" title="Permalink to this headline">#</a></h3>
+<h3>Saving images for analysis<a class="headerlink" href="#saving-images-for-analysis" title="Permalink to this heading">#</a></h3>
 <p>To save an image, <span class="menuselection notranslate">File ‣ Save As ‣ Tiff…</span> <em>might</em> be all you ever need.
 This is ImageJ’s default format, and so preserves all the important information that it requires – including the pixel size.
 It even includes any <a class="reference internal" href="../2-measurements/imagej.html#chap-rois"><span class="std std-ref">active ROIs and overlays</span></a>.</p>
@@ -534,7 +546,7 @@ The cost is that reading and writing zip files can take quite a lot more time.</
 Depending upon the original image, most will result in some kind of loss: for example through converting to RGB, discarding ROIs or dimensions, or applying some pixel-changing lossy compression.</p>
 </section>
 <section id="saving-images-for-display">
-<h3>Saving images for display<a class="headerlink" href="#saving-images-for-display" title="Permalink to this headline">#</a></h3>
+<h3>Saving images for display<a class="headerlink" href="#saving-images-for-display" title="Permalink to this heading">#</a></h3>
 <p>When it comes to saving an image to display, data loss may be tolerable – or even necessary.
 We care about appearance and compatibility, not exact pixel values.</p>
 <p>ImageJ TIFF can also be used to save an image for display, but the large file sizes can be a problem.
@@ -546,14 +558,14 @@ The quality of the JPEG can be adjusted via <span class="menuselection notransla
 </section>
 </section>
 <section id="using-bio-formats">
-<h2>Using Bio-Formats<a class="headerlink" href="#using-bio-formats" title="Permalink to this headline">#</a></h2>
+<h2>Using Bio-Formats<a class="headerlink" href="#using-bio-formats" title="Permalink to this heading">#</a></h2>
 <p>Bio-Formats is extremely useful when working with scientific images generally – and pretty much indispensable when it comes to microscopy.
 It provides support for reading a wide range of formats, and writing a somewhat smaller (but still important) range.</p>
 <p>If you’re using the Fiji distribution of ImageJ, then you should have Bio-Formats installed by default.
 Otherwise, you’ll likely need to install <em>bioformats_package.jar</em> yourself.
 You can find it along with installation instructions at <a class="reference external" href="https://www.openmicroscopy.org/bio-formats/downloads/">https://www.openmicroscopy.org/bio-formats/downloads/</a></p>
 <section id="id1">
-<h3>Opening images<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>Opening images<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Once it’s installed, Bio-Formats can do much of its work without you needing to think about it: if ImageJ cannot open a file by drag &amp; drop, then it will usually let Bio-Formats have a go.
 You can tell when that has happened because the familiar <em>Bio-Formats Import Options</em> dialog will pop up:</p>
 <a class="reference internal image-reference" href="../../../_images/imagej-files-bioformats.png"><img alt="../../../_images/imagej-files-bioformats.png" class="align-center" src="../../../_images/imagej-files-bioformats.png" style="width: 75%;" /></a>
@@ -569,7 +581,7 @@ If you find yourself doing these tasks each time you open an image anyway, chang
 </div>
 </section>
 <section id="saving-images">
-<h3>Saving images<a class="headerlink" href="#saving-images" title="Permalink to this headline">#</a></h3>
+<h3>Saving images<a class="headerlink" href="#saving-images" title="Permalink to this heading">#</a></h3>
 <p>To save a file, you can use <span class="menuselection notranslate">Plugins ‣ Bio-Formats ‣ Bio-Formats Exporter</span>.</p>
 <p>This is perhaps most useful if you want to save an OME-TIFF image.
 An OME-TIFF differs from a regular ImageJ TIFF in two main ways:</p>
@@ -581,7 +593,7 @@ An OME-TIFF differs from a regular ImageJ TIFF in two main ways:</p>
 </section>
 </section>
 <section id="troubleshooting-files">
-<h2>Troubleshooting files<a class="headerlink" href="#troubleshooting-files" title="Permalink to this headline">#</a></h2>
+<h2>Troubleshooting files<a class="headerlink" href="#troubleshooting-files" title="Permalink to this heading">#</a></h2>
 <p>Sometimes you might get slightly unlucky: an image fails to open, even though it <em>could</em> be opened.</p>
 <p>This can happen whenever ImageJ optimistically <em>thinks</em> it can open a file, gives it a shot, but fails with a error-emitting whimper.
 Pride presumably wounded, ImageJ never passes the file to Bio-Formats to try.
@@ -662,11 +674,10 @@ In the end, the settings you need are:</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="files.html"
@@ -686,10 +697,7 @@ In the end, the settings you need are:</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -753,6 +761,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -764,8 +779,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

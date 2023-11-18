@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Point operations &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -81,6 +83,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -141,13 +152,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -164,7 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -424,10 +436,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -435,7 +447,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -482,7 +494,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="point-operations">
-<span id="chap-point-operations"></span><h1>Point operations<a class="headerlink" href="#point-operations" title="Permalink to this headline">#</a></h1>
+<span id="chap-point-operations"></span><h1>Point operations<a class="headerlink" href="#point-operations" title="Permalink to this heading">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -515,7 +527,7 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>A step used to process an image in some way can be called an <strong>operation</strong>.</p>
 <p>The simplest operations are <strong>point operations</strong>, which act on individual pixels.
 Point operations change each pixel in a way that depends upon its own value, but not upon where it is in the image nor upon the values of other pixels.
@@ -533,9 +545,9 @@ That way you can always return to the original data if you need to.</p>
 </div>
 </section>
 <section id="point-operations-for-single-images">
-<h2>Point operations for single images<a class="headerlink" href="#point-operations-for-single-images" title="Permalink to this headline">#</a></h2>
+<h2>Point operations for single images<a class="headerlink" href="#point-operations-for-single-images" title="Permalink to this heading">#</a></h2>
 <section id="arithmetic">
-<h3>Arithmetic<a class="headerlink" href="#arithmetic" title="Permalink to this headline">#</a></h3>
+<h3>Arithmetic<a class="headerlink" href="#arithmetic" title="Permalink to this heading">#</a></h3>
 <p>Pixel values are just numbers.
 When we have numbers, we can do arithmetic.</p>
 <p>It should therefore come as no surprise that we can take our pixel values and change them by adding, subtracting, multiplying or dividing by some other value.
@@ -585,14 +597,14 @@ Therefore the first step of any image processing is often to convert the image t
 </div>
 </section>
 <section id="image-inversion">
-<span id="sec-points-inversion"></span><h3>Image inversion<a class="headerlink" href="#image-inversion" title="Permalink to this headline">#</a></h3>
+<span id="sec-points-inversion"></span><h3>Image inversion<a class="headerlink" href="#image-inversion" title="Permalink to this heading">#</a></h3>
 <p>Inverting an image effectively involves ‘flipping’ the intensities: making the higher values lower, and the lower values higher.</p>
 <p>In the case of 8-bit images, inverted pixel values can be easily computed simply by subtracting the original values from the maximum possible – i.e. from 255.</p>
 <p>Why is inversion useful?</p>
 <p>Suppose you have a good strategy designed to detect bright structures, but it doesn’t work for you because your images contain dark structures.
 If you invert your images first, then the structures become bright – and your detection strategy might now succeed.</p>
 <figure class="align-center" id="fig-image-inversion" style="width: 85%">
-<img alt="../../../_images/9e549079d9a3a3a68881a23d1a481008bf2a9379f1fb59d18ab593334945ab4a.png" src="../../../_images/9e549079d9a3a3a68881a23d1a481008bf2a9379f1fb59d18ab593334945ab4a.png" />
+<img alt="../../../_images/41b30ed4581b225f68c411fe3f77dff4f8690314216c47d68549ba1c550ac226.png" src="../../../_images/41b30ed4581b225f68c411fe3f77dff4f8690314216c47d68549ba1c550ac226.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 58 </span><span class="caption-text">The effect of image and LUT inversion. Note that each histogram appears to be a mirror image of the other. Also, the image is clipped (sorry).</span><a class="headerlink" href="#fig-image-inversion" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -608,7 +620,7 @@ This retains the key properties of image inversion: it flips the high and low va
 </div>
 </section>
 <section id="nonlinear-contrast-enhancement">
-<h3>Nonlinear contrast enhancement<a class="headerlink" href="#nonlinear-contrast-enhancement" title="Permalink to this headline">#</a></h3>
+<h3>Nonlinear contrast enhancement<a class="headerlink" href="#nonlinear-contrast-enhancement" title="Permalink to this heading">#</a></h3>
 <p>With arithmetic operations we change the pixel values, usefully or otherwise, but (assuming we have not clipped our image in the process) we have done so in a <strong>linear</strong> way.
 At most it would take another multiplication and/or addition to get us back to where we were.
 Because a similar relationship between pixel values exists, we could also adjust the brightness and contrast LUT so that it does not <em>look</em> like we have done anything at all.</p>
@@ -675,7 +687,7 @@ An easier approach is to duplicate the image and apply any non-linear adjustment
 </details>
 </div>
 <figure class="align-center" id="fig-nonlinear-contrast">
-<img alt="../../../_images/59a78a0382c395079782bfafa625758bdc5f5e96102b937fe240d8498c6d9d5c.png" src="../../../_images/59a78a0382c395079782bfafa625758bdc5f5e96102b937fe240d8498c6d9d5c.png" />
+<img alt="../../../_images/4bb107312b0aab618ab414feee729ae128caddaf9be9d80b5468f7b79e1699a1.png" src="../../../_images/4bb107312b0aab618ab414feee729ae128caddaf9be9d80b5468f7b79e1699a1.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 59 </span><span class="caption-text">Nonlinear transforms applied to a simple ‘ramp’ image, consisting of linearly increasing pixel values.
 Replacing each pixel with its log or gamma-adjusted value has the effect of compressing either the lower or higher intensities closer together to free up more gray levels for the others. Note that, here we assume an 8-bit input image and have incorporated some necessary rescaling for an 8-bit output (based on the approach used by ImageJ).</span><a class="headerlink" href="#fig-nonlinear-contrast" title="Permalink to this image">#</a></p>
@@ -728,7 +740,7 @@ However, log or gamma transforms make this possible.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-point-gamma-spooked">
-<img alt="../../../_images/409649c99bcdee9847a2d3cdcaff667f507381a7b5a72002241544de3ef7259d.png" src="../../../_images/409649c99bcdee9847a2d3cdcaff667f507381a7b5a72002241544de3ef7259d.png" />
+<img alt="../../../_images/0c87a70375a87de042e56c7470bf654ec74767928d8f0cbe9fb6831ded0a2109.png" src="../../../_images/0c87a70375a87de042e56c7470bf654ec74767928d8f0cbe9fb6831ded0a2109.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 60 </span><span class="caption-text">The application of nonlinear contrast enhancement to an image with a wide range of values.
 <em>(Top row)</em> In the original image, it’s not possible to see details in both the foreground and background simultaneously.
@@ -744,7 +756,7 @@ However, log or gamma transforms make this possible.</p>
 </section>
 </section>
 <section id="point-operations-multiple-images">
-<h2>Point operations &amp; multiple images<a class="headerlink" href="#point-operations-multiple-images" title="Permalink to this headline">#</a></h2>
+<h2>Point operations &amp; multiple images<a class="headerlink" href="#point-operations-multiple-images" title="Permalink to this heading">#</a></h2>
 <p>Instead of applying arithmetic using an image and a constant, we could also use two images of the same size.
 These can readily be added, subtracted, multiplied or divided by applying the operations to the corresponding pixels.</p>
 <p>This is a technique that is used <em>all the time</em> in image processing.
@@ -762,7 +774,7 @@ Applications include:</p>
 Question</label><div class="sd-tab-content docutils">
 <p>In the two 32-bit images shown here, white pixels have values of one and black pixels have values of zero (gray pixels have values somewhere in between).</p>
 <figure class="align-center">
-<img alt="../../../_images/ab499f894f082adf515b3e8791a039e521547d7351ae43642c788d40a06f8ee4.png" src="../../../_images/ab499f894f082adf515b3e8791a039e521547d7351ae43642c788d40a06f8ee4.png" />
+<img alt="../../../_images/af0c5dd58ff640185555faf77c9f20aac7053a3820f90a92867e0bba8bf4dd46.png" src="../../../_images/af0c5dd58ff640185555faf77c9f20aac7053a3820f90a92867e0bba8bf4dd46.png" />
 </figure>
 <p>What would be the result of multiplying the images together?
 And what would be the result of dividing the left image by the right image?</p>
@@ -772,7 +784,7 @@ And what would be the result of dividing the left image by the right image?</p>
 Answer</label><div class="sd-tab-content docutils">
 <p>Multiplying the images effectively results in everything outside the white region in the right image being removed from the left image (i.e. set to zero).</p>
 <figure class="align-center">
-<img alt="../../../_images/8196cfa7e6fa780f5959b6b92d41c2a378ccd10170131ad59d2ee08c08b1eb54.png" src="../../../_images/8196cfa7e6fa780f5959b6b92d41c2a378ccd10170131ad59d2ee08c08b1eb54.png" />
+<img alt="../../../_images/016c5a01ee7bbae6aef15b1461461f2bf82af3b1fdfddeaa307d8d874e3d2fd3.png" src="../../../_images/016c5a01ee7bbae6aef15b1461461f2bf82af3b1fdfddeaa307d8d874e3d2fd3.png" />
 </figure>
 <p>Dividing has a similar effect, except that instead of becoming zero the masked-out pixels will take one of three results, depending upon the original pixel’s value in the left image:</p>
 <ul class="simple">
@@ -830,7 +842,7 @@ The noise appears as a graininess throughout the image, which can be seen as ari
 <p>This is equivalent to adding a separate ‘noise image’ to the non-existent cleaner image that we would prefer to have recorded.
 If we knew the pixels in the noise image then we could simply subtract it to get the clean result – but, in practice, their randomness means that we do not.</p>
 <figure class="align-center" id="fig-points-noise-added">
-<img alt="../../../_images/3bcc164647ecbf21f0d443bc040840e5f58ca3bcc6635fa8b8b18629ecfc156d.png" src="../../../_images/3bcc164647ecbf21f0d443bc040840e5f58ca3bcc6635fa8b8b18629ecfc156d.png" />
+<img alt="../../../_images/3614eefede1dd2ee40fb168bf14b9a35fac735d30f9af3a2afc22937d70e073a.png" src="../../../_images/3614eefede1dd2ee40fb168bf14b9a35fac735d30f9af3a2afc22937d70e073a.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 61 </span><span class="caption-text">Simulating imperfect image acquisition by adding noise to an ‘ideal’ image.</span><a class="headerlink" href="#fig-points-noise-added" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -869,11 +881,10 @@ Using these simulations we can figure out things like how processing steps or ch
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../1-processing_and_analysis/processing_and_analysis.html"
@@ -893,10 +904,7 @@ Using these simulations we can figure out things like how processing steps or ch
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -955,6 +963,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -966,8 +981,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

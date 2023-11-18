@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Python: Measurements &amp; histograms &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -79,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -139,13 +150,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -162,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -422,10 +434,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -433,7 +445,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -478,7 +490,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="python-measurements-histograms">
-<h1>Python: Measurements &amp; histograms<a class="headerlink" href="#python-measurements-histograms" title="Permalink to this headline">#</a></h1>
+<h1>Python: Measurements &amp; histograms<a class="headerlink" href="#python-measurements-histograms" title="Permalink to this heading">#</a></h1>
 <p>Here, we will explore how to make measurements and generate histograms with Python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -499,11 +511,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/5a55af9f169379b3da578f1b217c5e7d58175ec03acda816b72e11e1286549cc.png" src="../../../_images/5a55af9f169379b3da578f1b217c5e7d58175ec03acda816b72e11e1286549cc.png" />
+<img alt="../../../_images/53f606755414363ae01a26189984d858295b27daf88bee40d0f5d71468cc07e2.png" src="../../../_images/53f606755414363ae01a26189984d858295b27daf88bee40d0f5d71468cc07e2.png" />
 </div>
 </div>
 <section id="introduction-to-numpy-arrays">
-<h2>Introduction to NumPy arrays<a class="headerlink" href="#introduction-to-numpy-arrays" title="Permalink to this headline">#</a></h2>
+<h2>Introduction to NumPy arrays<a class="headerlink" href="#introduction-to-numpy-arrays" title="Permalink to this heading">#</a></h2>
 <p>The images we are working with in Python are <strong>NumPy arrays</strong> - <a class="reference external" href="https://numpy.org">https://numpy.org</a></p>
 <p>Rather than plotting the image with <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code>, we can also simply print its values.
 Since there can be a <em>lot</em> of values (i.e. millions of pixels per image), only a few are shown by default.</p>
@@ -553,12 +565,12 @@ Since there can be a <em>lot</em> of values (i.e. millions of pixels per image),
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(250, 240)
 </pre></div>
 </div>
-<img alt="../../../_images/6a468cff7b890bddc0300b22fe4ffefe7d9d1528d39213540d4ddec86f879dfa.png" src="../../../_images/6a468cff7b890bddc0300b22fe4ffefe7d9d1528d39213540d4ddec86f879dfa.png" />
+<img alt="../../../_images/630fe4f84593888ef02227ece0c4207eb2e1d445f0d5ffd19054607e5b73b2c6.png" src="../../../_images/630fe4f84593888ef02227ece0c4207eb2e1d445f0d5ffd19054607e5b73b2c6.png" />
 </div>
 </div>
 </section>
 <section id="calculating-statistics">
-<h2>Calculating statistics<a class="headerlink" href="#calculating-statistics" title="Permalink to this headline">#</a></h2>
+<h2>Calculating statistics<a class="headerlink" href="#calculating-statistics" title="Permalink to this heading">#</a></h2>
 <p>A more meaningful benefit of working with NumPy arrays, for our purposes at least, is that they enable us to calculate some summary statistics <em>extremely</em> easily.</p>
 <p>For example, to compute the average (mean) pixel value we can simply use <code class="docutils literal notranslate"><span class="pre">im.mean()</span></code>.</p>
 <div class="cell docutils container">
@@ -594,7 +606,7 @@ Since there can be a <em>lot</em> of values (i.e. millions of pixels per image),
 </div>
 </div>
 <section id="formatting-output">
-<h3>Formatting output<a class="headerlink" href="#formatting-output" title="Permalink to this headline">#</a></h3>
+<h3>Formatting output<a class="headerlink" href="#formatting-output" title="Permalink to this heading">#</a></h3>
 <p>Things become more readable if we add some extra text, rather than just printing numbers.</p>
 <p>One of the easiest ways to do this is to use an ‘f-string’, which is in the form <code class="docutils literal notranslate"><span class="pre">f'Some</span> <span class="pre">text</span> <span class="pre">{some_variable}</span></code>.</p>
 <p>The part between the braces <code class="docutils literal notranslate"><span class="pre">{}</span></code> can be a calculation, and if you add <code class="docutils literal notranslate"><span class="pre">:.2f</span></code> at the end this will optionally limit the number of decimal places (here, to two).</p>
@@ -619,7 +631,7 @@ Std.dev.: 27.156
 </section>
 </section>
 <section id="generating-histograms">
-<h2>Generating histograms<a class="headerlink" href="#generating-histograms" title="Permalink to this headline">#</a></h2>
+<h2>Generating histograms<a class="headerlink" href="#generating-histograms" title="Permalink to this heading">#</a></h2>
 <p>We can now try to generate image histograms, using <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code>.</p>
 <p>You might expect <code class="docutils literal notranslate"><span class="pre">plt.hist(im)</span></code> to work, just as <code class="docutils literal notranslate"><span class="pre">plt.imshow(im)</span></code> did previously.
 However, the result can be a bit surprising.</p>
@@ -631,7 +643,7 @@ However, the result can be a bit surprising.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/0e591e2f7d38897899411754e5c72a0c36338403d651b932ef127571d60e7af2.png" src="../../../_images/0e591e2f7d38897899411754e5c72a0c36338403d651b932ef127571d60e7af2.png" />
+<img alt="../../../_images/4eab5203170e354ce1c5847d24ac3686bc2dbced83c53fe9d510de4efbe04418.png" src="../../../_images/4eab5203170e354ce1c5847d24ac3686bc2dbced83c53fe9d510de4efbe04418.png" />
 </div>
 </div>
 <p>The problem is that the image is 2D, and <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code> is expecting just a single 1D list of values.
@@ -659,7 +671,7 @@ Shape after flatten(): (60000,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/b9c080460f559668533fd873de5d71a0454ff8943043b9702d18cedd246b1a03.png" src="../../../_images/b9c080460f559668533fd873de5d71a0454ff8943043b9702d18cedd246b1a03.png" />
+<img alt="../../../_images/735341bd03066ba2b2b8711da91c97d8aec82a7ea72116887304ddb43fe8f464.png" src="../../../_images/735341bd03066ba2b2b8711da91c97d8aec82a7ea72116887304ddb43fe8f464.png" />
 </div>
 </div>
 <p>As with <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code>, we have lots of options to customize the histogram.
@@ -672,7 +684,7 @@ This includes the ability to set the color or number of histogram bins.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/e0dba599dd31d51922b850781b48a66ba1d265a4f85f649493bf58e990629264.png" src="../../../_images/e0dba599dd31d51922b850781b48a66ba1d265a4f85f649493bf58e990629264.png" />
+<img alt="../../../_images/d4c6609c7d3684bcc915d5b67ca2dcd121a73f90a4411d87740f066476579c00.png" src="../../../_images/d4c6609c7d3684bcc915d5b67ca2dcd121a73f90a4411d87740f066476579c00.png" />
 </div>
 </div>
 <blockquote>
@@ -710,11 +722,10 @@ This includes the ability to set the color or number of histogram bins.</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="imagej.html"
@@ -734,10 +745,7 @@ This includes the ability to set the color or number of histogram bins.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -794,6 +802,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -805,8 +820,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

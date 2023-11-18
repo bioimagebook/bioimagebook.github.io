@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Noise &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -81,6 +83,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -141,13 +152,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -164,7 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -424,10 +436,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -435,7 +447,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -492,7 +504,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="noise">
-<span id="chap-formation-noise"></span><h1>Noise<a class="headerlink" href="#noise" title="Permalink to this headline">#</a></h1>
+<span id="chap-formation-noise"></span><h1>Noise<a class="headerlink" href="#noise" title="Permalink to this heading">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -526,7 +538,7 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>We could reasonably expect that a noise-free microscopy image should look pleasantly smooth, not least because the convolution with the PSF has a blurring effect that softens any sharp transitions.
 Yet in practice raw fluorescence microscopy images are not smooth.
 They are always, to a greater or lesser extent, corrupted by noise.
@@ -540,7 +552,7 @@ Before starting, it may be helpful to know the one major lesson of this chapter 
 <p>This general guidance applies in the overwhelming majority of cases when a good quality microscope is functioning properly.
 Nevertheless, it may be helpful to know a bit more detail about why – and what you might do if detecting more photons is not feasible.</p>
 <section id="background">
-<span id="sec-noise-background"></span><h3>Background<a class="headerlink" href="#background" title="Permalink to this headline">#</a></h3>
+<span id="sec-noise-background"></span><h3>Background<a class="headerlink" href="#background" title="Permalink to this heading">#</a></h3>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -601,7 +613,7 @@ Nevertheless, it may be helpful to know a bit more detail about why – and what
 </details>
 </div>
 <figure class="align-center" id="fig-noise-demo">
-<img alt="../../../_images/47e63c02a191b2380edb1af2f26685fcf882de23aa28b2cf1839b5d39ddca2c7.png" src="../../../_images/47e63c02a191b2380edb1af2f26685fcf882de23aa28b2cf1839b5d39ddca2c7.png" />
+<img alt="../../../_images/dc9ad20196ac211207544dfb0935ecdaabb79557c0962e9993d0752d3f897bd8.png" src="../../../_images/dc9ad20196ac211207544dfb0935ecdaabb79557c0962e9993d0752d3f897bd8.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 142 </span><span class="caption-text">Illustration of the difference between a noisy image that we can record (A), and the noise-free image we would prefer (B). The ‘noise’ itself is what would be left over if we subtracted one from the other (C). The histogram in (D) resembles a normal (i.e. Gaussian) distribution and shows that the noise consists of positive and negative values, with a mean of 0.</span><a class="headerlink" href="#fig-noise-demo" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -611,7 +623,7 @@ Nevertheless, it may be helpful to know a bit more detail about why – and what
 <li><p><strong>Noise is random</strong> – For any pixel, the noise is a random positive or negative number added to the ‘true value’ the pixel should have.</p></li>
 <li><p><strong>Noise is independent at each pixel</strong> – The value of the noise at any pixel does not depend upon where the pixel is, or what the noise is at any other pixel.</p></li>
 <li><p><strong>Noise follows a particular distribution</strong> – Each noise value can be seen as a <em>random variable</em> drawn from a particular distribution.
-If we have enough noise values, their histogram would resemble a plot of the distribution <a class="footnote-reference brackets" href="#fn-1" id="id1">1</a>.</p></li>
+If we have enough noise values, their histogram would resemble a plot of the distribution <a class="footnote-reference brackets" href="#fn-1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p></li>
 </ol>
 <p>There are many different possible noise distributions, but we only need to consider the <strong>Poisson</strong> and <strong>Gaussian</strong> cases.
 No matter which of these we have, the most interesting distribution parameter for us is the <strong>standard deviation</strong>.
@@ -660,7 +672,7 @@ Assuming everything else stays the same, if the standard deviation of the noise 
 </details>
 </div>
 <figure class="align-center" id="fig-gaussian-hists">
-<img alt="../../../_images/14b79967db1ed8c6a2f57118697561951e20bfa4ecd904173bf21e9d9d482ef6.png" src="../../../_images/14b79967db1ed8c6a2f57118697561951e20bfa4ecd904173bf21e9d9d482ef6.png" />
+<img alt="../../../_images/933f246bfbb7a3de91e0da68551d63bf0c835b6e2be159dadf5770e2b238a32c.png" src="../../../_images/933f246bfbb7a3de91e0da68551d63bf0c835b6e2be159dadf5770e2b238a32c.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 143 </span><span class="caption-text">Gaussian noise with different standard deviations added to an image. Noise with a higher standard deviation has a worse effect when added to an image. Its impact can be seen in the histogram, as the distribution of foreground and background pixels overlap more – which is problematic for things like <a class="reference internal" href="../../2-processing/3-thresholding/thresholding.html#chap-thresholding"><span class="std std-ref">thresholding</span></a>.</span><a class="headerlink" href="#fig-gaussian-hists" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -672,7 +684,7 @@ This follows a Poisson distribution, for which <em>the standard deviation change
 <li><p><strong>Read noise</strong>, arising from inaccuracies in quantifying numbers of detected photons.
 This follows a Gaussian distribution, for which <em>the standard deviation stays the same throughout the image</em>.</p></li>
 </ol>
-<p>Therefore the noise in the image is really the result of adding two <a class="footnote-reference brackets" href="#fn-2" id="id2">2</a> separate random components together.
+<p>Therefore the noise in the image is really the result of adding two <a class="footnote-reference brackets" href="#fn-2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> separate random components together.
 In other words, to get the value of any pixel <span class="math notranslate nohighlight">\(P\)</span> you need to calculate the sum of the ‘true’ (noise-free) value <span class="math notranslate nohighlight">\(T\)</span>, a random photon noise value <span class="math notranslate nohighlight">\(N_p\)</span>, and a random read noise value <span class="math notranslate nohighlight">\(N_r\)</span>, i.e.</p>
 <div class="math notranslate nohighlight">
 \[P = T + N_p + N_r\]</div>
@@ -691,7 +703,7 @@ Fortunately, there’s a close relationship between the Gaussian and Poisson noi
 </section>
 </section>
 <section id="gaussian-noise">
-<h2>Gaussian noise<a class="headerlink" href="#gaussian-noise" title="Permalink to this headline">#</a></h2>
+<h2>Gaussian noise<a class="headerlink" href="#gaussian-noise" title="Permalink to this heading">#</a></h2>
 <p>Gaussian noise is a common problem in fluorescence images acquired using a CCD camera (see <a class="reference internal" href="../4-microscope_types/microscope_types.html#chap-microscope-types"><span class="std std-ref">Microscopes &amp; detectors</span></a>).
 It arises at the stage of quantifying the number of photons detected for each pixel. Quantifying photons is hard to do with complete precision, and the result is likely to be wrong by at least a few photons.
 This error is the read noise.</p>
@@ -699,11 +711,11 @@ This error is the read noise.</p>
 Furthermore, according to the properties of Gaussian distributions, we should expect around ~68% of measurements to be ±1 standard deviation from the true, read-noise-free value.
 If a detector has a low read noise standard deviation, this is then a good thing: it means the error should be small.</p>
 <section id="signal-to-noise-ratio-snr">
-<h3>Signal-to-Noise Ratio (SNR)<a class="headerlink" href="#signal-to-noise-ratio-snr" title="Permalink to this headline">#</a></h3>
+<h3>Signal-to-Noise Ratio (SNR)<a class="headerlink" href="#signal-to-noise-ratio-snr" title="Permalink to this heading">#</a></h3>
 <p>Read noise is said to be <strong>signal independent</strong>: its standard deviation is constant, and does not depend upon how many photons are being quantified.
 However, the extent to which read noise is a problem probably <em>does</em> depend upon the number of photons.
 For example, if we have detected 20 photons, a noise standard deviation of 10 photons is huge; if we have detected 10 000 photons, it’s likely not so important.</p>
-<p>A better way to assess the noisiness of an image is then the ratio of the interesting component of each pixel (called the <strong>signal</strong>, which is here what we would ideally detect in terms of photons) to the noise standard deviation, which is known as the <strong>Signal-to-Noise Ratio</strong> <a class="footnote-reference brackets" href="#fn-3" id="id3">3</a>:</p>
+<p>A better way to assess the noisiness of an image is then the ratio of the interesting component of each pixel (called the <strong>signal</strong>, which is here what we would ideally detect in terms of photons) to the noise standard deviation, which is known as the <strong>Signal-to-Noise Ratio</strong> <a class="footnote-reference brackets" href="#fn-3" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-snr">
 <span class="eqno">(3)<a class="headerlink" href="#equation-eqn-snr" title="Permalink to this equation">#</a></span>\[\textrm{SNR} = \frac{\textrm{Signal}}{\textrm{Noise standard deviation}}\]</div>
 <div class="sd-tab-set docutils">
@@ -739,7 +751,7 @@ If you want to do something similar in ImageJ, you can add Gaussian noise with a
 </div>
 </section>
 <section id="adding-averaging-noisy-images">
-<h3>Adding &amp; averaging noisy images<a class="headerlink" href="#adding-averaging-noisy-images" title="Permalink to this headline">#</a></h3>
+<h3>Adding &amp; averaging noisy images<a class="headerlink" href="#adding-averaging-noisy-images" title="Permalink to this heading">#</a></h3>
 <p><a class="reference internal" href="#sec-noise-background"><span class="std std-ref">At the beginning of this chapter</span></a>, I stated how to calculate the new standard deviation of the noise whenever two noisy pixels are added together:</p>
 <ul class="simple">
 <li><p>Square the original noise standard deviation to get the variance for each pixel</p></li>
@@ -808,7 +820,7 @@ This means it should usually give us an image that is more amenable to threshold
 </details>
 </div>
 <figure class="align-center" id="fig-fig-noise-sum">
-<img alt="../../../_images/ed38dbd1786d6dcafd309b50f4472bcf2994e6822ff83333b4deb54eef66771a.png" src="../../../_images/ed38dbd1786d6dcafd309b50f4472bcf2994e6822ff83333b4deb54eef66771a.png" />
+<img alt="../../../_images/b3fcf76951d82f583a01fb88b4bf2f2faa0e03400c050b4e871af7ff8c69c687.png" src="../../../_images/b3fcf76951d82f583a01fb88b4bf2f2faa0e03400c050b4e871af7ff8c69c687.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 144 </span><span class="caption-text">Adding and averaging two independent images with Gaussian noise.
 Both adding and averaging give an image with an improved SNR, as can be seen in the improved separation between the histogram peaks.</span><a class="headerlink" href="#fig-fig-noise-sum" title="Permalink to this image">#</a></p>
@@ -816,7 +828,7 @@ Both adding and averaging give an image with an improved SNR, as can be seen in 
 </figure>
 </section>
 <section id="adding-averaging-within-an-image">
-<h3>Adding &amp; averaging within an image<a class="headerlink" href="#adding-averaging-within-an-image" title="Permalink to this headline">#</a></h3>
+<h3>Adding &amp; averaging within an image<a class="headerlink" href="#adding-averaging-within-an-image" title="Permalink to this heading">#</a></h3>
 <p>All this means that <em>if</em> can acquire the same image multiple times, then averaging our different images would give a result with reduced noise.</p>
 <p>Of course, we don’t usually have multiple independent images of everything we might want to analyze.
 Instead, we just have one image.
@@ -877,7 +889,7 @@ If we average these images together, these differences average out and we have a
 </details>
 </div>
 <figure class="align-center" id="fig-fig-noise-split">
-<img alt="../../../_images/ec5516e123b080e6d777083a25f9781775bd8f812321f35c8eab36c3effd9dc5.png" src="../../../_images/ec5516e123b080e6d777083a25f9781775bd8f812321f35c8eab36c3effd9dc5.png" />
+<img alt="../../../_images/ada6229e3bd4f3913392524594391a70b1a8f3f8c0d43cd3bde61db84bd213fb.png" src="../../../_images/ada6229e3bd4f3913392524594391a70b1a8f3f8c0d43cd3bde61db84bd213fb.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 145 </span><span class="caption-text">Creating two images from one by taking even and odd-numbered columns. If we then average our two images, noise is reduced. The difference is subtle, but can be seen in the better separation of the peaks in the histogram.</span><a class="headerlink" href="#fig-fig-noise-split" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -970,7 +982,7 @@ And perhaps even adjacent diagonals, if we wish.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-noise-filt-averaging">
-<img alt="../../../_images/432267266fd2309080e5accef71292951ccc43f95c72d640991cd1d30a8f617c.png" src="../../../_images/432267266fd2309080e5accef71292951ccc43f95c72d640991cd1d30a8f617c.png" />
+<img alt="../../../_images/c51223c7cc1066cb5d8ee3387f8ea6c88064df4e4ed03ebbab2f465d9d31cb79.png" src="../../../_images/c51223c7cc1066cb5d8ee3387f8ea6c88064df4e4ed03ebbab2f465d9d31cb79.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 146 </span><span class="caption-text">Noise reduction by averaging adjacent pixels. Even though the overall appearance of the image has not changed much, the histograms indicate a much bigger separation of the foreground and background – meaning that thresholds are more likely to work well. In (C), the result is equivalent to applying a 3×3 mean filter.</span><a class="headerlink" href="#fig-noise-filt-averaging" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -980,7 +992,7 @@ In the next section, we’ll see how many of the same ideas apply to Poisson noi
 </section>
 </section>
 <section id="poisson-noise">
-<h2>Poisson noise<a class="headerlink" href="#poisson-noise" title="Permalink to this headline">#</a></h2>
+<h2>Poisson noise<a class="headerlink" href="#poisson-noise" title="Permalink to this heading">#</a></h2>
 <p>In 1898, Ladislaus Bortkiewicz published a book entitled <em>The Law of Small Numbers</em>.
 Among other things, it included a now-famous analysis of the number of soldiers in different corps of the Prussian cavalry who were killed by being kicked by a horse, measured over a 20-year period. Specifically, he showed that these numbers follows a <strong>Poisson distribution</strong>.</p>
 <p>This distribution, introduced by Siméon Denis Poisson in 1838, gives the probability of an event happening a certain number of times, given that we know (1) the average rate at which it occurs, and (2) that all of its occurrences are independent.
@@ -1025,7 +1037,7 @@ However, the usefulness of the Poisson distribution extends far beyond gruesome 
 </details>
 </div>
 <figure class="align-center" id="fig-poisson">
-<img alt="../../../_images/7461ec53b70126f69b465b62ea6ee58f981a972b7f2a3d8efd564be815ae32e6.png" src="../../../_images/7461ec53b70126f69b465b62ea6ee58f981a972b7f2a3d8efd564be815ae32e6.png" />
+<img alt="../../../_images/81cf8ed271b2ec2094ce0e75034ebca8d75b102f3b033069fc63182be239195c.png" src="../../../_images/81cf8ed271b2ec2094ce0e75034ebca8d75b102f3b033069fc63182be239195c.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 147 </span><span class="caption-text">Siméon Denis Poisson and his distribution. (A) Poisson is said to have been extremely clumsy and uncoordinated with his hands. This contributed to him giving up an apprenticeship as a surgeon and entering mathematics, where the problem was less debilitating – although apparently this meant his diagrams tended not to very well drawn (see <a class="reference external" href="https://mathshistory.st-andrews.ac.uk/Biographies/Poisson/">https://mathshistory.st-andrews.ac.uk/Biographies/Poisson/</a>). (B) The ‘Probability Mass Function’ of the Poisson distribution for several different values of λ. This allows one to see for any ‘true signal’ λ the probability of actually counting any actual value k. Although it’s more likely that one will count exactly k = λ than any other possible k, as λ increases the probability of getting precisely this value becomes smaller and smaller.</span><a class="headerlink" href="#fig-poisson" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1036,7 +1048,7 @@ What we are really interested in, therefore, is not precisely <em>how many</em> 
 The difference between the number of photons actually emitted and the true rate of emission is the <strong>photon noise</strong>.
 The trouble is that keeping the conditions fixed might not be possible: leaving us with the problem of trying to figure out rates from single, noisy measurements.</p>
 <section id="signal-dependent-noise">
-<h3>Signal-dependent noise<a class="headerlink" href="#signal-dependent-noise" title="Permalink to this headline">#</a></h3>
+<h3>Signal-dependent noise<a class="headerlink" href="#signal-dependent-noise" title="Permalink to this heading">#</a></h3>
 <p>Clearly, since it’s a rate that we want, we could get that with more accuracy if we averaged many observations: just like with Gaussian noise, averaging reduces photon noise.
 Therefore, we can expect smoothing filters to work similarly for both noise types – and they do.</p>
 <p>The primary distinction between the noise types, however, is that Poisson noise is <strong>signal-dependent</strong>, and <em>does</em> change according to the number of emitted (or detected) photons.
@@ -1076,7 +1088,7 @@ It can even be observed from a very close inspection of <a class="reference inte
 </details>
 </div>
 <figure class="align-center" id="fig-noise-neuron">
-<img alt="../../../_images/38c6adbf12ae57a1ae64dea7da062347877f526e0d03004bc6f99a2de7572b4c.png" src="../../../_images/38c6adbf12ae57a1ae64dea7da062347877f526e0d03004bc6f99a2de7572b4c.png" />
+<img alt="../../../_images/dc250c02bcb49233d8b6e9b2ed2285e636477b7d5d52e3af33564622ee5e939a.png" src="../../../_images/dc250c02bcb49233d8b6e9b2ed2285e636477b7d5d52e3af33564622ee5e939a.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 149 </span><span class="caption-text">A demonstration that Poisson noise changes throughout an image. (A) Part of a fluorescence microscopy image. (B) A Gaussian filtered version of (A) using a very small filter (<span class="math notranslate nohighlight">\(\sigma\)</span>=0.25).
 Gaussian filtering reduces the noise in an image by replacing each pixel with a weighted average of neighboring pixels (see <a class="reference internal" href="../../2-processing/4-filters/filters.html#chap-filters"><span class="std std-ref">Filters</span></a>). (C) The difference between the original and filtered image contains the noise that the filtering removed. The brighter areas in the original image are still visible in this ‘noise image’ as regions of increased variability. This is partly an effect of Poisson noise having made the noise standard deviation larger in the brighter parts of the acquired image.</span><a class="headerlink" href="#fig-noise-neuron" title="Permalink to this image">#</a></p>
@@ -1115,7 +1127,7 @@ The presence of isolated bright or dark pixels therefore usually tells us very l
 </div>
 </section>
 <section id="the-snr-for-poisson-noise">
-<h3>The SNR for Poisson noise<a class="headerlink" href="#the-snr-for-poisson-noise" title="Permalink to this headline">#</a></h3>
+<h3>The SNR for Poisson noise<a class="headerlink" href="#the-snr-for-poisson-noise" title="Permalink to this heading">#</a></h3>
 <p>If the standard deviation of noise was the only thing that mattered, this would suggest that we are better not detecting much light: then the photon noise standard deviation is lower.
 But the SNR is a much more reliable guide.
 For noise that follows a Poisson distribution this is particularly easy to calculate.
@@ -1149,7 +1161,7 @@ Thus the noise standard deviation alone is not a very good measure of how noisy 
 The SNR is much more informative: the simple rule is that higher is better.
 Or, if that still does not feel right, you can turn it upside down and consider the noise-to-signal ratio (the <em>relative noise</em>), in which case lower is better (<a class="reference internal" href="#fig-snr-plot"><span class="std std-numref">Fig. 150</span></a>).</p>
 <figure class="align-center" id="fig-snr-plot">
-<img alt="../../../_images/aef4495f477ce19e551498b299c99c505f917b86f006536ccf1d0f05b62aca3e.png" src="../../../_images/aef4495f477ce19e551498b299c99c505f917b86f006536ccf1d0f05b62aca3e.png" />
+<img alt="../../../_images/5f446e1293c7344f784e5dfd69c4fbcd86625bfe0142d3ed0d863035e8cf5a84.png" src="../../../_images/5f446e1293c7344f784e5dfd69c4fbcd86625bfe0142d3ed0d863035e8cf5a84.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 150 </span><span class="caption-text">For Poisson noise, the standard deviation increases with the square root of the signal. So does the SNR, with the result that plots (A) and (B) look identical. This improvement in SNR despite the growing noise occurs because the signal is increasing faster than the noise, and so the noise is relatively smaller. Plotting the relative noise (1/SNR) shows this effect (C).</span><a class="headerlink" href="#fig-snr-plot" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1157,7 +1169,7 @@ Or, if that still does not feel right, you can turn it upside down and consider 
 </div>
 </section>
 <section id="poisson-noise-detection">
-<h3>Poisson noise &amp; detection<a class="headerlink" href="#poisson-noise-detection" title="Permalink to this headline">#</a></h3>
+<h3>Poisson noise &amp; detection<a class="headerlink" href="#poisson-noise-detection" title="Permalink to this heading">#</a></h3>
 <p>So why should you care that photon noise is signal-dependent?</p>
 <p>One reason is that it can make features of identical sizes and brightnesses easier or harder to detect in an image purely because of the local background.
 This is illustrated in <a class="reference internal" href="#fig-poisson-ramp"><span class="std std-numref">Fig. 151</span></a>.</p>
@@ -1224,7 +1236,7 @@ This is illustrated in <a class="reference internal" href="#fig-poisson-ramp"><s
 </details>
 </div>
 <figure class="align-center" id="fig-poisson-ramp">
-<img alt="../../../_images/e88e2e1a1dd6d2f5840bba37279b0ec7d161f594284107492c91c40697378571.png" src="../../../_images/e88e2e1a1dd6d2f5840bba37279b0ec7d161f594284107492c91c40697378571.png" />
+<img alt="../../../_images/4200daf39b54ed20f779df1373cf5c899d5d0bd2a104dfc213504f7b5eee27be.png" src="../../../_images/4200daf39b54ed20f779df1373cf5c899d5d0bd2a104dfc213504f7b5eee27be.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 151 </span><span class="caption-text">The signal-dependence of Poisson noise affects how visible (and therefore detectable) structures are in an image. (A) Nine spots of the same <em>absolute</em> brightness are added to an image with a linearly increasing background <em>(top)</em> and Poisson noise is added <em>(bottom)</em>. Because the noise variability becomes higher as the background increases, the spots in the darkest part of the image can be clearly seen in the profile but it’s more difficult to discern spots in the brighter part. (B) Spots of the same brightness <em>relative</em> to the background are added, along with Poisson noise. Because the noise is now relatively lower as the brightness increases, only the spots in the brightest part of the image can be seen, while those in the darker part are buried within the noise.</span><a class="headerlink" href="#fig-poisson-ramp" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1254,8 +1266,8 @@ Where these are similar, the noise is Gaussian; if there is a big difference, th
 </section>
 </section>
 <section id="combining-noise-sources">
-<h2>Combining noise sources<a class="headerlink" href="#combining-noise-sources" title="Permalink to this headline">#</a></h2>
-<p>Combining our noise sources then, we can imagine an actual pixel value as being the sum of three values: the true rate of photon emission, the photon noise component, and the read noise component <a class="footnote-reference brackets" href="#fn-5" id="id4">4</a>.
+<h2>Combining noise sources<a class="headerlink" href="#combining-noise-sources" title="Permalink to this heading">#</a></h2>
+<p>Combining our noise sources then, we can imagine an actual pixel value as being the sum of three values: the true rate of photon emission, the photon noise component, and the read noise component <a class="footnote-reference brackets" href="#fn-5" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.
 The first of these is what we want, while the latter two are random numbers that may be positive or negative.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <details class="hide above-input">
@@ -1291,7 +1303,7 @@ The first of these is what we want, while the latter two are random numbers that
 </details>
 </div>
 <figure class="align-center" id="fig-noise-steps">
-<img alt="../../../_images/8d5a993d0626b947329f6d8b7bb3ce158068fefc488b02713d2e2a26c6af4cba.png" src="../../../_images/8d5a993d0626b947329f6d8b7bb3ce158068fefc488b02713d2e2a26c6af4cba.png" />
+<img alt="../../../_images/47a7c4801482278e4af93f70099f7c08fe309c6472dc0f192e8c648933b1ecf0.png" src="../../../_images/47a7c4801482278e4af93f70099f7c08fe309c6472dc0f192e8c648933b1ecf0.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 152 </span><span class="caption-text">An illustration of how photon noise differs from read noise. When both are added to a signal (here, a series of steps in which the value doubles at each higher step), the relative importance of each depends upon the value of the signal. At low signal levels this doubling is very difficult to discern amidst either type of noise, and even more so when both noise components are present.</span><a class="headerlink" href="#fig-noise-steps" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1334,7 +1346,7 @@ However if the pixel size is very large, then we may not be able to rule out tha
 </div>
 </section>
 <section id="finding-photons">
-<h2>Finding photons<a class="headerlink" href="#finding-photons" title="Permalink to this headline">#</a></h2>
+<h2>Finding photons<a class="headerlink" href="#finding-photons" title="Permalink to this heading">#</a></h2>
 <p>There are various places from which the extra photons required to overcome noise might come.
 One is to simply acquire images more slowly, spending more time detecting light.
 If this is too harsh on the sample, it may be possible to record multiple images quickly.
@@ -1373,7 +1385,7 @@ If there is little movement between exposures, these images could be added or av
 </details>
 </div>
 <figure class="align-center" id="fig-noise-averaging">
-<img alt="../../../_images/a830a4e2772dba71325e0568f9e2e3f6f8d1de4c47aed561befed5a00e9c1ede.png" src="../../../_images/a830a4e2772dba71325e0568f9e2e3f6f8d1de4c47aed561befed5a00e9c1ede.png" />
+<img alt="../../../_images/0dd8490ca592b04c191822e9bf939c017e5478af0bccb4b73576f82ae9627998.png" src="../../../_images/0dd8490ca592b04c191822e9bf939c017e5478af0bccb4b73576f82ae9627998.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 153 </span><span class="caption-text">The effect of adding (or averaging) multiple noisy images, each independent with a similar SNR.</span><a class="headerlink" href="#fig-noise-averaging" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -1430,7 +1442,7 @@ Images acquired with this pixel size are said to be <strong>Nyquist sampled</str
 <p>The easiest way I know to determine the corresponding pixel size for a given experiment is to use the online calculator provided by <em>Scientific Volume Imaging</em> at <a class="reference external" href="https://svi.nl/NyquistCalculator">https://svi.nl/NyquistCalculator</a>.
 You may need larger pixels to reduce noise or see a wider field of view, but you do not get anything extra by using smaller pixels.</p>
 <figure class="align-center" id="fig-nyquist-shannon">
-<img alt="../../../_images/3e25efcf2d8f0074ed1a6411db6aa813e905d9e8d0e0f4176af333f809e70970.png" src="../../../_images/3e25efcf2d8f0074ed1a6411db6aa813e905d9e8d0e0f4176af333f809e70970.png" />
+<img alt="../../../_images/c53c53dc67994136fe02dff32baa85cfa2900404f112f96be2c9802256f1786e.png" src="../../../_images/c53c53dc67994136fe02dff32baa85cfa2900404f112f96be2c9802256f1786e.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 154 </span><span class="caption-text">Harry Nyquist (1889-1975) and Claude Shannon (1916-2001), sampled using different pixel sizes.
 Their work is used when determining the pixel sizes needed to maximize the available information when acquiring images, which depends upon the size of the PSF.</span><a class="headerlink" href="#fig-nyquist-shannon" title="Permalink to this image">#</a></p>
@@ -1438,25 +1450,27 @@ Their work is used when determining the pixel sizes needed to maximize the avail
 </figure>
 </div>
 <hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="fn-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Specifically its probability density or mass function – which for a Gaussian distribution is the familiar bell curve.</p>
-</dd>
-<dt class="label" id="fn-2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>Actually more.
+<aside class="footnote brackets" id="fn-1" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Specifically its probability density or mass function – which for a Gaussian distribution is the familiar bell curve.</p>
+</aside>
+<aside class="footnote brackets" id="fn-2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Actually more.
 But the two mentioned here are usually by far the most significant, and it does not matter to our model at all if they contain various other sub-components.
 The important fact remains that there is some noise that varies throughout the image, and some that does not.</p>
-</dd>
-<dt class="label" id="fn-3"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
-<dd><p>This is one definition of SNR.
+</aside>
+<aside class="footnote brackets" id="fn-3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>This is one definition of SNR.
 Many other definitions appear in the literature, leading to different values.
 The fact that any interesting image will vary in brightness in different places means that the SNR is not necessarily the same at all pixels – therefore computing it in practice involves coming up with some summary measurement for the whole image.
 This can be approached differently, but the general principle is always to compare how much noise we have relative to interesting things: where higher is better.</p>
-</dd>
-<dt class="label" id="fn-5"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
-<dd><p>For a fuller picture, gain and offset also need to be taken into consideration, see <a class="reference internal" href="../4-microscope_types/microscope_types.html#chap-microscope-types"><span class="std std-ref">Microscopes &amp; detectors</span></a>.</p>
-</dd>
-</dl>
+</aside>
+<aside class="footnote brackets" id="fn-5" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
+<p>For a fuller picture, gain and offset also need to be taken into consideration, see <a class="reference internal" href="../4-microscope_types/microscope_types.html#chap-microscope-types"><span class="std std-ref">Microscopes &amp; detectors</span></a>.</p>
+</aside>
 </section>
 </section>
 
@@ -1485,11 +1499,10 @@ This can be approached differently, but the general principle is always to compa
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../2-formation_spatial/formation_spatial.html"
@@ -1509,10 +1522,7 @@ This can be approached differently, but the general principle is always to compa
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1581,6 +1591,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -1592,8 +1609,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

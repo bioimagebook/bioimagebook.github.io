@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Python: Files &amp; file formats &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -79,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -139,13 +150,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -162,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -422,10 +434,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -433,7 +445,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -482,7 +494,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="python-files-file-formats">
-<h1>Python: Files &amp; file formats<a class="headerlink" href="#python-files-file-formats" title="Permalink to this headline">#</a></h1>
+<h1>Python: Files &amp; file formats<a class="headerlink" href="#python-files-file-formats" title="Permalink to this heading">#</a></h1>
 <p>When it comes to working with images in Python, there are various important packages.
 You might only need to use one - but it helps to know about the existence of the others.</p>
 <blockquote>
@@ -502,9 +514,9 @@ You might only need to use one - but it helps to know about the existence of the
 </div>
 </div>
 <section id="useful-python-packages">
-<h2>Useful Python packages<a class="headerlink" href="#useful-python-packages" title="Permalink to this headline">#</a></h2>
+<h2>Useful Python packages<a class="headerlink" href="#useful-python-packages" title="Permalink to this heading">#</a></h2>
 <section id="pillow">
-<h3>Pillow<a class="headerlink" href="#pillow" title="Permalink to this headline">#</a></h3>
+<h3>Pillow<a class="headerlink" href="#pillow" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="https://pillow.readthedocs.io/en/stable/">Pillow’s authors describe it as ‘the friendly PIL fork’</a>, where <strong>PIL</strong> is the <em>Python Imaging Library</em>.</p>
 <p>It is indeed <em>quite</em> friendly, and it does much more than just reading and writing images - even supporting features to draw onto images.</p>
 <p>The main disadvantage of Pillow is that it doesn’t work directly with NumPy arrays.
@@ -534,7 +546,7 @@ Therefore, if it’s a NumPy array that you want then you’ll need to add in a 
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I don&#39;t have a simple NumPy array - instead I have this:
-  &lt;PIL.TiffImagePlugin.TiffImageFile image mode=F size=250x240 at 0x7F06B02F3280&gt;
+  &lt;PIL.TiffImagePlugin.TiffImageFile image mode=F size=250x240 at 0x7F56C029A620&gt;
 
 But I can convert it to an NumPy array if I need to:
 [[2. 2. 2. ... 2. 2. 2.]
@@ -547,12 +559,12 @@ But I can convert it to an NumPy array if I need to:
 Print the mean for comparison: 23.03144645690918
 </pre></div>
 </div>
-<img alt="../../../_images/0f5c99fcb57e56f0efb03bdf60d89c5514baf2b782b8b15706ff8e5a153c314a.png" src="../../../_images/0f5c99fcb57e56f0efb03bdf60d89c5514baf2b782b8b15706ff8e5a153c314a.png" />
+<img alt="../../../_images/db68fbeddfc5e3a5379d0c77aa193d964c2906d37e40142e7bf43550ae6493e3.png" src="../../../_images/db68fbeddfc5e3a5379d0c77aa193d964c2906d37e40142e7bf43550ae6493e3.png" />
 </div>
 </div>
 </section>
 <section id="imageio">
-<h3>ImageIO<a class="headerlink" href="#imageio" title="Permalink to this headline">#</a></h3>
+<h3>ImageIO<a class="headerlink" href="#imageio" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="https://imageio.readthedocs.io/en/stable/">imageio</a> is my preferred Python package for most straightforward image reading - and the main one I’ve used in this book.</p>
 <p>It’s also the <a class="reference external" href="https://docs.scipy.org/doc/scipy-1.1.0/reference/generated/scipy.misc.imread.html#scipy.misc.imread">recommended alternative to <em>SciPy</em>’s deprecated <code class="docutils literal notranslate"><span class="pre">imread</span></code> function</a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">imageio.imread(path)</span></code> returns a NumPy array automatically.
@@ -577,8 +589,8 @@ This makes it easy to use for straightforward things, especially when working wi
 </div>
 </section>
 <section id="tifffile">
-<h3>tifffile<a class="headerlink" href="#tifffile" title="Permalink to this headline">#</a></h3>
-<p><a class="reference external" href="https://pypi.org/project/tifffile/">tifffile</a> is a small package<a class="footnote-reference brackets" href="#fn-tf" id="id1">1</a> that is very handy if you need to get into the details of reading and writing TIFF images.</p>
+<h3>tifffile<a class="headerlink" href="#tifffile" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://pypi.org/project/tifffile/">tifffile</a> is a small package<a class="footnote-reference brackets" href="#fn-tf" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> that is very handy if you need to get into the details of reading and writing TIFF images.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tifffile</span>
@@ -597,31 +609,30 @@ This makes it easy to use for straightforward things, especially when working wi
 </div>
 </section>
 <section id="aicsimageio">
-<h3>AICSImageIO<a class="headerlink" href="#aicsimageio" title="Permalink to this headline">#</a></h3>
+<h3>AICSImageIO<a class="headerlink" href="#aicsimageio" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="https://github.com/AllenCellModeling/aicsimageio">AICSImageIO</a> is an excellent package for reading lots of image formats in Python - and is particularly strong when it comes to reading multidimensional images and metadata.</p>
 <p>It can even handle a variety of microscopy formats, and optionally use <a class="reference external" href="https://www.openmicroscopy.org/bio-formats/">Bio-Formats</a>.</p>
 <p>These features, alongside its consistent way of handling pixel sizes and dimensions, make it my main choice for scientific images.</p>
 </section>
 <section id="openslide">
-<h3>OpenSlide<a class="headerlink" href="#openslide" title="Permalink to this headline">#</a></h3>
+<h3>OpenSlide<a class="headerlink" href="#openslide" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="https://openslide.org">OpenSlide</a> is widely used in the world of digital pathology.
 It’s limited to 2D RGB data, but its big benefit is that it supports a range of pyramidal whole slide images.</p>
 </section>
 <section id="dask">
-<h3>Dask<a class="headerlink" href="#dask" title="Permalink to this headline">#</a></h3>
+<h3>Dask<a class="headerlink" href="#dask" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="https://dask.org">Dask</a> is a project you should know about if you’re working with big datasets in Python.</p>
 <p>Dask isn’t an image reading package, but <a class="reference external" href="https://image.dask.org/">dask-image</a> includes an <code class="docutils literal notranslate"><span class="pre">imread</span></code> function that can be used if you know you want your image to be in a dask array in the end.</p>
 </section>
 <section id="napari">
-<h3>Napari<a class="headerlink" href="#napari" title="Permalink to this headline">#</a></h3>
+<h3>Napari<a class="headerlink" href="#napari" title="Permalink to this heading">#</a></h3>
 <p>Finally, <a class="reference external" href="https://napari.org">Napari</a> isn’t an image reading library either; rather, it’s a fantastic open-source, extensible, multidimensional image viewer for Python.</p>
 <p>Napari can bring everything together - working with dask arrays and reading images with plugins, such as <a class="reference external" href="https://github.com/AllenCellModeling/napari-aicsimageio">napari-aicsimageio</a> and <a class="reference external" href="https://github.com/manzt/napari-lazy-openslide">napari-lazy-openslide</a>.</p>
 <hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="fn-tf"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Small in that its code is mostly just one file. But it’s <a class="reference external" href="https://github.com/cgohlke/tifffile/blob/master/tifffile/tifffile.py">a pretty epic file</a>.</p>
-</dd>
-</dl>
+<aside class="footnote brackets" id="fn-tf" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Small in that its code is mostly just one file. But it’s <a class="reference external" href="https://github.com/cgohlke/tifffile/blob/master/tifffile/tifffile.py">a pretty epic file</a>.</p>
+</aside>
 </section>
 </section>
 </section>
@@ -651,11 +662,10 @@ It’s limited to 2D RGB data, but its big benefit is that it supports a range o
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="imagej.html"
@@ -675,10 +685,7 @@ It’s limited to 2D RGB data, but its big benefit is that it supports a range o
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -739,6 +746,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -750,8 +764,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

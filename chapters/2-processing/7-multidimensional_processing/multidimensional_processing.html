@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Multidimensional processing &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -81,6 +83,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -141,13 +152,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -164,7 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -424,10 +436,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -435,7 +447,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -483,7 +495,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multidimensional-processing">
-<span id="chap-multidimensional-processing"></span><h1>Multidimensional processing<a class="headerlink" href="#multidimensional-processing" title="Permalink to this headline">#</a></h1>
+<span id="chap-multidimensional-processing"></span><h1>Multidimensional processing<a class="headerlink" href="#multidimensional-processing" title="Permalink to this heading">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline</p>
 <ul class="simple">
@@ -515,7 +527,7 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>So far, in terms of image processing we have concentrated only on 2D images.
 Most of the operations we have considered can also be applied to 3D data – and sometimes data with more dimensions, in cases where this is meaningful.</p>
 <p>This very short overview of multidimensional processing describes a few of the issues to consider when extending analysis beyond two dimensions, and gives some pointers towards specialist tools.</p>
@@ -541,11 +553,11 @@ The SciPy <a class="reference external" href="https://docs.scipy.org/doc/scipy/r
 </div>
 </section>
 <section id="segmentation-in-3d">
-<h2>Segmentation in 3D<a class="headerlink" href="#segmentation-in-3d" title="Permalink to this headline">#</a></h2>
+<h2>Segmentation in 3D<a class="headerlink" href="#segmentation-in-3d" title="Permalink to this heading">#</a></h2>
 <p>Image segmentation generally involves generating binary and labeled images.</p>
 <p>Most of the processing operations we have discussed to help perform image segmentation extend naturally into 3D (and beyond), although there are some extra considerations.</p>
 <section id="thresholding">
-<h3>Thresholding<a class="headerlink" href="#thresholding" title="Permalink to this headline">#</a></h3>
+<h3>Thresholding<a class="headerlink" href="#thresholding" title="Permalink to this heading">#</a></h3>
 <p>Thresholds are typically determined using the image histogram.
 This is computed from all pixels in the image – the number of dimensions does not really matter.</p>
 <p>The main consideration for thresholding in 3D is whether the other <em>z</em>-slices could introduce any kind of sneaky bias.
@@ -685,7 +697,7 @@ This should generally make the images more comparable.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-multi-thresholds">
-<img alt="../../../_images/2de7a93e05be6fe1d7482371820f4cd6be82ed2647e703425e3c79ca7ada9661.png" src="../../../_images/2de7a93e05be6fe1d7482371820f4cd6be82ed2647e703425e3c79ca7ada9661.png" />
+<img alt="../../../_images/91419f56186c33970007f7ec971e82aea98bd30b1190edb1e406e2eec805077f.png" src="../../../_images/91419f56186c33970007f7ec971e82aea98bd30b1190edb1e406e2eec805077f.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 129 </span><span class="caption-text">Thresholding a z-stack can be influenced by the number of out-of-focus slices. Here, an automated threshold determined using <a class="reference internal" href="../3-thresholding/thresholding.html#sec-thresholds-otsu"><span class="std std-ref">Otsu’s method</span></a> is applied to two z-stacks showing the same object. The top stack contains few out-of-focus slices, while the bottom stack contains the exact same data plus additional slices that contain only noise. Otsu’s method is well-suited to the top stack and performs well, however it fails badly on the bottom stack, where there is a much higher proportion of background pixels – and so the background peak is more dominant.</span><a class="headerlink" href="#fig-multi-thresholds" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -702,13 +714,13 @@ Answer</label><div class="sd-tab-content docutils">
 <p>Here, the triangle method performs well.
 It sets the threshold appropriately at the foot of the background peak in both cases.</p>
 <figure class="align-center">
-<img alt="../../../_images/0a6cd18efa86f4ebad8c18dd121bc5ea4b0a252804636ea5c8daacc089d50d06.png" src="../../../_images/0a6cd18efa86f4ebad8c18dd121bc5ea4b0a252804636ea5c8daacc089d50d06.png" />
+<img alt="../../../_images/30f40604c7e8997686226ee0ebe10b0ab1c74afbe1c99a0b55646ec053abd79e.png" src="../../../_images/30f40604c7e8997686226ee0ebe10b0ab1c74afbe1c99a0b55646ec053abd79e.png" />
 </figure>
 </div>
 </div>
 </section>
 <section id="filtering">
-<h3>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">#</a></h3>
+<h3>Filtering<a class="headerlink" href="#filtering" title="Permalink to this heading">#</a></h3>
 <p><strong>Linear filters</strong> can be easily extended to <em>nD</em> by defining a filter kernel with the desired number of dimensions.
 However, this can dramatically increase the computational requirements and so we need to begin considering performance.</p>
 <p>For example, suppose we have a 3×3 filter.
@@ -779,7 +791,7 @@ Some small differences may arise through the handling of <a class="reference int
 </details>
 </div>
 <figure class="align-center" id="fig-gauss-separable">
-<img alt="../../../_images/9021ce306ec5cfb534a09f25e9cb3555258fedab271d99426622008afdc36c7b.png" src="../../../_images/9021ce306ec5cfb534a09f25e9cb3555258fedab271d99426622008afdc36c7b.png" />
+<img alt="../../../_images/4c0fe2583ab0af310dd5e25517198ae3d75afdfd07321f71f1093e06c08bc10d.png" src="../../../_images/4c0fe2583ab0af310dd5e25517198ae3d75afdfd07321f71f1093e06c08bc10d.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 130 </span><span class="caption-text">2D Gaussian smoothing can be applied using a single 2D filter, or by sequentially filtering either rows or columns of the image: the end result is the same (up to rounding error). The order of the separable filtering doesn’t matter.</span><a class="headerlink" href="#fig-gauss-separable" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -846,21 +858,21 @@ I might then choose <span class="math notranslate nohighlight">\(\sigma_x\)</spa
 </details>
 </div>
 <figure class="align-center" id="fig-multi-min-separable">
-<img alt="../../../_images/8a0e2a5d522c10f469835e57d55d8fc40f8bc0ad2adfb6511902b0985bcb05de.png" src="../../../_images/8a0e2a5d522c10f469835e57d55d8fc40f8bc0ad2adfb6511902b0985bcb05de.png" />
+<img alt="../../../_images/4a21a19f3f19017549e85ab5648c7ac4568fd199ee5bbe93eba6dcfa7ed5e150.png" src="../../../_images/4a21a19f3f19017549e85ab5648c7ac4568fd199ee5bbe93eba6dcfa7ed5e150.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 131 </span><span class="caption-text">A 15×15 minimum filter applied separably.</span><a class="headerlink" href="#fig-multi-min-separable" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="morphological-operations">
-<h3>Morphological operations<a class="headerlink" href="#morphological-operations" title="Permalink to this headline">#</a></h3>
+<h3>Morphological operations<a class="headerlink" href="#morphological-operations" title="Permalink to this heading">#</a></h3>
 <p>Erosion, dilation, opening and closing can all be implemented using minimum and maximum nonlinear filters, so the above considerations apply.
 Morphological reconstruction can also work in <em>nD</em>.
 Therefore all the new operations and tricks derived from these methods (e.g. creating outlines, finding regional maxima) should work.</p>
 <p>Thinning algorithms are often designed to work in 3D, although not usually higher dimensions.</p>
 </section>
 <section id="image-transforms">
-<h3>Image transforms<a class="headerlink" href="#image-transforms" title="Permalink to this headline">#</a></h3>
+<h3>Image transforms<a class="headerlink" href="#image-transforms" title="Permalink to this heading">#</a></h3>
 <p>The distance and watershed transforms extend readily to 3D, but require a little caution.</p>
 <p>One thing to look out for, especially with the distance transform, is whether pixel anisotropy is taken into consideration.
 If not, the the distance transform will not be capable of properly identifying the ‘nearest’ foreground or background pixel in calibrated units, but rather only in pixel units.</p>
@@ -869,7 +881,7 @@ A preferable approach is to try to find a distance transform implementation that
 </section>
 </section>
 <section id="accelerating-analysis">
-<h2>Accelerating analysis<a class="headerlink" href="#accelerating-analysis" title="Permalink to this headline">#</a></h2>
+<h2>Accelerating analysis<a class="headerlink" href="#accelerating-analysis" title="Permalink to this heading">#</a></h2>
 <p>One of the common themes of processing multidimensional images is performance.</p>
 <p>Even though <em>conceptually</em> most of the image processing techniques we’ve discussed can be extended to 3D and beyond, it’s usually not easy to do from the programmer’s perspective.
 As someone who writes software, I can attest that I don’t tend to support more dimensions than I have to because extra dimensions make the task of coding, debugging and optimizing much, much harder.</p>
@@ -932,11 +944,10 @@ Our performance aspirations can also be thwarted by other bottlenecks, such as r
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../6-transforms/imagej.html"
@@ -956,10 +967,7 @@ Our performance aspirations can also be thwarted by other bottlenecks, such as r
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1019,6 +1027,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -1030,8 +1045,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

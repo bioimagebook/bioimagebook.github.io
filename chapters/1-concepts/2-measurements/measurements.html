@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Measurements &amp; histograms &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -79,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -139,13 +150,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -162,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -422,10 +434,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -433,7 +445,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -474,7 +486,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="measurements-histograms">
-<span id="chap-measurements"></span><span id="chap-histograms"></span><h1>Measurements &amp; histograms<a class="headerlink" href="#measurements-histograms" title="Permalink to this headline">#</a></h1>
+<span id="chap-measurements"></span><span id="chap-histograms"></span><h1>Measurements &amp; histograms<a class="headerlink" href="#measurements-histograms" title="Permalink to this heading">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Chapter outline </p>
 <ul class="simple">
@@ -506,7 +518,7 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p><a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html#chap-pixels"><span class="std std-ref">Images &amp; pixels</span></a> demonstrated how looks can be deceiving: the visual appearance of an image isn’t enough to determine what data it contains.</p>
 <p>Because scientific image analysis depends upon having the right pixel values in the first place, this leads to the important admonition:</p>
 <div class="danger admonition">
@@ -519,7 +531,7 @@ This can cause the results of analysis to be wrong.</p>
 Therefore, we need a way to see beyond LUTs to compare the content of images easily and efficiently.</p>
 </section>
 <section id="comparing-histograms-statistics">
-<h2>Comparing histograms &amp; statistics<a class="headerlink" href="#comparing-histograms-statistics" title="Permalink to this headline">#</a></h2>
+<h2>Comparing histograms &amp; statistics<a class="headerlink" href="#comparing-histograms-statistics" title="Permalink to this heading">#</a></h2>
 <p>In principle, if we want to compare two images we could check that every corresponding pixel value is identical in both images.
 We will use this approach later, but isn’t always necessary.</p>
 <p>There are two other things we can do, which are often much faster and easier:</p>
@@ -589,7 +601,7 @@ We will use this approach later, but isn’t always necessary.</p>
 </details>
 </div>
 <figure class="align-center" id="fig-images-look-same-histograms">
-<img alt="../../../_images/eacf0f8dcf91b3a5bfc89e7aca899827690b0737f518478952055ec244c8cb72.png" src="../../../_images/eacf0f8dcf91b3a5bfc89e7aca899827690b0737f518478952055ec244c8cb72.png" />
+<img alt="../../../_images/9310701a0d7218aee375eead35a593b317d41f8fbd57fb985dc8c4cb219ae475.png" src="../../../_images/9310701a0d7218aee375eead35a593b317d41f8fbd57fb985dc8c4cb219ae475.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 11 </span><span class="caption-text">Recreation of <a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html#fig-images-look-same"><span class="std std-numref">Fig. 4</span></a> showing images that <em>look</em> the same, but contain <em>different</em> pixels values – this time with measurements and histograms included.</span><a class="headerlink" href="#fig-images-look-same-histograms" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -649,7 +661,7 @@ This suggests that any analysis we perform on each of these images should give t
 </details>
 </div>
 <figure class="align-center" id="fig-images-look-different-histograms">
-<img alt="../../../_images/fdeaf114578098366987c061b3e259df6ece0aa4a6b2709b51f6be2e7a168f7c.png" src="../../../_images/fdeaf114578098366987c061b3e259df6ece0aa4a6b2709b51f6be2e7a168f7c.png" />
+<img alt="../../../_images/c42258125c9011baf597a5a79e02f8552de1c1edb7c966ad6cdd200996138954.png" src="../../../_images/c42258125c9011baf597a5a79e02f8552de1c1edb7c966ad6cdd200996138954.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 12 </span><span class="caption-text">Recreation of <a class="reference internal" href="../1-images_and_pixels/images_and_pixels.html#fig-images-look-different"><span class="std std-numref">Fig. 5</span></a> showing images that <em>look</em> different, but contain <em>the same</em> pixel values – this time with measurements and histograms included.</span><a class="headerlink" href="#fig-images-look-different-histograms" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -666,7 +678,7 @@ Answer</label><div class="sd-tab-content docutils">
 <p>No! For example, we might have the same pixel values in a different arrangement.
 If I randomly shuffle the pixels in the image then the basic statistics and histogram remain unchanged – but the image itself is very different.</p>
 <figure class="align-default" style="width: 80%">
-<img alt="../../../_images/70fa5cbe0df9b2b55dab60e820ebb2d5fefcd773851af9dca2874dd60ad6ef2e.png" src="../../../_images/70fa5cbe0df9b2b55dab60e820ebb2d5fefcd773851af9dca2874dd60ad6ef2e.png" />
+<img alt="../../../_images/4ca2ae9e83c3f482256efaed990e23b43265d2e5f3f07ec8ff956252416d96bf.png" src="../../../_images/4ca2ae9e83c3f482256efaed990e23b43265d2e5f3f07ec8ff956252416d96bf.png" />
 </figure>
 <p>This means that, technically, we can only really use histograms and summary measurements to prove that images are definitely <em>not</em> the same.</p>
 <p>However, in practice this is usually enough.
@@ -713,11 +725,10 @@ This can give a deeper understanding of the data, and help flag up potential pro
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../1-images_and_pixels/python.html"
@@ -737,10 +748,7 @@ This can give a deeper understanding of the data, and help flag up potential pro
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -793,6 +801,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -804,8 +819,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

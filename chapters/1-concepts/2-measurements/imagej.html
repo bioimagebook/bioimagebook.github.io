@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>ImageJ: Measurements &amp; histograms &#8212; Introduction to Bioimage Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,12 +39,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -79,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -139,13 +150,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
+    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
   
   
 </a></div>
@@ -162,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Front matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/acknowledgements/acknowledgements.html">Acknowledgements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../0-preamble/license.html">License &amp; Reuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../0-preamble/disclaimer.html">Disclaimer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CHANGELOG.html">Changelog</a></li>
 </ul>
@@ -422,10 +434,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -433,7 +445,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -485,7 +497,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="imagej-measurements-histograms">
-<span id="chap-rois"></span><h1>ImageJ: Measurements &amp; histograms<a class="headerlink" href="#imagej-measurements-histograms" title="Permalink to this headline">#</a></h1>
+<span id="chap-rois"></span><h1>ImageJ: Measurements &amp; histograms<a class="headerlink" href="#imagej-measurements-histograms" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -510,7 +522,7 @@ document.write(`
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>ImageJ makes generating basic measurements and histograms <em>extremely</em> easy:</p>
 <ul class="simple">
 <li><p>Press <kbd class="kbd docutils literal notranslate">M</kbd> to make <strong>M</strong>easurements</p>
@@ -568,7 +580,7 @@ Solution</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="measuring-images">
-<h2>Measuring images<a class="headerlink" href="#measuring-images" title="Permalink to this headline">#</a></h2>
+<h2>Measuring images<a class="headerlink" href="#measuring-images" title="Permalink to this heading">#</a></h2>
 <p>When using <span class="menuselection notranslate">Analyze ‣ Measure</span>, the measurements are added to a <em>Results table</em>.</p>
 <p>By default, the mean, minimum and maximum pixel values are provided, along with the area of the image… and that’s all.
 It’s not a lot.</p>
@@ -604,7 +616,7 @@ Seeing an area of 10 <em>might</em> mean 10 pixels<sup>2</sup>, or 10 µm<sup>2<
 </details>
 </div>
 <figure class="align-center" id="fig-measure" style="width: 100%">
-<img alt="../../../_images/ca8f7362c007e4ee9c94c6917dc6b6726b72cb3ee0def75c93d0884fa7d916bf.png" src="../../../_images/ca8f7362c007e4ee9c94c6917dc6b6726b72cb3ee0def75c93d0884fa7d916bf.png" />
+<img alt="../../../_images/5895bca3117290c1c4cf63cbd75a6d5c99dac911126a22af10e2ec0a69654f0d.png" src="../../../_images/5895bca3117290c1c4cf63cbd75a6d5c99dac911126a22af10e2ec0a69654f0d.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 13 </span><span class="caption-text">Measurements made on an image are added to a results table. The choice of measurements to make can be changed using the <span class="menuselection notranslate">Analyze ‣ Set Measurements…</span> command.</span><a class="headerlink" href="#fig-measure" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -632,11 +644,11 @@ Seeing an area of 10 <em>might</em> mean 10 pixels<sup>2</sup>, or 10 µm<sup>2<
 Nevertheless, any new measurements you make with the <span class="menuselection notranslate">Measure</span> command will <em>only</em> be added to the original, official table.
 This also has an extra <span class="guilabel notranslate">Results</span> entry in its menu bar that other tables lack.</p>
 <figure class="align-default">
-<img alt="../../../_images/c01be11854b98867376cade09d739f97b3da423004115036c7bc970b6237ada1.png" src="../../../_images/c01be11854b98867376cade09d739f97b3da423004115036c7bc970b6237ada1.png" />
+<img alt="../../../_images/ad612ebaac966f004e7707dd5d67ba6fcb28cdb8870a9c36da032206807346e9.png" src="../../../_images/ad612ebaac966f004e7707dd5d67ba6fcb28cdb8870a9c36da032206807346e9.png" />
 </figure>
 </div>
 <section id="choosing-which-measurements-to-select">
-<h3>Choosing which measurements to select<a class="headerlink" href="#choosing-which-measurements-to-select" title="Permalink to this headline">#</a></h3>
+<h3>Choosing which measurements to select<a class="headerlink" href="#choosing-which-measurements-to-select" title="Permalink to this heading">#</a></h3>
 <p>Some options within <span class="menuselection notranslate">Analyze ‣ Set Measurements…</span> are so universally useful that they should pretty much always be set.
 Conversely, some options are manifestly confusing and dangerous and should be used rarely – or not at all.</p>
 <p>Options to <strong>always</strong> select:</p>
@@ -655,7 +667,7 @@ Conversely, some options are manifestly confusing and dangerous and should be us
 </section>
 </section>
 <section id="regions-of-interest">
-<span id="sec-imagej-rois"></span><h2>Regions Of Interest<a class="headerlink" href="#regions-of-interest" title="Permalink to this headline">#</a></h2>
+<span id="sec-imagej-rois"></span><h2>Regions Of Interest<a class="headerlink" href="#regions-of-interest" title="Permalink to this heading">#</a></h2>
 <p><strong>Regions Of Interest (ROIs)</strong> can be used to define specific parts of an image that should be processed independently or measured.
 Only pixels within any ROI we draw will be included in the calculations when we run <span class="menuselection notranslate">Analyze ‣ Measure</span>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
@@ -676,7 +688,7 @@ Only pixels within any ROI we draw will be included in the calculations when we 
 </details>
 </div>
 <figure class="align-center" id="fig-roi-drawing" style="width: 60%">
-<img alt="../../../_images/8948953907db7f71402799b0645d0c6f2572d69e4dd464e1fe3373a8ddcbbe65.png" src="../../../_images/8948953907db7f71402799b0645d0c6f2572d69e4dd464e1fe3373a8ddcbbe65.png" />
+<img alt="../../../_images/20acb747ea8486b6dedf9d2b0f310cc6f6eb3016396b8127930542be4835d5ca.png" src="../../../_images/20acb747ea8486b6dedf9d2b0f310cc6f6eb3016396b8127930542be4835d5ca.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 14 </span><span class="caption-text">ROI drawing tools are found on the left side of the ImageJ tool bar (A). The ROI in (B) was created by drawing one rectangular and two circular ROIs, holding down the <kbd class="kbd docutils literal notranslate">Shift</kbd> key between each so that the regions were combined.</span><a class="headerlink" href="#fig-roi-drawing" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -710,7 +722,7 @@ This creates a new <a class="reference internal" href="../../2-processing/5-morp
 </details>
 </div>
 <figure class="align-center" id="fig-rois-mask" style="width: 70%">
-<img alt="../../../_images/e74d33830a1630c4546ca9f432273257ddf17b56047470f489ead482a875efd4.png" src="../../../_images/e74d33830a1630c4546ca9f432273257ddf17b56047470f489ead482a875efd4.png" />
+<img alt="../../../_images/ef62d79bd66195fec3e7efd9a993c1593abf40b4ecd14aca1de64b84922da723.png" src="../../../_images/ef62d79bd66195fec3e7efd9a993c1593abf40b4ecd14aca1de64b84922da723.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 15 </span><span class="caption-text">A ROI representing an area is usually depicted using yellow lines drawn on an image, but sometimes it isn’t clear which pixels are inside or outside the ROI. <span class="menuselection notranslate">Edit ‣ Selection ‣ Create Mask</span> can help clarify this.</span><a class="headerlink" href="#fig-rois-mask" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -735,7 +747,7 @@ This is especially true at very small scales (hundreds of nanometers or smaller)
 </div>
 </section>
 <section id="working-with-multiple-rois">
-<h2>Working with multiple ROIs<a class="headerlink" href="#working-with-multiple-rois" title="Permalink to this headline">#</a></h2>
+<h2>Working with multiple ROIs<a class="headerlink" href="#working-with-multiple-rois" title="Permalink to this heading">#</a></h2>
 <p>Normally, only a single ROI can be ‘active’ in ImageJ (i.e. affecting measurements) at any one time.
 If you need control over multiple ROIs, there are two places in which you can store them.
 These differ according to purpose:</p>
@@ -744,7 +756,7 @@ These differ according to purpose:</p>
 <li><p><strong>The image overlay:</strong> for ROIs that you only want to display</p></li>
 </ol>
 <section id="the-roi-manager">
-<h3>The ROI Manager<a class="headerlink" href="#the-roi-manager" title="Permalink to this headline">#</a></h3>
+<h3>The ROI Manager<a class="headerlink" href="#the-roi-manager" title="Permalink to this heading">#</a></h3>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><kbd class="kbd docutils literal notranslate">T</kbd> for <em><strong>T</strong>roy manager</em>: shortcut to add ROI to the ROI Manager</p>
@@ -753,7 +765,7 @@ These differ according to purpose:</p>
 <p>The slow way to open the ROI Manager is to choose <span class="menuselection notranslate">Analyze ‣ Tools ‣ ROI Manager…</span>.
 The fast way is just to draw a ROI and press <kbd class="kbd docutils literal notranslate">T</kbd>.</p>
 <p>The additional <span class="guilabel notranslate">Measure</span> command within the manager is then like applying <span class="menuselection notranslate">Analyze ‣ Measure</span> to each ROI in turn.
-If you happen to want to show all the ROIs simultaneously, you can select the <span class="guilabel notranslate">Show All</span> option <a class="footnote-reference brackets" href="#fn-1" id="id1">1</a>.</p>
+If you happen to want to show all the ROIs simultaneously, you can select the <span class="guilabel notranslate">Show All</span> option <a class="footnote-reference brackets" href="#fn-1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 <p>Because ROIs in the ROI Manager are represented independently of the image on which they were defined, you can create a ROI on one image, add it to the ROI manager, select a different image and then click on the ROI in the ROI Manager to place it on the second image.
 This provides one way to transfer a ROI from one image to another.</p>
 <p>Measurements made from the ROI Manager always use the most recently-selected image, so be careful if you have several images open at the same time.
@@ -802,7 +814,7 @@ Solution</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="overlays">
-<span id="sec-imagej-overlay"></span><h3>Overlays<a class="headerlink" href="#overlays" title="Permalink to this headline">#</a></h3>
+<span id="sec-imagej-overlay"></span><h3>Overlays<a class="headerlink" href="#overlays" title="Permalink to this heading">#</a></h3>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><kbd class="kbd docutils literal notranslate">B</kbd> for <em><strong>B</strong>overlay</em>: shortcut to add a ROI to an overlay</p>
@@ -820,7 +832,7 @@ The same submenu also provides commands to transfer ROIs between the overlay and
 </div>
 </section>
 <section id="saving-rois">
-<h3>Saving ROIs<a class="headerlink" href="#saving-rois" title="Permalink to this headline">#</a></h3>
+<h3>Saving ROIs<a class="headerlink" href="#saving-rois" title="Permalink to this heading">#</a></h3>
 <p>Individual ROIs, currently active on an image, can be saved simply by choosing <span class="menuselection notranslate">File ‣ Save As ‣ Selection…</span></p>
 <p>The ROI Manager also has a <span class="guilabel notranslate">Save…</span> command (under <span class="guilabel notranslate">More</span>), which will save whichever ROIs are currently selected in the manager (or, if none are selected, all of them).</p>
 <p>Overlays are fixed to specific images and do not have their own special save command, but will nonetheless be included if you save the image as a TIFF file (ImageJ’s default format).
@@ -848,7 +860,7 @@ Therefore you may well want to use this command when creating figures or present
 </details>
 </div>
 <figure class="align-center" id="fig-rois">
-<img alt="../../../_images/1e54e0bd5feccd9bdf2405b4e95e77fc9bb1d1e1818a5836370fdb6a49ef9fcd.png" src="../../../_images/1e54e0bd5feccd9bdf2405b4e95e77fc9bb1d1e1818a5836370fdb6a49ef9fcd.png" />
+<img alt="../../../_images/f3b739e8776de80c51ecd28d087e5ea50f3f9f44ef76ae01f60e28051265d354.png" src="../../../_images/f3b739e8776de80c51ecd28d087e5ea50f3f9f44ef76ae01f60e28051265d354.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 18 </span><span class="caption-text">ROIs and overlays are displayed on top of images, and so can be removed easily without having any effect upon the pixel values.
 Flattened images may appear the same on screen, but are invariably RGB (see <a class="reference internal" href="../4-colors/colors.html#chap-colors"><span class="std std-ref">Channels &amp; colors</span></a>) and have had their pixel values permanently changed to show any annotations.</span><a class="headerlink" href="#fig-rois" title="Permalink to this image">#</a></p>
@@ -904,7 +916,7 @@ This only works if certain tools are selected, e.g. <span class="guilabel notran
 </section>
 </section>
 <section id="generating-histograms">
-<h2>Generating histograms<a class="headerlink" href="#generating-histograms" title="Permalink to this headline">#</a></h2>
+<h2>Generating histograms<a class="headerlink" href="#generating-histograms" title="Permalink to this heading">#</a></h2>
 <p>Creating a histogram in ImageJ, via <span class="menuselection notranslate">Analyze ‣ Histogram</span> or simply pressing <kbd class="kbd docutils literal notranslate">H</kbd>, results in a new histogram window being created.
 Like with <span class="menuselection notranslate">Analyze ‣ Measure</span>, this will use a ROI if it is available; otherwise it will use the full image.</p>
 <p>An ImageJ histogram is displayed above some basic summary statistics and four intriguing buttons:</p>
@@ -927,11 +939,10 @@ That means you can draw ROIs and even make measurements on it.
 We will revisit this in <a class="reference internal" href="../5-pixel_size/pixel_size.html#chap-pixel-size"><span class="std std-ref">Pixel size &amp; dimensions</span></a>.</p>
 </div>
 <hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="fn-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>If you have a stack, you also may need to explore <span class="guilabel notranslate">More &gt;&gt; Options…</span> to define whether all ROIs are shown on all slices, or only on the slices on which they were first created.</p>
-</dd>
-</dl>
+<aside class="footnote brackets" id="fn-1" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>If you have a stack, you also may need to explore <span class="guilabel notranslate">More &gt;&gt; Options…</span> to define whether all ROIs are shown on all slices, or only on the slices on which they were first created.</p>
+</aside>
 </section>
 </section>
 
@@ -960,11 +971,10 @@ We will revisit this in <a class="reference internal" href="../5-pixel_size/pixe
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="measurements.html"
@@ -984,10 +994,7 @@ We will revisit this in <a class="reference internal" href="../5-pixel_size/pixe
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1051,6 +1058,13 @@ By Pete Bankhead
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>
+All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+</p>
+
+</div>
   </div>
   
 </div>
@@ -1062,8 +1076,8 @@ By Pete Bankhead
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>
