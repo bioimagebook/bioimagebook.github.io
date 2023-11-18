@@ -452,7 +452,7 @@ Again, no information is lost: we can access the original pixel values, and upda
 
 Just like with a single channel image, we can create an RGB image that allows us to visualize our multichannel image -- using the LUTs to figure out which RGB values are needed to represent the color of each pixel.
 
-Then, againf just like with the single channel image, this is problematic if we don't keep the raw data -- because we can never recover the original values from the RGB representation.
+Then, again just like with the single channel image, this is problematic if we don't keep the raw data -- because we can never recover the original values from the RGB representation.
 
 
 ```{glue:figure} fig_colors_composite_rgb_split
