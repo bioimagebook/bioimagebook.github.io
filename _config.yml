@@ -1,0 +1,51 @@
+title: "Introduction to Bioimage Analysis"
+author       : "Pete Bankhead"  # The author of the book
+copyright    : "2022-2023"  # Copyright year to be placed in the footer
+logo         : 'images/book-logo-smaller.png'
+
+exclude_patterns     : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", '_unused/**', 'nbs/*']
+only_build_toc_files : false
+
+execute:
+  execute_notebooks: cache
+
+repository:
+  url           : https://github.com/bioimagebook/bioimagebook.github.io # Online location of your book
+  branch        : main  # Which branch of the repository should be used when creating links (optional)
+
+launch_buttons:
+  thebe         : true
+  notebook_interface : "classic"
+  binderhub_url      : "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
+
+parse:
+  myst_enable_extensions:
+    - colon_fence
+    - linkify
+    - dollarmath
+    - substitution
+    - html_image
+
+html:
+  extra_footer: |
+      <p>
+      All content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>, except where noted otherwise.
+      See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" target="_blank">License & Reuse</a> for details.
+      </p>
+
+sphinx:
+  config:
+    html_baseurl: https://bioimagebook.github.io/
+    html_js_files:
+      # Only needed if plotly is used
+      - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
+      - [ 'https://plausible.io/js/script.js', {'defer': 'defer', 'data-domain': 'bioimagebook.github.io'} ]
+    language: en
+    html_extra_path: _static/google4a2104152fcec296.html
+  extra_extensions:
+    - sphinx_sitemap
+  local_extensions:
+    notranslate_gui: _ext
+
+latex:
+  latex_engine: xelatex
