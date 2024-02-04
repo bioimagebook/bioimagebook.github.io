@@ -1,9 +1,9 @@
-title: "Introduction to Bioimage Analysis"
+title        : "Introduction to Bioimage Analysis"
 author       : "Pete Bankhead"  # The author of the book
 copyright    : "2022-2024"  # Copyright year to be placed in the footer
 logo         : 'images/book-logo-smaller.png'
 
-exclude_patterns     : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", '_unused/**', 'nbs/*']
+exclude_patterns     : [_build, Thumbs.db, .DS_Store, "locales/_build/**", "**.ipynb_checkpoints", '_unused/**', 'nbs/*']
 only_build_toc_files : false
 
 execute:
@@ -43,9 +43,11 @@ sphinx:
     language: en
     html_extra_path: 
       - _static/google4a2104152fcec296.html
+    # Extra config items for translation
     locale_dirs:
-      - 'locale/'
-    gettext_compact: True
+      - 'locales'
+    gettext_compact: 'book'
+    project: 'bioimage-book'
   extra_extensions:
     - sphinx_sitemap
   local_extensions:
