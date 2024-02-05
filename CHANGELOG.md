@@ -4,13 +4,20 @@ Changelog
 This page summarizes the main changes.
 To see all changes, check out the [commit log](https://github.com/bioimagebook/bioimagebook.github.io/commits/main).
 
+## 5 February 2024
+* Add initial support for translations
+  * With huge thanks to @bethac07!
+
+## 4 February 2024
+* Dependency updates
+  * matplotlib, numpy, bandas, scikit-image, scipy
+
 ## 18 November 2023
 * Add copyright note to each page (thanks to @haesleinhuepf)
   * https://github.com/bioimagebook/bioimagebook.github.io/issues/28
 * Rename & update 'License & Reuse' section for clarity
 * Fix typo (thanks to @PeteHaitch)
   * https://github.com/bioimagebook/bioimagebook.github.io/pull/27
-
 
 ## 3 June 2023
 
