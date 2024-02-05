@@ -1,0 +1,799 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:1
+msgid "Default Caption"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:16
+msgid "Types & bit-depths"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:18
+msgid "Chapter outline"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:21
+msgid ""
+"The **bit-depth** & **type** of an image determine what pixel values it "
+"can contain"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:22
+msgid ""
+"An image with a **higher bit-depth** can (potentially) contain **more "
+"information**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:23
+msgid "During acquisition, most images have the type **unsigned integer**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:24
+msgid "During processing, it's often better to use **floating point** types"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:25
+msgid ""
+"Attempting to store values outside the range permitted by the type & bit-"
+"depth leads to **clipping** -- which is usually **very bad indeed**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:46
+msgid "Introduction"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:48
+msgid ""
+"As described in {ref}`chap_pixels`, each pixel has a numerical value – "
+"but a pixel cannot typically have just *any* numerical value it likes. "
+"Instead, it works under the constraints of the image **type** and **bit-"
+"depth**."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:51
+msgid ""
+"Ultimately the pixels are stored in some binary format: a sequence of "
+"**bits** (**bi**nary digi**ts**), i.e. ones and zeros. The bit-depth "
+"determines how many of these ones and zeros are available to store each "
+"pixel. The type determines how these bits are interpreted."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:57
+msgid "Representing numbers with bits"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:64
+msgid "Bob devising his code."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:67
+msgid ""
+"Suppose Bob is developing a secret code to store numbers, but in which he"
+" is only allowed to write ones and zeros. If he is only allowed a single "
+"one or zero (i.e. a single bit), he doesn't have many options."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:70
+msgid ""
+"Assuming he wants his encoded numbers to be consecutive integers starting"
+" from zero, this means he can only represent two different numbers: one "
+"and zero."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:82
+msgid ""
+"If he is allowed an extra bit, suddenly he can represent 4 numbers by "
+"combining the ones and zeros differently."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:94
+msgid ""
+"Clearly, the more bits Bob is allowed, the more unique combinations he "
+"can have -- and therefore the more different numbers he can represent in "
+"his code."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:96
+msgid ""
+"With 8 bits are his disposal, Bob can combine the bits in 256 different "
+"ways to represent 256 different numbers."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:108
+msgid ""
+"The pixel values in an image are stored using a code just like this. Each"
+" possible value is represented in binary as a unique combination of bits."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:113
+msgid "Image bit-depth"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:115
+msgid ""
+"The **bit-depth** of an image is the number of bits used to represent "
+"each pixel. A bit-depth of 8 would indicate that 8 bits are used to "
+"represent a single pixel value."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:118
+msgid ""
+"The bit-depth imposes a limit upon the pixel values that are possible. A "
+"lower bit-depth implies that fewer different pixel values are available, "
+"which can result in an image that contains less information."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:156
+msgid "Representing an image using different bit-depths."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:161
+msgid ""
+"As shown in {numref}`fig-bit_depths_demo`, a 1-bit image can contain only"
+" two values: here, shown as black or white pixels. Such **binary images**"
+" are extremely limited in the information that they can contain, although"
+" will turn out to be [very useful later](chap_thresholding) when "
+"processing images."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:164
+msgid ""
+"A 2-bit image is not much better, containing at most only 4 different "
+"values. A 4-bit image can have 16 values. When visualized with a "
+"grayscale LUT, this is a substantial improvement. In fact, the eye is not"
+" particularly good at distinguishing different shades of gray -- making "
+"it difficult to see much difference between a 4-bit and 8-bit image. "
+"However, the histograms reveal that the 8-bit image contains more fine-"
+"grained information."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:172
+msgid ""
+"In practice, computers tend to work with groups of 8 bits, with each "
+"group of 8 bits known as a **byte**. Microscopes that acquire 8-bit "
+"images are still reasonably common, and these permit 2<sup>8</sup> = 256 "
+"different pixel values, which fall in the range 0–255. The next step up "
+"is a 16-bit image, which can contain 2<sup>16</sup> = 65536 values: a "
+"dramatic improvement (0–65535)."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md
+msgid "Question"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:180
+msgid ""
+"What impact would you expect bit-depth to have on the file size of a "
+"saved image?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:182
+msgid ""
+"For example, would you expect an 8-bit image to have a larger, smaller or"
+" (roughly) equivalent file size to a 16-bit image of the same scene? You "
+"can assume the two images have the same number of pixels."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md
+msgid "Answer"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:187
+msgid ""
+"In general, the file size required to store an image is expected to be "
+"higher with a higher bit-depth."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:189
+msgid ""
+"Assuming that the image isn't [compressed](sec_files_compression), a "
+"16-bit image would require roughly twice as much storage space as a "
+"corresponding 8-bit image."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:191
+msgid ""
+"If you have a 1024 x 1024 pixel image that is 8-bit, that should take "
+"roughly 1 MB to store. The corresponding 16-bit image would require "
+"approximately 2 MB."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:200
+msgid "Image type"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:202
+msgid ""
+"At this point, you  might be wondering: what about fractions? Or negative"
+" numbers?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:205
+msgid ""
+"In reality, the bit-depth is only part of the story. The **type** of the "
+"image is what determines how the bits are interpreted."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:208
+msgid ""
+"Until now, we have assumed that 8 bits would be used to represent whole "
+"numbers in the range 0 -- 255, because we have 2<sup>8</sup> = 256 "
+"different combinations of 8 bits. This is an **unsigned integer** "
+"representation."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:211
+msgid ""
+"But suppose we dedicate one of our bits to represent whether the number "
+"should be interpreted as positive or negative, with the remaining seven "
+"bits providing the magnitude of the number. An image using this approach "
+"has the type **signed integer**. Typically, an 8-bit signed integer can "
+"be in the range -128 -- 127. Including 0, that still leaves 256 distinct "
+"possibilities."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:216
+msgid ""
+"Although the images we acquire are normally composed of unsigned "
+"integers, we will later explore the immense benefits of processing "
+"operations such as averaging or subtracting pixel values, in which case "
+"the resulting pixels may be negative or contain fractional parts. "
+"**Floating point** type images make it possible to store these new, not-"
+"necessarily-integer values in an efficient way. That can be important, "
+"because we could lose a lot of information if we always had to round "
+"pixel values to integers."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:220
+msgid ""
+"Floating point images also allow us to store three special values: "
+"$+\\infty$, $-\\infty$ and `NaN`. The last of these stands for *Not a "
+"Number*, and can represent a missing or impossible value, e.g. the result"
+" of 0/0."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:223
+msgid "Key message"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:226
+msgid ""
+"The bit-depth and type of an image determine what pixel values are "
+"possible."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:229
+msgid "How & why points can float"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:231
+msgid ""
+"Floating point pixel values have variable precision depending upon "
+"whether they are representing very small or very large numbers."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:233
+msgid ""
+"Representing a number in binary using floating point is analogous to "
+"writing it out in standard form, i.e. something like 3.14×10<sup>8</sup>,"
+" which may be written as 3.14e8. In this case, we have managed to "
+"represent 314000000 using only 4 digits: 314 and 8 (the 10 is already "
+"baked in to the representation)."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:236
+msgid ""
+"In the binary case, the form is more properly something like ± "
+"2<sup>**M**</sup>×N: we have one bit devoted to the sign, a fixed number "
+"of additional bits for the exponent *M*, and the rest to the main number "
+"*N* (called the fraction)."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:238
+msgid ""
+"A 32-bit floating point number typically uses 1 bit for the sign, 8 bits "
+"for the exponent and 23 bits for the fraction, allowing us to store a "
+"very wide range of positive and negative numbers. A 64-bit floating point"
+" number uses 1 bit for the sign, 11 bits for the exponent and 52 for the "
+"fraction, thereby allowing both an even wider range and greater "
+"precision. But again these require more storage space than 8- and 16-bit "
+"images."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:245
+msgid "Common image types & bit-depths"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:246
+msgid ""
+"Lots of permutations of bit-depth and type are possible, but in practice "
+"three are most common for images:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:247
+msgid "8-bit unsigned integer"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:248
+msgid "16-bit unsigned integer"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:249
+msgid "32-bit floating point"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:251
+msgid ""
+"The representations above are sufficiently ubiquitous that the type is "
+"often assumed. Unless otherwise specified, any 8-bit or 16-bit image is "
+"most likely to use unsigned integers, while a 32-bit image is probably "
+"using floating point pixels."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:254
+msgid ""
+"Conceivably you *can* have a 32-bit signed/unsigned integer image, or "
+"even a 16-bit floating point image, but these are less common in the "
+"wild."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:269
+msgid "The pixels shown on the right all belong to different images."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:271
+msgid ""
+"In each case, identify what *possible* type an image could have in order "
+"to represent the value of the pixel. There can be more than one possible "
+"type for each pixel."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:274
+msgid "Your type options are:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:276
+msgid "Signed integer"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:277
+msgid "Unsigned integer"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:278
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:286
+msgid "Floating point"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:282
+msgid "The possible image types, from left to right:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:284
+msgid "Signed integer or floating point"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:285
+msgid "Unsigned integer, signed integer or floating point"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:288
+msgid ""
+"Note that 'floating point' is an option in all cases: it's the most "
+"flexible representation."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:299
+msgid ""
+"What is the maximum pixel value that can be stored in a *16-bit, unsigned"
+" integer* image?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:303
+msgid ""
+"The maximum value that can be stored in a 16-bit, unsigned integer image "
+"is 2<sup>16</sup>-1 = 65535."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:314
+msgid ""
+"What would be the maximum pixel value that can be stored in a *16-bit, "
+"signed integer* image?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:318
+msgid ""
+"The maximum value that can be stored in a 16-bit, signed integer image is"
+" 2<sup>15</sup>-1 = 32767 (since one of the bits is used for the sign, we"
+" have 15 remaining)."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:342
+msgid "An image as a matrix of numbers, or just ones and zeros?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:344
+msgid ""
+"You may recall how {numref}`fig-image_array` showed an image as being a "
+"matrix of numbers. That is already a slightly high level abstraction of "
+"how the image is actually represented. It's more accurate to see the "
+"image (or, indeed, any digital data) as simply being a long stream of "
+"ones and zeros, such as"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:348
+msgid "{glue:}`binary_string`"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:350
+msgid ""
+"More information is needed about how the pixel values of the image are "
+"encoded to interpret these ones and zeros. This includes how should the "
+"ones and zeros be split up to represent different values (e.g. in chunks "
+"of 8, 16, or some other number?)."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:353
+msgid ""
+"The bit-depth is what tells us how big the chunks are, and the type tells"
+" us how to convert each chunk into a decimal number."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:358
+msgid "When bits go bad"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:360
+msgid ""
+"We're now ready to discuss why you absolutely do need to know the basics "
+"of bit-depths and image types when working with scientific images."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:362
+msgid ""
+"The main point of {ref}`chap_pixels` is that we need to keep control of "
+"our pixel values so that our final analysis is justifiable. There are two"
+" main bit-related things that can go wrong when trying to store a pixel "
+"value in an image:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:366
+msgid ""
+"**Clipping:** We try to store a number outside the range supported, so "
+"that the closest valid value is stored instead. For example, if we try to"
+" store -10 in an 8-bit unsigned integer image then the closest value we "
+"can actually store is 0. Similarly, if we try to store 500 then the "
+"closest valid value is 255."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:367
+msgid ""
+"**Rounding:** We try to store a number that cannot be represented "
+"exactly, and so it must be rounded to the closest possible value. For "
+"example, if we want to store 6.4 in an 8-bit unsigned integer image then "
+"this is not possible; rather, we would need to store 6 instead."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:371
+msgid "Data clipping"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:373
+msgid ""
+"Of the two problems, clipping is usually the more serious, as shown in "
+"{numref}`fig-bits_clipping`. A clipped image contains pixels with values "
+"equal to the maximum or minimum supported by that bit-depth, and it's no "
+"longer possible to tell what values those pixels *should* have. **The "
+"information is irretrievably lost.**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:377
+msgid ""
+"Clipping often occurs whenever an image is converted to have a lower bit-"
+"depth. During this conversion, not all the original pixel values may be "
+"preserved -- in which case they must be somehow transformed into the "
+"range permitted by the output bit-depth."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:380
+msgid ""
+"This transformation could simply involve clipping the unsupported values "
+"(usually very bad), or it could involve rescaling the pixel values first "
+"(usually less bad)."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:463
+msgid ""
+"Storing an image using a lower bit-depth, either by clipping or by "
+"scaling the values. The top row shows all images with the same minimum "
+"and maximum values to determine the contrast, while the second row shows "
+"shows the same images with the maximum set to the highest pixel value "
+"actually present (the images are the same, only the LUTs are different). "
+"The bottom rows show both a plot of the pixel values through the center "
+"of each image and histograms of all the image pixel values. One may infer"
+" that information has been lost in both of the 8-bit images, but more "
+"much horrifically when clipping was applied. Scaling squeezes the data "
+"into a narrow range, which might result in some rounding errors -- but "
+"most of the information remains intact, with the shapes of the profile "
+"plot and histogram remaining similar."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:473
+msgid ""
+"Clipping of high pixel values during acquisition is also called "
+"**saturation**."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:476
+msgid ""
+"However, it's important to know that **clipping can already occur during "
+"image acquisition**. In fluorescence microscopy, this depends upon three "
+"main factors:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:479
+msgid ""
+"**The amount of light being emitted.** Because pixel values depend upon "
+"how much light is detected, a sample emitting very little light is less "
+"likely to require the ability to store very large values. Although it "
+"still *might* because of..."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:480
+msgid ""
+"**The gain of the microscope.** Quantifying very tiny amounts of light "
+"accurately has practical difficulties. A microscope’s gain effectively "
+"amplifies the amount of detected light to help overcome this before "
+"turning it into a pixel value (see {ref}`chap_microscope_types`). "
+"However, if the gain is too high, even a small number of detected photons"
+" could end up being over-amplified until clipping occurs."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:481
+msgid ""
+"**The offset of the microscope.** This effectively acts as a constant "
+"being added to every pixel. If this is too high, or even negative, it can"
+" also push the pixels outside the permissible range."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:483
+msgid "Avoid clipping your data!"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:486
+msgid ""
+"If clipping occurs, we no longer know what is happening in the brightest "
+"or darkest parts of the image -- which can thwart any later analysis. "
+"Therefore **during image acquisition, any available controls should be "
+"adjusted to make sure clipping is avoided.**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:501
+msgid ""
+"When acquiring an 8-bit unsigned integer image, is it fair to say your "
+"data is fine so long as your minimum pixel value is 0 and your maximum "
+"value is 255?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:505
+msgid "No! At least, not really."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:507
+msgid ""
+"You *cannot* store pixels outside the range 0–255. If your image contains"
+" pixels with either of those extreme values, *you cannot be certain "
+"whether or not clipping has occurred*. Therefore, you should ensure "
+"images you acquire do not contain any pixels with the most extreme values"
+" permitted by the image bit-depth. To be confident your 8-bit data is not"
+" clipped, the maximum range would be 1–254."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:521
+msgid ""
+"The bit-depth of an image is probably some multiple of 8, but the bit-"
+"depth that a [detector (e.g. CCD)](chap_microscope_types) can support "
+"might not be."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:523
+msgid ""
+"For example, what is the maximum value in a 16-bit image that was "
+"acquired using a camera with a 12-bit output?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:525
+msgid ""
+"And what is the maximum value in a 8-bit image acquired using a camera "
+"with a 14-bit output?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:527
+msgid "Assume unsigned integers are used in both cases."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:531
+msgid ""
+"The maximum value of a 16-bit image obtained using a 12-bit camera is "
+"4095 (i.e. 2<sup>12</sup>-1)."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:533
+msgid ""
+"The maximum value of an 8-bit image obtained using a 14-bit camera is 255"
+" – the extra bits of the camera do not change this. But if the image was "
+"saved in 16-bit instead, the maximum value would be 16383."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:536
+msgid ""
+"So be aware that the actual range of possible values depends upon the "
+"acquisition equipment as well as the bit-depth of the image itself. The "
+"lower bit-depth will dominate."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:542
+msgid "Rounding errors"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:544
+msgid ""
+"Rounding is a more subtle problem than clipping. Again it is relevant as "
+"early as acquisition."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:547
+msgid ""
+"For example, suppose you are acquiring an image in which there really are"
+" 1000 distinct and quantifiable levels of light being emitted from "
+"different parts of a sample. These could not possibly be given different "
+"pixel values within an 8-bit image, but could normally be fit into a "
+"16-bit or 32-bit image with lots of room to spare. If our image is 8-bit,"
+" and we want to avoid clipping, then we would need to scale the original "
+"photon counts down first – resulting in pixels with different photon "
+"counts being rounded to have the same values, and their original "
+"differences being lost."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:551
+msgid ""
+"Nevertheless, rounding errors during acquisition are usually small: it "
+"may not *really* matter if we can't tell the difference between detecting"
+" 1,000 photons and 1,003 photons."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:553
+msgid ""
+"Rounding can be a bigger problem when it comes to processing operations "
+"like filtering, which often involve computing averages over many pixels "
+"(see {ref}`chap_filters`). The good news is that at this post-acquisition"
+" stage we can convert our data to floating point and then get fractions "
+"if we need them."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:556
+msgid "Floating point rounding errors"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:559
+msgid ""
+"As a full disclosure, I should admit that using floating point types is "
+"only a partial solution to rounding issues. Even a 64-bit floating point "
+"image cannot store all useful pixel values with perfect precision, and "
+"seemingly straightforward numbers like 0.1 are only imprecisely "
+"represented."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:562
+msgid ""
+"But this is not really unexpected: this binary limitation is similar to "
+"how we cannot write 1/3 in decimal exactly. We can write 0.3333333 but "
+"our level of precision will depend upon our willingness to continue "
+"adding 3’s after the decimal point."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:565
+msgid ""
+"In any case, rounding 0.1 to 0.100000001490116119384765625 (a possible "
+"floating point representation) is not so bad as rounding it to 0 (an "
+"integer representation), and the imprecisions of floating point numbers "
+"in image analysis are *usually* small enough to be disregarded."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:567
+msgid "See <https://xkcd.com/217/> for more information."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:571
+msgid "More bits are better (usually)"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:575
+msgid ""
+"From considering both clipping and rounding, the simple rule of bit-"
+"depths emerges: if you want the maximum information and precision in your"
+" images, more bits are better. This is depicted in {numref}`fig-"
+"blocks_and_bits`."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:578
+msgid ""
+"When given the option of acquiring a 16-bit or 8-bit image, most of the "
+"time you should opt for the former."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:586
+msgid ""
+"**Illustration of the comparative accuracy of *(left to right)* 8-bit, "
+"16-bit and 32-bit images.** If an 8-bit image is like creating a "
+"sculpture out of large building blocks, a 16-bit image is more like using"
+" Lego and a 32-bit floating point image resembles using clay. Anything "
+"that can be created with the blocks can also be made from the Lego; "
+"anything made from the Lego can also be made from the clay. This does not"
+" work in reverse: some complex creations can only be represented properly"
+" by clay, and building blocks permit only a crude approximation at best. "
+"On the other hand, if you only need something blocky, it’s not really "
+"worth the extra effort of Lego or clay. And, from a very great distance, "
+"it might be hard to tell the difference."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:598
+msgid ""
+"Although *more bits are better* is a simple rule of thumb we can share "
+"with those who do not know the subtleties of bit-depths, it should not be"
+" held completely rigorously."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:600
+msgid "Can you think of any circumstances when more bits might *not* be better?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:604
+msgid ""
+"Reasons why a lower bit depth is *sometimes* preferable to a higher one "
+"include:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:606
+msgid ""
+"A higher bit-depth leads to larger file sizes, and potentially slower "
+"processing. For very large datasets, this might be a bigger issue that "
+"any loss of precision found in using fewer bits."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:607
+msgid ""
+"The amount of light detected per pixel might be so low that thousands of "
+"possible values are not required for its accurate storage, and 8-bits (or"
+" even fewer) would be enough. For the light-levels in biological "
+"fluorescence microscopy, going beyond 16-bits would seldom bring any "
+"benefit."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/bit_depths.md:609
+msgid ""
+"But with smallish datasets for which processing and storage costs are not"
+" a problem, it is safest to err on the side of more bits than we strictly"
+" need."
+msgstr ""
+

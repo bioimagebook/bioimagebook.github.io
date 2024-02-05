@@ -1,0 +1,521 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:1
+msgid "Default Caption"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:16
+msgid "Channels & colors"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:18
+msgid "Chapter outline"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:21
+msgid ""
+"Images with multiple **color channels** may display differently in "
+"different software"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:22
+msgid ""
+"**RGB images** are a special case, and generally look consistent across "
+"different software"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:23
+msgid ""
+"In ImageJ, multichannel images that are not RGB may be referred to as "
+"**composite images**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:24
+msgid "**Converting images to RGB often loses information!**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:43
+msgid "Introduction"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:45
+msgid ""
+"One way to introduce color into images is to use a suitable LUT, as "
+"described in {ref}`chap_pixels`. Then the fact that different colors "
+"could be involved in the display of such images was really only "
+"incidental: at each location in the image there was still only one "
+"channel, one pixel and one value."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:48
+msgid ""
+"There are images for which color plays a more important role. We will "
+"consider two types:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:50
+msgid ""
+"**RGB images** -- which are widely used for display, but are *usually* "
+"not very good for quantitative analysis"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:51
+msgid ""
+"**Multichannel / composite images** -- which are often better for "
+"analysis, but need to be converted to RGB for display"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:53
+msgid ""
+"Since they often *look* the same, but behave very differently, knowing "
+"which kind of color image you have is important for any scientific work."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:57
+msgid "Mixing red, green & blue"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:59
+msgid ""
+"We previously discussed how image LUTs provide a way to map pixel values "
+"to colors that can be displayed on screen. Now that we've looked at image"
+" types and bit-depths, we can expand a bit more on how that works in "
+"practice."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:62
+msgid ""
+"In general, each color is represented using three 8-bit unsigned "
+"integers: one for **r**ed, one for **g**reen, one for **b**lue. Each "
+"integer value defines how much of each primary color should be mixed "
+"together to create the final color used to display the pixel."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:65
+msgid ""
+"In the case of a grayscale LUT, the red, green and blue values are all "
+"the same:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:129
+msgid "Other LUTs may include only one color, with the others set to zero:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:137
+msgid "However for most LUTs the red, green and blue values differ:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:147
+msgid ""
+"Because each of the red, green and blue values can be in the range 0-255,"
+" mixing them together can generate (theoretically at least) up to 256 x "
+"256 x 256 = 16,777,216 different colors, i.e. a *lot*."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:149
+msgid ""
+"When it comes to display, this method of representing color using 8-bit "
+"RGB values should easily give us many more colors than we could ever hope"
+" to distinguish by eye. We don't need a higher bit-depth for display."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:154
+msgid "RGB images"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:156
+msgid ""
+"Until now we have considered images where each pixel has a single value, "
+"and there is an LUT associated with the image to map these values to "
+"colors."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:158
+msgid ""
+"Now that we know how colors are represented, we can consider another "
+"option."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:160
+msgid ""
+"Instead of storing a single value per pixel, we can store the RGB values "
+"that represent the color used to display the pixel instead. Each pixel "
+"then has three values (for red, green and blue), not just a single value."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:163
+msgid "When an image is stored in this way it's called an **RGB image**."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:165
+msgid ""
+"We can easily create an RGB image from any combination of image + LUT: "
+"just replace each pixel value in the original image with the associated "
+"RGB values that we find in the LUT. Now each pixel has three values "
+"instead of one, but the end result *looks* exactly the same."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:170
+msgid "The risk of RGB"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:172
+msgid ""
+"The problem with converting an image to RGB is that, in general, *we "
+"can't go back!* In fact, the unwitting *overuse* of RGB images is one of "
+"the most common sources of data-destroying errors in some branches of "
+"scientific imaging."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:176
+msgid "Beware converting to RGB!"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:179
+msgid "Converting an image to RGB is another way lose our raw data."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:182
+msgid ""
+"{numref}`fig-colors_im_grays_rgb` shows this in action. In the 'least "
+"destructive' case, the image has a grayscale LUT. This means that the "
+"red, green and blue values are identical to one another -- but *not* "
+"necessarily identical to the pixel values of the original image. We have "
+"converted the data to 8-bit and used the LUT to determine how much to "
+"scale during the conversion."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:187
+msgid ""
+"In general, it's not possible to recover the original pixel values from "
+"the RGB image: we probably don't know exactly what rescaling was applied,"
+" and we have lost information to clipping and rounding."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:248
+msgid ""
+"Converting a grayscale image to RGB can lose information. We can separate"
+" out the red, green and blue values from the RGB image and visualize each"
+" as separate images to explore the information they contain. Even though "
+"the RGB image looks unchanged from the original, and all three color "
+"channels have similar histograms to the original, the bit-depth has been "
+"reduced and image statistics modified. There is also a big histogram peak"
+" that indicates substantial clipping."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:254
+msgid ""
+"The impact of converting an image with any other LUT to RGB is even more "
+"dramatic, as shown in {numref}`fig-colors_im_rgb`. Here, the red, green "
+"and blue values are different and the histograms for each color are very "
+"different. Again, it would not be possible to recover the original pixel "
+"values from the RGB image."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:319
+msgid ""
+"Converting an to RGB can lose information in a particularly dramatic way "
+"if the LUT is not grayscale. The histograms for each channel may now look"
+" completely different."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:324
+msgid "The role of RGB"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:326
+msgid "Using RGB images for display"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:328
+msgid "So what's the point of having RGB images, if they are so risky?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:330
+msgid ""
+"One of the biggest reasons to use RGB images in science is for "
+"presentation. While specialist image analysis software applications, such"
+" as ImageJ, are typically designed to handle a range of exotic image "
+"types and bit-depths, the same is not true for non-scientific software."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:333
+msgid ""
+"If want want an image to dispay exactly the same in ImageJ as in a "
+"PowerPoint&reg; presentation or a figure in a publication, for example, "
+"we'll probably want to convert it to RGB. If we don't, the image might "
+"display very strangely on other software -- or even not open at all."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:336
+msgid "'Why is my image just black?'"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:340
+msgid ""
+"Over the years, I have encountered a remarkable number of cases where a "
+"researcher has saved their fluorescence microscopy images *only* in an "
+"RGB format."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:342
+msgid ""
+"Their justification was that they tried saving the images in different "
+"way at the microscope, but *'it didn't work -- the images were all "
+"black'*."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:344
+msgid ""
+"The explanation is almost invariably that their images were really 16-bit"
+" or 32-bit, but they tried to open them in software that doesn't handle "
+"16-bit images very well (e.g. they just double-clicked the file to open "
+"it in the default image viewer). All they saw as a black, seemingly-empty"
+" image."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:347
+msgid ""
+"Whenever they tried exporting from the microscope's acquisition software "
+"in different ways, they found an option that gave a viewable image -- and"
+" stuck with that."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:349
+msgid ""
+"The problem with this is that it usually meant that *they didn't save "
+"their raw data at all!* They *only* saved an RGB copy, with all the "
+"rescaling and LUT magic applied, which is wholly unsuitable for analysis."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:352
+msgid ""
+"The solution is to view images in ImageJ, or similar scientific software."
+" This usually reveals that the image is not 'all black' after all. "
+"Rather, one only needs to adjust the brightness and contrast (using the "
+"LUT) to see the raw data in all its glory."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:359
+msgid "When RGB is all you've got"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:361
+msgid ""
+"All the previous comments about *'don't convert to RGB before analysis'* "
+"as based on the assumption that your raw data isn't already RGB. This is "
+"usually the case with microscopy and medical imaging whenever accurate "
+"quantification is important."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:364
+msgid "Nevertheless, it's not *always* the case."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:366
+msgid ""
+"A common example is brightfield imaging for histology or pathology. Here,"
+" the camera is often RGB and an RGB image is really as close to the raw "
+"data as we are likely to get."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:374
+msgid "Example RGB histology image, from https://openslide.org"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:377
+msgid ""
+"Crucially, the analysis of brightfield images in histology usually aims "
+"to replicate (and sometimes improve upon) the visual assessment that a "
+"pathologist might make looking down a microscope. It's often based on "
+"detecting, classifying and counting cells, measuring stained areas, or "
+"recognizing the presence of particular patterns -- but *not* accurately "
+"quantifying staining intensity."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:382
+msgid "Multichannel images"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:384
+msgid ""
+"So far, we have focussed on 2D images with a **single channel** -- that "
+"is, a single value for every pixel at every *x,y* coordinate in the "
+"image."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:386
+msgid ""
+"Such images can be converted to 8-bit RGB using a LUT. If we do this, "
+"then we get an image with **three channels**, where each channel is "
+"displayed using red, green and blue LUTs -- with the colors blended "
+"together for display. But we shouldn't do that conversion prior to "
+"analysis in case we lose our raw data."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:390
+msgid ""
+"Now, we turn to consider **multichannel images** that aren't RGB images. "
+"Rather, the raw data itself has multiple channels."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:393
+msgid ""
+"In fluorescence microscopy, it's common to acquire multichannel images in"
+" which pixel values for each channel are determined from light that has "
+"been filtered according to its wavelength. We *might* choose to visualize"
+" these channels as red, green and blue, but we don't have to."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:396
+msgid ""
+"In principle, any LUT might be applied to each channel, but it makes "
+"sense to choose LUTs that somehow relate to the wavelength (i.e. color) "
+"of light detected for the corresponding channels. Channels can then be "
+"overlaid on top of one another, and their colors further merged for "
+"display (e.g. high values in both green and red channels are shown as "
+"yellow)."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:399
+msgid ""
+"The important feature of these images is that the actual channel "
+"information is always retained, and so the original pixel values remain "
+"available. This means we can still extract channels or adjust their LUTs "
+"as needed."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:440
+msgid ""
+"Multichannel image using red, green and blue LUTs. Although this looks a "
+"lot like an RGB image, each channel still contains the raw data (which "
+"might be 16-bit or 32-bit). The original pixel values can be extracted if"
+" needed, and different LUTs used."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:449
+msgid ""
+"Multichannel image from {numref}`fig-colors_composite_rgb` using "
+"different LUTs. Again, no information is lost: we can access the original"
+" pixel values, and update the LUTs if needed."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:453
+msgid ""
+"Just like with a single channel image, we can create an RGB image that "
+"allows us to visualize our multichannel image -- using the LUTs to figure"
+" out which RGB values are needed to represent the color of each pixel."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:455
+msgid ""
+"Then, again just like with the single channel image, this is problematic "
+"if we don't keep the raw data -- because we can never recover the "
+"original values from the RGB representation."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:462
+msgid ""
+"We can create an RGB image from {numref}`fig-colors_composite_non_rgb`, "
+"but then we have three channels locked to red, green and blue -- which "
+"have converted the original channels to 8-bit, and mixed up information "
+"due to the LUT colors used. We can no longer recover the original pixel "
+"values after converting to RGB."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:467
+msgid "Summary of color images"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:469
+msgid "The main message here can be distilled into two rules:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:472
+msgid "**Always use the original image for analysis**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:473
+msgid "If the raw data isn't RGB, then don't convert it before analysis!"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:474
+msgid "**Create an RGB copy of your image for display**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:475
+msgid "Keep the RGB copy separate, so you always retain it *and* the raw image"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:478
+msgid ""
+"RGB images aren't *bad* -- we almost always need them for display, and "
+"for *some* imaging applications (e.g. brightfield histology) they are the"
+" best raw data we can get. But we need to be cautious if our raw data "
+"isn't RGB, and avoid converting to RGB too early."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:481
+msgid ""
+"In the end, it's normal to keep at least two versions of each dataset: "
+"one in the original (possibly multichannel) format, and one as RGB for "
+"display. This RGB image is normally created as the _final_ step, after "
+"applying any processing or LUT adjustments to the original data."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:486
+msgid "Other color spaces"
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:488
+msgid ""
+"Color is a big topic, and there is a lot more that could be said about "
+"different color spaces and transformations. However, these are mostly "
+"relevant when working with data that is originally RGB."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:491
+msgid ""
+"For example, we could convert an RGB image to an *HSB* representation, "
+"where HSB stands for *Hue*, *Saturation* and *Brightness*. This is useful"
+" to separate hue from brightness, e.g. to help identify all red pixels "
+"regardless of whether they are bright or dark."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:494
+msgid ""
+"Alternatively, we could convert an RGB image to *CMYK*, which stands for "
+"*Cyan*, *Magenta*, *Yellow* and *blacK* -- which may be a better fit for "
+"printers than monitors."
+msgstr ""
+
+#: ../../../chapters/1-concepts/4-colors/colors.md:496
+msgid ""
+"But I personally haven't found such transforms very relevant to the areas"
+" of bioimage analysis in which I have worked. I have tried to focus here "
+"on the main need-to-know topics that impact analyzing scientific images. "
+"With this in mind, I think that understanding RGB (and its limitations) "
+"is crucial -- while other transforms can be picked up later if they are "
+"needed."
+msgstr ""
+

@@ -1,0 +1,481 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:1
+msgid "Default Caption"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:16
+msgid "Images & pixels"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:18
+msgid "Chapter outline"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:21
+msgid "Digital images are composed of **pixels**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:22
+msgid "Each pixel has a **numeric value** (often related to detected light)"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:23
+msgid ""
+"The same pixel values can be displayed differently using **lookup tables "
+"(LUTs)**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:24
+msgid "We can modify image appearance in two main ways:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:25
+msgid "**Change the pixel values**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:26
+msgid "**Change the LUT**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:27
+msgid ""
+"**Preserving pixel values is crucial** for most analysis -- so it's "
+"essential to know what your software is doing"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:51
+msgid "Introduction"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:53
+msgid "Image are composed of **pixels**."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:55
+msgid ""
+"The word 'pixel' is derived from **pic**ture **el**ement and, as far as "
+"the computer is concerned, each pixel is just a number."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:57
+msgid ""
+"When the image data is displayed, the values of pixels are usually "
+"converted into squares of particular colors – but *this is only for our "
+"benefit*. The colored squares are nothing more than a helpful "
+"visualization that enable us to gain a fast impression of the image "
+"contents, i.e. the approximate values of pixels and where they are in "
+"relation to one another."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:60
+msgid ""
+"When it comes to processing and analysis, we need to get past the display"
+" and delve into the real data: the numbers ({numref}`fig-image_array`)."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:121
+msgid ""
+"An image depicting an interestingly-matched couple I saw when walking "
+"home from work. (A) & (B) The image is shown using small squares of "
+"different shades of gray, where each square corresponds to a single "
+"pixel. This is only a convention used for display; the pixels themselves "
+"are stored as arrays of numbers \\(C) -- but looking at the numbers "
+"directly it's pretty hard for us to visualize what the image contains."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:126
+msgid "Image data & its display"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:128
+msgid ""
+"The distinction between a pixel's numeric value and the color used to "
+"display it might seem like a minor detail, but it definitely isn't: "
+"failing to recognise this difference underlies a *lot* of errors."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:130
+msgid ""
+"If we aren't careful, two related facts can cause us an enormous amount "
+"of trouble:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:133
+msgid "Images that **look the same** can contain **different** pixel values"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:134
+msgid "Images that **look different** can still contain **the same** pixel values"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:176
+msgid ""
+"Images that *look* the same, but contain *different* pixel values.\\ "
+"Measuring each of these images would give different results, for reasons "
+"we shall see in later chapters."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:213
+msgid ""
+"Images that *look* different, but contain *the same* pixel values.\\ "
+"Measuring each of these images would give the same results."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:217
+msgid ""
+"This is crucial because it's entirely possible to analyze two different "
+"images that *appear* identical, but to get very different (and very "
+"wrong) results."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:219
+msgid ""
+"This is far from a theoretical problem. It happens a lot in practice "
+"whenever someone innocently makes an adjustment to an image (e.g. to make"
+" it look brighter, or change the colors for display) without realising "
+"that the adjustment has actually changed the pixel values -- and thereby "
+"compromised the underlying data. This can fatally undermine the integrity"
+" of any later analysis."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:223
+msgid ""
+"What's worse, these errors can go completely unnoticed, surreptitiously "
+"compounding the problem of replicability in science."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:225
+msgid "Which brings us to the key message of this chapter:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:227
+msgid "Don't (just) trust your eyes!"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:230
+msgid ""
+"In science, we need to know what is happening whenever we open, adjust "
+"and save our images. If we don't, we risk misinterpreting our data."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:234
+msgid ""
+"Fortunately, knowing just a little bit about imaging and image analysis "
+"is enough to avoid making these mistakes. Knowing more than a little bit "
+"can open up new worlds of possibility to extract useful information from "
+"scientific images."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:237
+msgid ""
+"The goal of this handbook is to explain these ideas. We'll start by "
+"considering two questions:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:240
+msgid "**Where do the pixel values come from?**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:241
+msgid "**How are pixel values converted into colors for display?**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:243
+msgid ""
+"It's hard to give a detailed-but-general answer to the first question, "
+"because the origin and interpretation of the pixel values depends upon "
+"how the image was created, and there are many different ways to generate "
+"an image."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:245
+msgid ""
+"Nevertheless, the key ideas are similar everywhere. By way of "
+"illustration, we'll consider a very common case in bioimaging where the "
+"pixel values relate to detected light -- specifically, using the example "
+"of a fluorescence microscope -- before moving how to see how these values"
+" are displayed."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:250
+msgid "A simple microscope"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:252
+msgid ""
+"When I work with fluorescence images, I have a very simple picture in my "
+"head of how the image is formed. It may not be very exact, but I find it "
+"extremely useful as a basis to which we can add detail whenever we need "
+"it. We will revisit this picture later in the book to help organize the "
+"interrelating imaging considerations relevant to analysis."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:256
+msgid ""
+"In my simplified model, there are only three components that we need to "
+"worry about:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:258
+msgid "**Sample** -- the thing we want to look at"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:259
+msgid ""
+"**Objective lens** -- the thing that gathers the light and focusses it "
+"for detection"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:260
+msgid ""
+"**Detector** -- the thing that detects the light to form the digital "
+"image (here, a CCD camera)"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:262
+msgid "The process is illustrated below:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:272
+msgid "There are a couple of things to note at this point:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:274
+msgid ""
+"Not *all* the light emitted from the sample is detected. A lot of it "
+"never enters the objective lens."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:275
+msgid ""
+"Our images aren't perfect. We will explore problems of blur, noise and "
+"pixel size later."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:277
+msgid ""
+"For now, we are mostly interested in the detection step and how it "
+"generates a digital image. Zooming in to look at this in more detail, we "
+"can imagine what happens as light hits the camera. The sensor of the "
+"camera itself is divided into **physical pixels**, which will correspond "
+"to the pixels in the final image. When a photon strikes the detector, an "
+"electron may be released at one of the physical pixels. During the "
+"acquisition of an image, many photons strike the detector, which can "
+"cause many electrons to be released at different physical pixels. These "
+"electrons contribute to the value of a pixel in the final image: more "
+"electrons &rarr; higher pixel values."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:292
+msgid ""
+"The important point is that **pixel values are only *indirectly* related "
+"to whatever it is in our sample that we want to measure**."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:294
+msgid ""
+"In this example, they have been derived by quantifying the charge of "
+"electron clouds gathered at each physical pixel. This should be "
+"proportional to the amount of detected light that originated from a "
+"particular volume of the sample. This, in turn, depends upon what is "
+"actually present in the sample -- but there are *a lot* of things that "
+"can influence the final values in connection with acquisition parameters,"
+" conversion factors, and physics. These are not usually related directly "
+"to the thing you might want to quantify."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:299
+msgid "Some of the factors influencing pixel values"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:301
+msgid "**Amount of time spent detecting photons**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:302
+msgid "*More time → More photons → More electrons → Higher pixel values*"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:303
+msgid "**Numerical aperture of the objective lens**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:304
+msgid "This relates to the **angle** of light accepted by the objective"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:305
+msgid ""
+"*Higher NA → Larger angle → More photons → More electrons → Higher pixel "
+"values*"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:306
+msgid "**Sensitivity of the detector (Quantum Efficiency)**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:307
+msgid ""
+"Not all photons necessarily produce an electron; I think of this as the "
+"photon hitting the detector, but not hard enough to dislodge an electron."
+" A detector with low sensitivity is likely to 'miss' more photons, so "
+"that they never contribute to the pixel value."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:308
+msgid "*Higher sensitivity → More electrons → Higher pixel values*"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:311
+msgid "Ultimately, this leads to the warning:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:313
+msgid "Don't over-interpret pixel values!"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:316
+msgid ""
+"Individual pixel values are rarely very meaningful in isolation: we're "
+"usually interested in *relative* differences between groups of pixels."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:319
+msgid ""
+"As we shall see, this means that we often need to average values and "
+"normalize to something whenever we want to make measurements in an image."
+" We can't usually untangle the influences well enough to infer anything "
+"with confidence from a single pixel value."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:322
+msgid ""
+"But the limitations in what pixel values can tell us don't diminish their"
+" importance: on the contrary, pixel values remain our raw data and it's "
+"essential that we preserve them as faithfully as possible. That's a lot "
+"harder than you might expect. It requires knowing when and how pixel "
+"values might become changed whenever we are working with our images. This"
+" is so crucial that it will be the focus throughout the entire first part"
+" of this book."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:330
+msgid "Lookup tables"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:332
+msgid "LUTs vs. Colormaps"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:333
+msgid "**Lookup tables** are sometimes referred to as **colormaps**."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:335
+msgid ""
+"For our purposes, the terms are interchangeable -- you may see either "
+"depending upon which software you are using."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:338
+msgid ""
+"So images are really comprised of a lot of numbers -- the pixel values --"
+" even though we normally visualize them as shapes and colors."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:340
+msgid ""
+"It's time then to consider our second question: **How are pixel values "
+"converted for display?**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:342
+msgid ""
+"The basic idea is simple: the software displaying the image uses a "
+"**lookup table (LUT)** that maps each pixel value to a color. When it "
+"comes to showing the image, each pixel is replaced by a little dot or "
+"square on screen that has the corresponding color."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:353
+msgid ""
+"LUTs therefore provide a way to **change the appearance of an image "
+"without changing its pixel values**."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:355
+msgid ""
+"This is extremely useful in practice. Since images in biology often have "
+"rather low pixel values (formed from a small amount of detected light), "
+"we very often want to change their brightness for display."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:358
+msgid ""
+"One way we *could* make an image brighter is to change the pixel values "
+"themselves -- multiply them by 2, for example. That would indeed usually "
+"make the image look brighter, but we risk making a terrible mess of our "
+"data if we permit ourselves to make such changes. As described above, we "
+"really don't want to modify our raw data unnecessarily."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:362
+msgid ""
+"A **much** better way to change the brightness of an image is to change "
+"the LUT only."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:372
+msgid ""
+"The danger is that **not all software cares so much about preserving "
+"pixel values**. Someone wanting to enhance their holiday photos isn't "
+"likely to care about retaining the original pixel values for "
+"quantification later; rather, they just want the images to look as nice "
+"as possible."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:375
+msgid ""
+"For this reason, a lot of software designed for working with images "
+"really *will* rescale the pixel values when you do something as simple as"
+" adjusting the brightness. And so it is entirely possible to open an "
+"image, adjust the display slightly to see things more clearly, and in "
+"doing so irreparably damage the image -- losing the raw data required for"
+" later analysis."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:378
+msgid ""
+"This is why you should **use scientific software for scientific image "
+"analysis** -- and not just any general imaging editing software you might"
+" find."
+msgstr ""
+
+#: ../../../chapters/1-concepts/1-images_and_pixels/images_and_pixels.md:380
+msgid ""
+"But even when using scientific software, it's often possible to change "
+"pixel values whenever you'd really rather only be changing lookup tables."
+" The next chapter will show how to check when this is happening."
+msgstr ""
+

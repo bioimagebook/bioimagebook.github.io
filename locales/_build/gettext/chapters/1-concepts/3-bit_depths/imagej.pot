@@ -1,0 +1,315 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:16
+msgid "ImageJ: Types & bit-depths"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:36
+msgid "Introduction"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:38
+msgid "The bit-depth and type of an image is determined before it is opened in ImageJ. If the data is clipped, it's already wrong before we begin -- and no amount of ImageJ wizardry will get the information back."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:42
+msgid "Here, we will explore how to:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:44
+msgid "Check the bit-depth and type"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:45
+msgid "Diagnose when clipping may have occurred"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:46
+msgid "Convert the bit-depth and height -- carefully -- if needed"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:49
+msgid "Checking the bit-depth & type"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:51
+msgid "Bit-depth and type are related to one another: both are needed to convert binary data into pixel values. ImageJ does not always make a careful distinction between the two."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:54
+msgid "The full list of image types supported by ImageJ is found in the {menuselection}`Image --> Type --> ` submenu. The top three entries are the most important; they are"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:56
+msgid "**8-bit** -- unsigned integer"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:57
+msgid "**16-bit** -- unsigned integer"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:58
+msgid "**32-bit** -- floating point"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:60
+msgid "Although these look like bit-depths, they are listed as 'types'. But since an 8-bit and 16-bit images in ImageJ are *always* unsigned integer, and 32-bit images are *always* floating point, there is no ambiguity."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:63
+msgid "You can see the type of the current image by checking which item under {menuselection}`Image --> Type` has a tick next to it. But you don't usually have to; you can also see the information at the top of the image window."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:80
+msgid "The text at the top of each image window provides useful information. Here, the image on the left is 8-bit and the image on the right is 16-bit."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:84
+msgid "There are various other types listed under {menuselection}`Image --> Type`, which all have an association with color. These are less different than they first appear: an RGB image is really an 8-bit image with three channels (corresponding to red, green and blue). We will explore this in {ref}`chap_colors`."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:89
+msgid "Diagnosing problems"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:91
+msgid "The biggest problem associated with an image's bit-depth and type is clipping. {menuselection}`Analyze --> Histogram` is the essential command needed to diagnose if something is wrong -- just press {kbd}`H` to run it."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:108
+msgid "Two similar-looking images and their histograms: one clipped, one not."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:111
+msgid "The main sign that an image was clipped is a big peak at either end of the histogram. This can take some careful inspection to distinguish from the black border that surrounds the histogram in ImageJ."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:114
+msgid "If you know the bit-depth and type of the image, you can figure out the range (e.g. 0-255 for an 8-bit unsigned integer image, 0-65,535 for 16-bit) and usually that gives a good indication to where the peaks would be -- but it isn't a perfect guide. Conceivably, we could have an image that was clipped at some other value because it has been rescaled *after* clipping."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:0
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:0
+msgid "Question"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:121
+msgid "Does the image below show signs of having been clipped?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:0
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:0
+msgid "Answer"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:130
+msgid "Yes! There is a small peak at the high end of the histogram, corresponding to pixel values of 4095. This is itself a suspicious number because it would be the maximum possible value in a 12-bit unsigned integer image (i.e. 2<sup>12</sup> - 1) -- so my guess is that was the bit-depth of the acquisition device."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:134
+msgid "Admittedly, the image is not *very badly* clipped. We could check the proportion of pixels with that value, and use this to estimate whether it is likely that the clipping will have a significant impact upon later analysis. But it's better to avoid clipping altogether when possible."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:142
+msgid "Converting images"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:144
+msgid "There are three main scenarios when you might need to convert the type or bit-depth of an image:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:146
+msgid "**Reducing the file size**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:147
+msgid "**Converting to 8-bit to display the image in other software**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:148
+msgid "Because 8-bit images are more common outside of science"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:149
+msgid "**Converting to floating-point before doing image processing operations**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:150
+msgid "Because (as we will see later in the book) these often require fractions and negative numbers"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:152
+msgid "Note that *reversing* the effects of clipping isn't in the list: if an image is clipped during acquisition, any later conversion won't help. The clipped data is gone for good."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:155
+msgid "However, you can still introduce clipping after acquisition by making ill-advised conversions -- with all the unfortunate consequences of that. Therefore it's important to know how ImageJ's type conversion works."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:159
+msgid "Increasing the bit-depth"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:161
+msgid "Let's start with the easy case: *increasing* the bit-depth of an image."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:163
+msgid "In principle, we can convert an image just by choosing the type we want from the {menuselection}`Image --> Type -->` submenu."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:165
+msgid "In ImageJ, there are only really three bit-depths and associated types. This means that the only conversions that can increase the bit-depth are:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:167
+msgid "8-bit (unsigned integer) &rarr; 16-bit (unsigned integer)"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:168
+msgid "8-bit (unsigned integer) &rarr; 32-bit (floating point)"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:169
+msgid "16-bit (unsigned integer) &rarr; 32-bit (floating point)"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:171
+msgid "Fortunately,"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:172
+msgid "any 8-bit unsigned integer value can be represented in a 16-bit unsigned integer image"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:173
+msgid "any 16-bit unsigned integer value can be represented in a 32-bit unsigned floating point image"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:175
+msgid "Consequently, increasing the bit-depth *should* always be safe. That being said..."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:178
+msgid "Always prepare for software to surprise us!"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:181
+msgid "We shouldn't be complacent about image conversions, even if we think they *should* be ok. It's so easy to measure images (press {kbd}`M`), we should always check before and after conversion to make sure the summary measurements are unchanged."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:186
+msgid "Reducing the bit-depth"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:188
+msgid "Reducing the bit-depth is where the biggest dangers lurk. Then not all values from a higher bit-depth image fit into an image with a lower bit-depth."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:191
+msgid "The process is the same: choose the type you want from the {menuselection}`Image --> Type -->` submenu."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:193
+msgid "But what happens next depends upon whether the option {guilabel}`Scale When Converting` under {menuselection}`Edit --> Options --> Conversions...` is checked or not."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:195
+msgid "{guilabel}`Scale When Converting` **is _not_ checked:** pixels are simply given the closest valid value within the new bit depth, i.e. there is clipping and rounding as needed."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:196
+msgid "Example: If you convert an image to 8-bit, then no data will be lost *only* if every pixel value before conversion is an integer in the range 0--255. Every other value will be rounded or clipped."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:197
+msgid "{guilabel}`Scale When Converting`**_is_ checked:** a constant is added or subtracted, then pixels are further divided by another constant before being assigned to the nearest valid value within the new bit depth. Only *then* is clipping or rounding applied if it is still needed."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:199
+msgid "{guilabel}`Scale When Converting` is on by default and, as suggested by {numref}`fig-bits_clipping`, is usually the best option. The question then is where the constants come from to perform the rescaling."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:202
+msgid "Perhaps surprisingly, they are determined from the {guilabel}`Minimum` and {guilabel}`Maximum` in the current *Brightness/Contrast...* settings: the *Minimum* is subtracted, and the result is divided by *Maximum* - *Minimum*. Any pixel value that was lower than *Minimum* or higher than *Maximum* ends up being clipped. Consequently, **converting to a lower bit-depth with scaling can lead to different results depending upon what the brightness and contrast settings were**."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:206
+msgid "This means that, ideally, we would use a minimum value that is equal to the minimum pixel value in the image, and a maximum value equal to the maximum pixel value. Fortunately, there is an easy way to achieve this:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:209
+msgid "Reset the Brightness/Contrast range before reducing the bit-depth"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:212
+msgid "If you **really** need to reduce the bit-depth of an image in ImageJ, you should usually open {menuselection}`Image --> Adjust --> Brightness/Contrast...` ({kbd}`Shift+C`) and press the {guilabel}`Reset` button first, to minimize the data lost to clipping or rounding."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:219
+msgid "Why is scaling usually a good thing when reducing the bit-depth, and why is a constant usually subtracted before applying this scaling?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:221
+msgid "**Hint:** As an example, consider how a 16-bit image containing values in the range 4000–5000 might be converted to 8-bit first without scaling, and then alternatively by scaling with or without the initial constant subtraction. What constants for subtraction and division would usually minimize the amount of information lost when converting to 8-bit image, limiting the errors to rounding only and not clipping?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:226
+msgid "In the example given, converting to 8-bit without any scaling would result in all pixels simply becoming 255: all useful information in the image would be lost."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:228
+msgid "With scaling but without subtraction, it would make sense to divide all pixel values by the maximum in the image divided by the maximum in the new bit depth, i.e. by 5000/255. This would then lead to an image in which pixels fall into the range 204–255. Much information has clearly been lost: 1000 potentially different values have now been squeezed into 52."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:231
+msgid "However, if we first subtract the smallest of our 16-bit values (i.e. 4000), our initial range becomes 0–1000. Divide then by 1000/255 and the new values become scaled across the full range of an 8-bit image, i.e. 0–255. We have still lost information – but considerably less than if we had not subtracted the constant first."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:0
+msgid "Practical"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:242
+msgid "Make sure that the {guilabel}`Scale When Converting` option is turned on (it should be by default). Then using a suitable 8-bit sample image, e.g. {menuselection}`File --> Open Samples --> Boats`, explore the effects of brightness/contrast settings when increasing or decreasing bit-depths."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:245
+msgid "Can you destroy the image by simply 1) increasing the bit-depth, and the then 2) decreasing the bit-depth to its original value?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:247
+msgid "[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/6f9f451fdc0116197501ae504a57d5e7)"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:247
+msgid "launch ImageJ.JS"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:0
+msgid "Solution"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:251
+msgid "It's generally a good idea to choose {guilabel}`Reset` in the {menuselection}`Brightness/Contrast...` window before reducing any bit-depths for 2D images (see {ref}`chap_multidimensional_processing` to read about special considerations related to *z*-stacks or time series)."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/imagej.md:253
+msgid "You can destroy an image by increasing its bit-depth, adjusting the brightness/contrast and then decreasing the bit-depth to the original one again. This may seem weird, because clearly the final bit-depth is *capable* of storing all the original pixel values. But ImageJ does not know this and does not check, so it will simply do its normal bit-depth-reducing conversion based on contrast settings."
+msgstr ""

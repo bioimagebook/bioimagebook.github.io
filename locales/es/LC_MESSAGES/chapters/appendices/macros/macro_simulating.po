@@ -1,0 +1,561 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:16
+msgid "Simulating image formation"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:34
+msgid "Introduction"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:36
+msgid ""
+"The Difference of Gaussians macro developed in {ref}`chap_macro_intro` "
+"was useful, but quite simple. This section contains an extended "
+"practical, the goal of which is to develop a somewhat more sophisticated "
+"macro that takes an 'ideal' image, and then simulates how it would look "
+"after being recorded by a fluorescence microscope. It can be used not "
+"only to get a better understanding of the image formation process, but "
+"also to generate test data for analysis algorithms. By creating "
+"simulations with different settings, we can investigate how our results "
+"might be affected by changes in image acquisition and quality."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:41
+msgid "Image formation summary"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:43
+msgid ""
+"The following is a summary of the aspects of image formation discussed in"
+" this book:"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:45
+msgid ""
+"Images are composed of pixels, each of which has a **single numeric "
+"value** (not a color!)."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:46
+msgid ""
+"The value of a pixel in fluorescence microscopy relates to a number of "
+"detected **photons** -- or, more technically, the charge of the electrons"
+" produced by the photons striking a detector."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:47
+msgid ""
+"Images can have many **dimensions**. The number of dimensions is "
+"essentially the number of things you need to know to identify each pixel "
+"(e.g. time point, channel number, _x_ coordinate, _y_ coordinate, _z_ "
+"slice)."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:48
+msgid ""
+"The two main factors that limit image quality are **blur** and **noise**."
+" Both are inevitable, and neither can be completely overcome."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:49
+msgid ""
+"Blur is characterized by the **point spread function (PSF)** of the "
+"microscope, which is the 3D volume that would be the result of imaging a "
+"single light-emitting point. It acts as a **convolution**."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:51
+msgid ""
+"In the focal plane, the image of a point is an **Airy pattern**. Most of "
+"the light is contained within a central region, the **Airy disk**."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:52
+msgid ""
+"The **spatial resolution** is a measure of the separation that must exist"
+" between structures before they can adequately be distinguished as "
+"separate, and relates to the size of the PSF (or Airy disk in 2D)."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:53
+msgid ""
+"The two main types of noise are **photon noise** and **read noise**. The "
+"former is caused by the randomness of photon emission, while the latter "
+"arises from imprecisions in quantifying numbers of detected photons."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:54
+msgid ""
+"**Detecting more photons** helps to overcome the problems caused by "
+"_both_ types of noise."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:55
+msgid ""
+"Different types of microscope have different advantages and costs in "
+"terms of **spatial information**, **temporal resolution** and **noise**."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:56
+msgid ""
+"**PMTs** are used to detect photons for single pixels, while **CCDs** and"
+" **EMCCDs** are used to detect photons for many pixels in parallel."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:58
+msgid ""
+"The macro in this chapter will work for 2D images, and simulate the three"
+" main components:"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:60
+msgid "the blur of the PSF"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:61
+msgid "photon noise"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:62
+msgid "read noise"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:64
+msgid ""
+"Furthermore, the macro will ultimately be written in such a way that "
+"allows us to investigate the effects of changing some additional "
+"parameters:"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:66
+msgid "the size of the PSF (related to the objective lens NA and microscope type)"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:67
+msgid "the amount of fluorescence being emitted from the brightest region"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:68
+msgid "the amount of background (from stray light and other sources)"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:69
+msgid "the exposure time (and therefore number of detected photons)"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:70
+msgid "the detector's offset"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:71
+msgid "the detector's gain"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:72
+msgid "the detector's read noise"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:73
+msgid "camera binning"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:74
+msgid "bit-depth"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:76
+msgid "Recording the main steps"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:78
+msgid ""
+"It doesn't really matter which image you use for this, but I recommend a "
+"single-channel 2D image that starts out without any obvious noise (e.g. "
+"the *Happy cell.tif* image). After starting the macro recorder, complete "
+"the following steps to create the main structure for the macro:"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:84
+msgid "Example input image"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:90
+msgid "Example output image"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:93
+msgid "Ensure the starting image is 32-bit."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:94
+msgid ""
+"Run {menuselection}`Process --> Filters --> Gaussian Blur...` using a "
+"sigma value of 2 to simulate the convolution with the PSF."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:95
+msgid ""
+"Here, we will assume that there are some background photons from other "
+"sources, but around the same number at every pixel in the image. So we "
+"can simply add a constant to this image using {menuselection}`Add...`. "
+"The value should be small, perhaps 10."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:98
+msgid ""
+"The image now contains the 'average rates of photon emission' that we "
+"would normally like to have for one particular exposure time (i.e. it is "
+"noise-free). If we change the exposure time, we should change the pixel "
+"values similarly so that the rates remain the same. Because adjusting the"
+" exposure works like a multiplication, we can use the "
+"{menuselection}`Process --> Math --> Multiply...` command. Set it to a "
+"'default' value of 1 for now."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:101
+msgid ""
+"To convert the photon emission rates into actual photon counts that we "
+"could potentially detect, we need to simulate photon noise by replacing "
+"each pixel by a random value from a Poisson distribution that that has "
+"the same $\\lambda$ as the rate itself. At the time of writing, there's "
+"no built-in command in ImageJ or Fiji to simulate Poisson noise but we "
+"can install *RandomJ* using the instructions at "
+"https://imagescience.org/meijering/software/randomj/. Then add noise by "
+"calling {menuselection}`Plugins --> RandomJ --> RandomJ Poisson`, making "
+"sure to set the {guilabel}`Insertion:` value to {guilabel}`Modulatory`. "
+"The {guilabel}`Mean` value will be ignored, so its setting does not "
+"matter."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:103
+msgid ""
+"Notice that all the pixels should now have integer values: you cannot "
+"detect parts of photons."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:104
+msgid ""
+"The detector gain scales up the number of electrons produced by detected "
+"photons. Make room for it by including another multiplication, although "
+"for now set the value to 1 (i.e. no extra gain)."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:107
+msgid "Simulate the detector offset by adding another constant, e.g. 100."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:108
+msgid ""
+"Add read noise with {menuselection}`Process --> Noise --> Add Specified "
+"Noise...`, setting the standard deviation to 5."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:109
+msgid ""
+"Clip any negative values, by running {menuselection}`Process --> Math -->"
+" Min...` and setting the value to 0."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:110
+msgid ""
+"Clip any positive values that exceed the bit-depth, by running "
+"{menuselection}`Process --> Math --> Max...`. To assume an a 8-bit image,"
+" set the value to 255."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:112
+msgid ""
+"Now is a good time to clean up the code by removing any unnecessary "
+"lines, adding suitable comments, and bringing any interesting variables "
+"up to the top of the macro so that they can be easily modified later (as "
+"in {ref}`chap_macro_dog`). We should also duplicate the image to avoid "
+"accidentally modifying the original. The end result should look something"
+" like this:"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:166
+msgid ""
+"You would have a perfectly respectable macro if you stopped now, but the "
+"following section contains some ways in which it may be improved."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:168
+msgid "Making improvements"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:170
+msgid "Normalizing the image"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:172
+msgid ""
+"The results you get from running the above macro will change depending "
+"upon the original range of the image that you use: that is, an image that"
+" starts off with high-valued pixels will end up having much less noise. "
+"To compensate for this somewhat, we can first normalize the image so that"
+" all pixels fall into the range 0–1. To do this, we need to determine the"
+" current range of pixel values, which can be found out using the macro "
+"function:"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:180
+msgid ""
+"After running this, four variables are created giving the `mean`,  "
+"`minimum` and `maximum` pixel values in the image, along with the total "
+"image `area`. Normalization is now possible using "
+"{menuselection}`Subtract` and {menuselection}`Divide` commands, and "
+"adjusting their values. In the end this gives us"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:191
+msgid "Varying the fluorescence emission rate"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:193
+msgid ""
+"The new problem we will have after normalization is that there will be a "
+"maximum photon emission rate of 1 in the brightest part of the image, "
+"which will give us a image dominated completely by noise. We can change "
+"this by multiplying the pixels again, and so define what we want the "
+"emission rate to be in the brightest part of the image. I suggest "
+"creating a variable for this, and setting its value to 10. Then add the "
+"following line immediately after normalization:"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:202
+msgid ""
+"Modifying this value allows you to change between simulating samples that"
+" are fluorescing more or less brightly. For a less bright sample, you "
+"will most likely need to increase the exposure time to get a similar "
+"amount of signal -- but beware that increasing the exposure time also "
+"involves collecting more unhelpful background photons, so is not quite so"
+" good as having a sample where the important parts are intrinsically "
+"brighter."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:205
+msgid "Simulating binning"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:207
+msgid ""
+"The main idea of [binning](sec_detectors_binning) is that the electrons "
+"from multiple pixels are added together prior to readout, so that the "
+"number of electrons being quantified is bigger relative to the read "
+"noise. For  2×2 binning this involves splitting the image into distinct "
+"2×2 pixel blocks, and creating another image in which the value of each "
+"pixel is the sum of the values within the corresponding block."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:211
+msgid ""
+"This could be done using the {menuselection}`Image --> Transform --> Bin`"
+" command, with a {guilabel}`shrink factor` of 2 and the {guilabel}`Sum` "
+"bin method. The macro recorder can again be used to get the main code "
+"that is needed. After some modification, this becomes"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:221
+msgid ""
+"By enclosing the line within a _code block_ (limit by the curly brackets)"
+" and beginning the block with `if (doBinning)`, it's easy to control "
+"whether binning is applied or not. You simply add an extra variable to "
+"your list at the start of the macro"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:228
+msgid "to turn binning on, or"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:234
+msgid ""
+"to turn it off. The lines of code that perform the binning should be "
+"inserted _before_ the addition of read noise."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:237
+msgid "Varying bit-depths"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:239
+msgid ""
+"Varying the simulated bit-depths by changing the maximum value allowed in"
+" the image takes a little work: you need to know that the maximum value "
+"in an 8-bit image is 255, while for a 12-bit image it is 4095 and so on. "
+"It is more intuitive to just change the image bit-depth and have the "
+"macro do the calculation for you. To do this, you can replace the `maxVal"
+" = 255;` variable at the start of the macro with `nBits = 8;` and then "
+"update the later clipping code to become"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:248
+msgid ""
+"Here, `pow(2, nBits)` is a function that gives you the value of "
+"2<sup>nBits</sup>. Now it's easier to explore the difference between "
+"8-bit, 12-bit and 14-bit images (which are the main bit-depths normally "
+"associated with microscope detectors, even if the resulting image is "
+"stored as 16-bit)."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:251
+msgid "Rounding to integer values"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:253
+msgid ""
+"The macro has already clipped the image to a specified bit-depth, but it "
+"still contains 32-bit data and so potentially has non-integer values that"
+" could not be stored in the 8 or 16-bit images a microscope typically "
+"provides as output. Therefore it remains to round the values to the "
+"nearest integer."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:256
+msgid ""
+"There are a few ways to do this: we can convert the image using "
+"{menuselection}`Image --> Type -->` commands, though then we need to be "
+"careful about whether there will be any scaling applied. However, we can "
+"avoid thinking about this if we just apply the rounding ourselves. To do "
+"it we need to visit each pixel, extract its value, round the value to the"
+" nearest whole number, and put it back in the image. This requires using "
+"**loops**. The code, which should be added at the end of the macro, looks"
+" like this:"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:277
+msgid ""
+"This creates two variables, `x` and `y`, which are used to store the "
+"horizontal and vertical coordinates of a pixel. Each starts off set to 0 "
+"(so we begin with the pixel at 0,0, i.e. in the top left of the image). "
+"The code in the middle is run to set the first pixel value, then the "
+"variable `x` is incremented to become 1 -- because `x++` means `add 1 to "
+"x`. This process is repeated so long as `x` is less than the image width,"
+" `x < width`. When `x` eventually becomes equal to the width, it means "
+"that all pixel values on the first row of the image have been rounded. "
+"Then `y` is incremented and `x` is reset to zero, before the process "
+"repeats and the next row is rounded as well. This continues until `y` is "
+"equal to the image height -- at which point the processing is complete "
+"[^fn_loops]."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:289
+msgid "Final code"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:291
+msgid "The final code of my version of the macro is given below:"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:385
+msgid "Uses & limitations"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:387
+msgid ""
+"Of course, the above macro is based on some assumptions and "
+"simplifications. For example, it treats gain as a simple multiplication "
+"of the photon counts -- but the gain amplification process also involves "
+"some randomness, which introduces extra noise. Because this noise behaves"
+" statistically quite like photon noise, the effect can be thought of as "
+"decreasing the number of photons that were detected. Also, we have "
+"treated the background as a constant that is the same everywhere in an "
+"image. In practice, the background usually consists primarily of out-of-"
+"focus light from other image planes, and so really should change in "
+"different parts of the image, particularly in the widefield case."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:393
+msgid ""
+"Nevertheless, quite a lot of factors have been taken into consideration. "
+"By exploring different combinations of settings, you can get a feeling "
+"for how they affect overall image quality. For example, you could try:"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:397
+msgid ""
+"Increasing the background, while keeping the maximum photon emission the "
+"same"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:398
+msgid "Removing the detector offset, or setting it to a negative value"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:399
+msgid ""
+"Comparing the effects of binning for images with low and high photon "
+"counts"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:400
+msgid ""
+"Creating multiple images from the same source data, and then averaging "
+"them together to see how the noise is changed"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:402
+msgid ""
+"When planning to implement some analysis strategy -- particularly if "
+"fluorescence intensity measurements are being made -- it may also be "
+"useful to test its effectiveness using this macro. To do so, you would "
+"need to"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:405
+msgid ""
+"Somehow create a 'perfect', noise and blur-free example image, either "
+"manually or by deconvolving a suitably similar sample image"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:406
+msgid ""
+"Apply your algorithm to this perfect image to find out what it detects "
+"and what conclusions you could draw"
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:407
+msgid ""
+"Apply the exact same algorithm to a version of the image that has passed "
+"through the simulator, and see how different your measurements and "
+"conclusions would be."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:409
+msgid ""
+"Ideally, the results should be the same in both cases: this would suggest"
+" your analysis method is robust and can handle images with different "
+"levels of quality. It's more likely that the results are different, "
+"however. In that case, the comparison gives you some idea of how affected"
+" by the imaging process your measurements are -- and therefore how "
+"reliably they relate to the 'real' underlying sample."
+msgstr ""
+
+#: ../../../chapters/appendices/macros/macro_simulating.md:285
+msgid ""
+"If you're unfamiliar with programming, the syntax of loops may look quite"
+" strange. Reading through some online tutorials for the ImageJ macro "
+"language or for-loops in Java should help demystify what is happening "
+"here"
+msgstr ""
+

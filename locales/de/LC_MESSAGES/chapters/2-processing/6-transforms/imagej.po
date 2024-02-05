@@ -1,0 +1,271 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:15
+msgid "ImageJ: Image transforms"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:33
+msgid "Introduction"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:35
+msgid ""
+"ImageJ has excellent 2D distance and watershed transforms... although not"
+" necessarily everything about them is quite what you might expect."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:39
+msgid "Distance transform"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:46
+msgid ""
+"A 2D distance transform can be calculated in ImageJ using the "
+"{menuselection}`Process --> Binary --> Distance Map` command."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:48
+msgid ""
+"A non-obvious feature of this is that the type of output given is "
+"determined by the {guilabel}`EDM output` option tucked away under "
+"{menuselection}`Process --> Binary --> Options...` (where EDM stands for "
+"'Euclidean Distance Map'). This makes a difference, because the distance "
+"between two diagonal pixels is considered $\\sqrt{2} \\approx 1.414$ (by "
+"Pythagoras' theorem) -- which means that a 32-bit output can give more "
+"exact straight-line distances without rounding."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:70
+msgid "Outputs from several distance transform-related commands in ImageJ."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:75
+msgid "Ultimate points"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:77
+msgid ""
+"{menuselection}`Process --> Binary --> Ultimate Points` is a related "
+"command. It uses the distance transform to identify the last points that "
+"would be removed if the objects would be eroded until they disappear. In "
+"other words, it identifies centers. But these are not simply single "
+"center points for each object; rather, they are maximum points in the "
+"distance map, and therefore the pixels furthest away from the boundary."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:82
+msgid ""
+"This means that if a structure has several 'bulges', then an ultimate "
+"point exists _at the center of each of them_. If segmentation has "
+"resulted in structures being merged together, then each distinct bulge "
+"could actually correspond to something interesting -- and the number of "
+"bulges actually means more than the number of separated objects in the "
+"binary image."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:169
+msgid ""
+"Although conceptually straightforward, and easy to use in ImageJ, "
+"implementing 'Ultimate points' in other software can be tricky. Here, "
+"I've tried to replicate it in Python. The results aren't necessarily "
+"identical to ImageJ's implementation, but should be pretty close."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:173
+msgid "Select to {guilabel}`Show code cell contents` above to see how it works."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:181
+msgid ""
+"Computing the ultimate points from a binary image can be an effective "
+"step towards counting the objects in the image -- even if these have been"
+" merged. It works best when the true objects are round in shape."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:188
+msgid "Watershed (after distance transform)"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:190
+msgid ""
+"As the name suggests, ImageJ's {menuselection}`Process --> Binary --> "
+"Watershed` command applies a watershed transform."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:192
+msgid ""
+"However, as the name conceals, the watershed transform is always applied "
+"to a distance map -- which is calculated automatically in the background."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:194
+msgid ""
+"The clue to this is only that it appears in a {menuselection}`Process -->"
+" Binary` submenu, and therefore requires a binary image as input; a "
+"'regular' watershed transform isn't normally applied to a binary image."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:196
+msgid ""
+"Effectively, the seeds of the watershed transform are the 'ultimate "
+"points' described above. The effect of the command is therefore to split "
+"'roundish' objects."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:204
+msgid "Watching the distance transform"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:208
+msgid ""
+"If you click the {guilabel}`Dev` toolbar button and select "
+"{menuselection}`Debug Mode` from the drop-down menu, then running "
+"{menuselection}`Process --> Binary --> Watershed` will generate an image "
+"stack that visualizes how the seeds expanded during the watershed "
+"processing."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:213
+msgid "Voronoi"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:215
+msgid ""
+"{menuselection}`Process --> Binary --> Voronoi` is another distance-and-"
+"watershed-based command for binary images."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:217
+msgid ""
+"It will partition the image into different regions so that the separation"
+" lines have an equal distance to the nearest foreground objects."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md
+msgid "Question"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:231
+msgid ""
+"Imagine you have created a binary image containing detected cells, but "
+"you are only interested in the region inside the cell that is close to "
+"the membrane, i.e. within 5 pixels of the edge of each detected object. "
+"Any pixels outside the objects or closer to their centers do not matter."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:234
+msgid ""
+"How would you go about finding these regions using ImageJ and the "
+"distance transform?"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:236
+msgid ""
+"**Note:** There other ways to do this using techniques we've discussed, "
+"although these don't necessarily give identical results."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md
+msgid "Answer"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:242
+msgid "This is the approach I was thinking of:"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:243
+msgid "Run {menuselection}`Edit --> Invert`"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:244
+msgid "Run {menuselection}`Process --> Binary --> Distance Map`"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:245
+msgid "Run {menuselection}`Image --> Adjust --> Threshold...`"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:246
+msgid ""
+"Choose {guilabel}`Set` and enter *Lower Threshold Level: 1* and *Higher "
+"Threshold Level: 5*."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:248
+msgid ""
+"There are more possible ways, such as applying a maximum filter and "
+"subtracting the original binary image -- but I think the distance "
+"transform is more elegant. The distance transform is also likely to be "
+"much faster for large distances, and more precise (assuming you use a "
+"32-bit output)."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:256
+msgid "Watershed transform"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:263
+msgid ""
+"So if ImageJ has a watershed transform, but it's not the command called "
+"{menuselection}`Watershed`, then where is it?"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:265
+msgid ""
+"The answer is that it's hidden in the phenomenally useful "
+"{menuselection}`Process --> Find maxima` command."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:267
+msgid ""
+"I say 'hidden', because you specifically have to choose the output "
+"{guilabel}`Segmented Particles` to use it. And you'll need to flip your "
+"expectations: unlike most watershed transforms, it will start at the "
+"*intensity peaks* of the image (i.e. the maxima) and expand outwards, "
+"rather than starting at minima."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:270
+msgid ""
+"But don't let those things discourage you: I highly recommend exploring "
+"the various options of {menuselection}`Process --> Find maxima` to see "
+"what all it can do. Depending upon which options are selected, this "
+"includes finding structures using a global threshold, a local threshold, "
+"generating point ROIs and generating binary regions."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:275
+msgid "Check out MorphoLibJ"
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:278
+msgid ""
+"Echoing my recommendation at the end of the last chapter, you should "
+"check out **MorphoLibJ** if you would like more transform options -- "
+"particularly when it comes to watersheds of various kinds."
+msgstr ""
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:280
+msgid "See https://imagej.net/plugins/morpholibj for more details."
+msgstr ""
+
