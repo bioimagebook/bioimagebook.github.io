@@ -1,0 +1,684 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:15
+msgid "ImageJ: Thresholding"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:33
+msgid "Introduction"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:35
+msgid ""
+"Here, we will explore some ImageJ's methods to apply thresholds to "
+"images, generating binary images, labeled images and ROIs. We will also "
+"confront some of the associated complications."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:38
+msgid "Global thresholding"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:40
+msgid ""
+"The main thresholding command in ImageJ is {menuselection}`Image --> "
+"Adjust --> Threshold...`, with the shortcut {kbd}`Shift+T`."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:42
+msgid ""
+"This opens a *Threshold* dialog that allows you to identify pixels above "
+"a threshold, below a threshold, or falling between two thresholds. These "
+"options are controlled using a combination of the threshold sliders and "
+"the {guilabel}`Dark background` checkbox. There is also a drop-down menu "
+"allowing you to select from a list of automated thresholding methods."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:51
+msgid ""
+"During preview, the pixels that are considered foreground are shown in "
+"red by default (it's possible to change this, but I never do). After "
+"choosing suitable thresholds, pressing {guilabel}`Apply` produces a "
+"binary image. This replaces the original, so it may be wise to duplicate "
+"the image first."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:55
+msgid "Binary images in ImageJ"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:58
+msgid ""
+"Although only one 1 bit is really needed for each pixel in a binary "
+"image, the implementation in ImageJ currently uses 8 bits -- and so the "
+"actual pixel values allowed are 0 and 255. To complicate matters, ImageJ "
+"also permits _either_ of these to represent the foreground, with the "
+"choice hidden away under {menuselection}`Process --> Binary --> "
+"Options...`, and 0 taken to be 'black' and 255 'white'. Personally, I "
+"prefer for white to represent the foreground (i.e. the interesting things"
+" we have detected), and so I will assume that the {guilabel}`Black "
+"background` option has been checked."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:63
+msgid ""
+"Nevertheless, you should be aware that this convention is not adopted "
+"universally. Furthermore, if you choose {guilabel}`Invert LUT` then the "
+"colors are flipped anyway – so yet more confusion arises. Therefore if "
+"you find that any processing of binary images gives odd results, be sure "
+"to check the binary options and LUT status."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:68
+msgid ""
+"The *Threshold* dialog is good for interactively exploring different "
+"automated thresholding methods, but it can be hard to systematically "
+"compare them. {menuselection}`Image --> Adjust --> Auto Threshold...` "
+"helps with this, by providing an option to try *all* of the methods."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:76
+msgid ""
+"Applying this to ImageJ's famous *blobs.gif* reveals that not all methods"
+" work equally well:"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:83
+msgid "Automated threshold methods"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:85
+msgid ""
+"The various automated thresholds are described at "
+"https://imagej.net/Auto_Threshold, often with references to the original "
+"published papers upon which they are based."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:90
+msgid "Creating objects"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:92
+msgid ""
+"Once we have a binary image, the next step is to identify objects for "
+"further exploration."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:94
+msgid "Generating & measuring ROIs"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:96
+msgid ""
+"ROIs are a good way to represent objects in ImageJ, because they are easy"
+" to measure. In 2D, there are several options to generate ROIs from a "
+"thresholded image, each with slightly different applications:"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:99
+msgid ""
+"Click on an object with the *Wand tool* <img "
+"src=\"../../../images/imagej/icons/wand.png\" /> -- this is good for "
+"interactively choosing one connected region."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:100
+msgid ""
+"{menuselection}`Edit --> Selection --> Create Selection` -- this makes a "
+"single ROI containing all the foreground pixels. Disconnected regions can"
+" be separated by adding the ROI to the *ROI Manager* and choosing "
+"{guilabel}`More >> Split`."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:102
+msgid ""
+"{menuselection}`Analyze --> Analyze Particles...` -- this detects and "
+"measures all the foreground regions as individual objects, optionally "
+"filtering out objects based on shape or area."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:104
+msgid "Creating ROIs without applying a threshold"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:107
+msgid ""
+"The *Wand tool* <img src=\"../../../images/imagej/icons/wand.png\" />, "
+"{menuselection}`Edit --> Selection --> Create Selection` & "
+"{menuselection}`Analyze --> Analyze Particles...` can also be used when a"
+" threshold is being previewed on an image, but it has not yet been "
+"converted to binary. Therefore you may not need to press "
+"{guilabel}`Apply` in the *Threshold* dialog at all."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:110
+#, python-format
+msgid ""
+"In fact, because it's not 100% clear whether black or white pixels "
+"represent the foreground in an ImageJ binary image, I tend to set a "
+"threshold even on an image that *is* already binary. That way I can "
+"visualize what any of these commands will treat as foreground: with the "
+"default thresholding display, the foreground is highlighted in red."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:114
+msgid ""
+"I like the fact that {menuselection}`Edit --> Selection --> Create "
+"Selection` provides a very quick way to convert a thresholded region to a"
+" single ROI. I most often use it in combination with {menuselection}`Edit"
+" --> Selection --> Restore Selection` to visualize what has been detected"
+" on top of another image. I might not necessarily *use* the single ROI "
+"for measurements in the end, but it can be very good for orientation."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:118
+msgid ""
+"When you want to measure multiple objects quickly, "
+"{menuselection}`Analyze --> Analyze Particles...` is arguably the most "
+"automated and versatile option. Its various options also make it possible"
+" to ignore regions that are particularly small or large, straight or "
+"round (using a {guilabel}`Circularity` metric). It can output summary "
+"results and add ROIs for each region to the *ROI Manager*."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:127
+msgid "Redirecting measurements"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:131
+msgid ""
+"Although binary images can show the shapes of things to be measured, "
+"pixel intensity measurements made on a binary image are not very helpful."
+" You could use the above techniques to make ROIs from binary images, then"
+" apply those to the original image to get meaningful measurements."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:134
+msgid ""
+"It's possible to do this by changing the {guilabel}`Redirect to:` option "
+"under {menuselection}`Analyze --> Set Measurements...`, which redirects "
+"measurements to be made on a specific image. Setting a redirection image "
+"before running {menuselection}`Analyze --> Analyze Particles...` means "
+"that the ROI 'particles' can be detected on one image and measured on a "
+"different image"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:137
+msgid ""
+"I don't usually recommend this, since I imagine I might forget to reset "
+"the {guilabel}`Redirect to:` option when I am done. I'd rather add my "
+"ROIs to the *ROI Manager* and transfer them that way."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:142
+msgid "Caution with holey ROIs"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:146
+msgid ""
+"Historically, there has been a problem with my preferred approach to use "
+"the *ROI Manager* output from {menuselection}`Analyze --> Analyze "
+"Particles...`."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:148
+msgid ""
+"It seems that {menuselection}`Analyze Particles...` handles holes "
+"correctly when making measurements by itself, but by default it would "
+"generate ROIs that lacked holes. This meant that if you would measure the"
+" ROIs later you could get different results, because the ROIs included "
+"extra pixels that were actually excluded (as holes) in the thresholded "
+"image."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:155
+msgid ""
+"Different results when using {menuselection}`Analyze --> Analyze "
+"Particles...` directly, and then subsequently measuring the ROI that it "
+"generated. The image is binary, so the mean value should be 255 if only "
+"the above-threshold pixels are measured."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:158
+msgid ""
+"**However**, there is a solution -- which I only learned when writing "
+"about it here. Since ImageJ v1.53g, there is a {guilabel}`Composite ROIs`"
+" checkbox when using {menuselection}`Analyze Particles...`. If this is "
+"turned **on**, then ROIs with holes are generated as expected."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:166
+msgid "Fixing the problem with holey regions by using {guilabel}`Composite ROIs`."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:169
+msgid ""
+"This demonstrates the need to be cautious with any image analysis "
+"software, and to check out the various options associated with even "
+"common commands. They aren't *always* doing what you might expect."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:175
+msgid "Generating labeled images"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:177
+msgid ""
+"ROIs are not the only way to represent image objects: sometimes labeled "
+"images are more useful."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:179
+msgid ""
+"{menuselection}`Analyze --> Analyze Particles...` can generate labeled "
+"images by using the {guilabel}`Show: Count Masks` option. This will "
+"generate a new image in which each pixel has a unique integer value "
+"indicating the number of the object it is part of -- or zero if it is in "
+"the background. With a suitably colorful LUT (often {menuselection}`Image"
+" --> Lookup Tables --> Glasbey`), this can create a helpful and cheerful "
+"display of objects ({numref}`fig-blobs_binary_label`)."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:187
+msgid ""
+"Creating a labeled image with {menuselection}`Analyze --> Analyze "
+"Particles`."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md
+msgid "Practical"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:195
+msgid ""
+"[Connectivity](sec_thresholds_connectivity) (4 or 8) is an important "
+"consideration when converting a binary image to objects, since it can "
+"have a major impact on the number and size of objects."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:197
+msgid "Work out what kind of connectivity is used by"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:198
+msgid "{menuselection}`Analyze --> Analyze Particles...`"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:199
+msgid "the *Wand tool* <img src=\"../../../images/imagej/icons/wand.png\" />"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:201
+msgid ""
+"**Note:** You can investigate this by applying the commands/tools to a "
+"binary image that has some diagonally connected pixels. One way to do "
+"this is by thresholding a suitable image, another is to use the *Brush "
+"tool* <img src=\"../../../images/imagej/icons/brush.png\" /> to draw your"
+" own pixels in the binary image."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:204
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:284
+msgid ""
+"[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-"
+"badge.svg)](https://ij.imjoy.io/)"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:204
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:250
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:284
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:357
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:392
+msgid "launch ImageJ.JS"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md
+msgid "Solution"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:210
+msgid ""
+"At the time of writing, {menuselection}`Analyze --> Analyze Particles...`"
+" uses 8-connectivity."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:212
+msgid ""
+"For the *Wand tool* the right answer will depend upon the setting you see"
+" if you double-click the tool. There are three options: 4-connectivity, "
+"8-connectivity and 'legacy' (where 'legacy' seems to behave a bit like "
+"8-connectivity)."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:224
+msgid "Local thresholding"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:226
+msgid ""
+"A few methods to perform local thresholding can be found under "
+"{menuselection}`Image --> Adjust --> Auto Local Threshold`. The dialog "
+"again provides the option to try all of them."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:234
+msgid ""
+"Using automated local filters is complicated by the fact that window "
+"sizes and parameters need to be tuned. What these mean in each case is "
+"described at https://imagej.net/Auto_Local_Threshold"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:237
+msgid ""
+"Currently, ImageJ's local thresholding also requires that the image is "
+"converted to 8-bit. This should be done with some caution, since it can "
+"involve surreptitiously incorporating the [brightness & contrast "
+"settings](sec_bit_depths_converting) into the thresholding."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:240
+msgid "For these reasons, I tend to avoid local thresholding."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:248
+msgid ""
+"Explore several automated methods of thresholding the different channels "
+"of {menuselection}`File --> Open samples --> HeLa Cells`, using both "
+"local and global automated thresholds, to draw your own conclusions about"
+" which methods you might prefer for different images."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:250
+msgid ""
+"[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-"
+"badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9)"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:257
+msgid "Addendum: Practical issues"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:259
+msgid ""
+"We end this section with a brief discussion of a few non-obvious "
+"practical issues that impact thresholding, related to bit-depths and "
+"image types."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:262
+msgid "Using NaNs"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:264
+msgid ""
+"The first issue appears when you click {guilabel}`Apply` in the "
+"{menuselection}`Image --> Adjust --> Threshold...` dialog box for a "
+"32-bit image. This leads to a prompt asking whether to {guilabel}`Set "
+"Background Pixels to NaN`."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:267
+msgid ""
+"If this is chosen, a binary image is no longer created. Instead, "
+"thresholding results in an image in which the foreground pixels retain "
+"their original values, while background pixels are **_NaN_**, or **_Not A"
+" Number_**."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:270
+msgid ""
+"*NaN* is a special value that can only be stored in floating point "
+"images, which ImageJ ignores when making measurements later. It is "
+"therefore used to mask out regions, while preserving meaningful pixel "
+"values elsewhere."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:273
+msgid ""
+"This is an advanced option that is *potentially* useful, but can be a bit"
+" challenging to work with. You have to be extra cautious when using an "
+"image containing NaNs, since some commands might behave in surprising "
+"ways."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:281
+msgid ""
+"Create an image including NaN pixels, then measure some ROIs drawn on it."
+" Are area measurements affected by whether NaNs are present or not?"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:290
+msgid ""
+"They are! If you measure the area of an image containing NaNs, the result"
+" is less than if you measure the area of the same image converted to "
+"8-bit -- since only the non-NaN parts are included. If you measure a "
+"region containing NaNs only, the area is 0."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md
+msgid "Question"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:302
+msgid ""
+"Through experiment or guesswork, what do you suppose happens to NaNs with"
+" a 32-bit image is converted to 8-bit or 16-bit?"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md
+msgid "Answer"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:307
+msgid ""
+"Since NaN is not an integer, it cannot be stored in an 8-bit or 16-bit "
+"unsigned integer image. Instead, all NaNs simply become zero."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:315
+msgid "Histogram binning"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:317
+msgid ""
+"The second way in which bit-depths and types matter is that histograms of"
+" images > 8-bit involve _binning_ the data. For example, with a 32-bit "
+"image it would probably not make sense to create a histogram that has "
+"separate counts for all possible pixel values: in addition to counts for "
+"pixels with exact values 1 and 2, we would have thousands of counts for "
+"pixels with fractions in between and most of these counts would be 0."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:320
+msgid ""
+"Instead, the histogram is generated by dividing the total data range "
+"(maximum – minimum pixel values) into 256 separate _bins_ with equal "
+"widths, and counting how many pixels have values falling into the range "
+"of each bin. It's therefore like a subtle conversion to 8-bit precision "
+"for the threshold calculation, but without actually changing the original"
+" data. The same type of conversion is used for 16-bit images -- _unless_ "
+"you use the {menuselection}`Image --> Adjust --> Auto Threshold` command,"
+" which can use a full 16-bit histogram with 65536 bins."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:324
+msgid ""
+"This is where the {guilabel}`Don't reset range` option in ImageJ's "
+"thresholding dialog becomes relevant for 16-bit or 32-bit images, when "
+"used in combination with the {guilabel}`Auto` button."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:325
+msgid ""
+"If {guilabel}`Don't reset range` **is selected**, then the binning uses "
+"the current minimum and maximum values in the brightness/contrast dialog"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:326
+msgid ""
+"If {guilabel}`Don't reset range` **is *not* selected**, then the binning "
+"*resets* the minimum and maximum values in the brightness/contrast dialog"
+" before using them"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:328
+msgid ""
+"Personally, I find this confusing; I don't like the brighness/contrast "
+"impacting thresholds, and my poor brain even struggles to process the "
+"negative in the {guilabel}`Don't reset range` to get an intuitive feeling"
+" for what effect the option will really have. And what makes things worse"
+" is that ImageJ's behavior in this regard has changed across versions, so"
+" there's a chance that any specific advice I give here won't match the "
+"version you're using anyway."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:331
+msgid ""
+"I know I'm not alone in being confused, since this has been the subject "
+"of a [long discussion on the image.sc forum](https://forum.image.sc/t"
+"/auto-threshold-calculation-and-bright-and-contrast-auto-adjust-"
+"issue/19301). So the main message is: be aware that binning happens, and "
+"keep on the lookout for any unexpected effects that the "
+"brightness/contrast sliders might sneakily have on thresholding."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:348
+msgid ""
+"Explore setting thresholds with and without {guilabel}`Don't reset range`"
+" selected for the image {menuselection}`File --> Open Samples --> M51 "
+"Galaxy (16-bits)`, and pressing the {guilabel}`Auto` button to determine "
+"a threshold."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:350
+msgid ""
+"Keep {menuselection}`Image --> Adjust --> Brightness/Contrast...` open as"
+" you explore, so you can make adjustments before calculating the "
+"thresholds."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:357
+msgid ""
+"[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-"
+"badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/c5d2075777c458c70c69a1f2c8b37391)"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:362
+msgid ""
+"This image shows a potential use of the {guilabel}`Don't reset range` "
+"option -- used cautiously."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:369
+msgid "Thresholding a 16-bit image with and without 'Don't reset range' selected."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:382
+msgid ""
+"What are the implications of using a 256-bin histogram for thresholding a"
+" 32-bit image?"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:384
+msgid ""
+"In particular, how might any outlier pixels affect the accuracy with "
+"which you can define a threshold -- automatically or manually?"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:386
+msgid ""
+"To explore this, you can use the extreme example of *cell_outlier.tif* "
+"along with the {menuselection}`Image --> Adjust --> Threshold...` "
+"command."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:388
+msgid "How could you (manually) reduce the impact of any problems you find?"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:390
+msgid ""
+"**Note:** {menuselection}`Analyze --> Histogram` lets you investigate the"
+" image histogram with different numbers of bins -- but any changes you "
+"make here will not be reflected in the histogram actually used for "
+"thresholding."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:392
+msgid ""
+"[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-"
+"badge.svg)](https://ij.imjoy.io?open=https://github.com/bioimagebook"
+"/practical-data/blob/main/images/cell_outlier.tif)"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:399
+msgid ""
+"First, a positive implication of using a 256-bit histogram for "
+"thresholding is that it can be fast: more bins add to the computations "
+"involved. Also, creating too many bins has the result of making most of "
+"them zero -- potentially causing some automated threshold-determination "
+"algorithms to fail."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:402
+msgid ""
+"A negative implication is that using 256 bins means that only 256 "
+"different thresholds are possible: that is, if your image range is "
+"0–25500, then the thresholds you could get are 0, 100, 200, ... 25500. If"
+" the optimal threshold is really 150, this will not be found. But usually"
+" if your range of pixel values is this large, you do not need a very "
+"fine-grained threshold for acceptable results anyway."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:406
+msgid ""
+"This changes if you have outliers. A single extreme pixel -- which might "
+"occur when a pixel in a CCD camera is somehow 'broken' -- can cause most "
+"other pixels in the image to be squeezed into only a few bins. Then the "
+"histogram resolution might really be too small for reasonable "
+"thresholding."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:410
+msgid ""
+"It's a sufficiently obscure problem that hopefully it won't bother you. "
+"However, if you do experience the issue then two possible ways to "
+"overcome it are:"
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:413
+msgid ""
+"Adjust the brightness/contrast sliders and ensure that {guilabel}`Don't "
+"reset range` **is** selected. This is the benefit of the option existing."
+msgstr ""
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:414
+msgid ""
+"Convert the image to 8-bit manually yourself. This allows you to "
+"effectively choose the range of the histogram bins (using "
+"{menuselection}`Brightness/Contrast...`; see {ref}`Types & bit-"
+"depths<sec_bit_depths_converting>`) Since the threshold is made using 256"
+" bins, you are not really losing any information that was not going to be"
+" lost anyway."
+msgstr ""
+

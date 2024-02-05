@@ -1,0 +1,293 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:15
+msgid "Python:  Pixel size & dimensions"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:17
+msgid "This section gives a bit of background on working with pixel sizes and dimensions in Python... which is a bit more complicated than one might first expect."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:29
+msgid "Pixel size"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:31
+msgid "Checking the pixel size in Python has been, in my opinion, a bit of a pain - because the common libraries used to read images don't always make that information very easy to access."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:33
+msgid "The situation is improving though."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:35
+msgid "Here, we'll look at accessing pixel size information using two popular image-reading libraries:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:36
+msgid "[`imageio`](https://pypi.org/project/imageio/) - which very commonly used, and makes reading lots of common image types straightforward"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:37
+msgid "[`AICSImageIO`](https://pypi.org/project/aicsimageio/3.2.1/) - which is a bit more complex, but has some *extremely* useful features for working with scientific images"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:41
+msgid "ImageIO"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:43
+msgid "To explore pixel sizes with `imageio`, let's return to the neuron image used in the 'Channels & colors' chapter."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:45
+msgid "The following code shows how we can read both the pixel values and the metadata."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:64
+msgid "The metadata contains a lot of info, even including lookup tables."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:66
+msgid "Printing it a little more nicely (and skipping the LUTs), we get:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:74
+msgid "This metadata is actually quite ImageJ-specific, and other TIFFs may give quite different metadata."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:76
+msgid "We can see the version of ImageJ that wrote the file, but picking out the key thing we want here - the pixel size - is not so easy."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:78
+msgid "Seeing `unit=um` is encouraging, but not enough."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:80
+msgid "We can explore a bit more with 'properties', which imageio described as ['a curated set of standardized metadata'](https://imageio.readthedocs.io/en/v2.30.0/reference/userapi.html#metadata)."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:87
+msgid "Here, the `spacing=(6.25, 6.25)` seems promising."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:89
+msgid "It's tempting to suppose that means the pixel width and height are both 6.25 µm - *however* if I check the same image in ImageJ itself, I see the pixel width and height are actually 0.16 µm... which happens to equal 1.0/6.25 µm."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:95
+msgid "Therefore the information **is** in the metadata, but it's very easy to misinterpret - and it isn't even guaranteed to be correct if the image was written by some other software."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:97
+msgid "So while `imageio` is excellent for reading images easily - generally just a quick `im = imread(path)` - it's not necessarily the best thing to use when pixel sizes (or other metadata) matter."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:101
+msgid "Using AICSImageIO"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:103
+msgid "The best alternative I know for working with scientific (especially biomedical) images is [**AICSImageIO**](https://github.com/AllenCellModeling/aicsimageio). This is a really useful Python library that standardizes reading and writing multiple file formats - and, depending upon how it's installed, can even access lots more awkward proprietary file formats with the help of [Bio-Formats](http://www.openmicroscopy.org/bio-formats/)."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:106
+msgid "Although it's possible to use a version of `imread` with AICSImageIO, it's worth learning the alternative way of doing things by creating an `AICSImage` object. This provides us with a way to access pixels and lots of other useful things whenever we need them."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:122
+msgid "From this, we can immediately see the attribute that will provide us with pixel sizes directly."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:128
+msgid "One perhaps non-obvious thing to know when using AICSImageIO is that the `AICSImage` isn't a regular NumPy array of the kind that `imageio.imread` would return. Rather, if you want that, you need to request the data."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:131
+msgid "Using this knowledge, we can check that we have the same mean pixel value for both - as a quick way to ascertain that the actual pixel values are likely to match."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:138
+msgid "Dimensions"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:140
+msgid "Array shapes and dimensions"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:142
+msgid "We've seen how two different libraries can enable us to read the same pixel values as NumPy arrays and extract pixel size information."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:144
+msgid "We might well expect that the NumPy arrays representing the pixel values are the same, but in fact we can't count on that."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:146
+msgid "NumPy is incredibly flexible when it comes to handling multidimensional arrays.  And while that flexibility can be really helpful, it can also complicate things."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:149
+msgid "To see it in action, let's check the dimensions of the images we read using imageio and AICSImageIO."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:166
+msgid "We can see the number of pixels are the same, but there are some extra 'singleton' dimensions stuck into the results from AICSImageIO (i.e. with length `1`)."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:168
+msgid "Fortunately, we can easily remove them with an `np.squeeze` - and end up with the same arrays."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:177
+msgid "So a natural question is: **why has AICSImageIO snuck in some extra dimensions?**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:179
+msgid "Before answering that, we should ask ourselves something else. **What exactly do we _have_ along the dimension of length `5`?**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:182
+msgid "And this is where things aren't terribly clear with imageio."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:184
+msgid "`5` *could* be the width of the image, height of the image, number of channels, number of z-slices, or number of timepoints."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:186
+msgid "Based upon our knowledge of images and the other dimensions, we'd be justified in expecting that the `5` doesn't correspond to the image width or height - `512` seems more likely for those - so it's probably one of the others."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:188
+msgid "But the problem is that **we have no way of knowing** without further information. If we don't have some external source to tell us, we need to poke around the metadata or look at the contents to figure out the answer."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:201
+msgid "To me, that looks very much like we have 5 different channels. I'm making some assumptions there... but they seem pretty safe assumptions."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:204
+msgid "However AICSImageIO removes this ambiguity in a couple of ways."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:205
+msgid "You can expect `AICSImage` to return a 5D array, with the dimensions in a consistent order: `TCZYX` (although there is at least one caveat in the next section!)"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:206
+msgid "You can easily query the dimensions and order to be sure"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:215
+msgid "Where are my channels?!?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:217
+msgid "We've seen above that imageio can return a 5-channel image with the channels first. Our question here is: does it always do that?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:220
+msgid "The answer, alas, is no. The location of the channels dimensions is painfully uncertain in Python, and often different tools expect it to be in different places."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:223
+msgid "Or sometimes the *same* tool might put it in a different place."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:225
+msgid "To see that in action, let's read a simple RGB image with imageio."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:233
+msgid "An RGB image has 3 channels - red, green and blue - but it seems that suddenly we have the channels dimension last."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:235
+msgid "Why?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:237
+msgid "I don't have a very satisfying explanation, except to say that for RGB that's often what you want because matplotlib expects the channels to be last, and we often use matplotlib to show images."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:249
+msgid "It's not *always* what you want though, and if you get enough deep learning then you'll find the 'channels-first' or 'channels-last' question coming up often."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:251
+msgid "With that in mind, we can use NumPy to shift from so-called 'channels-last' to 'channels-first' - but matplotlib won't like that very much."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:266
+msgid "So imageio might get channels at the start or the end. For RGB, it seems to prefer the end."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:269
+msgid "What does AICSImageIO do?"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:271
+msgid "Since I said AICSImageIO is consistent, I'd like to say it puts the channels in the same place for the RGB and 5-channel image... but no. It also treats RGB as a special case."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:281
+msgid "It's a little hard to find, but the AICSImageIO documentation mentions that [you can expect 5 dimensions for non-RGB images, but RGB images have 6 dimensions](https://allencellmodeling.github.io/aicsimageio/aicsimageio.readers.html#aicsimageio.readers.bioformats_reader.BioFile.to_numpy) - where the sixth is called `S` for `Samples`."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:283
+msgid "The good thing is that, assuming you don't have anything else going on with the first 3 dimensions - i.e. they are just `(1, 1, 1)` - a simple `np.squeeze` is enough to convert the pixel array into a matplotlib-friendly channels-last RGB format."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:287
+msgid "More dimensions"
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:289
+msgid "We'll end this section by looking at an image with 2 channels and 25 z-slices."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:291
+msgid "Since you now know how to explore the dimensions in detail, I'll use my `load_image` helper function for convenience... which returns a NumPy array that's pre-squeezed to remove any singleton dimensions."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:298
+msgid "Since we already considered how to view multichannel images in the last chapter, let's extract a single channel here."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:307
+msgid "At this point, NumPy becomes quite fun - because it is *so easy* to do stuff along different dimensions."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:309
+msgid "For example, we can rapidly generate different z-projections."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:337
+msgid "But we're not limited to projecting along z - we can just switch the `axis` value and project along some other dimension."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:339
+msgid "Note that this won't do any correction for differences in pixel size in xy vs. z. With only 25 z-slices, these projections look extremely squashed."
+msgstr ""
+
+#: ../../../chapters/1-concepts/5-pixel_size/python.md:367
+msgid "And we can also slice wherever we like as well, to obtain orthogonal views."
+msgstr ""

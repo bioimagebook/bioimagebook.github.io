@@ -1,0 +1,457 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:15
+msgid "Python: Types & bit-depths"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:17
+msgid ""
+"In this section, we will explore how bit-depths and image types are "
+"represented in Python. We'll look in particular at where things can go "
+"wrong when converting between bit-depths, and how to apply the tricks "
+"from previous chapters to identify problems."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:30
+msgid "Bit-depths and dtype"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:32
+msgid ""
+"The bit-depth of a **NumPy array** is encoded in its **data type** - or "
+"**dtype** for short."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:34
+msgid ""
+"ImageJ is focussed on on 8-bit and 16-bit unsigned integer images, as "
+"well as 32-bit floating point images."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:36
+msgid ""
+"NumPy, on the other hand, offers a much wider range of data types. The "
+"code for a Numpy dtype isn't hard to crack, with a `uint` standing for "
+"'unsigned integer' and `float` for floating-point."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "Type"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "Bit-depth"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "dtype"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "Unsigned integer"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "8"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "`uint8`"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "Signed integer"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "`int8`"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "16"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "`uint16`"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "`int16`"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "32"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "`uint32`"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "`int32`"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "Floating point"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "`float32`"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "64"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md
+msgid "`float64`"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:50
+msgid "The `dtype` for any array is easy to check:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:58
+msgid ""
+"We can print some basic statistics, as before. In particular, we can "
+"check that the minimum and maximum values fall inside the expected range."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:73
+msgid "Fun with float32"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:75
+msgid "If we want to change the type, that is easy to do as well."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:77
+msgid ""
+"This makes use of the line `import numpy as np` to give us access to more"
+" NumPy properties & functions."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:83
+msgid "This should convert our image into 32-bit floating point."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:85
+msgid ""
+"However, when trying out a new command it is always a good idea to check "
+"it does what was expected. We can do that by showing the image and "
+"printing statistics again."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:97
+msgid ""
+"That looks fine to me, but let's be extra careful and have NumPy check if"
+" the values are really identical."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:99
+msgid "One way we might do that is with `==`."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:105
+msgid ""
+"Hmmm, that looks quite convincing - it gives us an image that has either "
+"`True` or `False` for every single pixel. But because of the limits of "
+"what is printing, it really only shows that the pixels at the corners of "
+"our image match."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:108
+msgid "If we want to ensure that *all* pixels are the same, we can use `np.all`"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:114
+msgid "**Success!**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:116
+msgid ""
+"But... skepticism belongs in science - particularly in image analysis - "
+"and it's always worth testing things from multiple angles, just in case. "
+"So let's check the statistics as well:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:136
+msgid "Uh-oh... that was unexpected."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:138
+msgid ""
+"**Somehow, we have two images with exactly the same pixel values - and "
+"yet they have a different mean value??!**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:140
+msgid ""
+"It doesn't seem to make sense. We need to investigate by printing the "
+"actual values:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:147
+msgid ""
+"Ok, so the means are actually very very close - and we need to go a long "
+"way after the decimal point before there is a difference."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:149
+msgid "This is an example of a **precision error**."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:151
+msgid ""
+"Precisions errors are common when coding, and we need to always be on our"
+" guard against them. They can occur in the midst of calculations because "
+"intermediate results aren't stored with perfect precision, but rather "
+"rounded to a value that is close."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:154
+msgid ""
+"This happens both with integer and floating-point types - but of course "
+"it is more severe when working with integers. As an illustration using "
+"decimal values (since it's harder for most of us to think in binary), "
+"let's consider dividing a number by 3 and then multiplying the result by "
+"3. Mathematically, we *should* get the same result."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:158
+msgid "However, if we do our calculations using only with integers we instead see"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:160
+msgid ""
+"\n"
+"\\begin{align}\n"
+"\\frac{10}{3}  & \\approx 3 \\\\\n"
+"\\\\\n"
+"3 \\times 3  & = 9\n"
+"\\end{align}\n"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:168
+msgid ""
+"On the other hand, if we use floating point (to three decimal places for "
+"illustration) we would get"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:170
+msgid ""
+"\n"
+"\\begin{align}\n"
+"\\frac{10}{3} & \\approx 3.333 \\\\\n"
+"\\\\\n"
+"3.333 \\times 3 & = 9.999\n"
+"\\end{align}\n"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:178
+msgid ""
+"*Neither* gives the mathematically 'correct' final result of 10, because "
+"of the precision errors."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:180
+msgid ""
+"Consequently, rather than checking whether non-integer values are "
+"identical with one another by using `==`, we often need to check if they "
+"are very close to one another. We can use `np.allclose` for that."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:187
+msgid "Towards 8-bit"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:189
+msgid ""
+"Previously, we had an image with a low bit depth and we increased the "
+"bit-depth. This was fine."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:192
+msgid "Time now to go the opposite direction, and again check that it works."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:205
+msgid "Oh dear. This is categorically **not** all right."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:208
+msgid ""
+"Our minimum and maximum values are in the range 0-255 - which is all "
+"that's permitted in an unsigned integer, 8-bit image, so that makes "
+"sense. But the appearance doesn't make much sense at first look."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:211
+msgid ""
+"Whenever we reduce the bit-depth of an image, we know that the pixel "
+"values will need to fit into the new range. In the main text, we "
+"considered two ways that could happen: by clipping or by rescaling."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:214
+msgid ""
+"Here, we are meeting a slight idiosyncracy of NumPy that we really need "
+"to be careful about: *by default, it will neither clip nor rescale!*"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:216
+msgid ""
+"But what *does* it do? Rather than googling or crawling around the NumPy "
+"docs, we can experiment."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:247
+msgid ""
+"So it seems that NumPy *wraps around*: when converting 256 to `uint8` it "
+"becomes 0, 257 becomes 1 and so on."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:249
+msgid ""
+"This means that, to convert an image to `uint8`, we need to take matters "
+"into our own hands to reduce data loss. To begin, let's clip."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:254
+msgid "Converting with clipping"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:256
+msgid "The trick is to clip the image this *before* converting it with `astype`:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:270
+msgid ""
+"This has worked in a sense, but not a very good one. Our pixels are in "
+"the range 0-255, but recall from the histogram above that almost all the "
+"pixels were originally above 255 in value. When we clipped, these pixels "
+"all simply became 255 - and all further distinction was lost."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:276
+msgid "Converting with rescaling"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:278
+msgid ""
+"We can calculate the maximum possible value of an unsigned integer for a "
+"specific bit depth $N$ as $2^{N}-1$."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:280
+msgid "With Numpy, we can use the `**` operator for this."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:290
+msgid ""
+"Therefore, to convert our 16-bit image to 8-bit by rescaling, we could "
+"multiply the pixel values by the ratio of these maximum values, i.e. by "
+"$\\frac{255}{65535}$"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:305
+msgid ""
+"This has *kind of* worked, but note that the maximum pixel value is very "
+"low. We have lost a *lot* of information: squeezing our values into a "
+"very small range of integers, much less than the full 256 available to "
+"us."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:308
+msgid ""
+"Ideally, we would usually like to rescale our image while preserving as "
+"much of the information as possible. We would like the values in our "
+"output image to fill the full range of 0-255."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:311
+msgid "We can do this in five steps:"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:312
+msgid ""
+"Convert the image to floating point (so that we don't lose info to "
+"rounding)"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:313
+msgid "Subtract the minimum value, so that the minimum becomes zero"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:314
+msgid "Divide by the new maximum value, so that the maximum becomes one"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:315
+msgid "Multiply by 255"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:316
+msgid "Convert to 8-bit"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:334
+msgid ""
+"As conversions to 8-bit go, rescaling certainly looks like it was more "
+"successful than simply clipping, and the output fills the full range "
+"available."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:336
+msgid ""
+"Nevertheless, **don't forget that the statistics are different, and we "
+"have changed the pixel values!**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:338
+msgid "Therefore this isn't something we should do without a very good reason."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:342
+msgid "Summary"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:344
+msgid ""
+"**The key message here is that it is very easy to change the bit-depth "
+"and type of an image - but also very easy for things to go wrong.**"
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:346
+msgid ""
+"Sometimes these are small precision errors. Sometimes they are big, data,"
+" destroying errors."
+msgstr ""
+
+#: ../../../chapters/1-concepts/3-bit_depths/python.md:349
+msgid ""
+"But if you know how to show images, make measurements and generate "
+"histograms, you can always check what is happening to the data at each "
+"step. This can help you make sure nothing is being lost along the way."
+msgstr ""
+
