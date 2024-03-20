@@ -1,0 +1,965 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Beth Cimini, 2024
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: 2024-02-05 21:49+0000\n"
+"Last-Translator: Beth Cimini, 2024\n"
+"Language-Team: Portuguese (Brazil) (https://app.transifex.com/center-for-open-bioimage-analysis/teams/169123/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:15
+msgid "ImageJ: Thresholding"
+msgstr "ImageJ: Limiar"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:33
+msgid "Introduction"
+msgstr "Introdução"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:35
+msgid ""
+"Here, we will explore some ImageJ's methods to apply thresholds to images, "
+"generating binary images, labeled images and ROIs. We will also confront "
+"some of the associated complications."
+msgstr ""
+"Aqui, exploraremos alguns métodos do ImageJ para aplicar limites a imagens, "
+"gerando imagens binárias, imagens rotuladas e ROIs. Também enfrentaremos "
+"algumas das complicações associadas."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:38
+msgid "Global thresholding"
+msgstr "Limite global"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:40
+msgid ""
+"The main thresholding command in ImageJ is {menuselection}`Image --> Adjust "
+"--> Threshold...`, with the shortcut {kbd}`Shift+T`."
+msgstr ""
+"O principal comando de limite no ImageJ é {menuselection}`Image --> Adjust "
+"--> Threshold...`, com o atalho {kbd}`Shift+T`."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:42
+msgid ""
+"This opens a *Threshold* dialog that allows you to identify pixels above a "
+"threshold, below a threshold, or falling between two thresholds. These "
+"options are controlled using a combination of the threshold sliders and the "
+"{guilabel}`Dark background` checkbox. There is also a drop-down menu "
+"allowing you to select from a list of automated thresholding methods."
+msgstr ""
+"Isso abre uma caixa de diálogo *Limite* que permite identificar pixels acima"
+" de um limite, abaixo de um limite ou entre dois limites. Essas opções são "
+"controladas usando uma combinação dos controles deslizantes de limite e a "
+"caixa de seleção {guilabel}`Fundo escuro`. Há também um menu suspenso que "
+"permite selecionar em uma lista de métodos automatizados de limite."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:51
+msgid ""
+"During preview, the pixels that are considered foreground are shown in red "
+"by default (it's possible to change this, but I never do). After choosing "
+"suitable thresholds, pressing {guilabel}`Apply` produces a binary image. "
+"This replaces the original, so it may be wise to duplicate the image first."
+msgstr ""
+"Durante a visualização, os pixels considerados em primeiro plano são "
+"mostrados em vermelho por padrão (é possível alterar isso, mas nunca faço "
+"isso). Depois de escolher os limites adequados, pressionar {guilabel}`Apply`"
+" produz uma imagem binária. Isso substitui o original, portanto, pode ser "
+"aconselhável duplicar a imagem primeiro."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:55
+msgid "Binary images in ImageJ"
+msgstr "Imagens binárias em ImageJ"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:58
+msgid ""
+"Although only one 1 bit is really needed for each pixel in a binary image, "
+"the implementation in ImageJ currently uses 8 bits -- and so the actual "
+"pixel values allowed are 0 and 255. To complicate matters, ImageJ also "
+"permits _either_ of these to represent the foreground, with the choice "
+"hidden away under {menuselection}`Process --> Binary --> Options...`, and 0 "
+"taken to be 'black' and 255 'white'. Personally, I prefer for white to "
+"represent the foreground (i.e. the interesting things we have detected), and"
+" so I will assume that the {guilabel}`Black background` option has been "
+"checked."
+msgstr ""
+"Embora apenas um bit seja realmente necessário para cada pixel em uma imagem"
+" binária, a implementação em ImageJ atualmente usa 8 bits - e portanto os "
+"valores reais de pixel permitidos são 0 e 255. Para complicar as coisas, "
+"ImageJ também permite que _qualquer_ um deles represente em primeiro plano, "
+"com a escolha escondida em {menuselection}`Processo --> Binário --> "
+"Opções...`, e 0 considerado 'preto' e 255 'branco' . Pessoalmente, prefiro "
+"que o branco represente o primeiro plano (ou seja, as coisas interessantes "
+"que detectamos), então assumirei que a opção {guilabel}`Fundo preto` foi "
+"marcada."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:63
+msgid ""
+"Nevertheless, you should be aware that this convention is not adopted "
+"universally. Furthermore, if you choose {guilabel}`Invert LUT` then the "
+"colors are flipped anyway – so yet more confusion arises. Therefore if you "
+"find that any processing of binary images gives odd results, be sure to "
+"check the binary options and LUT status."
+msgstr ""
+"No entanto, você deve estar ciente de que esta convenção não é adotada "
+"universalmente. Além disso, se você escolher {guilabel}`Invert LUT` então as"
+" cores serão invertidas de qualquer maneira – então ainda mais confusão "
+"surge. Portanto, se você achar que qualquer processamento de imagens "
+"binárias fornece resultados estranhos, verifique as opções binárias e o "
+"status do LUT."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:68
+msgid ""
+"The *Threshold* dialog is good for interactively exploring different "
+"automated thresholding methods, but it can be hard to systematically compare"
+" them. {menuselection}`Image --> Adjust --> Auto Threshold...` helps with "
+"this, by providing an option to try *all* of the methods."
+msgstr ""
+"A caixa de diálogo *Limite* é boa para explorar interativamente diferentes "
+"métodos automatizados de limite, mas pode ser difícil compará-los "
+"sistematicamente. {menuselection}`Image --> Adjust --> Auto Threshold...` "
+"ajuda com isso, fornecendo uma opção para tentar *todos* os métodos."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:76
+msgid ""
+"Applying this to ImageJ's famous *blobs.gif* reveals that not all methods "
+"work equally well:"
+msgstr ""
+"Aplicar isso ao famoso *blobs.gif* do ImageJ revela que nem todos os métodos"
+" funcionam igualmente bem:"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:83
+msgid "Automated threshold methods"
+msgstr "Métodos de limite automatizados"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:85
+msgid ""
+"The various automated thresholds are described at "
+"https://imagej.net/Auto_Threshold, often with references to the original "
+"published papers upon which they are based."
+msgstr ""
+"Os vários limites automatizados são descritos em "
+"https://imagej.net/Auto_Threshold, muitas vezes com referências aos artigos "
+"originais publicados nos quais se baseiam."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:90
+msgid "Creating objects"
+msgstr "Criando objetos"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:92
+msgid ""
+"Once we have a binary image, the next step is to identify objects for "
+"further exploration."
+msgstr ""
+"Assim que tivermos uma imagem binária, o próximo passo é identificar objetos"
+" para exploração posterior."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:94
+msgid "Generating & measuring ROIs"
+msgstr "Gerando e medindo ROIs"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:96
+msgid ""
+"ROIs are a good way to represent objects in ImageJ, because they are easy to"
+" measure. In 2D, there are several options to generate ROIs from a "
+"thresholded image, each with slightly different applications:"
+msgstr ""
+"Os ROIs são uma boa maneira de representar objetos no ImageJ, porque são "
+"fáceis de medir. Em 2D, existem diversas opções para gerar ROIs a partir de "
+"uma imagem com limite, cada uma com aplicações ligeiramente diferentes:"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:99
+msgid ""
+"Click on an object with the *Wand tool* <img "
+"src=\"../../../images/imagej/icons/wand.png\" /> -- this is good for "
+"interactively choosing one connected region."
+msgstr ""
+"Clique em um objeto com a *ferramenta Varinha* <img "
+"src=\"../../../images/imagej/icons/wand.png\" /> - isso é bom para escolher "
+"interativamente uma região conectada."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:100
+msgid ""
+"{menuselection}`Edit --> Selection --> Create Selection` -- this makes a "
+"single ROI containing all the foreground pixels. Disconnected regions can be"
+" separated by adding the ROI to the *ROI Manager* and choosing "
+"{guilabel}`More >> Split`."
+msgstr ""
+"{menuselection}`Editar --> Seleção --> Criar Seleção` - isso cria um único "
+"ROI contendo todos os pixels do primeiro plano. As regiões desconectadas "
+"podem ser separadas adicionando o ROI ao *ROI Manager* e escolhendo "
+"{guilabel}`More >> Split`."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:102
+msgid ""
+"{menuselection}`Analyze --> Analyze Particles...` -- this detects and "
+"measures all the foreground regions as individual objects, optionally "
+"filtering out objects based on shape or area."
+msgstr ""
+"{menuselection}`Analyze --> Analyze Particles...` -- detecta e mede todas as"
+" regiões de primeiro plano como objetos individuais, opcionalmente filtrando"
+" objetos com base na forma ou área."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:104
+msgid "Creating ROIs without applying a threshold"
+msgstr "Criação de ROIs sem aplicar um limite"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:107
+msgid ""
+"The *Wand tool* <img src=\"../../../images/imagej/icons/wand.png\" />, "
+"{menuselection}`Edit --> Selection --> Create Selection` & "
+"{menuselection}`Analyze --> Analyze Particles...` can also be used when a "
+"threshold is being previewed on an image, but it has not yet been converted "
+"to binary. Therefore you may not need to press {guilabel}`Apply` in the "
+"*Threshold* dialog at all."
+msgstr ""
+"A *ferramenta Varinha* <img src=\"../../../images/imagej/icons/wand.png\" "
+"/>, {menuselection}`Editar --> Seleção --> Criar Seleção` e "
+"{menuselection}`Analyze --> Analyze Particles...` também pode ser usado "
+"quando um limite está sendo visualizado em uma imagem, mas ainda não foi "
+"convertido para binário. Portanto, talvez você não precise pressionar "
+"{guilabel}`Apply` na caixa de diálogo *Threshold*."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:110
+msgid ""
+"In fact, because it's not 100% clear whether black or white pixels represent"
+" the foreground in an ImageJ binary image, I tend to set a threshold even on"
+" an image that *is* already binary. That way I can visualize what any of "
+"these commands will treat as foreground: with the default thresholding "
+"display, the foreground is highlighted in red."
+msgstr ""
+"Na verdade, como não está 100% claro se os pixels pretos ou brancos "
+"representam o primeiro plano em uma imagem binária ImageJ, tendo a definir "
+"um limite mesmo em uma imagem que *já é* binária. Dessa forma posso "
+"visualizar o que qualquer um desses comandos tratará como primeiro plano: "
+"com a exibição de limite padrão, o primeiro plano é destacado em vermelho."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:114
+msgid ""
+"I like the fact that {menuselection}`Edit --> Selection --> Create "
+"Selection` provides a very quick way to convert a thresholded region to a "
+"single ROI. I most often use it in combination with {menuselection}`Edit -->"
+" Selection --> Restore Selection` to visualize what has been detected on top"
+" of another image. I might not necessarily *use* the single ROI for "
+"measurements in the end, but it can be very good for orientation."
+msgstr ""
+"Gosto do fato de que {menuselection}`Editar --> Seleção --> Criar Seleção` "
+"fornece uma maneira muito rápida de converter uma região limitada em um "
+"único ROI. Eu geralmente o uso em combinação com {menuselection}`Edit --> "
+"Selection --> Restore Selection` para visualizar o que foi detectado no topo"
+" de outra imagem. Talvez eu não *use* necessariamente o ROI único para "
+"medições no final, mas pode ser muito bom para orientação."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:118
+msgid ""
+"When you want to measure multiple objects quickly, {menuselection}`Analyze "
+"--> Analyze Particles...` is arguably the most automated and versatile "
+"option. Its various options also make it possible to ignore regions that are"
+" particularly small or large, straight or round (using a "
+"{guilabel}`Circularity` metric). It can output summary results and add ROIs "
+"for each region to the *ROI Manager*."
+msgstr ""
+"Quando você deseja medir vários objetos rapidamente, {menuselection}`Analyze"
+" --> Analyze Particles...` é sem dúvida a opção mais automatizada e "
+"versátil. Suas diversas opções também permitem ignorar regiões "
+"particularmente pequenas ou grandes, retas ou redondas (usando uma métrica "
+"{guilabel}`Circularidade`). Ele pode gerar resultados resumidos e adicionar "
+"ROIs para cada região ao *ROI Manager*."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:127
+msgid "Redirecting measurements"
+msgstr "Redirecionando medições"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:131
+msgid ""
+"Although binary images can show the shapes of things to be measured, pixel "
+"intensity measurements made on a binary image are not very helpful. You "
+"could use the above techniques to make ROIs from binary images, then apply "
+"those to the original image to get meaningful measurements."
+msgstr ""
+"Embora as imagens binárias possam mostrar as formas das coisas a serem "
+"medidas, as medições de intensidade de pixel feitas em uma imagem binária "
+"não são muito úteis. Você poderia usar as técnicas acima para criar ROIs a "
+"partir de imagens binárias e, em seguida, aplicá-las à imagem original para "
+"obter medições significativas."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:134
+msgid ""
+"It's possible to do this by changing the {guilabel}`Redirect to:` option "
+"under {menuselection}`Analyze --> Set Measurements...`, which redirects "
+"measurements to be made on a specific image. Setting a redirection image "
+"before running {menuselection}`Analyze --> Analyze Particles...` means that "
+"the ROI 'particles' can be detected on one image and measured on a different"
+" image"
+msgstr ""
+"É possível fazer isso alterando a opção {guilabel}`Redirecionar para:` em "
+"{menuselection}`Analisar --> Definir medidas.. .`, que redireciona as "
+"medições a serem feitas em uma imagem específica. Definir uma imagem de "
+"redirecionamento antes de executar {menuselection}`Analyze --> Analyze "
+"Particles...` significa que as 'partículas' de ROI podem ser detectadas em "
+"uma imagem e medidas em uma imagem diferente"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:137
+msgid ""
+"I don't usually recommend this, since I imagine I might forget to reset the "
+"{guilabel}`Redirect to:` option when I am done. I'd rather add my ROIs to "
+"the *ROI Manager* and transfer them that way."
+msgstr ""
+"Normalmente não recomendo isso, pois imagino que posso esquecer de redefinir"
+" a opção {guilabel}`Redirecionar para:` quando terminar. Prefiro adicionar "
+"meus ROIs ao *ROI Manager* e transferi-los dessa forma."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:142
+msgid "Caution with holey ROIs"
+msgstr "Cuidado com ROIs furados"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:146
+msgid ""
+"Historically, there has been a problem with my preferred approach to use the"
+" *ROI Manager* output from {menuselection}`Analyze --> Analyze "
+"Particles...`."
+msgstr ""
+"Historicamente, houve um problema com minha abordagem preferida para usar a "
+"saída do *ROI Manager* de {menuselection}`Analyze --> Analyze Particles...`."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:148
+msgid ""
+"It seems that {menuselection}`Analyze Particles...` handles holes correctly "
+"when making measurements by itself, but by default it would generate ROIs "
+"that lacked holes. This meant that if you would measure the ROIs later you "
+"could get different results, because the ROIs included extra pixels that "
+"were actually excluded (as holes) in the thresholded image."
+msgstr ""
+"Parece que {menuselection}`Analyze Particles...` lida com furos corretamente"
+" ao fazer medições por si só, mas por padrão geraria ROIs sem furos. Isso "
+"significava que se você medisse os ROIs posteriormente, poderia obter "
+"resultados diferentes, porque os ROIs incluíam pixels extras que foram "
+"realmente excluídos (como buracos) na imagem com limite."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:155
+msgid ""
+"Different results when using {menuselection}`Analyze --> Analyze "
+"Particles...` directly, and then subsequently measuring the ROI that it "
+"generated. The image is binary, so the mean value should be 255 if only the "
+"above-threshold pixels are measured."
+msgstr ""
+"Resultados diferentes ao usar {menuselection}`Analyze --> Analyze "
+"Particles...` diretamente e, posteriormente, medir o ROI gerado. A imagem é "
+"binária, portanto o valor médio deverá ser 255 se apenas os pixels acima do "
+"limite forem medidos."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:158
+msgid ""
+"**However**, there is a solution -- which I only learned when writing about "
+"it here. Since ImageJ v1.53g, there is a {guilabel}`Composite ROIs` checkbox"
+" when using {menuselection}`Analyze Particles...`. If this is turned **on**,"
+" then ROIs with holes are generated as expected."
+msgstr ""
+"**No entanto**, existe uma solução – que só aprendi ao escrever sobre ela "
+"aqui. Desde o ImageJ v1.53g, há uma caixa de seleção {guilabel}`ROIs "
+"compostos` ao usar {menuselection}`Analisar partículas...`. Se estiver "
+"ativado **ativado**, as ROIs com lacunas serão geradas conforme o esperado."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:166
+msgid ""
+"Fixing the problem with holey regions by using {guilabel}`Composite ROIs`."
+msgstr ""
+"Corrigindo o problema com regiões furadas usando {guilabel}`ROIs compostos`."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:169
+msgid ""
+"This demonstrates the need to be cautious with any image analysis software, "
+"and to check out the various options associated with even common commands. "
+"They aren't *always* doing what you might expect."
+msgstr ""
+"Isso demonstra a necessidade de ser cauteloso com qualquer software de "
+"análise de imagem e de verificar as diversas opções associadas até mesmo aos"
+" comandos mais comuns. Eles nem sempre estão fazendo o que você espera."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:175
+msgid "Generating labeled images"
+msgstr "Gerando imagens rotuladas"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:177
+msgid ""
+"ROIs are not the only way to represent image objects: sometimes labeled "
+"images are more useful."
+msgstr ""
+"As ROIs não são a única maneira de representar objetos de imagem: às vezes, "
+"imagens rotuladas são mais úteis."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:179
+msgid ""
+"{menuselection}`Analyze --> Analyze Particles...` can generate labeled "
+"images by using the {guilabel}`Show: Count Masks` option. This will generate"
+" a new image in which each pixel has a unique integer value indicating the "
+"number of the object it is part of -- or zero if it is in the background. "
+"With a suitably colorful LUT (often {menuselection}`Image --> Lookup Tables "
+"--> Glasbey`), this can create a helpful and cheerful display of objects "
+"({numref}`fig-blobs_binary_label`)."
+msgstr ""
+"{menuselection}`Analyze --> Analyze Particles...` pode gerar imagens "
+"rotuladas usando {guilabel}`Show: Count Masks` opção. Isso irá gerar uma "
+"nova imagem na qual cada pixel possui um valor inteiro único indicando o "
+"número do objeto do qual faz parte - ou zero se estiver em segundo plano. "
+"Com uma LUT adequadamente colorida (geralmente {menuselection}`Image --> "
+"Lookup Tables --> Glasbey`), isso pode criar uma exibição útil e alegre de "
+"objetos ({numref}`fig-blobs_binary_label`)."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:187
+msgid ""
+"Creating a labeled image with {menuselection}`Analyze --> Analyze "
+"Particles`."
+msgstr ""
+"Criando uma imagem rotulada com {menuselection}`Analyze --> Analyze "
+"Particles`."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:0
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:0
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:0
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:0
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:0
+msgid "Practical"
+msgstr "Prático"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:195
+msgid ""
+"[Connectivity](sec_thresholds_connectivity) (4 or 8) is an important "
+"consideration when converting a binary image to objects, since it can have a"
+" major impact on the number and size of objects."
+msgstr ""
+"[Conectividade](sec_thresholds_connectivity) (4 ou 8) é uma consideração "
+"importante ao converter uma imagem binária em objetos, pois pode ter um "
+"grande impacto no número e tamanho dos objetos."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:197
+msgid "Work out what kind of connectivity is used by"
+msgstr "Descubra que tipo de conectividade é usada por"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:198
+msgid "{menuselection}`Analyze --> Analyze Particles...`"
+msgstr "{menuselection}`Analisar --> Analisar Partículas...`"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:199
+msgid "the *Wand tool* <img src=\"../../../images/imagej/icons/wand.png\" />"
+msgstr ""
+"a *ferramenta Varinha* <img src=\"../../../images/imagej/icons/wand.png\" />"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:201
+msgid ""
+"**Note:** You can investigate this by applying the commands/tools to a "
+"binary image that has some diagonally connected pixels. One way to do this "
+"is by thresholding a suitable image, another is to use the *Brush tool* <img"
+" src=\"../../../images/imagej/icons/brush.png\" /> to draw your own pixels "
+"in the binary image."
+msgstr ""
+"**Nota:** Você pode investigar isso aplicando os comandos/ferramentas a uma "
+"imagem binária que possui alguns pixels conectados diagonalmente. Uma "
+"maneira de fazer isso é definir o limite de uma imagem adequada, outra é "
+"usar a *ferramenta Pincel* <img "
+"src=\"../../../images/imagej/icons/brush.png\" /> para desenhar seus "
+"próprios pixels na imagem binária."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:204
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:284
+msgid ""
+"[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-"
+"badge.svg)](https://ij.imjoy.io/)"
+msgstr ""
+"[![iniciar ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-"
+"badge.svg)](https://ij.imjoy.io/)"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:204
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:250
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:284
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:357
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:392
+msgid "launch ImageJ.JS"
+msgstr "iniciar ImageJ.JS"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:0
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:0
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:0
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:0
+msgid "Solution"
+msgstr "Solução"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:210
+msgid ""
+"At the time of writing, {menuselection}`Analyze --> Analyze Particles...` "
+"uses 8-connectivity."
+msgstr ""
+"No momento em que este artigo foi escrito, {menuselection}`Analyze --> "
+"Analyze Particles...` usa conectividade 8."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:212
+msgid ""
+"For the *Wand tool* the right answer will depend upon the setting you see if"
+" you double-click the tool. There are three options: 4-connectivity, "
+"8-connectivity and 'legacy' (where 'legacy' seems to behave a bit like "
+"8-connectivity)."
+msgstr ""
+"Para a *ferramenta Varinha* a resposta certa dependerá da configuração que "
+"você vê ao clicar duas vezes na ferramenta. Existem três opções: "
+"conectividade 4, conectividade 8 e 'legado' (onde 'legado' parece se "
+"comportar um pouco como conectividade 8)."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:224
+msgid "Local thresholding"
+msgstr "Limite local"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:226
+msgid ""
+"A few methods to perform local thresholding can be found under "
+"{menuselection}`Image --> Adjust --> Auto Local Threshold`. The dialog again"
+" provides the option to try all of them."
+msgstr ""
+"Alguns métodos para realizar limite local podem ser encontrados em "
+"{menuselection}`Image --> Adjust --> Auto Local Threshold`. A caixa de "
+"diálogo oferece novamente a opção de experimentar todos eles."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:234
+msgid ""
+"Using automated local filters is complicated by the fact that window sizes "
+"and parameters need to be tuned. What these mean in each case is described "
+"at https://imagej.net/Auto_Local_Threshold"
+msgstr ""
+"O uso de filtros locais automatizados é complicado pelo fato de que os "
+"tamanhos e parâmetros das janelas precisam ser ajustados. O que isso "
+"significa em cada caso está descrito em "
+"https://imagej.net/Auto_Local_Threshold"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:237
+msgid ""
+"Currently, ImageJ's local thresholding also requires that the image is "
+"converted to 8-bit. This should be done with some caution, since it can "
+"involve surreptitiously incorporating the [brightness & contrast "
+"settings](sec_bit_depths_converting) into the thresholding."
+msgstr ""
+"Atualmente, o limite local do ImageJ também exige que a imagem seja "
+"convertida para 8 bits. Isso deve ser feito com cautela, pois pode envolver "
+"a incorporação clandestina das [configurações de brilho e "
+"contraste](sec_bit_profundidades_converting) no limiar."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:240
+msgid "For these reasons, I tend to avoid local thresholding."
+msgstr "Por estas razões, tendo a evitar limiares locais."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:248
+msgid ""
+"Explore several automated methods of thresholding the different channels of "
+"{menuselection}`File --> Open samples --> HeLa Cells`, using both local and "
+"global automated thresholds, to draw your own conclusions about which "
+"methods you might prefer for different images."
+msgstr ""
+"Explore vários métodos automatizados de limite dos diferentes canais de "
+"{menuselection}`File --> Open samples --> HeLa Cells`, usando limites "
+"automatizados locais e globais, para tirar suas próprias conclusões sobre "
+"quais métodos você pode preferir para imagens diferentes."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:250
+msgid ""
+"[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-"
+"badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9)"
+msgstr ""
+"[![iniciar ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-"
+"badge.svg)](https://ij.imjoy.io/?run= "
+"https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9)"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:257
+msgid "Addendum: Practical issues"
+msgstr "Adendo: Questões práticas"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:259
+msgid ""
+"We end this section with a brief discussion of a few non-obvious practical "
+"issues that impact thresholding, related to bit-depths and image types."
+msgstr ""
+"Terminamos esta seção com uma breve discussão de algumas questões práticas "
+"não óbvias que impactam o limiar, relacionadas à profundidade de bits e aos "
+"tipos de imagem."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:262
+msgid "Using NaNs"
+msgstr "Usando NaNs"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:264
+msgid ""
+"The first issue appears when you click {guilabel}`Apply` in the "
+"{menuselection}`Image --> Adjust --> Threshold...` dialog box for a 32-bit "
+"image. This leads to a prompt asking whether to {guilabel}`Set Background "
+"Pixels to NaN`."
+msgstr ""
+"O primeiro problema aparece quando você clica em {guilabel}`Aplicar` em "
+"{menuselection}`Imagem --> Ajustar --> Limite. .` caixa de diálogo para uma "
+"imagem de 32 bits. Isso leva a um prompt perguntando se deve "
+"{guilabel}`Definir pixels de fundo como NaN`."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:267
+msgid ""
+"If this is chosen, a binary image is no longer created. Instead, "
+"thresholding results in an image in which the foreground pixels retain their"
+" original values, while background pixels are **_NaN_**, or **_Not A "
+"Number_**."
+msgstr ""
+"Se esta opção for escolhida, uma imagem binária não será mais criada. Em vez"
+" disso, o limite resulta em uma imagem na qual os pixels do primeiro plano "
+"mantêm seus valores originais, enquanto os pixels do fundo são **_NaN_** ou "
+"**_Not A Number_**."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:270
+msgid ""
+"*NaN* is a special value that can only be stored in floating point images, "
+"which ImageJ ignores when making measurements later. It is therefore used to"
+" mask out regions, while preserving meaningful pixel values elsewhere."
+msgstr ""
+"*NaN* é um valor especial que só pode ser armazenado em imagens de ponto "
+"flutuante, que o ImageJ ignora ao fazer medições posteriormente. Portanto, é"
+" usado para mascarar regiões, preservando valores de pixel significativos em"
+" outros lugares."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:273
+msgid ""
+"This is an advanced option that is *potentially* useful, but can be a bit "
+"challenging to work with. You have to be extra cautious when using an image "
+"containing NaNs, since some commands might behave in surprising ways."
+msgstr ""
+"Esta é uma opção avançada que é *potencialmente* útil, mas pode ser um pouco"
+" desafiadora para trabalhar. Você deve ser extremamente cauteloso ao usar "
+"uma imagem contendo NaNs, pois alguns comandos podem se comportar de maneira"
+" surpreendente."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:281
+msgid ""
+"Create an image including NaN pixels, then measure some ROIs drawn on it. "
+"Are area measurements affected by whether NaNs are present or not?"
+msgstr ""
+"Crie uma imagem incluindo NaN pixels e meça alguns ROIs desenhados nela. As "
+"medições de área são afetadas pela presença ou não de NaNs?"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:290
+msgid ""
+"They are! If you measure the area of an image containing NaNs, the result is"
+" less than if you measure the area of the same image converted to 8-bit -- "
+"since only the non-NaN parts are included. If you measure a region "
+"containing NaNs only, the area is 0."
+msgstr ""
+"Eles são! Se você medir a área de uma imagem contendo NaNs, o resultado será"
+" menor do que se você medir a área da mesma imagem convertida para 8 bits - "
+"já que apenas as partes não-NaN serão incluídas. Se você medir uma região "
+"contendo apenas NaNs, a área será 0."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:0
+msgid "Question"
+msgstr "Pergunta"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:302
+msgid ""
+"Through experiment or guesswork, what do you suppose happens to NaNs with a "
+"32-bit image is converted to 8-bit or 16-bit?"
+msgstr ""
+"Por meio de experimentos ou suposições, o que você acha que acontece com os "
+"NaNs quando uma imagem de 32 bits é convertida para 8 ou 16 bits?"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:0
+msgid "Answer"
+msgstr "Responder"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:307
+msgid ""
+"Since NaN is not an integer, it cannot be stored in an 8-bit or 16-bit "
+"unsigned integer image. Instead, all NaNs simply become zero."
+msgstr ""
+"Como NaN não é um número inteiro, ele não pode ser armazenado em uma imagem "
+"inteira sem sinal de 8 ou 16 bits. Em vez disso, todos os NaNs simplesmente "
+"se tornam zero."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:315
+msgid "Histogram binning"
+msgstr "Compartimentação do histograma"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:317
+msgid ""
+"The second way in which bit-depths and types matter is that histograms of "
+"images > 8-bit involve _binning_ the data. For example, with a 32-bit image "
+"it would probably not make sense to create a histogram that has separate "
+"counts for all possible pixel values: in addition to counts for pixels with "
+"exact values 1 and 2, we would have thousands of counts for pixels with "
+"fractions in between and most of these counts would be 0."
+msgstr ""
+"A segunda maneira pela qual a profundidade e os tipos de bits são "
+"importantes é que os histogramas de imagens> 8 bits envolvem _classificação_"
+" dos dados. Por exemplo, com uma imagem de 32 bits provavelmente não faria "
+"sentido criar um histograma que tivesse contagens separadas para todos os "
+"valores de pixels possíveis: além de contagens de pixels com valores exatos "
+"1 e 2, teríamos milhares de contagens de pixels com frações intermediárias e"
+" a maioria dessas contagens seria 0."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:320
+msgid ""
+"Instead, the histogram is generated by dividing the total data range "
+"(maximum – minimum pixel values) into 256 separate _bins_ with equal widths,"
+" and counting how many pixels have values falling into the range of each "
+"bin. It's therefore like a subtle conversion to 8-bit precision for the "
+"threshold calculation, but without actually changing the original data. The "
+"same type of conversion is used for 16-bit images -- _unless_ you use the "
+"{menuselection}`Image --> Adjust --> Auto Threshold` command, which can use "
+"a full 16-bit histogram with 65536 bins."
+msgstr ""
+"Em vez disso, o histograma é gerado dividindo o intervalo total de dados "
+"(valores máximos - mínimos de pixel) em 256 _bins_ separados com larguras "
+"iguais e contando quantos pixels têm valores dentro do intervalo de cada "
+"bin. É, portanto, como uma conversão sutil para precisão de 8 bits para o "
+"cálculo do limite, mas sem realmente alterar os dados originais. O mesmo "
+"tipo de conversão é usado para imagens de 16 bits -- _a menos_ que você use "
+"o comando {menuselection}`Image --> Adjust --> Auto Threshold`, que pode "
+"usar um comando completo Histograma de 16 bits com 65.536 compartimentos."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:324
+msgid ""
+"This is where the {guilabel}`Don't reset range` option in ImageJ's "
+"thresholding dialog becomes relevant for 16-bit or 32-bit images, when used "
+"in combination with the {guilabel}`Auto` button."
+msgstr ""
+"É aqui que a opção {guilabel}`Não redefinir intervalo` na caixa de diálogo "
+"de limite do ImageJ se torna relevante para imagens de 16 ou 32 bits, quando"
+" usada em combinação com a {guilabel}Botão `Auto`."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:325
+msgid ""
+"If {guilabel}`Don't reset range` **is selected**, then the binning uses the "
+"current minimum and maximum values in the brightness/contrast dialog"
+msgstr ""
+"Se {guilabel}`Não redefinir intervalo` **estiver selecionado**, então o "
+"binning usa os valores mínimo e máximo atuais na caixa de diálogo "
+"brilho/contraste"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:326
+msgid ""
+"If {guilabel}`Don't reset range` **is *not* selected**, then the binning "
+"*resets* the minimum and maximum values in the brightness/contrast dialog "
+"before using them"
+msgstr ""
+"Se {guilabel}`Não redefinir intervalo` **não* estiver selecionado**, então o"
+" binning *redefine* os valores mínimo e máximo na caixa de diálogo "
+"brilho/contraste antes de usar eles"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:328
+msgid ""
+"Personally, I find this confusing; I don't like the brighness/contrast "
+"impacting thresholds, and my poor brain even struggles to process the "
+"negative in the {guilabel}`Don't reset range` to get an intuitive feeling "
+"for what effect the option will really have. And what makes things worse is "
+"that ImageJ's behavior in this regard has changed across versions, so "
+"there's a chance that any specific advice I give here won't match the "
+"version you're using anyway."
+msgstr ""
+"Pessoalmente, acho isso confuso; Não gosto dos limites que afetam o "
+"brilho/contraste, e meu pobre cérebro ainda se esforça para processar o "
+"negativo no {guilabel}`Não redefinir intervalo` para ter uma noção intuitiva"
+" de qual efeito a opção realmente terá. E o que piora as coisas é que o "
+"comportamento do ImageJ nesse aspecto mudou entre as versões, então há uma "
+"chance de que qualquer conselho específico que eu der aqui não corresponda à"
+" versão que você está usando."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:331
+msgid ""
+"I know I'm not alone in being confused, since this has been the subject of a"
+" [long discussion on the image.sc forum](https://forum.image.sc/t/auto-"
+"threshold-calculation-and-bright-and-contrast-auto-adjust-issue/19301). So "
+"the main message is: be aware that binning happens, and keep on the lookout "
+"for any unexpected effects that the brightness/contrast sliders might "
+"sneakily have on thresholding."
+msgstr ""
+"Sei que não estou sozinho nessa confusão, já que isso tem sido objeto de uma"
+" [longa discussão no fórum image.sc](https://forum.image.sc/t/auto-"
+"threshold-calculation-and- problema de ajuste automático de brilho e "
+"contraste/19301). Portanto, a mensagem principal é: esteja ciente de que o "
+"binning acontece e fique atento a quaisquer efeitos inesperados que os "
+"controles deslizantes de brilho/contraste possam ter sorrateiramente no "
+"limite."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:348
+msgid ""
+"Explore setting thresholds with and without {guilabel}`Don't reset range` "
+"selected for the image {menuselection}`File --> Open Samples --> M51 Galaxy "
+"(16-bits)`, and pressing the {guilabel}`Auto` button to determine a "
+"threshold."
+msgstr ""
+"Explore a configuração de limites com e sem {guilabel}`Não redefinir "
+"intervalo` selecionado para a imagem {menuselection}`Arquivo --> Abrir "
+"amostras --> M51 Galaxy (16 bits)` e pressionando o botão {guilabel}`Auto` "
+"para determinar um limite."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:350
+msgid ""
+"Keep {menuselection}`Image --> Adjust --> Brightness/Contrast...` open as "
+"you explore, so you can make adjustments before calculating the thresholds."
+msgstr ""
+"Mantenha {menuselection}`Image --> Adjust --> Brightness/Contrast...` aberto"
+" enquanto você explora, para que você possa fazer ajustes antes de calcular "
+"os limites."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:357
+msgid ""
+"[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-"
+"badge.svg)](https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/c5d2075777c458c70c69a1f2c8b37391)"
+msgstr ""
+"[![iniciar ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-"
+"badge.svg)](https://ij.imjoy.io/?run= "
+"https://gist.github.com/petebankhead/c5d2075777c458c70c69a1f2c8b37391)"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:362
+msgid ""
+"This image shows a potential use of the {guilabel}`Don't reset range` option"
+" -- used cautiously."
+msgstr ""
+"Esta imagem mostra um uso potencial da opção {guilabel}`Não redefinir "
+"intervalo` - usada com cautela."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:369
+msgid ""
+"Thresholding a 16-bit image with and without 'Don't reset range' selected."
+msgstr ""
+"Limiar uma imagem de 16 bits com e sem 'Não redefinir intervalo' "
+"selecionado."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:382
+msgid ""
+"What are the implications of using a 256-bin histogram for thresholding a "
+"32-bit image?"
+msgstr ""
+"Quais são as implicações do uso de um histograma de 256 bin para definir o "
+"limite de uma imagem de 32 bits?"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:384
+msgid ""
+"In particular, how might any outlier pixels affect the accuracy with which "
+"you can define a threshold -- automatically or manually?"
+msgstr ""
+"Em particular, como os pixels discrepantes podem afetar a precisão com a "
+"qual você pode definir um limite – automática ou manualmente?"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:386
+msgid ""
+"To explore this, you can use the extreme example of *cell_outlier.tif* along"
+" with the {menuselection}`Image --> Adjust --> Threshold...` command."
+msgstr ""
+"Para explorar isso, você pode usar o exemplo extremo de *cell_outlier.tif* "
+"junto com o comando {menuselection}`Image --> Adjust --> Threshold...`."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:388
+msgid "How could you (manually) reduce the impact of any problems you find?"
+msgstr ""
+"Como você poderia (manualmente) reduzir o impacto de quaisquer problemas "
+"encontrados?"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:390
+msgid ""
+"**Note:** {menuselection}`Analyze --> Histogram` lets you investigate the "
+"image histogram with different numbers of bins -- but any changes you make "
+"here will not be reflected in the histogram actually used for thresholding."
+msgstr ""
+"**Observação:** {menuselection}`Analyze --> Histogram` permite investigar o "
+"histograma da imagem com diferentes números de compartimentos - mas "
+"quaisquer alterações feitas aqui não serão refletidas o histograma realmente"
+" usado para limiarização."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:392
+msgid ""
+"[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-"
+"badge.svg)](https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-"
+"data/blob/main/images/cell_outlier.tif)"
+msgstr ""
+"[![lançar ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-"
+"badge.svg)](https://ij.imjoy.io?open=https:/ "
+"/github.com/bioimagebook/practical-data/blob/main/images/cell_outlier.tif)"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:399
+msgid ""
+"First, a positive implication of using a 256-bit histogram for thresholding "
+"is that it can be fast: more bins add to the computations involved. Also, "
+"creating too many bins has the result of making most of them zero -- "
+"potentially causing some automated threshold-determination algorithms to "
+"fail."
+msgstr ""
+"Primeiro, uma implicação positiva do uso de um histograma de 256 bits para "
+"limiarização é que ele pode ser rápido: mais compartimentos são adicionados "
+"aos cálculos envolvidos. Além disso, a criação de muitos compartimentos tem "
+"o resultado de tornar a maioria deles zero – potencialmente causando falha "
+"em alguns algoritmos automatizados de determinação de limite."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:402
+msgid ""
+"A negative implication is that using 256 bins means that only 256 different "
+"thresholds are possible: that is, if your image range is 0–25500, then the "
+"thresholds you could get are 0, 100, 200, ... 25500. If the optimal "
+"threshold is really 150, this will not be found. But usually if your range "
+"of pixel values is this large, you do not need a very fine-grained threshold"
+" for acceptable results anyway."
+msgstr ""
+"Uma implicação negativa é que usar 256 compartimentos significa que apenas "
+"256 limites diferentes são possíveis: isto é, se o intervalo da sua imagem "
+"for de 0 a 25.500, então os limites que você pode obter são 0, 100, 200, ..."
+" 25.500. limite for realmente 150, isso não será encontrado. Mas "
+"normalmente, se o seu intervalo de valores de pixel for tão grande, você não"
+" precisará de um limite muito refinado para obter resultados aceitáveis."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:406
+msgid ""
+"This changes if you have outliers. A single extreme pixel -- which might "
+"occur when a pixel in a CCD camera is somehow 'broken' -- can cause most "
+"other pixels in the image to be squeezed into only a few bins. Then the "
+"histogram resolution might really be too small for reasonable thresholding."
+msgstr ""
+"Isso muda se você tiver valores discrepantes. Um único pixel extremo - que "
+"pode ocorrer quando um pixel em uma câmera CCD está de alguma forma "
+"'quebrado' - pode fazer com que a maioria dos outros pixels da imagem sejam "
+"espremidos em apenas alguns compartimentos. Então a resolução do histograma "
+"pode realmente ser muito pequena para um limite razoável."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:410
+msgid ""
+"It's a sufficiently obscure problem that hopefully it won't bother you. "
+"However, if you do experience the issue then two possible ways to overcome "
+"it are:"
+msgstr ""
+"É um problema suficientemente obscuro que esperamos que não o incomode. No "
+"entanto, se você enfrentar o problema, duas maneiras possíveis de superá-lo "
+"são:"
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:413
+msgid ""
+"Adjust the brightness/contrast sliders and ensure that {guilabel}`Don't "
+"reset range` **is** selected. This is the benefit of the option existing."
+msgstr ""
+"Ajuste os controles deslizantes de brilho/contraste e verifique se "
+"{guilabel}`Não redefinir intervalo` **está** selecionado. Este é o benefício"
+" da opção existente."
+
+#: ../../../chapters/2-processing/3-thresholding/imagej.md:414
+msgid ""
+"Convert the image to 8-bit manually yourself. This allows you to effectively"
+" choose the range of the histogram bins (using "
+"{menuselection}`Brightness/Contrast...`; see {ref}`Types & bit-"
+"depths<sec_bit_depths_converting>`) Since the threshold is made using 256 "
+"bins, you are not really losing any information that was not going to be "
+"lost anyway."
+msgstr ""
+"Converta você mesmo a imagem para 8 bits manualmente. Isso permite que você "
+"escolha efetivamente o intervalo dos compartimentos do histograma (usando "
+"{menuselection}`Brilho/Contraste...`; consulte {ref} `Tipos e profundidades "
+"de bits<sec_bit_depths_converting>`) Como o limite é feito usando 256 "
+"compartimentos, você não está realmente perdendo nenhuma informação que não "
+"seria perdida de qualquer maneira."
