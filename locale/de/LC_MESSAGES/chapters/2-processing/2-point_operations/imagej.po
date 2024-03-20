@@ -1,0 +1,641 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Beth Cimini, 2024
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: 2024-02-05 21:49+0000\n"
+"Last-Translator: Beth Cimini, 2024\n"
+"Language-Team: German (https://app.transifex.com/center-for-open-bioimage-analysis/teams/169123/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:15
+msgid "ImageJ: Point operations"
+msgstr "ImageJ: Punktoperationen"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:19
+msgid "Introduction"
+msgstr "Einführung"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:21
+msgid ""
+"This section introduces image processing with ImageJ. It shows where to find"
+" the main point operations, including some tips (and warnings) about their "
+"use, along with a few exercises to try them out."
+msgstr ""
+"In diesem Abschnitt wird die Bildverarbeitung mit ImageJ vorgestellt. Es "
+"zeigt, wo die wichtigsten Punktoperationen zu finden sind, einschließlich "
+"einiger Tipps (und Warnungen) zu ihrer Verwendung sowie einiger Übungen zum "
+"Ausprobieren."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:26
+msgid "Before we begin"
+msgstr "Bevor wir anfangen"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:28
+msgid ""
+"Before we embark on processing pixels, there are a couple of things we need "
+"to know how to do in preparation."
+msgstr ""
+"Bevor wir mit der Verarbeitung von Pixeln beginnen, müssen wir einige Dinge "
+"zur Vorbereitung wissen."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:30
+msgid "Duplicating images"
+msgstr "Bilder duplizieren"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:32
+msgid ""
+"One of the most important ImageJ shortcuts to learn is {kbd}`Shift+D` to "
+"**duplicate the image**. This applies the command {menuselection}`Image --> "
+"Duplicate...`."
+msgstr ""
+"Eine der wichtigsten ImageJ-Tastenkombinationen, die Sie lernen sollten, ist"
+" {kbd}`Umschalt+D`, um **das Bild zu duplizieren**. Dies wendet den Befehl "
+"{menuselection}`Image --> Duplicate...` an."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:35
+msgid "Being able to quickly duplicate an image matters for two main reasons:"
+msgstr ""
+"Die Möglichkeit, ein Bild schnell zu duplizieren, ist aus zwei Hauptgründen "
+"wichtig:"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:36
+msgid ""
+"We often want to process duplicates of an image in different ways, and then "
+"combine or compare the results."
+msgstr ""
+"Oft möchten wir Duplikate eines Bildes auf unterschiedliche Weise "
+"verarbeiten und die Ergebnisse dann kombinieren oder vergleichen."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:37
+msgid ""
+"Mistakes happen, and {menuselection}`Edit --> Undo` is rather limited; it "
+"can undo *some* processing steps applied to a single image slice, but not "
+"always... and it can't undo operations applied to image stacks"
+msgstr ""
+"Fehler passieren und {menuselection}„Bearbeiten --> Rückgängig“ ist eher "
+"begrenzt; Es kann *einige* Verarbeitungsschritte rückgängig machen, die auf "
+"ein einzelnes Bildsegment angewendet werden, aber nicht immer ... und es "
+"kann keine Vorgänge rückgängig machen, die auf Bildstapel angewendet werden"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:39
+msgid ""
+"When working with an image in ImageJ, I almost always have at least one "
+"duplicate lingering around for when when things inevitably go wrong."
+msgstr ""
+"Wenn ich in ImageJ mit einem Bild arbeite, bleibt fast immer mindestens ein "
+"Duplikat übrig, für den Fall, dass etwas unweigerlich schief geht."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:41
+msgid ""
+"But {menuselection}`Image --> Duplicate...` has an extra, hidden bonus: it's"
+" supports extracting just a part of the image. This is controlled both by "
+"any ROI and by selecting subsets of channels, z-slices or time points where "
+"relevant. I frequently use duplication as a way to extract the channel from "
+"an image, as a more convenient alternative to {menuselection}`Image --> "
+"Color --> Split Channels`."
+msgstr ""
+"Aber {menuselection}`Image --> Duplicate...` hat einen zusätzlichen, "
+"versteckten Bonus: Es unterstützt das Extrahieren nur eines Teils des "
+"Bildes. Dies wird sowohl durch einen beliebigen ROI als auch durch die "
+"Auswahl von Teilmengen von Kanälen, Z-Slices oder Zeitpunkten, sofern "
+"relevant, gesteuert. Ich verwende häufig die Duplizierung, um den Kanal aus "
+"einem Bild zu extrahieren, als bequemere Alternative zu "
+"{menuselection}`Image --> Color --> Split Channels`."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:50
+msgid "Why can't ImageJ's 'Undo' undo much?"
+msgstr "Warum kann ImageJs „Rückgängig“ nicht viel rückgängig machen?"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:51
+msgid ""
+"Implementing 'undo' in software is quite tricky. Especially in flexible "
+"software that enables the user to do a lot of different things."
+msgstr ""
+"Die Implementierung von „Rückgängig“ in Software ist ziemlich schwierig. Vor"
+" allem bei flexibler Software, die es dem Benutzer ermöglicht, viele "
+"verschiedene Dinge zu tun."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:54
+msgid ""
+"When it comes to image processing, undo effectively requires the software to"
+" quietly duplicate the pixel values of an image before any processing step, "
+"so that they can be recovered later if needed. For a small image, that can "
+"work fine. But for big images (say, 1 GB or more), duplicating that much "
+"data could *significantly* slow down the software and potentially result in "
+"lots of out-of-memory errors."
+msgstr ""
+"Wenn es um die Bildverarbeitung geht, erfordert das Rückgängigmachen "
+"praktisch, dass die Software die Pixelwerte eines Bildes vor jedem "
+"Verarbeitungsschritt stillschweigend dupliziert, damit sie später bei Bedarf"
+" wiederhergestellt werden können. Für ein kleines Bild kann das gut "
+"funktionieren. Aber bei großen Bildern (z. B. 1 GB oder mehr) könnte das "
+"Duplizieren so vieler Daten die Software *erheblich* verlangsamen und "
+"möglicherweise zu vielen Fehlern wegen unzureichendem Arbeitsspeicher "
+"führen."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:58
+msgid ""
+"ImageJ provides some very limited undo support for 2D slices, but it's best "
+"not to rely on it. In general, it's left up to the user to decide when "
+"duplicating is necessary. If you suspect you might regret a processing step,"
+" then it's best to always duplicate the image beforehand with "
+"{kbd}`Shift+D`."
+msgstr ""
+"ImageJ bietet eine sehr eingeschränkte Rückgängig-Unterstützung für "
+"2D-Slices, aber es ist besser, sich nicht darauf zu verlassen. Im "
+"Allgemeinen bleibt es dem Benutzer überlassen, zu entscheiden, wann eine "
+"Vervielfältigung erforderlich ist. Wenn Sie den Verdacht haben, dass Sie "
+"einen Verarbeitungsschritt bereuen könnten, duplizieren Sie das Bild am "
+"besten immer vorher mit {kbd}`Shift+D`."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:65
+msgid "Converting to 32-bit"
+msgstr "Konvertierung in 32-Bit"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:67
+msgid ""
+"The second thing I often do when processing an image in ImageJ is to "
+"[convert it to 32-bit floating point](sec_bits_type), using "
+"{menuselection}`Image --> Type --> 32-bit`."
+msgstr ""
+"Das zweite, was ich oft mache, wenn ich ein Bild in ImageJ verarbeite, ist, "
+"es [in 32-Bit-Gleitkommazahl umzuwandeln](sec_bits_type), indem ich "
+"{menuselection}`Image --> Type -- verwende. > 32-Bit`."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:69
+msgid ""
+"This isn't *always* essential, but we will soon see examples where the type "
+"of the image makes a difference to the result. So you should always at least"
+" consider converting."
+msgstr ""
+"Dies ist nicht *immer* unbedingt erforderlich, aber wir werden bald "
+"Beispiele sehen, bei denen die Art des Bildes einen Einfluss auf das "
+"Ergebnis hat. Sie sollten also immer zumindest über eine Umstellung "
+"nachdenken."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:75
+msgid "Point operations for single images"
+msgstr "Punktoperationen für Einzelbilder"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:77
+msgid ""
+"Many point operations for single images are found in the "
+"{menuselection}`Process --> Math -->` submenu. At the top of the list come "
+"the arithmetic operations: {menuselection}`Add...`, "
+"{menuselection}`Subtract...`, {menuselection}`Multiply...` and "
+"{menuselection}`Divide...`."
+msgstr ""
+"Viele Punktoperationen für einzelne Bilder finden Sie im Untermenü "
+"{menuselection}`Process --> Math -->`. Ganz oben auf der Liste stehen die "
+"arithmetischen Operationen: {menuselection}`Add...`, "
+"{menuselection}`Subtract...` , {menuselection}`Multiplizieren...` und "
+"{menuselection}`Dividieren...`."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:0
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:0
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:0
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:0
+msgid "Practical"
+msgstr "Praktisch"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:88
+msgid ""
+"Open the image *Spooked_16-bit.tif*, and apply *only* the following steps:"
+msgstr ""
+"Öffnen Sie das Bild *Spooked_16-bit.tif* und führen Sie *nur* die folgenden "
+"Schritte aus:"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:90
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:93
+msgid "Measure the mean pixel value of the image"
+msgstr "Messen Sie den mittleren Pixelwert des Bildes"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:91
+msgid "Subtract 600 from all pixel values"
+msgstr "Subtrahieren Sie 600 von allen Pixelwerten"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:92
+msgid "Add 600 to all pixel values"
+msgstr "Addiere 600 zu allen Pixelwerten"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:95
+msgid ""
+"*Mathematically*, you should get the same mean measurements. Can you explain"
+" the result?"
+msgstr ""
+"*Mathematisch gesehen* sollten Sie die gleichen Durchschnittswerte erhalten."
+" Können Sie das Ergebnis erklären?"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:98
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:155
+msgid ""
+"[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/launch-imagej-js-"
+"badge.svg)](https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-"
+"data/blob/main/images/Spooked_16-bit.tif)"
+msgstr ""
+"[![ImageJ.JS starten](https://ij.imjoy.io/assets/badge/launch-imagej-js-"
+"badge.svg)](https://ij.imjoy.io?open=https:/ "
+"/github.com/bioimagebook/practical-data/blob/main/images/Spooked_16-bit.tif)"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:98
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:155
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:200
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:247
+msgid "launch ImageJ.JS"
+msgstr "Starten Sie ImageJ.JS"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:0
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:0
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:0
+msgid "Solution"
+msgstr "Lösung"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:103
+msgid "Firstly, the commands you need to run are:"
+msgstr "Zunächst müssen folgende Befehle ausgeführt werden:"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:104
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:107
+msgid "{menuselection}`Analyze --> Measure`, or press {kbd}`M`"
+msgstr "{menuselection}`Analysieren --> Messen` oder drücken Sie {kbd}`M`"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:105
+msgid "{menuselection}`Process --> Math --> Subtract...` with the value 600"
+msgstr "{menuselection}`Process --> Math --> Subtract...` mit dem Wert 600"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:106
+msgid "{menuselection}`Process --> Math --> Add...` with the value 600"
+msgstr ""
+"{menuselection}`Prozess --> Mathematik --> Hinzufügen...` mit dem Wert 600"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:109
+msgid "When I do this, I get the following results table:"
+msgstr "Wenn ich das mache, erhalte ich die folgende Ergebnistabelle:"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:113
+msgid ""
+"The reason the mean values differ is because we have a 16-bit image. After "
+"subtraction, any values that were less than 600 become clipped to zero. All "
+"these become 600 after the addition, pushing up the overall mean."
+msgstr ""
+"Der Grund dafür, dass die Mittelwerte unterschiedlich sind, liegt darin, "
+"dass wir ein 16-Bit-Bild haben. Nach der Subtraktion werden alle Werte, die "
+"kleiner als 600 waren, auf Null gekürzt. Alle diese Werte werden nach der "
+"Addition zu 600, was den Gesamtmittelwert erhöht."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:117
+msgid ""
+"If you didn't see this effect, then I would guess you had the foresight to "
+"run {menuselection}`Image --> Type --> 32-bit`. If you do this, the mean "
+"values match after all."
+msgstr ""
+"Wenn Sie diesen Effekt nicht gesehen haben, dann vermute ich, dass Sie die "
+"Weitsicht hatten, {menuselection}`Image --> Type --> 32-bit` auszuführen. "
+"Wenn man das macht, stimmen die Mittelwerte doch überein."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:126
+msgid ""
+"The {menuselection}`Process --> Math --> Log...` and {menuselection}`Process"
+" --> Math --> Gamma...` commands implement the log and gamma transforms "
+"respectively. The gamma transform is more common, since it contains an "
+"adjustable gamma parameter that can be used to tune the effect."
+msgstr ""
+"Der {menuselection}`Prozess --> Mathematik --> Protokoll...` und der "
+"{menuselection}`Prozess --> Mathematik -- >Gamma...`-Befehle implementieren "
+"die Log- bzw. Gamma-Transformationen. Die Gammatransformation ist häufiger "
+"anzutreffen, da sie einen einstellbaren Gammaparameter enthält, mit dem der "
+"Effekt abgestimmt werden kann."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:129
+msgid "Beware of the bit-depth with nonlinear transforms!"
+msgstr "Achten Sie bei nichtlinearen Transformationen auf die Bittiefe!"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:132
+msgid ""
+"When applying gamma or log transforms to 8-bit or 16-bit images, ImageJ "
+"applies some additional (linear) rescaling to the result so that the output "
+"falls within the range supported by the image."
+msgstr ""
+"Beim Anwenden von Gamma- oder Log-Transformationen auf 8-Bit- oder 16-Bit-"
+"Bilder wendet ImageJ eine zusätzliche (lineare) Neuskalierung auf das "
+"Ergebnis an, sodass die Ausgabe in den vom Bild unterstützten Bereich fällt."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:134
+msgid ""
+"This rescaling isn't needed for 32-bit images. This means that if you apply "
+"either command to a 32-bit image then it can seem that the image disappears."
+" You'll need to follow up by using {menuselection}`Image --> Adjust --> "
+"Brightness/Contrast...` to reset the LUT display range to see the output "
+"properly."
+msgstr ""
+"Diese Neuskalierung ist für 32-Bit-Bilder nicht erforderlich. Das heißt, "
+"wenn Sie einen der beiden Befehle auf ein 32-Bit-Bild anwenden, kann es so "
+"aussehen, als würde das Bild verschwinden. Anschließend müssen Sie "
+"{menuselection}`Image --> Adjust --> Brightness/Contrast...` verwenden, um "
+"den LUT-Anzeigebereich zurückzusetzen, damit die Ausgabe richtig angezeigt "
+"wird."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:147
+msgid ""
+"Explore the use of {menuselection}`Process --> Math --> Gamma...` for "
+"enhancing the contrast of *Spooked_16-bit.tif*."
+msgstr ""
+"Entdecken Sie die Verwendung von {menuselection}`Process --> Math --> "
+"Gamma...` zur Verbesserung des Kontrasts von *Spooked_16-bit.tif*."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:149
+msgid ""
+"If you want to see both the human and the ghost, should the gamma value be "
+"less than 1, equal to 1, or greater than 1?"
+msgstr ""
+"Wenn Sie sowohl den Menschen als auch den Geist sehen möchten, sollte der "
+"Gammawert kleiner als 1, gleich 1 oder größer als 1 sein?"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:151
+msgid ""
+"**Tip:** To get a feeling for how the values are changing, create a "
+"histogram of the image first and press the {guilabel}`Live` button on the "
+"histogram. Then run the gamma command, turn on the {guilabel}`Preview` "
+"option and adjust the slider. You should now see a live update of how "
+"changing the gamma affects the pixel values."
+msgstr ""
+"**Tipp:** Um ein Gefühl dafür zu bekommen, wie sich die Werte ändern, "
+"erstellen Sie zunächst ein Histogramm des Bildes und klicken Sie im "
+"Histogramm auf die Schaltfläche {guilabel}„Live“. Führen Sie dann den Befehl"
+" „gamma“ aus, aktivieren Sie die Option „Vorschau“ und passen Sie den "
+"Schieberegler an. Sie sollten nun ein Live-Update darüber sehen, wie sich "
+"eine Änderung des Gammas auf die Pixelwerte auswirkt."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:160
+msgid "The gamma needs to be less than 1."
+msgstr "Der Gammawert muss kleiner als 1 sein."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:162
+msgid ""
+"When the gamma is equal to 1, it isn't doing anything at all. When it is "
+"greater than 1, it's applying a non-linear adjustment -- but not one that "
+"really helps in this case."
+msgstr ""
+"Wenn das Gamma gleich 1 ist, passiert überhaupt nichts. Wenn er größer als 1"
+" ist, wird eine nichtlineare Anpassung angewendet – aber in diesem Fall "
+"keine, die wirklich hilft."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:170
+msgid "Image inversion"
+msgstr "Bildinvertierung"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:172
+msgid ""
+"The {menuselection}`Edit --> Invert` command implements image inversion."
+msgstr ""
+"Der Befehl {menuselection}`Edit --> Invert` implementiert die "
+"Bildinvertierung."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:175
+msgid "Inverting images or inverting LUTs?"
+msgstr "Bilder invertieren oder LUTs invertieren?"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:178
+msgid ""
+"{menuselection}`Edit --> Invert` should not be confused with the "
+"{menuselection}`Image --> Lookup Tables --> Invert LUT` command, which "
+"inverts the LUT but *does nothing to the pixel values!*"
+msgstr ""
+"{menuselection}`Edit --> Invert` sollte nicht mit {menuselection}`Image --> "
+"Lookup Tables --> Invert verwechselt werden LUT`-Befehl, der die LUT "
+"invertiert, aber *nichts mit den Pixelwerten tut!*"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:180
+msgid ""
+"Moreover, whether the LUT is inverted can be saved inside the file -- and so"
+" you could potentially open an image and find its LUT was inverted before "
+"you even started to do anything, and thereby misjudge whether structures are"
+" really brighter or darker than everything else."
+msgstr ""
+"Darüber hinaus kann in der Datei gespeichert werden, ob die LUT invertiert "
+"ist – Sie könnten also möglicherweise ein Bild öffnen und feststellen, dass "
+"die LUT invertiert war, bevor Sie überhaupt etwas getan haben, und dadurch "
+"falsch einschätzen, ob Strukturen wirklich heller oder dunkler als alles "
+"andere sind ."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:182
+msgid ""
+"{menuselection}`File --> Open samples --> Blobs` is an example of this. It "
+"took a long time before I realized that the pixel values inside the blobs "
+"are higher than the background, because of the sneaky inverted LUT. As is "
+"often the case, the signs of an inverted LUT are evident in the text at the "
+"top of an image window."
+msgstr ""
+"{menuselection}`Datei --> Beispiele öffnen --> Blobs' ist ein Beispiel "
+"hierfür. Es hat lange gedauert, bis mir klar wurde, dass die Pixelwerte "
+"innerhalb der Blobs aufgrund der raffinierten invertierten LUT höher sind "
+"als die des Hintergrunds. Wie so oft sind die Anzeichen einer invertierten "
+"LUT im Text oben im Bildfenster erkennbar."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:193
+msgid ""
+"{menuselection}`Edit --> Invert` works differently when applied to different"
+" image types. Like in the 8-bit case, pixel values are always subtracted "
+"from some 'maximum'."
+msgstr ""
+"{menuselection}„Bearbeiten --> Invertieren“ funktioniert unterschiedlich, "
+"wenn es auf verschiedene Bildtypen angewendet wird. Wie im 8-Bit-Fall werden"
+" Pixelwerte immer von einem „Maximum“ subtrahiert."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:196
+msgid "How this maximum is determined for 16 and 32-bit images in ImageJ?"
+msgstr "Wie wird dieses Maximum für 16- und 32-Bit-Bilder in ImageJ bestimmt?"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:198
+msgid ""
+"**Note:** the methods used for 16 and 32-bit images are different from one "
+"another!"
+msgstr ""
+"**Hinweis:** Die für 16- und 32-Bit-Bilder verwendeten Methoden "
+"unterscheiden sich voneinander!"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:200
+msgid ""
+"[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-"
+"badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-"
+"data/blob/main/images/Spooked_16-bit.tif&open=https://github.com/bioimagebook/practical-"
+"data/blob/main/images/happy_cell.tif)"
+msgstr ""
+"[![ImageJ.JS starten](https://ij.imjoy.io/assets/badge/open-in-imagej-js-"
+"badge.svg)](https://ij.imjoy.io/?open= "
+"https://github.com/bioimagebook/practical-"
+"data/blob/main/images/Spooked_16-bit.tif&open=https://github.com/bioimagebook/practical-"
+"data/blob/main/images/happy_cell.tif)"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:204
+msgid ""
+"When I first wrote this question, to invert a 16-bit image pixel were "
+"subtracted from *the maximum value within the original image*. This is also "
+"true for stacks: the maximum value in the entire stack is found."
+msgstr ""
+"Als ich diese Frage zum ersten Mal schrieb, wurden zum Invertieren eines "
+"16-Bit-Bildes die Pixel vom *Maximalwert im Originalbild* abgezogen. Dies "
+"gilt auch für Stapel: Es wird der Maximalwert im gesamten Stapel gefunden."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:207
+msgid ""
+"Since ImageJ v1.53k, the maximum value of 65535 is used... unless you happen"
+" to have a different {guilabel}`Unsigned 6-bit range` value specified via "
+"the {guilabel}`Set` button via the *Brightness & Contrast* dialog. I only "
+"know about this sneaky alternative option through the [ImageJ release "
+"notes](https://imagej.nih.gov/ij/notes.html)."
+msgstr ""
+"Seit ImageJ v1.53k wird der Maximalwert von 65535 verwendet ... es sei denn,"
+" Sie haben zufällig einen anderen {guilabel}Wert für den vorzeichenlosen "
+"6-Bit-Bereich, der über die <span-Klasse angegeben wurde "
+"='notranslate'>{guilabel}</span>Schaltfläche „Einstellen“ über das "
+"Dialogfeld *Helligkeit und Kontrast*. Ich kenne diese raffinierte "
+"Alternativoption nur aus den [ImageJ-"
+"Versionshinweisen](https://imagej.nih.gov/ij/notes.html)."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:210
+msgid ""
+"For 32-bit image inversion, the pixels are subtracted from the *display "
+"maximum*, i.e. whatever maximum is set in the {menuselection}`Image --> "
+"Adjust --> Brightness/Contrast...` dialog box. Consequently, *inverting a "
+"32-bit image can give different results each time it is applied if the "
+"contrast settings are not kept the same!*"
+msgstr ""
+"Für die 32-Bit-Bildinvertierung werden die Pixel vom *Anzeigemaximum* "
+"abgezogen, d. h. von dem Maximum, das in {menuselection}`Bild --> Anpassen "
+"--> Helligkeit/Kontrast eingestellt ist ...`-Dialogfeld. Folglich *kann die "
+"Umkehrung eines 32-Bit-Bildes bei jeder Anwendung zu unterschiedlichen "
+"Ergebnissen führen, wenn die Kontrasteinstellungen nicht gleich bleiben!*"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:213
+msgid ""
+"I personally dislike this unpredictable weirdness. I would happily apply "
+"{menuselection}`Edit --> Invert` to an 8-bit image. For anything else, I'd "
+"generally rather convert to 32-bit and multiply by -1 -- so that I know the "
+"results should be repeatable, regardless of brightess & contrast settings."
+msgstr ""
+"Ich persönlich mag diese unvorhersehbare Verrücktheit nicht. Ich würde gerne"
+" {menuselection}`Edit --> Invert` auf ein 8-Bit-Bild anwenden. Für alles "
+"andere würde ich im Allgemeinen lieber in 32-Bit konvertieren und mit -1 "
+"multiplizieren, damit ich weiß, dass die Ergebnisse unabhängig von den "
+"Helligkeits- und Kontrasteinstellungen wiederholbar sein sollten."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:223
+msgid "The Image Calculator"
+msgstr "Der Bildrechner"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:225
+msgid ""
+"{menuselection}`Process --> Math --> Image Calculator...` is used to combine"
+" two images in various ways. It is one of ImageJ's most indispensable "
+"commands."
+msgstr ""
+"{menuselection}`Process --> Math --> Image Calculator...` wird verwendet, um"
+" zwei Bilder auf verschiedene Arten zu kombinieren. Es ist einer der "
+"unverzichtbarsten Befehle von ImageJ."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:231
+msgid "The *Image Calculator...* dialog"
+msgstr "Der Dialog *Bildrechner...*"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:235
+msgid ""
+"But beware of the bit-depth and type! If any of the original images are 8 or"
+" 16-bit, then the result might require clipping or rounding, in which case "
+"selecting the option to create a {guilabel}`32-bit (float) result` may be "
+"necessary to get the expected output."
+msgstr ""
+"Aber achten Sie auf die Bittiefe und den Typ! Wenn es sich bei den "
+"Originalbildern um 8- oder 16-Bit-Bilder handelt, muss das Ergebnis "
+"möglicherweise beschnitten oder gerundet werden. Wählen Sie in diesem Fall "
+"die Option zum Erstellen eines 32-Bit-Bildes (Float) aus ) result` kann "
+"erforderlich sein, um die erwartete Ausgabe zu erhalten."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:243
+msgid ""
+"{menuselection}`Process --> Math --> Image Calculator...` finally makes it "
+"possible for us to check whether the pixel values of two images are all "
+"identical -- without relying on summary measurements or histograms."
+msgstr ""
+"{menuselection}`Process --> Math --> Image Calculator...` macht es uns "
+"endlich möglich, zu überprüfen, ob die Pixelwerte zweier Bilder alle "
+"identisch sind – ohne uns darauf verlassen zu müssen auf Übersichtsmessungen"
+" oder Histogrammen."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:245
+msgid ""
+"Use it to determine which two of the images *Same_1.tif*, *Same_2.tif* and "
+"*Same_3.tif* are identical in terms of pixel values."
+msgstr ""
+"Bestimmen Sie damit, welche zwei der Bilder *Same_1.tif*, *Same_2.tif* und "
+"*Same_3.tif* hinsichtlich der Pixelwerte identisch sind."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:247
+msgid ""
+"[![launch ImageJ.JS](https://ij.imjoy.io/assets/badge/open-in-imagej-js-"
+"badge.svg)](https://ij.imjoy.io/?open=https://github.com/bioimagebook/practical-"
+"data/blob/main/images/Same_1.tif&open=https://github.com/bioimagebook/practical-"
+"data/blob/main/images/Same_2.tif&open=https://github.com/bioimagebook/practical-"
+"data/blob/main/images/Same_3.tif)"
+msgstr ""
+"[![ImageJ.JS starten](https://ij.imjoy.io/assets/badge/open-in-imagej-js-"
+"badge.svg)](https://ij.imjoy.io/?open= "
+"https://github.com/bioimagebook/practical-"
+"data/blob/main/images/Same_1.tif&open=https://github.com/bioimagebook/practical-"
+"data/blob/main/images/Same_2.tif&open=https: "
+"//github.com/bioimagebook/practical-data/blob/main/images/Same_3.tif)"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:0
+msgid "Answer"
+msgstr "Antwort"
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:251
+msgid ""
+"My preferred way to check this is to subtract the images from one another, "
+"making sure that the result is 32-bit (in case there are negative values). "
+"Doing this should reveal something hidden in the image *Same_2.tif*. Note "
+"that the contrast settings differ between *Same_1.tif* and *Same_3.tif*, so "
+"they may _look_ different."
+msgstr ""
+"Meine bevorzugte Methode, dies zu überprüfen, besteht darin, die Bilder "
+"voneinander zu subtrahieren und sicherzustellen, dass das Ergebnis 32-Bit "
+"ist (falls es negative Werte gibt). Dadurch sollte etwas sichtbar werden, "
+"das im Bild *Same_2.tif* verborgen ist. Beachten Sie, dass sich die "
+"Kontrasteinstellungen zwischen *Same_1.tif* und *Same_3.tif* unterscheiden, "
+"sodass sie möglicherweise unterschiedlich _aussehen_."
+
+#: ../../../chapters/2-processing/2-point_operations/imagej.md:254
+msgid ""
+"(Note that the calculator's {guilabel}`Difference` or {guilabel}`Divide` "
+"commands could also be used. {guilabel}`XOR` would work as well, but its "
+"output is harder to interpret since it involves comparing individual bits "
+"used to store each pixel value and gives an output where all matching bits "
+"are 0 and all non-matching bits are 1. When converted back into actual "
+"decimal values and then to colors for us to look at, this can appear "
+"strange. But at least if the resulting image is not completely black then we"
+" know that the original input images were not identical.)"
+msgstr ""
+"(Beachten Sie, dass auch die Befehle {guilabel}„Difference“ oder "
+"{guilabel}„Divide“ des Rechners verwendet werden können. {guilabel}`XOR` "
+"würde auch funktionieren, aber seine Ausgabe ist schwieriger zu "
+"interpretieren, da es den Vergleich einzelner Bits zum Speichern jedes "
+"Pixelwerts beinhaltet und eine Ausgabe ergibt, bei der alle "
+"übereinstimmenden Bits 0 und alle nicht übereinstimmenden Bits sind sind 1. "
+"Bei der Rückumrechnung in tatsächliche Dezimalwerte und dann in für uns "
+"sichtbare Farben kann dies seltsam erscheinen. Wenn das resultierende Bild "
+"jedoch nicht vollständig schwarz ist, wissen wir zumindest, dass die "
+"ursprünglichen Eingabebilder nicht identisch waren.)"
