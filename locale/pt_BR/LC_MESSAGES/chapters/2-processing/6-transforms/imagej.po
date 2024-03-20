@@ -1,0 +1,362 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Beth Cimini, 2024
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: 2024-02-05 21:49+0000\n"
+"Last-Translator: Beth Cimini, 2024\n"
+"Language-Team: Portuguese (Brazil) (https://app.transifex.com/center-for-open-bioimage-analysis/teams/169123/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:15
+msgid "ImageJ: Image transforms"
+msgstr "ImageJ: transformações de imagem"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:33
+msgid "Introduction"
+msgstr "Introdução"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:35
+msgid ""
+"ImageJ has excellent 2D distance and watershed transforms... although not "
+"necessarily everything about them is quite what you might expect."
+msgstr ""
+"ImageJ tem excelentes distâncias 2D e transformações de bacias "
+"hidrográficas... embora nem necessariamente tudo sobre eles seja exatamente "
+"o que você poderia esperar."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:39
+msgid "Distance transform"
+msgstr "Transformação de distância"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:46
+msgid ""
+"A 2D distance transform can be calculated in ImageJ using the "
+"{menuselection}`Process --> Binary --> Distance Map` command."
+msgstr ""
+"Uma transformação de distância 2D pode ser calculada no ImageJ usando o "
+"comando {menuselection}`Process --> Binary --> Distance Map`."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:48
+msgid ""
+"A non-obvious feature of this is that the type of output given is determined"
+" by the {guilabel}`EDM output` option tucked away under "
+"{menuselection}`Process --> Binary --> Options...` (where EDM stands for "
+"'Euclidean Distance Map'). This makes a difference, because the distance "
+"between two diagonal pixels is considered $\\sqrt{2} \\approx 1.414$ (by "
+"Pythagoras' theorem) -- which means that a 32-bit output can give more exact"
+" straight-line distances without rounding."
+msgstr ""
+"Uma característica não óbvia disso é que o tipo de saída fornecida é "
+"determinado pela opção {guilabel}`saída EDM` escondida em "
+"{menuselection}`Processo --> Binário --> Opções...` (onde EDM significa "
+"'Mapa de Distância Euclidiana'). Isso faz diferença, porque a distância "
+"entre dois pixels diagonais é considerada $\\sqrt{2} \\approx 1.414$ (pelo "
+"teorema de Pitágoras) - o que significa que uma saída de 32 bits pode "
+"fornecer distâncias em linha reta mais exatas sem arredondamento."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:70
+msgid "Outputs from several distance transform-related commands in ImageJ."
+msgstr ""
+"Saídas de vários comandos relacionados à transformação de distância no "
+"ImageJ."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:75
+msgid "Ultimate points"
+msgstr "Pontos finais"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:77
+msgid ""
+"{menuselection}`Process --> Binary --> Ultimate Points` is a related "
+"command. It uses the distance transform to identify the last points that "
+"would be removed if the objects would be eroded until they disappear. In "
+"other words, it identifies centers. But these are not simply single center "
+"points for each object; rather, they are maximum points in the distance map,"
+" and therefore the pixels furthest away from the boundary."
+msgstr ""
+"{menuselection}`Process --> Binary --> Ultimate Points` é um comando "
+"relacionado. Ele usa a transformação de distância para identificar os "
+"últimos pontos que seriam removidos se os objetos fossem erodidos até "
+"desaparecerem. Em outras palavras, identifica centros. Mas estes não são "
+"simplesmente pontos centrais únicos para cada objeto; em vez disso, são "
+"pontos máximos no mapa de distância e, portanto, os pixels mais distantes do"
+" limite."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:82
+msgid ""
+"This means that if a structure has several 'bulges', then an ultimate point "
+"exists _at the center of each of them_. If segmentation has resulted in "
+"structures being merged together, then each distinct bulge could actually "
+"correspond to something interesting -- and the number of bulges actually "
+"means more than the number of separated objects in the binary image."
+msgstr ""
+"Isto significa que se uma estrutura tem várias 'protuberâncias', então "
+"existe um ponto último _no centro de cada uma delas_. Se a segmentação "
+"resultou na fusão de estruturas, então cada protuberância distinta poderia "
+"na verdade corresponder a algo interessante - e o número de protuberâncias "
+"na verdade significa mais do que o número de objetos separados na imagem "
+"binária."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:169
+msgid ""
+"Although conceptually straightforward, and easy to use in ImageJ, "
+"implementing 'Ultimate points' in other software can be tricky. Here, I've "
+"tried to replicate it in Python. The results aren't necessarily identical to"
+" ImageJ's implementation, but should be pretty close."
+msgstr ""
+"Embora conceitualmente simples e fácil de usar no ImageJ, implementar "
+"'Pontos finais' em outro software pode ser complicado. Aqui, tentei replicá-"
+"lo em Python. Os resultados não são necessariamente idênticos à "
+"implementação do ImageJ, mas devem ser bem próximos."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:173
+msgid ""
+"Select to {guilabel}`Show code cell contents` above to see how it works."
+msgstr ""
+"Selecione {guilabel}`Mostrar conteúdo da célula de código` acima para ver "
+"como funciona."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:181
+msgid ""
+"Computing the ultimate points from a binary image can be an effective step "
+"towards counting the objects in the image -- even if these have been merged."
+" It works best when the true objects are round in shape."
+msgstr ""
+"Calcular os pontos finais de uma imagem binária pode ser um passo eficaz "
+"para contar os objetos na imagem - mesmo que estes tenham sido mesclados. "
+"Funciona melhor quando os objetos verdadeiros têm formato redondo."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:188
+msgid "Watershed (after distance transform)"
+msgstr "Bacia hidrográfica (após transformação de distância)"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:190
+msgid ""
+"As the name suggests, ImageJ's {menuselection}`Process --> Binary --> "
+"Watershed` command applies a watershed transform."
+msgstr ""
+"Como o nome sugere, o comando {menuselection}`Process --> Binary --> "
+"Watershed` do ImageJ aplica uma transformação de bacia hidrográfica."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:192
+msgid ""
+"However, as the name conceals, the watershed transform is always applied to "
+"a distance map -- which is calculated automatically in the background."
+msgstr ""
+"No entanto, como o nome indica, a transformação da bacia hidrográfica é "
+"sempre aplicada a um mapa de distância – que é calculado automaticamente em "
+"segundo plano."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:194
+msgid ""
+"The clue to this is only that it appears in a {menuselection}`Process --> "
+"Binary` submenu, and therefore requires a binary image as input; a 'regular'"
+" watershed transform isn't normally applied to a binary image."
+msgstr ""
+"A pista para isso é apenas que ele aparece em um submenu "
+"{menuselection}`Process --> Binary` e, portanto, requer uma imagem binária "
+"como entrada; uma transformação de bacia hidrográfica 'regular' normalmente "
+"não é aplicada a uma imagem binária."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:196
+msgid ""
+"Effectively, the seeds of the watershed transform are the 'ultimate points' "
+"described above. The effect of the command is therefore to split 'roundish' "
+"objects."
+msgstr ""
+"Efetivamente, as sementes da transformação da bacia hidrográfica são os "
+"“pontos finais” descritos acima. O efeito do comando é, portanto, dividir "
+"objetos 'arredondados'."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:204
+msgid "Watching the distance transform"
+msgstr "Observando a distância se transformar"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:208
+msgid ""
+"If you click the {guilabel}`Dev` toolbar button and select "
+"{menuselection}`Debug Mode` from the drop-down menu, then running "
+"{menuselection}`Process --> Binary --> Watershed` will generate an image "
+"stack that visualizes how the seeds expanded during the watershed "
+"processing."
+msgstr ""
+"Se você clicar no botão {guilabel}`Dev` da barra de ferramentas e selecionar"
+" {menuselection}`Debug Mode` no menu suspenso, então execute "
+"{menuselection}`Process --> Binary --> Watershed` irá gerar uma pilha de "
+"imagens que visualiza como as sementes se expandiram durante o processamento"
+" da bacia hidrográfica."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:213
+msgid "Voronoi"
+msgstr "Voronoi"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:215
+msgid ""
+"{menuselection}`Process --> Binary --> Voronoi` is another distance-and-"
+"watershed-based command for binary images."
+msgstr ""
+"{menuselection}`Process --> Binary --> Voronoi` é outro comando baseado em "
+"distância e bacia hidrográfica para imagens binárias."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:217
+msgid ""
+"It will partition the image into different regions so that the separation "
+"lines have an equal distance to the nearest foreground objects."
+msgstr ""
+"Ele irá particionar a imagem em diferentes regiões para que as linhas de "
+"separação tenham uma distância igual dos objetos mais próximos do primeiro "
+"plano."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:0
+msgid "Question"
+msgstr "Pergunta"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:231
+msgid ""
+"Imagine you have created a binary image containing detected cells, but you "
+"are only interested in the region inside the cell that is close to the "
+"membrane, i.e. within 5 pixels of the edge of each detected object. Any "
+"pixels outside the objects or closer to their centers do not matter."
+msgstr ""
+"Imagine que você criou uma imagem binária contendo células detectadas, mas "
+"está interessado apenas na região dentro da célula que está próxima à "
+"membrana, ou seja, dentro de 5 pixels da borda de cada objeto detectado. "
+"Quaisquer pixels fora dos objetos ou mais próximos de seus centros não "
+"importam."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:234
+msgid ""
+"How would you go about finding these regions using ImageJ and the distance "
+"transform?"
+msgstr ""
+"Como você encontraria essas regiões usando ImageJ e a transformação de "
+"distância?"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:236
+msgid ""
+"**Note:** There other ways to do this using techniques we've discussed, "
+"although these don't necessarily give identical results."
+msgstr ""
+"**Nota:** Existem outras maneiras de fazer isso usando as técnicas que "
+"discutimos, embora elas não forneçam necessariamente resultados idênticos."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:0
+msgid "Answer"
+msgstr "Responder"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:242
+msgid "This is the approach I was thinking of:"
+msgstr "Esta é a abordagem que eu estava pensando:"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:243
+msgid "Run {menuselection}`Edit --> Invert`"
+msgstr "Execute {menuselection}`Editar --> Inverter`"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:244
+msgid "Run {menuselection}`Process --> Binary --> Distance Map`"
+msgstr "Execute {menuselection}`Processo --> Binário --> Mapa de Distância`"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:245
+msgid "Run {menuselection}`Image --> Adjust --> Threshold...`"
+msgstr "Execute {menuselection}`Imagem --> Ajustar --> Limite...`"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:246
+msgid ""
+"Choose {guilabel}`Set` and enter *Lower Threshold Level: 1* and *Higher "
+"Threshold Level: 5*."
+msgstr ""
+"Escolha {guilabel}`Set` e insira *Nível de limite inferior: 1* e *Nível de "
+"limite superior: 5*."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:248
+msgid ""
+"There are more possible ways, such as applying a maximum filter and "
+"subtracting the original binary image -- but I think the distance transform "
+"is more elegant. The distance transform is also likely to be much faster for"
+" large distances, and more precise (assuming you use a 32-bit output)."
+msgstr ""
+"Existem mais maneiras possíveis, como aplicar um filtro máximo e subtrair a "
+"imagem binária original - mas acho que a transformação de distância é mais "
+"elegante. A transformação de distância provavelmente também será muito mais "
+"rápida para grandes distâncias e mais precisa (supondo que você use uma "
+"saída de 32 bits)."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:256
+msgid "Watershed transform"
+msgstr "Transformação de bacia hidrográfica"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:263
+msgid ""
+"So if ImageJ has a watershed transform, but it's not the command called "
+"{menuselection}`Watershed`, then where is it?"
+msgstr ""
+"Portanto, se ImageJ tem uma transformação de divisor de águas, mas não é o "
+"comando chamado {menuselection}`Watershed`, então onde está?"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:265
+msgid ""
+"The answer is that it's hidden in the phenomenally useful "
+"{menuselection}`Process --> Find maxima` command."
+msgstr ""
+"A resposta é que ele está oculto no comando {menuselection}`Process --> Find"
+" maxima` fenomenalmente útil."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:267
+msgid ""
+"I say 'hidden', because you specifically have to choose the output "
+"{guilabel}`Segmented Particles` to use it. And you'll need to flip your "
+"expectations: unlike most watershed transforms, it will start at the "
+"*intensity peaks* of the image (i.e. the maxima) and expand outwards, rather"
+" than starting at minima."
+msgstr ""
+"Eu digo 'oculto', porque você precisa escolher especificamente a saída "
+"{guilabel}`Segmented Particles` para usá-lo. E você precisará inverter suas "
+"expectativas: diferentemente da maioria das transformações de bacias "
+"hidrográficas, ela começará nos *picos de intensidade* da imagem (ou seja, "
+"os máximos) e se expandirá para fora, em vez de começar nos mínimos."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:270
+msgid ""
+"But don't let those things discourage you: I highly recommend exploring the "
+"various options of {menuselection}`Process --> Find maxima` to see what all "
+"it can do. Depending upon which options are selected, this includes finding "
+"structures using a global threshold, a local threshold, generating point "
+"ROIs and generating binary regions."
+msgstr ""
+"Mas não deixe que essas coisas o desencorajem: eu recomendo explorar as "
+"diversas opções de {menuselection}`Process --> Find maxima` para ver tudo o "
+"que ele pode fazer. Dependendo das opções selecionadas, isso inclui "
+"encontrar estruturas usando um limite global, um limite local, gerar ROIs "
+"pontuais e gerar regiões binárias."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:275
+msgid "Check out MorphoLibJ"
+msgstr "Confira MorphoLibJ"
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:278
+msgid ""
+"Echoing my recommendation at the end of the last chapter, you should check "
+"out **MorphoLibJ** if you would like more transform options -- particularly "
+"when it comes to watersheds of various kinds."
+msgstr ""
+"Ecoando minha recomendação no final do último capítulo, você deve verificar "
+"**MorphoLibJ** se quiser mais opções de transformação - especialmente quando"
+" se trata de bacias hidrográficas de vários tipos."
+
+#: ../../../chapters/2-processing/6-transforms/imagej.md:280
+msgid "See https://imagej.net/plugins/morpholibj for more details."
+msgstr ""
+"Consulte https://imagej.net/plugins/morpholibj para obter mais detalhes."
