@@ -1,0 +1,605 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Beth Cimini, 2024
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: 2024-02-05 21:49+0000\n"
+"Last-Translator: Beth Cimini, 2024\n"
+"Language-Team: Portuguese (Brazil) (https://app.transifex.com/center-for-open-bioimage-analysis/teams/169123/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:15
+msgid "ImageJ: Files & file formats"
+msgstr "ImageJ: arquivos e formatos de arquivo"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:19
+msgid "Introduction"
+msgstr "Introdução"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:21
+msgid ""
+"On its own, ImageJ can read and write a range of common -- and a few not-so-"
+"common -- file formats. With Bio-Formats, it can handle a lot more."
+msgstr ""
+"Por si só, o ImageJ pode ler e gravar uma variedade de formatos de arquivo "
+"comuns - e alguns não tão comuns. Com Bio-Formats, ele pode lidar com muito "
+"mais."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:24
+msgid ""
+"This section describes some of the most useful file formats for bioimage "
+"analysis and how to work with them effectively in ImageJ, along with a few "
+"tricks that may help if files are causing you trouble."
+msgstr ""
+"Esta seção descreve alguns dos formatos de arquivo mais úteis para análise "
+"de bioimagem e como trabalhar com eles de forma eficaz no ImageJ, juntamente"
+" com alguns truques que podem ajudar se os arquivos estiverem causando "
+"problemas."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:26
+msgid "File formats in ImageJ (only)"
+msgstr "Formatos de arquivo em ImageJ (somente)"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:28
+#: ../../../chapters/1-concepts/6-files/imagej.md:117
+msgid "Opening images"
+msgstr "Abrindo imagens"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:30
+msgid ""
+"As described in {ref}`chap_imagej_pixels`, the general approach to open an "
+"image is to drag the file on top of the ImageJ toolbar and hope for the "
+"best. Assuming ImageJ supports the file format, then it will usually just "
+"work."
+msgstr ""
+"Conforme descrito em {ref}`chap_imagej_pixels`, a abordagem geral para abrir"
+" uma imagem é arrastar o arquivo para cima da barra de ferramentas do ImageJ"
+" e esperar pelo melhor. Supondo que o ImageJ suporte o formato de arquivo, "
+"geralmente funcionará."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:33
+msgid ""
+"One occasion when that might *seem* insufficient is whenever you have a "
+"large number of image files in the same folder, which really are different "
+"slices or time points of the same image. It's possible to drag all these "
+"onto ImageJ's toolbar at once, but they are likely to open as separate "
+"images. The trick is to drag the folder containing all the images onto the "
+"toolbar instead: you should then be invited to open the images together in a"
+" single image stack."
+msgstr ""
+"Uma ocasião em que isso pode *parecer* insuficiente é quando você tem um "
+"grande número de arquivos de imagem na mesma pasta, que na verdade são "
+"diferentes fatias ou pontos no tempo da mesma imagem. É possível arrastar "
+"tudo isso para a barra de ferramentas do ImageJ de uma só vez, mas é "
+"provável que abram como imagens separadas. O truque é arrastar a pasta que "
+"contém todas as imagens para a barra de ferramentas: você deverá então ser "
+"convidado a abrir as imagens juntas em uma única pilha de imagens."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:42
+msgid ""
+"This assumes that *all* the images in the folder should be opened. If you "
+"need more control, then {menuselection}`File --> Import --> Image "
+"Sequence...` can help. This gives a more extensive dialog, where (among "
+"other things) you can specify a filter, i.e. some text that should be "
+"present within the filenames of images to include."
+msgstr ""
+"Isso pressupõe que *todas* as imagens na pasta devem ser abertas. Se você "
+"precisar de mais controle, então {menuselection}`File --> Import --> Image "
+"Sequence...` pode ajudar. Isto fornece uma caixa de diálogo mais extensa, "
+"onde (entre outras coisas) você pode especificar um filtro, ou seja, algum "
+"texto que deve estar presente nos nomes dos arquivos das imagens a serem "
+"incluídas."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:51
+msgid "Virtual stacks for large images"
+msgstr "Pilhas virtuais para imagens grandes"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:55
+msgid ""
+"Both the dialogs shown above to import multiple images give an intriguing "
+"{guilabel}`Use Virtual Stack` option. This causes ImageJ to *only* open the "
+"slice of the image stack that is currently being viewed. This can "
+"dramatically cut down memory requirements for large stacks, and make opening"
+" much faster."
+msgstr ""
+"Ambas as caixas de diálogo mostradas acima para importar múltiplas imagens "
+"oferecem uma intrigante opção {guilabel}`Use Virtual Stack`. Isso faz com "
+"que o ImageJ abra *apenas* a fatia da pilha de imagens que está sendo "
+"visualizada no momento. Isso pode reduzir drasticamente os requisitos de "
+"memória para pilhas grandes e tornar a abertura muito mais rápida."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:59
+msgid ""
+"The disadvantage of using a virtual stack is that it can make processing "
+"behave a bit oddly: seemingly 'forgetting' when a slice has been processed, "
+"or requesting that the full image is read into memory with prompts like the "
+"one below."
+msgstr ""
+"A desvantagem de usar uma pilha virtual é que ela pode fazer com que o "
+"processamento se comporte de maneira um pouco estranha: aparentemente "
+"'esquecendo' quando uma fatia foi processada ou solicitando que a imagem "
+"completa seja lida na memória com prompts como o mostrado abaixo."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:66
+msgid ""
+"Still, virtual stacks are very handy if you want to peak into a large image "
+"without opening it all. If you don't mind its limitations, you can also open"
+" an ImageJ TIFF as a virtual stack using {menuselection}`File --> Import -->"
+" TIFF Virtual Stack...`."
+msgstr ""
+"Ainda assim, as pilhas virtuais são muito úteis se você quiser atingir uma "
+"imagem grande sem abri-la completamente. Se você não se importa com suas "
+"limitações, você também pode abrir um ImageJ TIFF como uma pilha virtual "
+"usando {menuselection}`File --> Import --> TIFF Virtual Stack...` ."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:70
+msgid "Saving images for analysis"
+msgstr "Salvando imagens para análise"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:72
+msgid ""
+"To save an image, {menuselection}`File --> Save As --> Tiff...` *might* be "
+"all you ever need. This is ImageJ's default format, and so preserves all the"
+" important information that it requires -- including the pixel size. It even"
+" includes any [active ROIs and overlays](chap_rois)."
+msgstr ""
+"Para salvar uma imagem, {menuselection}`Arquivo --> Salvar como --> Tiff...`"
+" *pode* ser tudo que você precisa. Este é o formato padrão do ImageJ e, "
+"portanto, preserva todas as informações importantes necessárias - incluindo "
+"o tamanho do pixel. Inclui até mesmo quaisquer [ROIs e sobreposições "
+"ativos](chap_rois)."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:76
+msgid ""
+"The main disadvantage with saving an ImageJ TIFF is that it's uncompressed, "
+"and so the file size can quickly become quite large. One way to mitigate "
+"this is to choose {menuselection}`File --> Save As --> ZIP...`."
+msgstr ""
+"A principal desvantagem de salvar um ImageJ TIFF é que ele não é compactado "
+"e, portanto, o tamanho do arquivo pode rapidamente ficar muito grande. Uma "
+"maneira de mitigar isso é escolher {menuselection}`Arquivo --> Salvar como "
+"--> ZIP...`."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:79
+msgid ""
+"Rather than being an entirely different format, a ZIP file saved by ImageJ "
+"is really just a TIFF that has been zipped up into a smaller file using "
+"lossless compression. You can probably unzip the file using the tools of "
+"your operating system to reveal the TIFF inside -- but you don't have to, "
+"because ImageJ can open the zip file directly."
+msgstr ""
+"Em vez de ser um formato totalmente diferente, um arquivo ZIP salvo pelo "
+"ImageJ é na verdade apenas um TIFF que foi compactado em um arquivo menor "
+"usando compactação sem perdas. Você provavelmente pode descompactar o "
+"arquivo usando as ferramentas do seu sistema operacional para revelar o TIFF"
+" interno - mas não é necessário, porque o ImageJ pode abrir o arquivo zip "
+"diretamente."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:82
+msgid ""
+"ImageJ's zip files are therefore good for archiving: they preserve all the "
+"same information as an ImageJ TIFF, but in a smaller file size. The cost is "
+"that reading and writing zip files can take quite a lot more time."
+msgstr ""
+"Os arquivos zip do ImageJ são, portanto, bons para arquivamento: eles "
+"preservam todas as mesmas informações que um ImageJ TIFF, mas em um tamanho "
+"de arquivo menor. O custo é que ler e gravar arquivos zip pode levar muito "
+"mais tempo."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:85
+msgid ""
+"Apart from TIFF and ZIP, none of ImageJ's other supported file formats are "
+"really to be recommended for analysis. Depending upon the original image, "
+"most will result in some kind of loss: for example through converting to "
+"RGB, discarding ROIs or dimensions, or applying some pixel-changing lossy "
+"compression."
+msgstr ""
+"Além de TIFF e ZIP, nenhum dos outros formatos de arquivo suportados pelo "
+"ImageJ é realmente recomendado para análise. Dependendo da imagem original, "
+"a maioria resultará em algum tipo de perda: por exemplo, através da "
+"conversão para RGB, descartando ROIs ou dimensões ou aplicando alguma "
+"compactação com perdas de alteração de pixel."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:89
+msgid "Saving images for display"
+msgstr "Salvando imagens para exibição"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:91
+msgid ""
+"When it comes to saving an image to display, data loss may be tolerable -- "
+"or even necessary. We care about appearance and compatibility, not exact "
+"pixel values."
+msgstr ""
+"Quando se trata de salvar uma imagem para exibição, a perda de dados pode "
+"ser tolerável – ou mesmo necessária. Nós nos preocupamos com a aparência e a"
+" compatibilidade, não com os valores exatos dos pixels."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:94
+msgid ""
+"ImageJ TIFF can also be used to save an image for display, but the large "
+"file sizes can be a problem. If you want to do it anyway, then it is often "
+"best to [convert the image to RGB first](sec_imagej_flatten)."
+msgstr ""
+"ImageJ TIFF também pode ser usado para salvar uma imagem para exibição, mas "
+"os tamanhos grandes dos arquivos podem ser um problema. Se você quiser fazer"
+" isso de qualquer maneira, geralmente é melhor [converter a imagem para RGB "
+"primeiro](sec_imagej_flatten)."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:97
+msgid ""
+"Alternatively, I regularly use {menuselection}`File --> Save As... --> "
+"PNG...` as my preferred option to save RGB images for display using lossless"
+" compression."
+msgstr ""
+"Como alternativa, eu uso regularmente {menuselection}`Arquivo --> Salvar "
+"como... --> PNG...` como minha opção preferida para salvar imagens RGB para "
+"exibição usando compactação sem perdas."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:99
+msgid ""
+"If file size is still an issue, and artefacts are acceptable, then "
+"{menuselection}`File --> Save As... --> Jpeg...` can be used instead. The "
+"quality of the JPEG can be adjusted via {menuselection}`Edit --> Options -->"
+" Input/Output...`: increasing the JPEG quality will give (slightly) larger "
+"files, but less obvious artefacts."
+msgstr ""
+"Se o tamanho do arquivo ainda for um problema e os artefatos forem "
+"aceitáveis, então {menuselection}`Arquivo --> Salvar como... --> Jpeg...` "
+"pode ser usado. A qualidade do JPEG pode ser ajustada via "
+"{menuselection}`Editar --> Opções --> Entrada/Saída...`: aumentar a "
+"qualidade do JPEG produzirá arquivos (ligeiramente) maiores , mas artefatos "
+"menos óbvios."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:108
+msgid "Using Bio-Formats"
+msgstr "Usando Bioformatos"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:110
+msgid ""
+"Bio-Formats is extremely useful when working with scientific images "
+"generally -- and pretty much indispensable when it comes to microscopy. It "
+"provides support for reading a wide range of formats, and writing a somewhat"
+" smaller (but still important) range."
+msgstr ""
+"Bio-Formats é extremamente útil quando se trabalha com imagens científicas "
+"em geral – e praticamente indispensável quando se trata de microscopia. Ele "
+"fornece suporte para leitura de uma ampla variedade de formatos e gravação "
+"de uma faixa um pouco menor (mas ainda importante)."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:113
+msgid ""
+"If you're using the Fiji distribution of ImageJ, then you should have Bio-"
+"Formats installed by default. Otherwise, you'll likely need to install "
+"*bioformats_package.jar* yourself. You can find it along with installation "
+"instructions at https://www.openmicroscopy.org/bio-formats/downloads/"
+msgstr ""
+"Se você estiver usando a distribuição Fiji do ImageJ, deverá ter Bio-Formats"
+" instalados por padrão. Caso contrário, você provavelmente precisará "
+"instalar *bioformats_package.jar* você mesmo. Você pode encontrá-lo junto "
+"com as instruções de instalação em https://www.openmicroscopy.org/bio-"
+"formats/downloads/"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:119
+msgid ""
+"Once it's installed, Bio-Formats can do much of its work without you needing"
+" to think about it: if ImageJ cannot open a file by drag & drop, then it "
+"will usually let Bio-Formats have a go. You can tell when that has happened "
+"because the familiar *Bio-Formats Import Options* dialog will pop up:"
+msgstr ""
+"Depois de instalado, o Bio-Formats pode fazer grande parte do seu trabalho "
+"sem que você precise pensar nisso: se o ImageJ não conseguir abrir um "
+"arquivo arrastando e soltando, geralmente permitirá que o Bio-Formats tente."
+" Você pode saber quando isso aconteceu porque a familiar caixa de diálogo "
+"*Opções de importação de bioformatos* aparecerá:"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:127
+msgid ""
+"Sometimes -- but not always -- this is then followed by the *Bio-Formats "
+"Series Options* dialog. If the file contains multiple images, this gives an "
+"opportunity to select which images should be opened."
+msgstr ""
+"Às vezes - mas nem sempre - isso é seguido pela caixa de diálogo *Opções da "
+"série de bioformatos*. Se o arquivo contiver várias imagens, será possível "
+"selecionar quais imagens devem ser abertas."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:135
+msgid "Check out the import options"
+msgstr "Confira as opções de importação"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:138
+msgid ""
+"If you're anything like me, and have been using ImageJ for a while, there's "
+"a strong chance that the Bio-Formats import dialog has faded into the "
+"background noise of your life: something to be clicked away without another "
+"thought."
+msgstr ""
+"Se você for como eu e já usa o ImageJ há algum tempo, há uma grande chance "
+"de que a caixa de diálogo de importação de bioformatos tenha desaparecido no"
+" ruído de fundo da sua vida: algo para ser clicado sem pensar duas vezes."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:140
+msgid ""
+"But it's worth occasionally checking out the options in detail, and hovering"
+" your mouse on top to see the useful explanations about what each option "
+"actually means. Lurking within the checkboxes and drop-down menus are "
+"options to do things like automatically setting the brightness and contrast "
+"or display modes. If you find yourself doing these tasks each time you open "
+"an image anyway, changing the import defaults could make life a little "
+"easier."
+msgstr ""
+"Mas vale a pena conferir ocasionalmente as opções em detalhes e passar o "
+"mouse sobre ela para ver explicações úteis sobre o que cada opção realmente "
+"significa. Escondidos nas caixas de seleção e nos menus suspensos estão "
+"opções para fazer coisas como definir automaticamente o brilho e o contraste"
+" ou os modos de exibição. Se você estiver executando essas tarefas sempre "
+"que abrir uma imagem, alterar os padrões de importação pode tornar a vida um"
+" pouco mais fácil."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:147
+msgid "Saving images"
+msgstr "Salvando imagens"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:149
+msgid ""
+"To save a file, you can use {menuselection}`Plugins --> Bio-Formats --> Bio-"
+"Formats Exporter`."
+msgstr ""
+"Para salvar um arquivo, você pode usar {menuselection}`Plugins --> Bio-"
+"Formats --> Bio-Formats Exporter`."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:151
+msgid ""
+"This is perhaps most useful if you want to save an OME-TIFF image. An OME-"
+"TIFF differs from a regular ImageJ TIFF in two main ways:"
+msgstr ""
+"Talvez isso seja mais útil se você quiser salvar uma imagem OME-TIFF. Um "
+"OME-TIFF difere de um ImageJ TIFF normal de duas maneiras principais:"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:153
+msgid ""
+"It stores a much more extensive collection of standardized metadata, as "
+"[OME-XML](https://docs.openmicroscopy.org/ome-model/latest/ome-xml/)"
+msgstr ""
+"Ele armazena uma coleção muito mais extensa de metadados padronizados, como "
+"[OME-XML](https://docs.openmicroscopy.org/ome-model/latest/ome-xml/)"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:154
+msgid ""
+"It provides options to compress the data inside the TIFF, using either "
+"lossless (e.g. LZW) or lossy (e.g. JPEG) compression"
+msgstr ""
+"Ele fornece opções para compactar os dados dentro do TIFF, usando "
+"compactação sem perdas (por exemplo, LZW) ou com perdas (por exemplo, JPEG)."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:156
+msgid ""
+"You may also find that it works better at preserving key metadata when you "
+"want to move an image to another software application."
+msgstr ""
+"Você também pode descobrir que funciona melhor na preservação de metadados "
+"importantes quando deseja mover uma imagem para outro aplicativo de "
+"software."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:159
+msgid "Troubleshooting files"
+msgstr "Solução de problemas de arquivos"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:161
+msgid ""
+"Sometimes you might get slightly unlucky: an image fails to open, even "
+"though it *could* be opened."
+msgstr ""
+"Às vezes você pode ter um pouco de azar: uma imagem não abre, mesmo que "
+"*pudesse* ser aberta."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:163
+msgid ""
+"This can happen whenever ImageJ optimistically *thinks* it can open a file, "
+"gives it a shot, but fails with a error-emitting whimper. Pride presumably "
+"wounded, ImageJ never passes the file to Bio-Formats to try. If this "
+"happens, then you can call on {menuselection}`Plugins --> Bio-Formats --> "
+"Bio-Formats Importer`  to force the import to use Bio-Formats, in the hope "
+"it will have more success. I've had to do this on rare occasions with "
+"troublesome TIFFs."
+msgstr ""
+"Isso pode acontecer sempre que o ImageJ *pensa* com otimismo que pode abrir "
+"um arquivo, tenta, mas falha com um gemido que emite um erro. Orgulho "
+"presumivelmente ferido, ImageJ nunca passa o arquivo para a Bio-Formats "
+"tentar. Se isso acontecer, então você pode chamar {menuselection}`Plugins "
+"--> Bio-Formats --> Bio-Formats Importer` para forçar a importação para usar"
+" Bio-Formats, no espero que tenha mais sucesso. Tive que fazer isso em raras"
+" ocasiões com TIFFs problemáticos."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:168
+msgid ""
+"At other times, you might be more unlucky: an image fails to open, and no "
+"amount of effort will get ImageJ to open it."
+msgstr ""
+"Outras vezes, você pode ter mais azar: uma imagem não abre e nenhum esforço "
+"fará com que o ImageJ a abra."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:170
+msgid ""
+"This could be because the file format itself is unsupported, or the image is"
+" corrupt. Assuming you have Bio-Formats installed, checking the [list of "
+"supported formats](https://docs.openmicroscopy.org/bio-"
+"formats/latest/supported-formats.html) is a good start for finding out if it"
+" even *should* work. If so, you could ask about it on the [Scientific "
+"Community Forum](https://forum.image.sc) -- you'll probably need to share "
+"the image though for anyone else to be able to investigate the problem."
+msgstr ""
+"Isso pode ocorrer porque o formato do arquivo em si não é compatível ou a "
+"imagem está corrompida. Supondo que você tenha Bio-Formats instalados, "
+"verificar a [lista de formatos "
+"suportados](https://docs.openmicroscopy.org/bio-formats/latest/supported-"
+"formats.html) é um bom começo para descobrir se ele ainda * Deveria "
+"trabalhar. Nesse caso, você pode perguntar sobre isso no [Fórum da "
+"Comunidade Científica](https://forum.image.sc) - provavelmente você "
+"precisará compartilhar a imagem para que qualquer outra pessoa possa "
+"investigar o problema."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:174
+msgid ""
+"However, before doing that you should consider whether you have a whole "
+"slide image -- or other large pyramidal image -- that just has too many "
+"pixels for ImageJ to open. In that case, you might see a rather cryptic "
+"error like the one below:"
+msgstr ""
+"No entanto, antes de fazer isso, você deve considerar se possui uma imagem "
+"de slide inteira - ou outra imagem piramidal grande - que tenha muitos "
+"pixels para o ImageJ abrir. Nesse caso, você poderá ver um erro bastante "
+"enigmático como o abaixo:"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:182
+msgid ""
+"Although by no means obvious, this indicates that the image is too large. If"
+" this happens, you might want to try [QuPath](sec_files_pyramidal) instead."
+msgstr ""
+"Embora não seja óbvio, isso indica que a imagem é muito grande. Se isso "
+"acontecer, você pode tentar [QuPath](sec_files_pyramidal) em vez disso."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:0
+msgid "Practical"
+msgstr "Prático"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:191
+msgid ""
+"To get a feel for the importance of metadata, you can try opening an image "
+"in which it is completely absent. This is quite tricky, and requires some "
+"detective work (or some luck)."
+msgstr ""
+"Para ter uma ideia da importância dos metadados, você pode tentar abrir uma "
+"imagem na qual eles estão completamente ausentes. Isso é bastante complicado"
+" e requer algum trabalho de detetive (ou um pouco de sorte)."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:194
+msgid ""
+"Try to open the file *Besenfreunde.ids* using Fiji -- it depicts an odd, and"
+" as yet unexplained, scene that I passed on my way to work soon after "
+"arriving in Heidelberg. This file __only__ contains pixel values, and no "
+"metadata. It can still be read using the {menuselection}`File --> Import -->"
+" Raw...` command, but to do so you will need to figure out the necessary "
+"metadata and input the appropriate values."
+msgstr ""
+"Tente abrir o arquivo *Besenfreunde.ids* usando Fiji - ele retrata uma cena "
+"estranha, e ainda inexplicável, pela qual passei a caminho do trabalho logo "
+"após chegar em Heidelberg. Este arquivo __apenas__ contém valores de pixel e"
+" nenhum metadado. Ele ainda pode ser lido usando o comando "
+"{menuselection}`File --> Import --> Raw...`, mas para fazer isso você "
+"precisará descobrir os metadados necessários e insira os valores "
+"apropriados."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:198
+msgid "The following points may help:"
+msgstr "Os seguintes pontos podem ajudar:"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:201
+msgid "The file contains only a single image, and a single channel."
+msgstr "O arquivo contém apenas uma única imagem e um único canal."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:202
+msgid ""
+"The dimensions (width and height) of the image are each a multiple of 100 "
+"pixels."
+msgstr ""
+"As dimensões (largura e altura) da imagem são, cada uma, um múltiplo de 100 "
+"pixels."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:203
+msgid "The data is in 8, 16 or 32-bit format (signed or unsigned)."
+msgstr ""
+"Os dados estão no formato de 8, 16 ou 32 bits (assinados ou não assinados)."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:204
+msgid "There are no offsets or gaps included."
+msgstr "Não há compensações ou lacunas incluídas."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:205
+msgid "The total size of the file is 400 000 bytes."
+msgstr "O tamanho total do arquivo é de 400.000 bytes."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:207
+msgid ""
+"__Note:__ The option {guilabel}`Little-endian byte order` relates to whether"
+" the bytes of 16 or 32-bit images are arranged from the least-to-most "
+"significant, or most-to-least significant. Some types of computer prefer one"
+" order, some prefer another, so this is something else the metadata should "
+"contain. The difference is similar to how a perfectly respectable number "
+"like __twenty-three__ is (quite ludicrously, in my view) spoken as __three-"
+"and-twenty__ in German."
+msgstr ""
+"__Nota:__ A opção {guilabel}`Ordem de bytes Little-endian` refere-se a se os"
+" bytes de imagens de 16 ou 32 bits são organizados do menos para o mais "
+"significativo, ou do mais significativo -ao menos significativo. Alguns "
+"tipos de computador preferem uma ordem, outros preferem outra, então isso é "
+"outra coisa que os metadados devem conter. A diferença é semelhante à forma "
+"como um número perfeitamente respeitável como __vinte e três__ é (de forma "
+"bastante ridícula, na minha opinião) falado como __vinte e três__ em alemão."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:0
+msgid "Solution"
+msgstr "Solução"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:215
+msgid ""
+"The file size gives you the $$ \\textrm{File size (in bytes)} = "
+"\\frac{\\textrm{width} \\times \\textrm{height} \\times \\textrm{bit-"
+"depth}}{8} $$ where the division by 8 converts the total number of bits to "
+"bytes (since 8 bits make 1 byte). This can be used to make reasonable "
+"starting estimates for the width, height and bit-depth, but figuring out "
+"which are correct likely still requires some trial-and-error. In the end, "
+"the settings you need are:"
+msgstr ""
+"O tamanho do arquivo fornece $$ \\textrm{Tamanho do arquivo (em bytes)} = "
+"\\frac{\\textrm{largura} \\times \\textrm{altura} \\times "
+"\\textrm{profundidade de bits}}{8} $$ onde a divisão por 8 converte o número"
+" total de bits em bytes (já que 8 bits equivalem a 1 byte). Isso pode ser "
+"usado para fazer estimativas iniciais razoáveis para largura, altura e "
+"profundidade de bits, mas descobrir quais estão corretas provavelmente ainda"
+" exigirá algumas tentativas e erros. No final, as configurações que você "
+"precisa são:"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:220
+msgid "Image type: 16-bit unsigned"
+msgstr "Tipo de imagem: não assinado de 16 bits"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:221
+msgid "Width: 500 pixels"
+msgstr "Largura: 500 pixels"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:222
+msgid "Height: 400 pixels"
+msgstr "Altura: 400 pixels"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:223
+msgid "Little-endian byte order: False"
+msgstr "Ordem de bytes little-endian: Falso"
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:225
+msgid "Using these values in the import should result in a reasonable image."
+msgstr ""
+"Usar esses valores na importação deve resultar em uma imagem razoável."
+
+#: ../../../chapters/1-concepts/6-files/imagej.md:227
+msgid ""
+"Now make sure never to lose your metadata, and you do not need to solve such"
+" puzzles often in real life. (Also, any explanations for what exactly was "
+"going on in that scene would be welcome.)"
+msgstr ""
+"Agora certifique-se de nunca perder seus metadados e de não precisar "
+"resolver esses quebra-cabeças com frequência na vida real. (Além disso, "
+"quaisquer explicações sobre o que exatamente estava acontecendo naquela cena"
+" seriam bem-vindas.)"
