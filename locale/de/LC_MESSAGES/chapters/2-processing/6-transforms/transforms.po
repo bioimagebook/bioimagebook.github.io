@@ -1,0 +1,595 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Beth Cimini, 2024
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: 2024-02-05 21:49+0000\n"
+"Last-Translator: Beth Cimini, 2024\n"
+"Language-Team: German (https://app.transifex.com/center-for-open-bioimage-analysis/teams/169123/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:1
+msgid "Default Caption"
+msgstr "Standardbeschriftung"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:16
+msgid "Image transforms"
+msgstr "Bild verwandelt sich"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:18
+msgid "Chapter outline"
+msgstr "Kapitelüberblick"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:21
+msgid ""
+"The **watershed transform** can be used to split structures using intensity "
+"values"
+msgstr ""
+"Die **Watershed-Transformation** kann verwendet werden, um Strukturen anhand"
+" von Intensitätswerten aufzuteilen"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:22
+msgid ""
+"The **distance transform** calculates the distance between foreground and "
+"background pixels in a binary image"
+msgstr ""
+"Die **Abstandstransformation** berechnet den Abstand zwischen Vordergrund- "
+"und Hintergrundpixeln in einem Binärbild"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:23
+msgid ""
+"The **distance & watershed transforms** can be combined to separate round "
+"structures"
+msgstr ""
+"Die **Distanz- und Wasserscheidentransformationen** können kombiniert "
+"werden, um runde Strukturen zu trennen"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:42
+msgid "Introduction"
+msgstr "Einführung"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:44
+msgid ""
+"An **image transform** converts an image into some other form, in which the "
+"pixel values can have a (sometimes very) different interpretation."
+msgstr ""
+"Eine **Bildtransformation** wandelt ein Bild in eine andere Form um, in der "
+"die Pixelwerte eine (manchmal sehr) andere Interpretation haben können."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:46
+msgid ""
+"There are lots of ways to transform an image. We will focus on two that are "
+"especially useful for bioimage segmentation and analysis: the distance "
+"transform and the watershed transform. We will briefly introduce both, "
+"before then showing how they can be used in combination."
+msgstr ""
+"Es gibt viele Möglichkeiten, ein Bild zu transformieren. Wir werden uns auf "
+"zwei konzentrieren, die für die Segmentierung und Analyse von Biobildern "
+"besonders nützlich sind: die Distanztransformation und die "
+"Wassereinzugsgebietstransformation. Wir stellen beide kurz vor und zeigen "
+"dann, wie sie in Kombination verwendet werden können."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:52
+msgid "The distance transform"
+msgstr "Die Distanztransformation"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:54
+msgid ""
+"The **distance transform** (sometimes called the **Euclidean distance "
+"transform**) replaces each pixel of a binary image with the distance to the "
+"closest background pixel. If the pixel itself is already part of the "
+"background then this is zero. The result is an image called a **distance "
+"map**."
+msgstr ""
+"Die **Distanztransformation** (manchmal auch als **Euklidische "
+"Distanztransformation** bezeichnet) ersetzt jedes Pixel eines Binärbilds "
+"durch den Abstand zum nächstgelegenen Hintergrundpixel. Wenn das Pixel "
+"selbst bereits Teil des Hintergrunds ist, ist dieser Null. Das Ergebnis ist "
+"ein Bild, das als **Entfernungskarte** bezeichnet wird."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:88
+msgid ""
+"A binary image and its corresponding distance map, including pixel values as"
+" an overlay."
+msgstr ""
+"Ein Binärbild und die entsprechende Entfernungskarte, einschließlich "
+"Pixelwerten als Überlagerung."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:93
+msgid "A natural question when considering the distance transform is: *why*?"
+msgstr ""
+"Eine natürliche Frage bei der Betrachtung der Distanztransformation ist: "
+"*Warum*?"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:95
+msgid ""
+"Although its importance may not be initially obvious, we will see that "
+"creative uses of the distance transform can help solve some other problems "
+"rather elegantly."
+msgstr ""
+"Obwohl ihre Bedeutung zunächst vielleicht nicht offensichtlich ist, werden "
+"wir sehen, dass der kreative Einsatz der Distanztransformation dazu "
+"beitragen kann, einige andere Probleme recht elegant zu lösen."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:97
+msgid ""
+"For example, eroding or dilating binary images by a large amount can be very"
+" slow, because we have to use large maximum or minimum filters. However, "
+"erosion and dilation can be computed from a distance map very efficiently "
+"simply by applying a global threshold. This can be much faster in practice."
+msgstr ""
+"Beispielsweise kann das Erodieren oder Erweitern von Binärbildern um einen "
+"großen Betrag sehr langsam sein, da wir große Maximal- oder Minimalfilter "
+"verwenden müssen. Erosion und Dilatation können jedoch sehr effizient aus "
+"einer Entfernungskarte berechnet werden, indem einfach ein globaler "
+"Schwellenwert angewendet wird. Dies kann in der Praxis deutlich schneller "
+"gehen."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:130
+msgid ""
+"Implementing erosion (C) and dilation (F) of binary images by thresholding "
+"distance maps."
+msgstr ""
+"Implementierung der Erosion (C) und Dilatation (F) von Binärbildern durch "
+"Schwellenwert-Entfernungskarten."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:135
+msgid ""
+"But the distance map contains useful information that we can use in other "
+"ways."
+msgstr ""
+"Aber die Entfernungskarte enthält nützliche Informationen, die wir auf "
+"andere Weise nutzen können."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:137
+msgid ""
+"For example, we can also use distance maps to estimate the **local "
+"thickness** of a structure. An application of this would be to assess blood "
+"vessel diameters. If we have a binary image representing a vessel, we can "
+"generate both a distance map and a thinned binary image. The distance map "
+"values corresponding to foreground pixels in the thinned image provide a "
+"local estimate of the vessel radius at that pixel, because the distance map "
+"gives the distance to the nearest background pixel -- and thinned pixels "
+"occur at the vessel center."
+msgstr ""
+"Beispielsweise können wir Distanzkarten auch verwenden, um die **lokale "
+"Dicke** einer Struktur abzuschätzen. Eine Anwendung hierfür wäre die "
+"Beurteilung von Blutgefäßdurchmessern. Wenn wir ein Binärbild haben, das ein"
+" Schiff darstellt, können wir sowohl eine Entfernungskarte als auch ein "
+"ausgedünntes Binärbild erstellen. Die Distanzkartenwerte, die den "
+"Vordergrundpixeln im ausgedünnten Bild entsprechen, liefern eine lokale "
+"Schätzung des Gefäßradius an diesem Pixel, da die Distanzkarte den Abstand "
+"zum nächsten Hintergrundpixel angibt – und ausgedünnte Pixel in der "
+"Gefäßmitte auftreten."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:142
+msgid ""
+"However, the distance transform can become even more useful if we combine it"
+" with other transforms."
+msgstr ""
+"Allerdings kann die Distanztransformation noch nützlicher werden, wenn wir "
+"sie mit anderen Transformationen kombinieren."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:146
+msgid "The watershed transform"
+msgstr "Die Wendepunkt-Transformation"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:148
+msgid ""
+"The **watershed transform** is an example of a **region growing** method: "
+"beginning from some **seed regions**, the seeds are progressively expanded "
+"into larger regions until all the pixels of the image have been processed. "
+"This provides an alternative to straightforward thresholding, which can be "
+"*extremely* useful when need to partition an image into many different "
+"objects."
+msgstr ""
+"Die **Watershed-Transformation** ist ein Beispiel für eine **Region-Growing-"
+"Methode**: Ausgehend von einigen **Seed-Regionen** werden die Seeds nach und"
+" nach in größere Regionen erweitert, bis alle Pixel des Bildes verarbeitet "
+"wurden. Dies stellt eine Alternative zur einfachen Schwellenwertberechnung "
+"dar, die *äußerst* nützlich sein kann, wenn ein Bild in viele verschiedene "
+"Objekte aufgeteilt werden muss."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:151
+msgid ""
+"To understand how the watershed transform works, picture the image as an "
+"uneven landscape in which the value of each pixel corresponds to a height."
+msgstr ""
+"Um zu verstehen, wie die Wassereinzugsgebietstransformation funktioniert, "
+"stellen Sie sich das Bild als eine unebene Landschaft vor, in der der Wert "
+"jedes Pixels einer Höhe entspricht."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:196
+msgid ""
+"Visualizing an image as a landscape, using surface plots. Higher pixel "
+"values are generally viewed as peaks, although can easily switched to become"
+" valleys by inverting the image before plotting. This may be useful when "
+"providing input to the watershed transform."
+msgstr ""
+"Visualisieren eines Bildes als Landschaft mithilfe von "
+"Oberflächendiagrammen. Höhere Pixelwerte werden im Allgemeinen als Spitzen "
+"angesehen, können jedoch leicht in Täler umgewandelt werden, indem das Bild "
+"vor dem Plotten invertiert wird. Dies kann nützlich sein, wenn Sie Eingaben "
+"für die Wassereinzugsgebietstransformation bereitstellen."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:201
+msgid ""
+"Now imagine water falling evenly upon this surface and slowly flooding it. "
+"The water gathers first in the deepest parts; that is, in the places where "
+"pixels have values lower than all their neighbors. These define the "
+"**seeds** of the watershed transform; we can think of them as separate water"
+" basins."
+msgstr ""
+"Stellen Sie sich nun vor, dass Wasser gleichmäßig auf diese Oberfläche fällt"
+" und sie langsam überflutet. Das Wasser sammelt sich zuerst an den tiefsten "
+"Stellen; Das heißt, an den Stellen, an denen Pixel niedrigere Werte als alle"
+" ihre Nachbarn haben. Diese definieren die **Keime** der Watershed-"
+"Transformation; wir können sie uns als separate Wasserbecken vorstellen."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:205
+msgid ""
+"As the water level rises across the image, occasionally it will reach a "
+"ridge between two basins -- and, in reality, water could spill from one "
+"basin into the other. However, in the watershed transform this is not "
+"permitted; rather a dam is constructed at such ridges. The water then "
+"continues to rise, with dams being built as needed, until in the end every "
+"pixel is either part of a basin or a ridge, and there are exactly the same "
+"number of basins afterwards as there were at first."
+msgstr ""
+"Wenn der Wasserspiegel im Bild ansteigt, erreicht er gelegentlich einen Grat"
+" zwischen zwei Becken – und in Wirklichkeit könnte Wasser von einem Becken "
+"in das andere überlaufen. In der Watershed-Transformation ist dies jedoch "
+"nicht zulässig; Vielmehr wird an solchen Graten ein Damm errichtet. Dann "
+"steigt das Wasser weiter an, je nach Bedarf werden Dämme gebaut, bis am Ende"
+" jedes Pixel entweder Teil eines Beckens oder eines Bergrückens ist und es "
+"danach genau so viele Becken gibt wie am Anfang."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:211
+msgid ""
+"The operation of the watershed transform is illustrated in the video below "
+"and example output shown in {numref}`fig-transform_surface_watershed`."
+msgstr ""
+"Die Funktionsweise der Watershed-Transformation wird im Video unten und in "
+"der Beispielausgabe in {numref}`fig-transform_surface_watershed` "
+"veranschaulicht."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:259
+msgid ""
+"Applying the watershed transform to an image. Here, we passed the inverted "
+"image to the watershed transform because we want to identify bright spots "
+"rather than dark ones. The full watershed transform will expand the seeds to"
+" create a labeled image including all pixels, but we can optionally mask the"
+" expansion to prevent it filling the background. Here, we defined the mask "
+"by applying a global threshold using the triangle method. Note that the "
+"masked watershed segmentation is able to split some spots that were merged "
+"using the global threshold alone."
+msgstr ""
+"Anwenden der Watershed-Transformation auf ein Bild. Hier haben wir das "
+"invertierte Bild an die Wassereinzugsgebietstransformation übergeben, weil "
+"wir helle statt dunkle Flecken identifizieren möchten. Bei der vollständigen"
+" Wassereinzugsgebietstransformation werden die Ausgangswerte erweitert, um "
+"ein beschriftetes Bild mit allen Pixeln zu erstellen. Wir können die "
+"Erweiterung jedoch optional maskieren, um zu verhindern, dass sie den "
+"Hintergrund ausfüllt. Hier haben wir die Maske definiert, indem wir mithilfe"
+" der Dreiecksmethode einen globalen Schwellenwert angewendet haben. Beachten"
+" Sie, dass die maskierte Wassereinzugsgebietssegmentierung einige Punkte "
+"aufteilen kann, die allein mithilfe des globalen Schwellenwerts "
+"zusammengeführt wurden."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:262
+msgid ""
+"Crucially, as the seeds are expanded during the watershed transform, regions"
+" are not allowed to overlap. Furthermore, once a pixel has been assigned to "
+"a region then it cannot be moved to become part of any other region."
+msgstr ""
+"Entscheidend ist, dass sich die Regionen nicht überlappen dürfen, da die "
+"Samen während der Wassereinzugsgebietstransformation erweitert werden. "
+"Darüber hinaus kann ein Pixel, sobald es einer Region zugewiesen wurde, "
+"nicht verschoben werden, um Teil einer anderen Region zu werden."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:265
+msgid ""
+"Using the 'rain falling on a surface' analogy, the seeds would be **regional"
+" minima** in an image, i.e. pixels with values that are lower than all "
+"neighboring pixels. This is where the water would gather first."
+msgstr ""
+"Unter Verwendung der Analogie „Regen fällt auf eine Oberfläche“ wären die "
+"Keime **regionale Minima** in einem Bild, d. h. Pixel mit Werten, die "
+"niedriger sind als alle benachbarten Pixel. Hier würde sich das Wasser "
+"zuerst sammeln."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:268
+msgid ""
+"In practice, we often need to have more control over the seeds rather than "
+"accepting all regional minima (to see why too many local minima could be a "
+"problem, observe that {numref}`fig-transform_surface_watershed` contains "
+"more regions that we probably would want). This variation is called the "
+"**seeded watershed transform**: the idea is the same, but we simply provide "
+"the seeds explicitly in the form of a labeled image, and the regions grow "
+"from these. We can generate seeds using other processing steps, such as by "
+"identifying [H-minima](sec_h_extrema)."
+msgstr ""
+"In der Praxis müssen wir oft mehr Kontrolle über die Samen haben, anstatt "
+"alle regionalen Minima zu akzeptieren (um zu sehen, warum zu viele lokale "
+"Minima ein Problem darstellen könnten, beachten Sie, dass {numref}`fig- "
+"transform_surface_watershed` enthält mehr Regionen, die wir wahrscheinlich "
+"wollen würden). Diese Variante wird **Seed Watershed Transformation** "
+"genannt: Die Idee ist dieselbe, aber wir stellen die Seeds einfach explizit "
+"in Form eines beschrifteten Bildes bereit und die Regionen wachsen daraus. "
+"Wir können Seeds mithilfe anderer Verarbeitungsschritte generieren, "
+"beispielsweise durch die Identifizierung von [H-Minima](sec_h_extrema)."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:274
+msgid "Combining transforms"
+msgstr "Transformationen kombinieren"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:276
+msgid ""
+"The watershed transform can be applied to any image, but it has some "
+"particularly interesting applications when it is applied to an image that is"
+" a distance map."
+msgstr ""
+"Die Wassereinzugsgebietstransformation kann auf jedes Bild angewendet "
+"werden, bietet jedoch einige besonders interessante Anwendungen, wenn sie "
+"auf ein Bild angewendet wird, bei dem es sich um eine Entfernungskarte "
+"handelt."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:278
+msgid "Splitting round objects"
+msgstr "Runde Gegenstände spalten"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:280
+msgid ""
+"A distance map has regional maxima whenever a foreground pixel is further "
+"from the background than any of its neighbors."
+msgstr ""
+"Eine Distanzkarte weist regionale Maxima auf, wenn ein Vordergrundpixel "
+"weiter vom Hintergrund entfernt ist als einer seiner Nachbarn."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:282
+msgid ""
+"This tends to occur towards the center of objects: particularly round "
+"objects that don't contain any holes. Importantly, regional maxima can still"
+" be present even if the 'round objects' are connected to one another in the "
+"binary image used to generate the distance map originally."
+msgstr ""
+"Dies tritt tendenziell in der Mitte von Objekten auf: insbesondere bei "
+"runden Objekten, die keine Löcher enthalten. Wichtig ist, dass regionale "
+"Maxima auch dann noch vorhanden sein können, wenn die „runden Objekte“ in "
+"dem Binärbild, das ursprünglich zur Erstellung der Entfernungskarte "
+"verwendet wurde, miteinander verbunden sind."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:285
+msgid ""
+"This means that by applying a watershed transform to a distance map, we are "
+"able to split 'roundish' structures in binary images. The process is as "
+"follows:"
+msgstr ""
+"Das bedeutet, dass wir durch die Anwendung einer "
+"Wassereinzugsgebietstransformation auf eine Distanzkarte in der Lage sind, "
+"„rundliche“ Strukturen in Binärbildern aufzuteilen. Der Prozess ist wie "
+"folgt:"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:288
+msgid "Compute the distance map of the image"
+msgstr "Berechnen Sie die Entfernungskarte des Bildes"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:289
+msgid ""
+"Invert the distance map (e.g. multiply by -1), so that peaks become valleys"
+msgstr ""
+"Kehren Sie die Entfernungskarte um (z. B. multiplizieren Sie sie mit -1), "
+"sodass aus Spitzen Täler werden"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:290
+msgid ""
+"Apply the watershed transform, starting from the regional minima of the "
+"inverted distance map"
+msgstr ""
+"Wenden Sie die Wassereinzugsgebietstransformation an, beginnend mit den "
+"regionalen Minima der invertierten Entfernungskarte"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:320
+msgid "Splitting round objects using the distance and watershed transforms."
+msgstr ""
+"Aufteilen runder Objekte mithilfe der Abstands- und "
+"Wasserscheidentransformationen."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:323
+msgid ""
+"The objects to be split do not have to be perfectly round. The only "
+"requirement is that there are clearly distinct regional maxima in the "
+"distance transform -- or, alternatively, we can define suitable seeds using "
+"other processing steps."
+msgstr ""
+"Die zu teilenden Objekte müssen nicht perfekt rund sein. Die einzige "
+"Voraussetzung ist, dass es in der Distanztransformation klar "
+"unterschiedliche regionale Maxima gibt – alternativ können wir mithilfe "
+"anderer Verarbeitungsschritte geeignete Seeds definieren."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:368
+msgid ""
+"Splitting merged blobs based on 'roundness' using the distance and watershed"
+" transforms. Because there are many small regional maxima in the distance "
+"transform, here we define seeds using H-maxima followed by a 3×3 dilation to"
+" avoid excessive splitting."
+msgstr ""
+"Aufteilen zusammengeführter Blobs basierend auf der „Rundheit“ mithilfe der "
+"Abstands- und Wassereinzugsgebietstransformationen. Da es in der "
+"Distanztransformation viele kleine regionale Maxima gibt, definieren wir "
+"hier Seeds mithilfe von H-Maxima, gefolgt von einer 3×3-Dilatation, um eine "
+"übermäßige Aufspaltung zu vermeiden."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:372
+msgid "Watershed lines"
+msgstr "Wasserscheidelinien"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:375
+msgid ""
+"When applying a watershed transform, it is often possible to specify whether"
+" the separations between regions are assigned one of the region labels, or "
+"are left as background pixels."
+msgstr ""
+"Beim Anwenden einer Wassereinzugsgebietstransformation ist es oft möglich, "
+"anzugeben, ob den Abständen zwischen Regionen eine der Regionsbezeichnungen "
+"zugewiesen wird oder als Hintergrundpixel belassen wird."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:377
+msgid ""
+"Here, we have shown the separations as background pixels. This is consistent"
+" with how ImageJ's default watershed command works, and also makes the "
+"splits clearer in the figures shown here. In Python code using scikit-image,"
+" that means we are using the `watershed_lines=True` option."
+msgstr ""
+"Hier haben wir die Auszüge als Hintergrundpixel dargestellt. Dies steht im "
+"Einklang mit der Funktionsweise des Standard-Watershed-Befehls von ImageJ "
+"und macht auch die Aufteilungen in den hier gezeigten Abbildungen "
+"deutlicher. Im Python-Code mit scikit-image bedeutet das, dass wir die "
+"Option „watershed_lines=True“ verwenden."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:384
+msgid "Partitioning images with Voronoi"
+msgstr "Partitionieren von Bildern mit Voronoi"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:386
+msgid ""
+"Calculating the distance transform of an *inverted* binary image gives a "
+"distance map in which each pixel gives the distance to the closest "
+"foreground object."
+msgstr ""
+"Die Berechnung der Distanztransformation eines *invertierten* Binärbilds "
+"ergibt eine Distanzkarte, in der jedes Pixel die Distanz zum nächstgelegenen"
+" Vordergrundobjekt angibt."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:388
+msgid ""
+"If we apply a watershed transform to this distance map, using the objects in"
+" the binary image as seeds, we effectively partition the image into "
+"different regions according to the closest object in the binary image."
+msgstr ""
+"Wenn wir auf diese Distanzkarte eine Wasserscheidentransformation anwenden "
+"und dabei die Objekte im Binärbild als Ausgangspunkte verwenden, unterteilen"
+" wir das Bild effektiv in verschiedene Regionen entsprechend dem "
+"nächstgelegenen Objekt im Binärbild."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:390
+msgid "This is sometimes called the **Voronoi transform** of the image."
+msgstr ""
+"Dies wird manchmal als **Voronoi-Transformation** des Bildes bezeichnet."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:422
+msgid ""
+"Expanding blobs to compute the Voronoi transform of a labeled image, "
+"partitioning it into different regions according to the closest seed object."
+msgstr ""
+"Erweitern von Blobs, um die Voronoi-Transformation eines beschrifteten "
+"Bildes zu berechnen und es entsprechend dem nächstgelegenen Startobjekt in "
+"verschiedene Regionen zu unterteilen."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:427
+msgid "Expanding without overlaps"
+msgstr "Erweitern ohne Überschneidungen"
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:429
+msgid ""
+"Building upon the Vononoi idea in the last section, we can expand the "
+"objects themselves in such a way that they don't overlap."
+msgstr ""
+"Aufbauend auf der Vononoi-Idee im letzten Abschnitt können wir die Objekte "
+"selbst so erweitern, dass sie sich nicht überlappen."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:435
+msgid ""
+"QuPath's cell detection, based upon nucleus detection + watershed expansion."
+msgstr ""
+"Die Zellerkennung von QuPath basiert auf der Kernerkennung + "
+"Wassereinzugsgebietserweiterung."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:438
+msgid ""
+"Our goal is to dilate each object in the image by 10 pixels, but without "
+"merging. If seed objects are closer than 20 pixels apart, they each expand "
+"the same amount -- until they meet in the middle. This technique may be used"
+" to approximate a cell boundary based upon detected nuclei by expansion "
+"using a fixed distance."
+msgstr ""
+"Unser Ziel ist es, jedes Objekt im Bild um 10 Pixel zu erweitern, jedoch "
+"ohne es zu verschmelzen. Wenn die Startobjekte weniger als 20 Pixel "
+"voneinander entfernt sind, dehnen sie sich jeweils um den gleichen Betrag "
+"aus – bis sie sich in der Mitte treffen. Diese Technik kann verwendet "
+"werden, um eine Zellgrenze basierend auf erkannten Kernen durch Expansion "
+"unter Verwendung eines festen Abstands anzunähern."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:442
+msgid ""
+"Firstly, we look at what *won't* work. We can't simply dilate a labeled "
+"image with a maximum filter, because there's nothing to prevent regions "
+"merging into one another. When seeds are close together, the higher label "
+"will 'win' the expansion race in every case, dominating the output."
+msgstr ""
+"Zuerst schauen wir uns an, was *nicht* funktionieren wird. Wir können ein "
+"beschriftetes Bild nicht einfach mit einem maximalen Filter erweitern, da "
+"nichts dagegen spricht, dass Regionen ineinander übergehen. Wenn die Samen "
+"nahe beieinander liegen, „gewinnt“ in jedem Fall die höhere Bezeichnung den "
+"Expansionswettlauf und dominiert die Produktion."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:473
+msgid ""
+"Expanding blobs using a maximum filter only. This approach is too simple; it"
+" results in overlapping labels and a lot of confusion."
+msgstr ""
+"Erweitern von Blobs nur mit einem Maximalfilter. Dieser Ansatz ist zu "
+"einfach; Dies führt zu überlappenden Beschriftungen und großer Verwirrung."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:478
+msgid ""
+"Instead, we need to build upon the Voronoi approach shown in {numref}`fig-"
+"morph_voronoi_expand`. The only difference we need to incorporate is that we"
+" prevent the watershed expansion from growing beyond 10 pixels."
+msgstr ""
+"Stattdessen müssen wir auf dem Voronoi-Ansatz aufbauen, der in {numref}`fig-"
+"morph_voronoi_expand` gezeigt wird. Der einzige Unterschied, den wir "
+"berücksichtigen müssen, besteht darin, dass wir verhindern, dass die "
+"Ausdehnung des Wassereinzugsgebiets über 10 Pixel hinaus anwächst."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:481
+msgid ""
+"Fortunately, this criterion is easy to set: our distance map already gives "
+"us the distance to every seed object. We can threshold that to define a "
+"binary mask that indicates where regions should no longer expand. If we "
+"update our watershed output to have background pixels at the same locations "
+"where our binary mask has background pixels, we have achieved a constrained "
+"expansion of 10 pixels without overlap."
+msgstr ""
+"Glücklicherweise ist dieses Kriterium einfach festzulegen: Unsere "
+"Entfernungskarte gibt uns bereits die Entfernung zu jedem Startobjekt an. "
+"Wir können dies als Schwellenwert festlegen, um eine Binärmaske zu "
+"definieren, die angibt, wo Regionen nicht mehr erweitert werden sollen. Wenn"
+" wir unsere Wassereinzugsgebietsausgabe so aktualisieren, dass sie "
+"Hintergrundpixel an denselben Stellen hat, an denen unsere Binärmaske "
+"Hintergrundpixel hat, haben wir eine eingeschränkte Erweiterung von 10 "
+"Pixeln ohne Überlappung erreicht."
+
+#: ../../../chapters/2-processing/6-transforms/transforms.md:522
+msgid ""
+"Using distance and watershed transforms to expand regions by a fixed "
+"distance, without overlap. The final output (F) is obtained using "
+"information from all images (A) - (E)."
+msgstr ""
+"Verwenden Sie Entfernungs- und Wasserscheidentransformationen, um Regionen "
+"ohne Überlappung um eine feste Entfernung zu erweitern. Die endgültige "
+"Ausgabe (F) wird anhand der Informationen aller Bilder (A) bis (E) "
+"ermittelt."
