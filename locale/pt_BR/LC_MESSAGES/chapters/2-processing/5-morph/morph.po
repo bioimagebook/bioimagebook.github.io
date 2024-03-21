@@ -1,0 +1,879 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022-2024
+# This file is distributed under the same license as the bioimage-book package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Beth Cimini, 2024
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bioimage-book\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 16:49+0000\n"
+"PO-Revision-Date: 2024-02-05 21:49+0000\n"
+"Last-Translator: Beth Cimini, 2024\n"
+"Language-Team: Portuguese (Brazil) (https://app.transifex.com/center-for-open-bioimage-analysis/teams/169123/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:1
+msgid "Default Caption"
+msgstr "Legenda padrão"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:17
+msgid "Morphological operations"
+msgstr "Operações morfológicas"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:19
+msgid "Chapter outline"
+msgstr "Esboço do capítulo"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:22
+msgid ""
+"**Morphological operations** can be used to refine or modify the shapes of "
+"objects in images"
+msgstr ""
+"**Operações morfológicas** podem ser usadas para refinar ou modificar as "
+"formas de objetos em imagens"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:23
+msgid ""
+"Many morphological operations can be applied to **binary images** to improve"
+" an image segmentation"
+msgstr ""
+"Muitas operações morfológicas podem ser aplicadas a **imagens binárias** "
+"para melhorar a segmentação de uma imagem"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:24
+msgid ""
+"**Grayscale morphological operations** can also be used as processing steps "
+"before binarization, or to help identify regional maxima and minima"
+msgstr ""
+"**Operações morfológicas em escala de cinza** também podem ser usadas como "
+"etapas de processamento antes da binarização ou para ajudar a identificar "
+"máximos e mínimos regionais"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:43
+msgid "Introduction"
+msgstr "Introdução"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:45
+msgid ""
+"Image filters and thresholds enable us to detect structures of various "
+"shapes and sizes for different applications. Nevertheless, despite our best "
+"efforts, the binary images produced by our thresholds often still contain "
+"inaccurate or undesirable detected regions. They could benefit from some "
+"extra cleaning up."
+msgstr ""
+"Filtros e limites de imagem nos permitem detectar estruturas de vários "
+"formatos e tamanhos para diferentes aplicações. No entanto, apesar dos "
+"nossos melhores esforços, as imagens binárias produzidas pelos nossos "
+"limites muitas vezes ainda contêm regiões detectadas imprecisas ou "
+"indesejáveis. Eles poderiam se beneficiar de alguma limpeza extra."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:49
+msgid ""
+"At this stage, we are primarily working with shapes -- morphology -- so most"
+" of the techniques we describe here are often called **morphological "
+"operations**."
+msgstr ""
+"Neste estágio, estamos trabalhando principalmente com formas – morfologia – "
+"então a maioria das técnicas que descrevemos aqui são frequentemente "
+"chamadas de **operações morfológicas**."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:53
+msgid "Morphological operations using rank filters"
+msgstr "Operações morfológicas usando filtros de classificação"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:111
+msgid ""
+"Overview of erosion, dilation, opening and closing. The original image is "
+"shown at the top, while the processed part is at the bottom in each case."
+msgstr ""
+"Visão geral da erosão, dilatação, abertura e fechamento. A imagem original é"
+" mostrada na parte superior, enquanto a parte processada está na parte "
+"inferior em cada caso."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:115
+msgid "Erosion & dilation"
+msgstr "Erosão e dilatação"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:117
+msgid ""
+"Our first two morphological operations, **erosion** and **dilation**, are "
+"actually identical to minimum and maximum filtering respectively, described "
+"[in the previous chapter](sec_filters_rank). The names erosion and dilation "
+"are used more often when speaking of binary images, but the operations are "
+"the same irrespective of the kind of image."
+msgstr ""
+"Nossas duas primeiras operações morfológicas, **erosão** e **dilatação**, "
+"são na verdade idênticas à filtragem mínima e máxima respectivamente, "
+"descritas [no capítulo anterior](sec_filters_rank). Os nomes erosão e "
+"dilatação são usados com mais frequência quando se fala de imagens binárias,"
+" mas as operações são as mesmas, independentemente do tipo de imagem."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:120
+msgid "Structuring elements"
+msgstr "Elementos estruturantes"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:121
+msgid ""
+"The neighborhood used to calculate the result for each pixel is defined by a"
+" **structuring element**. This is similar to a [filter "
+"kernel](sec_filters_linear), except that it only has values 0 and 1 (for "
+"ignoring or including the neighborhood pixel, respectively)."
+msgstr ""
+"A vizinhança utilizada para calcular o resultado de cada pixel é definida "
+"por um **elemento estruturante**. Isso é semelhante a um [filter "
+"kernel](sec_filters_linear), exceto que possui apenas valores 0 e 1 (para "
+"ignorar ou incluir o pixel da vizinhança, respectivamente)."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:126
+msgid ""
+"Here, we assume the background value in our binary image is 0 (black) and "
+"foreground is 1 (white)."
+msgstr ""
+"Aqui, assumimos que o valor do plano de fundo em nossa imagem binária é 0 "
+"(preto) e o valor do primeiro plano é 1 (branco)."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:129
+msgid ""
+"**Erosion** will make objects in the binary image smaller, because a pixel "
+"will be set to the background value if _any_ other pixels in the "
+"neighborhood are background. This can split single objects into multiple "
+"pieces."
+msgstr ""
+"**Erosão** tornará os objetos na imagem binária menores, porque um pixel "
+"será definido como o valor de fundo se _quaisquer_ outros pixels na "
+"vizinhança forem de fundo. Isso pode dividir objetos únicos em várias "
+"partes."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:132
+msgid ""
+"Conversely, **dilation** makes objects bigger, since the presence of a "
+"single foreground pixel anywhere in the neighborhood will result in a "
+"foreground output. This can also cause objects to merge."
+msgstr ""
+"Por outro lado, a **dilatação** torna os objetos maiores, já que a presença "
+"de um único pixel de primeiro plano em qualquer lugar da vizinhança "
+"resultará em uma saída de primeiro plano. Isso também pode fazer com que os "
+"objetos sejam mesclados."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:189
+msgid ""
+"The effects of erosion and dilation on a binary image of small structures."
+msgstr ""
+"Os efeitos da erosão e dilatação em uma imagem binária de pequenas "
+"estruturas."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:195
+msgid "Opening & closing"
+msgstr "Abertura e fechamento"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:197
+msgid ""
+"The fact that erosion and dilation alone affect sizes can be a problem: we "
+"may like their abilities to merge, separate or remove objects, but prefer "
+"that they had less impact upon areas and volumes. Combining both operations "
+"helps achieve this."
+msgstr ""
+"O facto de a erosão e a dilatação por si só afectarem os tamanhos pode ser "
+"um problema: podemos gostar da sua capacidade de fundir, separar ou remover "
+"objectos, mas preferimos que tenham menos impacto sobre áreas e volumes. "
+"Combinar as duas operações ajuda a conseguir isso."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:200
+msgid ""
+"**Opening** consists of an erosion followed by a dilation. It therefore "
+"first shrinks objects, and then expands whatever remains to _approximately_ "
+"its original size."
+msgstr ""
+"**Abertura** consiste em uma erosão seguida de uma dilatação. Portanto, "
+"primeiro reduz os objetos e depois expande o que resta até _aproximadamente_"
+" seu tamanho original."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:203
+msgid ""
+"Such a process is not as pointless as it may first sound. If erosion causes "
+"very small objects to completely disappear, clearly the dilation cannot make"
+" them reappear: they are gone for good. Barely-connected objects separated "
+"by erosion are also not reconnected by the dilation step."
+msgstr ""
+"Tal processo não é tão inútil como pode parecer à primeira vista. Se a "
+"erosão faz com que objetos muito pequenos desapareçam completamente, é "
+"evidente que a dilatação não pode fazê-los reaparecer: eles desaparecem para"
+" sempre. Objetos mal conectados separados pela erosão também não são "
+"reconectados pela etapa de dilatação."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:207
+msgid ""
+"**Closing** is the opposite of opening, i.e. a dilation followed by an "
+"erosion, and similarly changes the shapes of objects. The dilation can cause"
+" almost-connected objects to merge, and these often then remain merged after"
+" the erosion step. If you wish to count objects, but they are wrongly "
+"subdivided in the segmentation, closing may help make the counts more "
+"accurate."
+msgstr ""
+"**Fechar** é o oposto de abrir, ou seja, uma dilatação seguida de uma "
+"erosão, e da mesma forma altera as formas dos objetos. A dilatação pode "
+"fazer com que objetos quase conectados se fundam, e estes muitas vezes "
+"permanecem mesclados após a etapa de erosão. Se você deseja contar objetos, "
+"mas eles estão subdivididos incorretamente na segmentação, o fechamento pode"
+" ajudar a tornar a contagem mais precisa."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:241
+msgid ""
+"The effects of opening and closing on a binary image of small structures. "
+"Unlike when using erosion or dilation alone, the sizes of objects are "
+"largely preserved although the contours are modified. Opening has the effect"
+" of completely removing the smallest or thinnest objects."
+msgstr ""
+"Os efeitos de abertura e fechamento em uma imagem binária de pequenas "
+"estruturas. Ao contrário de quando se usa apenas erosão ou dilatação, os "
+"tamanhos dos objetos são amplamente preservados, embora os contornos sejam "
+"modificados. A abertura tem o efeito de remover completamente os objetos "
+"menores ou mais finos."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:246
+msgid "Boundaries & outlines"
+msgstr "Limites e contornos"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:248
+msgid ""
+"We can make use of the operations above to identify outlines in a binary "
+"image. To do this, we first need a clear definition of what we mean by "
+"'outline'."
+msgstr ""
+"Podemos utilizar as operações acima para identificar contornos em uma imagem"
+" binária. Para fazer isso, primeiro precisamos de uma definição clara do que"
+" queremos dizer com “esboço”."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:251
+msgid ""
+"The **inner boundary** may be defined as *the foreground pixels that are "
+"adjacent to background pixels*. We can determine the inner boundary by"
+msgstr ""
+"O **limite interno** pode ser definido como *os pixels de primeiro plano que"
+" são adjacentes aos pixels de fundo*. Podemos determinar o limite interno "
+"por"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:253
+#: ../../../chapters/2-processing/5-morph/morph.md:259
+msgid "Duplicating the binary image"
+msgstr "Duplicando a imagem binária"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:254
+msgid "Eroding with a 3×3 structuring element"
+msgstr "Erosão com elemento estruturante 3×3"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:255
+msgid "Subtracting the eroded image from the original"
+msgstr "Subtraindo a imagem erodida do original"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:257
+msgid ""
+"The **outer boundary** may be defined as *the background pixels that are "
+"adjacent to foreground pixels*. We can determine the outer boundary by"
+msgstr ""
+"O **limite externo** pode ser definido como *os pixels de fundo adjacentes "
+"aos pixels de primeiro plano*. Podemos determinar o limite externo por"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:260
+msgid "Dilating with a 3×3 structuring element"
+msgstr "Dilatando com elemento estruturante 3×3"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:261
+msgid "Subtracting the original image from the dilated image"
+msgstr "Subtraindo a imagem original da imagem dilatada"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:263
+msgid "Thicker boundaries"
+msgstr "Limites mais grossos"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:266
+msgid ""
+"There's no reason to limit outlines to being 1 pixel thick. Choosing a "
+"larger structuring element makes it possible create thicker outlines. We "
+"might also subtract an eroded image from a dilated image to identify a "
+"thicker boundary that contains both inner and outer pixels."
+msgstr ""
+"Não há razão para limitar os contornos a 1 pixel de espessura. A escolha de "
+"um elemento estruturante maior permite criar contornos mais grossos. Também "
+"podemos subtrair uma imagem erodida de uma imagem dilatada para identificar "
+"um limite mais espesso que contém pixels internos e externos."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:270
+msgid ""
+"One application of creating thick boundaries in microscopy images of cells "
+"is to generate a binary image of the nuclei, and then a second binary image "
+"representing a ring around the nucleus. This makes it possible to make "
+"measurements that are likely to be within the cytoplasm, just outside the "
+"nucleus, without the task of identifying the full area of the cell -- which "
+"is often difficult if the cell or membrane are not clearly visible."
+msgstr ""
+"Uma aplicação da criação de limites espessos em imagens microscópicas de "
+"células é gerar uma imagem binária dos núcleos e, em seguida, uma segunda "
+"imagem binária representando um anel ao redor do núcleo. Isto torna possível"
+" fazer medições que provavelmente estarão dentro do citoplasma, logo fora do"
+" núcleo, sem a tarefa de identificar toda a área da célula - o que muitas "
+"vezes é difícil se a célula ou a membrana não estiverem claramente visíveis."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:304
+msgid ""
+"Calculating inner and outer boundaries, using erosion or dilation. The "
+"radius of the structuring element can be used to tune the boundary "
+"thickness."
+msgstr ""
+"Cálculo de limites internos e externos, usando erosão ou dilatação. O raio "
+"do elemento estruturante pode ser usado para ajustar a espessura do limite."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:309
+msgid "Finding local minima & maxima"
+msgstr "Encontrando mínimos e máximos locais"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:311
+msgid ""
+"Erosion and dilation can be used to find pixels that are **local maxima** or"
+" **local minima** very easily, with the caveat that the results are inexact "
+"and often unusable. Nevertheless, the trick works 'well enough' sufficiently"
+" often to be worth knowing."
+msgstr ""
+"A erosão e a dilatação podem ser usadas para encontrar pixels que são "
+"**máximos locais** ou **mínimos locais** com muita facilidade, com a "
+"ressalva de que os resultados são inexatos e muitas vezes inutilizáveis. No "
+"entanto, o truque funciona “suficientemente bem” com frequência suficiente "
+"para valer a pena conhecê-lo."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:314
+msgid ""
+"Here, we focus on maxima; the process for detecting local minima is "
+"identical, except that either the image should be inverted or erosion used "
+"instead of dilation."
+msgstr ""
+"Aqui, nos concentramos nos máximos; o processo de detecção de mínimos locais"
+" é idêntico, exceto que a imagem deve ser invertida ou a erosão usada em vez"
+" da dilatação."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:316
+msgid ""
+"A local maximum can be defined as a pixel with a value greater than all its "
+"neighbors, or a connected group of pixels with the same higher value than "
+"the surrounding pixels. An easy way to detect these pixels is to dilate the "
+"image with 3×3 maximum filter, and check for pixel values that are unchanged"
+" (i.e. where the pixel was already a maximum within its neighborhood)."
+msgstr ""
+"Um máximo local pode ser definido como um pixel com um valor maior que todos"
+" os seus vizinhos, ou um grupo conectado de pixels com o mesmo valor mais "
+"alto que os pixels circundantes. Uma maneira fácil de detectar esses pixels "
+"é dilatar a imagem com filtro máximo 3×3 e verificar se há valores de pixel "
+"inalterados (ou seja, onde o pixel já era máximo dentro de sua vizinhança)."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:319
+msgid ""
+"This is inexact because it does not *only* identify maxima; it also "
+"detections some 'plateaus' where pixels have identical values to their "
+"neighbors. In practice, this is not always a problem because noise can make "
+"plateaus virtually non-existent for many real-world images (at least ones "
+"that haven't been clipped)."
+msgstr ""
+"Isso é inexato porque não identifica *apenas* os máximos; ele também detecta"
+" alguns 'platôs' onde os pixels têm valores idênticos aos de seus vizinhos. "
+"Na prática, isso nem sempre é um problema porque o ruído pode tornar os "
+"platôs praticamente inexistentes para muitas imagens do mundo real (pelo "
+"menos aquelas que não foram cortadas)."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:322
+msgid ""
+"A bigger problem is that the approach often identifies far too many maxima "
+"to be useful ({numref}`fig-morph_simple_maxima`)."
+msgstr ""
+"Um problema maior é que a abordagem muitas vezes identifica muitos máximos "
+"para serem úteis ({numref}`fig-morph_simple_maxima`)."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:356
+msgid ""
+"Identifying local maxima with the help of a 3×3 dilation tends to find too "
+"many maxima to be useful."
+msgstr ""
+"Identificar máximos locais com a ajuda de uma dilatação 3×3 tende a "
+"encontrar muitos máximos para serem úteis."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:359
+msgid ""
+"We can reduce these by either increasing the size of the maximum filter "
+"(therefore requiring pixels to be maximal across a larger region), or by "
+"pre-smoothing the image (usually with a [Gaussian "
+"filter](sec_filters_gaussian)). However, tuning the parameters becomes "
+"difficult."
+msgstr ""
+"Podemos reduzi-los aumentando o tamanho do filtro máximo (exigindo, "
+"portanto, que os pixels sejam máximos em uma região maior) ou suavizando "
+"previamente a imagem (geralmente com um [filtro "
+"gaussiano](sec_filters_gaussian)). No entanto, ajustar os parâmetros torna-"
+"se difícil."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:362
+msgid ""
+"We will see an alternative approach that is often more intuitive in "
+"{ref}`sec_h_extrema`."
+msgstr ""
+"Veremos uma abordagem alternativa que geralmente é mais intuitiva em "
+"{ref}`sec_h_extrema`."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:392
+msgid ""
+"Identifying local maxima with the help of a larger dilation (here, 7×7 "
+"pixels) can sometimes give better results than using a smaller dilation "
+"{numref}`fig-morph_simple_maxima`."
+msgstr ""
+"Identificar máximos locais com a ajuda de uma dilatação maior (aqui, 7×7 "
+"pixels) às vezes pode dar melhores resultados do que usar uma dilatação "
+"menor {numref}`fig-morph_simple_maxima`."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:396
+msgid "More morphological operations"
+msgstr "Mais operações morfológicas"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:398
+msgid "Area opening"
+msgstr "Abertura de área"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:400
+msgid ""
+"**Area opening** is similar to *opening*, except it avoids the need for any "
+"kind of maximum or minimum filtering."
+msgstr ""
+"**Abertura de área** é semelhante à *abertura*, exceto que evita a "
+"necessidade de qualquer tipo de filtragem máxima ou mínima."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:402
+msgid ""
+"It works by identifying [**connected components** in the binary "
+"image](sec_binary_labeled), which are contiguous regions of foreground "
+"pixels. For each connected component, the number of pixels is counted to "
+"give an area in px². If the area of a component falls below a specified area"
+" threshold, the pixels for that component are set to the background, i.e. "
+"the component is removed."
+msgstr ""
+"Ele funciona identificando [**componentes conectados** na imagem "
+"binária](sec_binary_labeled), que são regiões contíguas de pixels de "
+"primeiro plano. Para cada componente conectado, o número de pixels é contado"
+" para fornecer uma área em px². Se a área de um componente cair abaixo de um"
+" limite de área especificado, os pixels desse componente serão colocados no "
+"plano de fundo, ou seja, o componente será removido."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:406
+msgid ""
+"*Area opening* is often preferable to *opening*, because it has *no impact* "
+"on the shape of any structures larger than the area threshold. It simply "
+"applies a minimum area threshold, removing everything smaller."
+msgstr ""
+"A *abertura de área* é muitas vezes preferível à *abertura*, porque não tem "
+"*nenhum impacto* na forma de quaisquer estruturas maiores que o limite da "
+"área. Ele simplesmente aplica um limite mínimo de área, removendo tudo que "
+"for menor."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:439
+msgid "Using area opening to remove small objects."
+msgstr "Usando a abertura da área para remover pequenos objetos."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:444
+msgid "Filling holes"
+msgstr "Preenchendo buracos"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:446
+msgid ""
+"**Filling holes** involves identifying connected components of *background "
+"pixels* that are entirely surrounded by foreground pixels. These components "
+"are then 'flipped' to become foreground pixels instead."
+msgstr ""
+"**Preencher lacunas** envolve a identificação de componentes conectados de "
+"*pixels de fundo* que estão inteiramente cercados por pixels de primeiro "
+"plano. Esses componentes são então 'invertidos' para se tornarem pixels de "
+"primeiro plano."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:449
+msgid ""
+"Should we then want to identify the holes themselves, we can subtract the "
+"original image from the filled image."
+msgstr ""
+"Se quisermos então identificar os próprios buracos, podemos subtrair a "
+"imagem original da imagem preenchida."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:477
+msgid ""
+"Filling holes in a binary image. Image subtraction makes it possible to "
+"extract the holes themselves."
+msgstr ""
+"Preenchendo buracos em uma imagem binária. A subtração de imagens permite "
+"extrair os próprios furos."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:501
+msgid "Small holes filled."
+msgstr "Pequenos buracos preenchidos."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:0
+msgid "Question"
+msgstr "Pergunta"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:509
+msgid ""
+"We don't always want to fill *all* the holes within a binary image, but "
+"rather only the smaller ones. Can you think of a way to fill *only holes "
+"smaller than 1000 px²*, using area opening?"
+msgstr ""
+"Nem sempre queremos preencher *todos* os buracos em uma imagem binária, mas "
+"apenas os menores. Você consegue pensar em uma maneira de preencher *apenas "
+"buracos menores que 1000 px²*, usando abertura de área?"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:512
+msgid "You'll need at least one operation described in previous chapter."
+msgstr ""
+"Você precisará de pelo menos uma operação descrita no capítulo anterior."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:0
+msgid "Answer"
+msgstr "Responder"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:517
+msgid "One way to fill holes below a fixed size:"
+msgstr "Uma maneira de preencher buracos abaixo de um tamanho fixo:"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:519
+msgid "Invert the binary image"
+msgstr "Inverta a imagem binária"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:520
+msgid "Perform area opening with an area threshold of 1000 px²"
+msgstr "Execute a abertura de área com um limite de área de 1000 px²"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:521
+msgid "Invert the result"
+msgstr "Inverta o resultado"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:528
+msgid "Thinning & skeletonization"
+msgstr "Desbaste e esqueletização"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:530
+msgid ""
+"**Thinning** and **skeletonization** are related operations that aim to "
+"'thin down' objects in a binary image to just their centerlines. They are "
+"particularly useful with filamental or tube-like structures, such as axons "
+"or blood vessels."
+msgstr ""
+"**Afinamento** e **esqueletização** são operações relacionadas que visam "
+"\"diminuir\" objetos em uma imagem binária apenas até suas linhas centrais. "
+"Eles são particularmente úteis com estruturas filamentares ou tubulares, "
+"como axônios ou vasos sanguíneos."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:559
+msgid "The effects of thinning and skeletonization on a binary image."
+msgstr "Os efeitos do desbaste e da esqueletização em uma imagem binária."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:563
+msgid "What's the difference between thinning & skeletonization?"
+msgstr "Qual é a diferença entre desbaste e esqueletização?"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:566
+msgid ""
+"The truth is: I'm not entirely sure. There is quite a bit of overlap in the "
+"literature, and I've seen the same algorithm referred to by both names. "
+"Furthermore, there are different thinning algorithms that give different "
+"results; the situation is similar for skeletonization algorithms."
+msgstr ""
+"A verdade é: não tenho certeza absoluta. Há bastante sobreposição na "
+"literatura e vi o mesmo algoritmo referido por ambos os nomes. Além disso, "
+"existem diferentes algoritmos de desbaste que fornecem resultados "
+"diferentes; a situação é semelhante para algoritmos de esqueletização."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:570
+msgid ""
+"Software occasionally offers both thinning and skeletonization, but often "
+"just offers one or the other. It's worth trying any thinning/skeletonization"
+" methods available to see which performs best for any particular "
+"application."
+msgstr ""
+"Ocasionalmente, o software oferece desbaste e esqueletização, mas muitas "
+"vezes oferece apenas um ou outro. Vale a pena tentar qualquer método de "
+"desbaste/esqueletização disponível para ver qual funciona melhor para "
+"qualquer aplicação específica."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:576
+msgid "Morphological reconstruction"
+msgstr "Reconstrução morfológica"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:578
+msgid ""
+"**Morphological reconstruction** is a somewhat advanced technique that "
+"underpins several powerful image processing operations. It's useful with "
+"both grayscale and binary images."
+msgstr ""
+"A **reconstrução morfológica** é uma técnica um tanto avançada que sustenta "
+"várias operações poderosas de processamento de imagens. É útil com imagens "
+"em tons de cinza e binárias."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:581
+msgid ""
+"Morphological reconstruction requires two images of the same size: a "
+"**marker** image and a **mask** image. The pixel in the *mask* image should "
+"all have values greater than or equal to the corresponding pixels in the "
+"*marker* image."
+msgstr ""
+"A reconstrução morfológica requer duas imagens do mesmo tamanho: uma imagem "
+"de **marcador** e uma imagem de **máscara**. Todos os pixels na imagem "
+"*máscara* devem ter valores maiores ou iguais aos pixels correspondentes na "
+"imagem *marcador*."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:584
+msgid ""
+"The reconstruction algorithm progressively *dilates* the marker image (e.g. "
+"applies a 3×3 maximum filter), while constraining the marker to remain "
+"'within' the mask; that is, the pixel values in the marker are never allowed"
+" to exceed the values in the mask. This dilation is repeated iteratively "
+"until the marker cannot change any further without exceeding the mask. The "
+"output is the new marker image, after all the dilations have been performed."
+msgstr ""
+"O algoritmo de reconstrução *dilata* progressivamente a imagem do marcador "
+"(por exemplo, aplica um filtro máximo de 3×3), enquanto restringe o marcador"
+" a permanecer “dentro” da máscara; isto é, os valores de pixel no marcador "
+"nunca podem exceder os valores na máscara. Esta dilatação é repetida "
+"iterativamente até que o marcador não possa mais mudar sem exceder a "
+"máscara. A saída é a nova imagem do marcador, após todas as dilatações terem"
+" sido realizadas."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:588
+msgid ""
+"Some examples will help demonstrate how this works and why it's useful. The "
+"crucial difference in the methods below is how the marker and mask images "
+"are created."
+msgstr ""
+"Alguns exemplos ajudarão a demonstrar como isso funciona e por que é útil. A"
+" diferença crucial nos métodos abaixo é como as imagens do marcador e da "
+"máscara são criadas."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:591
+msgid "Hysteresis thresholding"
+msgstr "Limiar de histerese"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:593
+msgid ""
+"One use of morphological reconstruction is to implement a **double "
+"threshold**, also known as **hysteresis thresholding**."
+msgstr ""
+"Um uso da reconstrução morfológica é implementar um **limiar duplo**, também"
+" conhecido como **limiar de histerese**."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:596
+msgid ""
+"For *low threshold* and *high threshold*, I assume we're detecting light "
+"structures on a dark background."
+msgstr ""
+"Para *limiar baixo* e *limiar alto*, presumo que estamos detectando "
+"estruturas claras em um fundo escuro."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:599
+msgid ""
+"This involves defining both a **low threshold** and a **high threshold.** "
+"The low threshold operates like any [global threshold](chap_thresholding) to"
+" identify regions. However, a region is discarded from the binary image if "
+"it does not also contain at least one pixel that exceeds the high threshold."
+msgstr ""
+"Isso envolve definir um **limiar baixo** e um **limiar alto.** O limite "
+"baixo funciona como qualquer [limiar global](chap_thresholding) para "
+"identificar regiões. Entretanto, uma região é descartada da imagem binária "
+"se ela também não contiver pelo menos um pixel que exceda o limite alto."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:603
+msgid ""
+"This is achieved using morphological reconstruction by defining the *marker*"
+" as all pixels exceeding the high threshold, and the *mask* as all pixels "
+"exceeding the low threshold. The markers will expand to fill the mask "
+"regions that contain them. But any mask regions that don't contain marker "
+"pixels are simply ignored."
+msgstr ""
+"Isto é conseguido usando a reconstrução morfológica, definindo o *marcador* "
+"como todos os pixels que excedem o limite alto, e a *máscara* como todos os "
+"pixels que excedem o limite baixo. Os marcadores serão expandidos para "
+"preencher as regiões da máscara que os contêm. Mas quaisquer regiões de "
+"máscara que não contenham pixels marcadores são simplesmente ignoradas."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:635
+msgid ""
+"Applying a hysteresis threshold to an image. The size and area of the "
+"objects detected by this method are determined by the low threshold, but at "
+"least one of the pixel values within the object must exceed the high "
+"threshold. This slightly mitigates the problem of a single global threshold "
+"having [a huge impact on analysis results](chap_thresholding), by the same "
+"threshold simultaneously influencing both what is detected and its size."
+msgstr ""
+"Aplicando um limite de histerese a uma imagem. O tamanho e a área dos "
+"objetos detectados por este método são determinados pelo limite baixo, mas "
+"pelo menos um dos valores de pixel dentro do objeto deve exceder o limite "
+"alto. Isto atenua ligeiramente o problema de um único limite global ter [um "
+"enorme impacto nos resultados da análise] (chap_thresholding), pois o mesmo "
+"limite influencia simultaneamente tanto o que é detectado como o seu "
+"tamanho."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:641
+msgid "H-Maxima & H-Minima"
+msgstr "H-Máximo e H-Mínimo"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:643
+msgid ""
+"We [saw previously](fig-morph_simple_maxima) that we could (kind of) "
+"identify local maxima in a very simple way using an image dilation, but the "
+"results are often too inaccurate to be useful."
+msgstr ""
+"Nós [vimos anteriormente](fig-morph_simple_maxima) que poderíamos (mais ou "
+"menos) identificar os máximos locais de uma maneira muito simples usando uma"
+" dilatação de imagem, mas os resultados geralmente são muito imprecisos para"
+" serem úteis."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:645
+msgid ""
+"**H-Maxima** and **H-Minima** can help us overcome this. These operations "
+"both require only one intuitive parameter: they enable us to identify maxima"
+" or minima using a local intensity threshold *H*."
+msgstr ""
+"**H-Maxima** e **H-Minima** podem nos ajudar a superar isso. Ambas as "
+"operações requerem apenas um parâmetro intuitivo: elas nos permitem "
+"identificar máximos ou mínimos usando um limite de intensidade local *H*."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:648
+msgid ""
+"This is achieved using morphological reconstruction. For H-maxima, the "
+"process is:"
+msgstr ""
+"Isto é conseguido através da reconstrução morfológica. Para H-máximos, o "
+"processo é:"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:650
+msgid "Set the original grayscale image as the *mask*"
+msgstr "Defina a imagem original em tons de cinza como a *máscara*"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:651
+msgid "Subtract *H* from the mask to create the *markers*"
+msgstr "Subtraia *H* da máscara para criar os *marcadores*"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:652
+msgid "Apply morphological reconstruction using the markers and mask"
+msgstr "Aplique a reconstrução morfológica usando os marcadores e a máscara"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:653
+msgid "Subtract the reconstruction result from the *mask*"
+msgstr "Subtraia o resultado da reconstrução da *máscara*"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:654
+msgid "Threshold the subtracted image with a global threshold of *H*"
+msgstr "Limite a imagem subtraída com um limite global de *H*"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:656
+msgid ""
+"The main steps are illustrated in {numref}`fig-morph_h_maxima`. We can apply"
+" the same process to an inverted image to find *H-minima*."
+msgstr ""
+"As etapas principais são ilustradas em {numref}`fig-morph_h_maxima`. Podemos"
+" aplicar o mesmo processo a uma imagem invertida para encontrar *H-mínimos*."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:693
+msgid ""
+"Calculating H-maxima using morphological reconstruction. Here, *H* is set "
+"(arbitrarily) to be the image standard deviation."
+msgstr ""
+"Cálculo de H-máximos usando reconstrução morfológica. Aqui, *H* é definido "
+"(arbitrariamente) como o desvio padrão da imagem."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:698
+msgid "Opening & closing by reconstruction"
+msgstr "Abertura e fechamento por reconstrução"
+
+#: ../../../chapters/2-processing/5-morph/morph.md:700
+msgid ""
+"H-maxima and H-minima use morphological reconstruction to effectively "
+"generate a background image that can be subtracted from the original. We do "
+"this by subtracting a constant *H*, which acts as a local intensity "
+"threshold."
+msgstr ""
+"H-máximos e H-mínimos usam reconstrução morfológica para gerar efetivamente "
+"uma imagem de fundo que pode ser subtraída do original. Fazemos isso "
+"subtraindo uma constante *H*, que atua como um limite de intensidade local."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:703
+msgid ""
+"We can also use morphological reconstruction to generate a background image "
+"based upon spatial information, rather than an intensity threshold *H*, by "
+"using **opening by reconstruction**. This effectively introduces a size "
+"component into our local threshold. **Closing by reconstruction** is an "
+"analogous operation that can be defined using morphological closing."
+msgstr ""
+"Também podemos usar a reconstrução morfológica para gerar uma imagem de "
+"fundo baseada em informações espaciais, em vez de um limite de intensidade "
+"*H*, usando **abertura por reconstrução**. Isso efetivamente introduz um "
+"componente de tamanho em nosso limite local. **Fecho por reconstrução** é "
+"uma operação análoga que pode ser definida por meio do fechamento "
+"morfológico."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:707
+msgid ""
+"The starting point for opening by reconstruction is a *morphological "
+"opening* [as defined above](sec_morph_opening_closing), i.e. an erosion "
+"followed by a dilation. This defines the marker image. The original image is"
+" used as the mask."
+msgstr ""
+"O ponto de partida para a abertura por reconstrução é uma *abertura "
+"morfológica* [conforme definido acima](sec_morph_opening_closing), ou seja, "
+"uma erosão seguida por uma dilatação. Isso define a imagem do marcador. A "
+"imagem original é usada como máscara."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:740
+msgid ""
+"Using opening by reconstruction to obtain a background estimate. The "
+"estimate can be subtracted from an image before applying a global threshold."
+msgstr ""
+"Usando abertura por reconstrução para obter uma estimativa de fundo. A "
+"estimativa pode ser subtraída de uma imagem antes de aplicar um limite "
+"global."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:743
+msgid ""
+"As before, opening alone removes structures that are smaller than the "
+"structuring element, while slightly affecting the shapes of everything else."
+" Opening by reconstruction essentially adds some further (constrained) "
+"dilations so that the structures that were *not* removed are more similar to"
+" how they were originally. This can make opening by reconstruction more "
+"attractive for generating background images that will be used for "
+"subtraction."
+msgstr ""
+"Como antes, a abertura por si só remove estruturas menores que o elemento "
+"estruturante, ao mesmo tempo que afeta ligeiramente as formas de todo o "
+"resto. A abertura por reconstrução essencialmente adiciona algumas "
+"dilatações adicionais (restringidas), de modo que as estruturas que *não* "
+"foram removidas sejam mais semelhantes ao que eram originalmente. Isso pode "
+"tornar a abertura por reconstrução mais atrativa para a geração de imagens "
+"de fundo que serão utilizadas para subtração."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:747
+msgid ""
+"Opening by reconstruction can also be applied to binary images as an "
+"alternative to *opening* and *area opening*. Like area opening, opening by "
+"reconstruction is able to remove some objects while retaining the shapes of "
+"larger objects exactly."
+msgstr ""
+"A abertura por reconstrução também pode ser aplicada a imagens binárias como"
+" uma alternativa à *abertura* e à *abertura de área*. Assim como a abertura "
+"de área, a abertura por reconstrução é capaz de remover alguns objetos, "
+"mantendo exatamente as formas de objetos maiores."
+
+#: ../../../chapters/2-processing/5-morph/morph.md:778
+msgid ""
+"Using opening by reconstruction to remove small (and thin) objects from a "
+"binary image, while retaining the original shape of everything that remains."
+msgstr ""
+"Utilizar a abertura por reconstrução para remover objetos pequenos (e finos)"
+" de uma imagem binária, mantendo a forma original de tudo o que resta."
