@@ -1,0 +1,45 @@
+name: build-book
+
+# Only run this when the main branch changes a markdown file or a top level config file
+on:
+    push:
+      branches:
+      - main
+      paths:
+      - 'chapters/**.md'
+      - '_*.yml'
+
+# This job installs dependencies, builds translation files, and makes a PR to update the POTs
+jobs:
+  push-translations:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+    - uses: actions/checkout@v3
+
+    # Install dependencies
+    - uses: conda-incubator/setup-miniconda@v2
+      with:
+        python-version: '3.10'
+        mamba-version: "*"
+        channels: conda-forge,defaults
+        channel-priority: true
+        activate-environment: bioimage-book
+        environment-file: environment.yml
+
+    # Update the files
+    - name: Update the files
+      run: |
+        sphinx-build -b gettext . locales/_build/gettext
+
+    - name: Push translations to a branch (branch protection)
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git checkout -b auto_translation
+        git add "**.pot"
+        git commit -m "auto generated translation file updates"
+        git push -u origin auto_translation
+        gh pr create --title "Auto-translations" --body "Made by GH Actions"
