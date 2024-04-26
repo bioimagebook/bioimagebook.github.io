@@ -330,7 +330,7 @@ So what's the point of having RGB images, if they are so risky?
 One of the biggest reasons to use RGB images in science is for presentation.
 While specialist image analysis software applications, such as ImageJ, are typically designed to handle a range of exotic image types and bit-depths, the same is not true for non-scientific software.
 
-If want want an image to dispay exactly the same in ImageJ as in a PowerPoint&reg; presentation or a figure in a publication, for example, we'll probably want to convert it to RGB.
+If you want an image to display exactly the same way in ImageJ as in a PowerPoint&reg; presentation or a figure in a publication, for example, we'll probably want to convert it to RGB.
 If we don't, the image might display very strangely on other software -- or even not open at all.
 
 :::{admonition} 'Why is my image just black?'
