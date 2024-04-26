@@ -76,12 +76,12 @@ def _update_translations(add_languages: Iterable[str] = ()):
 
 
 @click.command()
-@click.option('--update/--no-update', default=False, help=
+@click.option('--update/--no-update', default=True, help=
 'Update the main language and translations')
 @click.option('--lang', '-l', default=(), help=
 'Add the specified language to the list of translations, given the two-letter code',
               multiple=True)
-@click.option('--config/--no-config', default=False, help=
+@click.option('--config/--no-config', default=True, help=
 'Create a conf.py file from the _config.yml file')
 @click.option('--overwrite/--no-overwrite', default=False, help=
 'Overwrite an existing conf.py file if it exists')
