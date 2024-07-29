@@ -2,7 +2,14 @@ name: build-book
 
 # See https://jupyterbook.org/publish/gh-pages.html
 # Run on pull request or when triggered manually
-on: [pull_request, workflow_dispatch]
+on:
+  pull_request:
+    branches:
+    - main
+    # Don't rebuild if we just have changed translation files
+    paths-ignore:
+    - locales/**
+  workflow_dispatch:
 
 # This job installs dependencies, builds the book, and makes the html available to download
 jobs:
