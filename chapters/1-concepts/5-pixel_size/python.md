@@ -5,11 +5,11 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.17.2
 kernelspec:
+  name: python3
   display_name: Python 3 (ipykernel)
   language: python
-  name: python3
 ---
 
 # Python:  Pixel size & dimensions
@@ -34,11 +34,9 @@ The situation is improving though.
 
 Here, we'll look at accessing pixel size information using two popular image-reading libraries:
 * [`imageio`](https://pypi.org/project/imageio/) - which very commonly used, and makes reading lots of common image types straightforward
-* [`AICSImageIO`](https://pypi.org/project/aicsimageio/3.2.1/) - which is a bit more complex, but has some *extremely* useful features for working with scientific images
+* [`bioio`](https://bioio-devs.github.io/bioio) - which is a bit more complex, but has some *extremely* useful features for working with scientific images
 
 +++
-
-
 
 ### ImageIO
 
@@ -98,23 +96,23 @@ So while `imageio` is excellent for reading images easily - generally just a qui
 
 +++
 
-### Using AICSImageIO
+### Using BioIO
 
-The best alternative I know for working with scientific (especially biomedical) images is [**AICSImageIO**](https://github.com/AllenCellModeling/aicsimageio).
+The best alternative I know for working with scientific (especially biomedical) images is [**BioIO**](https://bioio-devs.github.io/bioio) (the successor to [AICSImageIO](https://github.com/AllenCellModeling/aicsimageio)).
 This is a really useful Python library that standardizes reading and writing multiple file formats - and, depending upon how it's installed, can even access lots more awkward proprietary file formats with the help of [Bio-Formats](http://www.openmicroscopy.org/bio-formats/).
 
-Although it's possible to use a version of `imread` with AICSImageIO, it's worth learning the alternative way of doing things by creating an `AICSImage` object.
+Although it's possible to use a version of `imread` with BioIO, it's worth learning the alternative way of doing things by creating an `BioImage` object.
 This provides us with a way to access pixels and lots of other useful things whenever we need them.
 
 ```{code-cell} ipython3
-from aicsimageio.aics_image import AICSImage
+from bioio import BioImage
 
-# Create an AICSImage
-img_aics = AICSImage(path)
+# Create a BioImage
+img_bio = BioImage(path)
 
 # Print its main attributes
-print(img_aics)
-for d in dir(img_aics):
+print(img_bio)
+for d in dir(img_bio):
     if not d.startswith('_'):
         print(d)
 ```
@@ -122,17 +120,17 @@ for d in dir(img_aics):
 From this, we can immediately see the attribute that will provide us with pixel sizes directly.
 
 ```{code-cell} ipython3
-print(img_aics.physical_pixel_sizes)
+print(img_bio.physical_pixel_sizes)
 ```
 
-One perhaps non-obvious thing to know when using AICSImageIO is that the `AICSImage` isn't a regular NumPy array of the kind that `imageio.imread` would return.
+One perhaps non-obvious thing to know when using BioIO is that the `BioImage` isn't a regular NumPy array of the kind that `imageio.imread` would return.
 Rather, if you want that, you need to request the data.
 
 Using this knowledge, we can check that we have the same mean pixel value for both - as a quick way to ascertain that the actual pixel values are likely to match.
 
 ```{code-cell} ipython3
 print(f'Mean pixel value from imageio:      {im_iio.mean():.2f} (total pixel count {im_iio.size})')
-print(f'Mean pixel value from AICSImageIO:  {img_aics.data.mean():.2f} (total pixel count {img_aics.data.size})')
+print(f'Mean pixel value from BioIO:        {img_bio.data.mean():.2f} (total pixel count {img_bio.data.size})')
 ```
 
 ## Dimensions
@@ -146,7 +144,7 @@ We might well expect that the NumPy arrays representing the pixel values are the
 NumPy is incredibly flexible when it comes to handling multidimensional arrays. 
 And while that flexibility can be really helpful, it can also complicate things.
 
-To see it in action, let's check the dimensions of the images we read using imageio and AICSImageIO.
+To see it in action, let's check the dimensions of the images we read using imageio and BioIO.
 
 ```{code-cell} ipython3
 # Print shape of image read by imageio
@@ -155,26 +153,26 @@ path = find_image('Rat_Hippocampal_Neuron.tif')[0]
 im_iio = iio.imread(path)
 print(f'Shape of image read by imageio:     {im_iio.shape}')
 
-# Print shape of image read by AICSImageIO
-from aicsimageio.aics_image import AICSImage
-im_aics = AICSImage(path).data
-print(f'Shape of image read by AICSImageIO: {im_aics.shape}')
+# Print shape of image read by bioio
+from bioio import BioImage
+im_bio = BioImage(path).data
+print(f'Shape of image read by BioIO: {im_bio.shape}')
 
-print(f'Arrays the same? {np.array_equal(im_aics, im_iio)}')
+print(f'Arrays the same? {np.array_equal(im_bio, im_iio)}')
 ```
 
-We can see the number of pixels are the same, but there are some extra 'singleton' dimensions stuck into the results from AICSImageIO (i.e. with length `1`).
+We can see the number of pixels are the same, but there are some extra 'singleton' dimensions stuck into the results from BioIO (i.e. with length `1`).
 
 Fortunately, we can easily remove them with an `np.squeeze` - and end up with the same arrays.
 
 ```{code-cell} ipython3
-im_aics_squeezed = np.squeeze(im_aics)
-print(f'Shape of image read by AICSImageIO & squeezed: {im_aics_squeezed.shape}')
+im_bio_squeezed = np.squeeze(im_bio)
+print(f'Shape of image read by BioIO & squeezed: {im_bio_squeezed.shape}')
 
-print(f'Arrays the same? {np.array_equal(im_aics_squeezed, im_iio)}')
+print(f'Arrays the same? {np.array_equal(im_bio_squeezed, im_iio)}')
 ```
 
-So a natural question is: **why has AICSImageIO snuck in some extra dimensions?**
+So a natural question is: **why has BioIO snuck in some extra dimensions?**
 
 Before answering that, we should ask ourselves something else.
 **What exactly do we _have_ along the dimension of length `5`?**
@@ -201,12 +199,12 @@ for ii in range(n_slices):
 To me, that looks very much like we have 5 different channels.
 I'm making some assumptions there... but they seem pretty safe assumptions.
 
-However AICSImageIO removes this ambiguity in a couple of ways.
-1. You can expect `AICSImage` to return a 5D array, with the dimensions in a consistent order: `TCZYX` (although there is at least one caveat in the next section!)
+However BioIO removes this ambiguity in a couple of ways.
+1. You can expect `BioIO` to return a 5D array, with the dimensions in a consistent order: `TCZYX` (although there is at least one caveat in the next section!)
 2. You can easily query the dimensions and order to be sure
 
 ```{code-cell} ipython3
-image = AICSImage(path)
+image = BioImage(path)
 print(image.dims)
 print(f'Shape: {image.dims.shape}')
 print(f'Order: {image.dims.order}')
@@ -266,19 +264,19 @@ except Exception as ex:
 So imageio might get channels at the start or the end.
 For RGB, it seems to prefer the end.
 
-What does AICSImageIO do?
+What does BioIO do?
 
-Since I said AICSImageIO is consistent, I'd like to say it puts the channels in the same place for the RGB and 5-channel image... but no.
+Since I said BioIO is consistent, I'd like to say it puts the channels in the same place for the RGB and 5-channel image... but no.
 It also treats RGB as a special case.
 
 ```{code-cell} ipython3
-image = AICSImage(path)
+image = BioImage(path)
 
 print(image.shape)
 print(image.dims.order)
 ```
 
-It's a little hard to find, but the AICSImageIO documentation mentions that [you can expect 5 dimensions for non-RGB images, but RGB images have 6 dimensions](https://allencellmodeling.github.io/aicsimageio/aicsimageio.readers.html#aicsimageio.readers.bioformats_reader.BioFile.to_numpy) - where the sixth is called `S` for `Samples`.
+It's a little hard to find, but the BioIO documentation mentions that [you can expect 5 dimensions for non-RGB images, but RGB images have 6 dimensions](https://bioio-devs.github.io/bioio/bioio.html#bioio.bio_image.BioImage.get_image_data) - where the sixth is called `S` for `Samples`.
 
 The good thing is that, assuming you don't have anything else going on with the first 3 dimensions - i.e. they are just `(1, 1, 1)` - a simple `np.squeeze` is enough to convert the pixel array into a matplotlib-friendly channels-last RGB format.
 

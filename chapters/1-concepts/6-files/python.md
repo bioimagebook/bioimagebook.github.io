@@ -5,11 +5,11 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.17.2
 kernelspec:
+  name: python3
   display_name: Python 3 (ipykernel)
   language: python
-  name: python3
 ---
 
 # Python: Files & file formats
@@ -97,9 +97,9 @@ im = tifffile.imread(path)
 print(f'Print the mean for comparison: {im.mean()}')
 ```
 
-### AICSImageIO
+### BioIO
 
-[AICSImageIO](https://github.com/AllenCellModeling/aicsimageio) is an excellent package for reading lots of image formats in Python - and is particularly strong when it comes to reading multidimensional images and metadata.
+[BioIO](https://bioio-devs.github.io/bioio/) is an excellent package for reading lots of image formats in Python - and is particularly strong when it comes to reading multidimensional images and metadata.
 
 It can even handle a variety of microscopy formats, and optionally use [Bio-Formats](https://www.openmicroscopy.org/bio-formats/).
 
@@ -126,4 +126,4 @@ Dask isn't an image reading package, but [dask-image](https://image.dask.org/) i
 
 Finally, [Napari](https://napari.org) isn't an image reading library either; rather, it's a fantastic open-source, extensible, multidimensional image viewer for Python.
 
-Napari can bring everything together - working with dask arrays and reading images with plugins, such as [napari-aicsimageio](https://github.com/AllenCellModeling/napari-aicsimageio) and [napari-lazy-openslide](https://github.com/manzt/napari-lazy-openslide).
+Napari can bring everything together - working with dask arrays and reading images with plugins, such as [napari-lazy-openslide](https://github.com/manzt/napari-lazy-openslide).
