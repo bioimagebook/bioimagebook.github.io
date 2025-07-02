@@ -770,8 +770,8 @@ def plot_triangle_threshold(im, bins, thresh, pos=None):
     x3 = centers[int(thresh)]
     y3 = hist[int(thresh)]
     n = np.sqrt((y2 - y1)**2 + (x2 - x1)**2)
-    x4 = (y2 - y1) / n
-    y4 = -(x2 - x1) / n
+    x4 = x3 + (y2 - y1) / n
+    y4 = y3 - (x2 - x1) / n
     # Find intersection
     # Thank you, wikipedia
     # https://en.wikipedia.org/wiki/Line–line_intersection#Given_two_points_on_each_line
