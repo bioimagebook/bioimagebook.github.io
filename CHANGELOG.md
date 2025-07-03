@@ -4,6 +4,12 @@ Changelog
 This page summarizes the main changes.
 To see all changes, check out the [commit log](https://github.com/bioimagebook/bioimagebook.github.io/commits/main).
 
+## 2 July 2025
+* Dependency updates
+* Replace AICSImageIO with BioIO
+* Fix triangle threshold line
+  * With thanks to Emily Shin
+
 ## 5 February 2024
 * Add initial support for translations
   * With huge thanks to @bethac07!
