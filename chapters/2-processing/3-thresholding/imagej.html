@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ImageJ: Thresholding &#8212; Introduction to Bioimage Analysis</title>
   
@@ -29,43 +28,39 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6d8e1538" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/2-processing/3-thresholding/imagej';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script data-domain="bioimagebook.github.io" defer="defer" src="https://plausible.io/js/script.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/2-processing/3-thresholding/imagej';</script>
     <link rel="canonical" href="https://bioimagebook.github.io/chapters/2-processing/3-thresholding/imagej.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -167,7 +162,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -295,9 +301,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -322,14 +328,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/2-processing/3-thresholding/imagej.md" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -457,9 +463,9 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -505,7 +511,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="imagej-thresholding">
-<h1>ImageJ: Thresholding<a class="headerlink" href="#imagej-thresholding" title="Permalink to this heading">#</a></h1>
+<h1>ImageJ: Thresholding<a class="headerlink" href="#imagej-thresholding" title="Link to this heading">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -517,25 +523,25 @@ document.write(`
 <span class="o">%</span><span class="k">autoreload</span> 2
 
 <span class="c1"># Default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">helpers</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">myst_nb</span><span class="w"> </span><span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">ndimage</span>
 </pre></div>
 </div>
 </div>
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>Here, we will explore some ImageJ’s methods to apply thresholds to images, generating binary images, labeled images and ROIs.
 We will also confront some of the associated complications.</p>
 </section>
 <section id="global-thresholding">
-<h2>Global thresholding<a class="headerlink" href="#global-thresholding" title="Permalink to this heading">#</a></h2>
+<h2>Global thresholding<a class="headerlink" href="#global-thresholding" title="Link to this heading">#</a></h2>
 <p>The main thresholding command in ImageJ is <span class="menuselection notranslate">Image ‣ Adjust ‣ Threshold…</span>, with the shortcut <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">T</kbd></kbd>.</p>
 <p>This opens a <em>Threshold</em> dialog that allows you to identify pixels above a threshold, below a threshold, or falling between two thresholds.
 These options are controlled using a combination of the threshold sliders and the <span class="guilabel notranslate">Dark background</span> checkbox.
@@ -571,10 +577,10 @@ Therefore if you find that any processing of binary images gives odd results, be
 </div>
 </section>
 <section id="creating-objects">
-<h2>Creating objects<a class="headerlink" href="#creating-objects" title="Permalink to this heading">#</a></h2>
+<h2>Creating objects<a class="headerlink" href="#creating-objects" title="Link to this heading">#</a></h2>
 <p>Once we have a binary image, the next step is to identify objects for further exploration.</p>
 <section id="generating-measuring-rois">
-<h3>Generating &amp; measuring ROIs<a class="headerlink" href="#generating-measuring-rois" title="Permalink to this heading">#</a></h3>
+<h3>Generating &amp; measuring ROIs<a class="headerlink" href="#generating-measuring-rois" title="Link to this heading">#</a></h3>
 <p>ROIs are a good way to represent objects in ImageJ, because they are easy to measure.
 In 2D, there are several options to generate ROIs from a thresholded image, each with slightly different applications:</p>
 <ul class="simple">
@@ -616,7 +622,7 @@ This meant that if you would measure the ROIs later you could get different resu
 <figure class="align-center" id="id1" style="width: 90%">
 <img alt="../../../_images/imagej-thresholds-analyze-holes.png" src="../../../_images/imagej-thresholds-analyze-holes.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 78 </span><span class="caption-text">Different results when using <span class="menuselection notranslate">Analyze ‣ Analyze Particles…</span> directly, and then subsequently measuring the ROI that it generated. The image is binary, so the mean value should be 255 if only the above-threshold pixels are measured.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 78 </span><span class="caption-text">Different results when using <span class="menuselection notranslate">Analyze ‣ Analyze Particles…</span> directly, and then subsequently measuring the ROI that it generated. The image is binary, so the mean value should be 255 if only the above-threshold pixels are measured.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p><strong>However</strong>, there is a solution – which I only learned when writing about it here.
@@ -625,7 +631,7 @@ If this is turned <strong>on</strong>, then ROIs with holes are generated as exp
 <figure class="align-center" id="id2" style="width: 90%">
 <img alt="../../../_images/imagej-thresholds-analyze-composite.png" src="../../../_images/imagej-thresholds-analyze-composite.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 79 </span><span class="caption-text">Fixing the problem with holey regions by using <span class="guilabel notranslate">Composite ROIs</span>.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 79 </span><span class="caption-text">Fixing the problem with holey regions by using <span class="guilabel notranslate">Composite ROIs</span>.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>This demonstrates the need to be cautious with any image analysis software, and to check out the various options associated with even common commands.
@@ -633,7 +639,7 @@ They aren’t <em>always</em> doing what you might expect.</p>
 </div>
 </section>
 <section id="generating-labeled-images">
-<h3>Generating labeled images<a class="headerlink" href="#generating-labeled-images" title="Permalink to this heading">#</a></h3>
+<h3>Generating labeled images<a class="headerlink" href="#generating-labeled-images" title="Link to this heading">#</a></h3>
 <p>ROIs are not the only way to represent image objects: sometimes labeled images are more useful.</p>
 <p><span class="menuselection notranslate">Analyze ‣ Analyze Particles…</span> can generate labeled images by using the <span class="guilabel notranslate">Show: Count Masks</span> option.
 This will generate a new image in which each pixel has a unique integer value indicating the number of the object it is part of – or zero if it is in the background.
@@ -641,12 +647,12 @@ With a suitably colorful LUT (often <span class="menuselection notranslate">Imag
 <figure class="align-center" id="id3" style="width: 90%">
 <img alt="../../../_images/imagej-thresholds-analyze-labels.png" src="../../../_images/imagej-thresholds-analyze-labels.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 80 </span><span class="caption-text">Creating a labeled image with <span class="menuselection notranslate">Analyze ‣ Analyze Particles</span>.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 80 </span><span class="caption-text">Creating a labeled image with <span class="menuselection notranslate">Analyze ‣ Analyze Particles</span>.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-0">
+<label class="sd-tab-label" for="sd-tab-item-0">
 Practical</label><div class="sd-tab-content docutils">
 <p><a class="reference internal" href="thresholding.html#sec-thresholds-connectivity"><span class="std std-ref">Connectivity</span></a> (4 or 8) is an important consideration when converting a binary image to objects, since it can have a major impact on the number and size of objects.</p>
 <p>Work out what kind of connectivity is used by</p>
@@ -659,18 +665,19 @@ One way to do this is by thresholding a suitable image, another is to use the <e
 <p><a class="reference external" href="https://ij.imjoy.io/"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-1">
+<label class="sd-tab-label" for="sd-tab-item-1">
 Solution</label><div class="sd-tab-content docutils">
 <p>At the time of writing, <span class="menuselection notranslate">Analyze ‣ Analyze Particles…</span> uses 8-connectivity.</p>
 <p>For the <em>Wand tool</em> the right answer will depend upon the setting you see if you double-click the tool.
 There are three options: 4-connectivity, 8-connectivity and ‘legacy’ (where ‘legacy’ seems to behave a bit like 8-connectivity).</p>
-<a class="reference internal image-reference" href="../../../_images/imagej-thresholds-wand-dialog.png"><img alt="../../../_images/imagej-thresholds-wand-dialog.png" class="align-center" src="../../../_images/imagej-thresholds-wand-dialog.png" style="width: 40%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/imagej-thresholds-wand-dialog.png"><img alt="../../../_images/imagej-thresholds-wand-dialog.png" class="align-center" src="../../../_images/imagej-thresholds-wand-dialog.png" style="width: 40%;" />
+</a>
 </div>
 </div>
 </section>
 </section>
 <section id="local-thresholding">
-<h2>Local thresholding<a class="headerlink" href="#local-thresholding" title="Permalink to this heading">#</a></h2>
+<h2>Local thresholding<a class="headerlink" href="#local-thresholding" title="Link to this heading">#</a></h2>
 <p>A few methods to perform local thresholding can be found under <span class="menuselection notranslate">Image ‣ Adjust ‣ Auto Local Threshold</span>.
 The dialog again provides the option to try all of them.</p>
 <figure class="align-center" id="fig-thresholds-imagej-local-dialog">
@@ -683,7 +690,7 @@ This should be done with some caution, since it can involve surreptitiously inco
 <p>For these reasons, I tend to avoid local thresholding.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-2">
+<label class="sd-tab-label" for="sd-tab-item-2">
 Practical</label><div class="sd-tab-content docutils">
 <p>Explore several automated methods of thresholding the different channels of <span class="menuselection notranslate">File ‣ Open samples ‣ HeLa Cells</span>, using both local and global automated thresholds, to draw your own conclusions about which methods you might prefer for different images.</p>
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/a45e4eed3a90b6374ec7b272db090ec9"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
@@ -691,10 +698,10 @@ Practical</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="addendum-practical-issues">
-<h2>Addendum: Practical issues<a class="headerlink" href="#addendum-practical-issues" title="Permalink to this heading">#</a></h2>
+<h2>Addendum: Practical issues<a class="headerlink" href="#addendum-practical-issues" title="Link to this heading">#</a></h2>
 <p>We end this section with a brief discussion of a few non-obvious practical issues that impact thresholding, related to bit-depths and image types.</p>
 <section id="using-nans">
-<span id="sec-thresholding-nans"></span><h3>Using NaNs<a class="headerlink" href="#using-nans" title="Permalink to this heading">#</a></h3>
+<span id="sec-thresholding-nans"></span><h3>Using NaNs<a class="headerlink" href="#using-nans" title="Link to this heading">#</a></h3>
 <p>The first issue appears when you click <span class="guilabel notranslate">Apply</span> in the <span class="menuselection notranslate">Image ‣ Adjust ‣ Threshold…</span> dialog box for a 32-bit image.
 This leads to a prompt asking whether to <span class="guilabel notranslate">Set Background Pixels to NaN</span>.</p>
 <p>If this is chosen, a binary image is no longer created.
@@ -705,14 +712,14 @@ It is therefore used to mask out regions, while preserving meaningful pixel valu
 You have to be extra cautious when using an image containing NaNs, since some commands might behave in surprising ways.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-3" name="sd-tab-set-2" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-3">
+<label class="sd-tab-label" for="sd-tab-item-3">
 Practical</label><div class="sd-tab-content docutils">
 <p>Create an image including NaN pixels, then measure some ROIs drawn on it.
 Are area measurements affected by whether NaNs are present or not?</p>
 <p><a class="reference external" href="https://ij.imjoy.io/"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
 <input id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-4">
+<label class="sd-tab-label" for="sd-tab-item-4">
 Solution</label><div class="sd-tab-content docutils">
 <p>They are!
 If you measure the area of an image containing NaNs, the result is less than if you measure the area of the same image converted to 8-bit – since only the non-NaN parts are included.
@@ -721,12 +728,12 @@ If you measure a region containing NaNs only, the area is 0.</p>
 </div>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-5" name="sd-tab-set-3" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-5">
+<label class="sd-tab-label" for="sd-tab-item-5">
 Question</label><div class="sd-tab-content docutils">
 <p>Through experiment or guesswork, what do you suppose happens to NaNs with a 32-bit image is converted to 8-bit or 16-bit?</p>
 </div>
 <input id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-6">
+<label class="sd-tab-label" for="sd-tab-item-6">
 Answer</label><div class="sd-tab-content docutils">
 <p>Since NaN is not an integer, it cannot be stored in an 8-bit or 16-bit unsigned integer image.
 Instead, all NaNs simply become zero.</p>
@@ -734,7 +741,7 @@ Instead, all NaNs simply become zero.</p>
 </div>
 </section>
 <section id="histogram-binning">
-<h3>Histogram binning<a class="headerlink" href="#histogram-binning" title="Permalink to this heading">#</a></h3>
+<h3>Histogram binning<a class="headerlink" href="#histogram-binning" title="Link to this heading">#</a></h3>
 <p>The second way in which bit-depths and types matter is that histograms of images &gt; 8-bit involve <em>binning</em> the data.
 For example, with a 32-bit image it would probably not make sense to create a histogram that has separate counts for all possible pixel values: in addition to counts for pixels with exact values 1 and 2, we would have thousands of counts for pixels with fractions in between and most of these counts would be 0.</p>
 <p>Instead, the histogram is generated by dividing the total data range (maximum – minimum pixel values) into 256 separate <em>bins</em> with equal widths, and counting how many pixels have values falling into the range of each bin.
@@ -751,7 +758,7 @@ And what makes things worse is that ImageJ’s behavior in this regard has chang
 So the main message is: be aware that binning happens, and keep on the lookout for any unexpected effects that the brightness/contrast sliders might sneakily have on thresholding.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-7" name="sd-tab-set-4" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-7">
+<label class="sd-tab-label" for="sd-tab-item-7">
 Practical</label><div class="sd-tab-content docutils">
 <p>Explore setting thresholds with and without <span class="guilabel notranslate">Don’t reset range</span> selected for the image <span class="menuselection notranslate">File ‣ Open Samples ‣ M51 Galaxy (16-bits)</span>, and pressing the <span class="guilabel notranslate">Auto</span> button to determine a threshold.</p>
 <p>Keep <span class="menuselection notranslate">Image ‣ Adjust ‣ Brightness/Contrast…</span> open as you explore, so you can make adjustments before calculating the thresholds.</p>
@@ -761,20 +768,20 @@ Practical</label><div class="sd-tab-content docutils">
 <p><a class="reference external" href="https://ij.imjoy.io/?run=https://gist.github.com/petebankhead/c5d2075777c458c70c69a1f2c8b37391"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/open-in-imagej-js-badge.svg" /></a></p>
 </div>
 <input id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-8">
+<label class="sd-tab-label" for="sd-tab-item-8">
 Solution</label><div class="sd-tab-content docutils">
 <p>This image shows a potential use of the <span class="guilabel notranslate">Don’t reset range</span> option – used cautiously.</p>
 <figure class="align-center" id="id4">
 <img alt="../../../_images/fe6156640b061745f050cbff733dc17cf4ccfe0f0da3092179c38b24fb1018e9.png" src="../../../_images/fe6156640b061745f050cbff733dc17cf4ccfe0f0da3092179c38b24fb1018e9.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 81 </span><span class="caption-text">Thresholding a 16-bit image with and without ‘Don’t reset range’ selected.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 81 </span><span class="caption-text">Thresholding a 16-bit image with and without ‘Don’t reset range’ selected.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 </div>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-9" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-9">
+<label class="sd-tab-label" for="sd-tab-item-9">
 Practical</label><div class="sd-tab-content docutils">
 <p>What are the implications of using a 256-bin histogram for thresholding a 32-bit image?</p>
 <p>In particular, how might any outlier pixels affect the accuracy with which you can define a threshold – automatically or manually?</p>
@@ -784,7 +791,7 @@ Practical</label><div class="sd-tab-content docutils">
 <p><a class="reference external" href="https://ij.imjoy.io?open=https://github.com/bioimagebook/practical-data/blob/main/images/cell_outlier.tif"><img alt="launch ImageJ.JS" src="https://ij.imjoy.io/assets/badge/launch-imagej-js-badge.svg" /></a></p>
 </div>
 <input id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-10">
+<label class="sd-tab-label" for="sd-tab-item-10">
 Solution</label><div class="sd-tab-content docutils">
 <p>First, a positive implication of using a 256-bit histogram for thresholding is that it can be fast: more bins add to the computations involved.
 Also, creating too many bins has the result of making most of them zero – potentially causing some automated threshold-determination algorithms to fail.</p>
@@ -907,7 +914,7 @@ By Pete Bankhead
 
   <p class="copyright">
     
-      © Copyright 2022-2024.
+      © Copyright 2022-2025.
       <br/>
     
   </p>

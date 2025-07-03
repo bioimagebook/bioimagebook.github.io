@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Python: Channels &amp; colors &#8212; Introduction to Bioimage Analysis</title>
   
@@ -29,45 +28,41 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6d8e1538" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script data-domain="bioimagebook.github.io" defer="defer" src="https://plausible.io/js/script.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/1-concepts/4-colors/python';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script data-domain="bioimagebook.github.io" defer="defer" src="https://plausible.io/js/script.js"></script>
     <link rel="canonical" href="https://bioimagebook.github.io/chapters/1-concepts/4-colors/python.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -169,7 +164,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -297,9 +303,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -324,14 +330,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/1-concepts/4-colors/python.md" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -459,9 +465,9 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -509,7 +515,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="python-channels-colors">
-<h1>Python: Channels &amp; colors<a class="headerlink" href="#python-channels-colors" title="Permalink to this heading">#</a></h1>
+<h1>Python: Channels &amp; colors<a class="headerlink" href="#python-channels-colors" title="Link to this heading">#</a></h1>
 <p>This section gives a brief overview of some color-related considerations when using Python.</p>
 <blockquote>
 <div><p>See the <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.color.html">scikit-image color module</a> for a lot more useful info.</p>
@@ -517,18 +523,18 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, our usual default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">helpers</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="rgb-images">
-<h2>RGB images<a class="headerlink" href="#rgb-images" title="Permalink to this heading">#</a></h2>
+<h2>RGB images<a class="headerlink" href="#rgb-images" title="Link to this heading">#</a></h2>
 <p>Let’s begin by reading the RGB image used on the title page of this book.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -558,13 +564,13 @@ document.write(`
 </div>
 </div>
 <section id="rgb-to-single-channel">
-<h3>RGB to single-channel<a class="headerlink" href="#rgb-to-single-channel" title="Permalink to this heading">#</a></h3>
+<h3>RGB to single-channel<a class="headerlink" href="#rgb-to-single-channel" title="Link to this heading">#</a></h3>
 <p>We can convert an RGB image to a single-channel image in lots of ways.</p>
 <blockquote>
 <div><p>A single-channel image is often referred to as <strong>grayscale</strong> - although whether it is actually displayed using shades of gray or not depends upon the colormap.</p>
 </div></blockquote>
 <section id="split-channels">
-<h4>Split channels<a class="headerlink" href="#split-channels" title="Permalink to this heading">#</a></h4>
+<h4>Split channels<a class="headerlink" href="#split-channels" title="Link to this heading">#</a></h4>
 <p>One option is to split the RGB channels to give three separate single-channel images.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -593,7 +599,7 @@ document.write(`
 </div>
 </section>
 <section id="averaging-channels">
-<h4>Averaging channels<a class="headerlink" href="#averaging-channels" title="Permalink to this heading">#</a></h4>
+<h4>Averaging channels<a class="headerlink" href="#averaging-channels" title="Link to this heading">#</a></h4>
 <p>A second easy option is to simply calculate the average (mean) of the RGB values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -617,7 +623,7 @@ Commonly the weights are</p>
 <p>This is what scikit-image’s <a class="reference external" href="https://scikit-image.org/docs/stable/api/skimage.color.html#skimage.color.rgb2gray"><code class="docutils literal notranslate"><span class="pre">rgb2gray</span></code></a> does, as described <a class="reference external" href="https://scikit-image.org/docs/stable/auto_examples/color_exposure/plot_rgb_to_gray.html">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">rgb2gray</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">skimage.color</span><span class="w"> </span><span class="kn">import</span> <span class="n">rgb2gray</span>
 
 <span class="n">im_weighted_mean</span> <span class="o">=</span> <span class="n">rgb2gray</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
 
@@ -659,7 +665,7 @@ The fact the <em>difference</em> image looks the same suggests to me that some r
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mean of im is: 232.17774592252803 (dtype=uint8)
 The mean of im_mean is: 232.17774592252803 (dtype=float64)
-The mean of im_weighted_mean is: 0.9143139910430534 (dtype=float64)
+The mean of im_weighted_mean is: 0.9143139910430533 (dtype=float64)
 </pre></div>
 </div>
 </div>
@@ -686,12 +692,12 @@ So we do need to be on the lookout for sneaky conversions.</p>
 </section>
 </section>
 <section id="multichannel-images">
-<h2>Multichannel images<a class="headerlink" href="#multichannel-images" title="Permalink to this heading">#</a></h2>
+<h2>Multichannel images<a class="headerlink" href="#multichannel-images" title="Link to this heading">#</a></h2>
 <p>Working with multichannel (non-RGB) images in Python is extremely easy in some ways, and very awkward in others.</p>
 <p>Although because most of the awkward stuff comes at the start, that will dominate the rest of this section.</p>
 <p>For example, even just opening the data properly can be a challenge.</p>
 <section id="reading-multichannel-images">
-<h3>Reading multichannel images<a class="headerlink" href="#reading-multichannel-images" title="Permalink to this heading">#</a></h3>
+<h3>Reading multichannel images<a class="headerlink" href="#reading-multichannel-images" title="Link to this heading">#</a></h3>
 <p>I like using <a class="reference external" href="https://imageio.readthedocs.io/en/v2.9.0/userapi.html">imageio</a> to read images for its simplicity.
 However, if we rely upon <code class="docutils literal notranslate"><span class="pre">imageio.imread</span></code> for a multichannel tiff, we tend to just get the first channel.</p>
 <blockquote>
@@ -754,7 +760,7 @@ Channels last shape:	 (512, 512, 5)
 </div>
 </section>
 <section id="displaying-multichannel-images">
-<h3>Displaying multichannel images<a class="headerlink" href="#displaying-multichannel-images" title="Permalink to this heading">#</a></h3>
+<h3>Displaying multichannel images<a class="headerlink" href="#displaying-multichannel-images" title="Link to this heading">#</a></h3>
 <p>Unfortunately, you can’t easily show any arbitrary multichannel image using either channels-first or channels-last.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -825,14 +831,14 @@ And this doesn&#39;t work either! Invalid shape (512, 512, 5) for image data
 </div>
 </section>
 <section id="adding-color">
-<h3>Adding color<a class="headerlink" href="#adding-color" title="Permalink to this heading">#</a></h3>
+<h3>Adding color<a class="headerlink" href="#adding-color" title="Link to this heading">#</a></h3>
 <p>Unfortunately, we don’t currently have any of the color information that could be used to display each channel.
 We can just choose a colormap, like with any other single-channel image, but we can’t easily visualize channels merged together (at least with matplotlib… as far as I know).</p>
 <p>But one this we <em>can</em> do is convert each of our channels to RGB, using a fixed color.
 Here is a helper function to do that.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">colorize</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">colorize</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function to create an RGB image from a single-channel image using a </span>
 <span class="sd">    specific color.</span>
@@ -875,7 +881,7 @@ Here is a helper function to do that.</p>
 </div>
 </section>
 <section id="creating-composites">
-<h3>Creating composites<a class="headerlink" href="#creating-composites" title="Permalink to this heading">#</a></h3>
+<h3>Creating composites<a class="headerlink" href="#creating-composites" title="Link to this heading">#</a></h3>
 <p>Having done that, we can simply add our RGB images together to create a composite image - remembering to clip the result, so that we keep inside the range 0-1.</p>
 <blockquote>
 <div><p><strong>Important!</strong> We’ve moved away from colormaps here to change pixel values when creating RGB images. This gives us more control, but we need to remember that none of these modified images are suitable for quantitative analysis.</p>
@@ -1001,7 +1007,7 @@ By Pete Bankhead
 
   <p class="copyright">
     
-      © Copyright 2022-2024.
+      © Copyright 2022-2025.
       <br/>
     
   </p>

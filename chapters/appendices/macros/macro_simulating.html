@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Simulating image formation &#8212; Introduction to Bioimage Analysis</title>
   
@@ -29,45 +28,41 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6d8e1538" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script data-domain="bioimagebook.github.io" defer="defer" src="https://plausible.io/js/script.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/appendices/macros/macro_simulating';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script data-domain="bioimagebook.github.io" defer="defer" src="https://plausible.io/js/script.js"></script>
     <link rel="canonical" href="https://bioimagebook.github.io/chapters/appendices/macros/macro_simulating.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -168,7 +163,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -296,9 +302,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -323,14 +329,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/bioimagebook/bioimagebook.github.io/main?urlpath=tree/chapters/appendices/macros/macro_simulating.md" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -458,9 +464,9 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -508,7 +514,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="simulating-image-formation">
-<span id="chap-macro-simulating"></span><h1>Simulating image formation<a class="headerlink" href="#simulating-image-formation" title="Permalink to this heading">#</a></h1>
+<span id="chap-macro-simulating"></span><h1>Simulating image formation<a class="headerlink" href="#simulating-image-formation" title="Link to this heading">#</a></h1>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -520,26 +526,26 @@ document.write(`
 <span class="o">%</span><span class="k">autoreload</span> 2
 
 <span class="c1"># Default imports</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">helpers</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">myst_nb</span><span class="w"> </span><span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">ndimage</span>
 </pre></div>
 </div>
 </div>
 </details>
 </div>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>The Difference of Gaussians macro developed in <a class="reference internal" href="macro_intro.html#chap-macro-intro"><span class="std std-ref">ImageJ: Writing macros</span></a> was useful, but quite simple.
 This section contains an extended practical, the goal of which is to develop a somewhat more sophisticated macro that takes an ‘ideal’ image, and then simulates how it would look after being recorded by a fluorescence microscope.
 It can be used not only to get a better understanding of the image formation process, but also to generate test data for analysis algorithms.
 By creating simulations with different settings, we can investigate how our results might be affected by changes in image acquisition and quality.</p>
 <section id="image-formation-summary">
-<h3>Image formation summary<a class="headerlink" href="#image-formation-summary" title="Permalink to this heading">#</a></h3>
+<h3>Image formation summary<a class="headerlink" href="#image-formation-summary" title="Link to this heading">#</a></h3>
 <p>The following is a summary of the aspects of image formation discussed in this book:</p>
 <ul class="simple">
 <li><p>Images are composed of pixels, each of which has a <strong>single numeric value</strong> (not a color!).</p></li>
@@ -576,19 +582,19 @@ It acts as a <strong>convolution</strong>.</p></li>
 </section>
 </section>
 <section id="recording-the-main-steps">
-<h2>Recording the main steps<a class="headerlink" href="#recording-the-main-steps" title="Permalink to this heading">#</a></h2>
+<h2>Recording the main steps<a class="headerlink" href="#recording-the-main-steps" title="Link to this heading">#</a></h2>
 <p>It doesn’t really matter which image you use for this, but I recommend a single-channel 2D image that starts out without any obvious noise (e.g. the <em>Happy cell.tif</em> image).
 After starting the macro recorder, complete the following steps to create the main structure for the macro:</p>
 <figure class="margin align-default" id="id2">
 <img alt="../../../_images/macros_simulated_orig.png" src="../../../_images/macros_simulated_orig.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 163 </span><span class="caption-text">Example input image</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 163 </span><span class="caption-text">Example input image</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="margin align-default" id="id3">
 <img alt="../../../_images/macros_simulated.png" src="../../../_images/macros_simulated.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 164 </span><span class="caption-text">Example output image</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 164 </span><span class="caption-text">Example output image</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -669,9 +675,9 @@ The end result should look something like this:</p>
 <p>You would have a perfectly respectable macro if you stopped now, but the following section contains some ways in which it may be improved.</p>
 </section>
 <section id="making-improvements">
-<h2>Making improvements<a class="headerlink" href="#making-improvements" title="Permalink to this heading">#</a></h2>
+<h2>Making improvements<a class="headerlink" href="#making-improvements" title="Link to this heading">#</a></h2>
 <section id="normalizing-the-image">
-<h3>Normalizing the image<a class="headerlink" href="#normalizing-the-image" title="Permalink to this heading">#</a></h3>
+<h3>Normalizing the image<a class="headerlink" href="#normalizing-the-image" title="Link to this heading">#</a></h3>
 <p>The results you get from running the above macro will change depending upon the original range of the image that you use: that is, an image that starts off with high-valued pixels will end up having much less noise.
 To compensate for this somewhat, we can first normalize the image so that all pixels fall into the range 0–1.
 To do this, we need to determine the current range of pixel values, which can be found out using the macro function:</p>
@@ -689,7 +695,7 @@ Normalization is now possible using <span class="menuselection notranslate">Subt
 </div>
 </section>
 <section id="varying-the-fluorescence-emission-rate">
-<h3>Varying the fluorescence emission rate<a class="headerlink" href="#varying-the-fluorescence-emission-rate" title="Permalink to this heading">#</a></h3>
+<h3>Varying the fluorescence emission rate<a class="headerlink" href="#varying-the-fluorescence-emission-rate" title="Link to this heading">#</a></h3>
 <p>The new problem we will have after normalization is that there will be a maximum photon emission rate of 1 in the brightest part of the image, which will give us a image dominated completely by noise.
 We can change this by multiplying the pixels again, and so define what we want the emission rate to be in the brightest part of the image.
 I suggest creating a variable for this, and setting its value to 10.
@@ -701,7 +707,7 @@ Then add the following line immediately after normalization:</p>
 For a less bright sample, you will most likely need to increase the exposure time to get a similar amount of signal – but beware that increasing the exposure time also involves collecting more unhelpful background photons, so is not quite so good as having a sample where the important parts are intrinsically brighter.</p>
 </section>
 <section id="simulating-binning">
-<h3>Simulating binning<a class="headerlink" href="#simulating-binning" title="Permalink to this heading">#</a></h3>
+<h3>Simulating binning<a class="headerlink" href="#simulating-binning" title="Link to this heading">#</a></h3>
 <p>The main idea of <a class="reference internal" href="../../3-fluorescence/4-microscope_types/microscope_types.html#sec-detectors-binning"><span class="std std-ref">binning</span></a> is that the electrons from multiple pixels are added together prior to readout, so that the number of electrons being quantified is bigger relative to the read noise.
 For
 2×2 binning this involves splitting the image into distinct 2×2 pixel blocks, and creating another image in which the value of each pixel is the sum of the values within the corresponding block.</p>
@@ -726,7 +732,7 @@ You simply add an extra variable to your list at the start of the macro</p>
 The lines of code that perform the binning should be inserted <em>before</em> the addition of read noise.</p>
 </section>
 <section id="varying-bit-depths">
-<h3>Varying bit-depths<a class="headerlink" href="#varying-bit-depths" title="Permalink to this heading">#</a></h3>
+<h3>Varying bit-depths<a class="headerlink" href="#varying-bit-depths" title="Link to this heading">#</a></h3>
 <p>Varying the simulated bit-depths by changing the maximum value allowed in the image takes a little work: you need to know that the maximum value in an 8-bit image is 255, while for a 12-bit image it is 4095 and so on.
 It is more intuitive to just change the image bit-depth and have the macro do the calculation for you.
 To do this, you can replace the <code class="docutils literal notranslate"><span class="pre">maxVal</span> <span class="pre">=</span> <span class="pre">255;</span></code> variable at the start of the macro with <code class="docutils literal notranslate"><span class="pre">nBits</span> <span class="pre">=</span> <span class="pre">8;</span></code> and then update the later clipping code to become</p>
@@ -738,7 +744,7 @@ To do this, you can replace the <code class="docutils literal notranslate"><span
 Now it’s easier to explore the difference between 8-bit, 12-bit and 14-bit images (which are the main bit-depths normally associated with microscope detectors, even if the resulting image is stored as 16-bit).</p>
 </section>
 <section id="rounding-to-integer-values">
-<h3>Rounding to integer values<a class="headerlink" href="#rounding-to-integer-values" title="Permalink to this heading">#</a></h3>
+<h3>Rounding to integer values<a class="headerlink" href="#rounding-to-integer-values" title="Link to this heading">#</a></h3>
 <p>The macro has already clipped the image to a specified bit-depth, but it still contains 32-bit data and so potentially has non-integer values that could not be stored in the 8 or 16-bit images a microscope typically provides as output.
 Therefore it remains to round the values to the nearest integer.</p>
 <p>There are a few ways to do this: we can convert the image using <span class="menuselection notranslate">Image ‣ Type ‣</span> commands, though then we need to be careful about whether there will be any scaling applied.
@@ -769,7 +775,7 @@ Then <code class="docutils literal notranslate"><span class="pre">y</span></code
 This continues until <code class="docutils literal notranslate"><span class="pre">y</span></code> is equal to the image height – at which point the processing is complete <a class="footnote-reference brackets" href="#fn-loops" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 </section>
 <section id="final-code">
-<h3>Final code<a class="headerlink" href="#final-code" title="Permalink to this heading">#</a></h3>
+<h3>Final code<a class="headerlink" href="#final-code" title="Link to this heading">#</a></h3>
 <p>The final code of my version of the macro is given below:</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Variables to change</span>
 <span class="n">psfSigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
@@ -865,7 +871,7 @@ This continues until <code class="docutils literal notranslate"><span class="pre
 </section>
 </section>
 <section id="uses-limitations">
-<h2>Uses &amp; limitations<a class="headerlink" href="#uses-limitations" title="Permalink to this heading">#</a></h2>
+<h2>Uses &amp; limitations<a class="headerlink" href="#uses-limitations" title="Link to this heading">#</a></h2>
 <p>Of course, the above macro is based on some assumptions and simplifications.
 For example, it treats gain as a simple multiplication of the photon counts – but the gain amplification process also involves some randomness, which introduces extra noise.
 Because this noise behaves statistically quite like photon noise, the effect can be thought of as decreasing the number of photons that were detected.
@@ -890,10 +896,12 @@ To do so, you would need to</p>
 It’s more likely that the results are different, however.
 In that case, the comparison gives you some idea of how affected by the imaging process your measurements are – and therefore how reliably they relate to the ‘real’ underlying sample.</p>
 <hr class="footnotes docutils" />
-<aside class="footnote brackets" id="fn-loops" role="note">
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="fn-loops" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>If you’re unfamiliar with programming, the syntax of loops may look quite strange.
 Reading through some online tutorials for the ImageJ macro language or for-loops in Java should help demystify what is happening here</p>
+</aside>
 </aside>
 </section>
 </section>
@@ -992,7 +1000,7 @@ By Pete Bankhead
 
   <p class="copyright">
     
-      © Copyright 2022-2024.
+      © Copyright 2022-2025.
       <br/>
     
   </p>
