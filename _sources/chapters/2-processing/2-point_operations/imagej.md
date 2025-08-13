@@ -222,7 +222,7 @@ For anything else, I'd generally rather convert to 32-bit and multiply by -1 -- 
 
 ## The Image Calculator
 
-{menuselection}`Process --> Math --> Image Calculator...` is used to combine two images in various ways.
+{menuselection}`Process --> Image Calculator...` is used to combine two images in various ways.
 It is one of ImageJ's most indispensable commands.
 
 ```{figure} images/points-image-calculator.png
@@ -240,7 +240,7 @@ If any of the original images are 8 or 16-bit, then the result might require cli
 
 ```{tab-item} Practical
 
-{menuselection}`Process --> Math --> Image Calculator...` finally makes it possible for us to check whether the pixel values of two images are all identical -- without relying on summary measurements or histograms.
+{menuselection}`Process --> Image Calculator...` finally makes it possible for us to check whether the pixel values of two images are all identical -- without relying on summary measurements or histograms.
 
 Use it to determine which two of the images *Same_1.tif*, *Same_2.tif* and *Same_3.tif* are identical in terms of pixel values.
 

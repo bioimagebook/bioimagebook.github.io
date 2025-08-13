@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6d8e1538" />
@@ -530,10 +530,10 @@ document.write(`
 </ul>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
@@ -588,10 +588,10 @@ Each coefficient is 1/9, meaning that together all coefficients sum to 1.</p>
 At this point, all we need to know about noise is that it acts like a random (positive or negative) error added to each pixel value, which obscures detail, messes with the histogram, and makes the image look grainy.</p>
 <p><a class="reference internal" href="#fig-filt-reduce-noise"><span class="std std-numref">Fig. 82</span></a> provides an illustration of how effectively the 3×3 filter can reduce Gaussian noise in an image.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">ndimage</span>
@@ -656,10 +656,10 @@ Computing the difference between images shows what the filter removed, which was
 We can do this by defining the kernel in such a way that coefficients we want to ignore are set to 0, and the non-zero pixels approximate a circle.
 The size of the filter is then defined in terms of a radius value (<a class="reference internal" href="#fig-filter-shapes"><span class="std std-numref">Fig. 83</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
@@ -741,10 +741,10 @@ In particular, ‘convolve’ is used often enough as a synonym for ‘filter’
 This is not only in terms of reducing noise, but also in terms of reducing detail, i.e. making the image more blurry (<a class="reference internal" href="#fig-mean-filter-sizes"><span class="std std-numref">Fig. 84</span></a>).
 If noise reduction is the primary goal, it’s therefore best to avoid unnecessary blurring by using the smallest filter that gives acceptable results.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a circular mean filter</span>
@@ -847,10 +847,10 @@ Applied to an image, this replaces every pixel with the difference between the p
 The output is positive whenever the pixel values are increasing horizontally, negative when the pixel values are decreasing, and zero if the values are constant – <em>no matter what the original constant value was</em>, so that flat areas are zero in the gradient image irrespective of their original brightness.
 We can also rotate the filter by 90 and get a vertical gradient image (<a class="reference internal" href="#fig-processing-filters-gradient"><span class="std std-numref">Fig. 85</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -918,10 +918,10 @@ There are several common approaches.</p>
 <p>The boundary pixels could simply be ignored and left with their original values, but for large neighborhoods this would result in much of the image being unfiltered.
 Alternative options include treating every pixel beyond the boundary as zero, replicating the closest valid pixel, treating the image as if it is part of a periodic tiling, or mirroring the internal values (<a class="reference internal" href="#fig-filter-boundaries"><span class="std std-numref">Fig. 86</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -989,10 +989,10 @@ This is in contrast to a mean filter, which cannot ignore extreme pixels but rat
 <p>However, a disadvantage of a median filter is that it can seem to introduce patterns or textures that were not present in the original image, at least whenever the size of the filter increases (see <a class="reference internal" href="#fig-processing-filters"><span class="std std-numref">Fig. 92</span></a>D below).
 Another disadvantage is that large median filters tend to be slow.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -1058,10 +1058,10 @@ A small median filter is capable of removing the outliers completely, with a min
 <p>Other rank filters include the <strong>minimum</strong> and <strong>maximum filters</strong>, which replace each pixel value with the minimum or maximum value in the surrounding neighborhood respectively (<a class="reference internal" href="#fig-processing-filters-rank"><span class="std std-numref">Fig. 89</span></a>).
 They will become more important when we discuss <a class="reference internal" href="../5-morph/morph.html#chap-morph"><span class="std std-ref">morphological operations</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -1096,10 +1096,10 @@ They will become more important when we discuss <a class="reference internal" hr
 </figcaption>
 </figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -1148,10 +1148,10 @@ Answer</label><div class="sd-tab-content docutils">
 However, unlike a mean filter – for which even the furthest away pixels in the neighborhood influence the result by the same amount as the closest pixels – the smoothing of a Gaussian filter is weighted so that the influence of a pixel decreases with its distance from the filter center.
 This tends to give a better result in many cases (<a class="reference internal" href="#fig-filt-smoothing"><span class="std std-numref">Fig. 90</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -1204,10 +1204,10 @@ In terms of filtering, this means that the coefficients add to 1 and the image w
 The size of the function is controlled by <span class="math notranslate nohighlight">\(\sigma\)</span>, rather than a filter radius.
 <span class="math notranslate nohighlight">\(\sigma\)</span> is equivalent to the standard deviation of a normal (i.e. Gaussian) distribution.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -1258,10 +1258,10 @@ The size of the function is controlled by <span class="math notranslate nohighli
 </figure>
 <p>A comparison of several filters is shown in <a class="reference internal" href="#fig-processing-filters"><span class="std std-numref">Fig. 92</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
@@ -1320,10 +1320,10 @@ Nevertheless, your decisions are not at an end since the precise size of the fil
 As the filter size increases, Gaussian filtering starts to suppress larger structures occupying multiple pixels – reducing their intensities and increasing their sizes, until eventually they would be smoothed into surrounding regions (<a class="reference internal" href="#fig-gaussian-effects"><span class="std std-numref">Fig. 93</span></a>).
 By varying the filter size, we can then decide the <strong>scale</strong> at which the processing and analysis should happen.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read image, extract first channel &amp; crop a bit</span>
@@ -1395,10 +1395,10 @@ Here, gradient magnitude images are computed, similar to what was shown in <a cl
 Applying a small Gaussian filter prior to computing the gradient magnitude gives much better results (C).
 If we only want the very strongest edges, then apply a larger filter would be better (D).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -1453,10 +1453,10 @@ This will remove even more structures, while still preserving the largest featur
 <p>This process is called <strong>difference of Gaussians (DoG) filtering</strong>, and it is a technique that I use <em>all the time</em>.
 It is especially useful for detecting small structures, or as an alternative to the gradient magnitude for enhancing edges (<a class="reference internal" href="#fig-dog-red-hela"><span class="std std-numref">Fig. 95</span></a>).</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -1491,10 +1491,10 @@ It is especially useful for detecting small structures, or as an alternative to 
 </figcaption>
 </figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gaussian_kernel</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
@@ -1571,10 +1571,10 @@ The sum of the coefficients for (A) and (B) is one in each case, while the coeff
 A similar operation, which requires only a single <span class="math notranslate nohighlight">\(\sigma\)</span> and a single filter, is <strong>Laplacian of Gaussian (LoG) filtering</strong>.</p>
 <p>The appearance of a LoG filter is like an upside-down DoG filter (<a class="reference internal" href="#fig-log-plots"><span class="std std-numref">Fig. 97</span></a>), but if the resulting image is <a class="reference internal" href="../2-point_operations/point_operations.html#sec-points-inversion"><span class="std std-ref">inverted</span></a> then the results are comparable <a class="footnote-reference brackets" href="#fn-4" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -1621,10 +1621,10 @@ A similar operation, which requires only a single <span class="math notranslate 
 </figcaption>
 </figure>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -1663,10 +1663,10 @@ In the case of LoG filtering, inversion is involved: darker points become bright
 But rather than stop there, the subtracted image is multiplied by some weighting factor and <em>added back</em> to the original.
 This gives an image that looks much the same as the original, but with edges sharpened by an amount dependent upon the chosen weight.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>

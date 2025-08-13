@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6d8e1538" />
@@ -519,10 +519,10 @@ document.write(`
 </ul>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
@@ -554,10 +554,10 @@ We will briefly introduce both, before then showing how they can be used in comb
 If the pixel itself is already part of the background then this is zero.
 The result is an image called a <strong>distance map</strong>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance_transform_edt</span>
@@ -597,10 +597,10 @@ The result is an image called a <strong>distance map</strong>.</p>
 However, erosion and dilation can be computed from a distance map very efficiently simply by applying a global threshold.
 This can be much faster in practice.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;blobs.gif&#39;</span><span class="p">)</span>
@@ -646,10 +646,10 @@ The distance map values corresponding to foreground pixels in the thinned image 
 This provides an alternative to straightforward thresholding, which can be <em>extremely</em> useful when need to partition an image into many different objects.</p>
 <p>To understand how the watershed transform works, picture the image as an uneven landscape in which the value of each pixel corresponds to a height.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_watershed_image</span><span class="p">():</span>
@@ -709,10 +709,10 @@ The water then continues to rise, with dams being built as needed, until in the 
 <!-- <div class=video-container>
 <iframe width="1042" height="586" src="https://www.youtube.com/embed/yywoAgJzje8?loop=1&playlist=yywoAgJzje8&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div> --><div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">skimage.color</span><span class="w"> </span><span class="kn">import</span> <span class="n">label2rgb</span>
@@ -778,10 +778,10 @@ The process is as follows:</p>
 <li><p>Apply the watershed transform, starting from the regional minima of the inverted distance map</p></li>
 </ul>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">skimage.morphology</span><span class="w"> </span><span class="kn">import</span> <span class="n">disk</span><span class="p">,</span> <span class="n">dilation</span>
@@ -816,10 +816,10 @@ The process is as follows:</p>
 <p>The objects to be split do not have to be perfectly round.
 The only requirement is that there are clearly distinct regional maxima in the distance transform – or, alternatively, we can define suitable seeds using other processing steps.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
@@ -880,10 +880,10 @@ In Python code using scikit-image, that means we are using the <code class="docu
 <p>If we apply a watershed transform to this distance map, using the objects in the binary image as seeds, we effectively partition the image into different regions according to the closest object in the binary image.</p>
 <p>This is sometimes called the <strong>Voronoi transform</strong> of the image.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
@@ -934,10 +934,10 @@ This technique may be used to approximate a cell boundary based upon detected nu
 We can’t simply dilate a labeled image with a maximum filter, because there’s nothing to prevent regions merging into one another.
 When seeds are close together, the higher label will ‘win’ the expansion race in every case, dominating the output.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
@@ -974,10 +974,10 @@ The only difference we need to incorporate is that we prevent the watershed expa
 We can threshold that to define a binary mask that indicates where regions should no longer expand.
 If we update our watershed output to have background pixels at the same locations where our binary mask has background pixels, we have achieved a constrained expansion of 10 pixels without overlap.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance_transform_edt</span><span class="p">,</span> <span class="n">label</span>
