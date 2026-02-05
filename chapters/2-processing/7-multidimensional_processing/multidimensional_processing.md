@@ -420,7 +420,7 @@ Thinning algorithms are often designed to work in 3D, although not usually highe
 The distance and watershed transforms extend readily to 3D, but require a little caution.
 
 One thing to look out for, especially with the distance transform, is whether pixel anisotropy is taken into consideration.
-If not, the the distance transform will not be capable of properly identifying the 'nearest' foreground or background pixel in calibrated units, but rather only in pixel units.
+If not, then the distance transform will not be capable of properly identifying the 'nearest' foreground or background pixel in calibrated units, but rather only in pixel units.
 
 A cumbersome workaround may be to resize the image so that the pixels *are* isotropic, but that may make every other analysis step more complicated and/or require a huge amount more memory to store the image.
 A preferable approach is to try to find a distance transform implementation that incorporates pixel size information into its calculations.
