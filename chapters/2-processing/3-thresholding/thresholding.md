@@ -1007,7 +1007,7 @@ The top half of {numref}`fig-thresholds_noisy` reproduces the nuclei from {numre
 Although the nuclei are still clearly visible in the image (A), the two classes of pixels (which were previously easy to separate) have now been merged together in the histogram (B).
 The triangle threshold method, which had performed well before, now gives less attractive results \(C), because the noise has caused the ranges of background and nuclei pixels to overlap.
 
-*However,* if we apply a Gaussian filter to smooth the image, a lot of the the random noise is reduced (see {ref}`chap_filters`).
+*However,* if we apply a Gaussian filter to smooth the image, a lot of the random noise is reduced (see {ref}`chap_filters`).
 This results in a histogram dramatically more similar to that in the original, (almost) noise-free image, and the threshold is again quite successful (F).
 
 ```{code-cell} ipython3
