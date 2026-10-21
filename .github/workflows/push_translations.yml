@@ -2,12 +2,17 @@ name: build-book
 
 # Only run this when the main branch changes a markdown file or a top level config file
 on:
+    workflow_dispatch:
     push:
       branches:
       - main
       paths:
       - 'chapters/**.md'
       - '_*.yml'
+
+permissions:
+  contents: write
+  pull-requests: write
 
 # This job installs dependencies, builds translation files, and makes a PR to update the POTs
 jobs:
