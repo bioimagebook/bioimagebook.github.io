@@ -16,38 +16,41 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6d8e1538" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -70,6 +73,7 @@
     <link rel="prev" title="ImageJ: Thresholding" href="../3-thresholding/imagej.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -85,19 +89,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -105,7 +98,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -113,8 +105,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -130,7 +122,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -160,21 +153,17 @@
     
     
     <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark pst-js-only" alt="Introduction to Bioimage Analysis - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -282,9 +271,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -433,7 +427,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -447,25 +441,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -541,7 +527,7 @@ document.write(`
 
 <span class="c1"># Default imports</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'../../../'</span><span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">helpers</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">myst_nb</span><span class="w"> </span><span class="kn">import</span> <span class="n">glue</span>
@@ -597,14 +583,14 @@ At this point, all we need to know about noise is that it acts like a random (po
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">ndimage</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'happy_cell.tif'</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="p">[::</span><span class="mi">2</span><span class="p">,</span> <span class="p">::</span><span class="mi">2</span><span class="p">]</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
 
 <span class="c1"># Identify central row &amp; define how line should be displayed</span>
 <span class="n">row</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>
-<span class="n">line_args</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="p">],</span> <span class="s1">&#39;w--&#39;</span><span class="p">)</span>
+<span class="n">line_args</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="p">],</span> <span class="s1">'w--'</span><span class="p">)</span>
 
 <span class="c1"># Create a 3x3 mean filter kernel</span>
 <span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -612,34 +598,36 @@ At this point, all we need to know about noise is that it acts like a random (po
 
 <span class="c1"># Ensure aligned</span>
 <span class="c1"># fig = create_figure(figsize=(8, 8))</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">'col'</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">'row'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 
 <span class="c1"># Show images &amp; plots</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(A) Original image"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
 
 <span class="n">im_mean</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_mean</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Mean filtered&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_mean</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(B) Mean filtered"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
 
 <span class="n">im_diff</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im_mean</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">im_diff</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="mi">3</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_diff</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Subtraction (A) - (B)&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">s</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_diff</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(C) Subtraction (A) - (B)"</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">s</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
 
-<span class="n">show_plot</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">im_mean</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
-<span class="n">show_plot</span><span class="p">(</span><span class="n">im_diff</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">'Value'</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">'x'</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">im_mean</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">'x'</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+<span class="n">show_plot</span><span class="p">(</span><span class="n">im_diff</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">'x'</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filt_reduce_noise&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_filt_reduce_noise'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 </div>
 <figure class="align-center" id="fig-filt-reduce-noise">
-<img alt="../../../_images/bdc9ad6c9dd855a1437596c7c60e70215b3b3a4c152f5a6b2ffcac234192f1bd.png" src="../../../_images/bdc9ad6c9dd855a1437596c7c60e70215b3b3a4c152f5a6b2ffcac234192f1bd.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1600x1000 with 6 Axes&gt;
+</pre></div>
+</div>
 <figcaption>
 <p><span class="caption-number">Fig. 82 </span><span class="caption-text">Filters can be used to reduce noise.
 Applying a  3×3 mean filter makes the image smoother, as is particularly evident in the fluorescence plot made through the image center.
@@ -665,21 +653,21 @@ The size of the filter is then defined in terms of a radius value (<a class="ref
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">make_disk</span><span class="p">(</span><span class="n">radius</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Use a distance transform to create a circular disk filter</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance_transform_edt</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">width</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
     <span class="n">k</span><span class="p">[</span><span class="n">width</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">width</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="c1"># Different implementations treat the radius value differently...</span>
-    <span class="c1"># here, we try to match ImageJ&#39;s filters for the figure</span>
+    <span class="c1"># here, we try to match ImageJ's filters for the figure</span>
     <span class="k">return</span> <span class="n">distance_transform_edt</span><span class="p">(</span><span class="o">~</span><span class="n">k</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">radius</span> <span class="o">+</span> <span class="mf">0.5</span>
 
 <span class="n">kernels</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;3x3 square&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)),</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s1">&#39;Circular, radius=1.5&#39;</span><span class="p">,</span> <span class="n">make_disk</span><span class="p">(</span><span class="mf">1.5</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s1">&#39;Circular, radius=2.5&#39;</span><span class="p">,</span> <span class="n">make_disk</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s1">&#39;5x5 square&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)),</span> <span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">'3x3 square'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)),</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">'Circular, radius=1.5'</span><span class="p">,</span> <span class="n">make_disk</span><span class="p">(</span><span class="mf">1.5</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">'Circular, radius=2.5'</span><span class="p">,</span> <span class="n">make_disk</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">'5x5 square'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)),</span> <span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)),</span>
 <span class="p">]</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)]</span>
 <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span>
@@ -697,21 +685,21 @@ The size of the filter is then defined in terms of a radius value (<a class="ref
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[])</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">)</span>
-    <span class="n">fd_main</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
-    <span class="n">fd_zero</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">}</span>
+    <span class="n">fd_main</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'size'</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+    <span class="n">fd_zero</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'size'</span><span class="p">:</span> <span class="mi">8</span><span class="p">}</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="n">kernel</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="s1">'0'</span>
             <span class="n">fd</span> <span class="o">=</span> <span class="n">fd_zero</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$\frac</span><span class="si">{1}</span><span class="s1">{&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;}$&#39;</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'$\frac</span><span class="si">{1}</span><span class="s1">{'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">+</span><span class="s1">'}$'</span>
             <span class="n">fd</span> <span class="o">=</span> <span class="n">fd_main</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="n">fd</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="n">fd</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="o">+</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="o">+</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filter_shapes&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_filter_shapes'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -761,25 +749,25 @@ If noise reduction is the primary goal, it’s therefore best to avoid unnecessa
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">ndimage</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'happy_cell.tif'</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="p">[::</span><span class="mi">2</span><span class="p">,</span> <span class="p">::</span><span class="mi">2</span><span class="p">]</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
 
 <span class="n">kernels</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Original image&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="s1">&#39;Filtered, radius=1&#39;</span><span class="p">:</span> <span class="n">create_mean_kernel</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
-    <span class="s1">&#39;Filtered, radius=5&#39;</span><span class="p">:</span> <span class="n">create_mean_kernel</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
-    <span class="s1">&#39;Filtered, radius=10&#39;</span><span class="p">:</span> <span class="n">create_mean_kernel</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="s1">'Original image'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">'Filtered, radius=1'</span><span class="p">:</span> <span class="n">create_mean_kernel</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+    <span class="s1">'Filtered, radius=5'</span><span class="p">:</span> <span class="n">create_mean_kernel</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+    <span class="s1">'Filtered, radius=10'</span><span class="p">:</span> <span class="n">create_mean_kernel</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="c1"># Identify central row &amp; define how line should be displayed</span>
 <span class="n">row</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>
-<span class="n">line_args</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="p">],</span> <span class="s1">&#39;w--&#39;</span><span class="p">)</span>
+<span class="n">line_args</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="p">],</span> <span class="s1">'w--'</span><span class="p">)</span>
 
 <span class="c1"># Ensure aligned</span>
 <span class="c1"># fig = create_figure(figsize=(8, 8))</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">kernels</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">kernels</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">'col'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 
 <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">kernels</span><span class="p">)</span>
@@ -794,15 +782,15 @@ If noise reduction is the primary goal, it’s therefore best to avoid unnecessa
     <span class="n">show_image</span><span class="p">(</span><span class="n">im_filtered</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">count</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
 
-    <span class="n">show_plot</span><span class="p">(</span><span class="n">im_filtered</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="n">count</span><span class="p">))</span>
+    <span class="n">show_plot</span><span class="p">(</span><span class="n">im_filtered</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">'x'</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="n">count</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Value'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_mean_filter_sizes&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_mean_filter_sizes'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -855,21 +843,21 @@ We can also rotate the filter by 90 and get a vertical gradient image (<a class
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'happy_cell.tif'</span><span class="p">)</span>
 
 <span class="n">kernel_horizontal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="n">kernel_vertical</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
 <span class="n">im_horizontal</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">kernel_horizontal</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_horizontal</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Horizontal gradient&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_horizontal</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(A) Horizontal gradient"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
 
 <span class="n">im_vertical</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">kernel_vertical</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_vertical</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Vertical gradient&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_vertical</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(B) Vertical gradient"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
 
 <span class="n">im_grad_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">im_horizontal</span><span class="o">*</span><span class="n">im_horizontal</span> <span class="o">+</span> <span class="n">im_vertical</span><span class="o">*</span><span class="n">im_vertical</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_grad_mag</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Gradient magnitude&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_grad_mag</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(C) Gradient magnitude"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_processing_filters_gradient&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_processing_filters_gradient'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -924,34 +912,34 @@ Alternative options include treating every pixel beyond the boundary as zero, re
 <p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">Illustrate different boundary padding methods that may be used with convolution.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;/images/boundary_demo.png&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'/images/boundary_demo.png'</span><span class="p">)</span>
 <span class="n">pad_size</span> <span class="o">=</span> <span class="mi">100</span>
 
-<span class="n">im_padded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_padded</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
+<span class="n">im_padded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'constant'</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_padded</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(A) Original image"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">231</span><span class="p">)</span>
 
-<span class="n">im_zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_zeros</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Zeros&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
+<span class="n">im_zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'constant'</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_zeros</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(B) Zeros"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">232</span><span class="p">)</span>
 
-<span class="n">im_replicate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_replicate</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Edge replication&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
+<span class="n">im_replicate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'edge'</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_replicate</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(C) Edge replication"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">233</span><span class="p">)</span>
 
-<span class="n">im_circular</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;wrap&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_circular</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Wrapped/circular&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
+<span class="n">im_circular</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'wrap'</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_circular</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(D) Wrapped/circular"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">234</span><span class="p">)</span>
 
-<span class="n">im_symmetric</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;symmetric&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_symmetric</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(E) Symmetric&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
+<span class="n">im_symmetric</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'symmetric'</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_symmetric</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(E) Symmetric"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">235</span><span class="p">)</span>
 
-<span class="n">im_extra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;linear_ramp&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_extra</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(E) Linear ramp&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
+<span class="n">im_extra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pad_size</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'linear_ramp'</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_extra</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(E) Linear ramp"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">236</span><span class="p">)</span>
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filter_boundaries&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_filter_boundaries'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -995,21 +983,21 @@ Another disadvantage is that large median filters tend to be slow.</p>
 <p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">Illustrate how median filters remove salt-and-pepper noise more cleanly than mean filters.</span>
-<span class="sd">(Note: most noise isn&#39;t like this, and median filters aren&#39;t always preferable)</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">(Note: most noise isn't like this, and median filters aren't always preferable)</span>
+<span class="sd">"""</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.axes_grid1.inset_locator</span><span class="w"> </span><span class="kn">import</span> <span class="n">zoomed_inset_axes</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">add_inset</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">],</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">axins</span> <span class="o">=</span> <span class="n">zoomed_inset_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_inset</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">],</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">axins</span> <span class="o">=</span> <span class="n">zoomed_inset_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">'upper left'</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">340</span>
     <span class="n">y</span> <span class="o">=</span> <span class="mi">210</span>
     <span class="n">s</span> <span class="o">=</span> <span class="mi">40</span>
-    <span class="n">axins</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">axins</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'nearest'</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">axins</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span>
     <span class="n">axins</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="n">axins</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
@@ -1017,7 +1005,7 @@ Another disadvantage is that large median filters tend to be slow.</p>
     <span class="n">ax</span><span class="o">.</span><span class="n">indicate_inset_zoom</span><span class="p">(</span><span class="n">axins</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">edge_color</span><span class="p">)</span>
 
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;fixed_cells.png&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'fixed_cells.png'</span><span class="p">)</span>
 
 <span class="c1"># Add salt-and-pepper noise by creating uniformly distributed noise,</span>
 <span class="c1"># then thresholding to choose which pixels should become black and white</span>
@@ -1026,22 +1014,22 @@ Another disadvantage is that large median filters tend to be slow.</p>
 <span class="n">im_random</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">im</span><span class="p">[</span><span class="n">im_random</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">im</span><span class="p">[</span><span class="n">im_random</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">-</span><span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Salt &amp; pepper noise&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;upper&quot;</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(A) Salt &amp; pepper noise"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">"upper"</span><span class="p">)</span>
 <span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im</span><span class="p">)</span>
 
 <span class="c1"># 3x3 mean filter</span>
 <span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="n">kernel</span> <span class="o">=</span> <span class="n">kernel</span> <span class="o">/</span> <span class="n">kernel</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="n">im_mean</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_mean</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Mean filter&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_mean</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(B) Mean filter"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
 <span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_mean</span><span class="p">)</span>
 
 <span class="c1"># 3x3 median filter</span>
 <span class="n">im_median</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">median_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_median</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Median filter&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_median</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(C) Median filter"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
 <span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_median</span><span class="p">)</span>
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_processing_filters_speckled&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_processing_filters_speckled'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1064,26 +1052,26 @@ They will become more important when we discuss <a class="reference internal" hr
 <p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">Compare median, maximum and minimum filters.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;fixed_cells.png&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'fixed_cells.png'</span><span class="p">)</span>
 
 <span class="n">filt_size</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">im_median</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">median_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">filt_size</span><span class="p">)</span>
 <span class="n">im_max</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">maximum_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">filt_size</span><span class="p">)</span>
 <span class="n">im_min</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">minimum_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">filt_size</span><span class="p">)</span>
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_median</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Median filter&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_median</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(A) Median filter"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
 <span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_median</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_max</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Maximum filter&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_max</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(B) Maximum filter"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
 <span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_max</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_min</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Minimum filter&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_min</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(C) Minimum filter"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
 <span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_min</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_processing_filters_rank&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_processing_filters_rank'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1102,20 +1090,20 @@ They will become more important when we discuss <a class="reference internal" hr
 <p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">Compute maximum minus minimum to show it enhances edges.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;fixed_cells.png&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'fixed_cells.png'</span><span class="p">)</span>
 
 <span class="n">filt_size</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">im_max</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">maximum_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">filt_size</span><span class="p">)</span>
 <span class="n">im_min</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">minimum_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">filt_size</span><span class="p">)</span>
 
 <span class="n">show_image</span><span class="p">(</span><span class="n">im_max</span> <span class="o">-</span> <span class="n">im_min</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filters_max_minus_min&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_filters_max_minus_min'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1154,10 +1142,10 @@ This tends to give a better result in many cases (<a class="reference internal" 
 <p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">Illustrate difference in mean &amp; Gaussian filter.</span>
-<span class="sd">Note that filter sizes here are a matter of taste -- there&#39;s nothing special about the values.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Note that filter sizes here are a matter of taste -- there's nothing special about the values.</span>
+<span class="sd">"""</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
@@ -1180,7 +1168,7 @@ This tends to give a better result in many cases (<a class="reference internal" 
 <span class="n">im_gauss</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">show_image</span><span class="p">(</span><span class="n">im_gauss</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filt_smoothing&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_filt_smoothing'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1210,9 +1198,9 @@ The size of the function is controlled by <span class="math notranslate nohighli
 <p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">Create a surface plot of a 2D Gaussian function.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">colormaps</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">LightSource</span>
@@ -1227,7 +1215,7 @@ The size of the function is controlled by <span class="math notranslate nohighli
 
 <span class="n">ls</span> <span class="o">=</span> <span class="n">LightSource</span><span class="p">()</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">z</span> <span class="o">/</span> <span class="n">z</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-<span class="n">rgb</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">shade</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">colormaps</span><span class="p">[</span><span class="s1">&#39;plasma&#39;</span><span class="p">],</span> <span class="n">blend_mode</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">)</span>
+<span class="n">rgb</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">shade</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">colormaps</span><span class="p">[</span><span class="s1">'plasma'</span><span class="p">],</span> <span class="n">blend_mode</span><span class="o">=</span><span class="s1">'soft'</span><span class="p">)</span>
 
 <span class="c1"># Create surface plots</span>
 <span class="n">surf_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -1238,13 +1226,13 @@ The size of the function is controlled by <span class="math notranslate nohighli
     <span class="n">rstride</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">cstride</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">'3d'</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="o">**</span><span class="n">surf_args</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_filters_math_gaussian_2d&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_filters_math_gaussian_2d'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1266,7 +1254,7 @@ The size of the function is controlled by <span class="math notranslate nohighli
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;fixed_cells.png&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'fixed_cells.png'</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">im_noisy</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">/</span> <span class="mi">8</span>
 
@@ -1275,30 +1263,30 @@ The size of the function is controlled by <span class="math notranslate nohighli
     <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original, noise-free image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">321</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(A) Original, noise-free image"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">321</span><span class="p">)</span>
 <span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im</span><span class="p">)</span>
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Noisy image&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">322</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(B) Noisy image"</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">322</span><span class="p">)</span>
 <span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_noisy</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">)</span>
 
 <span class="n">kernel</span> <span class="o">=</span> <span class="n">create_mean_kernel</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">im_mean</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_mean</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Mean filtered, radius = 3&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">323</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_mean</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(C) Mean filtered, radius = 3"</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">323</span><span class="p">)</span>
 <span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_mean</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">)</span>
 
 <span class="n">im_median</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">median_filter</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="n">footprint</span><span class="o">=</span><span class="n">kernel</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_median</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Median filtered, radius = 3&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">324</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_median</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(D) Median filtered, radius = 3"</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">324</span><span class="p">)</span>
 <span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_median</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">)</span>
 
 <span class="n">im_gauss_1</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_gauss_1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(E) Gaussian filtered, $\sigma = 1$&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">325</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_gauss_1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(E) Gaussian filtered, $\sigma = 1$"</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">325</span><span class="p">)</span>
 <span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_gauss_1</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">)</span>
 
 <span class="n">im_gauss_4</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im_noisy</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_gauss_4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(F) Gaussian filtered, $\sigma = 3$&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">326</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_gauss_4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(F) Gaussian filtered, $\sigma = 3$"</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">326</span><span class="p">)</span>
 <span class="n">add_inset</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">im_gauss_4</span><span class="p">,</span> <span class="o">**</span><span class="n">show_args</span><span class="p">)</span>
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_processing_filters&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_processing_filters'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1330,7 +1318,7 @@ By varying the filter size, we can then decide the <strong>scale</strong> at whi
 <span class="n">x</span> <span class="o">=</span> <span class="mi">40</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">168</span>
 <span class="n">w</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'hela-cells.zip'</span><span class="p">)[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">ndimage</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -1339,46 +1327,46 @@ By varying the filter size, we can then decide the <strong>scale</strong> at whi
 
 <span class="c1"># Identify central row &amp; define how line should be displayed</span>
 <span class="n">row</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>
-<span class="n">line_args</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="p">],</span> <span class="s1">&#39;w--&#39;</span><span class="p">)</span>
+<span class="n">line_args</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="p">],</span> <span class="s1">'w--'</span><span class="p">)</span>
 
 <span class="c1"># Ensure aligned</span>
 <span class="c1"># fig = create_figure(figsize=(8, 8))</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sigmas</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sigmas</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">'col'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 
 <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sigmas</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sigmas</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">sigma</span><span class="p">:</span>
         <span class="n">im_filtered</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Gaussian filtered $\sigma=</span><span class="si">{</span><span class="n">sigma</span><span class="si">}</span><span class="s1">$&#39;</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'Gaussian filtered $\sigma=</span><span class="si">{</span><span class="n">sigma</span><span class="si">}</span><span class="s1">$'</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">im_filtered</span> <span class="o">=</span> <span class="n">im</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Original image&#39;</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="s1">'Original image'</span>
 
     <span class="c1"># Show images &amp; plots</span>
     <span class="n">show_image</span><span class="p">(</span><span class="n">im_filtered</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">line_args</span><span class="p">)</span>
 
-    <span class="n">show_plot</span><span class="p">(</span><span class="n">im_filtered</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">show_plot</span><span class="p">(</span><span class="n">im_filtered</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">'x'</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2200</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">2001</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="p">[])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">2001</span><span class="p">,</span> <span class="mi">500</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Value'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_gaussian_effects&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_gaussian_effects'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 
 
 
 <span class="c1"># fig = create_figure(figsize=(8, 4))</span>
-<span class="c1"># show_image(&#39;images/gaussian_effects_sigma_0.png&#39;, title=&quot;(A) Original image&quot;, pos=231)</span>
-<span class="c1"># show_image(&#39;images/gaussian_effects_sigma_2.png&#39;, title=&quot;(B) Gaussian $\sigma = 2$&quot;, pos=232)</span>
-<span class="c1"># show_image(&#39;images/gaussian_effects_sigma_5.png&#39;, title=&quot;(C) Gaussian $\sigma = 5$&quot;, pos=233)</span>
+<span class="c1"># show_image('images/gaussian_effects_sigma_0.png', title="(A) Original image", pos=231)</span>
+<span class="c1"># show_image('images/gaussian_effects_sigma_2.png', title="(B) Gaussian $\sigma = 2$", pos=232)</span>
+<span class="c1"># show_image('images/gaussian_effects_sigma_5.png', title="(C) Gaussian $\sigma = 5$", pos=233)</span>
 
-<span class="c1"># show_image(&#39;images/gaussian_effects_plot.png&#39;, title=&quot;(D) Profile plots of the intensity in the red channel of the image&quot;, pos=234)</span>
-<span class="c1"># glue_fig(&#39;fig_gaussian_effects&#39;, fig)</span>
+<span class="c1"># show_image('images/gaussian_effects_plot.png', title="(D) Profile plots of the intensity in the red channel of the image", pos=234)</span>
+<span class="c1"># glue_fig('fig_gaussian_effects', fig)</span>
 </pre></div>
 </div>
 </div>
@@ -1404,9 +1392,9 @@ If we only want the very strongest edges, then apply a larger filter would be be
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">grad_mag</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Calculate a gradient magnitude image</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">kernel_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
     <span class="n">kernel_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
     <span class="n">im_h</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">kernel_h</span><span class="p">)</span>
@@ -1414,7 +1402,7 @@ If we only want the very strongest edges, then apply a larger filter would be be
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">im_h</span><span class="o">*</span><span class="n">im_h</span> <span class="o">+</span> <span class="n">im_v</span><span class="o">*</span><span class="n">im_v</span><span class="p">)</span>
 
 <span class="c1"># Get a noisy image</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;happy_cell.tif&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'happy_cell.tif'</span><span class="p">)</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
 
@@ -1424,11 +1412,11 @@ If we only want the very strongest edges, then apply a larger filter would be be
 <span class="n">im_sigma_5</span> <span class="o">=</span> <span class="n">grad_mag</span><span class="p">(</span><span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_sigma_0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) No smoothing&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_sigma_2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Gaussian $\sigma=2$&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_sigma_5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(D) Gaussian $\sigma=5$&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_edge_sigma&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(A) Original image"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_sigma_0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(B) No smoothing"</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_sigma_2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(C) Gaussian $\sigma=2$"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_sigma_5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(D) Gaussian $\sigma=5$"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_edge_sigma'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1462,9 +1450,9 @@ It is especially useful for detecting small structures, or as an alternative to 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">dog_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Apply a difference of Gaussians filter</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">im1</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">sigma1</span><span class="p">)</span>
     <span class="n">im2</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">sigma2</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">im1</span> <span class="o">-</span> <span class="n">im2</span>
@@ -1472,13 +1460,13 @@ It is especially useful for detecting small structures, or as an alternative to 
 <span class="c1"># Read image, extract first channel &amp; crop a bit</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">40</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;hela-cells.zip&#39;</span><span class="p">)[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="mi">446</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="mi">446</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'hela-cells.zip'</span><span class="p">)[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="mi">446</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="mi">446</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">dog_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) DoG, $\sigma = $1, 2&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">dog_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) DoG, $\sigma = $2, 4&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">dog_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) DoG, $\sigma = $4, 8&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_dog_red_hela&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(A) Original image"</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">dog_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(B) DoG, $\sigma = $1, 2"</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">dog_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(B) DoG, $\sigma = $2, 4"</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">223</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">dog_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(B) DoG, $\sigma = $4, 8"</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_dog_red_hela'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1498,10 +1486,10 @@ It is especially useful for detecting small structures, or as an alternative to 
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gaussian_kernel</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Create an image with a single 1 in the middle,</span>
 <span class="sd">    the apply a Gaussian filter to get the coefficients.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">filt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
     <span class="n">filt</span><span class="p">[</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
     <span class="k">return</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">filt</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
@@ -1525,17 +1513,17 @@ It is especially useful for detecting small structures, or as an alternative to 
 
 <span class="c1"># Create surface plots</span>
 <span class="n">surf_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">cmap</span> <span class="o">=</span> <span class="n">colormaps</span><span class="p">[</span><span class="s1">&#39;plasma&#39;</span><span class="p">],</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">colormaps</span><span class="p">[</span><span class="s1">'plasma'</span><span class="p">],</span>
     <span class="n">antialiased</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="mi">25</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">'3d'</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="mi">25</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gauss_small</span><span class="p">,</span> <span class="o">**</span><span class="n">surf_args</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gauss_large</span><span class="p">,</span> <span class="o">**</span><span class="n">surf_args</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gauss_diff</span><span class="p">,</span> <span class="o">**</span><span class="n">surf_args</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;(A) Smaller Gaussian filter&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;(B) Larger Gaussian filter&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;(C) Difference of Gaussians filter&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'(A) Smaller Gaussian filter'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'(B) Larger Gaussian filter'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'(C) Difference of Gaussians filter'</span><span class="p">)</span>
 
 <span class="c1"># Set z-limits to match</span>
 <span class="n">max_val</span> <span class="o">=</span> <span class="n">gauss_small</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
@@ -1546,7 +1534,7 @@ It is especially useful for detecting small structures, or as an alternative to 
     <span class="n">a</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
     <span class="n">a</span><span class="o">.</span><span class="n">set_zticklabels</span><span class="p">([])</span>
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_dog_plots&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_dog_plots'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1580,10 +1568,10 @@ A similar operation, which requires only a single <span class="math notranslate 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">log_kernel</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Create an image with a single 1 in the middle,</span>
 <span class="sd">    the apply a Gaussian filter to get the coefficients.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">filt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
     <span class="n">filt</span><span class="p">[</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
     <span class="k">return</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_laplace</span><span class="p">(</span><span class="n">filt</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
@@ -1597,7 +1585,7 @@ A similar operation, which requires only a single <span class="math notranslate 
 <span class="c1">#</span>
 <span class="n">z_log</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span><span class="o">*</span><span class="n">sigma</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">))</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="mi">25</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">'3d'</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="mi">25</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z_log</span><span class="p">,</span> <span class="o">**</span><span class="n">surf_args</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="n">z_log</span><span class="p">,</span> <span class="o">**</span><span class="n">surf_args</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
@@ -1605,10 +1593,10 @@ A similar operation, which requires only a single <span class="math notranslate 
     <span class="n">a</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
     <span class="n">a</span><span class="o">.</span><span class="n">set_zticklabels</span><span class="p">([])</span>
 
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;LoG filter&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Inverted LoG filter&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'LoG filter'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Inverted LoG filter'</span><span class="p">)</span>
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_log_plots&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_log_plots'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1629,19 +1617,19 @@ A similar operation, which requires only a single <span class="math notranslate 
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/dog_on_log_orig.png&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'images/dog_on_log_orig.png'</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Dog on a log&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(A) Dog on a log"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
 
 <span class="n">sigma_dog</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">im_dog</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma_dog</span><span class="p">)</span> <span class="o">-</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma_dog</span> <span class="o">*</span> <span class="mf">1.6</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_dog</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) DoG filtered dog&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_dog</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(B) DoG filtered dog"</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
 
 <span class="n">sigma_log</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">im_log</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_laplace</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma_log</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_log</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) LoG filtered dog&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_log</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(C) LoG filtered dog"</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_dog_on_log&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_dog_on_log'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1671,22 +1659,22 @@ This gives an image that looks much the same as the original, but with edges sha
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;images/unsharp_masking_orig.png&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'images/unsharp_masking_orig.png'</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
 <span class="k">if</span> <span class="n">im</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
     <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
 
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(A) Original image&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(A) Original image"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
 
 <span class="n">sigma</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">im_gauss</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
 <span class="n">im_diff</span> <span class="o">=</span> <span class="n">im</span> <span class="o">-</span> <span class="n">im_gauss</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_diff</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(B) Gaussian subtracted&quot;</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_diff</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(B) Gaussian subtracted"</span><span class="p">,</span> <span class="n">clip_percentile</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">132</span><span class="p">)</span>
 
 <span class="n">im_unsharp</span> <span class="o">=</span> <span class="n">im</span> <span class="o">+</span> <span class="n">im_diff</span> <span class="o">*</span> <span class="mi">2</span>
 <span class="n">im_unsharp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">im_unsharp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im_unsharp</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;(C) Unsharp masked&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im_unsharp</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"(C) Unsharp masked"</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">133</span><span class="p">)</span>
 
-<span class="n">glue_fig</span><span class="p">(</span><span class="s1">&#39;fig_unsharp_masking&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">glue_fig</span><span class="p">(</span><span class="s1">'fig_unsharp_masking'</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1784,14 +1772,16 @@ This is something we almost never need to care about for two reasons:</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-filters">Linear filters</a><ul class="nav section-nav flex-column">
@@ -1867,8 +1857,8 @@ See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" ta
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -16,38 +16,41 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6d8e1538" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -68,6 +71,7 @@
     <link rel="prev" title="ImageJ: Images &amp; pixels" href="imagej.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -83,19 +87,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -103,7 +96,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -111,8 +103,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -128,7 +120,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -158,21 +151,17 @@
     
     
     <img src="../../../_static/book-logo-smaller.png" class="logo__image only-light" alt="Introduction to Bioimage Analysis - Home"/>
-    <script>document.write(`<img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark" alt="Introduction to Bioimage Analysis - Home"/>`);</script>
+    <img src="../../../_static/book-logo-smaller.png" class="logo__image only-dark pst-js-only" alt="Introduction to Bioimage Analysis - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -280,9 +269,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -431,7 +425,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -445,25 +439,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -529,9 +515,9 @@ Later Python chapters in the handbook will build on these foundations.</p>
 <p>Let’s begin by loading an image in Python, and then showing it using <a class="reference external" href="https://matplotlib.org">matplotlib</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">Read and display an image in Python.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="c1"># In Python, we need to import things before we can use them</span>
 <span class="c1"># (And, often, google to find out what we ought to be importing,</span>
@@ -540,22 +526,24 @@ Later Python chapters in the handbook will build on these foundations.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">imageio</span><span class="w"> </span><span class="kn">import</span> <span class="n">imread</span>
 
 <span class="c1"># Read an image - we need to know the full path to wherever it is</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../../images/spooked.png&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">'../../../images/spooked.png'</span><span class="p">)</span>
 
 <span class="c1"># Create a plot of the image using the default brightness/contrast min/max and colormap</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
 
-<span class="c1"># Actually show the plot (if we don&#39;t do this explicitly, it might display anyway - but not always)</span>
+<span class="c1"># Actually show the plot (if we don't do this explicitly, it might display anyway - but not always)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3408/3771718922.py:12: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
-  im = imread(&#39;../../../images/spooked.png&#39;)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3470/3771718922.py:12: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+  im = imread('../../../images/spooked.png')
 </pre></div>
 </div>
-<img alt="../../../_images/8ed87ff7ab03764a24200bcf934e1f59c9f7559d5b499f185c9429243b073420.png" src="../../../_images/8ed87ff7ab03764a24200bcf934e1f59c9f7559d5b499f185c9429243b073420.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 1 Axes&gt;
+</pre></div>
+</div>
 </div>
 </div>
 <section id="changing-lookup-tables">
@@ -581,13 +569,13 @@ help(plt.imshow)
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function imshow in module matplotlib.pyplot:
 
-imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | None&#39; = None, norm: &#39;str | Normalize | None&#39; = None, *, aspect: &quot;Literal[&#39;equal&#39;, &#39;auto&#39;] | float | None&quot; = None, interpolation: &#39;str | None&#39; = None, alpha: &#39;float | ArrayLike | None&#39; = None, vmin: &#39;float | None&#39; = None, vmax: &#39;float | None&#39; = None, origin: &quot;Literal[&#39;upper&#39;, &#39;lower&#39;] | None&quot; = None, extent: &#39;tuple[float, float, float, float] | None&#39; = None, interpolation_stage: &quot;Literal[&#39;data&#39;, &#39;rgba&#39;] | None&quot; = None, filternorm: &#39;bool&#39; = True, filterrad: &#39;float&#39; = 4.0, resample: &#39;bool | None&#39; = None, url: &#39;str | None&#39; = None, data=None, **kwargs) -&gt; &#39;AxesImage&#39;
+imshow(X: 'ArrayLike | PIL.Image.Image', cmap: 'str | Colormap | None' = None, norm: 'str | Normalize | None' = None, *, aspect: "Literal['equal', 'auto'] | float | None" = None, interpolation: 'str | None' = None, alpha: 'float | ArrayLike | None' = None, vmin: 'float | None' = None, vmax: 'float | None' = None, origin: "Literal['upper', 'lower'] | None" = None, extent: 'tuple[float, float, float, float] | None' = None, interpolation_stage: "Literal['data', 'rgba'] | None" = None, filternorm: 'bool' = True, filterrad: 'float' = 4.0, resample: 'bool | None' = None, url: 'str | None' = None, data=None, **kwargs) -&gt; 'AxesImage'
     Display data as an image, i.e., on a 2D regular raster.
 
     The input may either be actual RGB(A) data, or 2D scalar data, which
     will be rendered as a pseudocolor image. For displaying a grayscale
     image, set up the colormapping using the parameters
-    ``cmap=&#39;gray&#39;, vmin=0, vmax=255``.
+    ``cmap='gray', vmin=0, vmax=255``.
 
     The number of pixels used to render an image is set by the Axes size
     and the figure *dpi*. This can lead to aliasing artifacts when
@@ -629,7 +617,7 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
 
         - An instance of `.Normalize` or one of its subclasses
           (see :ref:`colormapnorms`).
-        - A scale name, i.e. one of &quot;linear&quot;, &quot;log&quot;, &quot;symlog&quot;, &quot;logit&quot;, etc.  For a
+        - A scale name, i.e. one of "linear", "log", "symlog", "logit", etc.  For a
           list of available scales, call `matplotlib.scale.get_scale_names()`.
           In that case, a suitable `.Normalize` subclass is dynamically generated
           and instantiated.
@@ -645,7 +633,7 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
 
         This parameter is ignored if *X* is RGB(A).
 
-    aspect : {&#39;equal&#39;, &#39;auto&#39;} or float or None, default: None
+    aspect : {'equal', 'auto'} or float or None, default: None
         The aspect ratio of the Axes.  This parameter is particularly
         relevant for images since it determines whether data pixels are
         square.
@@ -653,10 +641,10 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
         This parameter is a shortcut for explicitly calling
         `.Axes.set_aspect`. See there for further details.
 
-        - &#39;equal&#39;: Ensures an aspect ratio of 1. Pixels will be square
+        - 'equal': Ensures an aspect ratio of 1. Pixels will be square
           (unless pixel sizes are explicitly made non-square in data
           coordinates using *extent*).
-        - &#39;auto&#39;: The Axes is kept fixed and the aspect is adjusted so
+        - 'auto': The Axes is kept fixed and the aspect is adjusted so
           that the data fit in the Axes. In general, this will result in
           non-square pixels.
 
@@ -668,26 +656,26 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
     interpolation : str, default: :rc:`image.interpolation`
         The interpolation method used.
 
-        Supported values are &#39;none&#39;, &#39;antialiased&#39;, &#39;nearest&#39;, &#39;bilinear&#39;,
-        &#39;bicubic&#39;, &#39;spline16&#39;, &#39;spline36&#39;, &#39;hanning&#39;, &#39;hamming&#39;, &#39;hermite&#39;,
-        &#39;kaiser&#39;, &#39;quadric&#39;, &#39;catrom&#39;, &#39;gaussian&#39;, &#39;bessel&#39;, &#39;mitchell&#39;,
-        &#39;sinc&#39;, &#39;lanczos&#39;, &#39;blackman&#39;.
+        Supported values are 'none', 'antialiased', 'nearest', 'bilinear',
+        'bicubic', 'spline16', 'spline36', 'hanning', 'hamming', 'hermite',
+        'kaiser', 'quadric', 'catrom', 'gaussian', 'bessel', 'mitchell',
+        'sinc', 'lanczos', 'blackman'.
 
         The data *X* is resampled to the pixel size of the image on the
         figure canvas, using the interpolation method to either up- or
         downsample the data.
 
-        If *interpolation* is &#39;none&#39;, then for the ps, pdf, and svg
+        If *interpolation* is 'none', then for the ps, pdf, and svg
         backends no down- or upsampling occurs, and the image data is
         passed to the backend as a native image.  Note that different ps,
         pdf, and svg viewers may display these raw pixels differently. On
-        other backends, &#39;none&#39; is the same as &#39;nearest&#39;.
+        other backends, 'none' is the same as 'nearest'.
 
-        If *interpolation* is the default &#39;antialiased&#39;, then &#39;nearest&#39;
+        If *interpolation* is the default 'antialiased', then 'nearest'
         interpolation is used if the image is upsampled by more than a
         factor of three (i.e. the number of display pixels is at least
         three times the size of the data array).  If the upsampling rate is
-        smaller than 3, or the image is downsampled, then &#39;hanning&#39;
+        smaller than 3, or the image is downsampled, then 'hanning'
         interpolation is used to act as an anti-aliasing filter, unless the
         image happens to be upsampled by exactly a factor of two or one.
 
@@ -701,9 +689,9 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
         which can be set by *filterrad*. Additionally, the antigrain image
         resize filter is controlled by the parameter *filternorm*.
 
-    interpolation_stage : {&#39;data&#39;, &#39;rgba&#39;}, default: &#39;data&#39;
-        If &#39;data&#39;, interpolation
-        is carried out on the data provided by the user.  If &#39;rgba&#39;, the
+    interpolation_stage : {'data', 'rgba'}, default: 'data'
+        If 'data', interpolation
+        is carried out on the data provided by the user.  If 'rgba', the
         interpolation is carried out after the colormapping has been
         applied (visual interpolation).
 
@@ -712,13 +700,13 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
         If *alpha* is an array, the alpha blending values are applied pixel
         by pixel, and *alpha* must have the same shape as *X*.
 
-    origin : {&#39;upper&#39;, &#39;lower&#39;}, default: :rc:`image.origin`
+    origin : {'upper', 'lower'}, default: :rc:`image.origin`
         Place the [0, 0] index of the array in the upper left or lower
-        left corner of the Axes. The convention (the default) &#39;upper&#39; is
+        left corner of the Axes. The convention (the default) 'upper' is
         typically used for matrices and images.
 
-        Note that the vertical axis points upward for &#39;lower&#39;
-        but downward for &#39;upper&#39;.
+        Note that the vertical axis points upward for 'lower'
+        but downward for 'upper'.
 
         See the :ref:`imshow_extent` tutorial for
         examples and a more detailed description.
@@ -736,9 +724,9 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
         Note that the direction of the vertical axis and thus the default
         values for top and bottom depend on *origin*:
 
-        - For ``origin == &#39;upper&#39;`` the default is
+        - For ``origin == 'upper'`` the default is
           ``(-0.5, numcols-0.5, numrows-0.5, -0.5)``.
-        - For ``origin == &#39;lower&#39;`` the default is
+        - For ``origin == 'lower'`` the default is
           ``(-0.5, numcols-0.5, -0.5, numrows-0.5)``.
 
         See the :ref:`imshow_extent` tutorial for
@@ -748,14 +736,14 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
         A parameter for the antigrain image resize filter (see the
         antigrain documentation).  If *filternorm* is set, the filter
         normalizes integer values and corrects the rounding errors. It
-        doesn&#39;t do anything with the source floating point values, it
+        doesn't do anything with the source floating point values, it
         corrects only integers according to the rule of 1.0 which means
         that any sum of pixel weights must be equal to 1.0.  So, the
         filter function must produce a graph of the proper shape.
 
     filterrad : float &gt; 0, default: 4.0
         The filter radius for filters that have a radius parameter, i.e.
-        when interpolation is one of: &#39;sinc&#39;, &#39;lanczos&#39; or &#39;blackman&#39;.
+        when interpolation is one of: 'sinc', 'lanczos' or 'blackman'.
 
     resample : bool, default: :rc:`image.resample`
         When *True*, use a full resampling method.  When *False*, only
@@ -813,13 +801,13 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
 <p>Try running the following code cells to see the effect, and try out other changes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">Display an image with different brightness/contrast.</span>
 <span class="sd">(Be sure to run the cells above before this one!)</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="c1"># Display the image with a grayscale colormap</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -830,8 +818,8 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an X-ray by adding &#39;_r&#39; to &#39;reverse&#39; the colormap</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an X-ray by adding '_r' to 'reverse' the colormap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'gray_r'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -843,7 +831,7 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the image with a grayscale colormap and modified brightness/contrast</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -855,7 +843,7 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the image with a grayscale colormap and modified brightness/contrast</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -867,8 +855,8 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
 <p>There are many more colormaps available in matplotlib – for details, see <a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display with a &#39;perceptually uniform colormap&#39;</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display with a 'perceptually uniform colormap'</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'magma'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -880,7 +868,7 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display with a colormap that is, frankly, not very helpful here</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hsv&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'hsv'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -913,18 +901,18 @@ imshow(X: &#39;ArrayLike | PIL.Image.Image&#39;, cmap: &#39;str | Colormap | Non
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load and display an image with a title &amp; no visible axis</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../../images/spooked.png&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">'../../../images/spooked.png'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Some kind of title&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Some kind of title'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3408/2843473488.py:2: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
-  im = imread(&#39;../../../images/spooked.png&#39;)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3470/2843473488.py:2: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+  im = imread('../../../images/spooked.png')
 </pre></div>
 </div>
 <img alt="../../../_images/bd927f1f8552258bd06b0660b024983616b8406e92ce1141107e41d1c7ca8d26.png" src="../../../_images/bd927f1f8552258bd06b0660b024983616b8406e92ce1141107e41d1c7ca8d26.png" />
@@ -946,11 +934,11 @@ Then you don’t need to copy and paste the same lines of code frequently; rathe
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">my_imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">my_imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Call imshow and turn the axis off, optionally setting a title and colormap.</span>
-<span class="sd">    The default colormap is &#39;gray&#39;, and there is no default title.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    The default colormap is 'gray', and there is no default title.</span>
+<span class="sd">    """</span>
 
     <span class="c1"># Show image &amp; turn off axis</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
@@ -963,8 +951,8 @@ Then you don’t need to copy and paste the same lines of code frequently; rathe
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1"># Now I just need to call my function rather than customize every plot</span>
-<span class="n">my_imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Here is my new title&#39;</span><span class="p">)</span>
-<span class="n">my_imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Now I have inverted the colormap&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">)</span>
+<span class="n">my_imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'Here is my new title'</span><span class="p">)</span>
+<span class="n">my_imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'Now I have inverted the colormap'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'gray_r'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -984,7 +972,7 @@ Then we can use the methods such as <code class="docutils literal notranslate"><
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Default imports (they are already included at the top of the page)</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../&#39;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'../../../'</span><span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">helpers</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 </div>
@@ -992,9 +980,9 @@ Then we can use the methods such as <code class="docutils literal notranslate"><
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Easier way to load and display an image, which we&#39;ll use from now on</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;sunny_cell.tif&#39;</span><span class="p">)</span>
-<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;A new title&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Easier way to load and display an image, which we'll use from now on</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">'sunny_cell.tif'</span><span class="p">)</span>
+<span class="n">show_image</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'A new title'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1061,14 +1049,16 @@ Then we can use the methods such as <code class="docutils literal notranslate"><
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-show-an-image-using-python">Read &amp; show an image using Python <a name="show-image-in-python"></a></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-lookup-tables">Changing lookup tables</a></li>
@@ -1132,8 +1122,8 @@ See <a href="https://bioimagebook.github.io/chapters/0-preamble/license.html" ta
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
